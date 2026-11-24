@@ -316,3 +316,5 @@ NEXT-010.6.2 partial: local timeline editor reads original skills, edits start/d
 NEXT-010.6.3 partial: effect preview drag with pointer capture, X/Y/scale/rotation controls, origin marker, reset and export placement. Layer flag export only; coordinates preview-local. TypeScript/Vite/HTTP passed; browser interaction unverified.
 
 NEXT-010.6.4 partial: two-actor timeline preview with selectable opponent, original animation events, effect layers, offsets and demonstration hit counter; movement/audio/damage and exact positioning pending. TypeScript/Vite/HTTP passed; browser rendering unverified.
+
+NEXT-010.6.5 partial: migration 7 and append-only studio draft storage, optimistic revision checks with transaction lock, history and restore as new revision; PostgreSQL integration test passed. No public write routes or UI persistence until admin authorization.
