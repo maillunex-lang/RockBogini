@@ -161,3 +161,5 @@ NEXT-010.5: recovered nine original effect skeletons and texture sets; Spine 3.8
 NEXT-010.5: four explicit original-skeleton naming aliases recorded separately from 1744 exact matches; two unresolved Culot3501 names remain. Alias visual parity unverified.
 
 NEXT-010.6 partial: hero preview extended with actual Spine skin selector, per-model effect preview including aliases, JSON export. TypeScript and Vite build passed, HTTP published. No server persistence or browser visual verification yet.
+
+NEXT-010.6.2 partial: local timeline editor reads original skills, edits start/duration/offsets/layer/follow flags, highlights events on playback clock, resets and exports original plus draft JSON. TypeScript/Vite and HTTP passed. No synchronized Spine playback, server writes or browser test yet.
