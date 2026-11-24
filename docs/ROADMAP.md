@@ -143,3 +143,5 @@ RTB APK-003/004 UI prototype 0.3 built; acceptance pending device QA.
 Approved priority change: NEXT-010 full hero asset catalog first, then effect mapping and hero editor, then resume NEXT-012.12. Exact-name audit recorded in reports/NEXT-010-hero-assets.json; ambiguous matches require verification. No runtime assets copied yet.
 
 NEXT-010.2: original HeroBase only; exact boss/angel naming variants from Queen Blade library; verified skeleton and texture hashes for unique matches; public hero-asset-map.json metadata only. Ambiguous and missing models remain unresolved.
+
+NEXT-010.3 partial: 272 original models linked from verified library (228723187 bytes), lazy Spine preview with search and animation selection published at /testtest/hero-preview.html. Build and HTTP checks passed; visual browser validation and 24 unresolved models remain. Main game unchanged.
