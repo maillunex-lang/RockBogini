@@ -286,3 +286,7 @@ APK-002 isolated prototype built; no deployment or server changes.
 APK 0.2 built with static manifest and resource store; no production changes.
 
 NEXT-012.12 partial: max HP damage 106 with boss cap, skill head/tail modifiers 373/374. 58 tests passed. Remaining unsupported effects and description events require audit; gate closed.
+
+APK 0.3 built; production unchanged.
+
+Approved priority change: NEXT-010 full hero asset catalog first, then effect mapping and hero editor, then resume NEXT-012.12. Exact-name audit recorded in reports/NEXT-010-hero-assets.json; ambiguous matches require verification. No runtime assets copied yet.

@@ -283,3 +283,7 @@ APK-002 prototype compiled and test-signed; persistent asset storage and device 
 APK-003/004 partial: embedded manifest 69708 paths, 60584 unique hashes, 2979486642 unique bytes; persistent content-addressed store, Range resume, SHA256 and local GET interception compiled. Download orchestration/UI, Wi-Fi policy, remote manifest and device QA pending. reports/APK-003-build.log.
 
 NEXT-012.12 partial: max HP damage 106 with boss cap, skill head/tail modifiers 373/374. 58 tests passed. Remaining unsupported effects and description events require audit; gate closed.
+
+APK-004 partial: full-download UI, unique-file progress, pause between files, resume, free-space check and Wi-Fi gate between files compiled and test-signed. Device QA, efficient batching, live network change handling and remote manifest pending. reports/APK-004-build.log.
+
+Approved priority change: NEXT-010 full hero asset catalog first, then effect mapping and hero editor, then resume NEXT-012.12. Exact-name audit recorded in reports/NEXT-010-hero-assets.json; ambiguous matches require verification. No runtime assets copied yet.

@@ -137,3 +137,7 @@ RTB Android separate track: android-rtb/PLAN.md; APK-001 audit partial, APK-002 
 RTB APK-003/004 partial; APK-005 pending.
 
 NEXT-012.12 partial: max HP damage 106 with boss cap, skill head/tail modifiers 373/374. 58 tests passed. Remaining unsupported effects and description events require audit; gate closed.
+
+RTB APK-003/004 UI prototype 0.3 built; acceptance pending device QA.
+
+Approved priority change: NEXT-010 full hero asset catalog first, then effect mapping and hero editor, then resume NEXT-012.12. Exact-name audit recorded in reports/NEXT-010-hero-assets.json; ambiguous matches require verification. No runtime assets copied yet.

@@ -78,7 +78,7 @@
     "phase": "III. Боевое ядро",
     "scope": "Каталог, классы, фракции, редкость, параметры, способности; собственные фантазийные имена героев без изменения ID и баланса",
     "status": "in_progress",
-    "evidence": "next-audit/hero-catalog.json; reports/NEXT-010-skills-export.log; reports/NEXT-010-catalog-test.log; reports/NEXT-010-catalog-deploy.log; reports/NEXT-010-ownership-retry.log; reports/NEXT-010-ownership-deploy.log; reports/NEXT-010-heroes-ui-browser.log; reports/NEXT-010-heroes-ui-publish.log; reports/NEXT-010-fantasy-names-browser.log; reports/NEXT-010-attrs-test.log; reports/NEXT-010-skills-test.log; reports/NEXT-010-skills-ui-browser.log"
+    "evidence": "next-audit/hero-catalog.json; reports/NEXT-010-skills-export.log; reports/NEXT-010-catalog-test.log; reports/NEXT-010-catalog-deploy.log; reports/NEXT-010-ownership-retry.log; reports/NEXT-010-ownership-deploy.log; reports/NEXT-010-heroes-ui-browser.log; reports/NEXT-010-heroes-ui-publish.log; reports/NEXT-010-fantasy-names-browser.log; reports/NEXT-010-attrs-test.log; reports/NEXT-010-skills-test.log; reports/NEXT-010-skills-ui-browser.log; reports/NEXT-010-hero-assets.json"
   },
   {
     "id": "NEXT-011",
@@ -106,7 +106,8 @@
         "Document evidence and remaining baseline defects; obtain approval for any scope exception"
       ],
       "next_stage_blocked": true
-    }
+    },
+    "execution_note": "Paused pending full hero catalog and asset mapping; existing implementation preserved."
   },
   {
     "id": "NEXT-013",
