@@ -314,3 +314,5 @@ NEXT-010.6 partial: hero preview extended with actual Spine skin selector, per-m
 NEXT-010.6.2 partial: local timeline editor reads original skills, edits start/duration/offsets/layer/follow flags, highlights events on playback clock, resets and exports original plus draft JSON. TypeScript/Vite and HTTP passed. No synchronized Spine playback, server writes or browser test yet.
 
 NEXT-010.6.3 partial: effect preview drag with pointer capture, X/Y/scale/rotation controls, origin marker, reset and export placement. Layer flag export only; coordinates preview-local. TypeScript/Vite/HTTP passed; browser interaction unverified.
+
+NEXT-010.6.4 partial: two-actor timeline preview with selectable opponent, original animation events, effect layers, offsets and demonstration hit counter; movement/audio/damage and exact positioning pending. TypeScript/Vite/HTTP passed; browser rendering unverified.
