@@ -295,3 +295,13 @@ NEXT-010.3 partial: 272 original models linked from verified library (228723187 
 NEXT-010.2/3: original HeroSkillConfig BundleName exported for all 296 models, resolves ambiguous candidates and four missing aliases; published updated verified model map and original animation event timelines. Browser visual checks and effect rendering pending.
 
 NEXT-010.5 partial: skill effect map generated from original bundle dependencies and exact animation names; verified single-page Spine assets linked and published. Missing/ambiguous effects recorded, playback not yet implemented.
+
+NEXT-010.5: multi-page Spine atlas support implemented; 202 additional effect mappings imported (25 assets), build and HTTP manifest check passed. Browser rendering still unverified. 95 mappings remain.
+
+APK-005 partial: 100 immutable ZIP packs, 60584 unique files, 2991847978 bytes; verified source hashes and ZIP CRC, public index and sample HTTP. Client pack integration and remote updates pending. Disk low. reports/APK-005-packs.log.
+
+NEXT-010.5: decoded original SkillEffect prefab skeleton UUID references including packed Cocos imports; 1697/1750 mappings, 287 assets, zero ambiguous, 53 missing across nine models. Published manifest; visual playback pending.
+
+NEXT-010.5: recovered nine original effect skeletons and texture sets; Spine 3.8 binary parser verified 47 additional animation names, 1744/1750 matched. Six names absent from original referenced skeletons; browser texture/render validation pending.
+
+NEXT-010.5: four explicit original-skeleton naming aliases recorded separately from 1744 exact matches; two unresolved Culot3501 names remain. Alias visual parity unverified.
