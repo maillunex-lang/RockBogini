@@ -1,3 +1,4 @@
+import {descriptionEvent} from './descriptionEvents.js';
 import {effectCondition,startCondition,triggerCondition} from './conditions.js';
 import {summarizeBattle} from './result.js';
 import {runRounds,turnOrder,winner} from './rounds.js';
@@ -15,9 +16,11 @@ import {TriggerEngine,type BattleEvent} from './triggers.js';
 export type Fighter=CombatUnit&ActionUnit&{passives?:number[]};
 export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15){
  const acted=new Set<number>();const done=new Set<number>();let ending=false;let skillDepth=0;type Acc={crit:boolean;attacked:Map<number,number>;healed:Set<number>};let acc:Acc|undefined;let key=0,extra=0;let engine:TriggerEngine;const queue:{actor:Fighter;sid:number;atype:number;event?:TargetEvent}[]=[];const issues=new Set<string>();const journal:{round:number;actor:number;target:number;code:number;hp:number}[]=[];
- const instant=new Set([101,102,105,106,137,118,103,104,119,112,113,115,116,131,121,120]);
+ const descriptions:{round:number;actor:number;target:number;type:number;descriptionId:number}[]=[];
+ const instant=new Set([125,128,101,102,105,106,137,118,103,104,119,112,113,115,116,131,121,120]);
  const chance=(p:number)=>p===0||p>=1000||(p>0&&random()*1000<p);
  const resolve=(a:Fighter,t:Fighter,b:{tags:number[];params?:number[]},items:number[],ctx:ExecutionContext,round:number,metadata:Partial<BattleEvent>={})=>{
+ if(items[0]===125||items[0]===128){const d=descriptionEvent((metadata.buff as {Id?:number}|undefined)?.Id??0,items);if(d)descriptions.push({round,actor:a.id,target:t.id,...d});return}
  if([113,115,116,131].includes(items[0])){engine.removeMatching(t,items[0],items[1],items.slice(3));return}
  if(items[0]===120){useSkill(a,items[1],items[2]??0,{subject:t.id,other:a.id,targets:[t.id]},round);return}
  if(items[0]===121){engine.emit({code:items[1],subject:t.id});return}
@@ -103,5 +106,5 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  },
  end:(units,round)=>{extra=0;ending=true;engine.endRound();drain(units,round)}
  });
- return {...result,summary:summarizeBattle(result.units,result.result,result.rounds),journal,issues:[...issues],parityReady:false};
+ return {...result,summary:summarizeBattle(result.units,result.result,result.rounds),journal,descriptions,issues:[...issues],parityReady:false};
 }
