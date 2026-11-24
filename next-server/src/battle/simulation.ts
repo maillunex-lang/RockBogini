@@ -13,10 +13,11 @@ import {baseValue} from './periodic.js';
 import {TriggerEngine,type BattleEvent} from './triggers.js';
 export type Fighter=CombatUnit&ActionUnit&{passives?:number[]};
 export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15){
- const acted=new Set<number>();let key=0,extra=0;let engine:TriggerEngine;const queue:{actor:Fighter;sid:number;atype:number}[]=[];const issues=new Set<string>();const journal:{round:number;actor:number;target:number;code:number;hp:number}[]=[];
- const instant=new Set([101,102,105,137,118,103,104,119,112]);
+ const acted=new Set<number>();const done=new Set<number>();let ending=false;let key=0,extra=0;let engine:TriggerEngine;const queue:{actor:Fighter;sid:number;atype:number}[]=[];const issues=new Set<string>();const journal:{round:number;actor:number;target:number;code:number;hp:number}[]=[];
+ const instant=new Set([101,102,105,137,118,103,104,119,112,113,115,116,131]);
  const chance=(p:number)=>p===0||p>=1000||(p>0&&random()*1000<p);
  const resolve=(a:Fighter,t:Fighter,b:{tags:number[]},items:number[],ctx:ExecutionContext,round:number,metadata:Partial<BattleEvent>={})=>{
+ if([113,115,116,131].includes(items[0])){engine.removeMatching(t,items[0],items[1],items.slice(3));return}
  const r=executeEffect(a,t,b,items,ctx);
  if(r.status==='unsupported'){issues.add('trigger:'+items[0]);return}
  journal.push({round,actor:a.id,target:t.id,code:items[0],hp:t.hp});
@@ -44,7 +45,7 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  if(b.StartEffect.every(x=>instant.has(x.Items[0]))&&b.Round<=0){
  if(!chance(ch||b.StartWorkChance)||immune(t,b))continue;
  for(const {Items} of b.StartEffect){if(t.hp<=0&&Items[0]!==112)continue;resolve(a,t,{tags:b.Tags},Items,ctx,round,{skill:plan.skillId===undefined?undefined:actionSkills[plan.skillId],buff:b,atype:plan.atype??0})}
- }else{const r=applyBuff(a,t,b,{random,key:()=>++key,fresh:false,chance:ch,condition:rows=>startCondition(rows,a,t,ctx.overflow),baseValue:p=>baseValue(a,t,p,ctx)});if(r.status.startsWith('unsupported'))issues.add('buff:'+bid)}
+ }else{const r=applyBuff(a,t,b,{random,key:()=>++key,fresh:ending||done.has(t.id),chance:ch,condition:rows=>startCondition(rows,a,t,ctx.overflow),baseValue:p=>baseValue(a,t,p,ctx)});if(r.status.startsWith('unsupported'))issues.add('buff:'+bid);else if(r.status==='applied'&&b.Round>0){engine.emit({code:157,subject:t.id,other:a.id,buff:b});if(b.Tags.includes(13)||b.Tags.includes(4)){engine.emit({code:124,subject:a.id,other:t.id,buff:b});engine.emit({code:146,subject:t.id,other:a.id,buff:b})}}}
  }}
  for(const child of e.ChildEffects)walk(child,depth+1);
  };
@@ -54,17 +55,17 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  const drain=(units:Fighter[],round:number)=>{while(queue.length){const q=queue.shift()!;if(extra>=12||winner(units)||q.actor.hp<=0||hasTag(q.actor,4))continue;const skill=actionSkills[q.sid];if(!skill){issues.add('extra_skill:'+q.sid);continue}extra++;perform(units,q.actor,round,{skillId:q.sid,atype:q.atype,targets:selectTargets(units,q.actor,skill,[],random),groups:skill.Effects.map(x=>({effects:x.Items}))});acted.add(q.actor.camp)}};
  const result=runRounds(input,maxRounds,{
  speed:u=>effectiveAttr(u as Fighter,3),
- start:(units,round)=>{acted.clear();engine=makeEngine(units,round);extra=0;
+ start:(units,round)=>{acted.clear();done.clear();ending=false;engine=makeEngine(units,round);extra=0;
  if(round===1)for(const id of turnOrder(units,u=>effectiveAttr(u as Fighter,3))){const a=units.find(u=>u.id===id)!;for(const sid of a.passives??[]){if(a.hp<=0)break;const skill=actionSkills[sid];if(!skill){issues.add('missing_passive:'+sid);continue}perform(units,a,round,{skillId:sid,targets:selectTargets(units,a,skill,[],random),groups:skill.Effects.map(x=>({effects:x.Items}))})}}
  engine.emit({code:501});for(const u of units)dropTemp(u);drain(units,round);
  },
  action:(units,a,round)=>{
- extra=0;engine.emit({code:163,subject:a.id});for(const u of units)dropTemp(u);
+ extra=0;done.add(a.id);engine.emit({code:163,subject:a.id});for(const u of units)dropTemp(u);
  drain(units,round);if(winner(units))return;
  const plan=planAction(units,a,actionSkills,hitCounts,random,{disabled:hasTag(a,4),normalOnly:hasTag(a,6)||hasTag(a,7)});if(!plan)return;
  consumeAction(a,plan);perform(units,a,round,{...plan,atype:1});acted.add(a.camp);drain(units,round);
  },
- end:(units,round)=>{extra=0;engine.endRound();drain(units,round)}
+ end:(units,round)=>{extra=0;ending=true;engine.endRound();drain(units,round)}
  });
  return {...result,summary:summarizeBattle(result.units,result.result,result.rounds),journal,issues:[...issues],parityReady:false};
 }

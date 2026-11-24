@@ -1,4 +1,4 @@
-import {hasTag,limitOk,countFire,type Buff} from './buffs.js';
+import {hasTag,dispellable,limitOk,countFire,type Buff} from './buffs.js';
 import {removeBuff,type EffectUnit} from './applyBuff.js';
 import type {ConditionEvent} from "./conditions.js";
 export type BattleEvent=ConditionEvent&{code:number;subject?:number;other?:number;only?:number};
@@ -22,6 +22,11 @@ export class TriggerEngine{
  countFire(t,this.round,target);this.depth++;this.firing.add(firingKey);
  try{for(const effect of t.effects){if(effect[0]===127)removeBuff(u,key);else if(effect[0]===120||u.hp>0)this.hooks.execute(effect[0]===120?u:this.units.find(x=>x.id===b.from)??u,u,b,effect,e)}}finally{this.depth--;this.firing.delete(firingKey)}
  }
+ }
+ removeMatching(u:EffectUnit,kind:number,n:number,list:number[]){
+ let left=n>0?n:Infinity;
+ const matches=u.buffs.filter(b=>!b.temp&&(kind===116?list.includes(b.id):b.tags.some(t=>list.includes(t)))&&(kind!==113||dispellable(b)));
+ for(const b of matches){if(left<=0)break;const stacks=b.stacks;if(kind===113)this.emit({code:2,subject:u.id,only:b.key});removeBuff(u,b.key,left);left-=stacks}
  }
  endRound(){
  const before=new Set(this.units.flatMap(u=>u.buffs.map(b=>u.id+':'+b.key)));

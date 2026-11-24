@@ -272,3 +272,5 @@ NEXT-012: trigger condition evaluator ported and connected. 51 tests passed. Eve
 NEXT-012: damage/heal events now carry skill, buff, value and provisional attack type metadata; passive and extra skill IDs propagated. 51 regression tests passed. Exact attack type mapping, buff lifecycle events and dedicated integration fixtures remain. Gate closed.
 
 NEXT-012: corrected SkillAttackType mapping from BattleConsts and Elixir action/queue: normal turn 1, queued skill uses configured type, passive 0. 52 tests passed. Guard type, instant extra skill semantics and end-to-end event parity remain unverified. Gate closed.
+
+NEXT-012: partial stack removal, dispel 113, removal 115/116/131, before-dispel 2, attach 157 and control 124/146, fresh duration based on turn/end phase. 53 tests passed. Mixed instant/persistent effects, replacement 122 and differential parity remain. Gate closed.
