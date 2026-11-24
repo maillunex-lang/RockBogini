@@ -1,0 +1,278 @@
+texture0.png
+size: 300,520
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+eff_Shadow
+  rotate: false
+  xy: 80, 240
+  size: 112, 34
+  orig: 112, 34
+  offset: 0, 0
+  index: -1
+skin1/Arm_B_L
+  rotate: true
+  xy: 135, 51
+  size: 25, 38
+  orig: 25, 38
+  offset: 0, 0
+  index: -1
+skin1/Arm_B_R
+  rotate: false
+  xy: 274, 130
+  size: 25, 41
+  orig: 25, 41
+  offset: 0, 0
+  index: -1
+skin1/Arm_S_L
+  rotate: true
+  xy: 135, 77
+  size: 27, 38
+  orig: 27, 38
+  offset: 0, 0
+  index: -1
+skin1/Arm_S_R
+  rotate: false
+  xy: 242, 29
+  size: 23, 41
+  orig: 23, 41
+  offset: 0, 0
+  index: -1
+skin1/Body
+  rotate: true
+  xy: 1, 175
+  size: 44, 78
+  orig: 44, 78
+  offset: 0, 0
+  index: -1
+skin1/Body_Breast
+  rotate: true
+  xy: 267, 36
+  size: 41, 28
+  orig: 41, 28
+  offset: 0, 0
+  index: -1
+skin1/Body_Parts01
+  rotate: true
+  xy: 277, 464
+  size: 55, 22
+  orig: 55, 22
+  offset: 0, 0
+  index: -1
+skin1/Body_Parts02
+  rotate: false
+  xy: 101, 173
+  size: 32, 35
+  orig: 32, 35
+  offset: 0, 0
+  index: -1
+skin1/Body_Parts03
+  rotate: false
+  xy: 277, 443
+  size: 22, 20
+  orig: 22, 20
+  offset: 0, 0
+  index: -1
+skin1/Body_Parts04
+  rotate: false
+  xy: 275, 366
+  size: 15, 9
+  orig: 15, 9
+  offset: 0, 0
+  index: -1
+skin1/Body_Parts05
+  rotate: false
+  xy: 267, 78
+  size: 32, 25
+  orig: 32, 25
+  offset: 0, 0
+  index: -1
+skin1/Body_Parts06
+  rotate: true
+  xy: 194, 438
+  size: 81, 82
+  orig: 81, 82
+  offset: 0, 0
+  index: -1
+skin1/Body_Parts07
+  rotate: true
+  xy: 193, 297
+  size: 63, 106
+  orig: 63, 106
+  offset: 0, 0
+  index: -1
+skin1/Body_Skirt
+  rotate: false
+  xy: 1, 231
+  size: 78, 43
+  orig: 78, 43
+  offset: 0, 0
+  index: -1
+skin1/Exp_Eye_Attack
+  rotate: false
+  xy: 135, 138
+  size: 57, 34
+  orig: 57, 34
+  offset: 0, 0
+  index: -1
+skin1/Exp_Eye_Hit
+  rotate: false
+  xy: 80, 209
+  size: 50, 30
+  orig: 50, 30
+  offset: 0, 0
+  index: -1
+skin1/Exp_Eye_Normal
+  rotate: false
+  xy: 135, 105
+  size: 57, 32
+  orig: 57, 32
+  offset: 0, 0
+  index: -1
+skin1/Exp_Face_Attack
+  rotate: true
+  xy: 194, 361
+  size: 76, 80
+  orig: 76, 80
+  offset: 0, 0
+  index: -1
+skin1/Exp_Face_Hit
+  rotate: true
+  xy: 193, 220
+  size: 76, 80
+  orig: 76, 80
+  offset: 0, 0
+  index: -1
+skin1/Exp_Face_Normal
+  rotate: true
+  xy: 193, 143
+  size: 76, 80
+  orig: 76, 80
+  offset: 0, 0
+  index: -1
+skin1/Head_Hair_01
+  rotate: true
+  xy: 135, 173
+  size: 66, 57
+  orig: 66, 57
+  offset: 0, 0
+  index: -1
+skin1/Head_Hair_02
+  rotate: true
+  xy: 193, 116
+  size: 26, 76
+  orig: 26, 76
+  offset: 0, 0
+  index: -1
+skin1/Head_Hair_03
+  rotate: false
+  xy: 274, 225
+  size: 25, 71
+  orig: 25, 71
+  offset: 0, 0
+  index: -1
+skin1/Head_Hair_04
+  rotate: true
+  xy: 1, 424
+  size: 46, 192
+  orig: 46, 192
+  offset: 0, 0
+  index: -1
+skin1/Head_Hair_05
+  rotate: false
+  xy: 1, 4
+  size: 69, 167
+  orig: 69, 167
+  offset: 0, 0
+  index: -1
+skin1/Head_Hair_06
+  rotate: true
+  xy: 1, 471
+  size: 48, 192
+  orig: 48, 192
+  offset: 0, 0
+  index: -1
+skin1/Head_Hair_07
+  rotate: false
+  xy: 71, 6
+  size: 63, 165
+  orig: 63, 165
+  offset: 0, 0
+  index: -1
+skin1/Leg_Calf_L
+  rotate: false
+  xy: 277, 387
+  size: 20, 55
+  orig: 20, 55
+  offset: 0, 0
+  index: -1
+skin1/Leg_Calf_R
+  rotate: false
+  xy: 175, 46
+  size: 17, 58
+  orig: 17, 58
+  offset: 0, 0
+  index: -1
+skin1/Leg_Thigh_L
+  rotate: false
+  xy: 274, 172
+  size: 25, 52
+  orig: 25, 52
+  offset: 0, 0
+  index: -1
+skin1/Leg_Thigh_R
+  rotate: true
+  xy: 193, 47
+  size: 23, 48
+  orig: 23, 48
+  offset: 0, 0
+  index: -1
+skin1/Parts_Neck01
+  rotate: false
+  xy: 135, 1
+  size: 39, 34
+  orig: 39, 34
+  offset: 0, 0
+  index: -1
+skin1/Parts_Neck02
+  rotate: false
+  xy: 275, 376
+  size: 20, 10
+  orig: 20, 10
+  offset: 0, 0
+  index: -1
+skin1/Parts_Neck03
+  rotate: true
+  xy: 80, 172
+  size: 36, 20
+  orig: 36, 20
+  offset: 0, 0
+  index: -1
+skin1/Parts_Neck04
+  rotate: false
+  xy: 270, 104
+  size: 29, 25
+  orig: 29, 25
+  offset: 0, 0
+  index: -1
+skin1/Parts_Neck05
+  rotate: true
+  xy: 175, 4
+  size: 41, 25
+  orig: 41, 25
+  offset: 0, 0
+  index: -1
+skin1/Parts_Neck06
+  rotate: false
+  xy: 193, 71
+  size: 73, 44
+  orig: 73, 44
+  offset: 0, 0
+  index: -1
+skin1/Weapon
+  rotate: true
+  xy: 1, 275
+  size: 148, 191
+  orig: 148, 191
+  offset: 0, 0
+  index: -1

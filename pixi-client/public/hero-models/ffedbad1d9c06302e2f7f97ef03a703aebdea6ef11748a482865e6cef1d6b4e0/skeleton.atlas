@@ -1,0 +1,292 @@
+texture0.png
+size: 374,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ArmLB
+  rotate: false
+  xy: 286, 408
+  size: 61, 77
+  orig: 61, 77
+  offset: 0, 0
+  index: -1
+ArmLS
+  rotate: false
+  xy: 285, 712
+  size: 72, 78
+  orig: 74, 78
+  offset: 2, 0
+  index: -1
+ArmRB
+  rotate: false
+  xy: 296, 1050
+  size: 45, 83
+  orig: 45, 83
+  offset: 0, 0
+  index: -1
+ArmRS2
+  rotate: false
+  xy: 300, 1418
+  size: 49, 89
+  orig: 49, 89
+  offset: 0, 0
+  index: -1
+Belt
+  rotate: false
+  xy: 238, 1192
+  size: 127, 33
+  orig: 127, 33
+  offset: 0, 0
+  index: -1
+Body
+  rotate: false
+  xy: 177, 521
+  size: 94, 168
+  orig: 94, 168
+  offset: 0, 0
+  index: -1
+Breast
+  rotate: false
+  xy: 274, 1129
+  size: 89, 61
+  orig: 89, 61
+  offset: 0, 0
+  index: -1
+EF_A
+  rotate: 180
+  xy: 149, 34
+  size: 123, 153
+  orig: 123, 153
+  offset: 0, 0
+  index: -1
+EF_B
+  rotate: false
+  xy: 201, 1448
+  size: 97, 181
+  orig: 97, 185
+  offset: 0, 0
+  index: -1
+EF_C
+  rotate: false
+  xy: 248, 487
+  size: 84, 109
+  orig: 84, 109
+  offset: 0, 0
+  index: -1
+EF_D
+  rotate: 180
+  xy: 257, 1911
+  size: 114, 135
+  orig: 114, 135
+  offset: 0, 0
+  index: -1
+Eye_A
+  rotate: false
+  xy: 201, 1380
+  size: 111, 66
+  orig: 111, 66
+  offset: 0, 0
+  index: -1
+Eye_H
+  rotate: false
+  xy: 201, 1316
+  size: 108, 62
+  orig: 108, 62
+  offset: 0, 0
+  index: -1
+Eye_N
+  rotate: true
+  xy: 248, 781
+  size: 111, 68
+  orig: 111, 68
+  offset: 0, 0
+  index: -1
+HairA
+  rotate: true
+  xy: 2, 179
+  size: 153, 189
+  orig: 153, 189
+  offset: 0, 0
+  index: -1
+HairB
+  rotate: false
+  xy: 2, 1015
+  size: 236, 275
+  orig: 236, 275
+  offset: 0, 0
+  index: -1
+Head
+  rotate: true
+  xy: 140, 334
+  size: 151, 144
+  orig: 151, 166
+  offset: 0, 0
+  index: -1
+LegL1
+  rotate: 180
+  xy: 250, 3
+  size: 92, 101
+  orig: 92, 101
+  offset: 0, 0
+  index: -1
+LegL2
+  rotate: false
+  xy: 273, 840
+  size: 82, 99
+  orig: 82, 99
+  offset: 0, 0
+  index: -1
+LegL3
+  rotate: false
+  xy: 282, 1501
+  size: 78, 101
+  orig: 81, 110
+  offset: 0, 0
+  index: -1
+LegRB
+  rotate: false
+  xy: 262, 598
+  size: 85, 107
+  orig: 85, 107
+  offset: 0, 0
+  index: -1
+LegRS
+  rotate: false
+  xy: 286, 1846
+  size: 47, 135
+  orig: 47, 139
+  offset: 0, 0
+  index: -1
+PartA
+  rotate: false
+  xy: 240, 1231
+  size: 71, 83
+  orig: 71, 83
+  offset: 0, 0
+  index: -1
+PartB
+  rotate: true
+  xy: 192, 893
+  size: 145, 76
+  orig: 145, 76
+  offset: 0, 0
+  index: -1
+PartC
+  rotate: true
+  xy: 231, 1040
+  size: 150, 41
+  orig: 150, 41
+  offset: 0, 0
+  index: -1
+PartD
+  rotate: false
+  xy: 307, 202
+  size: 35, 60
+  orig: 35, 61
+  offset: 0, 1
+  index: -1
+PartE
+  rotate: false
+  xy: 311, 138
+  size: 21, 62
+  orig: 21, 62
+  offset: 0, 0
+  index: -1
+PartF
+  rotate: false
+  xy: 299, 508
+  size: 39, 40
+  orig: 39, 40
+  offset: 0, 0
+  index: -1
+PartG
+  rotate: false
+  xy: 170, 1998
+  size: 59, 48
+  orig: 67, 48
+  offset: 2, 0
+  index: -1
+SkirtA
+  rotate: true
+  xy: 270, 940
+  size: 113, 57
+  orig: 113, 57
+  offset: 0, 0
+  index: -1
+SkirtB
+  rotate: false
+  xy: 286, 367
+  size: 43, 39
+  orig: 43, 39
+  offset: 0, 0
+  index: -1
+SkirtC
+  rotate: false
+  xy: 170, 704
+  size: 142, 74
+  orig: 142, 74
+  offset: 0, 0
+  index: -1
+SkirtD
+  rotate: true
+  xy: 286, 1603
+  size: 126, 29
+  orig: 126, 29
+  offset: 0, 0
+  index: -1
+Weapon
+  rotate: false
+  xy: 2, 1292
+  size: 197, 336
+  orig: 197, 336
+  offset: 0, 0
+  index: -1
+WeaponB
+  rotate: false
+  xy: 170, 1630
+  size: 114, 362
+  orig: 114, 362
+  offset: 0, 0
+  index: -1
+WeaponB_Effect
+  rotate: false
+  xy: 2, 1630
+  size: 166, 416
+  orig: 320, 564
+  offset: 77, 77
+  index: -1
+WingLa
+  rotate: 180
+  xy: 174, 120
+  size: 144, 237
+  orig: 144, 237
+  offset: 0, 0
+  index: -1
+WingLb
+  rotate: false
+  xy: 2, 347
+  size: 204, 363
+  orig: 204, 363
+  offset: 0, 0
+  index: -1
+WingRa
+  rotate: true
+  xy: 2, 9
+  size: 187, 242
+  orig: 187, 242
+  offset: 0, 0
+  index: -1
+WingRb
+  rotate: false
+  xy: 2, 691
+  size: 244, 346
+  orig: 244, 346
+  offset: 0, 0
+  index: -1
+eff_Shadow
+  rotate: true
+  xy: 286, 1731
+  size: 112, 34
+  orig: 112, 34
+  offset: 0, 0
+  index: -1

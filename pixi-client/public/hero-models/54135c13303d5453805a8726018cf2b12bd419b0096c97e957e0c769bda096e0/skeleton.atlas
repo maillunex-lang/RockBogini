@@ -1,0 +1,278 @@
+texture0.png
+size: 952,279
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Body
+  rotate: true
+  xy: 561, 7
+  size: 45, 80
+  orig: 45, 80
+  offset: 0, 0
+  index: -1
+BodyPart_01
+  rotate: 270
+  xy: 826, 173
+  size: 57, 50
+  orig: 57, 50
+  offset: 0, 0
+  index: -1
+BodyPart_02
+  rotate: false
+  xy: 712, 74
+  size: 80, 92
+  orig: 80, 92
+  offset: 0, 0
+  index: -1
+BodyPart_03
+  rotate: false
+  xy: 733, 167
+  size: 75, 93
+  orig: 75, 93
+  offset: 0, 0
+  index: -1
+Eye_A
+  rotate: false
+  xy: 793, 14
+  size: 59, 36
+  orig: 59, 36
+  offset: 0, 0
+  index: -1
+Eye_H
+  rotate: true
+  xy: 838, 52
+  size: 50, 35
+  orig: 50, 35
+  offset: 0, 0
+  index: -1
+Eye_N
+  rotate: false
+  xy: 483, 9
+  size: 59, 32
+  orig: 59, 32
+  offset: 0, 0
+  index: -1
+GY
+  rotate: true
+  xy: 477, 140
+  size: 116, 114
+  orig: 128, 128
+  offset: 7, 7
+  index: -1
+Hair_01
+  rotate: false
+  xy: 806, 225
+  size: 46, 52
+  orig: 46, 52
+  offset: 0, 0
+  index: -1
+Hair_02
+  rotate: 270
+  xy: 116, 3
+  size: 30, 70
+  orig: 30, 70
+  offset: 0, 0
+  index: -1
+Hair_03
+  rotate: true
+  xy: 188, 2
+  size: 30, 68
+  orig: 30, 68
+  offset: 0, 0
+  index: -1
+Hair_04
+  rotate: true
+  xy: 483, 43
+  size: 95, 179
+  orig: 95, 179
+  offset: 0, 0
+  index: -1
+Hair_05
+  rotate: 180
+  xy: 660, 99
+  size: 77, 178
+  orig: 77, 178
+  offset: 0, 0
+  index: -1
+Head
+  rotate: true
+  xy: 643, 18
+  size: 77, 82
+  orig: 77, 82
+  offset: 0, 0
+  index: -1
+HeadPart_01
+  rotate: true
+  xy: 263, 7
+  size: 51, 66
+  orig: 51, 66
+  offset: 0, 0
+  index: -1
+HeadPart_02
+  rotate: false
+  xy: 355, 140
+  size: 120, 137
+  orig: 120, 137
+  offset: 0, 0
+  index: -1
+HeadPart_03
+  rotate: true
+  xy: 794, 52
+  size: 71, 42
+  orig: 71, 43
+  offset: 0, 1
+  index: -1
+LY
+  rotate: false
+  xy: 782, 125
+  size: 55, 55
+  orig: 60, 60
+  offset: 3, 2
+  index: -1
+L_ArmB
+  rotate: 180
+  xy: 906, 219
+  size: 33, 42
+  orig: 34, 42
+  offset: 0, 0
+  index: -1
+L_ArmB2
+  rotate: false
+  xy: 928, 151
+  size: 21, 26
+  orig: 21, 26
+  offset: 0, 0
+  index: -1
+L_ArmS_01
+  rotate: false
+  xy: 854, 17
+  size: 50, 56
+  orig: 106, 67
+  offset: 0, 0
+  index: -1
+L_ArmS_02
+  rotate: false
+  xy: 895, 8
+  size: 41, 52
+  orig: 41, 52
+  offset: 0, 0
+  index: -1
+L_Breast
+  rotate: false
+  xy: 905, 115
+  size: 26, 37
+  orig: 26, 37
+  offset: 0, 0
+  index: -1
+L_LegB
+  rotate: false
+  xy: 875, 74
+  size: 25, 56
+  orig: 25, 56
+  offset: 0, 0
+  index: -1
+L_LegS
+  rotate: true
+  xy: 854, 249
+  size: 25, 63
+  orig: 25, 74
+  offset: 0, 0
+  index: -1
+Neck
+  rotate: false
+  xy: 544, 7
+  size: 23, 16
+  orig: 23, 16
+  offset: 0, 0
+  index: -1
+R_ArmB
+  rotate: false
+  xy: 331, 5
+  size: 22, 43
+  orig: 22, 43
+  offset: 0, 0
+  index: -1
+R_ArmB2
+  rotate: false
+  xy: 922, 179
+  size: 21, 30
+  orig: 21, 30
+  offset: 0, 0
+  index: -1
+R_ArmS_01
+  rotate: false
+  xy: 841, 104
+  size: 36, 81
+  orig: 45, 118
+  offset: 9, 29
+  index: -1
+R_ArmS_02
+  rotate: 180
+  xy: 874, 186
+  size: 29, 67
+  orig: 29, 67
+  offset: 0, 0
+  index: -1
+R_Breast
+  rotate: false
+  xy: 902, 74
+  size: 33, 39
+  orig: 33, 39
+  offset: 0, 0
+  index: -1
+R_LegB
+  rotate: false
+  xy: 879, 132
+  size: 24, 52
+  orig: 24, 52
+  offset: 0, 0
+  index: -1
+R_LegS
+  rotate: false
+  xy: 900, 155
+  size: 24, 62
+  orig: 24, 62
+  offset: 0, 0
+  index: -1
+SP
+  rotate: false
+  xy: 727, 8
+  size: 64, 64
+  orig: 128, 126
+  offset: 32, 31
+  index: -1
+Weapon
+  rotate: false
+  xy: 263, 60
+  size: 90, 217
+  orig: 90, 217
+  offset: 0, 0
+  index: -1
+Weapon 2
+  rotate: false
+  xy: 142, 34
+  size: 119, 243
+  orig: 150, 250
+  offset: 17, 3
+  index: -1
+WeaponEF
+  rotate: false
+  xy: 2, 48
+  size: 138, 229
+  orig: 138, 229
+  offset: 0, 0
+  index: -1
+eff_Shadow
+  rotate: false
+  xy: 2, 12
+  size: 112, 34
+  orig: 112, 34
+  offset: 0, 0
+  index: -1
+kuosan7
+  rotate: true
+  xy: 355, 17
+  size: 121, 126
+  orig: 128, 128
+  offset: 0, 0
+  index: -1

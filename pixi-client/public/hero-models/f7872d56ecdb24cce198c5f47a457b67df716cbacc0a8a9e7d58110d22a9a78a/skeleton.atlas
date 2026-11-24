@@ -1,0 +1,180 @@
+texture0.png
+size: 2012,510
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+B_PT1
+  rotate: false
+  xy: 954, 323
+  size: 625, 185
+  orig: 625, 185
+  offset: 0, 0
+  index: -1
+B_PT2
+  rotate: false
+  xy: 2, 236
+  size: 625, 272
+  orig: 625, 272
+  offset: 0, 0
+  index: -1
+Body
+  rotate: true
+  xy: 572, 173
+  size: 335, 382
+  orig: 335, 382
+  offset: 0, 0
+  index: -1
+E_B
+  rotate: false
+  xy: 359, 103
+  size: 220, 113
+  orig: 220, 113
+  offset: 0, 0
+  index: -1
+Eye_A
+  rotate: false
+  xy: 210, 29
+  size: 206, 72
+  orig: 206, 72
+  offset: 0, 0
+  index: -1
+Eye_N
+  rotate: false
+  xy: 2, 33
+  size: 206, 75
+  orig: 206, 75
+  offset: 0, 0
+  index: -1
+H_EF
+  rotate: false
+  xy: 1130, 219
+  size: 289, 166
+  orig: 289, 166
+  offset: 0, 0
+  index: -1
+H_EF_2
+  rotate: true
+  xy: 1843, 219
+  size: 290, 166
+  orig: 320, 200
+  offset: 15, 17
+  index: -1
+H_Part1
+  rotate: true
+  xy: 418, 5
+  size: 96, 117
+  orig: 96, 117
+  offset: 0, 0
+  index: -1
+Head
+  rotate: false
+  xy: 1099, 76
+  size: 263, 141
+  orig: 263, 141
+  offset: 0, 0
+  index: -1
+L_ArmB
+  rotate: 180
+  xy: 1524, 8
+  size: 168, 140
+  orig: 168, 140
+  offset: 0, 0
+  index: -1
+L_ArmS
+  rotate: false
+  xy: 873, 70
+  size: 255, 250
+  orig: 255, 250
+  offset: 0, 0
+  index: -1
+L_EP
+  rotate: false
+  xy: 456, 232
+  size: 114, 70
+  orig: 114, 70
+  offset: 0, 0
+  index: -1
+Mouth
+  rotate: 180
+  xy: 605, 26
+  size: 244, 85
+  orig: 244, 85
+  offset: 0, 0
+  index: -1
+Mouth_A
+  rotate: false
+  xy: 1722, 83
+  size: 234, 135
+  orig: 234, 272
+  offset: 0, 0
+  index: -1
+Mouth_N
+  rotate: true
+  xy: 1434, 114
+  size: 233, 126
+  orig: 233, 225
+  offset: 0, 0
+  index: -1
+Neck
+  rotate: 180
+  xy: 604, 63
+  size: 256, 122
+  orig: 256, 122
+  offset: 0, 0
+  index: -1
+Nose
+  rotate: false
+  xy: 1773, 446
+  size: 66, 62
+  orig: 66, 62
+  offset: 0, 0
+  index: -1
+R_ArmB
+  rotate: false
+  xy: 1331, 11
+  size: 127, 130
+  orig: 143, 130
+  offset: 0, 0
+  index: -1
+R_ArmS
+  rotate: 270
+  xy: 992, 3
+  size: 141, 200
+  orig: 141, 200
+  offset: 0, 0
+  index: -1
+R_EP
+  rotate: false
+  xy: 392, 486
+  size: 24, 22
+  orig: 24, 22
+  offset: 0, 0
+  index: -1
+W_EF1
+  rotate: false
+  xy: 1524, 431
+  size: 110, 77
+  orig: 110, 77
+  offset: 0, 0
+  index: -1
+W_EF2
+  rotate: 180
+  xy: 1615, 8
+  size: 307, 147
+  orig: 307, 147
+  offset: 0, 0
+  index: -1
+W_EF3
+  rotate: false
+  xy: 2, 110
+  size: 355, 124
+  orig: 355, 124
+  offset: 0, 0
+  index: -1
+W_EF4
+  rotate: false
+  xy: 1561, 165
+  size: 279, 343
+  orig: 279, 343
+  offset: 0, 0
+  index: -1

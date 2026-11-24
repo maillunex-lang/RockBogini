@@ -1,0 +1,159 @@
+texture0.png
+size: 1251,425
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Body
+  rotate: 180
+  xy: 326, 199
+  size: 210, 224
+  orig: 210, 224
+  offset: 0, 0
+  index: -1
+Eye
+  rotate: false
+  xy: 131, 4
+  size: 229, 80
+  orig: 229, 80
+  offset: 0, 0
+  index: -1
+Eyeshadow
+  rotate: true
+  xy: 803, 180
+  size: 243, 107
+  orig: 243, 107
+  offset: 0, 0
+  index: -1
+Foot_A
+  rotate: 180
+  xy: 912, 266
+  size: 140, 155
+  orig: 140, 155
+  offset: 0, 0
+  index: -1
+Foot_B
+  rotate: true
+  xy: 990, 7
+  size: 157, 131
+  orig: 157, 131
+  offset: 0, 0
+  index: -1
+Foot_C
+  rotate: 270
+  xy: 1078, 271
+  size: 124, 132
+  orig: 124, 132
+  offset: 0, 0
+  index: -1
+Foot_D
+  rotate: false
+  xy: 1103, 12
+  size: 100, 111
+  orig: 100, 111
+  offset: 0, 0
+  index: -1
+Foot_E
+  rotate: true
+  xy: 1035, 211
+  size: 114, 111
+  orig: 114, 111
+  offset: 0, 0
+  index: -1
+Head
+  rotate: 180
+  xy: 2, 74
+  size: 360, 350
+  orig: 360, 350
+  offset: 0, 0
+  index: -1
+Head_B
+  rotate: false
+  xy: 912, 121
+  size: 123, 143
+  orig: 123, 143
+  offset: 0, 0
+  index: -1
+Head_Part
+  rotate: false
+  xy: 2, 24
+  size: 122, 52
+  orig: 122, 52
+  offset: 0, 0
+  index: -1
+L_Arm
+  rotate: false
+  xy: 2, 312
+  size: 175, 111
+  orig: 175, 111
+  offset: 0, 0
+  index: -1
+L_Finger1
+  rotate: true
+  xy: 606, 9
+  size: 75, 96
+  orig: 75, 96
+  offset: 0, 0
+  index: -1
+L_Finger2
+  rotate: false
+  xy: 1198, 39
+  size: 50, 89
+  orig: 50, 89
+  offset: 0, 0
+  index: -1
+L_Hand
+  rotate: true
+  xy: 350, 6
+  size: 170, 259
+  orig: 170, 259
+  offset: 0, 0
+  index: -1
+Mouth
+  rotate: 270
+  xy: 512, 72
+  size: 309, 217
+  orig: 309, 217
+  offset: 0, 0
+  index: -1
+Mouth_B
+  rotate: 270
+  xy: 672, 123
+  size: 243, 145
+  orig: 243, 145
+  offset: 0, 0
+  index: -1
+R_Arm
+  rotate: 180
+  xy: 239, 290
+  size: 117, 113
+  orig: 117, 113
+  offset: 0, 0
+  index: -1
+R_Finger1
+  rotate: false
+  xy: 1125, 125
+  size: 83, 101
+  orig: 83, 101
+  offset: 0, 0
+  index: -1
+R_Finger2
+  rotate: false
+  xy: 1189, 202
+  size: 59, 101
+  orig: 59, 101
+  offset: 0, 0
+  index: -1
+R_Hand
+  rotate: 270
+  xy: 721, 9
+  size: 119, 267
+  orig: 119, 267
+  offset: 0, 0
+  index: -1
+eff_Shadow
+  rotate: false
+  xy: 1120, 389
+  size: 112, 34
+  orig: 112, 34
+  offset: 0, 0
+  index: -1

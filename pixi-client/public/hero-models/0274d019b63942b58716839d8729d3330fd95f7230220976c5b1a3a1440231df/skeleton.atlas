@@ -1,0 +1,327 @@
+texture0.png
+size: 520,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Body
+  rotate: false
+  xy: 6, 2
+  size: 321, 156
+  orig: 321, 156
+  offset: 0, 0
+  index: -1
+Eye_H
+  rotate: true
+  xy: 2, 574
+  size: 217, 220
+  orig: 217, 220
+  offset: 0, 0
+  index: -1
+Eye_N
+  rotate: false
+  xy: 242, 177
+  size: 217, 220
+  orig: 217, 220
+  offset: 0, 0
+  index: -1
+HairA
+  rotate: false
+  xy: 2, 126
+  size: 258, 221
+  orig: 258, 221
+  offset: 0, 0
+  index: -1
+HairB
+  rotate: true
+  xy: 2, 348
+  size: 224, 262
+  orig: 224, 265
+  offset: 0, 3
+  index: -1
+HairC
+  rotate: false
+  xy: 2, 793
+  size: 293, 286
+  orig: 293, 289
+  offset: 0, 0
+  index: -1
+HairD
+  rotate: false
+  xy: 2, 1707
+  size: 295, 339
+  orig: 295, 339
+  offset: 0, 0
+  index: -1
+HairE
+  rotate: 270
+  xy: 2, 1074
+  size: 313, 285
+  orig: 313, 291
+  offset: 0, 0
+  index: -1
+HairF
+  rotate: 270
+  xy: 2, 1385
+  size: 328, 290
+  orig: 328, 290
+  offset: 0, 0
+  index: -1
+HairG
+  rotate: true
+  xy: 352, 399
+  size: 126, 110
+  orig: 126, 110
+  offset: 0, 0
+  index: -1
+HairH
+  rotate: false
+  xy: 369, 884
+  size: 71, 185
+  orig: 71, 213
+  offset: 0, 0
+  index: -1
+HairI
+  rotate: false
+  xy: 246, 990
+  size: 154, 174
+  orig: 208, 182
+  offset: 33, 8
+  index: -1
+Head_Part
+  rotate: true
+  xy: 373, 1127
+  size: 155, 59
+  orig: 155, 59
+  offset: 0, 0
+  index: -1
+Head_PartB
+  rotate: false
+  xy: 457, 1683
+  size: 35, 89
+  orig: 35, 89
+  offset: 0, 0
+  index: -1
+Head_PartC
+  rotate: false
+  xy: 279, 1674
+  size: 176, 174
+  orig: 176, 174
+  offset: 0, 0
+  index: -1
+Head_PartD
+  rotate: 270
+  xy: 420, 1436
+  size: 123, 88
+  orig: 123, 88
+  offset: 0, 0
+  index: -1
+Head_PartE
+  rotate: false
+  xy: 454, 294
+  size: 57, 48
+  orig: 57, 48
+  offset: 0, 0
+  index: -1
+Head_PartF
+  rotate: true
+  xy: 439, 948
+  size: 85, 58
+  orig: 85, 58
+  offset: 0, 0
+  index: -1
+Head_PartG
+  rotate: false
+  xy: 399, 1910
+  size: 81, 87
+  orig: 81, 87
+  offset: 0, 0
+  index: -1
+Head_PartH
+  rotate: false
+  xy: 275, 1284
+  size: 164, 214
+  orig: 164, 214
+  offset: 0, 0
+  index: -1
+Head_PartI
+  rotate: true
+  xy: 357, 30
+  size: 107, 89
+  orig: 107, 89
+  offset: 0, 0
+  index: -1
+Head_PartJ
+  rotate: false
+  xy: 426, 361
+  size: 82, 73
+  orig: 82, 73
+  offset: 0, 0
+  index: -1
+PartA
+  rotate: true
+  xy: 224, 460
+  size: 269, 197
+  orig: 269, 197
+  offset: 0, 0
+  index: -1
+PartB
+  rotate: false
+  xy: 267, 726
+  size: 159, 164
+  orig: 159, 164
+  offset: 0, 0
+  index: -1
+PartC
+  rotate: 180
+  xy: 427, 1774
+  size: 73, 134
+  orig: 73, 134
+  offset: 0, 0
+  index: -1
+PartD
+  rotate: false
+  xy: 268, 1985
+  size: 24, 61
+  orig: 24, 61
+  offset: 0, 0
+  index: -1
+PartE
+  rotate: 270
+  xy: 405, 1055
+  size: 117, 110
+  orig: 117, 110
+  offset: 0, 0
+  index: -1
+PartF
+  rotate: false
+  xy: 431, 2
+  size: 73, 70
+  orig: 73, 70
+  offset: 0, 0
+  index: -1
+PartO
+  rotate: false
+  xy: 453, 755
+  size: 60, 52
+  orig: 60, 52
+  offset: 0, 0
+  index: -1
+PartP
+  rotate: true
+  xy: 445, 180
+  size: 113, 59
+  orig: 113, 59
+  offset: 0, 0
+  index: -1
+PartQ
+  rotate: false
+  xy: 2, 1657
+  size: 80, 95
+  orig: 80, 95
+  offset: 0, 0
+  index: -1
+PartR
+  rotate: false
+  xy: 378, 655
+  size: 76, 126
+  orig: 76, 126
+  offset: 0, 0
+  index: -1
+PartS
+  rotate: false
+  xy: 434, 1177
+  size: 82, 72
+  orig: 82, 72
+  offset: 0, 0
+  index: -1
+PartT
+  rotate: true
+  xy: 231, 1707
+  size: 82, 46
+  orig: 82, 46
+  offset: 0, 0
+  index: -1
+PartU
+  rotate: true
+  xy: 410, 809
+  size: 137, 76
+  orig: 137, 76
+  offset: 0, 0
+  index: -1
+PartV
+  rotate: false
+  xy: 294, 1874
+  size: 109, 172
+  orig: 109, 172
+  offset: 0, 0
+  index: -1
+PartW
+  rotate: false
+  xy: 324, 31
+  size: 139, 160
+  orig: 139, 160
+  offset: 0, 0
+  index: -1
+Partg
+  rotate: false
+  xy: 429, 1251
+  size: 88, 94
+  orig: 88, 94
+  offset: 0, 0
+  index: -1
+Parth
+  rotate: 180
+  xy: 363, 1561
+  size: 108, 111
+  orig: 108, 111
+  offset: 0, 0
+  index: -1
+Parti
+  rotate: false
+  xy: 293, 1500
+  size: 88, 152
+  orig: 88, 152
+  offset: 0, 0
+  index: -1
+Partj
+  rotate: true
+  xy: 441, 1357
+  size: 80, 61
+  orig: 80, 61
+  offset: 0, 0
+  index: -1
+Partk
+  rotate: false
+  xy: 348, 1850
+  size: 83, 29
+  orig: 83, 29
+  offset: 0, 0
+  index: -1
+Partl
+  rotate: false
+  xy: 2, 2013
+  size: 41, 33
+  orig: 41, 33
+  offset: 0, 0
+  index: -1
+Partm
+  rotate: false
+  xy: 294, 1164
+  size: 83, 118
+  orig: 83, 118
+  offset: 0, 0
+  index: -1
+Partn
+  rotate: true
+  xy: 418, 537
+  size: 138, 77
+  orig: 138, 77
+  offset: 0, 0
+  index: -1
+eff_Shadow
+  rotate: false
+  xy: 405, 2012
+  size: 112, 34
+  orig: 112, 34
+  offset: 0, 0
+  index: -1

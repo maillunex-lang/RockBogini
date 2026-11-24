@@ -1,0 +1,299 @@
+texture0.png
+size: 1705,155
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Body
+  rotate: true
+  xy: 1415, 28
+  size: 52, 86
+  orig: 52, 86
+  offset: 0, 0
+  index: -1
+BodyA
+  rotate: true
+  xy: 1585, 106
+  size: 49, 44
+  orig: 49, 44
+  offset: 0, 0
+  index: -1
+Eye_A
+  rotate: false
+  xy: 613, 10
+  size: 62, 38
+  orig: 64, 40
+  offset: 1, 1
+  index: -1
+Eye_H
+  rotate: false
+  xy: 677, 6
+  size: 51, 36
+  orig: 53, 38
+  offset: 1, 1
+  index: -1
+Eye_N
+  rotate: false
+  xy: 730, 9
+  size: 64, 34
+  orig: 64, 34
+  offset: 0, 0
+  index: -1
+GY
+  rotate: true
+  xy: 1048, 37
+  size: 116, 114
+  orig: 128, 128
+  offset: 7, 7
+  index: -1
+HairA
+  rotate: true
+  xy: 1337, 11
+  size: 103, 88
+  orig: 103, 88
+  offset: 0, 0
+  index: -1
+HairB
+  rotate: true
+  xy: 971, 3
+  size: 29, 58
+  orig: 29, 58
+  offset: 0, 0
+  index: -1
+HairC
+  rotate: true
+  xy: 1076, 6
+  size: 22, 59
+  orig: 22, 59
+  offset: 0, 0
+  index: -1
+HairD
+  rotate: false
+  xy: 131, 4
+  size: 61, 39
+  orig: 61, 39
+  offset: 0, 0
+  index: -1
+HairE
+  rotate: true
+  xy: 86, 4
+  size: 98, 167
+  orig: 98, 167
+  offset: 0, 0
+  index: -1
+Head
+  rotate: false
+  xy: 2, 17
+  size: 82, 84
+  orig: 82, 84
+  offset: 0, 0
+  index: -1
+LY
+  rotate: false
+  xy: 1476, 98
+  size: 55, 55
+  orig: 60, 60
+  offset: 3, 2
+  index: -1
+L_ArmB
+  rotate: false
+  xy: 1323, 4
+  size: 28, 42
+  orig: 28, 42
+  offset: 0, 0
+  index: -1
+L_ArmS
+  rotate: false
+  xy: 1670, 6
+  size: 30, 42
+  orig: 30, 42
+  offset: 0, 0
+  index: -1
+L_FootA
+  rotate: true
+  xy: 712, 45
+  size: 108, 209
+  orig: 108, 209
+  offset: 0, 0
+  index: -1
+L_LegB
+  rotate: true
+  xy: 796, 15
+  size: 28, 58
+  orig: 28, 58
+  offset: 0, 0
+  index: -1
+L_LegS
+  rotate: true
+  xy: 323, 5
+  size: 24, 62
+  orig: 24, 62
+  offset: 0, 0
+  index: -1
+Part
+  rotate: false
+  xy: 49, 135
+  size: 25, 18
+  orig: 25, 18
+  offset: 0, 0
+  index: -1
+PartA
+  rotate: false
+  xy: 1610, 41
+  size: 26, 39
+  orig: 26, 39
+  offset: 0, 0
+  index: -1
+PartB
+  rotate: false
+  xy: 1607, 6
+  size: 31, 33
+  orig: 31, 33
+  offset: 0, 0
+  index: -1
+PartC
+  rotate: false
+  xy: 194, 6
+  size: 14, 29
+  orig: 14, 29
+  offset: 0, 0
+  index: -1
+PartD
+  rotate: false
+  xy: 1136, 3
+  size: 12, 30
+  orig: 12, 30
+  offset: 0, 0
+  index: -1
+R_ArmB
+  rotate: true
+  xy: 1031, 8
+  size: 24, 43
+  orig: 24, 43
+  offset: 0, 0
+  index: -1
+R_ArmS
+  rotate: true
+  xy: 2, 127
+  size: 27, 46
+  orig: 27, 46
+  offset: 0, 0
+  index: -1
+R_LegB
+  rotate: true
+  xy: 856, 15
+  size: 28, 55
+  orig: 28, 55
+  offset: 0, 0
+  index: -1
+R_LegS
+  rotate: true
+  xy: 907, 7
+  size: 25, 62
+  orig: 25, 62
+  offset: 0, 0
+  index: -1
+SkirtA
+  rotate: false
+  xy: 405, 4
+  size: 93, 84
+  orig: 93, 84
+  offset: 0, 0
+  index: -1
+eff_Shadow
+  rotate: false
+  xy: 499, 9
+  size: 112, 34
+  orig: 112, 34
+  offset: 0, 0
+  index: -1
+kuosan7
+  rotate: false
+  xy: 923, 34
+  size: 123, 119
+  orig: 128, 128
+  offset: 2, 6
+  index: -1
+she2_a
+  rotate: false
+  xy: 2, 44
+  size: 709, 111
+  orig: 710, 111
+  offset: 1, 0
+  index: -1
+she2_b
+  rotate: 270
+  xy: 1628, 22
+  size: 111, 40
+  orig: 111, 40
+  offset: 0, 0
+  index: -1
+she2_c
+  rotate: 270
+  xy: 1495, 7
+  size: 89, 62
+  orig: 89, 62
+  offset: 0, 0
+  index: -1
+she2_d
+  rotate: true
+  xy: 1529, 68
+  size: 68, 60
+  orig: 68, 60
+  offset: 0, 0
+  index: -1
+she_a
+  rotate: false
+  xy: 1163, 10
+  size: 151, 143
+  orig: 151, 143
+  offset: 0, 0
+  index: -1
+she_b
+  rotate: 270
+  xy: 1266, 12
+  size: 133, 110
+  orig: 133, 110
+  offset: 0, 0
+  index: -1
+she_c
+  rotate: false
+  xy: 253, 5
+  size: 171, 62
+  orig: 171, 62
+  offset: 0, 0
+  index: -1
+she_d
+  rotate: 180
+  xy: 1548, 5
+  size: 62, 78
+  orig: 62, 78
+  offset: 0, 0
+  index: -1
+she_e
+  rotate: 270
+  xy: 1394, 78
+  size: 77, 83
+  orig: 77, 83
+  offset: 0, 0
+  index: -1
+she_f
+  rotate: false
+  xy: 1657, 61
+  size: 47, 84
+  orig: 47, 84
+  offset: 0, 0
+  index: -1
+she_g
+  rotate: false
+  xy: 1217, 6
+  size: 48, 35
+  orig: 48, 35
+  offset: 0, 0
+  index: -1
+yumao
+  rotate: false
+  xy: 86, 78
+  size: 21, 23
+  orig: 80, 80
+  offset: 30, 29
+  index: -1

@@ -1,0 +1,271 @@
+texture0.png
+size: 537,269
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+skin1/ArmL1
+  rotate: true
+  xy: 201, 1
+  size: 31, 96
+  orig: 31, 96
+  offset: 0, 0
+  index: -1
+skin1/ArmL2
+  rotate: false
+  xy: 348, 1
+  size: 27, 42
+  orig: 27, 42
+  offset: 0, 0
+  index: -1
+skin1/ArmR1
+  rotate: false
+  xy: 295, 34
+  size: 42, 99
+  orig: 42, 99
+  offset: 0, 0
+  index: -1
+skin1/ArmR2
+  rotate: false
+  xy: 376, 2
+  size: 26, 41
+  orig: 26, 41
+  offset: 0, 0
+  index: -1
+skin1/Belt
+  rotate: true
+  xy: 403, 2
+  size: 41, 21
+  orig: 41, 21
+  offset: 0, 0
+  index: -1
+skin1/Body
+  rotate: true
+  xy: 328, 134
+  size: 41, 79
+  orig: 41, 79
+  offset: 0, 0
+  index: -1
+skin1/Breast
+  rotate: true
+  xy: 508, 231
+  size: 37, 27
+  orig: 37, 27
+  offset: 0, 0
+  index: -1
+skin1/Eye_Attack
+  rotate: false
+  xy: 436, 231
+  size: 62, 37
+  orig: 62, 37
+  offset: 0, 0
+  index: -1
+skin1/Eye_Hit
+  rotate: false
+  xy: 436, 154
+  size: 60, 39
+  orig: 60, 39
+  offset: 0, 0
+  index: -1
+skin1/Eye_Normal
+  rotate: false
+  xy: 436, 194
+  size: 62, 36
+  orig: 62, 36
+  offset: 0, 0
+  index: -1
+skin1/HairA
+  rotate: false
+  xy: 201, 33
+  size: 93, 100
+  orig: 93, 100
+  offset: 0, 0
+  index: -1
+skin1/HairB
+  rotate: false
+  xy: 269, 169
+  size: 41, 99
+  orig: 41, 99
+  offset: 0, 0
+  index: -1
+skin1/HairC
+  rotate: false
+  xy: 172, 153
+  size: 61, 115
+  orig: 61, 115
+  offset: 0, 0
+  index: -1
+skin1/HairD
+  rotate: false
+  xy: 123, 152
+  size: 48, 116
+  orig: 48, 116
+  offset: 0, 0
+  index: -1
+skin1/HairE
+  rotate: false
+  xy: 1, 134
+  size: 121, 134
+  orig: 121, 134
+  offset: 0, 0
+  index: -1
+skin1/HandL
+  rotate: true
+  xy: 511, 17
+  size: 18, 20
+  orig: 18, 20
+  offset: 0, 0
+  index: -1
+skin1/Hand_R
+  rotate: true
+  xy: 511, 186
+  size: 19, 23
+  orig: 19, 23
+  offset: 0, 0
+  index: -1
+skin1/Head_Attack
+  rotate: false
+  xy: 351, 179
+  size: 84, 89
+  orig: 84, 89
+  offset: 0, 0
+  index: -1
+skin1/Head_Hit
+  rotate: false
+  xy: 338, 44
+  size: 84, 89
+  orig: 84, 89
+  offset: 0, 0
+  index: -1
+skin1/Head_Normal
+  rotate: false
+  xy: 423, 45
+  size: 84, 89
+  orig: 84, 89
+  offset: 0, 0
+  index: -1
+skin1/LegL1
+  rotate: true
+  xy: 180, 134
+  size: 18, 57
+  orig: 18, 57
+  offset: 0, 0
+  index: -1
+skin1/LegL2
+  rotate: false
+  xy: 511, 76
+  size: 22, 53
+  orig: 25, 53
+  offset: 3, 0
+  index: -1
+skin1/LegR1
+  rotate: true
+  xy: 123, 134
+  size: 17, 56
+  orig: 17, 56
+  offset: 0, 0
+  index: -1
+skin1/LegR2
+  rotate: false
+  xy: 511, 130
+  size: 22, 55
+  orig: 22, 55
+  offset: 0, 0
+  index: -1
+skin1/PartAL
+  rotate: false
+  xy: 490, 5
+  size: 20, 39
+  orig: 20, 39
+  offset: 0, 0
+  index: -1
+skin1/PartAR
+  rotate: false
+  xy: 511, 36
+  size: 20, 39
+  orig: 20, 39
+  offset: 0, 0
+  index: -1
+skin1/PartB
+  rotate: true
+  xy: 269, 156
+  size: 12, 11
+  orig: 12, 11
+  offset: 0, 0
+  index: -1
+skin1/PartC
+  rotate: false
+  xy: 298, 5
+  size: 49, 28
+  orig: 49, 28
+  offset: 0, 0
+  index: -1
+skin1/PartD
+  rotate: false
+  xy: 311, 176
+  size: 39, 92
+  orig: 39, 92
+  offset: 0, 0
+  index: -1
+skin1/PartE
+  rotate: true
+  xy: 238, 134
+  size: 21, 89
+  orig: 21, 89
+  offset: 0, 0
+  index: -1
+skin1/SkirtA_L1
+  rotate: true
+  xy: 511, 206
+  size: 24, 25
+  orig: 24, 25
+  offset: 0, 0
+  index: -1
+skin1/SkirtA_L2
+  rotate: true
+  xy: 291, 160
+  size: 8, 7
+  orig: 8, 7
+  offset: 0, 0
+  index: -1
+skin1/SkirtA_R1
+  rotate: true
+  xy: 408, 135
+  size: 43, 27
+  orig: 43, 27
+  offset: 0, 0
+  index: -1
+skin1/SkirtA_R2
+  rotate: false
+  xy: 281, 159
+  size: 9, 9
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
+skin1/SkirtB
+  rotate: false
+  xy: 425, 4
+  size: 64, 40
+  orig: 64, 40
+  offset: 0, 0
+  index: -1
+skin1/WeaponL
+  rotate: true
+  xy: 1, 2
+  size: 131, 99
+  orig: 131, 99
+  offset: 0, 0
+  index: -1
+skin1/WeaponR
+  rotate: true
+  xy: 101, 2
+  size: 131, 99
+  orig: 131, 99
+  offset: 0, 0
+  index: -1
+skin1/eff_Shadow
+  rotate: true
+  xy: 234, 156
+  size: 112, 34
+  orig: 112, 34
+  offset: 0, 0
+  index: -1

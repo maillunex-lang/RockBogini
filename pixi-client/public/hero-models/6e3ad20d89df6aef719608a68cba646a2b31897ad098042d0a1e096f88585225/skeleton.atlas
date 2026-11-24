@@ -1,0 +1,285 @@
+texture0.png
+size: 284,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Body
+  rotate: true
+  xy: 2, 75
+  size: 49, 84
+  orig: 49, 84
+  offset: 0, 0
+  index: -1
+Breast
+  rotate: false
+  xy: 67, 37
+  size: 48, 38
+  orig: 48, 38
+  offset: 0, 0
+  index: -1
+Eye_A
+  rotate: false
+  xy: 2, 47
+  size: 53, 30
+  orig: 55, 32
+  offset: 1, 1
+  index: -1
+Eye_H
+  rotate: true
+  xy: 231, 872
+  size: 53, 38
+  orig: 55, 40
+  offset: 1, 1
+  index: -1
+Eye_N
+  rotate: false
+  xy: 216, 76
+  size: 55, 36
+  orig: 55, 36
+  offset: 0, 0
+  index: -1
+GY
+  rotate: true
+  xy: 130, 300
+  size: 116, 114
+  orig: 128, 128
+  offset: 7, 7
+  index: -1
+Hair1
+  rotate: false
+  xy: 255, 600
+  size: 26, 67
+  orig: 26, 67
+  offset: 0, 0
+  index: -1
+Hair2
+  rotate: true
+  xy: 229, 990
+  size: 28, 45
+  orig: 28, 45
+  offset: 0, 0
+  index: -1
+Hair3
+  rotate: false
+  xy: 227, 822
+  size: 21, 48
+  orig: 21, 48
+  offset: 0, 0
+  index: -1
+Hair4
+  rotate: true
+  xy: 224, 3
+  size: 26, 49
+  orig: 26, 49
+  offset: 0, 0
+  index: -1
+Hair5
+  rotate: false
+  xy: 246, 300
+  size: 29, 68
+  orig: 29, 68
+  offset: 0, 0
+  index: -1
+Hair6
+  rotate: true
+  xy: 147, 57
+  size: 36, 91
+  orig: 36, 91
+  offset: 0, 0
+  index: -1
+Hair7
+  rotate: true
+  xy: 117, 38
+  size: 30, 86
+  orig: 30, 86
+  offset: 0, 0
+  index: -1
+HairB1
+  rotate: true
+  xy: 2, 418
+  size: 178, 224
+  orig: 178, 224
+  offset: 0, 0
+  index: -1
+Head
+  rotate: true
+  xy: 2, 126
+  size: 77, 86
+  orig: 79, 88
+  offset: 1, 1
+  index: -1
+LY
+  rotate: false
+  xy: 90, 77
+  size: 55, 55
+  orig: 60, 60
+  offset: 3, 2
+  index: -1
+L_ArmB
+  rotate: 180
+  xy: 253, 781
+  size: 27, 53
+  orig: 27, 53
+  offset: 0, 0
+  index: -1
+L_ArmB2
+  rotate: 270
+  xy: 180, 13
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+L_ArmS
+  rotate: 270
+  xy: 231, 28
+  size: 37, 50
+  orig: 37, 50
+  offset: 0, 0
+  index: -1
+L_LegB
+  rotate: false
+  xy: 251, 669
+  size: 28, 56
+  orig: 28, 56
+  offset: 0, 0
+  index: -1
+L_LegS
+  rotate: true
+  xy: 2, 21
+  size: 24, 58
+  orig: 24, 58
+  offset: 0, 0
+  index: -1
+Part_Body
+  rotate: true
+  xy: 156, 106
+  size: 56, 85
+  orig: 56, 85
+  offset: 0, 0
+  index: -1
+Part_Hand
+  rotate: false
+  xy: 267, 432
+  size: 14, 31
+  orig: 14, 31
+  offset: 0, 0
+  index: -1
+Part_Hand2
+  rotate: false
+  xy: 146, 7
+  size: 21, 29
+  orig: 21, 29
+  offset: 0, 0
+  index: -1
+R_ArmB
+  rotate: true
+  xy: 62, 7
+  size: 31, 42
+  orig: 31, 42
+  offset: 0, 0
+  index: -1
+R_ArmS
+  rotate: false
+  xy: 247, 104
+  size: 33, 51
+  orig: 33, 51
+  offset: 0, 0
+  index: -1
+R_LegB
+  rotate: false
+  xy: 249, 728
+  size: 26, 53
+  orig: 26, 53
+  offset: 0, 0
+  index: -1
+R_LegS
+  rotate: false
+  xy: 259, 200
+  size: 22, 60
+  orig: 22, 60
+  offset: 0, 0
+  index: -1
+SP
+  rotate: false
+  xy: 90, 134
+  size: 64, 64
+  orig: 128, 126
+  offset: 32, 31
+  index: -1
+Skirt1
+  rotate: 270
+  xy: 245, 370
+  size: 59, 35
+  orig: 59, 35
+  offset: 0, 0
+  index: -1
+Skirt2
+  rotate: 270
+  xy: 106, 7
+  size: 41, 38
+  orig: 41, 38
+  offset: 0, 0
+  index: -1
+Skirt3
+  rotate: true
+  xy: 227, 927
+  size: 60, 45
+  orig: 60, 45
+  offset: 0, 0
+  index: -1
+Skirt4
+  rotate: false
+  xy: 265, 262
+  size: 9, 49
+  orig: 9, 49
+  offset: 0, 0
+  index: -1
+Skirt5
+  rotate: 180
+  xy: 2, 206
+  size: 141, 114
+  orig: 141, 114
+  offset: 0, 0
+  index: -1
+Weapon
+  rotate: false
+  xy: 2, 798
+  size: 223, 224
+  orig: 225, 226
+  offset: 1, 1
+  index: -1
+Weapon2
+  rotate: true
+  xy: 145, 200
+  size: 98, 112
+  orig: 100, 114
+  offset: 1, 1
+  index: -1
+Weapon_Hair
+  rotate: 270
+  xy: 221, 448
+  size: 422, 50
+  orig: 422, 50
+  offset: 0, 0
+  index: -1
+eff_Shadow
+  rotate: false
+  xy: 156, 164
+  size: 112, 34
+  orig: 112, 34
+  offset: 0, 0
+  index: -1
+kuosan7
+  rotate: true
+  xy: 2, 321
+  size: 121, 126
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+xuanzhuan
+  rotate: false
+  xy: 2, 598
+  size: 217, 198
+  orig: 256, 256
+  offset: 20, 26
+  index: -1

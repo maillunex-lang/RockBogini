@@ -1,0 +1,166 @@
+texture0.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Body
+  rotate: false
+  xy: 1, 69
+  size: 336, 335
+  orig: 336, 335
+  offset: 0, 0
+  index: -1
+EyeA
+  rotate: false
+  xy: 58, 387
+  size: 37, 17
+  orig: 37, 17
+  offset: 0, 0
+  index: -1
+EyeB
+  rotate: false
+  xy: 1, 337
+  size: 31, 30
+  orig: 31, 30
+  offset: 0, 0
+  index: -1
+EyeC
+  rotate: false
+  xy: 788, 95
+  size: 140, 152
+  orig: 140, 155
+  offset: 0, 0
+  index: -1
+EyeD
+  rotate: true
+  xy: 560, 141
+  size: 263, 228
+  orig: 263, 228
+  offset: 0, 0
+  index: -1
+EyeE
+  rotate: true
+  xy: 336, 144
+  size: 260, 224
+  orig: 260, 224
+  offset: 0, 0
+  index: -1
+PartA
+  rotate: false
+  xy: 520, 51
+  size: 139, 113
+  orig: 139, 113
+  offset: 0, 0
+  index: -1
+PartB
+  rotate: false
+  xy: 288, 39
+  size: 170, 105
+  orig: 170, 105
+  offset: 0, 0
+  index: -1
+PartC
+  rotate: false
+  xy: 713, 4
+  size: 130, 98
+  orig: 130, 98
+  offset: 0, 0
+  index: -1
+PartD
+  rotate: 180
+  xy: 1, 10
+  size: 124, 90
+  orig: 124, 90
+  offset: 0, 0
+  index: -1
+PartE
+  rotate: false
+  xy: 783, 280
+  size: 141, 115
+  orig: 141, 115
+  offset: 0, 0
+  index: -1
+PartF
+  rotate: 270
+  xy: 632, 2
+  size: 168, 156
+  orig: 168, 156
+  offset: 0, 0
+  index: -1
+PartG
+  rotate: false
+  xy: 888, 247
+  size: 101, 98
+  orig: 101, 98
+  offset: 0, 0
+  index: -1
+PartH
+  rotate: false
+  xy: 85, 200
+  size: 88, 52
+  orig: 88, 52
+  offset: 0, 0
+  index: -1
+PartI
+  rotate: false
+  xy: 217, 7
+  size: 120, 78
+  orig: 120, 78
+  offset: 0, 0
+  index: -1
+PartJ
+  rotate: false
+  xy: 11, 167
+  size: 113, 57
+  orig: 113, 73
+  offset: 0, 16
+  index: -1
+PartK
+  rotate: false
+  xy: 1, 367
+  size: 61, 37
+  orig: 61, 37
+  offset: 0, 0
+  index: -1
+PartL
+  rotate: 180
+  xy: 458, 4
+  size: 74, 105
+  orig: 74, 105
+  offset: 0, 0
+  index: -1
+PartM
+  rotate: false
+  xy: 929, 119
+  size: 52, 105
+  orig: 52, 105
+  offset: 0, 0
+  index: -1
+PartN
+  rotate: true
+  xy: 125, 5
+  size: 65, 92
+  orig: 65, 92
+  offset: 0, 0
+  index: -1
+PartO
+  rotate: false
+  xy: 337, 3
+  size: 80, 38
+  orig: 80, 38
+  offset: 0, 0
+  index: -1
+PartP
+  rotate: true
+  xy: 861, 3
+  size: 122, 131
+  orig: 122, 131
+  offset: 0, 0
+  index: -1
+PartQ
+  rotate: false
+  xy: 1, 207
+  size: 108, 66
+  orig: 108, 66
+  offset: 0, 0
+  index: -1

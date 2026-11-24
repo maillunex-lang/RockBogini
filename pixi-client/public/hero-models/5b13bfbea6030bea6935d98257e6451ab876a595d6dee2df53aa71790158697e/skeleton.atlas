@@ -1,0 +1,285 @@
+texture0.png
+size: 880,549
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Body
+  rotate: 270
+  xy: 479, 3
+  size: 48, 82
+  orig: 48, 82
+  offset: 0, 0
+  index: -1
+Breast
+  rotate: false
+  xy: 91, 218
+  size: 46, 43
+  orig: 46, 43
+  offset: 0, 0
+  index: -1
+Eye_A
+  rotate: false
+  xy: 293, 99
+  size: 63, 35
+  orig: 63, 35
+  offset: 0, 0
+  index: -1
+Eye_H
+  rotate: false
+  xy: 456, 323
+  size: 63, 36
+  orig: 63, 36
+  offset: 0, 0
+  index: -1
+Eye_N
+  rotate: false
+  xy: 41, 195
+  size: 63, 31
+  orig: 63, 31
+  offset: 0, 0
+  index: -1
+GY
+  rotate: false
+  xy: 2, 77
+  size: 116, 114
+  orig: 128, 128
+  offset: 7, 7
+  index: -1
+Hair1
+  rotate: true
+  xy: 2, 11
+  size: 28, 78
+  orig: 28, 78
+  offset: 0, 0
+  index: -1
+Hair2
+  rotate: false
+  xy: 842, 143
+  size: 35, 158
+  orig: 35, 158
+  offset: 0, 0
+  index: -1
+Hair3
+  rotate: false
+  xy: 2, 194
+  size: 37, 62
+  orig: 37, 62
+  offset: 0, 0
+  index: -1
+Hair4
+  rotate: true
+  xy: 168, 304
+  size: 56, 69
+  orig: 56, 69
+  offset: 0, 0
+  index: -1
+Hair5
+  rotate: false
+  xy: 834, 57
+  size: 32, 46
+  orig: 32, 46
+  offset: 0, 0
+  index: -1
+Hair6
+  rotate: false
+  xy: 835, 12
+  size: 41, 57
+  orig: 41, 57
+  offset: 0, 0
+  index: -1
+Hair7
+  rotate: true
+  xy: 651, 5
+  size: 39, 61
+  orig: 39, 61
+  offset: 0, 0
+  index: -1
+HairB1
+  rotate: false
+  xy: 535, 26
+  size: 114, 130
+  orig: 114, 130
+  offset: 0, 0
+  index: -1
+HairB2
+  rotate: false
+  xy: 765, 381
+  size: 84, 134
+  orig: 84, 134
+  offset: 0, 0
+  index: -1
+Hat
+  rotate: false
+  xy: 456, 271
+  size: 76, 40
+  orig: 76, 40
+  offset: 0, 0
+  index: -1
+Head_A
+  rotate: false
+  xy: 758, 22
+  size: 74, 81
+  orig: 74, 81
+  offset: 0, 0
+  index: -1
+Head_H
+  rotate: false
+  xy: 767, 105
+  size: 74, 81
+  orig: 74, 81
+  offset: 0, 0
+  index: -1
+Head_N
+  rotate: false
+  xy: 770, 188
+  size: 74, 81
+  orig: 74, 81
+  offset: 0, 0
+  index: -1
+LY
+  rotate: false
+  xy: 799, 372
+  size: 55, 55
+  orig: 60, 60
+  offset: 3, 2
+  index: -1
+L_ArmB
+  rotate: false
+  xy: 375, 212
+  size: 26, 40
+  orig: 26, 40
+  offset: 0, 0
+  index: -1
+L_ArmS
+  rotate: false
+  xy: 271, 157
+  size: 45, 30
+  orig: 45, 30
+  offset: 0, 0
+  index: -1
+L_Hat
+  rotate: false
+  xy: 727, 7
+  size: 29, 63
+  orig: 29, 63
+  offset: 0, 0
+  index: -1
+L_LegB
+  rotate: false
+  xy: 846, 429
+  size: 27, 55
+  orig: 27, 55
+  offset: 0, 0
+  index: -1
+L_LegS
+  rotate: true
+  xy: 795, 512
+  size: 27, 63
+  orig: 27, 63
+  offset: 0, 0
+  index: -1
+R_ArmB
+  rotate: false
+  xy: 120, 113
+  size: 25, 41
+  orig: 25, 41
+  offset: 0, 0
+  index: -1
+R_ArmS
+  rotate: false
+  xy: 143, 67
+  size: 25, 44
+  orig: 25, 44
+  offset: 0, 0
+  index: -1
+R_Hat
+  rotate: false
+  xy: 365, 254
+  size: 29, 77
+  orig: 29, 77
+  offset: 0, 0
+  index: -1
+R_LegB
+  rotate: false
+  xy: 124, 262
+  size: 26, 51
+  orig: 26, 51
+  offset: 0, 0
+  index: -1
+R_LegS
+  rotate: 180
+  xy: 584, 3
+  size: 28, 63
+  orig: 28, 63
+  offset: 0, 0
+  index: -1
+Skirt1
+  rotate: true
+  xy: 227, 172
+  size: 56, 147
+  orig: 56, 147
+  offset: 0, 0
+  index: -1
+Skirt2
+  rotate: false
+  xy: 233, 138
+  size: 42, 34
+  orig: 44, 34
+  offset: 1, 0
+  index: -1
+Skirt3
+  rotate: 270
+  xy: 119, 4
+  size: 96, 132
+  orig: 96, 149
+  offset: 0, 17
+  index: -1
+SkirtB
+  rotate: false
+  xy: 365, 241
+  size: 89, 118
+  orig: 89, 118
+  offset: 0, 0
+  index: -1
+Weapon
+  rotate: 270
+  xy: 283, 136
+  size: 243, 590
+  orig: 243, 590
+  offset: 0, 0
+  index: -1
+WeaponA_B
+  rotate: false
+  xy: 2, 12
+  size: 587, 347
+  orig: 587, 347
+  offset: 0, 0
+  index: -1
+WeaponA_B2
+  rotate: false
+  xy: 2, 361
+  size: 719, 187
+  orig: 719, 320
+  offset: 0, 133
+  index: -1
+WeaponA_S
+  rotate: false
+  xy: 651, 45
+  size: 117, 194
+  orig: 117, 194
+  offset: 0, 0
+  index: -1
+eff_Shadow
+  rotate: false
+  xy: 2, 41
+  size: 112, 34
+  orig: 112, 34
+  offset: 0, 0
+  index: -1
+kuosan7
+  rotate: false
+  xy: 242, 233
+  size: 121, 126
+  orig: 128, 128
+  offset: 0, 0
+  index: -1

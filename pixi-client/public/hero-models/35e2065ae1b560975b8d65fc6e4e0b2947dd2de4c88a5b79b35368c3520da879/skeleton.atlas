@@ -1,0 +1,159 @@
+texture0.png
+size: 491,142
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Body
+  rotate: true
+  xy: 402, 96
+  size: 45, 80
+  orig: 45, 80
+  offset: 0, 0
+  index: -1
+Breast
+  rotate: false
+  xy: 401, 10
+  size: 44, 31
+  orig: 44, 31
+  offset: 0, 0
+  index: -1
+Eye_Arttack
+  rotate: true
+  xy: 458, 43
+  size: 52, 32
+  orig: 52, 32
+  offset: 0, 0
+  index: -1
+Eye_Hurt
+  rotate: false
+  xy: 297, 34
+  size: 53, 29
+  orig: 53, 29
+  offset: 0, 0
+  index: -1
+Eye_N
+  rotate: false
+  xy: 402, 65
+  size: 55, 30
+  orig: 55, 30
+  offset: 0, 0
+  index: -1
+HairA
+  rotate: false
+  xy: 132, 64
+  size: 94, 77
+  orig: 94, 77
+  offset: 0, 0
+  index: -1
+Head
+  rotate: true
+  xy: 318, 64
+  size: 77, 83
+  orig: 77, 83
+  offset: 0, 0
+  index: -1
+HeadPart
+  rotate: false
+  xy: 446, 4
+  size: 26, 37
+  orig: 26, 37
+  offset: 0, 0
+  index: -1
+L_ArmB
+  rotate: true
+  xy: 132, 1
+  size: 27, 39
+  orig: 27, 39
+  offset: 0, 0
+  index: -1
+L_ArmS
+  rotate: true
+  xy: 245, 30
+  size: 38, 51
+  orig: 38, 51
+  offset: 0, 0
+  index: -1
+L_LegB
+  rotate: true
+  xy: 172, 3
+  size: 25, 53
+  orig: 25, 53
+  offset: 0, 0
+  index: -1
+L_LegS
+  rotate: true
+  xy: 59, 6
+  size: 19, 59
+  orig: 19, 59
+  offset: 0, 0
+  index: -1
+NeckSkirtA
+  rotate: true
+  xy: 483, 127
+  size: 14, 5
+  orig: 14, 5
+  offset: 0, 0
+  index: -1
+R_ArmRB
+  rotate: true
+  xy: 351, 29
+  size: 34, 49
+  orig: 34, 49
+  offset: 0, 0
+  index: -1
+R_ArmRS
+  rotate: true
+  xy: 402, 42
+  size: 22, 52
+  orig: 22, 52
+  offset: 0, 0
+  index: -1
+R_LegB
+  rotate: true
+  xy: 245, 6
+  size: 23, 50
+  orig: 23, 50
+  offset: 0, 0
+  index: -1
+R_LegS
+  rotate: true
+  xy: 340, 10
+  size: 18, 60
+  orig: 18, 60
+  offset: 0, 0
+  index: -1
+SKirtA
+  rotate: true
+  xy: 297, 1
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+SkirtB
+  rotate: true
+  xy: 227, 69
+  size: 72, 90
+  orig: 72, 90
+  offset: 0, 0
+  index: -1
+SkirtC
+  rotate: false
+  xy: 1, 26
+  size: 130, 115
+  orig: 130, 115
+  offset: 0, 0
+  index: -1
+WeaponA
+  rotate: false
+  xy: 1, 1
+  size: 57, 24
+  orig: 57, 24
+  offset: 0, 0
+  index: -1
+eff_Shadow
+  rotate: false
+  xy: 132, 29
+  size: 112, 34
+  orig: 112, 34
+  offset: 0, 0
+  index: -1

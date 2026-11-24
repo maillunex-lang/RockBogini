@@ -1,0 +1,306 @@
+texture0.png
+size: 514,1303
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+A_Eye2
+  rotate: false
+  xy: 172, 1277
+  size: 26, 24
+  orig: 26, 24
+  offset: 0, 0
+  index: -1
+A_Head_01
+  rotate: false
+  xy: 200, 85
+  size: 120, 50
+  orig: 120, 50
+  offset: 0, 0
+  index: -1
+A_Head_02
+  rotate: false
+  xy: 2, 694
+  size: 129, 115
+  orig: 129, 115
+  offset: 0, 0
+  index: -1
+A_Head_03
+  rotate: false
+  xy: 452, 95
+  size: 59, 42
+  orig: 59, 42
+  offset: 0, 0
+  index: -1
+A_Head_04
+  rotate: false
+  xy: 279, 1133
+  size: 21, 61
+  orig: 21, 61
+  offset: 0, 0
+  index: -1
+A_Head_05
+  rotate: false
+  xy: 394, 210
+  size: 106, 99
+  orig: 106, 99
+  offset: 0, 0
+  index: -1
+A_Head_06
+  rotate: 270
+  xy: 412, 519
+  size: 110, 73
+  orig: 110, 73
+  offset: 0, 0
+  index: -1
+A_Head_07
+  rotate: false
+  xy: 44, 1117
+  size: 23, 57
+  orig: 23, 57
+  offset: 0, 0
+  index: -1
+A_Neck
+  rotate: true
+  xy: 2, 755
+  size: 179, 262
+  orig: 179, 262
+  offset: 0, 0
+  index: -1
+A_Part_01
+  rotate: false
+  xy: 59, 652
+  size: 158, 91
+  orig: 158, 91
+  offset: 0, 0
+  index: -1
+A_Part_02
+  rotate: false
+  xy: 270, 310
+  size: 173, 225
+  orig: 173, 225
+  offset: 0, 0
+  index: -1
+A_Part_03
+  rotate: 180
+  xy: 368, 83
+  size: 117, 131
+  orig: 117, 131
+  offset: 0, 0
+  index: -1
+B_Eye2
+  rotate: false
+  xy: 190, 1261
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+B_Head_01
+  rotate: false
+  xy: 403, 1015
+  size: 76, 94
+  orig: 76, 94
+  offset: 0, 0
+  index: -1
+B_Head_02
+  rotate: 270
+  xy: 414, 321
+  size: 134, 69
+  orig: 134, 69
+  offset: 0, 0
+  index: -1
+B_Head_03
+  rotate: false
+  xy: 117, 18
+  size: 81, 83
+  orig: 81, 83
+  offset: 0, 0
+  index: -1
+B_Head_04
+  rotate: false
+  xy: 424, 3
+  size: 84, 90
+  orig: 84, 90
+  offset: 0, 0
+  index: -1
+B_Head_05
+  rotate: false
+  xy: 180, 897
+  size: 55, 82
+  orig: 55, 82
+  offset: 0, 0
+  index: -1
+B_Head_06
+  rotate: false
+  xy: 2, 1115
+  size: 40, 64
+  orig: 40, 64
+  offset: 0, 0
+  index: -1
+B_Head_07
+  rotate: 270
+  xy: 408, 734
+  size: 85, 75
+  orig: 85, 75
+  offset: 0, 0
+  index: -1
+B_Neck
+  rotate: 270
+  xy: 2, 980
+  size: 151, 329
+  orig: 151, 329
+  offset: 0, 0
+  index: -1
+B_Part_01
+  rotate: false
+  xy: 2, 936
+  size: 151, 49
+  orig: 151, 49
+  offset: 0, 0
+  index: -1
+B_Part_02
+  rotate: true
+  xy: 2, 375
+  size: 133, 244
+  orig: 133, 244
+  offset: 0, 0
+  index: -1
+B_Part_03
+  rotate: false
+  xy: 287, 29
+  size: 120, 52
+  orig: 120, 52
+  offset: 0, 0
+  index: -1
+Body_01
+  rotate: false
+  xy: 2, 1074
+  size: 206, 227
+  orig: 206, 227
+  offset: 0, 0
+  index: -1
+Body_02
+  rotate: 180
+  xy: 269, 531
+  size: 171, 215
+  orig: 171, 215
+  offset: 0, 0
+  index: -1
+Body_03
+  rotate: 180
+  xy: 327, 830
+  size: 126, 183
+  orig: 126, 183
+  offset: 0, 0
+  index: -1
+Body_04
+  rotate: 180
+  xy: 229, 825
+  size: 172, 445
+  orig: 172, 445
+  offset: 0, 0
+  index: -1
+C_Eye2
+  rotate: false
+  xy: 2, 1189
+  size: 22, 20
+  orig: 22, 20
+  offset: 0, 0
+  index: -1
+C_Head_01
+  rotate: false
+  xy: 200, 19
+  size: 85, 48
+  orig: 85, 48
+  offset: 0, 0
+  index: -1
+C_Head_02
+  rotate: 180
+  xy: 83, 77
+  size: 115, 102
+  orig: 115, 102
+  offset: 0, 0
+  index: -1
+C_Head_03
+  rotate: false
+  xy: 418, 830
+  size: 93, 106
+  orig: 93, 106
+  offset: 0, 0
+  index: -1
+C_Neck_01
+  rotate: false
+  xy: 182, 211
+  size: 263, 112
+  orig: 263, 112
+  offset: 0, 0
+  index: -1
+C_Neck_02
+  rotate: false
+  xy: 55, 216
+  size: 186, 189
+  orig: 186, 189
+  offset: 0, 0
+  index: -1
+C_Part_01
+  rotate: false
+  xy: 382, 16
+  size: 94, 77
+  orig: 94, 77
+  offset: 0, 0
+  index: -1
+C_Part_02
+  rotate: false
+  xy: 182, 137
+  size: 238, 77
+  orig: 238, 77
+  offset: 0, 0
+  index: -1
+C_Part_03
+  rotate: true
+  xy: 2, 34
+  size: 88, 96
+  orig: 88, 96
+  offset: 0, 0
+  index: -1
+Part_01
+  rotate: true
+  xy: 380, 1130
+  size: 171, 102
+  orig: 171, 102
+  offset: 0, 0
+  index: -1
+Part_02
+  rotate: true
+  xy: 210, 1140
+  size: 161, 91
+  orig: 161, 91
+  offset: 0, 0
+  index: -1
+Part_03
+  rotate: 180
+  xy: 7, 130
+  size: 173, 129
+  orig: 173, 129
+  offset: 0, 0
+  index: -1
+Part_04
+  rotate: 180
+  xy: 97, 614
+  size: 332, 214
+  orig: 332, 214
+  offset: 0, 0
+  index: -1
+Part_05
+  rotate: 270
+  xy: 2, 461
+  size: 215, 305
+  orig: 215, 305
+  offset: 0, 0
+  index: -1
+eff_Shadow
+  rotate: true
+  xy: 449, 620
+  size: 112, 34
+  orig: 112, 34
+  offset: 0, 0
+  index: -1

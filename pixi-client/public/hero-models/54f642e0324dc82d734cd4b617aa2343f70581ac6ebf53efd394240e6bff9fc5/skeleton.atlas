@@ -1,0 +1,187 @@
+texture0.png
+size: 1921,485
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Eye_A
+  rotate: true
+  xy: 543, 9
+  size: 187, 105
+  orig: 187, 105
+  offset: 0, 0
+  index: -1
+Eye_Ha
+  rotate: true
+  xy: 649, 16
+  size: 180, 103
+  orig: 180, 105
+  offset: 0, 1
+  index: -1
+Eye_Hb
+  rotate: true
+  xy: 1500, 27
+  size: 85, 113
+  orig: 85, 113
+  offset: 0, 0
+  index: -1
+Eye_Hc
+  rotate: true
+  xy: 1, 186
+  size: 298, 274
+  orig: 298, 274
+  offset: 0, 0
+  index: -1
+Eye_N
+  rotate: true
+  xy: 1367, 40
+  size: 180, 103
+  orig: 180, 105
+  offset: 0, 0
+  index: -1
+Hat
+  rotate: false
+  xy: 1153, 4
+  size: 213, 213
+  orig: 213, 213
+  offset: 0, 0
+  index: -1
+HatA
+  rotate: true
+  xy: 1367, 11
+  size: 28, 57
+  orig: 28, 57
+  offset: 0, 0
+  index: -1
+HatB
+  rotate: false
+  xy: 1471, 62
+  size: 28, 50
+  orig: 28, 50
+  offset: 0, 0
+  index: -1
+HatC
+  rotate: true
+  xy: 1425, 11
+  size: 28, 52
+  orig: 28, 52
+  offset: 0, 0
+  index: -1
+HatD
+  rotate: true
+  xy: 1471, 113
+  size: 228, 100
+  orig: 228, 100
+  offset: 0, 0
+  index: -1
+Head
+  rotate: true
+  xy: 727, 218
+  size: 266, 259
+  orig: 266, 259
+  offset: 0, 0
+  index: -1
+Leg
+  rotate: false
+  xy: 1153, 342
+  size: 741, 142
+  orig: 741, 142
+  offset: 0, 0
+  index: -1
+LegAa
+  rotate: true
+  xy: 925, 2
+  size: 215, 227
+  orig: 215, 227
+  offset: 0, 0
+  index: -1
+LegAb
+  rotate: true
+  xy: 1749, 69
+  size: 114, 151
+  orig: 114, 151
+  offset: 0, 0
+  index: -1
+LegB
+  rotate: true
+  xy: 276, 195
+  size: 289, 223
+  orig: 289, 223
+  offset: 0, 0
+  index: -1
+LegC
+  rotate: true
+  xy: 500, 197
+  size: 287, 226
+  orig: 287, 226
+  offset: 0, 0
+  index: -1
+LegD
+  rotate: false
+  xy: 1, 1
+  size: 270, 184
+  orig: 270, 184
+  offset: 0, 0
+  index: -1
+LegE
+  rotate: true
+  xy: 753, 1
+  size: 216, 171
+  orig: 216, 171
+  offset: 0, 0
+  index: -1
+LegEa
+  rotate: false
+  xy: 1572, 170
+  size: 128, 171
+  orig: 130, 171
+  offset: 2, 0
+  index: -1
+LegEb
+  rotate: false
+  xy: 1614, 12
+  size: 134, 157
+  orig: 136, 157
+  offset: 0, 0
+  index: -1
+LegF
+  rotate: false
+  xy: 272, 1
+  size: 270, 184
+  orig: 270, 184
+  offset: 0, 0
+  index: -1
+LegGa
+  rotate: true
+  xy: 1148, 218
+  size: 123, 171
+  orig: 125, 171
+  offset: 0, 0
+  index: -1
+LegGb
+  rotate: false
+  xy: 1701, 184
+  size: 133, 157
+  orig: 135, 157
+  offset: 2, 0
+  index: -1
+PartA
+  rotate: true
+  xy: 1320, 221
+  size: 120, 150
+  orig: 120, 151
+  offset: 0, 0
+  index: -1
+PartB
+  rotate: true
+  xy: 987, 232
+  size: 252, 160
+  orig: 252, 160
+  offset: 0, 0
+  index: -1
+PartG
+  rotate: false
+  xy: 1835, 228
+  size: 85, 113
+  orig: 85, 113
+  offset: 0, 0
+  index: -1

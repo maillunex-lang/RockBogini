@@ -1,0 +1,222 @@
+texture0.png
+size: 901,148
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+eff_Shadow
+  rotate: true
+  xy: 375, 35
+  size: 112, 34
+  orig: 112, 34
+  offset: 0, 0
+  index: -1
+skin1/Arm_L_B
+  rotate: true
+  xy: 205, 2
+  size: 24, 38
+  orig: 24, 38
+  offset: 0, 0
+  index: -1
+skin1/Arm_L_S
+  rotate: false
+  xy: 445, 1
+  size: 27, 40
+  orig: 27, 40
+  offset: 0, 0
+  index: -1
+skin1/Arm_R_B
+  rotate: true
+  xy: 244, 4
+  size: 22, 39
+  orig: 22, 39
+  offset: 0, 0
+  index: -1
+skin1/Arm_R_S
+  rotate: true
+  xy: 162, 2
+  size: 24, 42
+  orig: 24, 42
+  offset: 0, 0
+  index: -1
+skin1/Body
+  rotate: true
+  xy: 562, 5
+  size: 45, 80
+  orig: 45, 80
+  offset: 0, 0
+  index: -1
+skin1/Breast
+  rotate: true
+  xy: 532, 3
+  size: 42, 29
+  orig: 42, 29
+  offset: 0, 0
+  index: -1
+skin1/Eye_Attack
+  rotate: false
+  xy: 473, 5
+  size: 58, 36
+  orig: 58, 36
+  offset: 0, 0
+  index: -1
+skin1/Eye_Hit
+  rotate: true
+  xy: 857, 61
+  size: 53, 35
+  orig: 53, 35
+  offset: 0, 0
+  index: -1
+skin1/Eye_Normal
+  rotate: true
+  xy: 823, 9
+  size: 57, 33
+  orig: 57, 33
+  offset: 0, 0
+  index: -1
+skin1/Hair01
+  rotate: true
+  xy: 855, 115
+  size: 32, 45
+  orig: 32, 45
+  offset: 0, 0
+  index: -1
+skin1/Hair02
+  rotate: true
+  xy: 317, 30
+  size: 117, 57
+  orig: 117, 57
+  offset: 0, 0
+  index: -1
+skin1/Hair03
+  rotate: true
+  xy: 284, 5
+  size: 21, 58
+  orig: 21, 58
+  offset: 0, 0
+  index: -1
+skin1/Hair04
+  rotate: false
+  xy: 25, 17
+  size: 32, 130
+  orig: 32, 130
+  offset: 0, 0
+  index: -1
+skin1/Hair05
+  rotate: false
+  xy: 1, 13
+  size: 23, 134
+  orig: 23, 134
+  offset: 0, 0
+  index: -1
+skin1/Hair06
+  rotate: true
+  xy: 643, 3
+  size: 63, 160
+  orig: 63, 160
+  offset: 0, 0
+  index: -1
+skin1/Head_Attack
+  rotate: false
+  xy: 630, 67
+  size: 74, 80
+  orig: 74, 80
+  offset: 0, 0
+  index: -1
+skin1/Head_Hit
+  rotate: false
+  xy: 705, 67
+  size: 74, 80
+  orig: 74, 80
+  offset: 0, 0
+  index: -1
+skin1/Head_Normal
+  rotate: false
+  xy: 780, 67
+  size: 74, 80
+  orig: 74, 80
+  offset: 0, 0
+  index: -1
+skin1/Leg_L_Calf
+  rotate: false
+  xy: 857, 3
+  size: 19, 57
+  orig: 19, 57
+  offset: 0, 0
+  index: -1
+skin1/Leg_L_Part
+  rotate: true
+  xy: 1, 6
+  size: 6, 25
+  orig: 6, 25
+  offset: 0, 0
+  index: -1
+skin1/Leg_L_Thigh
+  rotate: true
+  xy: 58, 1
+  size: 25, 53
+  orig: 25, 53
+  offset: 0, 0
+  index: -1
+skin1/Leg_R_Calf
+  rotate: false
+  xy: 804, 6
+  size: 18, 60
+  orig: 18, 60
+  offset: 0, 0
+  index: -1
+skin1/Leg_R_Part
+  rotate: true
+  xy: 27, 10
+  size: 6, 23
+  orig: 6, 23
+  offset: 0, 0
+  index: -1
+skin1/Leg_R_Thigh
+  rotate: true
+  xy: 112, 2
+  size: 24, 49
+  orig: 24, 49
+  offset: 0, 0
+  index: -1
+skin1/Parts_L
+  rotate: false
+  xy: 492, 46
+  size: 55, 101
+  orig: 55, 101
+  offset: 0, 0
+  index: -1
+skin1/Parts_R
+  rotate: false
+  xy: 410, 42
+  size: 81, 105
+  orig: 81, 105
+  offset: 0, 0
+  index: -1
+skin1/Skirt01
+  rotate: false
+  xy: 597, 52
+  size: 32, 95
+  orig: 32, 95
+  offset: 0, 0
+  index: -1
+skin1/Skirt02
+  rotate: true
+  xy: 343, 1
+  size: 28, 101
+  orig: 28, 101
+  offset: 0, 0
+  index: -1
+skin1/Skirt03
+  rotate: false
+  xy: 548, 51
+  size: 48, 96
+  orig: 48, 96
+  offset: 0, 0
+  index: -1
+skin1/Weapon
+  rotate: false
+  xy: 58, 27
+  size: 258, 120
+  orig: 258, 120
+  offset: 0, 0
+  index: -1

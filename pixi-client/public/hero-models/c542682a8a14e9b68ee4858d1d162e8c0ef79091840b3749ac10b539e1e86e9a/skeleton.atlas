@@ -1,0 +1,278 @@
+texture0.png
+size: 774,273
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BeltC
+  rotate: true
+  xy: 391, 5
+  size: 52, 73
+  orig: 52, 73
+  offset: 0, 0
+  index: -1
+BletA
+  rotate: 180
+  xy: 543, 30
+  size: 82, 100
+  orig: 82, 100
+  offset: 0, 0
+  index: -1
+BletB
+  rotate: false
+  xy: 495, 86
+  size: 69, 73
+  orig: 69, 73
+  offset: 0, 0
+  index: -1
+Body
+  rotate: true
+  xy: 495, 30
+  size: 54, 85
+  orig: 54, 85
+  offset: 0, 0
+  index: -1
+Breast
+  rotate: 270
+  xy: 682, 88
+  size: 45, 37
+  orig: 45, 37
+  offset: 0, 0
+  index: -1
+BreastPart
+  rotate: false
+  xy: 719, 227
+  size: 35, 44
+  orig: 35, 44
+  offset: 0, 0
+  index: -1
+Eye_A
+  rotate: true
+  xy: 611, 140
+  size: 53, 41
+  orig: 53, 41
+  offset: 0, 0
+  index: -1
+Eye_H
+  rotate: false
+  xy: 603, 232
+  size: 53, 39
+  orig: 53, 39
+  offset: 0, 0
+  index: -1
+Eye_N
+  rotate: 270
+  xy: 645, 184
+  size: 53, 36
+  orig: 53, 36
+  offset: 0, 0
+  index: -1
+GY
+  rotate: true
+  xy: 275, 26
+  size: 116, 114
+  orig: 128, 128
+  offset: 7, 7
+  index: -1
+HairA
+  rotate: true
+  xy: 737, 138
+  size: 48, 32
+  orig: 48, 32
+  offset: 0, 0
+  index: -1
+HairB
+  rotate: true
+  xy: 341, 3
+  size: 21, 40
+  orig: 21, 40
+  offset: 0, 0
+  index: -1
+HairC
+  rotate: true
+  xy: 196, 65
+  size: 77, 69
+  orig: 77, 69
+  offset: 0, 0
+  index: -1
+HairD
+  rotate: true
+  xy: 493, 6
+  size: 26, 120
+  orig: 26, 120
+  offset: 0, 0
+  index: -1
+HairE
+  rotate: 180
+  xy: 641, 26
+  size: 25, 119
+  orig: 25, 119
+  offset: 0, 0
+  index: -1
+HairF
+  rotate: false
+  xy: 575, 72
+  size: 69, 93
+  orig: 69, 93
+  offset: 0, 0
+  index: -1
+HairG
+  rotate: 270
+  xy: 531, 195
+  size: 68, 96
+  orig: 68, 96
+  offset: 0, 0
+  index: -1
+Head
+  rotate: false
+  xy: 391, 59
+  size: 81, 83
+  orig: 81, 83
+  offset: 0, 0
+  index: -1
+HeadPartA
+  rotate: false
+  xy: 664, 214
+  size: 53, 57
+  orig: 53, 57
+  offset: 0, 0
+  index: -1
+HeadPartB
+  rotate: false
+  xy: 656, 6
+  size: 52, 57
+  orig: 52, 57
+  offset: 0, 0
+  index: -1
+LY
+  rotate: false
+  xy: 531, 161
+  size: 55, 55
+  orig: 60, 60
+  offset: 3, 2
+  index: -1
+L_ArmB
+  rotate: 180
+  xy: 746, 198
+  size: 23, 40
+  orig: 23, 43
+  offset: 0, 3
+  index: -1
+L_ArmS
+  rotate: false
+  xy: 739, 11
+  size: 28, 42
+  orig: 28, 42
+  offset: 0, 0
+  index: -1
+L_LegB
+  rotate: false
+  xy: 707, 8
+  size: 26, 53
+  orig: 26, 53
+  offset: 0, 0
+  index: -1
+L_LegS
+  rotate: true
+  xy: 275, 3
+  size: 21, 64
+  orig: 21, 64
+  offset: 0, 0
+  index: -1
+Neck
+  rotate: false
+  xy: 2, 157
+  size: 16, 7
+  orig: 16, 7
+  offset: 0, 0
+  index: -1
+Pose1
+  rotate: false
+  xy: 2, 166
+  size: 163, 105
+  orig: 165, 108
+  offset: 1, 3
+  index: -1
+R_ArmB
+  rotate: 180
+  xy: 746, 55
+  size: 25, 43
+  orig: 25, 43
+  offset: 0, 0
+  index: -1
+R_ArmS
+  rotate: 180
+  xy: 619, 6
+  size: 34, 42
+  orig: 34, 43
+  offset: 0, 0
+  index: -1
+R_LegB
+  rotate: false
+  xy: 719, 112
+  size: 27, 49
+  orig: 27, 49
+  offset: 0, 0
+  index: -1
+R_LegS
+  rotate: false
+  xy: 723, 45
+  size: 23, 65
+  orig: 23, 65
+  offset: 0, 0
+  index: -1
+WeaponL2
+  rotate: false
+  xy: 664, 47
+  size: 27, 142
+  orig: 27, 142
+  offset: 0, 0
+  index: -1
+WeaponL2_Effect
+  rotate: true
+  xy: 2, 64
+  size: 78, 192
+  orig: 193, 370
+  offset: 58, 90
+  index: -1
+WeaponL3
+  rotate: false
+  xy: 297, 144
+  size: 93, 126
+  orig: 93, 126
+  offset: 0, 0
+  index: -1
+WeaponR
+  rotate: false
+  xy: 474, 32
+  size: 19, 239
+  orig: 19, 239
+  offset: 0, 0
+  index: -1
+WeaponR3
+  rotate: false
+  xy: 684, 135
+  size: 62, 93
+  orig: 62, 93
+  offset: 0, 0
+  index: -1
+WeaponR_Effect
+  rotate: true
+  xy: 2, 10
+  size: 52, 271
+  orig: 207, 459
+  offset: 78, 95
+  index: -1
+eff_Shadow
+  rotate: true
+  xy: 495, 159
+  size: 112, 34
+  orig: 112, 34
+  offset: 0, 0
+  index: -1
+kuosan7
+  rotate: false
+  xy: 167, 144
+  size: 128, 127
+  orig: 128, 128
+  offset: 0, 0
+  index: -1

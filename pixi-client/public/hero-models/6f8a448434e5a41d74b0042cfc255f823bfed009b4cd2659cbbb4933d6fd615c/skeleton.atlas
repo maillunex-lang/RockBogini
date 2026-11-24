@@ -1,0 +1,222 @@
+texture0.png
+size: 618,205
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Aurela_0
+  rotate: true
+  xy: 338, 179
+  size: 25, 171
+  orig: 25, 171
+  offset: 0, 0
+  index: -1
+Aurela_1
+  rotate: false
+  xy: 174, 132
+  size: 163, 72
+  orig: 163, 72
+  offset: 0, 0
+  index: -1
+Aurela_10
+  rotate: true
+  xy: 328, 1
+  size: 21, 32
+  orig: 21, 32
+  offset: 0, 0
+  index: -1
+Aurela_11
+  rotate: false
+  xy: 593, 134
+  size: 24, 70
+  orig: 24, 70
+  offset: 0, 0
+  index: -1
+Aurela_12
+  rotate: false
+  xy: 540, 14
+  size: 37, 40
+  orig: 37, 40
+  offset: 0, 0
+  index: -1
+Aurela_13
+  rotate: false
+  xy: 393, 10
+  size: 62, 104
+  orig: 62, 104
+  offset: 0, 0
+  index: -1
+Aurela_14
+  rotate: false
+  xy: 296, 115
+  size: 9, 16
+  orig: 9, 16
+  offset: 0, 0
+  index: -1
+Aurela_15
+  rotate: false
+  xy: 361, 5
+  size: 20, 17
+  orig: 20, 17
+  offset: 0, 0
+  index: -1
+Aurela_16
+  rotate: true
+  xy: 456, 10
+  size: 23, 42
+  orig: 23, 42
+  offset: 0, 0
+  index: -1
+Aurela_17
+  rotate: true
+  xy: 287, 1
+  size: 21, 40
+  orig: 21, 40
+  offset: 0, 0
+  index: -1
+Aurela_18
+  rotate: true
+  xy: 503, 1
+  size: 42, 36
+  orig: 42, 36
+  offset: 0, 0
+  index: -1
+Aurela_19
+  rotate: true
+  xy: 173, 1
+  size: 21, 57
+  orig: 21, 57
+  offset: 0, 0
+  index: -1
+Aurela_2
+  rotate: false
+  xy: 450, 115
+  size: 23, 63
+  orig: 23, 63
+  offset: 0, 0
+  index: -1
+Aurela_20
+  rotate: false
+  xy: 593, 83
+  size: 24, 50
+  orig: 24, 50
+  offset: 0, 0
+  index: -1
+Aurela_21
+  rotate: false
+  xy: 456, 34
+  size: 46, 80
+  orig: 46, 80
+  offset: 0, 0
+  index: -1
+Aurela_22
+  rotate: true
+  xy: 231, 1
+  size: 21, 55
+  orig: 21, 55
+  offset: 0, 0
+  index: -1
+Aurela_23
+  rotate: false
+  xy: 565, 55
+  size: 25, 53
+  orig: 25, 53
+  offset: 0, 0
+  index: -1
+Aurela_24
+  rotate: false
+  xy: 578, 3
+  size: 28, 40
+  orig: 28, 40
+  offset: 0, 0
+  index: -1
+Aurela_25
+  rotate: false
+  xy: 591, 44
+  size: 23, 38
+  orig: 23, 38
+  offset: 0, 0
+  index: -1
+Aurela_26
+  rotate: false
+  xy: 174, 23
+  size: 121, 108
+  orig: 121, 108
+  offset: 0, 0
+  index: -1
+Aurela_27
+  rotate: false
+  xy: 1, 40
+  size: 172, 164
+  orig: 172, 164
+  offset: 0, 0
+  index: -1
+Aurela_28
+  rotate: false
+  xy: 508, 109
+  size: 75, 16
+  orig: 75, 16
+  offset: 0, 0
+  index: -1
+Aurela_29
+  rotate: false
+  xy: 503, 44
+  size: 30, 64
+  orig: 30, 64
+  offset: 0, 0
+  index: -1
+Aurela_3
+  rotate: false
+  xy: 338, 115
+  size: 111, 63
+  orig: 111, 63
+  offset: 0, 0
+  index: -1
+Aurela_30
+  rotate: false
+  xy: 1, 5
+  size: 112, 34
+  orig: 112, 34
+  offset: 0, 0
+  index: -1
+Aurela_4
+  rotate: true
+  xy: 296, 23
+  size: 91, 96
+  orig: 91, 96
+  offset: 0, 0
+  index: -1
+Aurela_5
+  rotate: false
+  xy: 607, 25
+  size: 10, 18
+  orig: 10, 18
+  offset: 0, 0
+  index: -1
+Aurela_6
+  rotate: false
+  xy: 114, 6
+  size: 58, 33
+  orig: 58, 33
+  offset: 0, 0
+  index: -1
+Aurela_7
+  rotate: true
+  xy: 534, 57
+  size: 51, 30
+  orig: 51, 30
+  offset: 0, 0
+  index: -1
+Aurela_8
+  rotate: true
+  xy: 474, 120
+  size: 58, 33
+  orig: 58, 33
+  offset: 0, 0
+  index: -1
+Aurela_9
+  rotate: true
+  xy: 510, 126
+  size: 78, 82
+  orig: 78, 82
+  offset: 0, 0
+  index: -1

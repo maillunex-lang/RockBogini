@@ -1,0 +1,208 @@
+texture0.png
+size: 1269,525
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 153, 19
+  size: 77, 34
+  orig: 77, 34
+  offset: 0, 0
+  index: -1
+10
+  rotate: true
+  xy: 1250, 66
+  size: 28, 19
+  orig: 28, 19
+  offset: 0, 0
+  index: -1
+11
+  rotate: false
+  xy: 1100, 93
+  size: 35, 41
+  orig: 35, 41
+  offset: 0, 0
+  index: -1
+12_2
+  rotate: false
+  xy: 1136, 95
+  size: 128, 430
+  orig: 128, 430
+  offset: 0, 0
+  index: -1
+13
+  rotate: false
+  xy: 412, 175
+  size: 123, 87
+  orig: 123, 87
+  offset: 0, 0
+  index: -1
+14
+  rotate: false
+  xy: 1001, 37
+  size: 98, 97
+  orig: 98, 97
+  offset: 0, 0
+  index: -1
+15
+  rotate: true
+  xy: 412, 15
+  size: 159, 112
+  orig: 159, 112
+  offset: 0, 0
+  index: -1
+16
+  rotate: true
+  xy: 293, 6
+  size: 47, 54
+  orig: 47, 54
+  offset: 0, 0
+  index: -1
+17
+  rotate: false
+  xy: 686, 35
+  size: 88, 135
+  orig: 88, 135
+  offset: 0, 0
+  index: -1
+18
+  rotate: true
+  xy: 1046, 135
+  size: 75, 85
+  orig: 75, 85
+  offset: 0, 0
+  index: -1
+19
+  rotate: true
+  xy: 348, 6
+  size: 47, 49
+  orig: 47, 49
+  offset: 0, 0
+  index: -1
+2
+  rotate: true
+  xy: 0, 3
+  size: 50, 84
+  orig: 50, 84
+  offset: 0, 0
+  index: -1
+20
+  rotate: true
+  xy: 892, 143
+  size: 67, 153
+  orig: 67, 153
+  offset: 0, 0
+  index: -1
+21
+  rotate: true
+  xy: 862, 4
+  size: 70, 84
+  orig: 70, 84
+  offset: 0, 0
+  index: -1
+22
+  rotate: true
+  xy: 947, 9
+  size: 65, 46
+  orig: 65, 46
+  offset: 0, 0
+  index: -1
+23
+  rotate: false
+  xy: 85, 4
+  size: 67, 49
+  orig: 67, 49
+  offset: 0, 0
+  index: -1
+24
+  rotate: false
+  xy: 1158, 45
+  size: 48, 49
+  orig: 48, 49
+  offset: 0, 0
+  index: -1
+25
+  rotate: false
+  xy: 892, 211
+  size: 243, 314
+  orig: 243, 314
+  offset: 0, 0
+  index: -1
+26
+  rotate: true
+  xy: 0, 54
+  size: 208, 411
+  orig: 208, 411
+  offset: 0, 0
+  index: -1
+27
+  rotate: false
+  xy: 536, 171
+  size: 355, 354
+  orig: 355, 354
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 1207, 46
+  size: 42, 48
+  orig: 42, 48
+  offset: 0, 0
+  index: -1
+4
+  rotate: true
+  xy: 775, 52
+  size: 118, 86
+  orig: 118, 86
+  offset: 0, 0
+  index: -1
+5
+  rotate: false
+  xy: 525, 11
+  size: 160, 159
+  orig: 160, 159
+  offset: 0, 0
+  index: -1
+6
+  rotate: false
+  xy: 1100, 33
+  size: 57, 59
+  orig: 57, 59
+  offset: 0, 0
+  index: -1
+7
+  rotate: false
+  xy: 862, 143
+  size: 26, 27
+  orig: 26, 27
+  offset: 0, 0
+  index: -1
+8
+  rotate: false
+  xy: 862, 75
+  size: 138, 67
+  orig: 138, 67
+  offset: 0, 0
+  index: -1
+9
+  rotate: false
+  xy: 231, 15
+  size: 61, 38
+  orig: 61, 38
+  offset: 0, 0
+  index: -1
+Weapon_effect
+  rotate: true
+  xy: 0, 263
+  size: 262, 535
+  orig: 374, 652
+  offset: 49, 67
+  index: -1
+eff_Shadow
+  rotate: false
+  xy: 686, 0
+  size: 112, 34
+  orig: 112, 34
+  offset: 0, 0
+  index: -1

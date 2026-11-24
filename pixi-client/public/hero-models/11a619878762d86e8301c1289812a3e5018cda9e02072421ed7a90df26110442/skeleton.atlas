@@ -1,0 +1,306 @@
+texture0.png
+size: 1365,523
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Body
+  rotate: false
+  xy: 866, 1
+  size: 42, 76
+  orig: 42, 76
+  offset: 0, 0
+  index: -1
+Breast
+  rotate: false
+  xy: 941, 1
+  size: 42, 28
+  orig: 42, 28
+  offset: 0, 0
+  index: -1
+BreastPartA
+  rotate: false
+  xy: 1348, 351
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+BreastPartB
+  rotate: true
+  xy: 1199, 1
+  size: 46, 25
+  orig: 46, 25
+  offset: 0, 0
+  index: -1
+BreastPartC
+  rotate: true
+  xy: 984, 1
+  size: 28, 25
+  orig: 28, 25
+  offset: 0, 0
+  index: -1
+Eye_A
+  rotate: false
+  xy: 1017, 222
+  size: 51, 30
+  orig: 51, 30
+  offset: 0, 0
+  index: -1
+Eye_H
+  rotate: false
+  xy: 1069, 225
+  size: 48, 27
+  orig: 48, 27
+  offset: 0, 0
+  index: -1
+Eye_N
+  rotate: true
+  xy: 1315, 217
+  size: 51, 27
+  orig: 51, 27
+  offset: 0, 0
+  index: -1
+HL
+  rotate: false
+  xy: 776, 290
+  size: 341, 232
+  orig: 735, 456
+  offset: 193, 107
+  index: -1
+HairA
+  rotate: false
+  xy: 1315, 368
+  size: 49, 59
+  orig: 49, 59
+  offset: 0, 0
+  index: -1
+HairB
+  rotate: false
+  xy: 1276, 4
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+HairC
+  rotate: false
+  xy: 1199, 48
+  size: 67, 63
+  orig: 67, 63
+  offset: 0, 0
+  index: -1
+HairD
+  rotate: false
+  xy: 1280, 160
+  size: 42, 55
+  orig: 42, 55
+  offset: 0, 0
+  index: -1
+HairE
+  rotate: true
+  xy: 1, 5
+  size: 10, 15
+  orig: 10, 15
+  offset: 0, 0
+  index: -1
+HairF
+  rotate: false
+  xy: 1316, 68
+  size: 19, 45
+  orig: 19, 45
+  offset: 0, 0
+  index: -1
+HairG
+  rotate: true
+  xy: 629, 7
+  size: 90, 163
+  orig: 90, 163
+  offset: 0, 0
+  index: -1
+Head
+  rotate: false
+  xy: 793, 1
+  size: 72, 76
+  orig: 72, 76
+  offset: 0, 0
+  index: -1
+HeadPartA
+  rotate: false
+  xy: 941, 30
+  size: 74, 47
+  orig: 74, 47
+  offset: 0, 0
+  index: -1
+L_ArmB
+  rotate: true
+  xy: 629, 99
+  size: 25, 40
+  orig: 25, 40
+  offset: 0, 0
+  index: -1
+L_ArmS
+  rotate: false
+  xy: 1225, 7
+  size: 29, 40
+  orig: 29, 40
+  offset: 0, 0
+  index: -1
+L_LegB
+  rotate: true
+  xy: 1280, 114
+  size: 24, 50
+  orig: 24, 50
+  offset: 0, 0
+  index: -1
+L_LegS
+  rotate: true
+  xy: 1280, 139
+  size: 20, 55
+  orig: 20, 55
+  offset: 0, 0
+  index: -1
+R_ArmB
+  rotate: false
+  xy: 1255, 9
+  size: 20, 38
+  orig: 20, 38
+  offset: 0, 0
+  index: -1
+R_ArmS
+  rotate: false
+  xy: 1290, 71
+  size: 25, 42
+  orig: 25, 42
+  offset: 0, 0
+  index: -1
+R_LegB
+  rotate: false
+  xy: 1267, 64
+  size: 22, 47
+  orig: 22, 47
+  offset: 0, 0
+  index: -1
+R_LegS
+  rotate: false
+  xy: 1323, 160
+  size: 19, 56
+  orig: 19, 56
+  offset: 0, 0
+  index: -1
+SkirtA
+  rotate: true
+  xy: 1017, 253
+  size: 36, 95
+  orig: 36, 95
+  offset: 0, 0
+  index: -1
+SkirtB
+  rotate: false
+  xy: 1315, 428
+  size: 49, 94
+  orig: 49, 94
+  offset: 0, 0
+  index: -1
+SkirtC
+  rotate: false
+  xy: 909, 1
+  size: 31, 76
+  orig: 31, 76
+  offset: 0, 0
+  index: -1
+SkirtD
+  rotate: false
+  xy: 1315, 269
+  size: 32, 98
+  orig: 32, 98
+  offset: 0, 0
+  index: -1
+SkirtE
+  rotate: true
+  xy: 671, 98
+  size: 178, 134
+  orig: 178, 134
+  offset: 0, 0
+  index: -1
+TS
+  rotate: false
+  xy: 1, 16
+  size: 388, 229
+  orig: 685, 420
+  offset: 138, 90
+  index: -1
+WeaponA
+  rotate: true
+  xy: 806, 78
+  size: 93, 223
+  orig: 93, 223
+  offset: 0, 0
+  index: -1
+WeaponA_Effect
+  rotate: true
+  xy: 390, 14
+  size: 110, 238
+  orig: 231, 342
+  offset: 60, 52
+  index: -1
+WeaponA_Effect2
+  rotate: true
+  xy: 1030, 1
+  size: 110, 168
+  orig: 231, 342
+  offset: 60, 122
+  index: -1
+Weapon_DunA
+  rotate: false
+  xy: 1276, 25
+  size: 23, 38
+  orig: 23, 38
+  offset: 0, 0
+  index: -1
+Weapon_DunB
+  rotate: true
+  xy: 806, 172
+  size: 117, 210
+  orig: 117, 210
+  offset: 0, 0
+  index: -1
+Weapon_DunB2_Effect
+  rotate: false
+  xy: 1118, 216
+  size: 196, 306
+  orig: 420, 556
+  offset: 112, 128
+  index: -1
+Weapon_DunB2_Effect2
+  rotate: true
+  xy: 405, 125
+  size: 151, 265
+  orig: 535, 535
+  offset: 192, 136
+  index: -1
+Weapon_Dun_zhengmian
+  rotate: true
+  xy: 1030, 112
+  size: 103, 217
+  orig: 103, 217
+  offset: 0, 0
+  index: -1
+Z
+  rotate: false
+  xy: 405, 277
+  size: 370, 245
+  orig: 375, 259
+  offset: 3, 0
+  index: -1
+Z2
+  rotate: false
+  xy: 1, 246
+  size: 403, 276
+  orig: 408, 282
+  offset: 4, 0
+  index: -1
+eff_Shadow
+  rotate: true
+  xy: 1248, 112
+  size: 103, 31
+  orig: 103, 31
+  offset: 0, 0
+  index: -1
