@@ -1,0 +1,1384 @@
+texture0.png
+size: 1760,1286
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect/attack_1_00021
+  rotate: false
+  xy: 685, 238
+  size: 82, 40
+  orig: 91, 68
+  offset: 8, 27
+  index: -1
+effect/attack_1_00022
+  rotate: false
+  xy: 361, 693
+  size: 82, 57
+  orig: 91, 68
+  offset: 2, 1
+  index: -1
+effect/attack_1_00024
+  rotate: false
+  xy: 1656, 718
+  size: 85, 48
+  orig: 91, 68
+  offset: 2, 1
+  index: -1
+effect/attack_1_00026
+  rotate: true
+  xy: 575, 144
+  size: 77, 37
+  orig: 91, 68
+  offset: 1, 1
+  index: -1
+effect/attack_1_00028
+  rotate: false
+  xy: 1643, 275
+  size: 74, 37
+  orig: 91, 68
+  offset: 0, 2
+  index: -1
+effect/attack_1_00030
+  rotate: true
+  xy: 1719, 252
+  size: 60, 36
+  orig: 91, 68
+  offset: 2, 4
+  index: -1
+effect/attack_1_00032
+  rotate: true
+  xy: 1566, 463
+  size: 40, 25
+  orig: 91, 68
+  offset: 2, 8
+  index: -1
+effect/attack_1_00034
+  rotate: true
+  xy: 1039, 137
+  size: 13, 23
+  orig: 91, 68
+  offset: 3, 9
+  index: -1
+effect/attack_2_00021
+  rotate: false
+  xy: 1370, 614
+  size: 60, 120
+  orig: 84, 195
+  offset: 12, 42
+  index: -1
+effect/attack_2_00022
+  rotate: false
+  xy: 599, 401
+  size: 80, 171
+  orig: 84, 195
+  offset: 2, 15
+  index: -1
+effect/attack_2_00024
+  rotate: true
+  xy: 256, 15
+  size: 76, 192
+  orig: 84, 195
+  offset: 4, 2
+  index: -1
+effect/attack_2_00026
+  rotate: false
+  xy: 122, 677
+  size: 72, 179
+  orig: 84, 195
+  offset: 7, 5
+  index: -1
+effect/attack_2_00028
+  rotate: false
+  xy: 57, 493
+  size: 65, 180
+  orig: 84, 195
+  offset: 9, 7
+  index: -1
+effect/attack_2_00030
+  rotate: false
+  xy: 57, 675
+  size: 63, 181
+  orig: 84, 195
+  offset: 10, 4
+  index: -1
+effect/baisebeijing_00181
+  rotate: true
+  xy: 1349, 986
+  size: 22, 35
+  orig: 22, 35
+  offset: 0, 0
+  index: -1
+effect/baiseguangyun_00030
+  rotate: false
+  xy: 1318, 985
+  size: 16, 15
+  orig: 16, 15
+  offset: 0, 0
+  index: -1
+effect/burstattack2_baodian_00048
+  rotate: true
+  xy: 482, 398
+  size: 174, 115
+  orig: 180, 125
+  offset: 3, 6
+  index: -1
+effect/burstattack2_baodian_00050
+  rotate: true
+  xy: 691, 1118
+  size: 166, 108
+  orig: 180, 125
+  offset: 9, 10
+  index: -1
+effect/burstattack2_baodian_00052
+  rotate: true
+  xy: 714, 953
+  size: 163, 85
+  orig: 180, 125
+  offset: 8, 21
+  index: -1
+effect/burstattack2_baodian_00054
+  rotate: true
+  xy: 681, 440
+  size: 163, 86
+  orig: 180, 125
+  offset: 10, 22
+  index: -1
+effect/burstattack2_baodian_00056
+  rotate: true
+  xy: 738, 614
+  size: 162, 77
+  orig: 180, 125
+  offset: 8, 25
+  index: -1
+effect/burstattack2_baodian_00058
+  rotate: true
+  xy: 1087, 332
+  size: 139, 77
+  orig: 180, 125
+  offset: 18, 26
+  index: -1
+effect/burstattack2_juqi1_00006
+  rotate: true
+  xy: 1355, 348
+  size: 97, 122
+  orig: 97, 122
+  offset: 0, 0
+  index: -1
+effect/burstattack2_juqiguangci_00012
+  rotate: false
+  xy: 1553, 77
+  size: 60, 56
+  orig: 60, 56
+  offset: 0, 0
+  index: -1
+effect/burstattack2_juqishanguang_00025
+  rotate: true
+  xy: 1668, 14
+  size: 55, 52
+  orig: 94, 83
+  offset: 15, 21
+  index: -1
+effect/burstattack2_juqishanguang_00027
+  rotate: false
+  xy: 1611, 18
+  size: 55, 57
+  orig: 94, 83
+  offset: 19, 16
+  index: -1
+effect/burstattack2_juqishanguang_00029
+  rotate: false
+  xy: 1638, 130
+  size: 71, 71
+  orig: 94, 83
+  offset: 12, 7
+  index: -1
+effect/burstattack2_juqishanguang_00031
+  rotate: true
+  xy: 1566, 382
+  size: 79, 80
+  orig: 94, 83
+  offset: 10, 0
+  index: -1
+effect/burstattack2_juqishanguang_00033
+  rotate: false
+  xy: 1639, 203
+  size: 72, 70
+  orig: 94, 83
+  offset: 17, 7
+  index: -1
+effect/burstattack2_juqishanguang_00035
+  rotate: false
+  xy: 1648, 314
+  size: 75, 73
+  orig: 94, 83
+  offset: 16, 5
+  index: -1
+effect/burstattack2_juqitiaodai_00005
+  rotate: false
+  xy: 1044, 681
+  size: 135, 138
+  orig: 138, 161
+  offset: 1, 3
+  index: -1
+effect/burstattack2_juqitiaodai_00007
+  rotate: false
+  xy: 1021, 821
+  size: 128, 148
+  orig: 138, 161
+  offset: 8, 10
+  index: -1
+effect/burstattack2_juqitiaodai_00009
+  rotate: false
+  xy: 1151, 842
+  size: 123, 136
+  orig: 138, 161
+  offset: 13, 16
+  index: -1
+effect/burstattack2_juqitiaodai_00011
+  rotate: false
+  xy: 1353, 736
+  size: 120, 121
+  orig: 138, 161
+  offset: 16, 26
+  index: -1
+effect/burstattack2_juqitiaodai_00013
+  rotate: true
+  xy: 1419, 494
+  size: 118, 104
+  orig: 138, 161
+  offset: 17, 36
+  index: -1
+effect/burstattack2_juqitiaodai_00015
+  rotate: true
+  xy: 1368, 111
+  size: 115, 96
+  orig: 138, 161
+  offset: 19, 37
+  index: -1
+effect/burstattack2_juqitiaodai_00017
+  rotate: false
+  xy: 1438, 16
+  size: 113, 93
+  orig: 138, 161
+  offset: 20, 37
+  index: -1
+effect/burstattack2_juqitiaodai_00019
+  rotate: true
+  xy: 1257, 1002
+  size: 108, 90
+  orig: 138, 161
+  offset: 23, 37
+  index: -1
+effect/burstattack2_juqitiaodai_00021
+  rotate: true
+  xy: 1482, 1072
+  size: 97, 79
+  orig: 138, 161
+  offset: 28, 42
+  index: -1
+effect/burstattack2_juqitiaodai_00023
+  rotate: false
+  xy: 1566, 1061
+  size: 93, 74
+  orig: 138, 161
+  offset: 31, 44
+  index: -1
+effect/burstattack2_juqitiaodai_00025
+  rotate: false
+  xy: 1566, 677
+  size: 85, 61
+  orig: 138, 161
+  offset: 33, 48
+  index: -1
+effect/burstattack2_juqitiaodai_00027
+  rotate: false
+  xy: 1564, 249
+  size: 73, 57
+  orig: 138, 161
+  offset: 42, 48
+  index: -1
+effect/burstattack2_juqitiaodai_00029
+  rotate: true
+  xy: 1696, 468
+  size: 78, 53
+  orig: 138, 161
+  offset: 35, 50
+  index: -1
+effect/burstattack2_qiliu_00067
+  rotate: false
+  xy: 248, 858
+  size: 97, 22
+  orig: 97, 22
+  offset: 0, 0
+  index: -1
+effect/burstattack2_quanpinbaodian_00071
+  rotate: false
+  xy: 406, 943
+  size: 154, 169
+  orig: 158, 170
+  offset: 3, 1
+  index: -1
+effect/burstattack2_quanpinbaodian_00073
+  rotate: false
+  xy: 519, 773
+  size: 155, 168
+  orig: 158, 170
+  offset: 3, 2
+  index: -1
+effect/burstattack2_quanpinbaodian_00075
+  rotate: false
+  xy: 562, 946
+  size: 150, 167
+  orig: 158, 170
+  offset: 7, 1
+  index: -1
+effect/burstattack2_quanpinbaodian_00077
+  rotate: false
+  xy: 543, 1115
+  size: 146, 169
+  orig: 158, 170
+  offset: 8, 0
+  index: -1
+effect/burstattack2_quanpinbaodian_00079
+  rotate: false
+  xy: 627, 51
+  size: 142, 170
+  orig: 158, 170
+  offset: 10, 0
+  index: -1
+effect/burstattack2_quanpinbaodian_00081
+  rotate: false
+  xy: 406, 1114
+  size: 135, 170
+  orig: 158, 170
+  offset: 13, 0
+  index: -1
+effect/burstattack2_quanpinbaodian_00083
+  rotate: true
+  xy: 905, 2
+  size: 130, 157
+  orig: 158, 170
+  offset: 16, 5
+  index: -1
+effect/burstattack2_quanpinbaodian_00085
+  rotate: true
+  xy: 1064, 23
+  size: 127, 157
+  orig: 158, 170
+  offset: 17, 5
+  index: -1
+effect/burstattack2_quanpinbaodian_00087
+  rotate: false
+  xy: 1056, 980
+  size: 125, 148
+  orig: 158, 170
+  offset: 19, 13
+  index: -1
+effect/burstattack2_quanpinbaodian_00089
+  rotate: true
+  xy: 1288, 859
+  size: 124, 87
+  orig: 158, 170
+  offset: 19, 27
+  index: -1
+effect/burstattack2_quanpinheibai_00070
+  rotate: false
+  xy: 124, 497
+  size: 163, 178
+  orig: 163, 178
+  offset: 0, 0
+  index: -1
+effect/burstattack2_quanpinhong_00069
+  rotate: false
+  xy: 196, 678
+  size: 163, 178
+  orig: 163, 178
+  offset: 0, 0
+  index: -1
+effect/burstattack2_shanguang_00053
+  rotate: true
+  xy: 1336, 988
+  size: 12, 11
+  orig: 117, 96
+  offset: 66, 36
+  index: -1
+effect/burstattack2_shanguang_00055
+  rotate: false
+  xy: 1353, 719
+  size: 15, 15
+  orig: 117, 96
+  offset: 60, 35
+  index: -1
+effect/burstattack2_shanguang_00057
+  rotate: false
+  xy: 1324, 425
+  size: 19, 20
+  orig: 117, 96
+  offset: 54, 33
+  index: -1
+effect/burstattack2_shanguang_00059
+  rotate: true
+  xy: 1394, 1076
+  size: 93, 86
+  orig: 117, 96
+  offset: 7, 0
+  index: -1
+effect/burstattack2_shanguang_00061
+  rotate: true
+  xy: 1670, 1081
+  size: 96, 88
+  orig: 117, 96
+  offset: 4, 6
+  index: -1
+effect/burstattack2_shanguang_00063
+  rotate: false
+  xy: 1566, 740
+  size: 88, 73
+  orig: 117, 96
+  offset: 14, 10
+  index: -1
+effect/burstattack2_shanguang_00065
+  rotate: true
+  xy: 1482, 711
+  size: 87, 75
+  orig: 117, 96
+  offset: 20, 6
+  index: -1
+effect/burstattack2_shanguang_00067
+  rotate: false
+  xy: 1475, 800
+  size: 89, 80
+  orig: 117, 96
+  offset: 22, 3
+  index: -1
+effect/burstattack2_shanguang_00069
+  rotate: false
+  xy: 1377, 894
+  size: 89, 85
+  orig: 117, 96
+  offset: 25, 0
+  index: -1
+effect/burstattack2_shanguang_00071
+  rotate: false
+  xy: 1696, 389
+  size: 50, 77
+  orig: 117, 96
+  offset: 33, 10
+  index: -1
+effect/burstattack2_shuipingguang_00002
+  rotate: false
+  xy: 1223, 25
+  size: 93, 38
+  orig: 93, 38
+  offset: 0, 0
+  index: -1
+effect/burstattack2_suduxian_00000
+  rotate: false
+  xy: 1336, 985
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+effect/burstattack2_suduxian_00002
+  rotate: false
+  xy: 771, 112
+  size: 132, 6
+  orig: 135, 18
+  offset: 1, 10
+  index: -1
+effect/burstattack2_suduxian_00004
+  rotate: false
+  xy: 256, 5
+  size: 133, 5
+  orig: 135, 18
+  offset: 1, 11
+  index: -1
+effect/burstattack2_suduxian_00006
+  rotate: false
+  xy: 391, 4
+  size: 133, 6
+  orig: 135, 18
+  offset: 1, 11
+  index: -1
+effect/burstattack2_suduxian_00008
+  rotate: false
+  xy: 526, 6
+  size: 133, 4
+  orig: 135, 18
+  offset: 1, 12
+  index: -1
+effect/burstattack2_suduxian_00010
+  rotate: false
+  xy: 1183, 985
+  size: 133, 13
+  orig: 135, 18
+  offset: 1, 4
+  index: -1
+effect/burstattack2_suduxian_00012
+  rotate: false
+  xy: 1087, 317
+  size: 133, 13
+  orig: 135, 18
+  offset: 1, 4
+  index: -1
+effect/burstattack2_suduxian_00014
+  rotate: false
+  xy: 1151, 829
+  size: 133, 11
+  orig: 135, 18
+  offset: 1, 6
+  index: -1
+effect/burstattack2_suduxian_00016
+  rotate: false
+  xy: 1064, 7
+  size: 133, 14
+  orig: 135, 18
+  offset: 1, 3
+  index: -1
+effect/burstattack2_suduxian_00018
+  rotate: false
+  xy: 746, 2
+  size: 133, 10
+  orig: 135, 18
+  offset: 1, 7
+  index: -1
+effect/burstattack2_suduxian_00020
+  rotate: false
+  xy: 259, 93
+  size: 133, 9
+  orig: 135, 18
+  offset: 1, 8
+  index: -1
+effect/burstattack2_suduxian_00022
+  rotate: true
+  xy: 1276, 850
+  size: 133, 10
+  orig: 135, 18
+  offset: 1, 7
+  index: -1
+effect/burstattack2_suduxian_00024
+  rotate: false
+  xy: 1199, 7
+  size: 133, 14
+  orig: 135, 18
+  offset: 1, 3
+  index: -1
+effect/burstattack2_suduxian_00026
+  rotate: false
+  xy: 1074, 527
+  size: 133, 15
+  orig: 135, 18
+  offset: 1, 2
+  index: -1
+effect/burstattack2_suduxian_00028
+  rotate: true
+  xy: 1123, 546
+  size: 133, 12
+  orig: 135, 18
+  offset: 1, 5
+  index: -1
+effect/burstattack2_suduxian_00030
+  rotate: true
+  xy: 1137, 546
+  size: 133, 10
+  orig: 135, 18
+  offset: 1, 7
+  index: -1
+effect/burstattack2_wuqi_00039
+  rotate: false
+  xy: 2, 7
+  size: 252, 84
+  orig: 252, 84
+  offset: 0, 0
+  index: -1
+effect/burstattack2_yanwu_00036
+  rotate: true
+  xy: 1185, 473
+  size: 52, 24
+  orig: 83, 39
+  offset: 28, 3
+  index: -1
+effect/burstattack2_yanwu_00038
+  rotate: false
+  xy: 1377, 859
+  size: 74, 33
+  orig: 83, 39
+  offset: 5, 3
+  index: -1
+effect/burstattack2_yanwu_00040
+  rotate: true
+  xy: 1725, 314
+  size: 73, 33
+  orig: 83, 39
+  offset: 3, 3
+  index: -1
+effect/burstattack2_yanwu_00042
+  rotate: true
+  xy: 447, 503
+  size: 69, 33
+  orig: 83, 39
+  offset: 3, 3
+  index: -1
+effect/burstattack2_yanwu_00044
+  rotate: true
+  xy: 1648, 392
+  size: 69, 34
+  orig: 83, 39
+  offset: 2, 3
+  index: -1
+effect/burstattack2_yanwu_00046
+  rotate: false
+  xy: 1368, 84
+  size: 52, 25
+  orig: 83, 39
+  offset: 4, 3
+  index: -1
+effect/burstattack2_yanwuqiliu_00066
+  rotate: false
+  xy: 248, 882
+  size: 107, 46
+  orig: 107, 46
+  offset: 0, 0
+  index: -1
+effect/burstattack_bd1_00048
+  rotate: true
+  xy: 605, 605
+  size: 166, 131
+  orig: 166, 131
+  offset: 0, 0
+  index: -1
+effect/burstattack_bd2_00049
+  rotate: true
+  xy: 57, 1072
+  size: 212, 189
+  orig: 212, 189
+  offset: 0, 0
+  index: -1
+effect/burstattack_bd2_00050
+  rotate: true
+  xy: 57, 858
+  size: 212, 189
+  orig: 212, 189
+  offset: 0, 0
+  index: -1
+effect/burstattack_bd3_00051
+  rotate: true
+  xy: 1173, 191
+  size: 124, 93
+  orig: 124, 93
+  offset: 0, 0
+  index: -1
+effect/burstattack_bd3_00053
+  rotate: true
+  xy: 1223, 65
+  size: 124, 93
+  orig: 124, 93
+  offset: 0, 0
+  index: -1
+effect/burstattack_bd3_00055
+  rotate: true
+  xy: 1229, 425
+  size: 124, 93
+  orig: 124, 93
+  offset: 0, 0
+  index: -1
+effect/burstattack_bd3_00057
+  rotate: false
+  xy: 1229, 330
+  size: 124, 93
+  orig: 124, 93
+  offset: 0, 0
+  index: -1
+effect/burstattack_bd3_00059
+  rotate: true
+  xy: 1268, 204
+  size: 124, 93
+  orig: 124, 93
+  offset: 0, 0
+  index: -1
+effect/burstattack_bd3_00061
+  rotate: true
+  xy: 1275, 573
+  size: 124, 93
+  orig: 124, 93
+  offset: 0, 0
+  index: -1
+effect/burstattack_bd3_00063
+  rotate: true
+  xy: 1324, 447
+  size: 124, 93
+  orig: 124, 93
+  offset: 0, 0
+  index: -1
+effect/burstattack_bdci2_00051
+  rotate: false
+  xy: 1661, 768
+  size: 89, 65
+  orig: 89, 65
+  offset: 0, 0
+  index: -1
+effect/burstattack_bdci3_00051
+  rotate: false
+  xy: 1413, 232
+  size: 62, 114
+  orig: 80, 164
+  offset: 9, 2
+  index: -1
+effect/burstattack_bdci3_00053
+  rotate: false
+  xy: 1681, 1179
+  size: 68, 105
+  orig: 80, 164
+  offset: 7, 46
+  index: -1
+effect/burstattack_bdci3_00055
+  rotate: true
+  xy: 1566, 308
+  size: 72, 75
+  orig: 80, 164
+  offset: 3, 85
+  index: -1
+effect/burstattack_bdci3_00056
+  rotate: false
+  xy: 1553, 135
+  size: 67, 56
+  orig: 80, 164
+  offset: 2, 106
+  index: -1
+effect/burstattack_bdci4_00051
+  rotate: true
+  xy: 1070, 1138
+  size: 146, 91
+  orig: 159, 100
+  offset: 5, 2
+  index: -1
+effect/burstattack_bdci4_00053
+  rotate: true
+  xy: 951, 658
+  size: 151, 91
+  orig: 159, 100
+  offset: 3, 3
+  index: -1
+effect/burstattack_bdci4_00055
+  rotate: true
+  xy: 976, 1130
+  size: 154, 92
+  orig: 159, 100
+  offset: 2, 4
+  index: -1
+effect/burstattack_bdci4_00057
+  rotate: true
+  xy: 801, 1127
+  size: 157, 91
+  orig: 159, 100
+  offset: 1, 6
+  index: -1
+effect/burstattack_bdci4_00059
+  rotate: true
+  xy: 965, 971
+  size: 155, 89
+  orig: 159, 100
+  offset: 2, 9
+  index: -1
+effect/burstattack_bdci_00051
+  rotate: true
+  xy: 1653, 633
+  size: 83, 85
+  orig: 83, 85
+  offset: 0, 0
+  index: -1
+effect/burstattack_bdci_00053
+  rotate: true
+  xy: 1566, 592
+  size: 83, 85
+  orig: 83, 85
+  offset: 0, 0
+  index: -1
+effect/burstattack_bdci_00055
+  rotate: false
+  xy: 1525, 505
+  size: 83, 85
+  orig: 83, 85
+  offset: 0, 0
+  index: -1
+effect/burstattack_bdci_00057
+  rotate: true
+  xy: 1653, 548
+  size: 83, 85
+  orig: 83, 85
+  offset: 0, 0
+  index: -1
+effect/burstattack_bdguangquan2_00051
+  rotate: true
+  xy: 1074, 544
+  size: 135, 47
+  orig: 135, 47
+  offset: 0, 0
+  index: -1
+effect/burstattack_bdguangquan_00051
+  rotate: true
+  xy: 1183, 1000
+  size: 136, 72
+  orig: 136, 72
+  offset: 0, 0
+  index: -1
+effect/burstattack_bdyanchen_00048
+  rotate: false
+  xy: 801, 969
+  size: 80, 156
+  orig: 80, 156
+  offset: 0, 0
+  index: -1
+effect/burstattack_bdyanchen_00050
+  rotate: false
+  xy: 883, 969
+  size: 80, 156
+  orig: 80, 156
+  offset: 0, 0
+  index: -1
+effect/burstattack_bdyanchen_00052
+  rotate: false
+  xy: 894, 1128
+  size: 80, 156
+  orig: 80, 156
+  offset: 0, 0
+  index: -1
+effect/burstattack_bdyanchen_00054
+  rotate: false
+  xy: 886, 811
+  size: 80, 156
+  orig: 80, 156
+  offset: 0, 0
+  index: -1
+effect/burstattack_ci_00047
+  rotate: true
+  xy: 57, 259
+  size: 51, 149
+  orig: 51, 149
+  offset: 0, 0
+  index: -1
+effect/burstattack_ci_00048
+  rotate: false
+  xy: 968, 820
+  size: 51, 149
+  orig: 51, 149
+  offset: 0, 0
+  index: -1
+effect/burstattack_dilie_00048
+  rotate: true
+  xy: 1166, 332
+  size: 139, 61
+  orig: 139, 61
+  offset: 0, 0
+  index: -1
+effect/burstattack_guanglizi_00019
+  rotate: true
+  xy: 1275, 556
+  size: 15, 47
+  orig: 15, 47
+  offset: 0, 0
+  index: -1
+effect/burstattack_guangyun_00051
+  rotate: false
+  xy: 1564, 193
+  size: 72, 54
+  orig: 72, 54
+  offset: 0, 0
+  index: -1
+effect/burstattack_lizi2_00051
+  rotate: false
+  xy: 1466, 117
+  size: 85, 113
+  orig: 85, 113
+  offset: 0, 0
+  index: -1
+effect/burstattack_lizi2_00053
+  rotate: false
+  xy: 1477, 233
+  size: 85, 113
+  orig: 85, 113
+  offset: 0, 0
+  index: -1
+effect/burstattack_lizi2_00055
+  rotate: false
+  xy: 1479, 379
+  size: 85, 113
+  orig: 85, 113
+  offset: 0, 0
+  index: -1
+effect/burstattack_lizi2_00057
+  rotate: true
+  xy: 1566, 1199
+  size: 85, 113
+  orig: 85, 113
+  offset: 0, 0
+  index: -1
+effect/burstattack_lizi2_00059
+  rotate: false
+  xy: 1475, 1171
+  size: 85, 113
+  orig: 85, 113
+  offset: 0, 0
+  index: -1
+effect/burstattack_lizi2_00061
+  rotate: false
+  xy: 1377, 1171
+  size: 85, 113
+  orig: 85, 113
+  offset: 0, 0
+  index: -1
+effect/burstattack_lizi2_00063
+  rotate: true
+  xy: 1257, 1199
+  size: 85, 113
+  orig: 85, 113
+  offset: 0, 0
+  index: -1
+effect/burstattack_lizi2_00065
+  rotate: true
+  xy: 1257, 1112
+  size: 85, 113
+  orig: 85, 113
+  offset: 0, 0
+  index: -1
+effect/burstattack_lizi_00023
+  rotate: true
+  xy: 1610, 463
+  size: 83, 84
+  orig: 83, 84
+  offset: 0, 0
+  index: -1
+effect/burstattack_shanguang_00038
+  rotate: false
+  xy: 1615, 102
+  size: 51, 26
+  orig: 116, 67
+  offset: 33, 20
+  index: -1
+effect/burstattack_shanguang_00040
+  rotate: false
+  xy: 482, 350
+  size: 90, 46
+  orig: 116, 67
+  offset: 13, 9
+  index: -1
+effect/burstattack_shanguang_00042
+  rotate: false
+  xy: 1566, 1137
+  size: 102, 60
+  orig: 116, 67
+  offset: 7, 4
+  index: -1
+effect/burstattack_shanguang_00044
+  rotate: true
+  xy: 1482, 623
+  size: 86, 65
+  orig: 116, 67
+  offset: 15, 1
+  index: -1
+effect/burstattack_shanguang_00046
+  rotate: false
+  xy: 1668, 71
+  size: 57, 57
+  orig: 116, 67
+  offset: 30, 2
+  index: -1
+effect/burstattack_shanguang_00048
+  rotate: true
+  xy: 1553, 15
+  size: 60, 56
+  orig: 116, 67
+  offset: 29, 4
+  index: -1
+effect/burstattack_shitou_00051
+  rotate: false
+  xy: 951, 633
+  size: 79, 23
+  orig: 79, 23
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai1_00011
+  rotate: false
+  xy: 1482, 977
+  size: 80, 93
+  orig: 80, 93
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai1_00013
+  rotate: false
+  xy: 1394, 981
+  size: 80, 93
+  orig: 80, 93
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai1_00015
+  rotate: true
+  xy: 1661, 999
+  size: 80, 93
+  orig: 80, 93
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai1_00017
+  rotate: true
+  xy: 1566, 979
+  size: 80, 93
+  orig: 80, 93
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai1_00019
+  rotate: true
+  xy: 1661, 917
+  size: 80, 93
+  orig: 80, 93
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai1_00021
+  rotate: true
+  xy: 1566, 897
+  size: 80, 93
+  orig: 80, 93
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai1_00023
+  rotate: false
+  xy: 1482, 882
+  size: 80, 93
+  orig: 80, 93
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai1_00025
+  rotate: true
+  xy: 1661, 835
+  size: 80, 93
+  orig: 80, 93
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai1_00027
+  rotate: true
+  xy: 1566, 815
+  size: 80, 93
+  orig: 80, 93
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai2_00012
+  rotate: true
+  xy: 166, 319
+  size: 176, 156
+  orig: 176, 156
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai2_00014
+  rotate: true
+  xy: 289, 500
+  size: 176, 156
+  orig: 176, 156
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai2_00016
+  rotate: true
+  xy: 259, 141
+  size: 176, 156
+  orig: 176, 156
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai2_00018
+  rotate: true
+  xy: 324, 322
+  size: 176, 156
+  orig: 176, 156
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai2_00020
+  rotate: true
+  xy: 417, 144
+  size: 176, 156
+  orig: 176, 156
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai2_00022
+  rotate: true
+  xy: 248, 1108
+  size: 176, 156
+  orig: 176, 156
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai2_00024
+  rotate: true
+  xy: 248, 930
+  size: 176, 156
+  orig: 176, 156
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai2_00026
+  rotate: true
+  xy: 361, 752
+  size: 176, 156
+  orig: 176, 156
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai2_00028
+  rotate: true
+  xy: 447, 574
+  size: 176, 156
+  orig: 176, 156
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai3_00013
+  rotate: true
+  xy: 685, 280
+  size: 158, 132
+  orig: 158, 132
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai3_00015
+  rotate: true
+  xy: 769, 454
+  size: 158, 132
+  orig: 158, 132
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai3_00017
+  rotate: true
+  xy: 817, 632
+  size: 158, 132
+  orig: 158, 132
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai3_00019
+  rotate: true
+  xy: 771, 120
+  size: 158, 132
+  orig: 158, 132
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai3_00021
+  rotate: true
+  xy: 819, 294
+  size: 158, 132
+  orig: 158, 132
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai3_00023
+  rotate: true
+  xy: 903, 472
+  size: 158, 132
+  orig: 158, 132
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai3_00025
+  rotate: true
+  xy: 905, 134
+  size: 158, 132
+  orig: 158, 132
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai3_00027
+  rotate: true
+  xy: 953, 312
+  size: 158, 132
+  orig: 158, 132
+  offset: 0, 0
+  index: -1
+effect/burstattack_tiaodai3_00029
+  rotate: true
+  xy: 1039, 152
+  size: 158, 132
+  orig: 158, 132
+  offset: 0, 0
+  index: -1
+effect/burstattack_tuowei2_00007
+  rotate: false
+  xy: 1349, 1010
+  size: 43, 100
+  orig: 43, 100
+  offset: 0, 0
+  index: -1
+effect/burstattack_tuowei_00007
+  rotate: false
+  xy: 2, 1029
+  size: 53, 255
+  orig: 53, 255
+  offset: 0, 0
+  index: -1
+effect/burstattack_tuowei_00009
+  rotate: false
+  xy: 2, 772
+  size: 53, 255
+  orig: 53, 255
+  offset: 0, 0
+  index: -1
+effect/burstattack_tuowei_00011
+  rotate: false
+  xy: 2, 515
+  size: 53, 255
+  orig: 53, 255
+  offset: 0, 0
+  index: -1
+effect/burstattack_tuowei_00013
+  rotate: false
+  xy: 2, 258
+  size: 53, 255
+  orig: 53, 255
+  offset: 0, 0
+  index: -1
+effect/burstattack_tuowei_00015
+  rotate: true
+  xy: 2, 203
+  size: 53, 255
+  orig: 53, 255
+  offset: 0, 0
+  index: -1
+effect/burstattack_tuowei_00017
+  rotate: true
+  xy: 2, 148
+  size: 53, 255
+  orig: 53, 255
+  offset: 0, 0
+  index: -1
+effect/burstattack_tuowei_00019
+  rotate: true
+  xy: 2, 93
+  size: 53, 255
+  orig: 53, 255
+  offset: 0, 0
+  index: -1
+effect/burstattack_xuanzhuandaoguang_00019
+  rotate: false
+  xy: 1149, 551
+  size: 124, 128
+  orig: 124, 128
+  offset: 0, 0
+  index: -1
+effect/burstattack_yanwu2_00051
+  rotate: true
+  xy: 1181, 699
+  size: 128, 79
+  orig: 182, 113
+  offset: 24, 12
+  index: -1
+effect/burstattack_yanwu2_00053
+  rotate: true
+  xy: 1163, 1138
+  size: 146, 92
+  orig: 182, 113
+  offset: 18, 6
+  index: -1
+effect/burstattack_yanwu2_00055
+  rotate: true
+  xy: 784, 792
+  size: 159, 100
+  orig: 182, 113
+  offset: 11, 4
+  index: -1
+effect/burstattack_yanwu2_00057
+  rotate: true
+  xy: 676, 778
+  size: 166, 106
+  orig: 182, 113
+  offset: 9, 3
+  index: -1
+effect/burstattack_yanwu2_00059
+  rotate: true
+  xy: 575, 223
+  size: 173, 108
+  orig: 182, 113
+  offset: 5, 3
+  index: -1
+effect/burstattack_yanwu2_00061
+  rotate: true
+  xy: 57, 312
+  size: 179, 107
+  orig: 182, 113
+  offset: 2, 6
+  index: -1
+effect/burstattack_yanwu2_00063
+  rotate: false
+  xy: 450, 49
+  size: 175, 93
+  orig: 182, 113
+  offset: 7, 8
+  index: -1
+effect/burstattack_yanwu2_00065
+  rotate: true
+  xy: 1262, 699
+  size: 128, 89
+  orig: 182, 113
+  offset: 22, 12
+  index: -1
+effect/burstattack_yanwu_00007
+  rotate: true
+  xy: 1432, 616
+  size: 118, 48
+  orig: 118, 48
+  offset: 0, 0
+  index: -1
+effect/burstattack_yanwu_00009
+  rotate: false
+  xy: 771, 62
+  size: 118, 48
+  orig: 118, 48
+  offset: 0, 0
+  index: -1
+effect/burstattack_yanwu_00011
+  rotate: true
+  xy: 1318, 84
+  size: 118, 48
+  orig: 118, 48
+  offset: 0, 0
+  index: -1
+effect/burstattack_yanwu_00013
+  rotate: false
+  xy: 1318, 34
+  size: 118, 48
+  orig: 118, 48
+  offset: 0, 0
+  index: -1
+effect/burstattack_yanwu_00015
+  rotate: true
+  xy: 1363, 228
+  size: 118, 48
+  orig: 118, 48
+  offset: 0, 0
+  index: -1
+effect/ci_00036
+  rotate: false
+  xy: 450, 12
+  size: 146, 35
+  orig: 146, 35
+  offset: 0, 0
+  index: -1
+effect/ci_00037
+  rotate: false
+  xy: 598, 12
+  size: 146, 35
+  orig: 146, 35
+  offset: 0, 0
+  index: -1
+effect/ci_00038
+  rotate: false
+  xy: 746, 14
+  size: 146, 35
+  orig: 146, 35
+  offset: 0, 0
+  index: -1
+effect/ci_00039
+  rotate: false
+  xy: 259, 104
+  size: 146, 35
+  orig: 146, 35
+  offset: 0, 0
+  index: -1
+effect/ci_00040
+  rotate: true
+  xy: 1037, 510
+  size: 146, 35
+  orig: 146, 35
+  offset: 0, 0
+  index: -1
+effect/ci_00041
+  rotate: false
+  xy: 1037, 473
+  size: 146, 35
+  orig: 146, 35
+  offset: 0, 0
+  index: -1

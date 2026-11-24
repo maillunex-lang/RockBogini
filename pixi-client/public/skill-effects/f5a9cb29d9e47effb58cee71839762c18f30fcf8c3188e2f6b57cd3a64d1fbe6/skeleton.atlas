@@ -1,0 +1,117 @@
+texture0.png
+size: 151,405
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+XL_baodian_01
+  rotate: true
+  xy: 127, 345
+  size: 60, 22
+  orig: 64, 32
+  offset: 0, 4
+  index: -1
+XL_baodian_02
+  rotate: false
+  xy: 98, 147
+  size: 53, 22
+  orig: 64, 32
+  offset: 1, 6
+  index: -1
+XL_baodian_03
+  rotate: false
+  xy: 98, 169
+  size: 53, 25
+  orig: 64, 32
+  offset: 1, 4
+  index: -1
+XL_baodian_04
+  rotate: true
+  xy: 122, 246
+  size: 52, 27
+  orig: 64, 32
+  offset: 5, 3
+  index: -1
+XL_baodian_05
+  rotate: true
+  xy: 64, 14
+  size: 50, 25
+  orig: 64, 32
+  offset: 8, 4
+  index: -1
+XL_baodian_06
+  rotate: true
+  xy: 122, 298
+  size: 47, 28
+  orig: 64, 32
+  offset: 14, 2
+  index: -1
+XL_baodian_07
+  rotate: false
+  xy: 89, 27
+  size: 37, 20
+  orig: 64, 32
+  offset: 21, 3
+  index: -1
+XL_baodian_08
+  rotate: false
+  xy: 122, 228
+  size: 26, 18
+  orig: 64, 32
+  offset: 36, 4
+  index: -1
+guangmang4
+  rotate: false
+  xy: 0, 245
+  size: 122, 122
+  orig: 128, 128
+  offset: 3, 3
+  index: -1
+guangmang7
+  rotate: false
+  xy: 0, 0
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+pugong
+  rotate: false
+  xy: 0, 367
+  size: 127, 38
+  orig: 128, 64
+  offset: 1, 12
+  index: -1
+pugong_baodian
+  rotate: true
+  xy: 89, 95
+  size: 52, 62
+  orig: 64, 64
+  offset: 3, 0
+  index: -1
+pugong_baodian_02
+  rotate: true
+  xy: 89, 47
+  size: 48, 60
+  orig: 64, 64
+  offset: 3, 3
+  index: -1
+pugong_baodian_03
+  rotate: true
+  xy: 98, 194
+  size: 34, 53
+  orig: 64, 64
+  offset: 15, 6
+  index: -1
+xishou
+  rotate: false
+  xy: 0, 147
+  size: 98, 98
+  orig: 103, 103
+  offset: 4, 3
+  index: -1
+xuanwo02
+  rotate: false
+  xy: 0, 64
+  size: 89, 83
+  orig: 100, 100
+  offset: 4, 7
+  index: -1

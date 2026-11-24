@@ -1,0 +1,82 @@
+texture0.png
+size: 712,139
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+baodian02
+  rotate: false
+  xy: 0, 11
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+fazhen01
+  rotate: false
+  xy: 128, 15
+  size: 125, 124
+  orig: 125, 125
+  offset: 0, 0
+  index: -1
+fazhen02
+  rotate: true
+  xy: 525, 2
+  size: 64, 65
+  orig: 80, 80
+  offset: 8, 7
+  index: -1
+guangshu1
+  rotate: false
+  xy: 253, 24
+  size: 121, 115
+  orig: 124, 122
+  offset: 3, 6
+  index: -1
+guangshu2
+  rotate: false
+  xy: 525, 66
+  size: 180, 73
+  orig: 195, 85
+  offset: 7, 6
+  index: -1
+guangyun
+  rotate: false
+  xy: 654, 8
+  size: 58, 58
+  orig: 64, 64
+  offset: 3, 3
+  index: -1
+guangyun01
+  rotate: false
+  xy: 374, 8
+  size: 58, 36
+  orig: 64, 39
+  offset: 3, 0
+  index: -1
+guangzhu
+  rotate: true
+  xy: 374, 44
+  size: 95, 151
+  orig: 97, 154
+  offset: 1, 1
+  index: -1
+smoke
+  rotate: false
+  xy: 590, 3
+  size: 64, 63
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+suduxian
+  rotate: true
+  xy: 253, 0
+  size: 24, 113
+  orig: 25, 121
+  offset: 0, 4
+  index: -1
+xingdian
+  rotate: false
+  xy: 432, 14
+  size: 31, 30
+  orig: 32, 32
+  offset: 1, 1
+  index: -1

@@ -1,0 +1,187 @@
+texture0.png
+size: 157,759
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+B01
+  rotate: false
+  xy: 103, 398
+  size: 53, 64
+  orig: 55, 66
+  offset: 1, 1
+  index: -1
+B02
+  rotate: false
+  xy: 116, 328
+  size: 32, 70
+  orig: 32, 72
+  offset: 0, 0
+  index: -1
+Weapon_Tx
+  rotate: false
+  xy: 61, 472
+  size: 49, 95
+  orig: 71, 149
+  offset: 11, 10
+  index: -1
+XL_ZD01
+  rotate: false
+  xy: 0, 63
+  size: 91, 66
+  orig: 113, 68
+  offset: 2, 0
+  index: -1
+XL_ZD02
+  rotate: true
+  xy: 91, 0
+  size: 89, 66
+  orig: 113, 68
+  offset: 13, 0
+  index: -1
+XL_ZD03
+  rotate: true
+  xy: 58, 293
+  size: 105, 58
+  orig: 113, 68
+  offset: 1, 7
+  index: -1
+XL_ZD04
+  rotate: false
+  xy: 0, 567
+  size: 110, 64
+  orig: 113, 68
+  offset: 0, 4
+  index: -1
+XL_ZD05
+  rotate: true
+  xy: 0, 455
+  size: 112, 61
+  orig: 113, 68
+  offset: 1, 6
+  index: -1
+XL_ZD06
+  rotate: true
+  xy: 0, 243
+  size: 105, 56
+  orig: 113, 68
+  offset: 7, 6
+  index: -1
+XL_ZD07
+  rotate: true
+  xy: 0, 348
+  size: 107, 58
+  orig: 113, 68
+  offset: 6, 7
+  index: -1
+XL_ZD08
+  rotate: true
+  xy: 110, 539
+  size: 92, 45
+  orig: 113, 68
+  offset: 17, 12
+  index: -1
+XL_ZD09
+  rotate: true
+  xy: 110, 462
+  size: 77, 44
+  orig: 113, 68
+  offset: 32, 12
+  index: -1
+XL_ZD10
+  rotate: true
+  xy: 61, 398
+  size: 74, 42
+  orig: 113, 68
+  offset: 32, 12
+  index: -1
+XL_bao_01
+  rotate: false
+  xy: 55, 142
+  size: 37, 33
+  orig: 64, 64
+  offset: 21, 3
+  index: -1
+XL_bao_02
+  rotate: true
+  xy: 0, 129
+  size: 57, 55
+  orig: 64, 64
+  offset: 6, 0
+  index: -1
+XL_bao_03
+  rotate: false
+  xy: 0, 2
+  size: 64, 61
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+XL_bao_04
+  rotate: true
+  xy: 56, 175
+  size: 62, 51
+  orig: 64, 64
+  offset: 2, 6
+  index: -1
+XL_bao_05
+  rotate: true
+  xy: 107, 153
+  size: 60, 50
+  orig: 64, 64
+  offset: 4, 9
+  index: -1
+XL_bao_06
+  rotate: true
+  xy: 116, 269
+  size: 59, 37
+  orig: 64, 64
+  offset: 5, 22
+  index: -1
+XL_bao_07
+  rotate: true
+  xy: 128, 708
+  size: 51, 29
+  orig: 64, 64
+  offset: 5, 30
+  index: -1
+XL_bao_08
+  rotate: true
+  xy: 128, 667
+  size: 41, 16
+  orig: 64, 64
+  offset: 14, 33
+  index: -1
+baodian02
+  rotate: false
+  xy: 92, 89
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+daoguang02
+  rotate: false
+  xy: 0, 631
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+guanghuan
+  rotate: false
+  xy: 56, 237
+  size: 57, 56
+  orig: 64, 64
+  offset: 4, 4
+  index: -1
+guangmang
+  rotate: true
+  xy: 113, 213
+  size: 56, 44
+  orig: 64, 64
+  offset: 4, 9
+  index: -1
+guangyun01
+  rotate: true
+  xy: 0, 186
+  size: 57, 56
+  orig: 64, 64
+  offset: 4, 4
+  index: -1

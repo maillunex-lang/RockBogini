@@ -1,0 +1,838 @@
+texture0.png
+size: 1762,523
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+A_W/00001
+  rotate: false
+  xy: 648, 197
+  size: 113, 114
+  orig: 222, 246
+  offset: 48, 68
+  index: -1
+A_W/00002
+  rotate: false
+  xy: 309, 154
+  size: 104, 132
+  orig: 222, 246
+  offset: 57, 48
+  index: -1
+A_W/00003
+  rotate: true
+  xy: 879, 256
+  size: 107, 129
+  orig: 222, 246
+  offset: 53, 48
+  index: -1
+A_W/00004
+  rotate: true
+  xy: 1053, 163
+  size: 110, 127
+  orig: 222, 246
+  offset: 50, 49
+  index: -1
+A_W/00005
+  rotate: true
+  xy: 514, 89
+  size: 112, 125
+  orig: 222, 246
+  offset: 48, 49
+  index: -1
+A_W/00006
+  rotate: true
+  xy: 761, 158
+  size: 114, 118
+  orig: 222, 246
+  offset: 46, 51
+  index: -1
+A_W/00007
+  rotate: true
+  xy: 1301, 193
+  size: 111, 106
+  orig: 222, 246
+  offset: 47, 53
+  index: -1
+burstattack2_bomb_effect001/10_00020
+  rotate: false
+  xy: 403, 122
+  size: 10, 10
+  orig: 106, 76
+  offset: 48, 34
+  index: -1
+burstattack2_bomb_effect001/10_00021
+  rotate: true
+  xy: 403, 143
+  size: 11, 10
+  orig: 106, 76
+  offset: 48, 35
+  index: -1
+burstattack2_bomb_effect001/10_00022
+  rotate: true
+  xy: 403, 132
+  size: 11, 10
+  orig: 106, 76
+  offset: 48, 35
+  index: -1
+burstattack2_bomb_effect001/10_00023
+  rotate: false
+  xy: 1689, 217
+  size: 65, 67
+  orig: 220, 152
+  offset: 84, 46
+  index: -1
+burstattack2_bomb_effect001/10_00024
+  rotate: false
+  xy: 281, 29
+  size: 122, 125
+  orig: 220, 152
+  offset: 55, 17
+  index: -1
+burstattack2_bomb_effect001/10_00025
+  rotate: false
+  xy: 155, 29
+  size: 126, 127
+  orig: 220, 152
+  offset: 51, 16
+  index: -1
+burstattack2_bomb_effect001/10_00026
+  rotate: false
+  xy: 1241, 398
+  size: 155, 125
+  orig: 220, 152
+  offset: 27, 17
+  index: -1
+burstattack2_bomb_effect001/10_00027
+  rotate: false
+  xy: 1065, 395
+  size: 176, 128
+  orig: 220, 152
+  offset: 21, 14
+  index: -1
+burstattack2_bomb_effect001/10_00028
+  rotate: false
+  xy: 699, 393
+  size: 181, 130
+  orig: 220, 152
+  offset: 18, 12
+  index: -1
+burstattack2_bomb_effect001/10_00029
+  rotate: false
+  xy: 516, 392
+  size: 183, 131
+  orig: 220, 152
+  offset: 18, 12
+  index: -1
+burstattack2_bomb_effect001/10_00030
+  rotate: false
+  xy: 880, 403
+  size: 185, 120
+  orig: 220, 152
+  offset: 17, 21
+  index: -1
+burstattack2_bomb_effect001/10_00031
+  rotate: false
+  xy: 515, 201
+  size: 133, 110
+  orig: 220, 152
+  offset: 70, 29
+  index: -1
+burstattack2_bomb_effect001/10_00032
+  rotate: true
+  xy: 413, 210
+  size: 115, 102
+  orig: 220, 152
+  offset: 82, 37
+  index: -1
+burstattack2_bomb_effect001/10_00033
+  rotate: true
+  xy: 566, 0
+  size: 77, 84
+  orig: 220, 152
+  offset: 108, 37
+  index: -1
+burstattack2_bomb_effect001/10_00034
+  rotate: false
+  xy: 1176, 318
+  size: 65, 77
+  orig: 220, 152
+  offset: 109, 37
+  index: -1
+burstattack2_weapon_effect002/10_00023
+  rotate: false
+  xy: 1550, 346
+  size: 50, 31
+  orig: 109, 73
+  offset: 50, 19
+  index: -1
+burstattack2_weapon_effect002/10_00024
+  rotate: true
+  xy: 1614, 131
+  size: 60, 36
+  orig: 109, 73
+  offset: 42, 17
+  index: -1
+burstattack2_weapon_effect002/10_00025
+  rotate: false
+  xy: 1267, 0
+  size: 68, 40
+  orig: 109, 73
+  offset: 36, 15
+  index: -1
+burstattack2_weapon_effect002/10_00026
+  rotate: true
+  xy: 1008, 166
+  size: 58, 45
+  orig: 109, 73
+  offset: 30, 13
+  index: -1
+burstattack2_weapon_effect002/10_00027
+  rotate: false
+  xy: 1521, 2
+  size: 58, 49
+  orig: 109, 73
+  offset: 24, 11
+  index: -1
+burstattack2_weapon_effect002/10_00028
+  rotate: false
+  xy: 1501, 137
+  size: 58, 52
+  orig: 109, 73
+  offset: 19, 10
+  index: -1
+burstattack2_weapon_effect002/10_00029
+  rotate: false
+  xy: 1633, 25
+  size: 54, 54
+  orig: 109, 73
+  offset: 15, 9
+  index: -1
+burstattack2_weapon_effect002/10_00030
+  rotate: true
+  xy: 1464, 0
+  size: 51, 57
+  orig: 109, 73
+  offset: 11, 8
+  index: -1
+burstattack2_weapon_effect002/10_00031
+  rotate: false
+  xy: 1569, 79
+  size: 44, 59
+  orig: 109, 73
+  offset: 10, 7
+  index: -1
+burstattack2_weapon_effect002/10_00032
+  rotate: false
+  xy: 1550, 286
+  size: 38, 60
+  orig: 109, 73
+  offset: 9, 7
+  index: -1
+burstattack2_weapon_effect002/10_00033
+  rotate: false
+  xy: 1691, 37
+  size: 30, 60
+  orig: 109, 73
+  offset: 9, 7
+  index: -1
+burstattack2_weapon_effect002/10_00034
+  rotate: true
+  xy: 511, 16
+  size: 7, 3
+  orig: 109, 73
+  offset: 21, 51
+  index: -1
+burstattack2_weapon_effect002/10_00035
+  rotate: false
+  xy: 1600, 447
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+burstattack2_weapon_effect003/20_00021
+  rotate: true
+  xy: 501, 340
+  size: 25, 15
+  orig: 174, 115
+  offset: 121, 32
+  index: -1
+burstattack2_weapon_effect003/20_00022
+  rotate: false
+  xy: 354, 299
+  size: 42, 26
+  orig: 174, 115
+  offset: 104, 32
+  index: -1
+burstattack2_weapon_effect003/20_00023
+  rotate: true
+  xy: 1650, 131
+  size: 61, 35
+  orig: 174, 115
+  offset: 92, 32
+  index: -1
+burstattack2_weapon_effect003/20_00024
+  rotate: true
+  xy: 1647, 192
+  size: 79, 42
+  orig: 174, 115
+  offset: 72, 32
+  index: -1
+burstattack2_weapon_effect003/20_00025
+  rotate: false
+  xy: 1374, 0
+  size: 90, 51
+  orig: 174, 115
+  offset: 55, 32
+  index: -1
+burstattack2_weapon_effect003/20_00026
+  rotate: true
+  xy: 514, 0
+  size: 89, 52
+  orig: 174, 115
+  offset: 50, 32
+  index: -1
+burstattack2_weapon_effect003/20_00027
+  rotate: false
+  xy: 1590, 271
+  size: 91, 52
+  orig: 174, 115
+  offset: 45, 32
+  index: -1
+burstattack2_weapon_effect003/20_00028
+  rotate: false
+  xy: 1407, 136
+  size: 94, 53
+  orig: 174, 115
+  offset: 40, 32
+  index: -1
+burstattack2_weapon_effect003/20_00029
+  rotate: true
+  xy: 1052, 0
+  size: 92, 54
+  orig: 174, 115
+  offset: 37, 32
+  index: -1
+burstattack2_weapon_effect003/20_00030
+  rotate: true
+  xy: 1499, 189
+  size: 81, 54
+  orig: 174, 115
+  offset: 37, 32
+  index: -1
+burstattack2_weapon_effect003/20_00031
+  rotate: true
+  xy: 1579, 1
+  size: 78, 54
+  orig: 174, 115
+  offset: 37, 32
+  index: -1
+burstattack2_weapon_effect003/20_00032
+  rotate: false
+  xy: 1685, 151
+  size: 74, 33
+  orig: 174, 115
+  offset: 38, 32
+  index: -1
+burstattack2_weapon_effect003/20_00033
+  rotate: false
+  xy: 1689, 184
+  size: 68, 33
+  orig: 174, 115
+  offset: 37, 32
+  index: -1
+burstattack2_weapon_effect004/30_00022
+  rotate: false
+  xy: 444, 4
+  size: 67, 19
+  orig: 206, 66
+  offset: 116, 11
+  index: -1
+burstattack2_weapon_effect004/30_00023
+  rotate: false
+  xy: 1633, 1
+  size: 87, 24
+  orig: 206, 66
+  offset: 96, 11
+  index: -1
+burstattack2_weapon_effect004/30_00024
+  rotate: false
+  xy: 1241, 304
+  size: 137, 44
+  orig: 206, 66
+  offset: 46, 4
+  index: -1
+burstattack2_weapon_effect004/30_00025
+  rotate: false
+  xy: 880, 363
+  size: 147, 40
+  orig: 206, 66
+  offset: 27, 9
+  index: -1
+burstattack2_weapon_effect004/30_00026
+  rotate: true
+  xy: 1008, 224
+  size: 139, 45
+  orig: 206, 66
+  offset: 24, 11
+  index: -1
+burstattack2_weapon_effect004/30_00027
+  rotate: false
+  xy: 1407, 270
+  size: 130, 50
+  orig: 206, 66
+  offset: 24, 6
+  index: -1
+burstattack2_weapon_effect004/30_00028
+  rotate: false
+  xy: 1290, 121
+  size: 108, 36
+  orig: 206, 66
+  offset: 38, 11
+  index: -1
+burstattack2_weapon_effect004/30_00029
+  rotate: false
+  xy: 1175, 89
+  size: 112, 36
+  orig: 206, 66
+  offset: 27, 11
+  index: -1
+burstattack2_weapon_effect004/30_00030
+  rotate: false
+  xy: 1287, 84
+  size: 107, 37
+  orig: 206, 66
+  offset: 22, 11
+  index: -1
+burstattack2_weapon_effect004/30_00031
+  rotate: false
+  xy: 1305, 157
+  size: 102, 36
+  orig: 206, 66
+  offset: 21, 11
+  index: -1
+burstattack2_weapon_effect004/30_00032
+  rotate: true
+  xy: 1172, 0
+  size: 89, 35
+  orig: 206, 66
+  offset: 20, 11
+  index: -1
+burstattack2_weapon_effect005/12_00000
+  rotate: false
+  xy: 155, 0
+  size: 71, 29
+  orig: 116, 41
+  offset: 22, 7
+  index: -1
+burstattack2_weapon_effect005/12_00001
+  rotate: false
+  xy: 1481, 51
+  size: 90, 25
+  orig: 116, 41
+  offset: 13, 10
+  index: -1
+burstattack2_weapon_effect005/12_00002
+  rotate: false
+  xy: 1600, 323
+  size: 109, 25
+  orig: 116, 41
+  offset: 3, 10
+  index: -1
+burstattack2_weapon_effect005/12_00003
+  rotate: false
+  xy: 1398, 111
+  size: 109, 25
+  orig: 116, 41
+  offset: 3, 10
+  index: -1
+burstattack2_weapon_effect005/12_00004
+  rotate: false
+  xy: 1374, 51
+  size: 107, 25
+  orig: 116, 41
+  offset: 4, 10
+  index: -1
+burstattack2_weapon_effect005/12_00005
+  rotate: false
+  xy: 339, 0
+  size: 105, 23
+  orig: 116, 41
+  offset: 5, 11
+  index: -1
+burstattack2_weapon_effect005/12_00006
+  rotate: true
+  xy: 1569, 185
+  size: 99, 21
+  orig: 116, 41
+  offset: 8, 12
+  index: -1
+burstattack2_weapon_effect006/60_00000
+  rotate: false
+  xy: 1507, 76
+  size: 62, 61
+  orig: 68, 68
+  offset: 4, 2
+  index: -1
+burstattack2_weapon_effect007/70_00021
+  rotate: false
+  xy: 1601, 438
+  size: 155, 85
+  orig: 221, 114
+  offset: 7, 16
+  index: -1
+burstattack2_weapon_effect007/70_00022
+  rotate: false
+  xy: 516, 311
+  size: 179, 81
+  orig: 221, 114
+  offset: 3, 18
+  index: -1
+burstattack2_weapon_effect007/70_00023
+  rotate: false
+  xy: 1396, 448
+  size: 205, 75
+  orig: 221, 114
+  offset: 8, 22
+  index: -1
+burstattack2_weapon_effect007/70_00024
+  rotate: false
+  xy: 1396, 377
+  size: 204, 71
+  orig: 221, 114
+  offset: 7, 24
+  index: -1
+burstattack2_weapon_effect007/70_00025
+  rotate: false
+  xy: 187, 286
+  size: 167, 69
+  orig: 221, 114
+  offset: 46, 24
+  index: -1
+burstattack2_weapon_effect007/70_00026
+  rotate: false
+  xy: 1600, 395
+  size: 162, 43
+  orig: 221, 114
+  offset: 49, 36
+  index: -1
+burstattack2_weapon_effect007/70_00027
+  rotate: true
+  xy: 1721, 12
+  size: 85, 15
+  orig: 221, 114
+  offset: 122, 49
+  index: -1
+burstattack2_weapon_effect008/80_00010
+  rotate: false
+  xy: 639, 77
+  size: 122, 120
+  orig: 126, 137
+  offset: 3, 6
+  index: -1
+burstattack2_weapon_effect008/80_00011
+  rotate: false
+  xy: 1053, 273
+  size: 123, 122
+  orig: 126, 137
+  offset: 2, 6
+  index: -1
+burstattack2_weapon_effect008/80_00012
+  rotate: true
+  xy: 761, 272
+  size: 121, 118
+  orig: 126, 137
+  offset: 3, 6
+  index: -1
+burstattack2_weapon_effect008/80_00013
+  rotate: false
+  xy: 1180, 190
+  size: 121, 114
+  orig: 126, 137
+  offset: 3, 6
+  index: -1
+burstattack2_weapon_effect008/80_00014
+  rotate: false
+  xy: 761, 48
+  size: 118, 110
+  orig: 126, 137
+  offset: 4, 6
+  index: -1
+burstattack2_weapon_effect008/80_00015
+  rotate: true
+  xy: 413, 95
+  size: 115, 101
+  orig: 126, 137
+  offset: 4, 6
+  index: -1
+burstattack2_weapon_effect008/80_00016
+  rotate: false
+  xy: 403, 23
+  size: 111, 72
+  orig: 126, 137
+  offset: 6, 34
+  index: -1
+burstattack2_weapon_effect008/80_00017
+  rotate: true
+  xy: 1106, 5
+  size: 87, 66
+  orig: 126, 137
+  offset: 23, 38
+  index: -1
+burstattack2_weapon_effect008/80_00018
+  rotate: false
+  xy: 1613, 79
+  size: 78, 52
+  orig: 126, 137
+  offset: 25, 39
+  index: -1
+burstattack2_weapon_effect008/80_00019
+  rotate: false
+  xy: 1559, 138
+  size: 55, 47
+  orig: 126, 137
+  offset: 33, 43
+  index: -1
+burstattack_bomb_effect/2_00000
+  rotate: false
+  xy: 179, 156
+  size: 130, 130
+  orig: 200, 200
+  offset: 31, 31
+  index: -1
+burstattack_bomb_effect/2_00001
+  rotate: false
+  xy: 358, 365
+  size: 158, 158
+  orig: 200, 200
+  offset: 17, 17
+  index: -1
+burstattack_bomb_effect/2_00002
+  rotate: false
+  xy: 0, 336
+  size: 187, 187
+  orig: 200, 200
+  offset: 2, 3
+  index: -1
+burstattack_bomb_effect/2_00003
+  rotate: false
+  xy: 0, 157
+  size: 179, 179
+  orig: 200, 200
+  offset: 6, 7
+  index: -1
+burstattack_bomb_effect/2_00004
+  rotate: false
+  xy: 187, 355
+  size: 171, 168
+  orig: 200, 200
+  offset: 12, 12
+  index: -1
+burstattack_bomb_effect/2_00005
+  rotate: false
+  xy: 0, 6
+  size: 155, 151
+  orig: 200, 200
+  offset: 27, 16
+  index: -1
+burstattack_bomb_effect/2_00006
+  rotate: false
+  xy: 879, 149
+  size: 129, 107
+  orig: 200, 200
+  offset: 30, 49
+  index: -1
+burstattack_bomb_effect/2_00007
+  rotate: false
+  xy: 879, 43
+  size: 122, 106
+  orig: 200, 200
+  offset: 33, 49
+  index: -1
+burstattack_bomb_effect/2_00008
+  rotate: false
+  xy: 1407, 189
+  size: 92, 81
+  orig: 200, 200
+  offset: 57, 64
+  index: -1
+burstattack_bomb_effect/2_00009
+  rotate: false
+  xy: 1207, 6
+  size: 60, 83
+  orig: 200, 200
+  offset: 80, 63
+  index: -1
+burstattack_bomb_effect/2_00010
+  rotate: false
+  xy: 1590, 191
+  size: 57, 80
+  orig: 200, 200
+  offset: 84, 63
+  index: -1
+burstattack_bomb_effect/2_00011
+  rotate: false
+  xy: 695, 311
+  size: 57, 81
+  orig: 200, 200
+  offset: 87, 63
+  index: -1
+burstattack_bomb_effect/2_00012
+  rotate: false
+  xy: 1709, 284
+  size: 53, 64
+  orig: 200, 200
+  offset: 92, 64
+  index: -1
+burstattack_bomb_effect/2_00013
+  rotate: true
+  xy: 771, 0
+  size: 48, 59
+  orig: 200, 200
+  offset: 96, 66
+  index: -1
+burstattack_bomb_effect/2_00014
+  rotate: false
+  xy: 1691, 97
+  size: 46, 54
+  orig: 200, 200
+  offset: 101, 70
+  index: -1
+burstattack_bomb_effect/2_00015
+  rotate: false
+  xy: 281, 154
+  size: 2, 2
+  orig: 200, 200
+  offset: 126, 113
+  index: -1
+burstattack_weapon_effect/3_00005
+  rotate: false
+  xy: 830, 0
+  size: 83, 43
+  orig: 167, 154
+  offset: 3, 56
+  index: -1
+burstattack_weapon_effect/3_00006
+  rotate: false
+  xy: 1241, 348
+  size: 155, 50
+  orig: 167, 154
+  offset: 8, 52
+  index: -1
+burstattack_weapon_effect/3_00007
+  rotate: false
+  xy: 1396, 320
+  size: 154, 57
+  orig: 167, 154
+  offset: 11, 49
+  index: -1
+burstattack_weapon_effect/3_00008
+  rotate: false
+  xy: 1600, 348
+  size: 149, 47
+  orig: 167, 154
+  offset: 13, 54
+  index: -1
+burstattack_weapon_effect/3_00009
+  rotate: false
+  xy: 358, 325
+  size: 143, 40
+  orig: 167, 154
+  offset: 16, 58
+  index: -1
+burstattack_weapon_effect/3_00010
+  rotate: false
+  xy: 1180, 158
+  size: 125, 32
+  orig: 167, 154
+  offset: 23, 62
+  index: -1
+burstattack_weapon_effect1/2_00008
+  rotate: false
+  xy: 1394, 76
+  size: 107, 35
+  orig: 155, 87
+  offset: 21, 34
+  index: -1
+burstattack_weapon_effect1/2_00009
+  rotate: false
+  xy: 1267, 40
+  size: 107, 44
+  orig: 155, 87
+  offset: 30, 23
+  index: -1
+burstattack_weapon_effect1/2_00010
+  rotate: false
+  xy: 913, 5
+  size: 118, 38
+  orig: 155, 87
+  offset: 20, 23
+  index: -1
+burstattack_weapon_effect1/2_00011
+  rotate: false
+  xy: 1176, 125
+  size: 114, 33
+  orig: 155, 87
+  offset: 23, 23
+  index: -1
+burstattack_weapon_effect1/2_00012
+  rotate: false
+  xy: 226, 5
+  size: 113, 24
+  orig: 155, 87
+  offset: 24, 23
+  index: -1
+burstattack_weapon_effect1/2_00013
+  rotate: true
+  xy: 1001, 43
+  size: 106, 18
+  orig: 155, 87
+  offset: 28, 23
+  index: -1
+burstattack_weapon_effect1/2_00014
+  rotate: true
+  xy: 1553, 191
+  size: 93, 16
+  orig: 155, 87
+  offset: 35, 24
+  index: -1
+burstattack_weapon_effect1/2_00015
+  rotate: false
+  xy: 650, 0
+  size: 121, 43
+  orig: 155, 87
+  offset: 24, 26
+  index: -1
+burstattack_weapon_effect1/2_00016
+  rotate: false
+  xy: 1052, 127
+  size: 124, 36
+  orig: 155, 87
+  offset: 25, 27
+  index: -1
+burstattack_weapon_effect1/2_00017
+  rotate: false
+  xy: 1052, 92
+  size: 123, 35
+  orig: 155, 87
+  offset: 26, 28
+  index: -1
+burstattack_weapon_effect1/2_00018
+  rotate: true
+  xy: 1019, 50
+  size: 116, 33
+  orig: 155, 87
+  offset: 32, 29
+  index: -1
+burstattack_weapon_effect1/2_00019
+  rotate: false
+  xy: 650, 47
+  size: 107, 30
+  orig: 155, 87
+  offset: 40, 30
+  index: -1
+burstattack_weapon_effect1/2_00020
+  rotate: true
+  xy: 1737, 75
+  size: 76, 23
+  orig: 155, 87
+  offset: 68, 35
+  index: -1

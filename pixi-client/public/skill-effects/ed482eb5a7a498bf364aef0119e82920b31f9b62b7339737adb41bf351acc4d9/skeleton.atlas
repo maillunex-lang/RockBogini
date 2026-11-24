@@ -1,0 +1,173 @@
+texture0.png
+size: 897,269
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1_0007
+  rotate: true
+  xy: 257, 61
+  size: 208, 91
+  orig: 540, 576
+  offset: 208, 254
+  index: -1
+1_0008
+  rotate: true
+  xy: 169, 56
+  size: 213, 88
+  orig: 540, 576
+  offset: 205, 254
+  index: -1
+1_0009
+  rotate: true
+  xy: 82, 49
+  size: 220, 87
+  orig: 540, 576
+  offset: 196, 250
+  index: -1
+1_0010
+  rotate: true
+  xy: 0, 31
+  size: 238, 82
+  orig: 540, 576
+  offset: 180, 253
+  index: -1
+XL_bao_01
+  rotate: true
+  xy: 757, 146
+  size: 37, 33
+  orig: 128, 128
+  offset: 53, 35
+  index: -1
+XL_bao_02
+  rotate: true
+  xy: 378, 4
+  size: 57, 55
+  orig: 128, 128
+  offset: 38, 32
+  index: -1
+XL_bao_03
+  rotate: false
+  xy: 264, 0
+  size: 64, 61
+  orig: 128, 128
+  offset: 32, 32
+  index: -1
+XL_bao_04
+  rotate: false
+  xy: 433, 10
+  size: 62, 51
+  orig: 128, 128
+  offset: 34, 38
+  index: -1
+XL_bao_05
+  rotate: true
+  xy: 328, 1
+  size: 60, 50
+  orig: 128, 128
+  offset: 36, 41
+  index: -1
+XL_bao_06
+  rotate: false
+  xy: 148, 12
+  size: 59, 37
+  orig: 128, 128
+  offset: 37, 54
+  index: -1
+XL_bao_07
+  rotate: false
+  xy: 0, 2
+  size: 51, 29
+  orig: 128, 128
+  offset: 37, 62
+  index: -1
+XL_bao_08
+  rotate: false
+  xy: 51, 15
+  size: 41, 16
+  orig: 128, 128
+  offset: 46, 65
+  index: -1
+bd02_02
+  rotate: false
+  xy: 765, 183
+  size: 132, 86
+  orig: 159, 118
+  offset: 19, 4
+  index: -1
+bd02_03
+  rotate: true
+  xy: 455, 126
+  size: 143, 92
+  orig: 159, 118
+  offset: 7, 4
+  index: -1
+bd02_04
+  rotate: true
+  xy: 348, 118
+  size: 151, 107
+  orig: 159, 118
+  offset: 7, 4
+  index: -1
+bd02_05
+  rotate: true
+  xy: 652, 130
+  size: 139, 105
+  orig: 159, 118
+  offset: 7, 4
+  index: -1
+bd02_06
+  rotate: false
+  xy: 495, 16
+  size: 142, 110
+  orig: 159, 118
+  offset: 7, 4
+  index: -1
+bd02_07
+  rotate: true
+  xy: 547, 129
+  size: 140, 105
+  orig: 159, 118
+  offset: 8, 4
+  index: -1
+bd02_08
+  rotate: false
+  xy: 348, 61
+  size: 118, 57
+  orig: 159, 118
+  offset: 14, 8
+  index: -1
+bd02_09
+  rotate: false
+  xy: 790, 91
+  size: 106, 92
+  orig: 159, 118
+  offset: 20, 11
+  index: -1
+bd02_10
+  rotate: true
+  xy: 765, 1
+  size: 90, 67
+  orig: 159, 118
+  offset: 29, 14
+  index: -1
+daoguang02
+  rotate: false
+  xy: 637, 1
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+guangmang
+  rotate: false
+  xy: 92, 5
+  size: 56, 44
+  orig: 64, 64
+  offset: 4, 9
+  index: -1
+guangyun2
+  rotate: false
+  xy: 207, 0
+  size: 57, 56
+  orig: 64, 64
+  offset: 4, 4
+  index: -1
