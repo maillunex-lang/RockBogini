@@ -3,14 +3,10 @@
     "heroes": 354,
     "models": 296,
     "model_status": {
-      "matched": 272,
-      "ambiguous": 20,
-      "missing": 4
+      "matched": 296
     },
     "hero_status": {
-      "ambiguous": 27,
-      "matched": 319,
-      "missing": 8
+      "matched": 354
     }
   },
   "models": {
@@ -30,7 +26,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_11602"
     },
     "11603": {
       "candidates": [
@@ -48,7 +45,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_11603"
     },
     "11604": {
       "candidates": [
@@ -66,7 +64,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_11604"
     },
     "12563": {
       "candidates": [
@@ -84,7 +83,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_12563"
     },
     "12602": {
       "candidates": [
@@ -100,22 +100,10 @@
             "standby"
           ],
           "textures": 1
-        },
-        {
-          "id": "fc259a464d6f749b86525af7ddf397e35e1e0f8d6a6fdd3a9e918a0182bc8eeb",
-          "name": "Hero_12602_Avatar",
-          "animations": [
-            "attack",
-            "burstattack",
-            "burstattack2",
-            "hurt",
-            "move",
-            "standby"
-          ],
-          "textures": 1
         }
       ],
-      "status": "ambiguous"
+      "status": "matched",
+      "originalBundle": "Hero_12602"
     },
     "12603": {
       "candidates": [
@@ -133,7 +121,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_12603"
     },
     "13602": {
       "candidates": [
@@ -151,7 +140,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_13602"
     },
     "13603": {
       "candidates": [
@@ -170,7 +160,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_13603"
     },
     "13604": {
       "candidates": [
@@ -188,7 +179,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_13604"
     },
     "14602": {
       "candidates": [
@@ -206,7 +198,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_14602"
     },
     "14603": {
       "candidates": [
@@ -224,7 +217,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_14603"
     },
     "14604": {
       "candidates": [
@@ -242,23 +236,11 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_14604"
     },
     "14605": {
       "candidates": [
-        {
-          "id": "4908d1b3078070e92504473b4b7ee200b87a02ef5acc2b0233a7947d03fff49a",
-          "name": "14605_Avatar",
-          "animations": [
-            "bite",
-            "cast",
-            "catch",
-            "catch_ssr",
-            "charge",
-            "standby"
-          ],
-          "textures": 1
-        },
         {
           "id": "7fe17bfed8d36e0ef52040b3c136fb8070ba0dff6d6328047794e3efe0d056ff",
           "name": "Hero_14605_Avatar",
@@ -273,7 +255,8 @@
           "textures": 1
         }
       ],
-      "status": "ambiguous"
+      "status": "matched",
+      "originalBundle": "Hero_14605"
     },
     "14606": {
       "candidates": [
@@ -291,7 +274,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_14606"
     },
     "14607": {
       "candidates": [
@@ -309,23 +293,11 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_14607"
     },
     "15602": {
       "candidates": [
-        {
-          "id": "4199c7b8fc0c5d7da8160a168fb72bef5fdc326341c29fd1ee3dbd0ac01fb8bf",
-          "name": "Hero_15602_Avatar",
-          "animations": [
-            "attack",
-            "burstattack",
-            "burstattack2",
-            "hurt",
-            "move",
-            "standby"
-          ],
-          "textures": 1
-        },
         {
           "id": "1eda6727d15b6dec1de1c75d6e86cd7e46444036a97d8a66e2f24a14f92ed938",
           "name": "Hero_15602_Avatar",
@@ -340,7 +312,8 @@
           "textures": 1
         }
       ],
-      "status": "ambiguous"
+      "status": "matched",
+      "originalBundle": "Hero_15602"
     },
     "15603": {
       "candidates": [
@@ -358,7 +331,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_15603"
     },
     "15604": {
       "candidates": [
@@ -376,7 +350,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_15604"
     },
     "15605": {
       "candidates": [
@@ -394,7 +369,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_15605"
     },
     "16602": {
       "candidates": [
@@ -412,7 +388,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_16602"
     },
     "16603": {
       "candidates": [
@@ -430,7 +407,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_16603"
     },
     "16604": {
       "candidates": [
@@ -456,7 +434,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_16604"
     },
     "16605": {
       "candidates": [
@@ -474,7 +453,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_16605"
     },
     "16606": {
       "candidates": [
@@ -492,7 +472,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_16606"
     },
     "16607": {
       "candidates": [
@@ -518,15 +499,48 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_16607"
     },
     "18002101": {
-      "candidates": [],
-      "status": "missing"
+      "candidates": [
+        {
+          "id": "329ba3a73730362ddf64f1aa08539f99e239d0fbdb9fee160ca57c22b948b8a6",
+          "name": "Angel_180021_01_Avatar",
+          "animations": [
+            "attack",
+            "burstattack",
+            "burstattack2",
+            "burstattack3",
+            "hurt",
+            "move",
+            "standby"
+          ],
+          "textures": 1
+        }
+      ],
+      "status": "matched",
+      "originalBundle": "Angels_18002101"
     },
     "18003101": {
-      "candidates": [],
-      "status": "missing"
+      "candidates": [
+        {
+          "id": "38fc3b70676b682db8c71f5f6857193cb54e6835fb53f73dab11bd7be07ed3b9",
+          "name": "Angel_180031_01_Avatar",
+          "animations": [
+            "attack",
+            "burstattack",
+            "burstattack2",
+            "burstattack3",
+            "hurt",
+            "move",
+            "standby"
+          ],
+          "textures": 1
+        }
+      ],
+      "status": "matched",
+      "originalBundle": "Angels_18003101"
     },
     "21510": {
       "candidates": [
@@ -543,7 +557,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_21510"
     },
     "21514": {
       "candidates": [
@@ -560,7 +575,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_21514"
     },
     "22503": {
       "candidates": [
@@ -577,7 +593,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_22503"
     },
     "22504": {
       "candidates": [
@@ -594,7 +611,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_22504"
     },
     "22505": {
       "candidates": [
@@ -611,7 +629,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_22505"
     },
     "23506": {
       "candidates": [
@@ -628,7 +647,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_23506"
     },
     "23507": {
       "candidates": [
@@ -645,7 +665,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_23507"
     },
     "23508": {
       "candidates": [
@@ -662,7 +683,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_23508"
     },
     "24515": {
       "candidates": [
@@ -683,7 +705,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_24515"
     },
     "24516": {
       "candidates": [
@@ -700,7 +723,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_24516"
     },
     "25521": {
       "candidates": [
@@ -717,7 +741,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_25521"
     },
     "25522": {
       "candidates": [
@@ -734,7 +759,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_25522"
     },
     "25523": {
       "candidates": [
@@ -751,7 +777,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_25523"
     },
     "25524": {
       "candidates": [
@@ -768,7 +795,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_25524"
     },
     "41001": {
       "candidates": [
@@ -784,7 +812,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_41001"
     },
     "41002": {
       "candidates": [
@@ -800,7 +829,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_41002"
     },
     "42003": {
       "candidates": [
@@ -817,7 +847,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_42003"
     },
     "42004": {
       "candidates": [
@@ -834,7 +865,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_42004"
     },
     "42005": {
       "candidates": [
@@ -851,7 +883,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_42005"
     },
     "Ajdina3501": {
       "candidates": [
@@ -869,7 +902,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Ajdina3501"
     },
     "Ajdina5501": {
       "candidates": [
@@ -887,7 +921,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Ajdina5501"
     },
     "Ajdina5502": {
       "candidates": [
@@ -905,7 +940,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Ajdina5502"
     },
     "AjdinaIrma6601": {
       "candidates": [
@@ -931,7 +967,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_AjdinaIrma6601"
     },
     "Aldra1501": {
       "candidates": [
@@ -949,7 +986,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Aldra1501"
     },
     "Aldra4501": {
       "candidates": [
@@ -967,7 +1005,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Aldra4501"
     },
     "Aldra4502": {
       "candidates": [
@@ -985,7 +1024,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Aldra4502"
     },
     "Aldra5501": {
       "candidates": [
@@ -1003,7 +1043,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Aldra5501"
     },
     "Aldra5502": {
       "candidates": [
@@ -1021,7 +1062,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Aldra5502"
     },
     "Alicia": {
       "candidates": [
@@ -1038,7 +1080,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Alicia"
     },
     "Alicia4501": {
       "candidates": [
@@ -1054,23 +1097,10 @@
             "standby"
           ],
           "textures": 1
-        },
-        {
-          "id": "49d68d400786087d4064870eb7fc31d4ed129454bc82f9222ebe8ba7d2904e98",
-          "name": "Alicia4501_Avatar",
-          "animations": [
-            "emzs_attack1",
-            "emzs_attack2",
-            "emzs_attack3",
-            "emzs_daodi",
-            "emzs_gedang",
-            "hurt",
-            "standby"
-          ],
-          "textures": 1
         }
       ],
-      "status": "ambiguous"
+      "status": "matched",
+      "originalBundle": "Hero_Alicia4501"
     },
     "Alicia4502": {
       "candidates": [
@@ -1086,27 +1116,10 @@
             "standby"
           ],
           "textures": 1
-        },
-        {
-          "id": "3f8408481335fb8f1e438c2708cbbca2471b58c9a9ca14450b0d57a602c3a4a4",
-          "name": "Alicia4502_Avatar",
-          "animations": [
-            "attack",
-            "burstattack",
-            "burstattack2",
-            "emzs_attack1",
-            "emzs_attack2",
-            "emzs_attack3",
-            "emzs_daodi",
-            "emzs_gedang",
-            "hurt",
-            "move",
-            "standby"
-          ],
-          "textures": 1
         }
       ],
-      "status": "ambiguous"
+      "status": "matched",
+      "originalBundle": "Hero_Alicia4502"
     },
     "Alina1301": {
       "candidates": [
@@ -1123,28 +1136,11 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Alina1301"
     },
     "Alina1501": {
       "candidates": [
-        {
-          "id": "60217b7aa78e18f6738043a609ddd6741b64c906de17f047379f726cc25c4cee",
-          "name": "Alina1501_Avatar",
-          "animations": [
-            "attack",
-            "burstattack",
-            "burstattack2",
-            "emzs_attack1",
-            "emzs_attack2",
-            "emzs_attack3",
-            "emzs_daodi",
-            "emzs_gedang",
-            "hurt",
-            "move",
-            "standby"
-          ],
-          "textures": 1
-        },
         {
           "id": "b531f52eba75facb252148064bd02f5bddc0dbd3590c0d49eef709e402d614e5",
           "name": "Alina1501_Avatar",
@@ -1159,7 +1155,8 @@
           "textures": 1
         }
       ],
-      "status": "ambiguous"
+      "status": "matched",
+      "originalBundle": "Hero_Alina1501"
     },
     "Alina3501": {
       "candidates": [
@@ -1177,7 +1174,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Alina3501"
     },
     "Alina4501": {
       "candidates": [
@@ -1193,23 +1191,10 @@
             "standby"
           ],
           "textures": 1
-        },
-        {
-          "id": "89667c1a2c3992638399e8d8747582052e6cfc46b00890bec099a9a2e4b7d482",
-          "name": "Alina4501_Avatar",
-          "animations": [
-            "emzs_attack1",
-            "emzs_attack2",
-            "emzs_attack3",
-            "emzs_daodi",
-            "emzs_gedang",
-            "hurt",
-            "standby"
-          ],
-          "textures": 1
         }
       ],
-      "status": "ambiguous"
+      "status": "matched",
+      "originalBundle": "Hero_Alina4501"
     },
     "Alina6501": {
       "candidates": [
@@ -1227,7 +1212,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Alina6501"
     },
     "Alleyne1501": {
       "candidates": [
@@ -1245,7 +1231,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Alleyne1501"
     },
     "Alleyne2501": {
       "candidates": [
@@ -1263,7 +1250,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Alleyne2501"
     },
     "Alleyne3501": {
       "candidates": [
@@ -1281,7 +1269,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Alleyne3501"
     },
     "Ally2301": {
       "candidates": [
@@ -1298,7 +1287,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Ally2301"
     },
     "Ally2501": {
       "candidates": [
@@ -1316,7 +1306,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Ally2501"
     },
     "Ally5501": {
       "candidates": [
@@ -1334,7 +1325,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Ally5501"
     },
     "Ally6501": {
       "candidates": [
@@ -1351,7 +1343,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Ally6501"
     },
     "AllyAlina6501": {
       "candidates": [
@@ -1377,7 +1370,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_AllyAlina6501"
     },
     "Amara2501": {
       "candidates": [
@@ -1395,7 +1389,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Amara2501"
     },
     "AngelGrief": {
       "candidates": [
@@ -1412,7 +1407,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_AngelGrief"
     },
     "Angtia4501": {
       "candidates": [
@@ -1430,28 +1426,11 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Angtia4501"
     },
     "AnneLotte4501": {
       "candidates": [
-        {
-          "id": "6334ad8f931296bb66cb04bc1e0b615add13a59c61c223f012110b8596361256",
-          "name": "AnneLotte4501_Avatar",
-          "animations": [
-            "attack",
-            "burstattack",
-            "burstattack2",
-            "emzs_attack1",
-            "emzs_attack2",
-            "emzs_attack3",
-            "emzs_daodi",
-            "emzs_gedang",
-            "hurt",
-            "move",
-            "standby"
-          ],
-          "textures": 1
-        },
         {
           "id": "89457dfe2b286f70a0c6dae0bddb833fdb4f692bb365b21445bea7d240c7bd13",
           "name": "AnneLotte4501_Avatar",
@@ -1466,7 +1445,8 @@
           "textures": 1
         }
       ],
-      "status": "ambiguous"
+      "status": "matched",
+      "originalBundle": "Hero_AnneLotte4501"
     },
     "AnneLotte5501": {
       "candidates": [
@@ -1484,7 +1464,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_AnneLotte5501"
     },
     "AppleCandy": {
       "candidates": [
@@ -1501,7 +1482,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_AppleCandy"
     },
     "Arakane5501": {
       "candidates": [
@@ -1518,7 +1500,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Arakane5501"
     },
     "Aranea5501": {
       "candidates": [
@@ -1536,7 +1519,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Aranea5501"
     },
     "Asuka4501": {
       "candidates": [
@@ -1564,7 +1548,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Asuka4501"
     },
     "Aurela2501": {
       "candidates": [
@@ -1581,7 +1566,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Aurela2501"
     },
     "Barbara1101": {
       "candidates": [
@@ -1598,7 +1584,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Barbara1101"
     },
     "Brangwen2501": {
       "candidates": [
@@ -1616,7 +1603,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Brangwen2501"
     },
     "Brangwen3401": {
       "candidates": [
@@ -1634,7 +1622,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Brangwen3401"
     },
     "Brangwen4501": {
       "candidates": [
@@ -1652,7 +1641,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Brangwen4501"
     },
     "Bro3201": {
       "candidates": [
@@ -1669,7 +1659,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Bro3201"
     },
     "BusujimaSaeko5501": {
       "candidates": [
@@ -1696,7 +1687,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_BusujimaSaeko5501"
     },
     "BusujimaSaeko5502": {
       "candidates": [
@@ -1715,7 +1707,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_BusujimaSaeko5502"
     },
     "Captain": {
       "candidates": [
@@ -1732,7 +1725,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Captain"
     },
     "Cattleya2401": {
       "candidates": [
@@ -1749,7 +1743,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Cattleya2401"
     },
     "Cattleya5501": {
       "candidates": [
@@ -1765,24 +1760,10 @@
             "standby"
           ],
           "textures": 1
-        },
-        {
-          "id": "96469b26c1d45cd873deef14622377f539309b4230090cd7b8749bdabb410fe5",
-          "name": "Cattleya5501_Avatar",
-          "animations": [
-            "emzs_attack1",
-            "emzs_attack2",
-            "emzs_attack3",
-            "emzs_daodi",
-            "emzs_gedang",
-            "hurt",
-            "move",
-            "standby"
-          ],
-          "textures": 1
         }
       ],
-      "status": "ambiguous"
+      "status": "matched",
+      "originalBundle": "Hero_Cattleya5501"
     },
     "Cattleya6501": {
       "candidates": [
@@ -1800,7 +1781,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Cattleya6501"
     },
     "CherryBlossom": {
       "candidates": [
@@ -1817,7 +1799,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_CherryBlossom"
     },
     "ChristmasMonster": {
       "candidates": [
@@ -1834,7 +1817,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_ChristmasMonster"
     },
     "Cinderella1501": {
       "candidates": [
@@ -1852,7 +1836,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Cinderella1501"
     },
     "Cinderella4501": {
       "candidates": [
@@ -1870,7 +1855,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Cinderella4501"
     },
     "Crab": {
       "candidates": [
@@ -1887,7 +1873,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Crab"
     },
     "CrownOctopus": {
       "candidates": [
@@ -1904,7 +1891,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_CrownOctopus"
     },
     "Culot1401": {
       "candidates": [
@@ -1922,7 +1910,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Culot1401"
     },
     "Culot2501": {
       "candidates": [
@@ -1939,7 +1928,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Culot2501"
     },
     "Culot2502": {
       "candidates": [
@@ -1957,7 +1947,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Culot2502"
     },
     "Culot3501": {
       "candidates": [
@@ -1975,7 +1966,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Culot3501"
     },
     "Culot6501": {
       "candidates": [
@@ -1993,7 +1985,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Culot6501"
     },
     "Cyala5501": {
       "candidates": [
@@ -2011,7 +2004,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Cyala5501"
     },
     "Delmeer4301": {
       "candidates": [
@@ -2028,7 +2022,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Delmeer4301"
     },
     "Despina2501": {
       "candidates": [
@@ -2045,7 +2040,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Despina2501"
     },
     "Despina5601": {
       "candidates": [
@@ -2063,7 +2059,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Despina5601"
     },
     "Dima3501": {
       "candidates": [
@@ -2081,7 +2078,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Dima3501"
     },
     "DragonLight": {
       "candidates": [
@@ -2098,7 +2096,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_DragonLight"
     },
     "Ecstatic01": {
       "candidates": [
@@ -2117,7 +2116,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Angels_Ecstatic01"
     },
     "Elmy4501": {
       "candidates": [
@@ -2136,28 +2136,11 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Elmy4501"
     },
     "Elstree2501": {
       "candidates": [
-        {
-          "id": "8405daea649a12f4e327ff90b90eec19fccdb4bcc4e14e5da3ccb5ec680657e9",
-          "name": "Elstree2501_Avatar",
-          "animations": [
-            "attack",
-            "burstattack",
-            "burstattack2",
-            "emzs_attack1",
-            "emzs_attack2",
-            "emzs_attack3",
-            "emzs_daodi",
-            "emzs_gedang",
-            "hurt",
-            "move",
-            "standby"
-          ],
-          "textures": 1
-        },
         {
           "id": "0e0be78073af9228b07a7a6b33a27f3dfc7e2924f65860075bfb1b95d9d6eeb4",
           "name": "Elstree2501_Avatar",
@@ -2172,7 +2155,8 @@
           "textures": 1
         }
       ],
-      "status": "ambiguous"
+      "status": "matched",
+      "originalBundle": "Hero_Elstree2501"
     },
     "Elstree4501": {
       "candidates": [
@@ -2190,7 +2174,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Elstree4501"
     },
     "Elstree4502": {
       "candidates": [
@@ -2208,11 +2193,26 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Elstree4502"
     },
     "Evere001": {
-      "candidates": [],
-      "status": "missing"
+      "candidates": [
+        {
+          "id": "49c9650b5d354ae31e4eff961781d0dcb3ccb40b055cc33c1549619942a0253b",
+          "name": "Boss_Evere4501",
+          "animations": [
+            "attack",
+            "burstattack",
+            "burstattack2",
+            "hurt",
+            "standby"
+          ],
+          "textures": 1
+        }
+      ],
+      "status": "matched",
+      "originalBundle": "Hero_Evere001"
     },
     "Evere1501": {
       "candidates": [
@@ -2229,7 +2229,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Evere1501"
     },
     "Evere2501": {
       "candidates": [
@@ -2246,7 +2247,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Evere2501"
     },
     "Evere3501": {
       "candidates": [
@@ -2263,7 +2265,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Evere3501"
     },
     "Evere4501": {
       "candidates": [
@@ -2278,21 +2281,10 @@
             "standby"
           ],
           "textures": 1
-        },
-        {
-          "id": "49c9650b5d354ae31e4eff961781d0dcb3ccb40b055cc33c1549619942a0253b",
-          "name": "Boss_Evere4501",
-          "animations": [
-            "attack",
-            "burstattack",
-            "burstattack2",
-            "hurt",
-            "standby"
-          ],
-          "textures": 1
         }
       ],
-      "status": "ambiguous"
+      "status": "matched",
+      "originalBundle": "Hero_Evere4501"
     },
     "Evere5501": {
       "candidates": [
@@ -2309,7 +2301,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Evere5501"
     },
     "Fallot5501": {
       "candidates": [
@@ -2327,7 +2320,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Fallot5501"
     },
     "Feestar1501": {
       "candidates": [
@@ -2346,7 +2340,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Feestar1501"
     },
     "Felicia4501": {
       "candidates": [
@@ -2367,23 +2362,10 @@
             "standby"
           ],
           "textures": 1
-        },
-        {
-          "id": "2dfa082c174eee9f2feaf2544ce747f05e4d717c9ab0bd968d99e1ba6ba1f4bc",
-          "name": "Felicia4501_Avatar",
-          "animations": [
-            "emzs_attack1",
-            "emzs_attack2",
-            "emzs_attack3",
-            "emzs_daodi",
-            "emzs_gedang",
-            "hurt",
-            "standby"
-          ],
-          "textures": 1
         }
       ],
-      "status": "ambiguous"
+      "status": "matched",
+      "originalBundle": "Hero_Felicia4501"
     },
     "Fresa1501": {
       "candidates": [
@@ -2400,7 +2382,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Fresa1501"
     },
     "Gallant01": {
       "candidates": [
@@ -2419,7 +2402,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Angels_Gallant01"
     },
     "Ghost": {
       "candidates": [
@@ -2436,7 +2420,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Ghost"
     },
     "GhostApe": {
       "candidates": [
@@ -2453,7 +2438,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_GhostApe"
     },
     "GhostChef": {
       "candidates": [
@@ -2469,7 +2455,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_GhostChef"
     },
     "GhostEye": {
       "candidates": [
@@ -2486,7 +2473,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_GhostEye"
     },
     "Gloria5301": {
       "candidates": [
@@ -2503,7 +2491,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Gloria5301"
     },
     "Goddess01": {
       "candidates": [
@@ -2522,7 +2511,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Angels_Goddess01"
     },
     "Goldie2601": {
       "candidates": [
@@ -2541,7 +2531,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Goldie2601"
     },
     "Goldie4501": {
       "candidates": [
@@ -2559,7 +2550,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Goldie4501"
     },
     "Gretel4601": {
       "candidates": [
@@ -2579,7 +2571,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Gretel4601"
     },
     "Gretel5501": {
       "candidates": [
@@ -2598,7 +2591,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Gretel5501"
     },
     "Grief01": {
       "candidates": [
@@ -2617,7 +2611,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Angels_Grief01"
     },
     "GuanYu3601": {
       "candidates": [
@@ -2636,7 +2631,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_GuanYu3601"
     },
     "Happy01": {
       "candidates": [
@@ -2655,7 +2651,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Angels_Happy01"
     },
     "Harmony01": {
       "candidates": [
@@ -2674,7 +2671,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Angels_Harmony01"
     },
     "Hattori4501": {
       "candidates": [
@@ -2699,7 +2697,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Hattori4501"
     },
     "Honeynife1201": {
       "candidates": [
@@ -2716,7 +2715,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Honeynife1201"
     },
     "HsienKo4501": {
       "candidates": [
@@ -2737,24 +2737,10 @@
             "standby"
           ],
           "textures": 1
-        },
-        {
-          "id": "5e09e59a5cdfbcd3b2d60b39016ab9b9f37cffe0b15bd65dbbc16e8d9c9ed88a",
-          "name": "HsienKo4501_Avatar",
-          "animations": [
-            "emzs_attack1",
-            "emzs_attack2",
-            "emzs_attack3",
-            "emzs_daodi",
-            "emzs_gedang",
-            "hurt",
-            "move",
-            "standby"
-          ],
-          "textures": 1
         }
       ],
-      "status": "ambiguous"
+      "status": "matched",
+      "originalBundle": "Hero_HsienKo4501"
     },
     "HuytVante3501": {
       "candidates": [
@@ -2772,7 +2758,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_HuytVante3501"
     },
     "HuytVante6501": {
       "candidates": [
@@ -2790,11 +2777,26 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_HuytVante6501"
     },
     "Ibe01": {
-      "candidates": [],
-      "status": "missing"
+      "candidates": [
+        {
+          "id": "33f335c670a7c475e47cb3a4e08ee2feea500c167287977fd8cd61f03f457bfb",
+          "name": "Boss_Ibe",
+          "animations": [
+            "attack",
+            "burstattack",
+            "burstattack2",
+            "hurt",
+            "standby"
+          ],
+          "textures": 1
+        }
+      ],
+      "status": "matched",
+      "originalBundle": "Hero_Ibe01"
     },
     "Ikaruga5501": {
       "candidates": [
@@ -2812,7 +2814,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Ikaruga5501"
     },
     "Irene1501": {
       "candidates": [
@@ -2829,7 +2832,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Irene1501"
     },
     "Irene3401": {
       "candidates": [
@@ -2847,7 +2851,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Irene3401"
     },
     "Irma5401": {
       "candidates": [
@@ -2865,7 +2870,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Irma5401"
     },
     "Irma5501": {
       "candidates": [
@@ -2882,7 +2888,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Irma5501"
     },
     "Irma5502": {
       "candidates": [
@@ -2900,7 +2907,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Irma5502"
     },
     "JedahDohma": {
       "candidates": [
@@ -2918,7 +2926,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_JedahDohma"
     },
     "Judith2501": {
       "candidates": [
@@ -2935,7 +2944,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Judith2501"
     },
     "Julia3501": {
       "candidates": [
@@ -2953,7 +2963,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Julia3501"
     },
     "Kaguya": {
       "candidates": [
@@ -2969,41 +2980,13 @@
             "standby"
           ],
           "textures": 1
-        },
-        {
-          "id": "fa666b8fbb34b643d42c399df5ffe75a42b2fdca055eb2f21cf45cfdbf9b93d7",
-          "name": "Boss_Kaguya",
-          "animations": [
-            "1",
-            "attack",
-            "burstattack",
-            "burstattack2",
-            "burstattack3",
-            "hurt",
-            "standby"
-          ],
-          "textures": 1
         }
       ],
-      "status": "ambiguous"
+      "status": "matched",
+      "originalBundle": "Hero_Kaguya"
     },
     "Kaguya5501": {
       "candidates": [
-        {
-          "id": "956584a1258920f7e9fae910bdcaf5068b6d208b679c3096aa01d4be0e2670f2",
-          "name": "Kaguya5501_Avatar",
-          "animations": [
-            "emzs_attack1",
-            "emzs_attack2",
-            "emzs_attack3",
-            "emzs_daodi",
-            "emzs_gedang",
-            "hurt",
-            "move",
-            "standby"
-          ],
-          "textures": 1
-        },
         {
           "id": "5aed8a6de918fe94d070ba7a9fbb2c05342ce5d7f2455d7960b44c4f4b5cfe1f",
           "name": "Kaguya5501_Avatar",
@@ -3018,7 +3001,8 @@
           "textures": 1
         }
       ],
-      "status": "ambiguous"
+      "status": "matched",
+      "originalBundle": "Hero_Kaguya5501"
     },
     "Kaguya6501": {
       "candidates": [
@@ -3038,7 +3022,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Kaguya6501"
     },
     "Karin6501": {
       "candidates": [
@@ -3056,7 +3041,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Karin6501"
     },
     "Kumadouko": {
       "candidates": [
@@ -3073,7 +3059,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Kumadouko"
     },
     "Kykunos4501": {
       "candidates": [
@@ -3091,7 +3078,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Kykunos4501"
     },
     "Lanty1301": {
       "candidates": [
@@ -3108,7 +3096,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Lanty1301"
     },
     "Larva3501": {
       "candidates": [
@@ -3126,7 +3115,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Larva3501"
     },
     "Leisure01": {
       "candidates": [
@@ -3145,7 +3135,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Angels_Leisure01"
     },
     "Licorice4501": {
       "candidates": [
@@ -3163,7 +3154,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Licorice4501"
     },
     "Liliana1401": {
       "candidates": [
@@ -3181,7 +3173,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Liliana1401"
     },
     "Liliana1501": {
       "candidates": [
@@ -3199,7 +3192,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Liliana1501"
     },
     "Liliana4501": {
       "candidates": [
@@ -3216,7 +3210,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Liliana4501"
     },
     "Lion": {
       "candidates": [
@@ -3233,7 +3228,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Lion"
     },
     "Lion02": {
       "candidates": [
@@ -3250,7 +3246,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Lion02"
     },
     "Loneliness01": {
       "candidates": [
@@ -3269,7 +3266,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Angels_Loneliness01"
     },
     "Love01": {
       "candidates": [
@@ -3288,7 +3286,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Angels_Love01"
     },
     "Lumis1501": {
       "candidates": [
@@ -3306,7 +3305,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Lumis1501"
     },
     "Lunnara1501": {
       "candidates": [
@@ -3324,7 +3324,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Lunnara1501"
     },
     "Lunnara2501": {
       "candidates": [
@@ -3342,7 +3343,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Lunnara2501"
     },
     "Lunnara2502": {
       "candidates": [
@@ -3360,7 +3362,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Lunnara2502"
     },
     "LvBu4501": {
       "candidates": [
@@ -3378,7 +3381,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_LvBu4501"
     },
     "Lyra1501": {
       "candidates": [
@@ -3396,7 +3400,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Lyra1501"
     },
     "Lyra4401": {
       "candidates": [
@@ -3414,7 +3419,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Lyra4401"
     },
     "Lyra4501": {
       "candidates": [
@@ -3432,7 +3438,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Lyra4501"
     },
     "Macarons": {
       "candidates": [
@@ -3449,7 +3456,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Macarons"
     },
     "Macarons02": {
       "candidates": [
@@ -3466,7 +3474,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Macarons02"
     },
     "Macarons03": {
       "candidates": [
@@ -3483,7 +3492,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Macarons03"
     },
     "Marussia2501": {
       "candidates": [
@@ -3501,7 +3511,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Marussia2501"
     },
     "May3301": {
       "candidates": [
@@ -3518,7 +3529,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_May3301"
     },
     "Meadow2201": {
       "candidates": [
@@ -3535,7 +3547,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Meadow2201"
     },
     "Meimei3501": {
       "candidates": [
@@ -3553,7 +3566,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Meimei3501"
     },
     "Melfa2501": {
       "candidates": [
@@ -3571,7 +3585,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Melfa2501"
     },
     "Melfa4501": {
       "candidates": [
@@ -3589,7 +3604,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Melfa4501"
     },
     "Melfa6501": {
       "candidates": [
@@ -3608,7 +3624,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Melfa6501"
     },
     "Melona1501": {
       "candidates": [
@@ -3626,7 +3643,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Melona1501"
     },
     "Melona3501": {
       "candidates": [
@@ -3644,7 +3662,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Melona3501"
     },
     "Melona4501": {
       "candidates": [
@@ -3662,7 +3681,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Melona4501"
     },
     "Melona6501": {
       "candidates": [
@@ -3680,7 +3700,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Melona6501"
     },
     "Menus4501": {
       "candidates": [
@@ -3698,7 +3719,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Menus4501"
     },
     "Menus5501": {
       "candidates": [
@@ -3716,7 +3738,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Menus5501"
     },
     "Menus6501": {
       "candidates": [
@@ -3734,7 +3757,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Menus6501"
     },
     "Milim2501": {
       "candidates": [
@@ -3752,7 +3776,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Milim2501"
     },
     "Milim2502": {
       "candidates": [
@@ -3770,7 +3795,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Milim2502"
     },
     "Milim4401": {
       "candidates": [
@@ -3788,7 +3814,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Milim4401"
     },
     "Mine3301": {
       "candidates": [
@@ -3805,7 +3832,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Mine3301"
     },
     "MiyamotoMusashi": {
       "candidates": [
@@ -3822,7 +3850,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_MiyamotoMusashi"
     },
     "MiyamotoRei4501": {
       "candidates": [
@@ -3840,7 +3869,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_MiyamotoRei4501"
     },
     "MoonRabbit": {
       "candidates": [
@@ -3857,28 +3887,11 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_MoonRabbit"
     },
     "Morrigan5501": {
       "candidates": [
-        {
-          "id": "c96199089bd3544e484bb9f5bf1af69923c979dd9c1aa62406036ad262f286b4",
-          "name": "Morrigan5501_Avatar",
-          "animations": [
-            "attack",
-            "burstattack",
-            "burstattack2",
-            "emzs_attack1",
-            "emzs_attack2",
-            "emzs_attack3",
-            "emzs_daodi",
-            "emzs_gedang",
-            "hurt",
-            "move",
-            "standby"
-          ],
-          "textures": 1
-        },
         {
           "id": "595b1bdc587878ebb2738bda7f71a5b51a400ee9fbacfc0fc9988af8ddf6b607",
           "name": "Morrigan5501_Avatar",
@@ -3893,7 +3906,8 @@
           "textures": 1
         }
       ],
-      "status": "ambiguous"
+      "status": "matched",
+      "originalBundle": "Hero_Morrigan5501"
     },
     "Murasaki5501": {
       "candidates": [
@@ -3913,7 +3927,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Murasaki5501"
     },
     "Musashi": {
       "candidates": [
@@ -3931,7 +3946,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Musashi"
     },
     "Nanaaier1501": {
       "candidates": [
@@ -3949,7 +3965,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Nanaaier1501"
     },
     "Nanaaier2401": {
       "candidates": [
@@ -3967,7 +3984,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Nanaaier2401"
     },
     "Nanaaier2501": {
       "candidates": [
@@ -3985,7 +4003,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Nanaaier2501"
     },
     "Nanaaier4501": {
       "candidates": [
@@ -4003,19 +4022,11 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Nanaaier4501"
     },
     "Nanashi3501": {
       "candidates": [
-        {
-          "id": "ce9ad5e542214d69047f0ae0419b4cd0746da14531549c2602bdf81575caf700",
-          "name": "Nanashi3501_Avatar",
-          "animations": [
-            "attack2",
-            "standby"
-          ],
-          "textures": 1
-        },
         {
           "id": "15dd508f3799adcf111451649a6d0aff89261aee23b64756f84a7b6fbbfe6e79",
           "name": "Nanashi3501_Avatar",
@@ -4032,7 +4043,8 @@
           "textures": 1
         }
       ],
-      "status": "ambiguous"
+      "status": "matched",
+      "originalBundle": "Hero_Nanashi3501"
     },
     "Nina2101": {
       "candidates": [
@@ -4049,7 +4061,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Nina2101"
     },
     "Nix2401": {
       "candidates": [
@@ -4067,7 +4080,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Nix2401"
     },
     "Nix5501": {
       "candidates": [
@@ -4085,7 +4099,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Nix5501"
     },
     "Nix5502": {
       "candidates": [
@@ -4103,7 +4118,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Nix5502"
     },
     "Noye3501": {
       "candidates": [
@@ -4121,7 +4137,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Noye3501"
     },
     "Noye3502": {
       "candidates": [
@@ -4139,7 +4156,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Noye3502"
     },
     "Noye4501": {
       "candidates": [
@@ -4155,24 +4173,10 @@
             "standby"
           ],
           "textures": 1
-        },
-        {
-          "id": "fe08c2c10e5f04105d2d96fdb94475fb35cd5e1e5b9642bfde02de1b225ec501",
-          "name": "Noye4501_Avatar",
-          "animations": [
-            "emzs_attack1",
-            "emzs_attack2",
-            "emzs_attack3",
-            "emzs_daodi",
-            "emzs_gedang",
-            "hurt",
-            "move",
-            "standby"
-          ],
-          "textures": 1
         }
       ],
-      "status": "ambiguous"
+      "status": "matched",
+      "originalBundle": "Hero_Noye4501"
     },
     "OriChara6501": {
       "candidates": [
@@ -4191,7 +4195,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_OriChara6501"
     },
     "OriChara6502": {
       "candidates": [
@@ -4209,7 +4214,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_OriChara6502"
     },
     "Orichara1501": {
       "candidates": [
@@ -4227,7 +4233,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Orichara1501"
     },
     "Peinia2501": {
       "candidates": [
@@ -4245,7 +4252,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Peinia2501"
     },
     "Petra4501": {
       "candidates": [
@@ -4263,7 +4271,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Petra4501"
     },
     "Philia1501": {
       "candidates": [
@@ -4280,7 +4289,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Philia1501"
     },
     "Pla2301": {
       "candidates": [
@@ -4297,7 +4307,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Pla2301"
     },
     "Poem4501": {
       "candidates": [
@@ -4318,7 +4329,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Poem4501"
     },
     "Polk5501": {
       "candidates": [
@@ -4336,7 +4348,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Polk5501"
     },
     "Polyana3501": {
       "candidates": [
@@ -4354,7 +4367,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Polyana3501"
     },
     "Rabbit": {
       "candidates": [
@@ -4371,7 +4385,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Rabbit"
     },
     "RabbitEggHunt": {
       "candidates": [
@@ -4388,7 +4403,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_RabbitEggHunt"
     },
     "Radianne4501": {
       "candidates": [
@@ -4406,7 +4422,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Radianne4501"
     },
     "Rakshasa": {
       "candidates": [
@@ -4424,7 +4441,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Rakshasa"
     },
     "Rena1501": {
       "candidates": [
@@ -4440,27 +4458,10 @@
             "standby"
           ],
           "textures": 1
-        },
-        {
-          "id": "1322231690527427a40d515bb0045f8e790abe33aa14707cb226d1a9cc44e1a8",
-          "name": "Rena1501_Avatar",
-          "animations": [
-            "attack",
-            "burstattack",
-            "burstattack2",
-            "emzs_attack1",
-            "emzs_attack2",
-            "emzs_attack3",
-            "emzs_daodi",
-            "emzs_gedang",
-            "hurt",
-            "move",
-            "standby"
-          ],
-          "textures": 1
         }
       ],
-      "status": "ambiguous"
+      "status": "matched",
+      "originalBundle": "Hero_Rena1501"
     },
     "Rena2501": {
       "candidates": [
@@ -4478,7 +4479,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Rena2501"
     },
     "Rena3501": {
       "candidates": [
@@ -4496,7 +4498,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Rena3501"
     },
     "Rena4501": {
       "candidates": [
@@ -4514,7 +4517,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Rena4501"
     },
     "Risti3501": {
       "candidates": [
@@ -4533,7 +4537,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Risti3501"
     },
     "Risti4501": {
       "candidates": [
@@ -4551,7 +4556,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Risti4501"
     },
     "Risti5501": {
       "candidates": [
@@ -4569,7 +4575,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Risti5501"
     },
     "Robellida2501": {
       "candidates": [
@@ -4587,7 +4594,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Robellida2501"
     },
     "Robin3501": {
       "candidates": [
@@ -4605,7 +4613,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Robin3501"
     },
     "Royera6501": {
       "candidates": [
@@ -4624,7 +4633,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Royera6501"
     },
     "Sakin3501": {
       "candidates": [
@@ -4642,7 +4652,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Sakin3501"
     },
     "Sakin6501": {
       "candidates": [
@@ -4660,7 +4671,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Sakin6501"
     },
     "Sakura3501": {
       "candidates": [
@@ -4678,7 +4690,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Sakura3501"
     },
     "Samantha3101": {
       "candidates": [
@@ -4695,7 +4708,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Samantha3101"
     },
     "SanadaYukimura5501": {
       "candidates": [
@@ -4713,7 +4727,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_SanadaYukimura5501"
     },
     "SanheSnake": {
       "candidates": [
@@ -4730,7 +4745,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_SanheSnake"
     },
     "Saranka3501": {
       "candidates": [
@@ -4747,7 +4763,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Saranka3501"
     },
     "Senka5501": {
       "candidates": [
@@ -4765,7 +4782,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Senka5501"
     },
     "Setene2501": {
       "candidates": [
@@ -4783,7 +4801,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Setene2501"
     },
     "Setene5501": {
       "candidates": [
@@ -4801,7 +4820,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Setene5501"
     },
     "Setsusen": {
       "candidates": [
@@ -4818,7 +4838,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Setsusen"
     },
     "Setsusen5501": {
       "candidates": [
@@ -4838,7 +4859,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Setsusen5501"
     },
     "Shade5501": {
       "candidates": [
@@ -4859,7 +4881,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Shade5501"
     },
     "Shamil3501": {
       "candidates": [
@@ -4877,7 +4900,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Shamil3501"
     },
     "Shika1501": {
       "candidates": [
@@ -4895,7 +4919,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Shika1501"
     },
     "Shika5501": {
       "candidates": [
@@ -4913,7 +4938,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Shika5501"
     },
     "Shika6501": {
       "candidates": [
@@ -4931,7 +4957,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Shika6501"
     },
     "SkeletonKing": {
       "candidates": [
@@ -4948,7 +4975,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_SkeletonKing"
     },
     "SnowElves": {
       "candidates": [
@@ -4965,7 +4993,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_SnowElves"
     },
     "SnowMonster": {
       "candidates": [
@@ -4982,7 +5011,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_SnowMonster"
     },
     "Snowwhite5501": {
       "candidates": [
@@ -5000,7 +5030,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Snowwhite5501"
     },
     "Snowwhite5502": {
       "candidates": [
@@ -5018,7 +5049,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Snowwhite5502"
     },
     "Spring1501": {
       "candidates": [
@@ -5037,7 +5069,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Spring1501"
     },
     "Spring3501": {
       "candidates": [
@@ -5055,7 +5088,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Spring3501"
     },
     "Spring5501": {
       "candidates": [
@@ -5073,7 +5107,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Spring5501"
     },
     "Strayer1301": {
       "candidates": [
@@ -5090,7 +5125,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Strayer1301"
     },
     "SunCe1601": {
       "candidates": [
@@ -5108,7 +5144,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_SunCe1601"
     },
     "Syrdaria3501": {
       "candidates": [
@@ -5126,7 +5163,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Syrdaria3501"
     },
     "TagunaCygnang5501": {
       "candidates": [
@@ -5144,7 +5182,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_TagunaCygnang5501"
     },
     "TakagiSaya3501": {
       "candidates": [
@@ -5162,7 +5201,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_TakagiSaya3501"
     },
     "TakagiSaya3502": {
       "candidates": [
@@ -5180,7 +5220,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_TakagiSaya3502"
     },
     "They": {
       "candidates": [
@@ -5197,7 +5238,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_They"
     },
     "Tina1501": {
       "candidates": [
@@ -5215,7 +5257,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Tina1501"
     },
     "Tina1502": {
       "candidates": [
@@ -5234,7 +5277,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Tina1502"
     },
     "Tokugawa5501": {
       "candidates": [
@@ -5253,7 +5297,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Tokugawa5501"
     },
     "Tomoe1501": {
       "candidates": [
@@ -5271,7 +5316,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Tomoe1501"
     },
     "Tomoe3401": {
       "candidates": [
@@ -5289,7 +5335,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Tomoe3401"
     },
     "Tomoe6501": {
       "candidates": [
@@ -5309,7 +5356,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Tomoe6501"
     },
     "Verbelia2501": {
       "candidates": [
@@ -5327,7 +5375,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Verbelia2501"
     },
     "Verbelia5501": {
       "candidates": [
@@ -5345,7 +5394,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Verbelia5501"
     },
     "Verbelia5502": {
       "candidates": [
@@ -5363,7 +5413,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Verbelia5502"
     },
     "Vespa6501": {
       "candidates": [
@@ -5381,7 +5432,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Vespa6501"
     },
     "Vulco6501": {
       "candidates": [
@@ -5398,7 +5450,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Vulco6501"
     },
     "Waittree2301": {
       "candidates": [
@@ -5415,7 +5468,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Waittree2301"
     },
     "Wistaria4501": {
       "candidates": [
@@ -5433,7 +5487,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Wistaria4501"
     },
     "Wrath01": {
       "candidates": [
@@ -5452,7 +5507,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Angels_Wrath01"
     },
     "YagyuJubei4501": {
       "candidates": [
@@ -5471,7 +5527,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_YagyuJubei4501"
     },
     "Ymir1401": {
       "candidates": [
@@ -5489,7 +5546,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Ymir1401"
     },
     "Ymir4501": {
       "candidates": [
@@ -5506,7 +5564,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Ymir4501"
     },
     "Ymir4502": {
       "candidates": [
@@ -5524,7 +5583,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Ymir4502"
     },
     "Ymir5401": {
       "candidates": [
@@ -5541,7 +5601,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Ymir5401"
     },
     "Ymir5501": {
       "candidates": [
@@ -5559,28 +5620,11 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Ymir5501"
     },
     "Zara2501": {
       "candidates": [
-        {
-          "id": "0a73eb6f82beca8bd9650a23796b0c46cd72568f0ab80d2f59f6200dff2c7cac",
-          "name": "Zara2501_Avatar",
-          "animations": [
-            "attack",
-            "burstattack",
-            "burstattack2",
-            "emzs_attack1",
-            "emzs_attack2",
-            "emzs_attack3",
-            "emzs_daodi",
-            "emzs_gedang",
-            "hurt",
-            "move",
-            "standby"
-          ],
-          "textures": 1
-        },
         {
           "id": "717c5f4b4c8449b6915f4f99d9a95f17112ca57f3d57b2b0cc4879dc24f66f3e",
           "name": "Zara2501_Avatar",
@@ -5595,7 +5639,8 @@
           "textures": 1
         }
       ],
-      "status": "ambiguous"
+      "status": "matched",
+      "originalBundle": "Hero_Zara2501"
     },
     "Zara6501": {
       "candidates": [
@@ -5615,7 +5660,8 @@
           "textures": 1
         }
       ],
-      "status": "matched"
+      "status": "matched",
+      "originalBundle": "Hero_Zara6501"
     }
   },
   "heroes": [
@@ -5649,7 +5695,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 4002,
@@ -5681,7 +5727,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 4003,
@@ -5713,7 +5759,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 5001,
@@ -6591,7 +6637,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 11507,
@@ -6747,7 +6793,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 11514,
@@ -7638,7 +7684,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 12503,
@@ -8028,7 +8074,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 12553,
@@ -8607,7 +8653,7 @@
       "extraSkills": [
         1260290
       ],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 12603,
@@ -9640,7 +9686,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 13561,
@@ -10344,7 +10390,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 14508,
@@ -10422,7 +10468,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 14510,
@@ -10468,7 +10514,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 14511,
@@ -10624,7 +10670,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 14551,
@@ -10865,7 +10911,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 14557,
@@ -11143,7 +11189,7 @@
       "extraSkills": [
         1456290
       ],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 14563,
@@ -11329,7 +11375,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 14567,
@@ -11375,7 +11421,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 14568,
@@ -11939,7 +11985,7 @@
       "extraSkills": [
         1460590
       ],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 14606,
@@ -12523,7 +12569,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 15512,
@@ -13430,7 +13476,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 15568,
@@ -13806,7 +13852,7 @@
       "extraSkills": [
         1560290
       ],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 15603,
@@ -15274,7 +15320,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "missing"
+      "status": "matched"
     },
     {
       "id": 21504,
@@ -16201,7 +16247,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 24503,
@@ -16474,7 +16520,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 24510,
@@ -16513,7 +16559,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 24511,
@@ -16552,7 +16598,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 24512,
@@ -16591,7 +16637,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 24513,
@@ -18229,7 +18275,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "missing"
+      "status": "matched"
     },
     {
       "id": 30172,
@@ -18268,7 +18314,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "missing"
+      "status": "matched"
     },
     {
       "id": 35001,
@@ -18308,7 +18354,7 @@
       "normal": 2150300,
       "skills": [],
       "extraSkills": [],
-      "status": "missing"
+      "status": "matched"
     },
     {
       "id": 35005,
@@ -18358,7 +18404,7 @@
       "normal": 2450100,
       "skills": [],
       "extraSkills": [],
-      "status": "ambiguous"
+      "status": "matched"
     },
     {
       "id": 35010,
@@ -18494,7 +18540,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "missing"
+      "status": "matched"
     },
     {
       "id": 40007,
@@ -18606,7 +18652,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "missing"
+      "status": "matched"
     },
     {
       "id": 42002,
@@ -18622,7 +18668,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "missing"
+      "status": "matched"
     },
     {
       "id": 42003,
@@ -18691,7 +18737,7 @@
         }
       ],
       "extraSkills": [],
-      "status": "missing"
+      "status": "matched"
     }
   ]
 }
