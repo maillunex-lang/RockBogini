@@ -125,3 +125,5 @@ NEXT-012: damage/heal events now carry skill, buff, value and provisional attack
 NEXT-012: corrected SkillAttackType mapping from BattleConsts and Elixir action/queue: normal turn 1, queued skill uses configured type, passive 0. 52 tests passed. Guard type, instant extra skill semantics and end-to-end event parity remain unverified. Gate closed.
 
 NEXT-012: partial stack removal, dispel 113, removal 115/116/131, before-dispel 2, attach 157 and control 124/146, fresh duration based on turn/end phase. 53 tests passed. Mixed instant/persistent effects, replacement 122 and differential parity remain. Gate closed.
+
+NEXT-012.9: ordered mixed instant/persistent effects, replacement 122 with depth guard, event 121, lethal attachment guard. 55 tests passed. Replacement integration parity and immediate skill 120 remain unverified. Gate closed.
