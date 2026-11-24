@@ -287,3 +287,5 @@ NEXT-012.12 partial: max HP damage 106 with boss cap, skill head/tail modifiers 
 APK-004 partial: full-download UI, unique-file progress, pause between files, resume, free-space check and Wi-Fi gate between files compiled and test-signed. Device QA, efficient batching, live network change handling and remote manifest pending. reports/APK-004-build.log.
 
 Approved priority change: NEXT-010 full hero asset catalog first, then effect mapping and hero editor, then resume NEXT-012.12. Exact-name audit recorded in reports/NEXT-010-hero-assets.json; ambiguous matches require verification. No runtime assets copied yet.
+
+NEXT-010.2: original HeroBase only; exact boss/angel naming variants from Queen Blade library; verified skeleton and texture hashes for unique matches; public hero-asset-map.json metadata only. Ambiguous and missing models remain unresolved.

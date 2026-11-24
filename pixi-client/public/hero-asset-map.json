@@ -1,0 +1,5330 @@
+{
+  "models": {
+    "11602": {
+      "assetId": "25a01a2e9f37ee30f8a354f1877045c299785c241fa7051ab3c7872f1fe4bc4f",
+      "name": "Hero_11602_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "11603": {
+      "assetId": "d8211164f2387bde3bbf2e9b0f8c946c62b19d46a600e646a8af56443f9cc2cd",
+      "name": "Hero_11603_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "11604": {
+      "assetId": "5b13bfbea6030bea6935d98257e6451ab876a595d6dee2df53aa71790158697e",
+      "name": "Hero_11604_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "12563": {
+      "assetId": "bc5e166eaca41c16dcf8cc18fbd79e05b88fd33a62c3fada4402fe854365c1cc",
+      "name": "Hero_12563_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "12603": {
+      "assetId": "6d6ff2ed9ef4eed1a50c5913d11fe3a0b66125d29640a3d56f3e815d4167e44f",
+      "name": "Hero_12603_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "13602": {
+      "assetId": "0f6eb947664dc99f199d538a08d04f1e3c9c476a2e61d82443c116db79d62d56",
+      "name": "Hero_13602_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "13603": {
+      "assetId": "9a7312c36c1b8e741904039d5546d8b722f508708c9b4969f813747e47e48395",
+      "name": "Hero_13603_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "13604": {
+      "assetId": "2720ac2fee44bbae760ff028695be0805ac8cf6cd2e0bc3548bc98ecf939a45c",
+      "name": "Hero_13604_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "14602": {
+      "assetId": "5a53b86a3ba7cf3507972b6eb6909424c75a39f19ba6d6f801196d7ee48cca76",
+      "name": "Hero_14602_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "14603": {
+      "assetId": "7ee0966a7c22fd86393aa9bf5b62fd733f1693d170e3e999774b0fb402b81997",
+      "name": "Hero_14603_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "14604": {
+      "assetId": "ad6768f571bb865100c18d70ea6c53ec37f2cd87f893f9873a50384a6dfd9b5f",
+      "name": "Hero_14604_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "14606": {
+      "assetId": "36483cb0af96a0b87138758a45f993b63cce2602836fa07ffe1113f7f9aa2149",
+      "name": "Hero_14606_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "14607": {
+      "assetId": "2399fe996a1d4b2995c953078ff44f08b0ab7b4457236a9c30b520087e4bc073",
+      "name": "Hero_14607_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "15603": {
+      "assetId": "5fd4b2833a5f790564d573ebfb9ae9a6a38890dc78b607c2cb86add27d787b10",
+      "name": "Hero_15603_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "15604": {
+      "assetId": "9da7030901ab52333c2b7d09da05467dabb0a848e578e5cd3afc8992b26fa32e",
+      "name": "Hero_15604_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "15605": {
+      "assetId": "d808098675c853f3d24eab728474eeadbe398a9915e16e4a442a31b81203c3b1",
+      "name": "Hero_15605_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "16602": {
+      "assetId": "2e6b9d81e8c255e56c89cbd24fa9d7a86933a8ae3a8b926758a2e56a647e2637",
+      "name": "Hero_16602_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "16603": {
+      "assetId": "5cd5100d7313cc0bfa2fc5f863a0fc5045052c6f2ace515b35364ce8b0a989f7",
+      "name": "Hero_16603_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "16604": {
+      "assetId": "35e415e2521bf5dc3e72a3c4142e11581ddd5fc69d15b302a4159338a9517715",
+      "name": "Hero_16604_Avatar",
+      "animations": [
+        "B_attack",
+        "B_burstattack",
+        "B_burstattack2",
+        "B_burstattack3",
+        "B_hurt",
+        "B_move",
+        "B_standby",
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "16605": {
+      "assetId": "37c9488014254084645419162706e3488b90a37ca2820ab3038e16ff6753f16c",
+      "name": "Hero_16605_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "16606": {
+      "assetId": "94640bbd581dfa114653e2cc3abf382de7a0fd901f713c4dc3a1483aa458a4f3",
+      "name": "Hero_16606_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "16607": {
+      "assetId": "123cd50a8171be6c84c6a038c286ee8d996d46238243031e1e1734018d26bf38",
+      "name": "Hero_16607_Avatar",
+      "animations": [
+        "B_attack",
+        "B_burstattack",
+        "B_burstattack2",
+        "B_burstattack3",
+        "B_hurt",
+        "B_move",
+        "B_standby",
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "21510": {
+      "assetId": "2cdf296a648ce96c629f8696c53651db91c31a107ec605e2d081236f703f6816",
+      "name": "Boss_21510_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "21514": {
+      "assetId": "d505cac44fbff5efc4681a4f47d9bfd15931dc46711e722326becc4148fb09fc",
+      "name": "Boss_21514",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "22503": {
+      "assetId": "d022a234a762a13dbf4b16d509887c770e29bebbe2f599670ad2b9039cfbc788",
+      "name": "Boss_22503_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "22504": {
+      "assetId": "f7872d56ecdb24cce198c5f47a457b67df716cbacc0a8a9e7d58110d22a9a78a",
+      "name": "Boss_22504",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "22505": {
+      "assetId": "bba3d27e05ea866c07bdad64bf3bff34dbca0ce2e54ae8b097026386e19f1591",
+      "name": "Boss_22505",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "23506": {
+      "assetId": "22877ca87e9e034410f7e0a06fd9a3aaf2f08d9030f105b992013b656ebd47bc",
+      "name": "Boss_23506_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "23507": {
+      "assetId": "8e6a23e6364596e66f4530c1cbdff3e61c0439afa32d49aa8c4c30e7f1c05f8f",
+      "name": "Boss_23507_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "23508": {
+      "assetId": "8ee131aa0e7a28fc051e885ce6bf290afcfc7c51f54e38bcbf20f46c74ba9fd4",
+      "name": "Boss_23508",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "24515": {
+      "assetId": "3900222d387fa25372d320a4fc98eec145612482c7046a0cd509b1054a1daede",
+      "name": "Boss_24515_Avatar",
+      "animations": [
+        "attack1",
+        "attack2",
+        "burstattack1_1",
+        "burstattack1_2",
+        "burstattack2_1",
+        "burstattack2_2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "24516": {
+      "assetId": "f3a1f972bb699730d568cb4a860760e09c3cd4e2500c464b394bb756c94f2ab5",
+      "name": "Boss_24516",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "25521": {
+      "assetId": "1cb6fb2422c788296f1179ff9c3f1d0835b8db91e3dd88527f4faa0e492967e3",
+      "name": "Boss_25521_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "25522": {
+      "assetId": "0143f27f789f4f01ada347999460398e2d21886891ae8a2585e666883b964d44",
+      "name": "Boss_25522",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "25523": {
+      "assetId": "deae78572cbebb2326b8caf6b2b4f2e537f2147f685c303fe4ee30a4433a16aa",
+      "name": "Boss_25523",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "25524": {
+      "assetId": "c2bff3ffbf539c3a4c6cdd0544038bf867ab2cc30bc0a899da5b68e550014c11",
+      "name": "Boss_25524",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "41001": {
+      "assetId": "177543db1c62204c6564d2cf42d9e32265c73b742bdba7a63025a9b132fb5c84",
+      "name": "Boss_41001_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "41002": {
+      "assetId": "046df906f4b5b79a0485d541779e06484f0dcf7e25ec944c73b202d0b1f95264",
+      "name": "Boss_41002_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "42003": {
+      "assetId": "790f92337cd595fc6f997b0aceecde74d9b9eae21427c84590eb37756ddc103d",
+      "name": "Boss_42003",
+      "animations": [
+        "attack",
+        "burstattack",
+        "dead",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "42004": {
+      "assetId": "ece9f529a48d04e24176567de4630d809b9a8254c7451dee385a37bef5ed77ca",
+      "name": "Boss_42004",
+      "animations": [
+        "attack",
+        "burstattack",
+        "dead",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "42005": {
+      "assetId": "1214de9e4bbb67852f904adda04a2cde4ee6c3818fc3d35485012c364958bdec",
+      "name": "Boss_42005",
+      "animations": [
+        "attack",
+        "burstattack",
+        "dead",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Ajdina3501": {
+      "assetId": "96e2d1ff7b03a1a23944d4358b46d5ea51db940e7431dbf75193f597939327b7",
+      "name": "Ajdina3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Ajdina5501": {
+      "assetId": "3acc9c1abc35876a8d4b79b551c4c1141650264656bea5ba8be5fc563372eb80",
+      "name": "Ajdina5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Ajdina5502": {
+      "assetId": "01be1afc8cd37c5bf22ca0acd14c8979e1a06a054cc51d379cba342afecad96b",
+      "name": "Ajdina5502_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "AjdinaIrma6601": {
+      "assetId": "e5592b4c74c01384d7b7d7310428ab286f4de41f9bc67d7dac7022dc757cdcd6",
+      "name": "AjdinaIrma6601_Avatar",
+      "animations": [
+        "B_attack",
+        "B_burstattack",
+        "B_burstattack2",
+        "B_burstattack3",
+        "B_hurt",
+        "B_move",
+        "B_standby",
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Aldra1501": {
+      "assetId": "d84da12c09660abf062c72a28570834bab076aad4fd807a088f9f369dae9e3b2",
+      "name": "Aldra1501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Aldra4501": {
+      "assetId": "c4ad95069f9813db43d004121a664c356979061a4b114699d52a692fb7ed89c8",
+      "name": "Aldra4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Aldra4502": {
+      "assetId": "264489f3bb1389232a69c460f23e1d5c418d11863caf196efb657e465c1b9768",
+      "name": "Aldra4502_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Aldra5501": {
+      "assetId": "9ff47c2d3de7525cb164c16a8ea12332cb5fccc5a8d21620f6cf42a0cfeeba6f",
+      "name": "Aldra5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Aldra5502": {
+      "assetId": "0a94bb3eddb1ecc85fde7c49340222b16a2473849f2242021875009d6bf7e811",
+      "name": "Aldra5502_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Alicia": {
+      "assetId": "3d8c2bf48750b55fdc547181b30e4408a4d1d85b247af26bd45718eb4999bdf2",
+      "name": "Boss_Alicia",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Alina1301": {
+      "assetId": "2a5290bc64501a3fc815edba804ddda795d9abcbbca4151b58d0839db6cf8599",
+      "name": "Alina1301_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Alina3501": {
+      "assetId": "4cac5667ad2b92650ddcbbf38a86beb8057f2b716fad02a90cec21d05d9d1fc3",
+      "name": "Alina3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Alina6501": {
+      "assetId": "ec1b3164c94db7f54afd2f5212147addb2905dd23ea6cefe0f9c521f19c95f54",
+      "name": "Alina6501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Alleyne1501": {
+      "assetId": "43c85df72966d93f4b16ed0c32b561022d7a16e1606440a3d8124b11e1487253",
+      "name": "Alleyne1501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Alleyne2501": {
+      "assetId": "c4d7c2bc7602e559228bd145e0b8804eb653f68e3fc272280e28effc2f449a04",
+      "name": "Alleyne2501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Alleyne3501": {
+      "assetId": "01035ac75cd33667ae07fd88bf58f9d465bc56095ad78bd5866ff63c5a0e3799",
+      "name": "Alleyne3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Ally2301": {
+      "assetId": "d7b120d64c67dcc92c2f830df1d9dd9861508cee8889bdaaf74b503ba3aae634",
+      "name": "Ally2301_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Ally2501": {
+      "assetId": "1a09579995775ff415537b4d80ab5341396d66c06bda00d9f008771654cc255e",
+      "name": "Ally2501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Ally5501": {
+      "assetId": "e335e3d21e0a95605d6fe1073e6821c93b124a38e8d85d479e9e09b9a9f30d0d",
+      "name": "Ally5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Ally6501": {
+      "assetId": "d674a9f431d4fdc883a2d70bcda985bb2cf366eda38f5e8acdf6190fa95c8c1d",
+      "name": "Ally6501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "AllyAlina6501": {
+      "assetId": "b803028f91cc3aca72694ee16ac8af2b11ff0fdb18b737a4bf0f817f81552c68",
+      "name": "AllyAlina6501_Avatar",
+      "animations": [
+        "B_attack",
+        "B_burstattack",
+        "B_burstattack2",
+        "B_burstattack3",
+        "B_hurt",
+        "B_move",
+        "B_standby",
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Amara2501": {
+      "assetId": "1acd97ba2bb70263dd48eb1e0355477deaf7d74d23f45e90345bfc015d880e90",
+      "name": "Amara2501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "AngelGrief": {
+      "assetId": "ffedbad1d9c06302e2f7f97ef03a703aebdea6ef11748a482865e6cef1d6b4e0",
+      "name": "Boss_AngelGrief",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Angtia4501": {
+      "assetId": "7d46a1c9def55b6d07cf8101b4215b6642bd45ebcf4f2e2851e192e0989cde89",
+      "name": "Angtia4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "AnneLotte5501": {
+      "assetId": "0e60700f8b0d0d51bc1dbd76d4a6c8341e95a685a3e02e6e95ddbe0fcb511b94",
+      "name": "AnneLotte5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "AppleCandy": {
+      "assetId": "36c6eed2d65666a4f389ed21a828d7aa7e98fc9245a1aec4727a6d493c493e8c",
+      "name": "Boss_AppleCandy",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Arakane5501": {
+      "assetId": "951a4ede32afd7255b08026b4b2bfab74072a69de9d7dcde47c0173c8838eeb9",
+      "name": "Boss_Arakane5501",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Aranea5501": {
+      "assetId": "86b00fdf2efe99b05978335db697088541f6bf81660f422061aba01c3b6add35",
+      "name": "Aranea5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Asuka4501": {
+      "assetId": "018efdae517b738130d1523949b7967a3165c731bfa16cfb375c2533826620d2",
+      "name": "Asuka4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack_jc",
+        "hurt",
+        "jianxiu",
+        "jump_chongci",
+        "jump_fuhuo",
+        "jump_jump_1",
+        "jump_jump_2",
+        "jump_loop",
+        "jump_move",
+        "jump_standby",
+        "move",
+        "standby",
+        "standby_jc"
+      ],
+      "textureCount": 1
+    },
+    "Aurela2501": {
+      "assetId": "6f8a448434e5a41d74b0042cfc255f823bfed009b4cd2659cbbb4933d6fd615c",
+      "name": "Aurela2501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Barbara1101": {
+      "assetId": "1abcd11e9e3bd9128e9c200b9c42f9f74f48cd7eba96285dbd1ab7bd3141ba93",
+      "name": "Barbara1101_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Brangwen2501": {
+      "assetId": "ff841d1a1b5b95524e88d3a17d7738b92f874fe32db5314028235be5b7acb437",
+      "name": "Brangwen2501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Brangwen3401": {
+      "assetId": "88f53ab2af73065f0ba36afbfcf2e174d7634012b382c5b824c0192f550f260e",
+      "name": "Brangwen3401_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Brangwen4501": {
+      "assetId": "76d07541582a9b4abd3345a97bb802a65786dfc5da86c2b5232865c3e59223c0",
+      "name": "Brangwen4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Bro3201": {
+      "assetId": "0719e27158a44c13c4e93834ca10640f8c52810b6b527cda0d787ecf6495fb1b",
+      "name": "Bro3201_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "BusujimaSaeko5501": {
+      "assetId": "0eb0c0cf0e5f4ac3235d4062ea555c20bbc248617d0c38b1c5604f86aaf1706e",
+      "name": "BusujimaSaeko5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "jump_chongci",
+        "jump_fuhuo",
+        "jump_jump_1",
+        "jump_jump_2",
+        "jump_loop",
+        "jump_move",
+        "jump_standby",
+        "jump_yulan",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "BusujimaSaeko5502": {
+      "assetId": "e4aa3cd1232591786e077f16cd08cbd25c0625e33f15cf44fd4e7d5a6682b79e",
+      "name": "BusujimaSaeko5502_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Captain": {
+      "assetId": "d22b26d2843fe5af2fd9f3a409f877681240f8cf268d9aa049a4682528a9b381",
+      "name": "Captain_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Cattleya2401": {
+      "assetId": "3b714091f3118ddd057a04707e4e121fc4fc5b0ecdb25ee2bf36ecbb4c934cee",
+      "name": "Cattleya2401_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Cattleya6501": {
+      "assetId": "2a56262b4269000d12e82cdf05521c47376ffeebfe64117e1706e42154f4d401",
+      "name": "Cattleya6501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "CherryBlossom": {
+      "assetId": "206a1f7af57dd3e638a6f77f6a43e4589ca16663cc1a5104cf08ad12248b4883",
+      "name": "Boss_CherryBlossom",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "ChristmasMonster": {
+      "assetId": "7855542ceb6d246bb6c8fc4d81874133eb0c9b73db8281b46fc46684d1a352df",
+      "name": "Boss_ChristmasMonster_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Cinderella1501": {
+      "assetId": "5dbc2d6ed1c63a9b762b4ead598927cba5e330764728eca4c65b2e9f3274d4a3",
+      "name": "Cinderella1501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Cinderella4501": {
+      "assetId": "54135c13303d5453805a8726018cf2b12bd419b0096c97e957e0c769bda096e0",
+      "name": "Cinderella4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Crab": {
+      "assetId": "10039ca1d56fb3890b33666de33dae41e5c27149c202b17498c4b8ccfa2acd3b",
+      "name": "Boss_Crab",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "CrownOctopus": {
+      "assetId": "54f642e0324dc82d734cd4b617aa2343f70581ac6ebf53efd394240e6bff9fc5",
+      "name": "Boss_CrownOctopus",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Culot1401": {
+      "assetId": "13120a391a1dff94e5baffa9ecfcd099c5aba8e328b98095f8ffba23fad7cf49",
+      "name": "Culot1401_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Culot2501": {
+      "assetId": "7f6dfc305f9071ac2ce8b547ff3b89dad3f3be973ba42c92da684ab695cca057",
+      "name": "Culot2501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Culot2502": {
+      "assetId": "72d14801eb9104b55eac441bef78e93cd9f57f3715308a9fe016d2da722304f5",
+      "name": "Culot2502_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Culot3501": {
+      "assetId": "908fca0bd6f9ff2e475ba69e7d08c61e43f2af79e563cc6d25eb491070c1ebbb",
+      "name": "Culot3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Culot6501": {
+      "assetId": "a6bc4839ba9fae06fc8276af1f3247d066100bf66cc7eb0e3211ee8b6ddace34",
+      "name": "Culot6501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Cyala5501": {
+      "assetId": "0024da1ac7b4ca38fc948a7884523e4496222daae51b0a9071f306d756ef9704",
+      "name": "Cyala5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Delmeer4301": {
+      "assetId": "53bef4ba47cab1dffea09bc0c3119a82faa446b56dd5814a1bd7eb721d58fa8e",
+      "name": "Delmeer4301_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Despina2501": {
+      "assetId": "ab36bb09e693d69e6d14ce1502768fae1ae75d23a945dc4e511188f925e54c3e",
+      "name": "Despina2501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Despina5601": {
+      "assetId": "3edbe24b1da68e13acd6052b44a880b894f695b5f9b24f9ac3d4411de5069a34",
+      "name": "Despina5601_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Dima3501": {
+      "assetId": "11d1f88ad517c02b725f80bd8cc4b5e63aef382bd9706411377b49d41aecc31d",
+      "name": "Dima3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "DragonLight": {
+      "assetId": "27fe285ab29a2530e0d93e9fe2831b70dd925adb12f3479fa9c33745215831bf",
+      "name": "Boss_DragonLight",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Ecstatic01": {
+      "assetId": "707e07677d8d072b3b08efb361c865e64af11b8ca62a8dc26d16a4971230caa8",
+      "name": "Angel_Ecstatic01_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Elmy4501": {
+      "assetId": "da91b33dc43a118b569f262b10bdbdd2c55bd9763c70747bdad2b6ae3d9fd4ae",
+      "name": "Elmy4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Elstree4501": {
+      "assetId": "8b24ce5af362bbd8c70e13481e0a05dea365f041562a7ee3ceea0c6793cfbe8f",
+      "name": "Elstree4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Elstree4502": {
+      "assetId": "c43ff1c7766c718f4f11c800ad1de439caf3535fefb8e059b87aaf0d3c75d23a",
+      "name": "Elstree4502_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Evere1501": {
+      "assetId": "cf95b4419666a493936ee0554f16cebded348a51e3a0fe04bf7197b5d49f0d29",
+      "name": "Boss_Evere1501",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Evere2501": {
+      "assetId": "b8ad93e236595bf417a90322ea558f05737d13d6572f097027991dee2247a48e",
+      "name": "Boss_Evere2501",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Evere3501": {
+      "assetId": "52df0ca930fb3dfcbb182a134106ad5a99954c0a9a113db42e548b6d2e4f122d",
+      "name": "Boss_Evere3501",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Evere5501": {
+      "assetId": "208dd6168e174aba760d66a8d4fe0bb55ad2177e9639f81c38bea19a37f294bb",
+      "name": "Boss_Evere5501",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Fallot5501": {
+      "assetId": "d1311ac6951099867bfee60573a1f57d793b5251304deb61afda6ae8e0f228c0",
+      "name": "Fallot5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Feestar1501": {
+      "assetId": "289d960581f26a0d05c0e7786701aacdd2a56a03631ddbe12a339447890a5579",
+      "name": "Feestar1501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Fresa1501": {
+      "assetId": "e2e63b021abc6aabcee80beaaaa24e7875d738db5c4db40b6f048b64eb0afb70",
+      "name": "Fresa1501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Gallant01": {
+      "assetId": "f9cc17317794fef40e48b8e067fc2f0184bc2cb5322dff56b246e99ffa02a521",
+      "name": "Angel_Gallant01_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Ghost": {
+      "assetId": "460b2b6bb16d9b01c73014eefb732e22c32e87341b584e8be244e5f3dc5e4499",
+      "name": "Boss_Ghost",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "GhostApe": {
+      "assetId": "d0e954b3875f91487c60dc4d61cf8719a1a852b4233cc34d4fe04d28e1fa2491",
+      "name": "Boss_GhostApe",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "GhostChef": {
+      "assetId": "41b38df8875cf6496010ab91862e2298ac28cb68b0748441ba2504508c78047f",
+      "name": "Boss_GhostChef",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "GhostEye": {
+      "assetId": "8d1b957deca667851f07cb7fc2eeb5d4695ed8778b4f9a91174a2b5ffcde1ffb",
+      "name": "Boss_GhostEye",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Gloria5301": {
+      "assetId": "6af978267807aed22196d36ac03b3c2d55eb5ec90623983f75996cd5def7e06a",
+      "name": "Gloria5301_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Goddess01": {
+      "assetId": "4e8e7b3652709cb888f1a8bb832d4b57a5054cf1bd2fc7751233d49b5dc350e0",
+      "name": "Angel_Goddess01_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Goldie2601": {
+      "assetId": "05f9f91e31af996235be79c09935cac2bc401e6c15f4364115ad071022a3039d",
+      "name": "Goldie2601_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Goldie4501": {
+      "assetId": "8830a5666bee7d392d2f9f7e5d29e7b34e4059ff6766b2ed0fb71001ac6c33e1",
+      "name": "Goldie4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Gretel4601": {
+      "assetId": "3ed8a1cbbf082b3ea241d5c019fc501591ac9f41c88a5956ed1ceb574607129e",
+      "name": "Gretel4601_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "burstattack4",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Gretel5501": {
+      "assetId": "d99b3d469ea03cbed1006e4bd5eccbde5a6b48935c082ea3777b186d551e928e",
+      "name": "Gretel5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Grief01": {
+      "assetId": "da88cc935b53f93c4007bb002a880f6d3627db85013d54de54268e0196e0af8e",
+      "name": "Angel_Grief01_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "GuanYu3601": {
+      "assetId": "390e42916c2d743f1fd1980f221e1fbb2cf80ac152973993618d31d1de19806d",
+      "name": "GuanYu3601_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Happy01": {
+      "assetId": "4008e459b195fd7d1dab797a24d087a86abf22cb5fa63fdc844d9da51b5da2bf",
+      "name": "Angel_Happy01_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Harmony01": {
+      "assetId": "1c5412d03a1790e24c13649f54b08ca441c675fe9674b4a6b350469d81901440",
+      "name": "Angel_Harmony01_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Hattori4501": {
+      "assetId": "02b45f27cb7d23befb3472e8e197035d784e02d1ba3dafe76ecf27dc91257557",
+      "name": "Hattori4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "jump_chongci",
+        "jump_fuhuo",
+        "jump_jump_1",
+        "jump_jump_2",
+        "jump_loop",
+        "jump_move",
+        "jump_standby",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Honeynife1201": {
+      "assetId": "bdcaa67f7ee26d8cf46db3f343bee3986155d6945a78eb6e4438cbdfc466b426",
+      "name": "Honeynife1201_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "HuytVante3501": {
+      "assetId": "5457b4504b8a9d44c9bc41df88a9036b53272aeb3c1ffa6926081f5a30fe2fe3",
+      "name": "HuytVante3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "HuytVante6501": {
+      "assetId": "66879cd76990f489183dd924e8fecfd943a4bfe60e934def02808a18488ae4dc",
+      "name": "HuytVante6501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Ikaruga5501": {
+      "assetId": "f0efacde7d264019b235ebfb334ea0717869a66bf0dd3eacd447b9302fabaee6",
+      "name": "Ikaruga5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Irene1501": {
+      "assetId": "7081da8a446da80b5054ffe5f9fe15ba3a7b77aa4d19de9644b13b2d699e3ec0",
+      "name": "Irene1501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Irene3401": {
+      "assetId": "42aaed91db743ff8efbbefb581eba0b9feece0d7a860aec839a51c4059a85048",
+      "name": "Irene3401_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Irma5401": {
+      "assetId": "76b763c66d18c6f51e19f1e4f90040c6bb147a1eefab7673b3cadb2638aa41a6",
+      "name": "Irma5401_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Irma5501": {
+      "assetId": "b071880e96929cd53244625af4bb1ef323ef0b68ca5f96f43c05f326f57dfe59",
+      "name": "Irma5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Irma5502": {
+      "assetId": "26c2953bc8ad7713d876549da012d111f1dc7c70008a5bc474e2b7cd5b8fb00f",
+      "name": "Irma5502_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "JedahDohma": {
+      "assetId": "075c9885e39cd4d9e854176fd405817d3d1a5a9dfefe0ca0d0c98a314e2c6bb8",
+      "name": "Boss_JedahDohma",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Judith2501": {
+      "assetId": "54c273ad707133da3a34a5dbaa0a49b625d4669d7d66bbf9855b8f9b362af02f",
+      "name": "Judith2501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Julia3501": {
+      "assetId": "6f31855f312bb0b3d31e7d328902a98354d0fae805155c216a88fabb2be59094",
+      "name": "Julia3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Kaguya6501": {
+      "assetId": "b1e435b7ba121c45bf20b24eb1f4ac2e6b02163627c5704017b03e04bdd9b531",
+      "name": "Kaguya6501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "burstattack4",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Karin6501": {
+      "assetId": "99f0b05708eb49c7fda9b217a3dd73a2a9daa3d4d3a898407861f33c952229f6",
+      "name": "Karin6501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Kumadouko": {
+      "assetId": "b25b57a80cf7a82be3affa75a5f678fcb299d45b8ad8c1195c66bb5609d5cb1a",
+      "name": "Boss_Kumadouko",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Kykunos4501": {
+      "assetId": "7bff3f8928935a3c3ab0b6702d98fb35093e96ac0533d3bbce14dbd2e3333adb",
+      "name": "Kykunos4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Lanty1301": {
+      "assetId": "389a27d7b632902f77a460438c616edeae44aa2156944ebac322f57a86713e9a",
+      "name": "Lanty1301_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Larva3501": {
+      "assetId": "8290f2f00a82e8d39d94c005edde96574b8a2a37776f9ea561ea5a578f8149ab",
+      "name": "Larva3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Leisure01": {
+      "assetId": "7fadbf16cc2ed96d22b324c0f9f2da131604096f57e5a8a2d0a4147734fb4b2f",
+      "name": "Angel_Leisure01_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Licorice4501": {
+      "assetId": "35e2065ae1b560975b8d65fc6e4e0b2947dd2de4c88a5b79b35368c3520da879",
+      "name": "Licorice4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Liliana1401": {
+      "assetId": "b5dd6b7dd954ea5f87602921e70f3f3177d8e3cbd1866ec368918b01c21eb2b1",
+      "name": "Liliana1401_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Liliana1501": {
+      "assetId": "fafb7601a60b97fffca85ac29127bd75590153ba2bd76cb404cb9e226ffebadd",
+      "name": "Liliana1501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Liliana4501": {
+      "assetId": "09c5b5102bbf52cf6f37c7cabbf2c9290fe1b11feb330ec295d3e56122f9dd8c",
+      "name": "Liliana4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Lion": {
+      "assetId": "b4515e395327c7d6eaa77ca9eb090cc34c3a72fd440ceb9c8f056fc5f9d34b5a",
+      "name": "Boss_Lion",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Lion02": {
+      "assetId": "0274d019b63942b58716839d8729d3330fd95f7230220976c5b1a3a1440231df",
+      "name": "Boss_Lion02",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Loneliness01": {
+      "assetId": "f2fb51ef86b6fcb168b2a6faa173e65eea58669048d01bb36c8f3cd1f1974c53",
+      "name": "Angel_Loneliness01_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Love01": {
+      "assetId": "099d10b7352cca8a35f77166628ee1a3865ebcdc0f5e00e33e500f933ceac583",
+      "name": "Angel_Love01_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Lumis1501": {
+      "assetId": "2e6fbddca825b74ad2d206460cc08d066331eec61d83cf3aa708d9f80cff2c69",
+      "name": "Lumis1501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Lunnara1501": {
+      "assetId": "b0c8fd16bf5341de6215d761fe2e037df2b67da7853ab16d32abbd4c6c048c7e",
+      "name": "Lunnara1501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Lunnara2501": {
+      "assetId": "da7d3b14e866c2eba0d63a8f400a98634d928a19e8074d6061efdfed031f9195",
+      "name": "Lunnara2501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Lunnara2502": {
+      "assetId": "2581c6217b54293175dff3448189fca2e99005c69797d4d06a9a836160a52fc8",
+      "name": "Lunnara2502_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "LvBu4501": {
+      "assetId": "03e00ee43006026b12d77ab6b9d6e2c98218a313ba0ccbaf2f57a158eb2fed02",
+      "name": "LvBu4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Lyra1501": {
+      "assetId": "7da8e315b4c266fda28413b86fdb5d7429458c1016f0bb2e9b65ef8a13291d70",
+      "name": "Lyra1501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Lyra4401": {
+      "assetId": "2bd7d3ddb257bc81aa193d7379e1bb5663c4cb0b8fc961b840dd2e16e80820af",
+      "name": "Lyra4401_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Lyra4501": {
+      "assetId": "709bb3eb8dcf778ddda8acde4cfe74b3de841c133ca65ad3b0db05c42635d2eb",
+      "name": "Lyra4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Macarons": {
+      "assetId": "dfafbb8e6ecc39472f24a7d016df6f36da4ad3a8df2426e8a0f2f58f8a335c29",
+      "name": "Boss_Macarons",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Macarons02": {
+      "assetId": "86dcb445c20eb77b5c40a72f7f19f636bd007c8c05a07242da890023424e5fcf",
+      "name": "Boss_Macarons02",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Macarons03": {
+      "assetId": "487ba7127f28b462dff7f6c42f369fccf2ae70caa5f24d283a89c9e937433471",
+      "name": "Boss_Macarons03",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Marussia2501": {
+      "assetId": "b6cc4ea671f869ff594e7b6b593e6f59cb80410f138b3c595b9ea52f2a1ac463",
+      "name": "Marussia2501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "May3301": {
+      "assetId": "be0e89e1abc3244e3e821cac9831a7696a010f024391dc5f7a23d2350e24556c",
+      "name": "May3301_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Meadow2201": {
+      "assetId": "cbdb0af3c50d120eb25d95d254edfd579c88a5b7fd202114df28d3dc439a8a9f",
+      "name": "Meadow2201_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Meimei3501": {
+      "assetId": "3b3d50ce938857ad4cdab54057ee5c201c1bd3997a301322a445d79f732b3dc4",
+      "name": "Meimei3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Melfa2501": {
+      "assetId": "ede92b6a954409d6bfbbbd60e14c18373c52db9f1b9721bdbb797f9642a5a7ca",
+      "name": "Melfa2501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Melfa4501": {
+      "assetId": "217bb789c52fe8b74eb031e5302bc845e126a9f35de5b0ba9b66b36f4768d762",
+      "name": "Melfa4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Melfa6501": {
+      "assetId": "1a0bf1682eb4196c7be175b9c23557e172f037b8c087346c6fd7e6c00898efbe",
+      "name": "Melfa6501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Melona1501": {
+      "assetId": "b4ce238faff08f9316129cee091aaecff8a2fe4055176dcd95e397a8a48ae1f8",
+      "name": "Melona1501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Melona3501": {
+      "assetId": "b316cc64b8394e1d6554d2ac0d3f9424efd94c3c35ea66622550157024a4da5e",
+      "name": "Melona3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Melona4501": {
+      "assetId": "db2ebacd2f2527cc04b0de022cc2f5885f0ae9b9640c1ee435f386a1b56e87c4",
+      "name": "Melona4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Melona6501": {
+      "assetId": "5195b3c529f29ede4fdfdb6302805bb086d213f081ea538964ab6cf2d9d4f881",
+      "name": "Melona6501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Menus4501": {
+      "assetId": "ad8eb7d00a5b2bb5b1474256f995cf74d71f90fb130efcded2ee5aeb345c57bd",
+      "name": "Menus4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Menus5501": {
+      "assetId": "f3961412662e6b9b5cdf4e02a351d486a006887d67ae766c5a2a7619e0799dde",
+      "name": "Menus5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Menus6501": {
+      "assetId": "5f287b5884ac083fd31c39046e03f272301e1f419079fcd0de2b32d4cf289130",
+      "name": "Menus6501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Milim2501": {
+      "assetId": "e668ca756891643949d0f2e446d80cf82bc2ce4d70122110a7ebe28565c317d3",
+      "name": "Milim2501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Milim2502": {
+      "assetId": "17f0fd731d232027ab51c122305ea2430a607a52f1df3cd769d17ac4da377317",
+      "name": "Milim2502_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Milim4401": {
+      "assetId": "2e716319b9b2d3d3fac38145dc16dc5bba952783e1de59c2fc80af2944d59ce8",
+      "name": "Milim4401_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Mine3301": {
+      "assetId": "1b85457c96b8963f3b0464d97be8fd113a10c6b446c5ccea690844d869bdbb13",
+      "name": "Mine3301_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "MiyamotoMusashi": {
+      "assetId": "734d6ac737e41ff13021515a9dcd804aeb3a11de7adcc4711092217d4c20b028",
+      "name": "Boss_MiyamotoMusashi",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "MiyamotoRei4501": {
+      "assetId": "0c0e783d0ac2aa115ed3108b909f78f9ad71844807c5c57064cc17430c3cb4a8",
+      "name": "MiyamotoRei4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "MoonRabbit": {
+      "assetId": "526232afbb59f96de295b9744030c851b78fa6b039a7a2c4052d50176867c06f",
+      "name": "Boss_MoonRabbit",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Murasaki5501": {
+      "assetId": "6e3ad20d89df6aef719608a68cba646a2b31897ad098042d0a1e096f88585225",
+      "name": "Murasaki5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack_jc",
+        "hurt",
+        "move",
+        "standby",
+        "standby_jc"
+      ],
+      "textureCount": 1
+    },
+    "Musashi": {
+      "assetId": "6c98ecb1033467b36b7c1c97dac3469ec468ec1416b885b15b9811eac4fdd45a",
+      "name": "Boss_Musashi",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Nanaaier1501": {
+      "assetId": "531fae56e0c50199a7ba7acaf1777a64899c6e9b82eb85485db0854518b57c62",
+      "name": "Nanaaier1501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Nanaaier2401": {
+      "assetId": "3337079f560667b7d1d925dd6124880ef9982923d907262b6ad73d3b8ec63811",
+      "name": "Nanaaier2401_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Nanaaier2501": {
+      "assetId": "f0a2c04e735e2018925f67179a2d1c83ea43784964aa2956eb45bd233b8502df",
+      "name": "Nanaaier2501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Nanaaier4501": {
+      "assetId": "c3eaf1142befa19e7f3e54b14ab12980c10773295c911d08eb5d4bce0449f0fa",
+      "name": "Nanaaier4501_Avatar",
+      "animations": [
+        "attack",
+        "attack2",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Nina2101": {
+      "assetId": "a519f38439c0831a9343736930470961bdc9e2f1ce3ebb34c7317803929cf2d2",
+      "name": "Nina2101_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Nix2401": {
+      "assetId": "08b499619289e8d9190c2f3fab0b5b24f2cc0c5c44afd141974e5763973e279d",
+      "name": "Nix2401_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Nix5501": {
+      "assetId": "0f91b3e41d6b84fbee973c1dea319f2280ed470941c87d9ea0eaee6c28676c7c",
+      "name": "Nix5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Nix5502": {
+      "assetId": "069a7dd20fcec367bf59737f8f3001159922128fa0f5656772c2fe0af44789f4",
+      "name": "Nix5502_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Noye3501": {
+      "assetId": "016f8ea3a1921891deda2430f925b8ba0ef4225f1d8f27e67690bdc9c9f0f32b",
+      "name": "Noye3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Noye3502": {
+      "assetId": "8e2875a6a9003f513a71e8fb93f6afd6b4d79a8a169f4351270d513fddf8812b",
+      "name": "Noye3502_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "OriChara6501": {
+      "assetId": "5c68546b9f76e5dd9b966f0b5273bcb946e6a692aff3bd74479c9045a97f25a7",
+      "name": "OriChara6501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "OriChara6502": {
+      "assetId": "3a3bc019bf51c235683ab63cdadf91c628f9f073bad0df92e58cce5b59412555",
+      "name": "OriChara6502_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Orichara1501": {
+      "assetId": "9b632a82f99bde7625a0e5144b4f8a6bcc09fec58037f88c68826a28e542ec92",
+      "name": "Orichara1501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Peinia2501": {
+      "assetId": "f166607038f883420ec2d467628f6bd9741e229c380c4f9ab8b2e0e6c8181c9d",
+      "name": "Peinia2501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Petra4501": {
+      "assetId": "8d4e8d06a46f3d31c9ba40df9fbac844ad3a57b5d3ed00beefdbe47b8e3f2ce8",
+      "name": "Petra4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Philia1501": {
+      "assetId": "d03fef80414bf956fbe32b871f41c02cdf3564f7957baf68ace31749a19f4e3e",
+      "name": "Philia1501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Pla2301": {
+      "assetId": "f89b173219c52a6fdb35e7e1b69194253248d62665236000a4b170b3b541a931",
+      "name": "Pla2301_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Poem4501": {
+      "assetId": "ade59cd0c33a14d76d1c26647a1e464e6f33d606294be510e9b4ef3c908badcb",
+      "name": "Poem4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "burstattack_jc",
+        "hurt",
+        "move",
+        "standby",
+        "standby_jc"
+      ],
+      "textureCount": 1
+    },
+    "Polk5501": {
+      "assetId": "5ada0b09610d426801e0292c6fff29906c993610c282a00f0b8c8e6c520c7020",
+      "name": "Polk5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Polyana3501": {
+      "assetId": "29a1dfa740952efc6dd070c9d5c421366d66cebb32e71c937d02cf31371f780f",
+      "name": "Polyana3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Rabbit": {
+      "assetId": "35049a4c0c733d035a0c009753dd02cd39d15afba8ac45b1f5f6f7f0e7b2b00c",
+      "name": "Boss_Rabbit",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "RabbitEggHunt": {
+      "assetId": "e2bed4da392a4a961cb8d63abcc28f819570cab7d2a794e0cb82d48f19d39214",
+      "name": "Boss_RabbitEggHunt",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Radianne4501": {
+      "assetId": "bc90bd4de2194922a61e9683149ebaf86e6c0a55f1345de6897269b73e14052d",
+      "name": "Radianne4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Rakshasa": {
+      "assetId": "440acc0862fd3fc8334ac87a26050fa2f993db6db3732ec64eaead9554a8673e",
+      "name": "Boss_Rakshasa",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Rena2501": {
+      "assetId": "c097941810de086c3a78d275476316c271bd6caad02d6874caa2fff0aa0d6924",
+      "name": "Rena2501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Rena3501": {
+      "assetId": "5d83baaa8f92c8c9d51ecc2cfbd5255f89b0cc43585b269c1405dcf3bd6a9d06",
+      "name": "Rena3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Rena4501": {
+      "assetId": "f44b2e31809d3c7483077e17aeaf4b0cb4febfb8827727a2c25e50b682194800",
+      "name": "Rena4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Risti3501": {
+      "assetId": "1fcadc60b7bd2d55eaf58f439de977d64efc620e0c1736019ed0ce899f1c4d2b",
+      "name": "Risti3501_Avatar",
+      "animations": [
+        "attack",
+        "attack2",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Risti4501": {
+      "assetId": "87de70ec547b6097a586df08ad7d89c86049de0af3c647cd88125e532b14b861",
+      "name": "Risti4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Risti5501": {
+      "assetId": "1e6a3eb09fa8f9228998d0bd477bb56a838a6e3b8b2902a07889af0a45ad90c1",
+      "name": "Risti5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Robellida2501": {
+      "assetId": "d6b7002c849060e1c0e05a12ca21047adeeb34a171585bee85d901f9dd44e5ae",
+      "name": "Robellida2501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack1",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Robin3501": {
+      "assetId": "26619ac3fb68eea5b2ecea612c831d10fff927e5403b97ec0ddeaf59d48033c4",
+      "name": "Robin3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Royera6501": {
+      "assetId": "ef3672ee1e69c794a22dca41dffdbe78508f5a3208e35071ddfb9f46ab74d1ae",
+      "name": "Royera6501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Sakin3501": {
+      "assetId": "6ebee1f9a7e7661af3258b98cd58aa220aa2cf75566fb032a2a9b9227074b497",
+      "name": "Sakin3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Sakin6501": {
+      "assetId": "e071ffb0c7b577e72ec464155fe138700182e11715805301ef4e2b1154bbbf69",
+      "name": "Sakin6501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Sakura3501": {
+      "assetId": "2e2d71ad41d21b48e5ce6849e3a77bc8684df99dacca47ae598df7be20a67027",
+      "name": "Sakura3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Samantha3101": {
+      "assetId": "2fe75330f057c5f9a50c7b7476ce87f1c770e2f75b95a80e92de098796585c9d",
+      "name": "Samantha3101_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "SanadaYukimura5501": {
+      "assetId": "154f63509c565a5a3aed09811536546894e16ff6618c571d28682940edc31b2b",
+      "name": "SanadaYukimura5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "SanheSnake": {
+      "assetId": "a89b5ebf72d38da361641a64c9f3d34c63ebc32aeb54840cfdcbc0425e11374f",
+      "name": "Boss_SanheSnake",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Saranka3501": {
+      "assetId": "2777c9974267b64379463e95d0da484d22132c8b02972146f20b9b66b4e69158",
+      "name": "Saranka3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Senka5501": {
+      "assetId": "7d7659a957919d3f00b502e6a77d3776dd336d7b277ac4c78ea26cccc21154e4",
+      "name": "Senka5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Setene2501": {
+      "assetId": "dd1b5f662e7065ad585d1f591598be12c3d14e9cb82191457a1537ae35765ccf",
+      "name": "Setene2501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Setene5501": {
+      "assetId": "0352b12aa2eec086ec40bc0f559a58ae609afae681a9a06b3f84fa2eb015bc51",
+      "name": "Setene5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Setsusen": {
+      "assetId": "7e0de743d3138c68396f8d8925bbeaf783c29d17ee14bb3fe16ae309e83c8d25",
+      "name": "Boss_Setsusen",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Setsusen5501": {
+      "assetId": "9ed43aa394736fdc9ab38c90d81bd2afa5e6e6112026b3ab9b5adf021cf1d0db",
+      "name": "Setsusen5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack_jc",
+        "hurt",
+        "move",
+        "standby",
+        "standby_jc"
+      ],
+      "textureCount": 1
+    },
+    "Shade5501": {
+      "assetId": "eb7cfac0459f79214c9dd4804873d1e0e555b5e823a08a902f0555e5849b94b5",
+      "name": "Shade5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "burstattack_jc",
+        "hurt",
+        "move",
+        "standby",
+        "standby_jc"
+      ],
+      "textureCount": 1
+    },
+    "Shamil3501": {
+      "assetId": "58044563ff2ff386818395b86e8901da93b7ea0b9b12ad6508ac7ea427f95c11",
+      "name": "Shamil3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Shika1501": {
+      "assetId": "d4b18d18ce5a7a8fefad3f11897198aa7fb8ac776a9e78d4e6727d38f90e08ca",
+      "name": "Shika1501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Shika5501": {
+      "assetId": "fd35267c19d7cb47447c25ec2dc8f6482f42ac62da5e9da698bfb434599693c4",
+      "name": "Shika5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Shika6501": {
+      "assetId": "b5bd2bbeb3419b0b65ce74a9379c144ff150902072e226d75972c8cbedb71edc",
+      "name": "Shika6501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "SkeletonKing": {
+      "assetId": "a80fd2822ecfdc0f35438b292c4fad498d3a3251d9e995562bccc6bd644b8d9e",
+      "name": "Boss_SkeletonKing",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "SnowElves": {
+      "assetId": "384b30a3d203aebd5c9ab6feb537ea639e6e23ab90c71c1a5d45787da55c137a",
+      "name": "Boss_SnowElves",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "SnowMonster": {
+      "assetId": "415bbe3f594700bce0d572d52c382300fb52545223fde1e3d554cc69f9405c6e",
+      "name": "Boss_SnowMonster",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Snowwhite5501": {
+      "assetId": "68251526ec34869b9b8f3d5ab25c1d0d6716c52f2ea60e99b94f1909ddc396e1",
+      "name": "Snowwhite5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Snowwhite5502": {
+      "assetId": "5ad37bb73a74d0466d8485f985ffdc03f1003c2d3b0f52abdc61377d1d669374",
+      "name": "Snowwhite5502_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Spring1501": {
+      "assetId": "b3d30b38ab0d9330ca065ca947d674f45074ef352308038d3ff912cf411f0bc9",
+      "name": "Spring1501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Spring3501": {
+      "assetId": "776e4efec89d7e79678d49d3f0a7a5b2190f19bea99571402d75b91877bf64d5",
+      "name": "Spring3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Spring5501": {
+      "assetId": "deb9dfccbf66f9f7ce26aadec87373d533e58aab88ee060883c87343d950ea38",
+      "name": "Spring5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Strayer1301": {
+      "assetId": "93586ca9a2c32a497d7ea663e798adcf892254aefb02d44e2358f27cb861ce8c",
+      "name": "Strayer1301_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "SunCe1601": {
+      "assetId": "7b92fb11f9e5f2fcaebabc1951526e5364d2d74714f7c54da74103ddb8674891",
+      "name": "SunCe1601_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Syrdaria3501": {
+      "assetId": "11a619878762d86e8301c1289812a3e5018cda9e02072421ed7a90df26110442",
+      "name": "Syrdaria3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "TagunaCygnang5501": {
+      "assetId": "666aefd3f80bdae86de31beb00967cef6dcbda721a02b7b7728677efdb38482c",
+      "name": "TagunaCygnang5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "TakagiSaya3501": {
+      "assetId": "04f7b8bffe0f323947817d7715cd09b6d96598c4c3b28b322ac534b0b1a82a43",
+      "name": "TakagiSaya3501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "TakagiSaya3502": {
+      "assetId": "d9fd21e4c4e699ab1befe24188474b930295c84b5fccb870b80fb3f360052d2f",
+      "name": "TakagiSaya3502_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "They": {
+      "assetId": "603fce5793b0f38da38b69c80c09d7dd477991c5f153f89a84e469c9bce57e61",
+      "name": "Boss_They",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Tina1501": {
+      "assetId": "92b60920642073607be6123795a6ac0303315e26291c66c4835835f09c0331f5",
+      "name": "Tina1501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Tina1502": {
+      "assetId": "46a66511363df11299698feaeee47b32d86d38e3f583c743d05efccaa10a8245",
+      "name": "Tina1502_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Tokugawa5501": {
+      "assetId": "b29c5aced63907e5440adfbefe6493941b3ceb1d1cc7f2166135cb526dcc9e7d",
+      "name": "Tokugawa5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Tomoe1501": {
+      "assetId": "53e191fdb74d8c9cda5acc855247d4dd416785b286b7558154bd80ba0d98e466",
+      "name": "Tomoe1501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Tomoe3401": {
+      "assetId": "ffdcfbc6fe5870768852f9028164ddf35b9ea658945965f441489e92cb09f48c",
+      "name": "Tomoe3401_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Tomoe6501": {
+      "assetId": "db9f32c26508b4cc61c97093f23131b0ee54c26109b7a32e8e2af22a39860d48",
+      "name": "Tomoe6501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack_1",
+        "burstattack_2",
+        "burstattack_3",
+        "burstattack_4",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Verbelia2501": {
+      "assetId": "10767ad9c6b37fd8f9c4812b3aa0a66750c64ff612d66249da7d6ae080060a85",
+      "name": "Verbelia2501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Verbelia5501": {
+      "assetId": "5815961c67b642e91cb2eab328289add1788d8d8ef7640cd8b128bf8a9cbe020",
+      "name": "Verbelia5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Verbelia5502": {
+      "assetId": "e8f82916800a93e2aac1f0399e9f3930862fce9fd2ebadf91e4045beea908c05",
+      "name": "Verbelia5502_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Vespa6501": {
+      "assetId": "f9e81275b55dc0ed308849c769832843c5a52c9a7184ab3f506c1c5d2dfe830e",
+      "name": "Vespa6501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Vulco6501": {
+      "assetId": "abf5d2e87132c1c13ed255550a5707da62a5b6284fdba54f187f4070fbec01ef",
+      "name": "Vulco6501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Waittree2301": {
+      "assetId": "f04252767f60733feb6f066c0c5abb66f0a5e43eeeb0c0cb69a7df88160f79a5",
+      "name": "Waittree2301_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Wistaria4501": {
+      "assetId": "c87aa787ea85a1d623bf2d3eee9809d21a27dc41b10ff85110acdefa12929289",
+      "name": "Wistaria4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Wrath01": {
+      "assetId": "38b212f7b42631a35e176bc79495bd14b49e7a45fe45ac70eeeb05b445d27557",
+      "name": "Angel_Wrath01_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack3",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "YagyuJubei4501": {
+      "assetId": "c542682a8a14e9b68ee4858d1d162e8c0ef79091840b3749ac10b539e1e86e9a",
+      "name": "YagyuJubei4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2_1",
+        "burstattack2_2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Ymir1401": {
+      "assetId": "90ebdab191a70befaf90d8020165e5b96339e0227accc5d2d5077ef97bb0f376",
+      "name": "Ymir1401_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Ymir4501": {
+      "assetId": "476696459d139a0547bbd2317d4a602c7ddcbc51286e2f6f9acf7512a3cff830",
+      "name": "Ymir4501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Ymir4502": {
+      "assetId": "b418846fd4123e027893e9226be8a1f79cfdb71cb8f04e6fd0d73edc58545182",
+      "name": "Ymir4502_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Ymir5401": {
+      "assetId": "edd977ef708b89bfa2efed93a865f2ab554e129eb4f0a163171c38179fe9eb30",
+      "name": "Ymir5401_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Ymir5501": {
+      "assetId": "032839acd1bdda0ff3ba128367a13ca42680c91961200fffee87690a840752f5",
+      "name": "Ymir5501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "hurt",
+        "move",
+        "standby"
+      ],
+      "textureCount": 1
+    },
+    "Zara6501": {
+      "assetId": "2b0e6e7c24dabd234e66b273de978354c23b032da964a031d35748471c31e4b9",
+      "name": "Zara6501_Avatar",
+      "animations": [
+        "attack",
+        "burstattack",
+        "burstattack2",
+        "burstattack_jc",
+        "hurt",
+        "move",
+        "standby",
+        "standby_jc"
+      ],
+      "textureCount": 1
+    }
+  },
+  "heroes": [
+    {
+      "id": 4001,
+      "model": "Nanashi3501",
+      "type": 3
+    },
+    {
+      "id": 4002,
+      "model": "Nanashi3501",
+      "type": 3
+    },
+    {
+      "id": 4003,
+      "model": "Nanashi3501",
+      "type": 3
+    },
+    {
+      "id": 5001,
+      "model": "Honeynife1201",
+      "type": 3
+    },
+    {
+      "id": 5002,
+      "model": "Pla2301",
+      "type": 3
+    },
+    {
+      "id": 5003,
+      "model": "Delmeer4301",
+      "type": 3
+    },
+    {
+      "id": 5004,
+      "model": "Barbara1101",
+      "type": 3
+    },
+    {
+      "id": 5005,
+      "model": "Waittree2301",
+      "type": 3
+    },
+    {
+      "id": 5101,
+      "model": "Lyra1501",
+      "type": 3
+    },
+    {
+      "id": 5102,
+      "model": "Nanaaier1501",
+      "type": 3
+    },
+    {
+      "id": 5103,
+      "model": "Lunnara1501",
+      "type": 3
+    },
+    {
+      "id": 5104,
+      "model": "Lyra4401",
+      "type": 3
+    },
+    {
+      "id": 5105,
+      "model": "Mine3301",
+      "type": 3
+    },
+    {
+      "id": 5201,
+      "model": "Noye3501",
+      "type": 3
+    },
+    {
+      "id": 5202,
+      "model": "Culot3501",
+      "type": 3
+    },
+    {
+      "id": 5203,
+      "model": "Rena3501",
+      "type": 3
+    },
+    {
+      "id": 5204,
+      "model": "Brangwen4501",
+      "type": 3
+    },
+    {
+      "id": 5205,
+      "model": "Strayer1301",
+      "type": 3
+    },
+    {
+      "id": 11101,
+      "model": "Barbara1101",
+      "type": 1
+    },
+    {
+      "id": 11201,
+      "model": "Honeynife1201",
+      "type": 1
+    },
+    {
+      "id": 11301,
+      "model": "Lanty1301",
+      "type": 1
+    },
+    {
+      "id": 11302,
+      "model": "Strayer1301",
+      "type": 1
+    },
+    {
+      "id": 11303,
+      "model": "Alina1301",
+      "type": 1
+    },
+    {
+      "id": 11401,
+      "model": "Ymir1401",
+      "type": 1
+    },
+    {
+      "id": 11402,
+      "model": "Culot1401",
+      "type": 1
+    },
+    {
+      "id": 11403,
+      "model": "Liliana1401",
+      "type": 1
+    },
+    {
+      "id": 11501,
+      "model": "Lyra1501",
+      "type": 1
+    },
+    {
+      "id": 11502,
+      "model": "Nanaaier1501",
+      "type": 1
+    },
+    {
+      "id": 11503,
+      "model": "Lunnara1501",
+      "type": 1
+    },
+    {
+      "id": 11504,
+      "model": "Melona1501",
+      "type": 1
+    },
+    {
+      "id": 11505,
+      "model": "Alleyne1501",
+      "type": 1
+    },
+    {
+      "id": 11506,
+      "model": "Alina1501",
+      "type": 1
+    },
+    {
+      "id": 11507,
+      "model": "Shika1501",
+      "type": 1
+    },
+    {
+      "id": 11508,
+      "model": "Tomoe1501",
+      "type": 1
+    },
+    {
+      "id": 11509,
+      "model": "Irene1501",
+      "type": 1
+    },
+    {
+      "id": 11510,
+      "model": "Rena1501",
+      "type": 1
+    },
+    {
+      "id": 11514,
+      "model": "Tina1501",
+      "type": 1
+    },
+    {
+      "id": 11551,
+      "model": "Philia1501",
+      "type": 1
+    },
+    {
+      "id": 11552,
+      "model": "Fresa1501",
+      "type": 1
+    },
+    {
+      "id": 11553,
+      "model": "Cinderella1501",
+      "type": 1
+    },
+    {
+      "id": 11554,
+      "model": "Orichara1501",
+      "type": 1
+    },
+    {
+      "id": 11555,
+      "model": "Lumis1501",
+      "type": 1
+    },
+    {
+      "id": 11556,
+      "model": "Feestar1501",
+      "type": 1
+    },
+    {
+      "id": 11557,
+      "model": "Brangwen2501",
+      "type": 1
+    },
+    {
+      "id": 11558,
+      "model": "Spring1501",
+      "type": 1
+    },
+    {
+      "id": 11559,
+      "model": "Liliana1501",
+      "type": 1
+    },
+    {
+      "id": 11560,
+      "model": "Tina1502",
+      "type": 1
+    },
+    {
+      "id": 11601,
+      "model": "SunCe1601",
+      "type": 1
+    },
+    {
+      "id": 11602,
+      "model": "11602",
+      "type": 1
+    },
+    {
+      "id": 11603,
+      "model": "11603",
+      "type": 1
+    },
+    {
+      "id": 11604,
+      "model": "11604",
+      "type": 4
+    },
+    {
+      "id": 12101,
+      "model": "Nina2101",
+      "type": 1
+    },
+    {
+      "id": 12201,
+      "model": "Meadow2201",
+      "type": 1
+    },
+    {
+      "id": 12301,
+      "model": "Ally2301",
+      "type": 1
+    },
+    {
+      "id": 12302,
+      "model": "Pla2301",
+      "type": 1
+    },
+    {
+      "id": 12303,
+      "model": "Waittree2301",
+      "type": 1
+    },
+    {
+      "id": 12401,
+      "model": "Nix2401",
+      "type": 1
+    },
+    {
+      "id": 12402,
+      "model": "Nanaaier2401",
+      "type": 1
+    },
+    {
+      "id": 12403,
+      "model": "Cattleya2401",
+      "type": 1
+    },
+    {
+      "id": 12501,
+      "model": "Lunnara2501",
+      "type": 1
+    },
+    {
+      "id": 12502,
+      "model": "Elstree2501",
+      "type": 1
+    },
+    {
+      "id": 12503,
+      "model": "Verbelia2501",
+      "type": 1
+    },
+    {
+      "id": 12504,
+      "model": "Ally2501",
+      "type": 1
+    },
+    {
+      "id": 12505,
+      "model": "Rena2501",
+      "type": 1
+    },
+    {
+      "id": 12506,
+      "model": "Culot2501",
+      "type": 1
+    },
+    {
+      "id": 12507,
+      "model": "Milim2501",
+      "type": 1
+    },
+    {
+      "id": 12508,
+      "model": "Melfa2501",
+      "type": 1
+    },
+    {
+      "id": 12509,
+      "model": "Nanaaier2501",
+      "type": 1
+    },
+    {
+      "id": 12511,
+      "model": "Culot2502",
+      "type": 1
+    },
+    {
+      "id": 12551,
+      "model": "Despina2501",
+      "type": 1
+    },
+    {
+      "id": 12552,
+      "model": "Zara2501",
+      "type": 1
+    },
+    {
+      "id": 12553,
+      "model": "Aurela2501",
+      "type": 1
+    },
+    {
+      "id": 12554,
+      "model": "Amara2501",
+      "type": 1
+    },
+    {
+      "id": 12555,
+      "model": "Peinia2501",
+      "type": 1
+    },
+    {
+      "id": 12556,
+      "model": "Lunnara2502",
+      "type": 1
+    },
+    {
+      "id": 12557,
+      "model": "Robellida2501",
+      "type": 1
+    },
+    {
+      "id": 12558,
+      "model": "Alleyne2501",
+      "type": 1
+    },
+    {
+      "id": 12559,
+      "model": "Setene2501",
+      "type": 1
+    },
+    {
+      "id": 12560,
+      "model": "Marussia2501",
+      "type": 1
+    },
+    {
+      "id": 12561,
+      "model": "Judith2501",
+      "type": 1
+    },
+    {
+      "id": 12562,
+      "model": "Milim2502",
+      "type": 1
+    },
+    {
+      "id": 12563,
+      "model": "12563",
+      "type": 1
+    },
+    {
+      "id": 12601,
+      "model": "Goldie2601",
+      "type": 1
+    },
+    {
+      "id": 12602,
+      "model": "12602",
+      "type": 1
+    },
+    {
+      "id": 12603,
+      "model": "12603",
+      "type": 1
+    },
+    {
+      "id": 13101,
+      "model": "Samantha3101",
+      "type": 1
+    },
+    {
+      "id": 13201,
+      "model": "Bro3201",
+      "type": 1
+    },
+    {
+      "id": 13301,
+      "model": "May3301",
+      "type": 1
+    },
+    {
+      "id": 13302,
+      "model": "Mine3301",
+      "type": 1
+    },
+    {
+      "id": 13401,
+      "model": "Tomoe3401",
+      "type": 1
+    },
+    {
+      "id": 13402,
+      "model": "Brangwen3401",
+      "type": 1
+    },
+    {
+      "id": 13403,
+      "model": "Irene3401",
+      "type": 1
+    },
+    {
+      "id": 13501,
+      "model": "Noye3501",
+      "type": 1
+    },
+    {
+      "id": 13502,
+      "model": "Alina3501",
+      "type": 1
+    },
+    {
+      "id": 13503,
+      "model": "Alleyne3501",
+      "type": 1
+    },
+    {
+      "id": 13504,
+      "model": "Spring3501",
+      "type": 1
+    },
+    {
+      "id": 13505,
+      "model": "Rena3501",
+      "type": 1
+    },
+    {
+      "id": 13506,
+      "model": "Culot3501",
+      "type": 1
+    },
+    {
+      "id": 13507,
+      "model": "Ajdina3501",
+      "type": 1
+    },
+    {
+      "id": 13508,
+      "model": "Melona3501",
+      "type": 1
+    },
+    {
+      "id": 13509,
+      "model": "Risti3501",
+      "type": 1
+    },
+    {
+      "id": 13510,
+      "model": "Sakura3501",
+      "type": 1
+    },
+    {
+      "id": 13511,
+      "model": "HuytVante3501",
+      "type": 1
+    },
+    {
+      "id": 13551,
+      "model": "Sakin3501",
+      "type": 1
+    },
+    {
+      "id": 13552,
+      "model": "Polyana3501",
+      "type": 1
+    },
+    {
+      "id": 13553,
+      "model": "Shamil3501",
+      "type": 1
+    },
+    {
+      "id": 13554,
+      "model": "Saranka3501",
+      "type": 1
+    },
+    {
+      "id": 13555,
+      "model": "Syrdaria3501",
+      "type": 1
+    },
+    {
+      "id": 13556,
+      "model": "Dima3501",
+      "type": 1
+    },
+    {
+      "id": 13557,
+      "model": "Robin3501",
+      "type": 1
+    },
+    {
+      "id": 13558,
+      "model": "TakagiSaya3501",
+      "type": 1
+    },
+    {
+      "id": 13559,
+      "model": "Julia3501",
+      "type": 1
+    },
+    {
+      "id": 13560,
+      "model": "Nanashi3501",
+      "type": 1
+    },
+    {
+      "id": 13561,
+      "model": "Larva3501",
+      "type": 1
+    },
+    {
+      "id": 13562,
+      "model": "TakagiSaya3502",
+      "type": 1
+    },
+    {
+      "id": 13563,
+      "model": "Meimei3501",
+      "type": 1
+    },
+    {
+      "id": 13564,
+      "model": "Noye3502",
+      "type": 1
+    },
+    {
+      "id": 13601,
+      "model": "GuanYu3601",
+      "type": 1
+    },
+    {
+      "id": 13602,
+      "model": "13602",
+      "type": 1
+    },
+    {
+      "id": 13603,
+      "model": "13603",
+      "type": 1
+    },
+    {
+      "id": 13604,
+      "model": "13604",
+      "type": 4
+    },
+    {
+      "id": 14301,
+      "model": "Delmeer4301",
+      "type": 1
+    },
+    {
+      "id": 14401,
+      "model": "Lyra4401",
+      "type": 1
+    },
+    {
+      "id": 14402,
+      "model": "Milim4401",
+      "type": 1
+    },
+    {
+      "id": 14501,
+      "model": "Brangwen4501",
+      "type": 1
+    },
+    {
+      "id": 14502,
+      "model": "Ymir4501",
+      "type": 1
+    },
+    {
+      "id": 14503,
+      "model": "Liliana4501",
+      "type": 1
+    },
+    {
+      "id": 14504,
+      "model": "Menus4501",
+      "type": 1
+    },
+    {
+      "id": 14505,
+      "model": "Melfa4501",
+      "type": 1
+    },
+    {
+      "id": 14506,
+      "model": "Elstree4501",
+      "type": 1
+    },
+    {
+      "id": 14507,
+      "model": "Alina4501",
+      "type": 1
+    },
+    {
+      "id": 14508,
+      "model": "Melona4501",
+      "type": 1
+    },
+    {
+      "id": 14509,
+      "model": "Kaguya5501",
+      "type": 1
+    },
+    {
+      "id": 14510,
+      "model": "Alicia4501",
+      "type": 1
+    },
+    {
+      "id": 14511,
+      "model": "Wistaria4501",
+      "type": 1
+    },
+    {
+      "id": 14512,
+      "model": "Kykunos4501",
+      "type": 1
+    },
+    {
+      "id": 14513,
+      "model": "Goldie4501",
+      "type": 1
+    },
+    {
+      "id": 14514,
+      "model": "Noye4501",
+      "type": 1
+    },
+    {
+      "id": 14551,
+      "model": "Aldra1501",
+      "type": 1
+    },
+    {
+      "id": 14552,
+      "model": "Nanaaier4501",
+      "type": 1
+    },
+    {
+      "id": 14553,
+      "model": "YagyuJubei4501",
+      "type": 1
+    },
+    {
+      "id": 14554,
+      "model": "Aldra4501",
+      "type": 1
+    },
+    {
+      "id": 14555,
+      "model": "Rena4501",
+      "type": 1
+    },
+    {
+      "id": 14556,
+      "model": "AnneLotte4501",
+      "type": 1
+    },
+    {
+      "id": 14557,
+      "model": "Angtia4501",
+      "type": 1
+    },
+    {
+      "id": 14558,
+      "model": "Elmy4501",
+      "type": 1
+    },
+    {
+      "id": 14559,
+      "model": "Petra4501",
+      "type": 1
+    },
+    {
+      "id": 14560,
+      "model": "MiyamotoRei4501",
+      "type": 1
+    },
+    {
+      "id": 14561,
+      "model": "Ymir4502",
+      "type": 1
+    },
+    {
+      "id": 14562,
+      "model": "Alicia4502",
+      "type": 1
+    },
+    {
+      "id": 14563,
+      "model": "Hattori4501",
+      "type": 1
+    },
+    {
+      "id": 14564,
+      "model": "Lyra4501",
+      "type": 1
+    },
+    {
+      "id": 14565,
+      "model": "Asuka4501",
+      "type": 1
+    },
+    {
+      "id": 14566,
+      "model": "HsienKo4501",
+      "type": 1
+    },
+    {
+      "id": 14567,
+      "model": "Felicia4501",
+      "type": 1
+    },
+    {
+      "id": 14568,
+      "model": "Elstree4502",
+      "type": 1
+    },
+    {
+      "id": 14569,
+      "model": "Cinderella4501",
+      "type": 1
+    },
+    {
+      "id": 14570,
+      "model": "Aldra4502",
+      "type": 1
+    },
+    {
+      "id": 14571,
+      "model": "Risti4501",
+      "type": 1
+    },
+    {
+      "id": 14572,
+      "model": "Radianne4501",
+      "type": 1
+    },
+    {
+      "id": 14573,
+      "model": "Poem4501",
+      "type": 1
+    },
+    {
+      "id": 14574,
+      "model": "LvBu4501",
+      "type": 1
+    },
+    {
+      "id": 14601,
+      "model": "Gretel4601",
+      "type": 1
+    },
+    {
+      "id": 14602,
+      "model": "14602",
+      "type": 1
+    },
+    {
+      "id": 14603,
+      "model": "14603",
+      "type": 1
+    },
+    {
+      "id": 14604,
+      "model": "14604",
+      "type": 1
+    },
+    {
+      "id": 14605,
+      "model": "14605",
+      "type": 1
+    },
+    {
+      "id": 14606,
+      "model": "14606",
+      "type": 1
+    },
+    {
+      "id": 14607,
+      "model": "14607",
+      "type": 4
+    },
+    {
+      "id": 15301,
+      "model": "Gloria5301",
+      "type": 1
+    },
+    {
+      "id": 15401,
+      "model": "Ymir5401",
+      "type": 1
+    },
+    {
+      "id": 15402,
+      "model": "Irma5401",
+      "type": 1
+    },
+    {
+      "id": 15501,
+      "model": "Spring5501",
+      "type": 1
+    },
+    {
+      "id": 15502,
+      "model": "Menus5501",
+      "type": 1
+    },
+    {
+      "id": 15503,
+      "model": "Verbelia5501",
+      "type": 1
+    },
+    {
+      "id": 15504,
+      "model": "Ajdina5501",
+      "type": 1
+    },
+    {
+      "id": 15505,
+      "model": "Aldra5501",
+      "type": 1
+    },
+    {
+      "id": 15506,
+      "model": "Ally5501",
+      "type": 1
+    },
+    {
+      "id": 15507,
+      "model": "Nix5501",
+      "type": 1
+    },
+    {
+      "id": 15508,
+      "model": "Snowwhite5501",
+      "type": 1
+    },
+    {
+      "id": 15509,
+      "model": "AnneLotte5501",
+      "type": 1
+    },
+    {
+      "id": 15510,
+      "model": "TagunaCygnang5501",
+      "type": 1
+    },
+    {
+      "id": 15511,
+      "model": "Cattleya5501",
+      "type": 1
+    },
+    {
+      "id": 15512,
+      "model": "Setene5501",
+      "type": 1
+    },
+    {
+      "id": 15513,
+      "model": "Shika5501",
+      "type": 1
+    },
+    {
+      "id": 15514,
+      "model": "Gretel5501",
+      "type": 1
+    },
+    {
+      "id": 15515,
+      "model": "Risti5501",
+      "type": 1
+    },
+    {
+      "id": 15551,
+      "model": "Licorice4501",
+      "type": 1
+    },
+    {
+      "id": 15552,
+      "model": "Irma5501",
+      "type": 1
+    },
+    {
+      "id": 15553,
+      "model": "SanadaYukimura5501",
+      "type": 1
+    },
+    {
+      "id": 15554,
+      "model": "Ymir5501",
+      "type": 1
+    },
+    {
+      "id": 15555,
+      "model": "Aranea5501",
+      "type": 1
+    },
+    {
+      "id": 15556,
+      "model": "Cyala5501",
+      "type": 1
+    },
+    {
+      "id": 15557,
+      "model": "Snowwhite5502",
+      "type": 1
+    },
+    {
+      "id": 15558,
+      "model": "Nix5502",
+      "type": 1
+    },
+    {
+      "id": 15559,
+      "model": "Verbelia5502",
+      "type": 1
+    },
+    {
+      "id": 15560,
+      "model": "BusujimaSaeko5501",
+      "type": 1
+    },
+    {
+      "id": 15561,
+      "model": "Ajdina5502",
+      "type": 1
+    },
+    {
+      "id": 15562,
+      "model": "Fallot5501",
+      "type": 1
+    },
+    {
+      "id": 15563,
+      "model": "Tokugawa5501",
+      "type": 1
+    },
+    {
+      "id": 15564,
+      "model": "Ikaruga5501",
+      "type": 1
+    },
+    {
+      "id": 15565,
+      "model": "Setsusen5501",
+      "type": 1
+    },
+    {
+      "id": 15566,
+      "model": "Irma5502",
+      "type": 1
+    },
+    {
+      "id": 15567,
+      "model": "Morrigan5501",
+      "type": 1
+    },
+    {
+      "id": 15568,
+      "model": "Polk5501",
+      "type": 1
+    },
+    {
+      "id": 15569,
+      "model": "Aldra5502",
+      "type": 1
+    },
+    {
+      "id": 15570,
+      "model": "BusujimaSaeko5502",
+      "type": 1
+    },
+    {
+      "id": 15571,
+      "model": "Senka5501",
+      "type": 1
+    },
+    {
+      "id": 15572,
+      "model": "Shade5501",
+      "type": 1
+    },
+    {
+      "id": 15573,
+      "model": "Murasaki5501",
+      "type": 1
+    },
+    {
+      "id": 15601,
+      "model": "Despina5601",
+      "type": 1
+    },
+    {
+      "id": 15602,
+      "model": "15602",
+      "type": 1
+    },
+    {
+      "id": 15603,
+      "model": "15603",
+      "type": 1
+    },
+    {
+      "id": 15604,
+      "model": "15604",
+      "type": 1
+    },
+    {
+      "id": 15605,
+      "model": "15605",
+      "type": 1
+    },
+    {
+      "id": 16501,
+      "model": "Alina6501",
+      "type": 1
+    },
+    {
+      "id": 16502,
+      "model": "Ally6501",
+      "type": 1
+    },
+    {
+      "id": 16503,
+      "model": "Vespa6501",
+      "type": 1
+    },
+    {
+      "id": 16504,
+      "model": "Kaguya6501",
+      "type": 1
+    },
+    {
+      "id": 16505,
+      "model": "Vulco6501",
+      "type": 1
+    },
+    {
+      "id": 16506,
+      "model": "Tomoe6501",
+      "type": 1
+    },
+    {
+      "id": 16507,
+      "model": "Royera6501",
+      "type": 1
+    },
+    {
+      "id": 16508,
+      "model": "Melona6501",
+      "type": 1
+    },
+    {
+      "id": 16509,
+      "model": "Karin6501",
+      "type": 1
+    },
+    {
+      "id": 16510,
+      "model": "Melfa6501",
+      "type": 1
+    },
+    {
+      "id": 16511,
+      "model": "OriChara6501",
+      "type": 1
+    },
+    {
+      "id": 16512,
+      "model": "Menus6501",
+      "type": 1
+    },
+    {
+      "id": 16513,
+      "model": "Zara6501",
+      "type": 1
+    },
+    {
+      "id": 16514,
+      "model": "Culot6501",
+      "type": 1
+    },
+    {
+      "id": 16515,
+      "model": "OriChara6502",
+      "type": 1
+    },
+    {
+      "id": 16516,
+      "model": "AllyAlina6501",
+      "type": 1
+    },
+    {
+      "id": 16517,
+      "model": "Cattleya6501",
+      "type": 1
+    },
+    {
+      "id": 16518,
+      "model": "Shika6501",
+      "type": 1
+    },
+    {
+      "id": 16519,
+      "model": "Sakin6501",
+      "type": 1
+    },
+    {
+      "id": 16520,
+      "model": "HuytVante6501",
+      "type": 1
+    },
+    {
+      "id": 16601,
+      "model": "AjdinaIrma6601",
+      "type": 1
+    },
+    {
+      "id": 16602,
+      "model": "16602",
+      "type": 1
+    },
+    {
+      "id": 16603,
+      "model": "16603",
+      "type": 1
+    },
+    {
+      "id": 16604,
+      "model": "16604",
+      "type": 1
+    },
+    {
+      "id": 16605,
+      "model": "16605",
+      "type": 1
+    },
+    {
+      "id": 16606,
+      "model": "16606",
+      "type": 1
+    },
+    {
+      "id": 16607,
+      "model": "16607",
+      "type": 1
+    },
+    {
+      "id": 21501,
+      "model": "Evere1501",
+      "type": 3
+    },
+    {
+      "id": 21502,
+      "model": "ChristmasMonster",
+      "type": 3
+    },
+    {
+      "id": 21503,
+      "model": "Ibe01",
+      "type": 3
+    },
+    {
+      "id": 21504,
+      "model": "CrownOctopus",
+      "type": 3
+    },
+    {
+      "id": 21505,
+      "model": "SnowMonster",
+      "type": 3
+    },
+    {
+      "id": 21506,
+      "model": "Captain",
+      "type": 3
+    },
+    {
+      "id": 21507,
+      "model": "GhostApe",
+      "type": 3
+    },
+    {
+      "id": 21508,
+      "model": "SnowElves",
+      "type": 3
+    },
+    {
+      "id": 21509,
+      "model": "Musashi",
+      "type": 3
+    },
+    {
+      "id": 21510,
+      "model": "21510",
+      "type": 3
+    },
+    {
+      "id": 21511,
+      "model": "21510",
+      "type": 3
+    },
+    {
+      "id": 21512,
+      "model": "21510",
+      "type": 3
+    },
+    {
+      "id": 21513,
+      "model": "21510",
+      "type": 3
+    },
+    {
+      "id": 21514,
+      "model": "21514",
+      "type": 3
+    },
+    {
+      "id": 22501,
+      "model": "Evere2501",
+      "type": 3
+    },
+    {
+      "id": 22502,
+      "model": "Crab",
+      "type": 3
+    },
+    {
+      "id": 22503,
+      "model": "22503",
+      "type": 3
+    },
+    {
+      "id": 22504,
+      "model": "22504",
+      "type": 3
+    },
+    {
+      "id": 22505,
+      "model": "22505",
+      "type": 3
+    },
+    {
+      "id": 23501,
+      "model": "Evere3501",
+      "type": 3
+    },
+    {
+      "id": 23502,
+      "model": "Macarons",
+      "type": 3
+    },
+    {
+      "id": 23503,
+      "model": "CherryBlossom",
+      "type": 3
+    },
+    {
+      "id": 23504,
+      "model": "Macarons03",
+      "type": 3
+    },
+    {
+      "id": 23505,
+      "model": "AppleCandy",
+      "type": 3
+    },
+    {
+      "id": 23506,
+      "model": "23506",
+      "type": 3
+    },
+    {
+      "id": 23507,
+      "model": "23507",
+      "type": 3
+    },
+    {
+      "id": 23508,
+      "model": "23508",
+      "type": 3
+    },
+    {
+      "id": 24501,
+      "model": "Evere4501",
+      "type": 3
+    },
+    {
+      "id": 24503,
+      "model": "Rabbit",
+      "type": 3
+    },
+    {
+      "id": 24504,
+      "model": "Ghost",
+      "type": 3
+    },
+    {
+      "id": 24505,
+      "model": "MoonRabbit",
+      "type": 3
+    },
+    {
+      "id": 24506,
+      "model": "DragonLight",
+      "type": 3
+    },
+    {
+      "id": 24507,
+      "model": "Lion",
+      "type": 3
+    },
+    {
+      "id": 24508,
+      "model": "SanheSnake",
+      "type": 3
+    },
+    {
+      "id": 24509,
+      "model": "Kaguya",
+      "type": 3
+    },
+    {
+      "id": 24510,
+      "model": "Kaguya",
+      "type": 3
+    },
+    {
+      "id": 24511,
+      "model": "Kaguya",
+      "type": 3
+    },
+    {
+      "id": 24512,
+      "model": "Kaguya",
+      "type": 3
+    },
+    {
+      "id": 24513,
+      "model": "RabbitEggHunt",
+      "type": 3
+    },
+    {
+      "id": 24514,
+      "model": "Lion02",
+      "type": 3
+    },
+    {
+      "id": 24515,
+      "model": "24515",
+      "type": 3
+    },
+    {
+      "id": 24516,
+      "model": "24516",
+      "type": 3
+    },
+    {
+      "id": 24517,
+      "model": "24516",
+      "type": 3
+    },
+    {
+      "id": 24518,
+      "model": "24516",
+      "type": 3
+    },
+    {
+      "id": 24519,
+      "model": "24516",
+      "type": 3
+    },
+    {
+      "id": 25501,
+      "model": "Arakane5501",
+      "type": 3
+    },
+    {
+      "id": 25502,
+      "model": "Evere5501",
+      "type": 3
+    },
+    {
+      "id": 25503,
+      "model": "Kumadouko",
+      "type": 3
+    },
+    {
+      "id": 25504,
+      "model": "SkeletonKing",
+      "type": 3
+    },
+    {
+      "id": 25505,
+      "model": "They",
+      "type": 3
+    },
+    {
+      "id": 25506,
+      "model": "AngelGrief",
+      "type": 3
+    },
+    {
+      "id": 25507,
+      "model": "Macarons02",
+      "type": 3
+    },
+    {
+      "id": 25508,
+      "model": "MiyamotoMusashi",
+      "type": 3
+    },
+    {
+      "id": 25509,
+      "model": "Rakshasa",
+      "type": 3
+    },
+    {
+      "id": 25510,
+      "model": "JedahDohma",
+      "type": 3
+    },
+    {
+      "id": 25511,
+      "model": "GhostChef",
+      "type": 3
+    },
+    {
+      "id": 25512,
+      "model": "Alicia",
+      "type": 3
+    },
+    {
+      "id": 25513,
+      "model": "Alicia",
+      "type": 3
+    },
+    {
+      "id": 25514,
+      "model": "Alicia",
+      "type": 3
+    },
+    {
+      "id": 25515,
+      "model": "Alicia",
+      "type": 3
+    },
+    {
+      "id": 25516,
+      "model": "Setsusen",
+      "type": 3
+    },
+    {
+      "id": 25517,
+      "model": "Setsusen",
+      "type": 3
+    },
+    {
+      "id": 25518,
+      "model": "Setsusen",
+      "type": 3
+    },
+    {
+      "id": 25519,
+      "model": "Setsusen",
+      "type": 3
+    },
+    {
+      "id": 25520,
+      "model": "GhostEye",
+      "type": 3
+    },
+    {
+      "id": 25521,
+      "model": "25521",
+      "type": 3
+    },
+    {
+      "id": 25522,
+      "model": "25522",
+      "type": 3
+    },
+    {
+      "id": 25523,
+      "model": "25523",
+      "type": 3
+    },
+    {
+      "id": 25524,
+      "model": "25524",
+      "type": 3
+    },
+    {
+      "id": 30161,
+      "model": "Goddess01",
+      "type": 3
+    },
+    {
+      "id": 30162,
+      "model": "Gallant01",
+      "type": 3
+    },
+    {
+      "id": 30163,
+      "model": "Wrath01",
+      "type": 3
+    },
+    {
+      "id": 30164,
+      "model": "Loneliness01",
+      "type": 3
+    },
+    {
+      "id": 30165,
+      "model": "Grief01",
+      "type": 3
+    },
+    {
+      "id": 30166,
+      "model": "Happy01",
+      "type": 3
+    },
+    {
+      "id": 30167,
+      "model": "Love01",
+      "type": 3
+    },
+    {
+      "id": 30168,
+      "model": "Ecstatic01",
+      "type": 3
+    },
+    {
+      "id": 30169,
+      "model": "Harmony01",
+      "type": 3
+    },
+    {
+      "id": 30170,
+      "model": "Leisure01",
+      "type": 3
+    },
+    {
+      "id": 30171,
+      "model": "18002101",
+      "type": 3
+    },
+    {
+      "id": 30172,
+      "model": "18003101",
+      "type": 3
+    },
+    {
+      "id": 35001,
+      "model": "Arakane5501",
+      "type": 3
+    },
+    {
+      "id": 35002,
+      "model": "Evere1501",
+      "type": 3
+    },
+    {
+      "id": 35003,
+      "model": "ChristmasMonster",
+      "type": 3
+    },
+    {
+      "id": 35004,
+      "model": "Ibe01",
+      "type": 3
+    },
+    {
+      "id": 35005,
+      "model": "SnowMonster",
+      "type": 3
+    },
+    {
+      "id": 35006,
+      "model": "Evere2501",
+      "type": 3
+    },
+    {
+      "id": 35007,
+      "model": "Evere3501",
+      "type": 3
+    },
+    {
+      "id": 35008,
+      "model": "Macarons",
+      "type": 3
+    },
+    {
+      "id": 35009,
+      "model": "Evere4501",
+      "type": 3
+    },
+    {
+      "id": 35010,
+      "model": "Rabbit",
+      "type": 3
+    },
+    {
+      "id": 35011,
+      "model": "Ghost",
+      "type": 3
+    },
+    {
+      "id": 35012,
+      "model": "MoonRabbit",
+      "type": 3
+    },
+    {
+      "id": 35013,
+      "model": "DragonLight",
+      "type": 3
+    },
+    {
+      "id": 40001,
+      "model": "RabbitEggHunt",
+      "type": 3
+    },
+    {
+      "id": 40002,
+      "model": "Macarons03",
+      "type": 3
+    },
+    {
+      "id": 40003,
+      "model": "GhostChef",
+      "type": 3
+    },
+    {
+      "id": 40004,
+      "model": "AppleCandy",
+      "type": 3
+    },
+    {
+      "id": 40005,
+      "model": "CherryBlossom",
+      "type": 3
+    },
+    {
+      "id": 40006,
+      "model": "Ibe01",
+      "type": 3
+    },
+    {
+      "id": 40007,
+      "model": "SkeletonKing",
+      "type": 3
+    },
+    {
+      "id": 40008,
+      "model": "Macarons",
+      "type": 3
+    },
+    {
+      "id": 40009,
+      "model": "Lion",
+      "type": 3
+    },
+    {
+      "id": 40010,
+      "model": "SnowElves",
+      "type": 3
+    },
+    {
+      "id": 41001,
+      "model": "41001",
+      "type": 3
+    },
+    {
+      "id": 41002,
+      "model": "41002",
+      "type": 3
+    },
+    {
+      "id": 42001,
+      "model": "Evere001",
+      "type": 3
+    },
+    {
+      "id": 42002,
+      "model": "Evere001",
+      "type": 3
+    },
+    {
+      "id": 42003,
+      "model": "42003",
+      "type": 0
+    },
+    {
+      "id": 42004,
+      "model": "42004",
+      "type": 0
+    },
+    {
+      "id": 42005,
+      "model": "42005",
+      "type": 0
+    },
+    {
+      "id": 45001,
+      "model": "Evere001",
+      "type": 3
+    }
+  ]
+}

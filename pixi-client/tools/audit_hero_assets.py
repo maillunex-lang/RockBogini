@@ -11,7 +11,7 @@ for a in catalog:
 models={}
 for m in sorted({h['Model'] for h in data['HeroBase'] if h['Model']}):
  candidates=[]
- for n in [m+'_Avatar','Hero_'+m+'_Avatar',m]:
+ for n in [m+'_Avatar','Hero_'+m+'_Avatar',m,'Boss_'+m,'Boss_'+m+'_Avatar','Angel_'+m+'_Avatar']:
   candidates.extend(byname[n.lower()])
  candidates=list({a['id']:a for a in candidates}.values())
  verified=[a for a in candidates if a['id'] in valid]
