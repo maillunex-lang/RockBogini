@@ -1,0 +1,7 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {calculateHit,type DamageUnit} from '../src/battle/damage.js';
+const a:DamageUnit={element:1,attrs:{0:100,9:1000,5:2000}},d:DamageUnit={element:3,attrs:{2:100}};
+test('physical, magical, true and elemental formulas',()=>{assert.equal(calculateHit(a,d,1000,101,()=>.5).damage,50);assert.equal(calculateHit(a,d,1000,102,()=>.5).damage,50);assert.equal(calculateHit(a,d,1000,'real',()=>.5).damage,100);assert.equal(calculateHit(a,d,1000,'element',()=>.5).damage,100)});
+test('dodge, critical, elemental bypass and random consumption',()=>{let calls=0;const rng=()=>{calls++;return .2};const low={...a,attrs:{...a.attrs,9:500,4:1000}};assert.equal(calculateHit(low,d,1000,101,rng).event,'dodge');assert.equal(calls,1);calls=0;assert.equal(calculateHit(low,d,1000,'real',rng).damage,194);assert.equal(calls,2);calls=0;assert.equal(calculateHit(low,d,1000,'element',rng).damage,97);assert.equal(calls,1);assert.equal(calculateHit(low,d,1000,'real',()=>.5,{banCrit:true}).damage,100)});
+test('penetration cap, faction advantage, pvp and multiplier floor',()=>{assert.equal(calculateHit({...a,attrs:{...a.attrs,32:2000}},d,1000,101,()=>.5).damage,91);assert.equal(calculateHit({...a,attrs:{...a.attrs,37:200}}, {...d,element:2},1000,101,()=>.5).damage,60);assert.equal(calculateHit({...a,attrs:{...a.attrs,19:200}},d,1000,101,()=>.5,{pvp:true}).damage,60);assert.equal(calculateHit(a,{...d,attrs:{...d.attrs,17:2000}},1000,101,()=>.5).damage,5);assert.equal(calculateHit(a,d,0,101,()=>.5).damage,1)});

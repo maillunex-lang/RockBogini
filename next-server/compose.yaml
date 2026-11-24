@@ -1,0 +1,50 @@
+name: rockbogini-next
+services:
+  api:
+    build: .
+    ports: ["127.0.0.1:18991:18991"]
+    environment:
+      PGHOST: postgres
+      NEXT_DB_PASSWORD: ${NEXT_DB_PASSWORD:?set NEXT_DB_PASSWORD}
+      REDIS_URL: redis://redis:6379
+      NEXT_RECOVERY_SECRET: ${NEXT_RECOVERY_SECRET:?set NEXT_RECOVERY_SECRET}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks: [private, edge]
+    healthcheck:
+      test: ["CMD","node","-e","fetch('http://127.0.0.1:18991/ready').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 4s
+      retries: 15
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: rockbogini_next
+      POSTGRES_USER: rockbogini_next
+      POSTGRES_PASSWORD: ${NEXT_DB_PASSWORD:?set NEXT_DB_PASSWORD}
+    volumes:
+      - next_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL","pg_isready -U rockbogini_next -d rockbogini_next"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+    networks: [private]
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server","--save","","--appendonly","no"]
+    healthcheck:
+      test: ["CMD","redis-cli","ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+    networks: [private]
+networks:
+  edge: {}
+  private:
+    internal: true
+volumes:
+  next_pg:

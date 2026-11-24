@@ -1,0 +1,233 @@
+[
+  {
+    "id": "NEXT-001",
+    "title": "Архитектура клиента",
+    "phase": "I. Фундамент",
+    "scope": "PixiJS 7, Spine 3.8, React, TypeScript, сборка",
+    "status": "done",
+    "evidence": "reports/PIXI-01-build.log"
+  },
+  {
+    "id": "NEXT-002",
+    "title": "Архитектура сервера",
+    "phase": "I. Фундамент",
+    "scope": "Fastify, REST, WebSocket, тесты",
+    "status": "done",
+    "evidence": "reports/SERVER-01-test.log"
+  },
+  {
+    "id": "NEXT-003",
+    "title": "Полный аудит оригинала",
+    "phase": "I. Фундамент",
+    "scope": "Реестр экранов, протоколов, конфигураций, формул, зависимостей и тестов",
+    "status": "done",
+    "evidence": "reports/NEXT-003-inventory.json; reports/NEXT-003-mapping.json; reports/NEXT-003-findings.md; reports/NEXT-003-baseline.log; reports/NEXT-003-fixtures.json; reports/NEXT-003-coverage.json; reports/NEXT-003-ui-dependencies.json; reports/NEXT-003-rpc-gaps.json; reports/NEXT-003-gap-review.json; reports/NEXT-003-deferred.json"
+  },
+  {
+    "id": "NEXT-004",
+    "title": "Ресурсы и рендеринг",
+    "phase": "I. Фундамент",
+    "scope": "Lunex Asset Library, WebGL, Spine, кеш, атласы, эффекты",
+    "status": "done",
+    "evidence": "reports/PIXI-02-library-build.log; reports/NEXT-004-smoke.log; reports/NEXT-004-squad.png; reports/NEXT-004-cache-build.log; reports/NEXT-004-cache-smoke.log; reports/NEXT-004-eviction-build.log; reports/NEXT-004-eviction-smoke.log; reports/NEXT-004-stress.log; reports/NEXT-004-stress-retry.log; reports/NEXT-004-effects-build.log; reports/NEXT-004-effects-smoke.log; reports/NEXT-004-final-smoke.log; reports/NEXT-004-hit.png (visual defect); reports/NEXT-004-skin-build.log; reports/NEXT-004-skin-smoke.log; reports/NEXT-004-layout-smoke.log; reports/NEXT-004-body-build.log; reports/NEXT-004-body-smoke.log; reports/NEXT-004-quality-build.log; reports/NEXT-004-quality-smoke.log; reports/NEXT-004-auto-build.log; reports/NEXT-004-auto-smoke.log"
+  },
+  {
+    "id": "NEXT-005",
+    "title": "Общая инфраструктура",
+    "phase": "I. Фундамент",
+    "scope": "PostgreSQL, Redis, миграции, Docker, общие типы",
+    "status": "done",
+    "evidence": "next-server/compose.yaml; reports/NEXT-005-compose.log; reports/NEXT-005-pull.log; reports/NEXT-005-storage-build.log; reports/NEXT-005-storage-test.log; reports/NEXT-005-api-compose.log; reports/NEXT-005-restart.log; reports/NEXT-005-contract-test.log; reports/NEXT-005-reference-retry.log"
+  },
+  {
+    "id": "NEXT-006",
+    "title": "Авторизация",
+    "phase": "II. Первый запуск",
+    "scope": "Регистрация, гости, сессии, восстановление, выбор сервера",
+    "status": "done",
+    "evidence": "reports/NEXT-006-auth-build.log; reports/NEXT-006-auth-test.log; reports/NEXT-006-routes-test.log; reports/NEXT-006-login-ui-build.log; reports/NEXT-006-login-smoke.log; reports/NEXT-006-client-integration-build.log; reports/NEXT-006-browser-auth-flow.log; reports/NEXT-006-link-test.log; reports/NEXT-006-link-client-build.log; reports/NEXT-006-guest-link-browser.log; reports/NEXT-006-api-deploy.log; reports/NEXT-006-recovery-test.log; reports/NEXT-006-recovery-ui-build.log; reports/NEXT-006-recovery-deploy.log; reports/NEXT-006-real-e2e.log"
+  },
+  {
+    "id": "NEXT-007",
+    "title": "Игровой профиль",
+    "phase": "II. Первый запуск",
+    "scope": "Ник, аватар, уровень, опыт, энергия, валюты, сохранение",
+    "status": "done",
+    "evidence": "reports/NEXT-007-profile-test.log; reports/NEXT-007-config-export.log; reports/NEXT-007-edit-test.log; reports/NEXT-007-profile-ui-build.log; reports/NEXT-007-progression-test.log; reports/NEXT-007-profile-browser.log; reports/NEXT-007-assets-browser.log; reports/NEXT-007-final-browser.log; reports/NEXT-007-final-publish.log; frame 3101 visual fallback deferred NEXT-026; reports/NEXT-007-frame-fix-browser.log"
+  },
+  {
+    "id": "NEXT-008",
+    "title": "Главный интерфейс",
+    "phase": "II. Первый запуск",
+    "scope": "Функциональный город, навигация, ресурсы, окна, адаптация; уведомления подключать вместе с соответствующими механиками. Графическая полировка отложена до NEXT-026.",
+    "status": "done",
+    "evidence": "reports/NEXT-008-city-build.log; reports/NEXT-008-city-browser.log; reports/NEXT-008-navigation-browser.log; reports/NEXT-008-navigation-publish.log; reports/NEXT-008-icons-browser.log; reports/NEXT-008-icons-publish.log; reports/NEXT-008-frames-browser.log; reports/NEXT-008-frames-publish.log; reports/NEXT-008-prefab-browser.log; reports/NEXT-008-prefab-publish.log; reports/NEXT-008-common-browser.log; reports/NEXT-008-common-publish.log; reports/NEXT-008-scene-browser.log; reports/NEXT-008-scene-publish.log; reports/NEXT-008-picker-browser.log; reports/NEXT-008-picker-publish.log; reports/NEXT-008-picker-final-browser.log; reports/NEXT-008-picker-final-publish.log; reports/NEXT-008-frame-effects.json; reports/NEXT-008-frame-import.json; reports/NEXT-008-frame-final-browser.log; reports/NEXT-008-frame-final-publish.log; reports/NEXT-008-functional-browser.log; reports/NEXT-008-functional-publish.log"
+  },
+  {
+    "id": "NEXT-009",
+    "title": "Редактор интерфейса",
+    "phase": "II. Первый запуск",
+    "scope": "Позиции, размеры, цвета, фоны, кнопки",
+    "status": "in_progress",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-010",
+    "title": "Система героев",
+    "phase": "III. Боевое ядро",
+    "scope": "Каталог, классы, фракции, редкость, параметры, способности",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-011",
+    "title": "Формирование отряда",
+    "phase": "III. Боевое ядро",
+    "scope": "5×5, позиции, сохранение составов",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-012",
+    "title": "Пошаговый боевой движок",
+    "phase": "III. Боевое ядро",
+    "scope": "Очередность, скорость, урон, крит, лечение, эффекты, цели, пассивы; сравнение Elixir",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-013",
+    "title": "Визуализация боя",
+    "phase": "III. Боевое ядро",
+    "scope": "Spine, атаки, попадания, эффекты, HP, цифры урона",
+    "status": "in_progress",
+    "evidence": "reports/PIXI-02-squad-build.log; reports/NEXT-013-impact-build.log; provisional impact 45% accepted by user for preview"
+  },
+  {
+    "id": "NEXT-014",
+    "title": "Сюжетная кампания",
+    "phase": "III. Боевое ядро",
+    "scope": "Главы, этапы, боссы, открытие, награды",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-015",
+    "title": "Инвентарь и предметы",
+    "phase": "IV. RPG и экономика",
+    "scope": "Валюты, материалы, осколки, расходники",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-016",
+    "title": "Развитие героев",
+    "phase": "IV. RPG и экономика",
+    "scope": "Уровни, звёзды, ранги, таланты, навыки, пробуждение, сброс",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-017",
+    "title": "Экипировка",
+    "phase": "IV. RPG и экономика",
+    "scope": "Слоты, улучшение, комплекты, параметры",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-018",
+    "title": "Призыв героев",
+    "phase": "IV. RPG и экономика",
+    "scope": "Баннеры, шансы, гарантии, массовый призыв, анимации",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-019",
+    "title": "Экономика и Idle",
+    "phase": "IV. RPG и экономика",
+    "scope": "Idle, офлайн, магазины, ресурсы, таймеры",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-020",
+    "title": "Задания и достижения",
+    "phase": "V. Контент",
+    "scope": "Сюжетные, ежедневные, еженедельные задания, достижения",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-021",
+    "title": "PvE-режимы",
+    "phase": "V. Контент",
+    "scope": "Башни, подземелья, испытания, боссы, специальные режимы",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-022",
+    "title": "PvP и социальные системы",
+    "phase": "V. Контент",
+    "scope": "Арена, рейтинги, гильдии, чат, друзья, почта",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-023",
+    "title": "События и монетизация",
+    "phase": "V. Контент",
+    "scope": "Календарь, события, VIP, пропуски, предложения, платежи",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-024",
+    "title": "Редакторы игрового контента",
+    "phase": "VI. Studio",
+    "scope": "Герои, навыки, предметы, противники, локации, квесты, награды, баннеры, магазины, события",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-025",
+    "title": "Администрирование",
+    "phase": "VI. Studio",
+    "scope": "Аккаунты, аналитика, журналы, серверы, баланс, версии, бэкапы",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-026",
+    "title": "Русификация и визуальное качество",
+    "phase": "VII. Качество",
+    "scope": "Контекстный перевод, терминология, шрифты, UI, удобство; восстановление оригинальных графических заголовков 10 входов города, замков, Spine-эффектов четырёх входов, геометрии камеры, окон и выбора оформления, рамок и портретов, визуальная сверка с оригиналом.",
+    "status": "in_progress",
+    "evidence": "localization/ru.json",
+    "deferred_visual_tasks": [
+      "Оригинальные спрайты и заголовки 10 городских входов, включая сокровищницу 1055",
+      "Графика замков и четыре Spine-эффекта входов",
+      "Точная геометрия камеры и городского Prefab",
+      "Точная геометрия профиля и окна выбора аватара/рамки; восстановление рамки 3101",
+      "Визуальная сверка всех окон, адаптация и полировка"
+    ]
+  },
+  {
+    "id": "NEXT-027",
+    "title": "Оптимизация и сборки",
+    "phase": "VII. Качество",
+    "scope": "APK, PWA, докачка, обновления, кеш, память, FPS, безопасность",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-028",
+    "title": "Приёмка и переход",
+    "phase": "VIII. Миграция",
+    "scope": "Полная сверка Elixir, миграция аккаунтов, бэкапы, переключение и откат по согласованию",
+    "status": "pending",
+    "evidence": ""
+  }
+]

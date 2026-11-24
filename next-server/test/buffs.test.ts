@@ -1,0 +1,8 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {BuffBase} from '../src/battle/BuffBase.js';
+import {SkillEffect} from '../src/battle/SkillEffect.js';
+import {battleAttr,effectiveAttr,hasTag,tagCount,layers,immune,listener,limitOk,countFire,expireRound,dropTemp,maxCount,type Buff,type BuffUnit} from '../src/battle/buffs.js';
+const b=(key:number,extra:Partial<Buff>={}):Buff=>({id:1,key,rounds:2,stacks:2,max:3,attrs:{0:10},tags:[3],from:1,...extra});
+test('original config inventory and attribute stacking',()=>{assert.equal(Object.keys(BuffBase).length,19623);assert.equal(Object.keys(SkillEffect).length,17119);const u:BuffUnit={attrs:{0:100},hp:50,hp_max:100,buffs:[b(1,{dyn:[{step:100,pairs:[[104,100]]}]})]};assert.deepEqual(battleAttr(u.attrs,104,150),[0,15]);assert.equal(effectiveAttr(u,0),170);assert.equal(tagCount(u,3),2);assert.equal(layers(u,1),2);assert.equal(hasTag(u,3),true)});
+test('immunity, listener limits and expiry',()=>{const cfg={...Object.values(BuffBase)[0],Tags:[3],MaxCount:0,TriggerCondition:[{Items:[101]},{Items:[1000,2,1,1,1]}],TriggerWorkCondition:[],TriggerEffect:[]};const u:BuffUnit={attrs:{},hp:100,hp_max:100,buffs:[b(1,{immune:[3],rounds:1}),b(2,{fresh:true}),b(3,{temp:true})]};assert.equal(immune(u,cfg),true);assert.equal(immune(u,{...cfg,Tags:[3,25]}),false);assert.equal(maxCount(cfg),99);const t=listener(cfg)!;assert.equal(limitOk(t,1,2),true);countFire(t,1,2);assert.equal(limitOk(t,1,3),false);assert.equal(limitOk(t,2,2),true);countFire(t,2,2);assert.equal(limitOk(t,3,2),false);assert.deepEqual(expireRound(u,new Set([1,2])).map(x=>x.key),[1]);assert.equal(u.buffs[0].rounds,2);dropTemp(u);assert.deepEqual(u.buffs.map(x=>x.key),[2])});

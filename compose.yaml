@@ -1,0 +1,11 @@
+include:
+  - path: next-server/compose.yaml
+services:
+  web:
+    build: ./pixi-client
+    ports:
+      - "${WEB_PORT:-8080}:80"
+    networks: [edge]
+    depends_on:
+      api:
+        condition: service_healthy

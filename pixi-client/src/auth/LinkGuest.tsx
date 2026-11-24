@@ -1,0 +1,7 @@
+import React,{useState} from 'react';
+import './login.css';
+export function LinkGuest({onLink,onCancel}:{onLink:(email:string,password:string)=>Promise<void>;onCancel:()=>void}){
+ const [email,setEmail]=useState(''),[password,setPassword]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState('');
+ async function submit(e:React.FormEvent){e.preventDefault();setBusy(true);setError('');try{await onLink(email,password)}catch(x){setError(x instanceof Error?x.message:String(x))}finally{setBusy(false)}}
+ return <main className="login-shell"><section className="login-panel"><div className="login-brand">ROCKBOGINI</div><h2>Сохранить гостевой аккаунт</h2><p className="login-subtitle">Привяжи почту и пароль. Твой игровой ID останется прежним.</p><form onSubmit={submit}><label>Электронная почта<input type="email" required maxLength={254} autoComplete="email" value={email} disabled={busy} onChange={e=>setEmail(e.target.value)}/></label><label>Пароль (от 10 символов)<input type="password" required minLength={10} maxLength={128} autoComplete="new-password" value={password} disabled={busy} onChange={e=>setPassword(e.target.value)}/></label><button className="login-primary" disabled={busy}>{busy?'Сохраняем…':'Привязать аккаунт'}</button></form><button className="login-guest" disabled={busy} onClick={onCancel}>Вернуться в игру</button><p className="login-note">Подтверждение и восстановление по почте пока отключены. Запомни пароль.</p>{error&&<p role="alert" className="login-error">{error}</p>}</section></main>
+}

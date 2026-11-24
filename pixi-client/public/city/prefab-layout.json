@@ -1,0 +1,3546 @@
+{
+  "source": "06758cddc.74519.json",
+  "nodes": [
+    {
+      "index": 1,
+      "_name": "MainUIPanel",
+      "_contentSize": [
+        5,
+        1080,
+        1920
+      ]
+    },
+    {
+      "index": 2,
+      "_name": "Header",
+      "_parent": 1,
+      "_contentSize": [
+        5,
+        1080,
+        180
+      ],
+      "_trs": [
+        0,
+        870,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "_name": "0",
+      "_contentSize": [
+        5,
+        180,
+        200
+      ],
+      "_trs": [
+        -430,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "_name": "1",
+      "_contentSize": [
+        5,
+        180,
+        200
+      ],
+      "_trs": [
+        -220,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 5,
+      "_name": "2",
+      "_contentSize": [
+        5,
+        200,
+        215
+      ]
+    },
+    {
+      "index": 6,
+      "_name": "3",
+      "_contentSize": [
+        5,
+        180,
+        200
+      ],
+      "_trs": [
+        220,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 7,
+      "_name": "4",
+      "_contentSize": [
+        5,
+        180,
+        200
+      ],
+      "_trs": [
+        430,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 8,
+      "_name": "Layout",
+      "_contentSize": [
+        5,
+        200,
+        150
+      ]
+    },
+    {
+      "index": 9,
+      "_name": "CashMallBtn",
+      "_contentSize": [
+        5,
+        120,
+        120
+      ],
+      "_trs": [
+        -348,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 10,
+      "_name": "Dock",
+      "_parent": 1,
+      "_contentSize": [
+        5,
+        1080,
+        246
+      ],
+      "_trs": [
+        0,
+        -837,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 11,
+      "_name": "CurrencyBarItemDiamond",
+      "_parent": 2,
+      "_contentSize": [
+        5,
+        180,
+        90.4
+      ],
+      "_trs": [
+        235,
+        51,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 12,
+      "_name": "CurrencyBarItemCoin",
+      "_parent": 2,
+      "_contentSize": [
+        5,
+        180,
+        90.4
+      ],
+      "_trs": [
+        436,
+        51,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 13,
+      "_name": "SeasonalSLGStartNoticeComponent",
+      "_parent": 1,
+      "_trs": [
+        19.479,
+        781.626,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 14,
+      "_name": "DockBtnContainer",
+      "_parent": 10,
+      "_contentSize": [
+        5,
+        1040,
+        61
+      ]
+    },
+    {
+      "index": 15,
+      "_name": "Layout",
+      "_active": false,
+      "_contentSize": [
+        5,
+        214.0012,
+        45
+      ],
+      "_anchorPoint": [
+        0,
+        0,
+        0.5
+      ],
+      "_trs": [
+        -42,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1.8,
+        1.8,
+        1
+      ]
+    },
+    {
+      "index": 16,
+      "_name": "SlgAnnouncement",
+      "_active": false,
+      "_contentSize": [
+        5,
+        132,
+        132
+      ],
+      "_trs": [
+        66,
+        -66,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1.17647
+      ]
+    },
+    {
+      "index": 17,
+      "_name": "Layout",
+      "_contentSize": [
+        5,
+        200,
+        150
+      ],
+      "_anchorPoint": [
+        0,
+        1,
+        0.5
+      ],
+      "_trs": [
+        56,
+        -33.761,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 18,
+      "_name": "PageView",
+      "_parent": 10,
+      "_contentSize": [
+        5,
+        430,
+        90
+      ],
+      "_trs": [
+        325,
+        286,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 19,
+      "_name": "TopLeft",
+      "_parent": 2,
+      "_contentSize": [
+        5,
+        124,
+        180
+      ],
+      "_anchorPoint": [
+        0,
+        0.5,
+        1
+      ],
+      "_trs": [
+        -460,
+        -90,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0.8,
+        0.8,
+        1
+      ]
+    },
+    {
+      "index": 20,
+      "_name": "TopRight",
+      "_parent": 2,
+      "_contentSize": [
+        5,
+        124,
+        180
+      ],
+      "_anchorPoint": [
+        0,
+        0.5,
+        1
+      ],
+      "_trs": [
+        460,
+        -90,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0.8,
+        0.8,
+        1
+      ]
+    },
+    {
+      "index": 21,
+      "_name": "CommonLongLabelRollComponent",
+      "_contentSize": [
+        5,
+        140,
+        49
+      ],
+      "_trs": [
+        0,
+        -60.5,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 22,
+      "_name": "ChatBtn",
+      "_active": false,
+      "_parent": 8,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        0,
+        75,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 23,
+      "_name": "CustomServiceBtn",
+      "_parent": 15,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        75.0002,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0.55556,
+        0.55556,
+        0.55556
+      ]
+    },
+    {
+      "index": 24,
+      "_name": "RankBtn",
+      "_parent": 15,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        127.00060000000002,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0.55556,
+        0.55556,
+        0.55556
+      ]
+    },
+    {
+      "index": 25,
+      "_name": "ActivityPreviewButton",
+      "_active": false,
+      "_parent": 15,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        87.95333,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0.55556,
+        0.55556,
+        0.55556
+      ]
+    },
+    {
+      "index": 26,
+      "_name": "FriendsBtn",
+      "_parent": 8,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        0,
+        180,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 27,
+      "_name": "MailBtn",
+      "_parent": 8,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        0,
+        285,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 28,
+      "_name": "BagBtn",
+      "_parent": 17,
+      "_contentSize": [
+        5,
+        120,
+        120
+      ],
+      "_trs": [
+        -60,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 29,
+      "_name": "TaskBtn",
+      "_parent": 17,
+      "_contentSize": [
+        5,
+        120,
+        120
+      ],
+      "_trs": [
+        -204,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 30,
+      "_name": "Disable",
+      "_active": false,
+      "_parent": 3,
+      "_contentSize": [
+        5,
+        176,
+        182
+      ]
+    },
+    {
+      "index": 31,
+      "_name": "Disable",
+      "_active": false,
+      "_parent": 4,
+      "_contentSize": [
+        5,
+        176,
+        182
+      ]
+    },
+    {
+      "index": 32,
+      "_name": "Disable",
+      "_active": false,
+      "_parent": 5,
+      "_contentSize": [
+        5,
+        210,
+        215
+      ]
+    },
+    {
+      "index": 33,
+      "_name": "Disable",
+      "_active": false,
+      "_parent": 6,
+      "_contentSize": [
+        5,
+        176,
+        182
+      ]
+    },
+    {
+      "index": 34,
+      "_name": "Disable",
+      "_active": false,
+      "_parent": 7,
+      "_contentSize": [
+        5,
+        176,
+        182
+      ]
+    },
+    {
+      "index": 35,
+      "_name": "Background",
+      "_parent": 22,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 36,
+      "_name": "LeftVertical",
+      "_parent": 8,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        0,
+        75,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 37,
+      "_name": "Background",
+      "_parent": 23,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 38,
+      "_name": "Background",
+      "_parent": 24,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 39,
+      "_name": "MainSceneButtonVisibleButton",
+      "_parent": 15,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        179.00100000000003,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0.55556,
+        0.55556,
+        0.55556
+      ]
+    },
+    {
+      "index": 40,
+      "_name": "ArrowBtn",
+      "_parent": 36,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0.5988
+      ]
+    },
+    {
+      "index": 41,
+      "_name": "Background",
+      "_parent": 26,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 42,
+      "_name": "Background",
+      "_parent": 27,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 43,
+      "_name": "AssistantButton",
+      "_parent": 8,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        0,
+        390,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 44,
+      "_name": "Background",
+      "_parent": 28,
+      "_contentSize": [
+        5,
+        120,
+        120
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 45,
+      "_name": "Background",
+      "_parent": 29,
+      "_contentSize": [
+        5,
+        120,
+        120
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 46,
+      "_name": "Background",
+      "_parent": 9,
+      "_contentSize": [
+        5,
+        120,
+        120
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 47,
+      "_name": "Toggle",
+      "_active": false,
+      "_parent": 18,
+      "_contentSize": [
+        5,
+        25,
+        8
+      ]
+    },
+    {
+      "index": 48,
+      "_name": "Background",
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 49,
+      "_name": "Bg",
+      "_parent": 11,
+      "_contentSize": [
+        5,
+        180,
+        48
+      ]
+    },
+    {
+      "index": 50,
+      "_name": "Bg",
+      "_parent": 12,
+      "_contentSize": [
+        5,
+        180,
+        48
+      ]
+    },
+    {
+      "index": 51,
+      "_name": "TopArrowBtn",
+      "_parent": 19,
+      "_contentSize": [
+        5,
+        72,
+        86
+      ],
+      "_trs": [
+        0,
+        -63,
+        0,
+        0,
+        0,
+        -0.7071067811865475,
+        0.7071067811865476,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 52,
+      "_name": "ArrowBtn",
+      "_parent": 19,
+      "_contentSize": [
+        5,
+        72,
+        86
+      ],
+      "_trs": [
+        0,
+        -120,
+        0,
+        0,
+        0,
+        0.7071067811865475,
+        0.7071067811865476,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 53,
+      "_name": "TopArrowBtn",
+      "_parent": 20,
+      "_contentSize": [
+        5,
+        72,
+        86
+      ],
+      "_trs": [
+        0,
+        -63,
+        0,
+        0,
+        0,
+        -0.7071067811865475,
+        0.7071067811865476,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 54,
+      "_name": "ArrowBtn",
+      "_parent": 20,
+      "_contentSize": [
+        5,
+        72,
+        86
+      ],
+      "_trs": [
+        0,
+        -120,
+        0,
+        0,
+        0,
+        0.7071067811865475,
+        0.7071067811865476,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 55,
+      "_name": "Background",
+      "_parent": 16,
+      "_contentSize": [
+        5,
+        132,
+        132
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 56,
+      "_name": "SimplifyModeMaskNode",
+      "_active": false,
+      "_parent": 1,
+      "_contentSize": [
+        5,
+        1080,
+        2520
+      ],
+      "_anchorPoint": [
+        0,
+        0.5,
+        0
+      ],
+      "_trs": [
+        0,
+        -960,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 57,
+      "_name": "CloseBtn",
+      "_parent": 13,
+      "_contentSize": [
+        5,
+        36,
+        60
+      ],
+      "_trs": [
+        387.126,
+        44.913,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 58,
+      "_name": "JumpBtn",
+      "_parent": 13,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        337.501,
+        -1.812,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 59,
+      "_name": "SeasonalSLGHeadItem",
+      "_parent": 13,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        -364.924,
+        -0.986,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 60,
+      "_name": "UnCheck",
+      "_parent": 3,
+      "_contentSize": [
+        5,
+        176,
+        182
+      ]
+    },
+    {
+      "index": 61,
+      "_name": "Check",
+      "_parent": 3,
+      "_contentSize": [
+        5,
+        176,
+        191
+      ]
+    },
+    {
+      "index": 62,
+      "_name": "UnCheck",
+      "_parent": 4,
+      "_contentSize": [
+        5,
+        176,
+        182
+      ]
+    },
+    {
+      "index": 63,
+      "_name": "Check",
+      "_active": false,
+      "_parent": 4,
+      "_contentSize": [
+        5,
+        176,
+        191
+      ]
+    },
+    {
+      "index": 64,
+      "_name": "UnCheck",
+      "_parent": 5,
+      "_contentSize": [
+        5,
+        210,
+        215
+      ]
+    },
+    {
+      "index": 65,
+      "_name": "Check",
+      "_active": false,
+      "_parent": 5,
+      "_contentSize": [
+        5,
+        210,
+        227
+      ]
+    },
+    {
+      "index": 66,
+      "_name": "UnCheck",
+      "_parent": 6,
+      "_contentSize": [
+        5,
+        176,
+        182
+      ]
+    },
+    {
+      "index": 67,
+      "_name": "Check",
+      "_active": false,
+      "_parent": 6,
+      "_contentSize": [
+        5,
+        176,
+        191
+      ]
+    },
+    {
+      "index": 68,
+      "_name": "UnCheck",
+      "_parent": 7,
+      "_contentSize": [
+        5,
+        176,
+        182
+      ]
+    },
+    {
+      "index": 69,
+      "_name": "Check",
+      "_active": false,
+      "_parent": 7,
+      "_contentSize": [
+        5,
+        176,
+        191
+      ]
+    },
+    {
+      "index": 70,
+      "_name": "BottomLeft",
+      "_parent": 10,
+      "_trs": [
+        -480,
+        205,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 71,
+      "_name": "Background",
+      "_parent": 25,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 72,
+      "_name": "RedDot",
+      "_active": false,
+      "_parent": 25,
+      "_contentSize": [
+        5,
+        50,
+        50
+      ],
+      "_trs": [
+        25,
+        30,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 73,
+      "_name": "Background",
+      "_parent": 39,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 74,
+      "_name": "Background",
+      "_parent": 40,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 75,
+      "_name": "Background",
+      "_parent": 43,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 76,
+      "_name": "BottomRight",
+      "_parent": 10,
+      "_trs": [
+        460,
+        205,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 77,
+      "_name": "BubbleNode",
+      "_parent": 9,
+      "_contentSize": [
+        5,
+        163.7,
+        96.46000000000001
+      ],
+      "_trs": [
+        0,
+        90.683,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 78,
+      "_name": "ContentBg",
+      "_parent": 77,
+      "_contentSize": [
+        5,
+        175,
+        61.28
+      ],
+      "_anchorPoint": [
+        0,
+        0.5,
+        0
+      ],
+      "_trs": [
+        4.85,
+        -27.5,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 79,
+      "_name": "indicator",
+      "_parent": 18,
+      "_contentSize": [
+        5,
+        80,
+        16
+      ],
+      "_trs": [
+        0,
+        -30,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 80,
+      "_name": "Background",
+      "_contentSize": [
+        5,
+        40,
+        58
+      ]
+    },
+    {
+      "index": 81,
+      "_name": "Background",
+      "_contentSize": [
+        5,
+        40,
+        58
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        -1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 82,
+      "_name": "Layout",
+      "_contentSize": [
+        5,
+        4,
+        50
+      ]
+    },
+    {
+      "index": 83,
+      "_name": "BtnAdd",
+      "_parent": 49,
+      "_contentSize": [
+        5,
+        60,
+        60
+      ],
+      "_trs": [
+        72,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 84,
+      "_name": "BtnAdd",
+      "_parent": 50,
+      "_contentSize": [
+        5,
+        60,
+        60
+      ],
+      "_trs": [
+        66,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 85,
+      "_name": "ScrollView",
+      "_parent": 19,
+      "_contentSize": [
+        5,
+        150,
+        250
+      ],
+      "_anchorPoint": [
+        0,
+        0.5,
+        1
+      ],
+      "_trs": [
+        0,
+        -92,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 86,
+      "_name": "Background",
+      "_parent": 51,
+      "_contentSize": [
+        5,
+        72,
+        86
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 87,
+      "_name": "Background",
+      "_parent": 52,
+      "_contentSize": [
+        5,
+        72,
+        86
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 88,
+      "_name": "ScrollView",
+      "_parent": 20,
+      "_contentSize": [
+        5,
+        150,
+        250
+      ],
+      "_anchorPoint": [
+        0,
+        0.5,
+        1
+      ],
+      "_trs": [
+        0,
+        -92,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 89,
+      "_name": "Background",
+      "_parent": 53,
+      "_contentSize": [
+        5,
+        72,
+        86
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 90,
+      "_name": "Background",
+      "_parent": 54,
+      "_contentSize": [
+        5,
+        72,
+        86
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 91,
+      "_name": "TopButtonLeftNode",
+      "_parent": 2,
+      "_contentSize": [
+        5,
+        132,
+        120
+      ],
+      "_anchorPoint": [
+        0,
+        0,
+        1
+      ],
+      "_trs": [
+        -370,
+        -47,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0.85,
+        0.85,
+        1
+      ]
+    },
+    {
+      "index": 92,
+      "_name": "TimeBg",
+      "_parent": 16,
+      "_contentSize": [
+        5,
+        12,
+        28
+      ],
+      "_trs": [
+        0,
+        -99,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 93,
+      "_name": "content",
+      "_contentSize": [
+        5,
+        490,
+        120
+      ],
+      "_anchorPoint": [
+        0,
+        0.5,
+        1
+      ],
+      "_trs": [
+        0,
+        95,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 94,
+      "_name": "Mask",
+      "_parent": 59,
+      "_contentSize": [
+        5,
+        88,
+        88
+      ]
+    },
+    {
+      "index": 95,
+      "_name": "Label",
+      "_parent": 60,
+      "_contentSize": [
+        5,
+        200,
+        46
+      ],
+      "_trs": [
+        0,
+        -88,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 96,
+      "_name": "Label",
+      "_parent": 61,
+      "_contentSize": [
+        5,
+        200,
+        46
+      ],
+      "_trs": [
+        0,
+        -88,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 97,
+      "_name": "Label",
+      "_parent": 30,
+      "_contentSize": [
+        5,
+        200,
+        46
+      ],
+      "_trs": [
+        -7.105427357601002e-15,
+        -88,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 98,
+      "_name": "Label",
+      "_parent": 62,
+      "_contentSize": [
+        5,
+        200,
+        46
+      ],
+      "_trs": [
+        0,
+        -88,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 99,
+      "_name": "Label",
+      "_parent": 63,
+      "_contentSize": [
+        5,
+        200,
+        46
+      ],
+      "_trs": [
+        0,
+        -88,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 100,
+      "_name": "Label",
+      "_parent": 31,
+      "_contentSize": [
+        5,
+        200,
+        46
+      ],
+      "_trs": [
+        -7.105427357601002e-15,
+        -88,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 101,
+      "_name": "Label",
+      "_parent": 64,
+      "_contentSize": [
+        5,
+        200,
+        46
+      ],
+      "_trs": [
+        0,
+        -87.99999999999997,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 102,
+      "_name": "Label",
+      "_parent": 65,
+      "_contentSize": [
+        5,
+        200,
+        46
+      ],
+      "_trs": [
+        0,
+        -88,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 103,
+      "_name": "Label",
+      "_parent": 32,
+      "_contentSize": [
+        5,
+        200,
+        46
+      ],
+      "_trs": [
+        -7.105427357601002e-15,
+        -88,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 104,
+      "_name": "Label",
+      "_parent": 66,
+      "_contentSize": [
+        5,
+        200,
+        46
+      ],
+      "_trs": [
+        0,
+        -88,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 105,
+      "_name": "Label",
+      "_parent": 67,
+      "_contentSize": [
+        5,
+        200,
+        46
+      ],
+      "_trs": [
+        0,
+        -88,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 106,
+      "_name": "Label",
+      "_parent": 33,
+      "_contentSize": [
+        5,
+        200,
+        46
+      ],
+      "_trs": [
+        -7.105427357601002e-15,
+        -88,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 107,
+      "_name": "Label",
+      "_parent": 68,
+      "_contentSize": [
+        5,
+        200,
+        46
+      ],
+      "_trs": [
+        0,
+        -88,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 108,
+      "_name": "Label",
+      "_parent": 69,
+      "_contentSize": [
+        5,
+        200,
+        46
+      ],
+      "_trs": [
+        0,
+        -88,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 109,
+      "_name": "Label",
+      "_parent": 34,
+      "_contentSize": [
+        5,
+        200,
+        46
+      ],
+      "_trs": [
+        -7.105427357601002e-15,
+        -88,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 110,
+      "_name": "Label",
+      "_parent": 35,
+      "_contentSize": [
+        5,
+        6,
+        41.28
+      ],
+      "_trs": [
+        0,
+        -39.053,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 111,
+      "_name": "Label",
+      "_parent": 37,
+      "_contentSize": [
+        5,
+        6,
+        41.28
+      ],
+      "_trs": [
+        0,
+        -39.053,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 112,
+      "_name": "Label",
+      "_parent": 38,
+      "_contentSize": [
+        5,
+        6,
+        41.28
+      ],
+      "_trs": [
+        0,
+        -39.053,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 114,
+      "_name": "Label",
+      "_parent": 41,
+      "_contentSize": [
+        5,
+        6,
+        41.28
+      ],
+      "_trs": [
+        0,
+        -39.053,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 115,
+      "_name": "Label",
+      "_parent": 42,
+      "_contentSize": [
+        5,
+        6,
+        41.28
+      ],
+      "_trs": [
+        0,
+        -39.053,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 116,
+      "_name": "UTC",
+      "_parent": 70,
+      "_contentSize": [
+        5,
+        6,
+        43.8
+      ],
+      "_anchorPoint": [
+        0,
+        0,
+        0.5
+      ],
+      "_trs": [
+        55,
+        -90,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 117,
+      "_name": "Label",
+      "_parent": 44,
+      "_contentSize": [
+        5,
+        6,
+        41.28
+      ],
+      "_trs": [
+        0,
+        -55,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 118,
+      "_name": "Label",
+      "_parent": 45,
+      "_contentSize": [
+        5,
+        6,
+        41.28
+      ],
+      "_trs": [
+        0,
+        -55,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 119,
+      "_name": "Label",
+      "_parent": 46,
+      "_contentSize": [
+        5,
+        6,
+        41.28
+      ],
+      "_trs": [
+        0,
+        -55,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 120,
+      "_name": "Text",
+      "_parent": 78,
+      "_contentSize": [
+        5,
+        150,
+        41.28
+      ],
+      "_trs": [
+        0,
+        30.64,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 121,
+      "_name": "BottomRightDown",
+      "_parent": 76,
+      "_contentSize": [
+        5,
+        300,
+        120
+      ],
+      "_anchorPoint": [
+        0,
+        1,
+        0
+      ],
+      "_trs": [
+        -73,
+        -77,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 122,
+      "_name": "view",
+      "_parent": 18,
+      "_contentSize": [
+        5,
+        430,
+        90
+      ]
+    },
+    {
+      "index": 123,
+      "_name": "content",
+      "_parent": 122,
+      "_contentSize": [
+        5,
+        430,
+        90
+      ],
+      "_anchorPoint": [
+        0,
+        0,
+        0.5
+      ],
+      "_trs": [
+        -215,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 124,
+      "_name": "Background",
+      "_parent": 47,
+      "_contentSize": [
+        5,
+        25,
+        8
+      ],
+      "_trs": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "index": 125,
+      "_name": "LeftButton",
+      "_parent": 18,
+      "_contentSize": [
+        5,
+        40,
+        58
+      ],
+      "_trs": [
+        -200,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0.6,
+        0.6,
+        1
+      ]
+    },
+    {
+      "index": 126,
+      "_name": "RightButton",
+      "_parent": 18,
+      "_contentSize": [
+        5,
+        40,
+        58
+      ],
+      "_trs": [
+        200,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0.6,
+        0.6,
+        1
+      ]
+    },
+    {
+      "index": 127,
+      "_name": "SimplifyButton",
+      "_active": false,
+      "_parent": 10,
+      "_contentSize": [
+        5,
+        120,
+        120
+      ],
+      "_trs": [
+        466,
+        500,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 128,
+      "_name": "Label",
+      "_parent": 48,
+      "_contentSize": [
+        5,
+        6,
+        41.28
+      ],
+      "_trs": [
+        0,
+        -39.053,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 129,
+      "_name": "NameContent",
+      "_parent": 2,
+      "_contentSize": [
+        5,
+        270,
+        50
+      ],
+      "_trs": [
+        -248.475,
+        52,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 130,
+      "_name": "Name",
+      "_parent": 82,
+      "_contentSize": [
+        5,
+        4,
+        54.4
+      ],
+      "_anchorPoint": [
+        0,
+        0,
+        0.5
+      ],
+      "_trs": [
+        -2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 131,
+      "_name": "UserIconContainer",
+      "_parent": 2,
+      "_contentSize": [
+        5,
+        150,
+        150
+      ],
+      "_trs": [
+        -460,
+        10,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 132,
+      "_name": "Level",
+      "_active": false,
+      "_parent": 2,
+      "_contentSize": [
+        5,
+        120,
+        40
+      ],
+      "_trs": [
+        -460,
+        -61.666,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 133,
+      "_name": "LevelLabel",
+      "_parent": 132,
+      "_contentSize": [
+        5,
+        100,
+        39.28
+      ],
+      "_trs": [
+        0,
+        2.72,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 134,
+      "_name": "BattlePower",
+      "_parent": 2,
+      "_trs": [
+        11.075,
+        50,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 135,
+      "_name": "CurrencyIcon",
+      "_parent": 49,
+      "_contentSize": [
+        5,
+        40,
+        40
+      ],
+      "_trs": [
+        -75,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 137,
+      "_name": "Count",
+      "_parent": 49,
+      "_contentSize": [
+        5,
+        0,
+        50.4
+      ],
+      "_trs": [
+        -4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 138,
+      "_name": "CurrencyIcon",
+      "_parent": 50,
+      "_contentSize": [
+        5,
+        40,
+        40
+      ],
+      "_trs": [
+        -81,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 140,
+      "_name": "Count",
+      "_parent": 50,
+      "_contentSize": [
+        5,
+        0,
+        50.4
+      ],
+      "_trs": [
+        -10,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 141,
+      "_name": "ProgressBar",
+      "_parent": 2,
+      "_contentSize": [
+        5,
+        700,
+        182
+      ],
+      "_anchorPoint": [
+        0,
+        0,
+        0.5
+      ],
+      "_trs": [
+        -250.811,
+        -8.392,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 142,
+      "_name": "view",
+      "_parent": 85,
+      "_contentSize": [
+        5,
+        2100,
+        250
+      ],
+      "_anchorPoint": [
+        0,
+        0.5,
+        1
+      ]
+    },
+    {
+      "index": 143,
+      "_name": "Layout",
+      "_parent": 142,
+      "_contentSize": [
+        5,
+        150,
+        126
+      ],
+      "_anchorPoint": [
+        0,
+        0.5,
+        1
+      ]
+    },
+    {
+      "index": 144,
+      "_name": "view",
+      "_parent": 88,
+      "_contentSize": [
+        5,
+        2100,
+        250
+      ],
+      "_anchorPoint": [
+        0,
+        0.5,
+        1
+      ]
+    },
+    {
+      "index": 145,
+      "_name": "Layout",
+      "_parent": 144,
+      "_contentSize": [
+        5,
+        150,
+        126
+      ],
+      "_anchorPoint": [
+        0,
+        0.5,
+        1
+      ]
+    },
+    {
+      "index": 146,
+      "_name": "Label",
+      "_parent": 21,
+      "_contentSize": [
+        5,
+        6,
+        41.28
+      ]
+    },
+    {
+      "index": 148,
+      "_name": "TopButtonRightNode",
+      "_parent": 2,
+      "_contentSize": [
+        5,
+        120,
+        120
+      ],
+      "_anchorPoint": [
+        0,
+        1,
+        1
+      ],
+      "_trs": [
+        370,
+        -47,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0.85,
+        0.85,
+        1
+      ]
+    },
+    {
+      "index": 149,
+      "_name": "LoginBroadcast",
+      "_parent": 2,
+      "_trs": [
+        0,
+        -92,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 150,
+      "_name": "SimplifyModeFunctionNode",
+      "_parent": 56,
+      "_contentSize": [
+        5,
+        500,
+        200
+      ],
+      "_anchorPoint": [
+        0,
+        1,
+        0.5
+      ],
+      "_trs": [
+        405.501,
+        623,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 151,
+      "_name": "ScrollView",
+      "_parent": 150,
+      "_contentSize": [
+        5,
+        490,
+        190
+      ],
+      "_trs": [
+        -250,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 152,
+      "_name": "view",
+      "_parent": 151,
+      "_contentSize": [
+        5,
+        490,
+        190
+      ]
+    },
+    {
+      "index": 153,
+      "_name": "FlyEndPosHead",
+      "_parent": 1,
+      "_trs": [
+        -466,
+        886,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 154,
+      "_name": "FlyEndPosCoin",
+      "_parent": 1,
+      "_trs": [
+        342,
+        920,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 155,
+      "_name": "slgNoticeBg",
+      "_parent": 13,
+      "_contentSize": [
+        5,
+        766,
+        110
+      ]
+    },
+    {
+      "index": 156,
+      "_name": "BattleIcon",
+      "_parent": 13,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        -364.924,
+        -0.986,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 157,
+      "_name": "Bg",
+      "_parent": 10,
+      "_contentSize": [
+        5,
+        1080,
+        246
+      ],
+      "_trs": [
+        0,
+        -2,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 160,
+      "_name": "UnderLine",
+      "_parent": 61,
+      "_contentSize": [
+        5,
+        217,
+        25
+      ],
+      "_trs": [
+        0,
+        -112,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 163,
+      "_name": "Lock",
+      "_parent": 30,
+      "_contentSize": [
+        5,
+        80,
+        80
+      ]
+    },
+    {
+      "index": 167,
+      "_name": "UnderLine",
+      "_parent": 63,
+      "_contentSize": [
+        5,
+        217,
+        25
+      ],
+      "_trs": [
+        0,
+        -112,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 170,
+      "_name": "Lock",
+      "_parent": 31,
+      "_contentSize": [
+        5,
+        80,
+        80
+      ]
+    },
+    {
+      "index": 174,
+      "_name": "UnderLine",
+      "_parent": 65,
+      "_contentSize": [
+        5,
+        217,
+        25
+      ],
+      "_trs": [
+        0,
+        -112,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 177,
+      "_name": "Lock",
+      "_parent": 32,
+      "_contentSize": [
+        5,
+        80,
+        80
+      ]
+    },
+    {
+      "index": 181,
+      "_name": "UnderLine",
+      "_parent": 67,
+      "_contentSize": [
+        5,
+        217,
+        25
+      ],
+      "_trs": [
+        0,
+        -112,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 184,
+      "_name": "Lock",
+      "_parent": 33,
+      "_contentSize": [
+        5,
+        80,
+        80
+      ]
+    },
+    {
+      "index": 188,
+      "_name": "UnderLine",
+      "_parent": 69,
+      "_contentSize": [
+        5,
+        217,
+        25
+      ],
+      "_trs": [
+        0,
+        -112,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 191,
+      "_name": "Lock",
+      "_parent": 34,
+      "_contentSize": [
+        5,
+        80,
+        80
+      ]
+    },
+    {
+      "index": 193,
+      "_name": "ChatBtnContainer",
+      "_parent": 8,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ],
+      "_trs": [
+        0,
+        -30,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 196,
+      "_name": "icon",
+      "_parent": 72,
+      "_contentSize": [
+        5,
+        50,
+        50
+      ]
+    },
+    {
+      "index": 212,
+      "_name": "Arrow",
+      "_parent": 77,
+      "_contentSize": [
+        5,
+        17,
+        44
+      ],
+      "_anchorPoint": [
+        0,
+        1,
+        0.5
+      ],
+      "_trs": [
+        0,
+        -20,
+        0,
+        0,
+        0,
+        0.7071067811865475,
+        0.7071067811865476,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 215,
+      "_name": "checkmark",
+      "_active": false,
+      "_parent": 47,
+      "_contentSize": [
+        5,
+        25,
+        8
+      ]
+    },
+    {
+      "index": 222,
+      "_name": "Bg",
+      "_parent": 2,
+      "_contentSize": [
+        5,
+        1080,
+        180
+      ]
+    },
+    {
+      "index": 223,
+      "_name": "UsetTitleIcon",
+      "_active": false,
+      "_parent": 82,
+      "_contentSize": [
+        5,
+        50,
+        50
+      ],
+      "_trs": [
+        -2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 226,
+      "_name": "HeadNode",
+      "_parent": 131
+    },
+    {
+      "index": 227,
+      "_name": "FlashAnim",
+      "_active": false,
+      "_parent": 2,
+      "_contentSize": [
+        5,
+        398.2425537109375,
+        398.2425537109375
+      ],
+      "_trs": [
+        -470,
+        19,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 229,
+      "_name": "CoinFlashAnim",
+      "_active": false,
+      "_parent": 2,
+      "_contentSize": [
+        5,
+        398.2425537109375,
+        398.2425537109375
+      ],
+      "_trs": [
+        341,
+        51,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 232,
+      "_name": "Icon",
+      "_parent": 134,
+      "_contentSize": [
+        5,
+        44,
+        44
+      ],
+      "_trs": [
+        -78.104,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 233,
+      "_name": "Label",
+      "_parent": 134,
+      "_contentSize": [
+        5,
+        170,
+        38
+      ],
+      "_trs": [
+        29.419,
+        2.035,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 259,
+      "_name": "TimeLabel",
+      "_parent": 92,
+      "_contentSize": [
+        5,
+        0,
+        35.28
+      ]
+    },
+    {
+      "index": 262,
+      "_name": "FlyItem",
+      "_active": false,
+      "_parent": 1,
+      "_contentSize": [
+        5,
+        70,
+        70
+      ]
+    },
+    {
+      "index": 264,
+      "_name": "ActivityLookForCluesShowComponent",
+      "_parent": 1,
+      "_anchorPoint": [
+        0,
+        0.5,
+        0
+      ],
+      "_trs": [
+        -220,
+        170,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 266,
+      "_name": "HeadBg",
+      "_parent": 155,
+      "_contentSize": [
+        5,
+        130,
+        108
+      ],
+      "_trs": [
+        -365.629,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "index": 268,
+      "_name": "Bg",
+      "_parent": 57,
+      "_contentSize": [
+        5,
+        32,
+        32
+      ]
+    },
+    {
+      "index": 269,
+      "_name": "Bg",
+      "_parent": 58,
+      "_contentSize": [
+        5,
+        60,
+        60
+      ]
+    },
+    {
+      "index": 270,
+      "_name": "header_bottom",
+      "_parent": 94,
+      "_contentSize": [
+        5,
+        88,
+        88
+      ]
+    },
+    {
+      "index": 271,
+      "_name": "HeadIcon",
+      "_parent": 94,
+      "_contentSize": [
+        5,
+        88,
+        88
+      ]
+    },
+    {
+      "index": 273,
+      "_name": "Frame",
+      "_parent": 59,
+      "_contentSize": [
+        5,
+        90,
+        90
+      ]
+    },
+    {
+      "index": 274,
+      "_name": "Desc",
+      "_parent": 13,
+      "_contentSize": [
+        5,
+        580,
+        37.8
+      ],
+      "_anchorPoint": [
+        0,
+        0,
+        0.5
+      ],
+      "_trs": [
+        -290.875,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    }
+  ]
+}

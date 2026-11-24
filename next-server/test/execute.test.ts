@@ -1,0 +1,9 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {executeEffect,type CombatUnit,type ExecutionContext} from '../src/battle/execute.js';
+import {TriggerEngine} from '../src/battle/triggers.js';
+import {listener,type Buff} from '../src/battle/buffs.js';
+const u=(id:number):CombatUnit=>({id,camp:id===1?1:-1,element:1,hp:1000,hp_max:1000,attrs:{0:100,9:1000},buffs:[],cd:{},level:1,is_boss:0,hurt:0,damage:0,cure:0});
+const b=(key:number):Buff=>({id:key,key,from:1,rounds:2,stacks:1,max:1,attrs:{},tags:[]});
+test('normal hit and periodic damage use same shield pipeline',()=>{const a=u(1),d=u(2),ctx:ExecutionContext={random:()=>.5};d.buffs.push({...b(1),shield:150} as Buff);assert.equal(executeEffect(a,d,b(0),[101,1000],ctx).status,'damage');assert.equal(d.hp,1000);assert.equal(executeEffect(a,d,b(0),[118,100,103],ctx).status,'damage');assert.equal(d.hp,950);assert.equal(ctx.dealt?.[2],50);assert.equal(a.damage,50)});
+test('round-end DOT and HOT execute through shared health pipeline',()=>{const a=u(1),d=u(2),ctx:ExecutionContext={random:()=>.5};d.hp=800;d.buffs.push({...b(1),trig:listener({Id:1,Round:2,MaxCount:1,Tags:[],StartEffect:[],StartWorkChance:1000,StartWorkCondition:[],TriggerCondition:[{Items:[502]}],TriggerWorkCondition:[],TriggerEffect:[{Items:[118,100,103]},{Items:[103,500]}]})});const e=new TriggerEngine([a,d],1,{random:()=>.5,execute:(s,t,b,fx)=>{executeEffect(s as CombatUnit,t as CombatUnit,b,fx,ctx)}});e.endRound();assert.equal(d.hp,750);assert.equal(a.damage,100);assert.equal(a.cure,50);assert.equal(ctx.cured,50)});

@@ -1,0 +1,27 @@
+const {chromium}=require('/work/node_modules/playwright-core'),assert=require('node:assert/strict'),{randomUUID}=require('node:crypto');
+(async()=>{const b=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--disable-dev-shm-usage','--use-angle=swiftshader','--enable-unsafe-swiftshader']});try{
+ const p=await b.newPage({viewport:{width:360,height:740}}),errors=[];p.on('pageerror',e=>errors.push(e.message));
+ const email='next-e2e-'+randomUUID()+'@example.test',password='Test-password-123!',newPassword='Changed-password-123!';
+ await p.goto('http://127.0.0.1:18992/');
+ await p.getByRole('button',{name:'Играть гостем'}).click();
+ await p.getByRole('button',{name:'Привязать почту'}).waitFor();
+ const account=await p.getByText(/^Аккаунт:/).innerText();
+ await p.reload();await p.getByRole('button',{name:'Привязать почту'}).click();
+ await p.getByLabel('Электронная почта').fill(email);await p.getByLabel('Пароль (от 10 символов)').fill(password);
+ await p.getByRole('button',{name:'Привязать аккаунт'}).click();await p.getByText(account,{exact:true}).waitFor();
+ await p.getByRole('button',{name:'Резервные коды'}).click();
+ await p.getByText('РЕЗЕРВНЫЕ КОДЫ').waitFor();
+ const code=(await p.locator('pre').innerText()).split('\n')[0].trim();assert.equal(code.length,27);
+ await p.getByRole('button',{name:'Я сохранил коды'}).click();
+ await p.getByRole('button',{name:'Выйти из аккаунта'}).click();
+ await p.getByRole('button',{name:'Восстановить доступ по резервному коду'}).click();
+ await p.getByLabel('Электронная почта').fill(email);
+ await p.getByLabel('Резервный код').fill(code);
+ await p.getByLabel('Новый пароль').fill(newPassword);
+ await p.getByRole('button',{name:'Сменить пароль и войти'}).click();await p.getByText(account,{exact:true}).waitFor();
+ await p.reload();await p.getByText(account,{exact:true}).waitFor();
+ await p.getByRole('button',{name:'Выйти из аккаунта'}).click();
+ await p.getByLabel('Электронная почта').fill(email);await p.getByLabel('Пароль').fill(newPassword);
+ await p.getByRole('button',{name:'Войти в игру'}).click();await p.getByText(account,{exact:true}).waitFor();
+ assert.deepEqual(errors,[]);console.log('PASS real API: guest, link, code generation, recovery, reload, new password login; errors 0');
+ }finally{await b.close()}})().catch(e=>{console.error(e);process.exit(1)});

@@ -1,0 +1,134 @@
+[
+  {
+    "id": "908fca0bd6f9ff2e475ba69e7d08c61e43f2af79e563cc6d25eb491070c1ebbb",
+    "name": "Culot3501_Avatar",
+    "texture": "texture0.png",
+    "animations": [
+      "attack",
+      "burstattack",
+      "burstattack2",
+      "hurt",
+      "move",
+      "standby"
+    ]
+  },
+  {
+    "id": "099d10b7352cca8a35f77166628ee1a3865ebcdc0f5e00e33e500f933ceac583",
+    "name": "Angel_Love01_Avatar",
+    "texture": "texture0.png",
+    "animations": [
+      "attack",
+      "burstattack",
+      "burstattack2",
+      "burstattack3",
+      "hurt",
+      "move",
+      "standby"
+    ]
+  },
+  {
+    "id": "2bbae40db3e8269cd8e880221afc2a696361b4451b985b4fc9699c4006189a96",
+    "name": "Alicia4502_Avatar",
+    "texture": "texture0.png",
+    "animations": [
+      "attack",
+      "burstattack",
+      "burstattack2",
+      "hurt",
+      "move",
+      "standby"
+    ]
+  },
+  {
+    "id": "05e5f194699605efd69827a600b1f3d9a521e859ffad8cde8d22b5d2eda27bef",
+    "name": "Angel_Goddess03_Avatar",
+    "texture": "texture0.png",
+    "animations": [
+      "attack",
+      "burstattack",
+      "burstattack2",
+      "burstattack3",
+      "hurt",
+      "move",
+      "standby"
+    ]
+  },
+  {
+    "id": "e369003bb17d2bef310e0a0917d76ba10f0e13fe0fd091a7923e975c15ea10d8",
+    "name": "Alina4501_Avatar",
+    "texture": "texture0.png",
+    "animations": [
+      "attack",
+      "burstattack",
+      "burstattack2",
+      "hurt",
+      "move",
+      "standby"
+    ]
+  },
+  {
+    "id": "b29c5aced63907e5440adfbefe6493941b3ceb1d1cc7f2166135cb526dcc9e7d",
+    "name": "Tokugawa5501_Avatar",
+    "texture": "texture0.png",
+    "animations": [
+      "attack",
+      "burstattack",
+      "burstattack2",
+      "burstattack3",
+      "hurt",
+      "move",
+      "standby"
+    ]
+  },
+  {
+    "id": "e668ca756891643949d0f2e446d80cf82bc2ce4d70122110a7ebe28565c317d3",
+    "name": "Milim2501_Avatar",
+    "texture": "texture0.png",
+    "animations": [
+      "attack",
+      "burstattack",
+      "burstattack2",
+      "hurt",
+      "move",
+      "standby"
+    ]
+  },
+  {
+    "id": "42aaed91db743ff8efbbefb581eba0b9feece0d7a860aec839a51c4059a85048",
+    "name": "Irene3401_Avatar",
+    "texture": "texture0.png",
+    "animations": [
+      "attack",
+      "burstattack",
+      "burstattack2",
+      "hurt",
+      "move",
+      "standby"
+    ]
+  },
+  {
+    "id": "99f0b05708eb49c7fda9b217a3dd73a2a9daa3d4d3a898407861f33c952229f6",
+    "name": "Karin6501_Avatar",
+    "texture": "texture0.png",
+    "animations": [
+      "attack",
+      "burstattack",
+      "burstattack2",
+      "hurt",
+      "move",
+      "standby"
+    ]
+  },
+  {
+    "id": "7081da8a446da80b5054ffe5f9fe15ba3a7b77aa4d19de9644b13b2d699e3ec0",
+    "name": "Irene1501_Avatar",
+    "texture": "texture0.png",
+    "animations": [
+      "attack",
+      "burstattack",
+      "hurt",
+      "move",
+      "standby"
+    ]
+  }
+]

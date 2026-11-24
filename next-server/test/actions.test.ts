@@ -1,0 +1,9 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {planAction,consumeAction,tickCooldowns,splitDamage,type ActionUnit} from '../src/battle/actions.js';
+import {actionSkills,hitCounts} from '../src/battle/actionData.js';
+import {unitFixtures} from './unitFixtures.js';
+const actor={...structuredClone(unitFixtures[0]),camp:1} as unknown as ActionUnit;
+const enemy={...actor,id:101,camp:-1,station:0} as ActionUnit;
+test('original skill catalog and starter action selection',()=>{assert.equal(Object.keys(actionSkills).length,10948);const a=structuredClone(actor);const id=a.actives[0];a.cd[id]=0;const p=planAction([a,enemy],a,actionSkills,hitCounts,()=>.5)!;assert.equal(p.skillId,id);assert.deepEqual(p.targets,[101]);consumeAction(a,p);assert.equal(a.cd[id],actionSkills[id].Cooldown);tickCooldowns([a]);assert.equal(a.cd[id],Math.max(0,actionSkills[id].Cooldown-1));assert.equal(planAction([a,enemy],a,actionSkills,hitCounts,()=>.5,{normalOnly:true})!.skillId,a.normal);assert.equal(planAction([a,enemy],a,actionSkills,hitCounts,()=>.5,{disabled:true}),null)});
+test('fallback when burst has no target, multi-hit groups and damage conservation',()=>{const a=structuredClone(actor);a.actives=[900];a.cd={900:0};a.normal=901;const skills={900:{Id:900,Type:2,ActionIndex:1,Cooldown:3,TargetType:13,TargetSide:-1,EffectType:[1],Effects:[{Items:[1]}]},901:{Id:901,Type:1,ActionIndex:2,Cooldown:0,TargetType:21,TargetSide:-1,EffectType:[1],Effects:[{Items:[2]},{Items:[3]}]}};const p=planAction([a,enemy],a,skills,{[a.model]:{2:3}},()=>.5)!;assert.equal(p.skillId,901);assert.equal(p.hits,3);assert.deepEqual(p.groups,[{effects:[2],at:1,split:false},{effects:[3],at:2,split:false}]);assert.deepEqual(splitDamage(100,3),[33,33,34]);assert.deepEqual(splitDamage(2,3),[0,0,2])});

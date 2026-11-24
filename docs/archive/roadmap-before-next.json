@@ -1,0 +1,188 @@
+[
+  {
+    "id": "REC-01",
+    "title": "Inventory",
+    "status": "done",
+    "evidence": "reports/asset-inventory.json"
+  },
+  {
+    "id": "REC-02",
+    "title": "Extract client modules",
+    "status": "done",
+    "evidence": "decompiled/main/_index.json"
+  },
+  {
+    "id": "REC-03",
+    "title": "UUID and dependency graph",
+    "status": "done",
+    "evidence": "reports/dependency-audit.json"
+  },
+  {
+    "id": "REC-04",
+    "title": "Texture and Spine recovery",
+    "status": "deferred",
+    "evidence": "reports/REC-04-pilot.json"
+  },
+  {
+    "id": "REC-05",
+    "title": "Prefab reconstruction",
+    "status": "deferred",
+    "evidence": ""
+  },
+  {
+    "id": "REC-06",
+    "title": "Scene reconstruction",
+    "status": "deferred",
+    "evidence": ""
+  },
+  {
+    "id": "REC-07",
+    "title": "Editable Cocos Creator 2.4 project",
+    "status": "deferred",
+    "evidence": ""
+  },
+  {
+    "id": "REC-08",
+    "title": "HTML5 build",
+    "status": "deferred",
+    "evidence": ""
+  },
+  {
+    "id": "REC-09",
+    "title": "Runtime parity checks",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "REC-10",
+    "title": "Story and mechanics edit/rebuild tests",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "REC-11",
+    "title": "Content editor design",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "REC-12",
+    "title": "Independent online architecture design",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "WEB-01",
+    "title": "Isolated Elixir baseline and tests",
+    "status": "done",
+    "evidence": "runtime/logs/game1-retest.log"
+  },
+  {
+    "id": "WEB-02",
+    "title": "Local HTML5 launch and security audit",
+    "status": "in_progress",
+    "evidence": "2026-11-24 protected-public switch; 372/372 tests twice, live HTTP login guest-cookie bound, JWT HMAC and 900s expiry, debug disabled, https://rikagro.ru/game1/ 302 HTML200 shim200 WS101, persistent player account after container restart; browser gameplay not yet verified"
+  },
+  {
+    "id": "WEB-03",
+    "title": "Browser runtime and battle smoke",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "WEB-04",
+    "title": "Configuration decode and reversible editing",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "WEB-05",
+    "title": "Client module rebuild and UI editing",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "WEB-06",
+    "title": "Story, hero and mechanics edit acceptance",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "WEB-07",
+    "title": "Lunex RPG Studio",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "WEB-08",
+    "title": "Independent online architecture and Android packaging",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "RTB-03",
+    "title": "Integrated virtual millisecond battle scheduling and original skill effects",
+    "status": "paused",
+    "evidence": "Owner requested original turn-based combat; server flag disabled and original client playback restored; HTTP 200"
+  },
+  {
+    "id": "RU-01",
+    "title": "Cleanup",
+    "status": "done",
+    "evidence": "27625 source hashes verified; cleanup complete"
+  },
+  {
+    "id": "RU-02",
+    "title": "Locale export/import",
+    "status": "done",
+    "evidence": "88034 unique keys; byte-exact protobuf roundtrip"
+  },
+  {
+    "id": "RU-03",
+    "title": "Russian language and Cyrillic font",
+    "status": "in_progress",
+    "evidence": "Initial Russian draft; not deployed"
+  },
+  {
+    "id": "RU-04",
+    "title": "Main UI",
+    "status": "in_progress",
+    "evidence": "Contextual UI batch deployed; glossary and validation; mobile QA pending"
+  },
+  {
+    "id": "RU-05",
+    "title": "Heroes and skills",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "RU-06",
+    "title": "Items and equipment",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "RU-07",
+    "title": "Quests story tutorial",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "RU-08",
+    "title": "Events shops other systems",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "RU-09",
+    "title": "Localized graphics",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "RU-10",
+    "title": "Mobile QA",
+    "status": "pending",
+    "evidence": ""
+  }
+]

@@ -1,0 +1,201 @@
+# Журнал
+2026-11-24: архив удален по запросу, распакованный оригинал сохранен.
+2026-11-24: REC-01/02: job kvs1cjgt7r exit 0; инвентаризация и извлечение модулей завершены. Предупреждения Node записаны в STATUS.
+
+REC-03: проверены 20221 ссылки модулей, 51140 связей манифестов, индекс 68435 идентификаторов ресурсов. Нет отсутствующих целей модулей, файлов модулей, зависимостей пакетов и неверных индексов. Один отсутствующий versioned native ресурс Font: 898056a8-6add-431c-9738-0becf0ca273c. Проверка внутренних ссылок сериализованных объектов остается для REC-04/05/06. Отчет reports/dependency-audit.json. Следующая задача REC-04.
+
+Уточнение: EZFont.ttf найден во вложенном каталоге версии; отсутствующих versioned файлов по проверенным манифестам нет.
+
+2026-11-24: D-007: по разрешению владельца установлен системный python3-pil 12.1.1. REC-04: пилот PNG/atlas/skel извлечен, пиксели совпадают, импорт редактора не проверен. reports/REC-04-pilot.json.
+
+REC-04: job i09x2ldyq6 запущен и проверен, процесс активен.
+
+REC-04: переход на параллельную обработку xb69l8zioq.
+
+REC-04: active job uxtje05yyz; xb69l8zioq exited safely because old worker survived job_stop; old worker terminated and verified absent. Four workers nice 10.
+
+REC-04: job uxtje05yyz running; first 1000 records, zero errors; vmstat 99-100 percent busy, available RAM 6.1 GiB, disk 32 GiB free. Initial speed includes reused files; final benchmark pending.
+
+REC-04: job uxtje05yyz reached 24750/27625 with zero reported errors. Metadata manifest index created at reports/REC-04-metadata-index.json; not editor .meta files. Final native audit and import pending.
+
+REC-04: native job uxtje05yyz exit 0, 27625 records, zero conversion errors. Independent hash audit fj4kncg4oz started. Provisional texture metadata generated; editor validation and exact sampler/border recovery pending. {'texture_meta_candidates': 21887, 'frame_submeta_candidates': 21098, 'missing_or_ambiguous_texture': 23}
+
+REC-04: independent audit fj4kncg4oz passed, 27625 records, no hash failures or missing files. Shared texture candidate repair and Spine link index: {'shared_texture_candidates': 35, 'frames': 14, 'spine_link_candidates': 2701, 'spine_unresolved': 2}; conflicts 4. Editor import and packed records pending.
+
+REC-04: 354/368 packed records decoded, 14 pending; 3/4 conflicting UUIDs pixel equivalent, 1 genuine variant conflict preserved. Packed meta update {'packed_submeta_added': 354}. Exact importer settings and Spine metadata still pending; no editor validation.
+
+REC-04: redirect resolution 14/14; unresolved 0. UUID variant mapping generated (5 groups expected), reference rewrite and importer settings pending.
+
+REC-04: indexed 36336 import files; d1adcrd5qw exit 0. Static metadata audit {'sampler_recovered': 1237, 'spine_payloads': 2702, 'texture_meta': 21927, 'sprite_meta': 21466, 'duplicate_uuid': 0}. Spine atlas text preserved in report; packed texture descriptors, full editor schema and import test remain open.
+
+REC-04: packed texture scan k2sonj7au5 launched with four workers; pilot/cocos24-import prepared with PNG, atlas and skel. Official Cocos 2.4 editor supports Windows/macOS, Ubuntu native editor not supported. Import acceptance pending.
+
+REC-04: Wine pilot cja0l8nmnw exit 0, Windows cmd and Mesa llvmpipe OpenGL 4.5 verified; wine32/RPC warnings remain. Linux upstream cloned at 34e137a5431a55c9496130262b0ecbc94590c026; root license absent, old Electron and bundled native binaries, official editor required. Debian 12 isolated base build launched; no third-party scripts executed, editor import unverified.
+
+REC-04: Debian 12 image built (0ci2dcqut4); GL smoke result pending. Official Cocos forum Windows 2.4.6-p1 URL returned HTTP 200, 641335386 bytes. Vendor download and license extraction job fv4jb6xss0 started; no editor executed or modified pending license review. Wine 64-bit cmd and OpenGL 4.5 previously verified.
+
+REC-04: fv4jb6xss0 exit 0; official 2.4.6-p1 ZIP SHA256 7d33fa224dcd330163054f1bba7c29662f22470a2222cba828b204702fc8faff. Bundled LICENSE.rtf sections 1.2, 1.3.1, 3.1 reviewed: native editor modification paused; unmodified Wine route preferred subject to account/license compliance. Linux GL smoke hung; cleanup and full ZIP CRC job hhmqmsxb1x launched. Editor and Spine import not verified.
+
+REC-04: ZIP CRC passed; a9fb79cq2j exit 0, original editor extracted and remote image built. Container rec04-cocos-auth started via 4usrnrua77, loopback only 127.0.0.1:16080, dedicated home volume, read-only editor and pilot. Public HTTPS access not enabled: no existing TLS listener/certificate found. Editor/import not yet verified.
+
+2026-11-24 REC-04: noVNC is reachable at https://rikagro.ru:8443/vnc.html via standalone TLS Nginx gateway. Auth path repaired using /run/rec04-novnc/htpasswd without chmod of /home/gamedev; tested anonymous HTTP 401, authorized HTTP 200, authenticated WebSocket HTTP 101, unauthorized WS HTTP 401. rec04-novnc-expire.timer closes ONLY isolated gateway after 60 minutes; original Cocos container remains running. Termalin internal-site option unavailable because all 100 slots are occupied. Cocos account sign-in and Spine import not yet performed.
+
+REC-04: isolated HTTPS gateway moved from 8443 to free port 443; local auth 401/200 verified; expiration timer preserved.
+
+REC-04: smartphone noVNC connection confirmed; editor process exited after Dashboard initialization. Wine32, Mesa i386, winbind and X11 diagnostics compatibility image build 5jhuiamv3p in progress; GUI not verified.
+
+REC-04: compatibility build 5jhuiamv3p installed Wine32 and Mesa i386; image export pending. Job 3kmmlto4s3 waits for image and runs isolated Wine smoke and six GUI window checks. Existing protected noVNC unchanged; editor window and import not yet verified.
+
+REC-04: compatibility image export completed; Wine32 prefix initialized, OLE/RpcSs and hostname warnings remain. Jobs 5jhuiamv3p and 3kmmlto4s3 still running; six GUI checks not yet available. No noVNC switch performed.
+
+REC-04: 5jhuiamv3p exit 0, Wine cmd Windows 10.0.19043 verified. 3kmmlto4s3 GUI test in progress; live X11 inspection found only DXGI/IME helper windows, empty NET_CLIENT_LIST, login server unavailable in offline test. Job 76nk2vxy59 launched with ordinary network, no published ports, --disable-gpu and no project argument to isolate Dashboard startup. Existing noVNC unchanged. Disk 9.3 GiB before test.
+
+REC-04: user requested removal of experimental Cocos editor infrastructure. Wine/Linux Docker images, test containers, dedicated home volume, temporary HTTPS gateway and vendor downloads removed. Recovered assets, reports and pilot project retained. Editor import unverified; REC-04 remains open.
+
+D-009: user approved direct HTML5/Cocos2d-JS route, superseding D-001 editor requirement. Preserve original and all recovered assets; editor-specific tasks deferred. VPS only, no public exposure before security audit. WEB-01 baseline tests job mz7j3fw0mf.
+
+WEB-01: dependencies compiled, 202 application modules compiling. Hex reported Bandit 1.14.0 HIGH and Plug 1.20.3 MEDIUM advisories. Sequential remediation/retest job eyy4lg4h3c started after baseline mz7j3fw0mf. WEB-02 preliminary review: unsigned local JWT, URL account selection, loopback stop endpoint; no public exposure allowed. Static path uses Path.safe_relative. Runtime launch pending tests.
+
+2026-11-24 WEB-01 accepted: baseline jobs mz7j3fw0mf and eyy4lg4h3c exited 2 (369 tests, 1 failure each). Root cause was incorrect test expectation: new guild trial immediately receives legitimate NPC attacks after daily tick. Corrected only isolated test assertion to validate HP bounds and NPC ownership, no production battle logic changed. Bandit 1.15.0, Plug 1.20.4, telemetry 1.4.3. Jobs mprib5j1f4 and vwgr6goz99 exit 0: 369/369 passed with seeds 412431 and 175797; after web patch another 369/369; mix hex.audit clean. Four RpcProto.js cross-language checks report skipped (missing RACON_DECOMPILED). WEB-02 sandbox qb-web02-sandbox live, 127.0.0.1:18081 only, readonly filesystem and client, no public port. Fixed static path for empty path and optional container bind mode, original unchanged. HTTP root 302, HTML 200, shim 200, JS 200, config 200, bundle 200, WebP/atlas/skel/mp3 200, Range 206, missing 404, WS 101. Full browser rendering/login/battle not yet verified, security audit open: unsigned local JWT and account selection. Other projects untouched.
+
+2026-11-24 WEB-02: user approved Termalin full access. Certificate /etc/letsencrypt/live/game1-rikagro valid until 2027-02-22. Created dedicated Nginx /etc/nginx/conf.d/game1.conf (only rikagro.ru:443 /game1/ proxy), Basic Auth credentials only on VPS /etc/nginx/game1 (640 htpasswd, 600 password). nginx -t success, reload success; HTTPS unauthenticated /game1/ and game HTML/shim 401, /game1/__racon/stop 403, HTTP root 200. qb-web02-sandbox active loopback 127.0.0.1:18081, root HTTPS outside /game1/ 404. Test job sg9ryxzsy2 exited 0; 369/369 twice. Authenticated live request could not be tested because tool safety blocked commands involving credential use. Browser gameplay still not verified; WEB-02 not marked done. Original game and other projects untouched.
+
+2026-11-24 WEB-02 PUBLIC GUEST: user explicitly authorized Termalin deployment and password removal. Workdir runtime/server only: HMAC-SHA256 signed 900-second launcher code, random per-browser guest cookie (HttpOnly/Secure/SameSite=Lax), checked cookie binding on /__game/login, reject arbitrary Pid, disable login_debug in public mode. Runtime data_dir points to persistent /work/server/data (private chmod 700), mounted writable in isolated Docker qb-game1-public; auto restart unless-stopped. Original read-only; GitHub and unrelated services untouched. Tests 3 guest targeted + 372 total twice (0 failures) in logs/game1-auth-final-tests.log, job 57u11qwshh exit 0. Live end-to-end: no password root 302; HTML/shim/engine 200; WebSocket upgrade 101; signed token + correct browser cookie login succeeded, mismatched/no cookie rejected ErrCode 1012, arbitrary Pid ignored; UID retained after container restart and accounts.json/secret persisted. Dedicated nginx /etc/nginx/conf.d/game1.conf game1 Basic Auth off, referrer no-referrer and noindex headers, /__racon/stop blocked 403, nginx -t success, reload. Main HTTP rikagro.ru remained 200. Browser visual rendering/gameplay not verified; WEB-02 remains in_progress. Note: bearer WS token from successful login remains sensitive and persistent, no full security audit/rate limit. Backups in backups/*.before-game1 and nginx-game1-before-*.conf. Previous test-only container qb-web02-previous and qb-game1-before-persistence stopped, not used.
+
+RTB-01: isolated experimental combat core created; parallel damage and persistent positions tested. Original client integration and visual acceptance pending.
+
+RTB-01 correction: initial test failed due to sequential position reads; fixed with tick-start snapshot. Retest passed; no client integration yet.
+
+2026-11-24 RTB-02: experimental /game1-rtb/ live, isolated Docker qb-game1-rtb on loopback 18082; original /game1/ unchanged. Browser Playwright followed tutorial -> Adventure -> Start -> 1-1 victory -> rewards/level-up -> 1-2. Runtime metrics first battle 4 actors, 7 attack actions, 10 hit events, 86 overlapping update frames, 1 reposition, 0 forced returns, 0 runtime errors. Original server battle report and reward settlement retained; real-time report playback only, server turn-based engine not converted. Nginx TLS proxy and cookie path dedicated. Browser log experiments/rtb01/build/browser-control.log; source experiments/rtb01/public/runtime.js, build.mjs; output experiments/rtb01/build/index.a6b84.js; build-manifest.json. Further testing of all skills and multi-wave mechanics still required.
+
+2026-11-24: project renamed to /home/gamedev/rocbogini. RTB 0.2 is sole active version, container rocbogini, /game1 redirects to /game1-rtb/. Legacy server and player data archived, no deletion. Next development RTB 0.3 server timing.
+
+RTB-03: skill metadata adapter and independent cooldown prototype implemented; 14 tests passed if confirmed in reports/RTB03-skill-adapter.log. Initial fixture syntax corrected. Original table integration and effect execution pending; production unchanged.
+
+RTB-03: real table tests passed 2/2, 10948 skill IDs, 354 hero rows, 1326 unlocked IDs at level 100/star 5. Adapter copied into main server source under battle/rtb; not wired into battle execution or deployed. Test-only 1000ms conversion. Report reports/RTB03-real-tables.log. VPS only.
+
+2026-11-24 RTB-03 (Termalin): main battle.ex now accepts scheduler: :realtime with positive round_ms (default 1000). It uses virtual millisecond action due times and existing action/perform/after_action/buff/report pipeline, including original damage, healing, shields, stuns and passives. No new protocol: compatibility BattleReport (NewRound, HeroAction, RoundEnd). Classic scheduler: :rounds remains default and unchanged. Main-source scheduler.ex and 4 tests added. Test run: 31/31 (including existing battle and trigger suites) passed with offline isolated container, 0 failures; original cross-language RpcProto test skipped without RACON_DECOMPILED. THIS IS NOT yet full native simultaneous RTB or live deployment. Current rocbogini stays RTB 0.2. Backup: backups/rtb03-server-20261124. Next: further integration tests, correct timing/per-action cooldown and client report playback, then guarded live rollout and browser verification.
+
+2026-11-24 Termalin stage 2: 34/34 suite passed in offline Docker; road map reread and extended. Production process unchanged. Next task: skill/action cooldown independence and safe game integration.
+
+2026-11-24 Termalin: RTB-03 story server rollout using main source, compiled 4 beams, restarted rocbogini. HTTP briefly 502 during startup then HTTP 200, installed simulator smoke passed. User confirmed no production players. Roadmap reread and updated, continue work via Termalin on browser battle challenge/settlement and native concurrency.
+
+RTB-03 Termalin: enabled story regression initially 2/6 failures (timeout); actual speed 58-60, corrected provisional reference from 1000 to 60. Enabled-mode suite 40 tests, 0 failures (one cross-language check skipped); real Dispatch 725 handlers. Scheduler beam deployed, HTTP 200. Browser gameplay and native concurrency pending.
+
+2026-11-24 Termalin: owner requested original turn-based combat due to balance. Disabled RTB03 story flag explicitly, restored original client JS playback (verified original SHA256), restarted game; HTTP 200. RTB development paused, source retained, no player data changed. Backup backups/turnbased-restore-20261124.
+
+2026-11-24 Termalin: summon freeze investigation found repeated missing Hero_Culot1401 ASTC texture HTTP 404; WebP counterpart present. All 176 local ASTC files have WebP counterparts. Disabled ASTC selection in Cocos texture selector, cache-busted engine URL, node syntax and public engine hash/WebP HTTP verified. Android summon retest pending. Turn-based combat untouched. Backup backups/summon-texture-20261124.
+
+2026-11-24 Termalin: owner confirmed summon fix and authorized cleanup. RU-01 complete: 27625 source hashes verified, sample recovery passed, recovery script paths corrected, pilot archived, browser executable verified; removed recovered/native, pilot, browser-test/packages only. Runtime and player data retained. RU-02 next: lossless locale export/import, then Cyrillic font and Russian UI. RTB remains paused.
+
+RU-02 complete via Termalin: tools/locale_codec.py exports/imports 88034 unique English keys with byte-exact decompressed protobuf roundtrip. Initial Russian draft in localization/ru.json and packed ru verified; not deployed. RU-03 next: language registration, Cyrillic font, cache/version handling; RU-04 UI; RU-05 heroes/skills; RU-06 items; RU-07 story/tasks/tutorial; RU-08 events/shops; RU-09 graphics; RU-10 mobile QA.
+
+RU-03 Termalin: initial Russian preview deployed using existing en locale slot to preserve English graphical bundles and server language routing. Original en and EZFont backed up in backups/ru03-20261124. DejaVu Sans with Cyrillic installed, license retained. Packed translation roundtrip verified and public locale/font hashes checked. Native ru selector and mobile visual QA pending. RU-04 initial UI translation expanded. No combat or account changes.
+
+RU-04 Termalin: contextual UI batch (battle, lottery, inventory, tournament); glossary and reproducible translation script saved. Placeholder and markup validation passed for UI, protobuf roundtrip and public locale hash verified. Ambiguous terms left untranslated pending mechanic review. Mobile QA pending.
+
+PIXI migration: user requested new PixiJS + Spine + TypeScript client, preserve turn-based balance and contextual Russian localization. PIXI-01 foundation created separately under pixi-client, pinned PixiJS 7.4.3 and Spine 3.8 runtime 4.0.6, React/TS/Vite production build verified. Existing live client untouched. Next PIXI-02 real Spine 3.8.99 asset loading from original indexes and Lunex Asset Library; PIXI-03 protocol adapter; PIXI-04 vertical slice login/home/formation/story battle/settlement; PIXI-05 feature parity; PIXI-06 admin/content editors; PIXI-07 mobile QA and APK/PWA. Elixir retained initially; PostgreSQL migration separate. Original-client localization paused in favor of reusable translations. No public deployment or asset license claims.
+
+PIXI-02 in progress via Termalin: Culot1401 avatar skeleton/atlas/WebP extracted from original client, TypeScript loader and animation selector compiled. Browser smoke blocked by WebGL renderer initialization on VPS; no visual or animation pass claimed. Next diagnose software WebGL or test on Android. Original game untouched.
+
+PIXI-02 Termalin: owner deferred GitHub, VPS only. Prefer Lunex Asset Library adapted assets. Catalog contains 2696 queensblade records; imported Culot1401_Avatar with verified skeleton/texture SHA256 using pixi-client/tools/import_library.py, client switched to library assets, build passed. Browser animation validation remains pending. Library unchanged.
+
+PIXI-02 Termalin: full migration confirmed. Imported 10 distinct avatar sets from library with prior successful runtime decode records and verified hashes. Added modular 5x5 scene and sequential animation demo, production build passed. Demo has no damage/rewards and is not connected to server. Browser QA pending. Next protocol adapter for original adventure challenge/report/settlement. VPS only, original game untouched.
+
+ARCH-C approved: staged migration to Node.js/TypeScript/Fastify, PostgreSQL, Redis, REST/WebSocket. Elixir remains live reference until parity and cutover approval. VPS only; GitHub deferred. No production data changes. SERVER-01 isolated foundation; SERVER-02 protocol/table inventory and parity fixtures; SERVER-03 auth/persistence; SERVER-04 deterministic battle parity; SERVER-05 progression/economy/summon; SERVER-06 remaining feature parity; SERVER-07 migration and cutover.
+
+SERVER-01: isolated Fastify/TypeScript foundation created in next-server; pg/redis dependencies installed, not connected. Health/capabilities tests passed. WebSocket rejects unauthenticated connections by design; no gameplay implemented. No public listener or production changes.
+
+NEXT roadmap approved: 28 stages, archived legacy roadmap, NEXT-003 static inventory generated; detailed screen/formula mapping pending. Original unchanged, VPS only.
+
+NEXT-003: static screen/request/config/battle function mapping saved in reports/NEXT-003-mapping.json; manual classification and formula parity pending. No original changes.
+
+NEXT-003: documented missing GenreEnergy baseline gap, original 3x3 positions per camp, turn ordering, attribute layers, economy and battle test contracts in reports/NEXT-003-findings.md. No original changes.
+
+NEXT-003: isolated offline Elixir baseline 379 tests, 0 failures; four client protobuf cross-check branches skipped (Node unavailable). Exported 4 seeded battle reports and 3 attribute panel fixtures. Screen classification remains pending. Original unchanged.
+
+NEXT-003: generated provisional migration coverage for all 657 explicit handlers and 1068 screen candidates. Manual review of indirect UI dependencies and unsupported RPCs remains; do not claim full coverage.
+
+NEXT-003: UI dependency traversal and schema/handler gap inventory generated; ambiguous UI and unhandled schema requests require review. Original unchanged.
+
+NEXT-003: all 270 schema gaps indexed by non-protocol client references and reference documentation. Runtime reachability remains unverified. See reports/NEXT-003-gap-review.json. Original unchanged.
+
+NEXT-003 closed as inventory baseline, not full runtime parity. Deferred review assigned in reports/NEXT-003-deferred.json; final reconciliation NEXT-028. NEXT-004 active. Original unchanged.
+
+NEXT-004: isolated Chromium SwiftShader smoke passed squad loading and sequential attacks; screenshot reports/NEXT-004-squad.png; visual inspection and cache/performance pending.
+
+NEXT-004: shared Spine cache and responsive canvas built and browser-tested; software renderer metrics in reports/NEXT-004-cache-smoke.log. Cache eviction and visual inspection pending.
+
+NEXT-004: reference-counted Spine leases; idle cache limited to 4 (provisional); browser test verified 10 active, 4 idle, successful reentry, zero errors. Long-run memory and visual QA pending. Original unchanged.
+
+NEXT-004: 15 exit/reentry cycles passed after test HTTP server favicon handling; initial 404 retained in log. GPU memory and prolonged soak not measured.
+
+NEXT-004: basic bounded hit VFX, damage label demo value 100, ticker cleanup; build and browser smoke passed. Visual inspection and effect-specific assertions pending.
+
+NEXT-004: final smoke effect lifecycle PASS, but visual inspection of reports/NEXT-004-hit.png shows shadows and VFX instead of full heroes. Stage remains open; inspect atlas/skins and asset selection.
+
+NEXT-004: fixed missing skin1 activation and centered pivot using library studio reference. Screenshot visually inspected: heroes visible, inconsistent apparent size remains; software renderer 50 FPS, zero errors. Stage open.
+
+NEXT-004: body attachment bounds normalization for all 10 heroes; screenshot inspected, all visible at comparable body scale; software FPS 28, JS heap 22.3 MB, zero errors. Aura overlap and performance remain; stage open.
+
+NEXT-004: three provisional quality presets, decorative attachment filter, particle counts and FPS caps; browser switch test passed. Visual verification of all presets and device profiling pending.
+
+NEXT-004: persistent quality mode and auto downgrade after two 3s slow windows; browser smoke passed. Thresholds provisional, real device QA pending.
+
+NEXT-004 accepted as rendering foundation after visual comparison of low/medium/high screenshots; all ten heroes visible. Aura art refinement NEXT-013; device profiling and long soak NEXT-027. NEXT-005 started.
+
+NEXT-005: isolated Compose PostgreSQL 16 and Redis 7 healthy, no published ports; Redis ephemeral by design. API integration and migrations pending.
+
+NEXT-005: storage pool, Redis client, readiness endpoint and initial transactional migration; isolated integration tests 3/3 passed, no skips. API container and shared contracts pending.
+
+NEXT-005: non-root multi-stage API container healthy, isolated restart of all three services verified migration timestamp preserved and readiness HTTP 200. Shared contracts and final acceptance pending.
+
+NEXT-005 accepted: shared contracts 4/4, isolated reference 379 tests passed including four JS decoder branches using reconstructed loader with numeric int64 mode (safe-range fixtures only). NEXT-006 started.
+
+NEXT-006: migration 2 accounts/sessions, salted scrypt, hashed opaque guest tokens with 365-day expiration; isolated tests passed. No public auth routes yet; rate limits, registration and recovery pending.
+
+NEXT-006: isolated registration/login/guest/session/logout routes and provisional Redis IP limit 30/min; integration tests passed. Email verification, guest linking, recovery, rate-limit dedicated tests and deployment pending.
+
+NEXT-026: 1101 translated entries, +305 event/UI strings, placeholder/tag and codec roundtrip verified; new client localization draft only.
+
+NEXT-006: Russian login preview built; browser smoke PASS at 320/360/768px, tabs, validation and preview error. API integration pending.
+
+NEXT-006 progress: new Pixi client login/register/guest, auto-session restoration, logout, guest email+password linking, preserving account UUID and rotating bearer. Browser tests pass with mocked API. Server integration tests 9/9 against isolated PostgreSQL+Redis; private API container deployed healthy, /ready 200. Original remains HTTP 200. No production exposure, no email delivery/recovery, no full end-to-end browser-to-real-API test yet.
+
+NEXT-006 ACCEPTED: new API isolated healthy; real-browser E2E guest -> email link -> recovery codes -> password reset -> reload -> new password login PASS. 10/10 server tests. Original HTTP 200. Server list currently one intentionally available test server; email verification out of scope while delivery disabled.
+
+NEXT-007: migration 4, lazy profile and item initialization from original template, authenticated GET profile, 11/11 tests. Rename pricing, avatar editing, progression and client UI pending.
+
+NEXT-007: original config exported, PATCH profile with atomic rename costs 0/100/300, name length 3-8, original icon/frame validation, 11/11 tests. UI and progression pending.
+
+NEXT-007: Russian responsive profile UI and rename API integration built. Avatar placeholder, original portrait mapping not verified; browser integration and progression pending.
+
+NEXT-007: 600 original XP thresholds and diamond rewards exported; atomic internal XP service, 12/12 tests; real browser profile rename/reload/mobile fit PASS. Avatar graphics and energy semantics pending; module unlock integration deferred to gameplay.
+
+NEXT-007: 584 original UserInfo images SHA-matched to library, avatar/frame selector, real browser avatar change and rename PASS. Default frame 3101 missing native image, CSS fallback; intelligence item 7 dispatch resource, no invented campaign stamina. Remaining default frame mapping and final parity review.
+
+NEXT-008 started: SHA-verified original city background from library, real profile/currency header, nine original module labels, navigation and battle return. Browser PASS at 320/360/768 widths. Unported modules explicitly marked, layout provisional. NEXT-007 remains open for frame parity.
+
+Test stand: https://rikagro.ru/testtest/ uses isolated Next API and database. Publish verified stages with tools/publish_testtest.sh. Public temporary preview, no production cutover.
+
+User decision: follow original approved 28-stage sequence; graphics within each stage, final visual polish NEXT-026; publish verified increments to testtest.
+
+NEXT-007 functional acceptance: real API avatar/frame/rename persistence PASS; default frame 3101 visual fallback deferred NEXT-026, XP reward callers and dispatch gameplay at their respective stages. Published testtest. NEXT-008 active.
+
+NEXT-008 original five dock destinations, separate mail/friends/rank/bag/task shortcuts, modal shell, real browser PASS, published testtest. Original atlas graphics and real notification state still pending.
+
+NEXT-008: eight atlas sprites extracted from SHA-matched library texture; seven used in dock and shortcuts. Browser PASS; published. Remaining city graphics, notifications. NEXT-013 provisional impact timing 45%, user accepted preview; exact per-animation timing deferred.
+
+NEXT-008: user requested original UI reconstruction. 23 original MainUIPanel atlas sprites extracted with SHA verification, Header/Bottom and hexagon frames integrated. Responsive browser PASS; published. Prefab geometry, remaining window frames, notification state and exact visual parity pending.
+
+NEXT-008: extracted 184 MainUIPanel node records into public/city/prefab-layout.json; applied original Header/Dock proportions, dock centers and currency coordinates. Browser PASS 320/360/768; published. Full hierarchy/anchors and modal graphics still pending.
+
+NEXT-008: imported 10 SHA-verified Common atlas sprites with capInsets metadata; applied nine-slice modal/profile borders, title and close button. City/profile browser PASS, published. Exact prefab-specific frame selection, remaining city geometry and notifications pending. NEXT-007 provisional portrait scale 74% verified functional.
+
+NEXT-008.1: extracted nine module IDs, coordinates and sizes from MainScenePanel prefab into src/city/sceneLayout.ts; replaced grid with responsive mapped coordinates. Browser PASS, published. Vertical coordinates normalized to available area; exact scene camera and individual module graphics pending.
+
+NEXT-008.2 partial: paginated visual avatar/frame picker added, original thumbnails and real PATCH API; existing profile regression PASS, published. Direct picker interaction test and exact original picker geometry pending; numeric selects retained. NEXT-008.1 individual module sprites still pending.
+
+NEXT-008.2: filtered profile manifest against original server IDs (579 resources), removed numeric selects, sorted visual picker, added default frame option. Direct picker selection and persistence browser PASS after sorting fix; published. Original picker geometry and animated frames pending.
+
+NEXT-008.2: original HeadFrame table (130 rows) verified in isolated Elixir reference. Only HeadFrame 3177 has Effect=UI_effect_TXK_wujingzhidian. Spine 3.8 skeleton, atlas and texture copied with SHA256 checks from Lunex Asset Library and mapped to original animation Ani_UI_effect_TXK_wujingzhidian. Profile now renders actual Spine overlay only for 3177; 129 other frames remain static (correct). Playwright with actual Next API checked frame selection, animation canvas, reload, removal, viewport; profile/city regression PASS. Published https://rikagro.ru/testtest/, original game HTTP200. NEXT-008 remains in_progress: exact original window/picker prefab, city building sprites, notifications and visual QA pending.

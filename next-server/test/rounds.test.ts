@@ -1,0 +1,7 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {runRounds,turnOrder,winner,type RoundUnit} from '../src/battle/rounds.js';
+const u=(id:number,camp:1|-1,station:number,speed:number,hp=100):RoundUnit=>({id,camp,station,hp,attrs:{3:speed}});
+test('original speed, attacker tie priority, station tie priority and dead exclusion',()=>{assert.deepEqual(turnOrder([u(104,-1,3,60),u(4,1,3,60),u(2,1,1,60),u(105,-1,4,75),u(5,1,4,100,0)]),[105,2,4,104])});
+test('round snapshot, dead skip, victory and immutable input',()=>{const input=[u(2,1,1,60),u(4,1,3,50),u(101,-1,0,55),u(102,-1,1,40)];const r=runRounds(input,5,{action:(units,a)=>{if(a.id===2){units.find(x=>x.id===101)!.hp=0;units.find(x=>x.id===102)!.attrs[3]=100}else if(a.id===4)units.find(x=>x.id===102)!.hp=0}});assert.equal(r.result,'attacker_win');assert.equal(r.rounds,1);assert.deepEqual(r.events.filter(e=>e.kind==='turn').map(e=>e.actor),[2,4]);assert.equal(input[2].hp,100)});
+test('round start speed, round end resolution, timeout and simultaneous defeat priority',()=>{const input=[u(2,1,1,60),u(101,-1,0,50)];const r=runRounds(input,2,{start:(units)=>{units[1].attrs[3]=70},action:()=>{}});assert.equal(r.result,'timeout');assert.deepEqual(r.events.filter(e=>e.kind==='turn').map(e=>e.actor),[101,2,101,2]);assert.equal(winner(input.map(x=>({...x,hp:0}))),'attacker_win');assert.equal(runRounds(input,2,{action:()=>{},end:units=>{units[0].hp=0}}).result,'defender_win')});

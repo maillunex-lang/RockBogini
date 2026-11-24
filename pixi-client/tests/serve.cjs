@@ -1,0 +1,2 @@
+const h=require('http'),f=require('fs'),p=require('path');
+h.createServer((q,s)=>{if(q.url==='/favicon.ico'){s.statusCode=204;return s.end()}let x=p.join('/client/dist',q.url==='/'?'index.html':q.url);let t={'.css':'text/css','.js':'text/javascript','.html':'text/html','.json':'application/json','.png':'image/png'};s.setHeader('Content-Type',t[p.extname(x)]||'application/octet-stream');f.readFile(x,(e,b)=>{s.statusCode=e?404:200;s.end(e?'missing':b)})}).listen(18992,'127.0.0.1')

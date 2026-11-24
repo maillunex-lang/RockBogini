@@ -1,0 +1,74 @@
+[
+  {
+    "id": "REC-01",
+    "title": "Inventory",
+    "status": "done",
+    "evidence": "reports/asset-inventory.json"
+  },
+  {
+    "id": "REC-02",
+    "title": "Extract client modules",
+    "status": "done",
+    "evidence": "decompiled/main/_index.json"
+  },
+  {
+    "id": "REC-03",
+    "title": "UUID and dependency graph",
+    "status": "done",
+    "evidence": "reports/dependency-audit.json"
+  },
+  {
+    "id": "REC-04",
+    "title": "Texture and Spine recovery",
+    "status": "in_progress",
+    "evidence": "reports/REC-04-pilot.json"
+  },
+  {
+    "id": "REC-05",
+    "title": "Prefab reconstruction",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "REC-06",
+    "title": "Scene reconstruction",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "REC-07",
+    "title": "Editable Cocos Creator 2.4 project",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "REC-08",
+    "title": "HTML5 build",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "REC-09",
+    "title": "Runtime parity checks",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "REC-10",
+    "title": "Story and mechanics edit/rebuild tests",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "REC-11",
+    "title": "Content editor design",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "REC-12",
+    "title": "Independent online architecture design",
+    "status": "pending",
+    "evidence": ""
+  }
+]

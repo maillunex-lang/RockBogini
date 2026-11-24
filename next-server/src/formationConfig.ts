@@ -1,0 +1,1 @@
+export const formations = [{"Data":[2,4,5,6,7,9],"Id":101,"Icon":"formation1"},{"Data":[1,3,4,5,6,8],"Id":102,"Icon":"formation2"},{"Data":[1,2,3,4,5,8],"Id":103,"Icon":"formation3"},{"Data":[2,4,5,7,8,9],"Id":104,"Icon":"formation4"},{"Data":[1,3,4,5,7,9],"Id":105,"Icon":"formation5"},{"Data":[2,4,5,6,8,9],"Id":106,"Icon":"formation6"}];

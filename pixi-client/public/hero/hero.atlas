@@ -1,0 +1,271 @@
+Culot1401_Avatar.png
+size: 252,523
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+eff_Shadow
+  rotate: true
+  xy: 110, 316
+  size: 112, 34
+  orig: 112, 34
+  offset: 0, 0
+  index: -1
+skin1/Arm_L
+  rotate: true
+  xy: 58, 96
+  size: 21, 29
+  orig: 21, 29
+  offset: 0, 0
+  index: -1
+skin1/Arm_L_B
+  rotate: true
+  xy: 1, 80
+  size: 24, 40
+  orig: 24, 40
+  offset: 0, 0
+  index: -1
+skin1/Arm_L_S
+  rotate: false
+  xy: 1, 154
+  size: 28, 40
+  orig: 28, 40
+  offset: 0, 0
+  index: -1
+skin1/Arm_R
+  rotate: false
+  xy: 104, 1
+  size: 26, 35
+  orig: 26, 35
+  offset: 0, 0
+  index: -1
+skin1/Arm_R_B
+  rotate: false
+  xy: 227, 127
+  size: 24, 43
+  orig: 24, 43
+  offset: 0, 0
+  index: -1
+skin1/Arm_R_S
+  rotate: true
+  xy: 131, 1
+  size: 27, 43
+  orig: 27, 43
+  offset: 0, 0
+  index: -1
+skin1/Belt01
+  rotate: false
+  xy: 58, 118
+  size: 40, 25
+  orig: 40, 25
+  offset: 0, 0
+  index: -1
+skin1/Belt02
+  rotate: true
+  xy: 206, 37
+  size: 60, 42
+  orig: 60, 42
+  offset: 0, 0
+  index: -1
+skin1/Body
+  rotate: false
+  xy: 56, 11
+  size: 47, 82
+  orig: 47, 82
+  offset: 0, 0
+  index: -1
+skin1/Breast_L
+  rotate: true
+  xy: 219, 100
+  size: 26, 32
+  orig: 26, 32
+  offset: 0, 0
+  index: -1
+skin1/Breast_R
+  rotate: false
+  xy: 1, 48
+  size: 26, 31
+  orig: 26, 31
+  offset: 0, 0
+  index: -1
+skin1/Eye_Attack
+  rotate: false
+  xy: 1, 105
+  size: 56, 38
+  orig: 56, 38
+  offset: 0, 0
+  index: -1
+skin1/Eye_Hit
+  rotate: false
+  xy: 1, 1
+  size: 54, 35
+  orig: 54, 35
+  offset: 0, 0
+  index: -1
+skin1/Eye_Normal
+  rotate: true
+  xy: 104, 37
+  size: 56, 33
+  orig: 56, 33
+  offset: 0, 0
+  index: -1
+skin1/Hair01
+  rotate: false
+  xy: 138, 86
+  size: 67, 60
+  orig: 67, 60
+  offset: 0, 0
+  index: -1
+skin1/Hair02
+  rotate: false
+  xy: 110, 202
+  size: 32, 113
+  orig: 32, 113
+  offset: 0, 0
+  index: -1
+skin1/Hair03
+  rotate: false
+  xy: 229, 299
+  size: 22, 90
+  orig: 22, 90
+  offset: 0, 0
+  index: -1
+skin1/Hair04
+  rotate: false
+  xy: 38, 201
+  size: 41, 110
+  orig: 41, 110
+  offset: 0, 0
+  index: -1
+skin1/Hair05
+  rotate: false
+  xy: 106, 94
+  size: 31, 107
+  orig: 31, 107
+  offset: 0, 0
+  index: -1
+skin1/Hair06
+  rotate: false
+  xy: 38, 312
+  size: 71, 116
+  orig: 71, 116
+  offset: 0, 0
+  index: -1
+skin1/Head_Attack
+  rotate: true
+  xy: 145, 309
+  size: 80, 83
+  orig: 80, 83
+  offset: 0, 0
+  index: -1
+skin1/Head_Hit
+  rotate: true
+  xy: 143, 228
+  size: 80, 83
+  orig: 80, 83
+  offset: 0, 0
+  index: -1
+skin1/Head_Normal
+  rotate: true
+  xy: 143, 147
+  size: 80, 83
+  orig: 80, 83
+  offset: 0, 0
+  index: -1
+skin1/Leg_L_Calf
+  rotate: false
+  xy: 227, 235
+  size: 21, 63
+  orig: 21, 63
+  offset: 0, 0
+  index: -1
+skin1/Leg_L_Part
+  rotate: false
+  xy: 241, 18
+  size: 10, 18
+  orig: 10, 18
+  offset: 0, 0
+  index: -1
+skin1/Leg_L_Thigh
+  rotate: false
+  xy: 80, 256
+  size: 26, 55
+  orig: 26, 55
+  offset: 0, 0
+  index: -1
+skin1/Leg_R_Calf
+  rotate: false
+  xy: 227, 171
+  size: 21, 63
+  orig: 21, 63
+  offset: 0, 0
+  index: -1
+skin1/Leg_R_Part
+  rotate: false
+  xy: 175, 9
+  size: 23, 19
+  orig: 23, 19
+  offset: 0, 0
+  index: -1
+skin1/Leg_R_Thigh
+  rotate: false
+  xy: 80, 201
+  size: 25, 54
+  orig: 25, 54
+  offset: 0, 0
+  index: -1
+skin1/Neck
+  rotate: false
+  xy: 202, 5
+  size: 38, 31
+  orig: 38, 31
+  offset: 0, 0
+  index: -1
+skin1/Neck_Parts
+  rotate: true
+  xy: 28, 48
+  size: 31, 18
+  orig: 31, 18
+  offset: 0, 0
+  index: -1
+skin1/Parts01
+  rotate: false
+  xy: 138, 29
+  size: 63, 56
+  orig: 63, 56
+  offset: 0, 0
+  index: -1
+skin1/Parts02
+  rotate: false
+  xy: 1, 429
+  size: 145, 93
+  orig: 145, 93
+  offset: 0, 0
+  index: -1
+skin1/Parts03
+  rotate: false
+  xy: 38, 144
+  size: 63, 56
+  orig: 63, 56
+  offset: 0, 0
+  index: -1
+skin1/Parts04
+  rotate: true
+  xy: 206, 98
+  size: 48, 12
+  orig: 48, 12
+  offset: 0, 0
+  index: -1
+skin1/Weapon
+  rotate: false
+  xy: 1, 195
+  size: 36, 233
+  orig: 36, 233
+  offset: 0, 0
+  index: -1
+skin1/cloak
+  rotate: false
+  xy: 147, 390
+  size: 99, 132
+  orig: 99, 132
+  offset: 0, 0
+  index: -1

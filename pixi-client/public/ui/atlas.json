@@ -1,0 +1,235 @@
+{
+  "sha256": "d1b98a73aa51b1fc8038e4fa55507d43a00d3cc64fc96e244f773a428661a1e6",
+  "sprites": {
+    "commonPanelBg1": {
+      "name": "commonPanelBg1",
+      "rect": [
+        220,
+        994,
+        132,
+        132
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        132,
+        132
+      ],
+      "capInsets": [
+        15,
+        15,
+        15,
+        15
+      ]
+    },
+    "commonPanelBg2": {
+      "name": "commonPanelBg2",
+      "rect": [
+        364,
+        1154,
+        124,
+        124
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        124,
+        124
+      ],
+      "capInsets": [
+        24,
+        24,
+        25,
+        27
+      ]
+    },
+    "commonPanelBg3": {
+      "name": "commonPanelBg3",
+      "rect": [
+        626,
+        1040,
+        132,
+        132
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        132,
+        132
+      ],
+      "capInsets": [
+        15,
+        15,
+        15,
+        15
+      ]
+    },
+    "titleBg1": {
+      "name": "titleBg1",
+      "rect": [
+        646,
+        2,
+        500,
+        100
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        500,
+        100
+      ],
+      "capInsets": [
+        95,
+        37,
+        95,
+        37
+      ]
+    },
+    "closeBtn": {
+      "name": "closeBtn",
+      "rect": [
+        354,
+        1016,
+        134,
+        136
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        134,
+        136
+      ],
+      "capInsets": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "btn_orange": {
+      "name": "btn_orange",
+      "rect": [
+        1006,
+        140,
+        322,
+        112
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        322,
+        112
+      ],
+      "capInsets": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "btn_blue": {
+      "name": "btn_blue",
+      "rect": [
+        516,
+        286,
+        322,
+        112
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        322,
+        112
+      ],
+      "capInsets": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "btn_gray": {
+      "name": "btn_gray",
+      "rect": [
+        446,
+        400,
+        322,
+        112
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        322,
+        112
+      ],
+      "capInsets": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "mail_btn": {
+      "name": "mail_btn",
+      "rect": [
+        1412,
+        1438,
+        120,
+        120
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        120,
+        120
+      ],
+      "capInsets": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "attr_bg": {
+      "name": "attr_bg",
+      "rect": [
+        1948,
+        1246,
+        64,
+        64
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        64,
+        64
+      ],
+      "capInsets": [
+        30,
+        30,
+        30,
+        30
+      ]
+    }
+  }
+}
