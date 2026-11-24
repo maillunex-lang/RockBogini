@@ -8,16 +8,17 @@ import {BuffBase} from './BuffBase.js';
 import {executeEffect,type CombatUnit,type ExecutionContext} from './execute.js';
 import {applyBuff,removeBuff} from './applyBuff.js';
 import {effectiveAttr,immune,hasTag,dropTemp,holdAfterDeath} from './buffs.js';
-import {selectTargets} from './target.js';
+import {selectTargets,eventTargets,type TargetEvent} from './target.js';
 import {baseValue} from './periodic.js';
 import {TriggerEngine,type BattleEvent} from './triggers.js';
 export type Fighter=CombatUnit&ActionUnit&{passives?:number[]};
 export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15){
- const acted=new Set<number>();const done=new Set<number>();let ending=false;let key=0,extra=0;let engine:TriggerEngine;const queue:{actor:Fighter;sid:number;atype:number}[]=[];const issues=new Set<string>();const journal:{round:number;actor:number;target:number;code:number;hp:number}[]=[];
- const instant=new Set([101,102,105,137,118,103,104,119,112,113,115,116,131,121]);
+ const acted=new Set<number>();const done=new Set<number>();let ending=false;let skillDepth=0;let key=0,extra=0;let engine:TriggerEngine;const queue:{actor:Fighter;sid:number;atype:number;event?:TargetEvent}[]=[];const issues=new Set<string>();const journal:{round:number;actor:number;target:number;code:number;hp:number}[]=[];
+ const instant=new Set([101,102,105,137,118,103,104,119,112,113,115,116,131,121,120]);
  const chance=(p:number)=>p===0||p>=1000||(p>0&&random()*1000<p);
  const resolve=(a:Fighter,t:Fighter,b:{tags:number[]},items:number[],ctx:ExecutionContext,round:number,metadata:Partial<BattleEvent>={})=>{
  if([113,115,116,131].includes(items[0])){engine.removeMatching(t,items[0],items[1],items.slice(3));return}
+ if(items[0]===120){useSkill(a,items[1],items[2]??0,{subject:t.id,other:a.id,targets:[t.id]},round);return}
  if(items[0]===121){engine.emit({code:items[1],subject:t.id});return}
  const r=executeEffect(a,t,b,items,ctx);
  if(r.status==='unsupported'){issues.add('trigger:'+items[0]);return}
@@ -27,7 +28,7 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  if(r.damage>0)emit(173,t,a);
  if(items[0]===118)emit(147,t,a);
  else if(r.event!=='dodge'){emit(143,t,a);if(items[0]===101||items[0]===102)emit(items[0]===101?121:122,a,t);emit(129,a,t);if(r.event==='crit'){emit(128,a,t);emit(145,t,a)}}
- if(r.guardSkill>0)queue.push({actor:t,sid:r.guardSkill,atype:0});
+ if(r.guardSkill>0)useSkill(t,r.guardSkill,0,{subject:t.id,other:a.id,targets:[a.id]},round);
  if(r.killed&&t.hp<=0){if(items[0]!==118)emit(148,t,a);emit(150,t,a);if(t.hp<=0){emit(151,t,a);if(items[0]!==118)emit(149,t,a);if(t.hp<=0)t.buffs=t.buffs.filter(holdAfterDeath);emit(125,a,t);if(items[0]===101||items[0]===102)emit(items[0]===101?126:127,a,t)}}
  }else if(r.status==='heal'&&r.healed>0)emit(172,t,a);else if(r.status==='revive'&&r.hp>0)emit(152,t,a);
  };
@@ -60,8 +61,15 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  };
  for(const g of plan.groups)for(const id of g.effects)walk(id,0);
  };
- const makeEngine=(units:Fighter[],round:number)=>new TriggerEngine(units,round,{random,condition:(owner,event,rows)=>triggerCondition(rows,owner,units,round,event,code=>issues.add("trigger_condition:"+code)),execute:(a,t,b,fx,event)=>{if(fx[0]===120){queue.push({actor:a as Fighter,sid:fx[1],atype:fx[2]??0});return}resolve(a as Fighter,t as Fighter,b,fx,{random},round,{skill:event.skill,buff:BuffBase[b.id],atype:event.atype})}});
- const drain=(units:Fighter[],round:number)=>{while(queue.length){const q=queue.shift()!;if(extra>=12||winner(units)||q.actor.hp<=0||hasTag(q.actor,4))continue;const skill=actionSkills[q.sid];if(!skill){issues.add('extra_skill:'+q.sid);continue}extra++;perform(units,q.actor,round,{skillId:q.sid,atype:q.atype,targets:selectTargets(units,q.actor,skill,[],random),groups:skill.Effects.map(x=>({effects:x.Items}))});acted.add(q.actor.camp)}};
+ const useSkill=(actor:Fighter,sid:number,atype:number,event:TargetEvent,round:number)=>{
+ sid=sid===-2?actor.normal:sid===-1?(actor.actives[0]??actor.normal):sid;
+ const skill=actionSkills[sid];if(!skill){issues.add('extra_skill:'+sid);return}
+ if(skill.ActionIndex>0){queue.push({actor,sid,atype,event});return}
+ if(skillDepth>=8){issues.add('instant_skill_depth:'+sid);return}
+ skillDepth++;try{const units=engine.units as Fighter[];perform(units,actor,round,{skillId:sid,atype:0,targets:eventTargets(units,actor,skill,event,random),groups:skill.Effects.map(x=>({effects:x.Items}))})}finally{skillDepth--}
+ };
+ const makeEngine=(units:Fighter[],round:number)=>new TriggerEngine(units,round,{random,condition:(owner,event,rows)=>triggerCondition(rows,owner,units,round,event,code=>issues.add("trigger_condition:"+code)),execute:(a,t,b,fx,event)=>{if(fx[0]===120){useSkill(a as Fighter,fx[1],fx[2]??0,event,round);return}resolve(a as Fighter,t as Fighter,b,fx,{random},round,{skill:event.skill,buff:BuffBase[b.id],atype:event.atype})}});
+ const drain=(units:Fighter[],round:number)=>{while(queue.length){const q=queue.shift()!;if(extra>=12||winner(units)||q.actor.hp<=0||hasTag(q.actor,4))continue;const skill=actionSkills[q.sid];if(!skill){issues.add('extra_skill:'+q.sid);continue}const targets=q.event?eventTargets(units,q.actor,skill,q.event,random):selectTargets(units,q.actor,skill,[],random);if(!targets.length)continue;extra++;perform(units,q.actor,round,{skillId:q.sid,atype:q.atype,targets,groups:skill.Effects.map(x=>({effects:x.Items}))});for(const u of units)dropTemp(u);acted.add(q.actor.camp)}};
  const result=runRounds(input,maxRounds,{
  speed:u=>effectiveAttr(u as Fighter,3),
  start:(units,round)=>{acted.clear();done.clear();ending=false;engine=makeEngine(units,round);extra=0;

@@ -276,3 +276,5 @@ NEXT-012: corrected SkillAttackType mapping from BattleConsts and Elixir action/
 NEXT-012: partial stack removal, dispel 113, removal 115/116/131, before-dispel 2, attach 157 and control 124/146, fresh duration based on turn/end phase. 53 tests passed. Mixed instant/persistent effects, replacement 122 and differential parity remain. Gate closed.
 
 NEXT-012.9: ordered mixed instant/persistent effects, replacement 122 with depth guard, event 121, lethal attachment guard. 55 tests passed. Replacement integration parity and immediate skill 120 remain unverified. Gate closed.
+
+NEXT-012.10: skill 120 instant vs animated queue, -1/-2 aliases, event target ordering 2/7, depth 8 and queue limit 12. 56 tests passed. Guard attack type and end-to-end action triggers/parity remain unverified. Gate closed.

@@ -1,9 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {selectTargets,type TargetUnit} from '../src/battle/target.js';
+import {selectTargets,eventTargets,type TargetUnit} from '../src/battle/target.js';
 const u=(id:number,camp:1|-1,station:number,hp=100,attack=10,speed=10):TargetUnit=>({id,camp,station,hp,hp_max:100,attrs:{0:attack,3:speed}});
 const actor=u(2,1,1),units=[actor,u(5,1,4),u(101,-1,0,80,40),u(103,-1,2,100,10,50),u(104,-1,3,20),u(107,-1,6,100),u(108,-1,7,0)];
 const pick=(type:number,side=-1,previous:number[]=[])=>selectTargets(units,actor,{TargetType:type,TargetSide:side},previous);
 test('original row, column and fixed-row fallback',()=>{assert.deepEqual(pick(21),[101]);assert.deepEqual(pick(22),[101,103]);assert.deepEqual(pick(23),[101,103,104]);assert.deepEqual(pick(24),[107]);assert.deepEqual(pick(25),[104,107]);assert.deepEqual(pick(26),[101,104,107]);assert.deepEqual(pick(27),[101,104,107]);assert.deepEqual(pick(32),[104]);assert.deepEqual(pick(35),[104,107]);assert.deepEqual(selectTargets([actor,units[5]],actor,{TargetType:31}),[107])});
 test('self, allies, previous, neighbors and dead targets',()=>{assert.deepEqual(pick(1),[2]);assert.deepEqual(pick(12,1),[5]);assert.deepEqual(pick(2,-1,[104]),[104]);assert.deepEqual(pick(4,-1,[101,103]),[104,107]);assert.deepEqual(pick(6,-1,[104]),[101,104,107]);assert.deepEqual(pick(15,1),[2,5]);assert.deepEqual(pick(13),[108]);assert.equal(pick(14).length,5)});
 test('priorities, count and injected randomness',()=>{for(const [priority,id] of [[2,101],[3,104],[7,103]])assert.deepEqual(selectTargets(units,actor,{TargetPriority:[priority],TargetCount:1}),[id]);assert.throws(()=>selectTargets(units,actor,{TargetPriority:[1]}),/random_source_required/);let i=0;assert.deepEqual(selectTargets(units,actor,{TargetPriority:[1],TargetCount:2},[],()=>[.4,.3,.2,.1][i++]),[107,104])});
+test('event targets preserve original subject/other priority, deduplicate and exclude dead allies',()=>{const e={subject:101,other:103,targets:[101,108,5,104]};assert.deepEqual(eventTargets(units,actor,{TargetType:2,TargetSide:-1},e,()=>.5),[103,101,104]);assert.deepEqual(eventTargets(units,actor,{TargetType:7,TargetSide:-1,TargetCount:1},e,()=>.5),[101]);assert.deepEqual(eventTargets(units,actor,{TargetType:7,TargetSide:1},e,()=>.5),[5])});

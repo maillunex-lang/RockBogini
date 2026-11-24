@@ -35,3 +35,11 @@ export function selectTargets(units:readonly TargetUnit[],actor:TargetUnit,spec:
  });
  return (spec.TargetCount&&spec.TargetCount>0?pool.slice(0,spec.TargetCount):pool).map(u=>u.id);
 }
+
+export type TargetEvent={subject?:number;other?:number;targets?:number[]};
+export function eventTargets(units:readonly TargetUnit[],actor:TargetUnit,spec:TargetSpec,event:TargetEvent,random:()=>number):number[]{
+ if(spec.TargetType!==2&&spec.TargetType!==7)return selectTargets(units,actor,spec,event.targets??[],random);
+ const first=spec.TargetType===7?[event.subject,event.other]:[event.other,event.subject];
+ const ids=[...new Set([...first,...(event.targets??[])])].filter((id):id is number=>id!==undefined&&units.some(u=>u.id===id&&u.hp>0&&(spec.TargetSide===1?u.camp===actor.camp:u.camp!==actor.camp)));
+ return (spec.TargetCount??0)>0?ids.slice(0,spec.TargetCount):ids;
+}
