@@ -26,6 +26,8 @@ export async function migrate(s:Storage){
  await c.query('INSERT INTO schema_migrations(version) VALUES(6) ON CONFLICT DO NOTHING');
  await c.query(`CREATE TABLE IF NOT EXISTS studio_draft_versions(model text NOT NULL,kind text NOT NULL CHECK(kind IN ('hero','skill')),slot integer NOT NULL CHECK(slot BETWEEN 0 AND 1000),revision integer NOT NULL CHECK(revision>0),payload jsonb NOT NULL CHECK(jsonb_typeof(payload)='object'),actor text NOT NULL,created_at timestamptz NOT NULL DEFAULT now(),restored_from integer,PRIMARY KEY(model,kind,slot,revision))`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(7) ON CONFLICT DO NOTHING');
+ await c.query(`CREATE TABLE IF NOT EXISTS studio_admins(account_id uuid PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,created_at timestamptz NOT NULL DEFAULT now())`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(8) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }

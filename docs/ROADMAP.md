@@ -169,3 +169,6 @@ NEXT-010.6.3 partial: effect preview drag with pointer capture, X/Y/scale/rotati
 NEXT-010.6.4 partial: two-actor timeline preview with selectable opponent, original animation events, effect layers, offsets and demonstration hit counter; movement/audio/damage and exact positioning pending. TypeScript/Vite/HTTP passed; browser rendering unverified.
 
 NEXT-010.6.5 partial: migration 7 and append-only studio draft storage, optimistic revision checks with transaction lock, history and restore as new revision; PostgreSQL integration test passed. No public write routes or UI persistence until admin authorization.
+
+
+NEXT-010.6.6: linked-account admin allowlist (migration 8), live-session authorization and rate limit, isolated studio GET/PUT/restore, version conflicts/history, hero and skill draft UI. Full backend test suite 60/60 passes; TS and Vite pass. Deployed only next API and test page; studio public request without bearer 401, Next ready 200, original game HTTP 200. No administrator has been provisioned automatically; original game content remains unchanged. Browser UI and on-device interaction not yet verified.
