@@ -305,3 +305,5 @@ NEXT-010.5: decoded original SkillEffect prefab skeleton UUID references includi
 NEXT-010.5: recovered nine original effect skeletons and texture sets; Spine 3.8 binary parser verified 47 additional animation names, 1744/1750 matched. Six names absent from original referenced skeletons; browser texture/render validation pending.
 
 NEXT-010.5: four explicit original-skeleton naming aliases recorded separately from 1744 exact matches; two unresolved Culot3501 names remain. Alias visual parity unverified.
+
+NEXT-010.6 partial: hero preview extended with actual Spine skin selector, per-model effect preview including aliases, JSON export. TypeScript and Vite build passed, HTTP published. No server persistence or browser visual verification yet.
