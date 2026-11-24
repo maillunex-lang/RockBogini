@@ -1,7 +1,7 @@
 import {hasTag,dispellable,limitOk,countFire,type Buff} from './buffs.js';
 import {removeBuff,type EffectUnit} from './applyBuff.js';
 import type {ConditionEvent} from "./conditions.js";
-export type BattleEvent=ConditionEvent&{code:number;subject?:number;other?:number;only?:number};
+export type BattleEvent=ConditionEvent&{code:number;subject?:number;other?:number;only?:number;targets?:number[]};
 export type TriggerHooks={random:()=>number;condition?:(owner:EffectUnit,event:BattleEvent,conditions:number[][])=>boolean;execute:(source:EffectUnit,target:EffectUnit,buff:Buff,effect:number[],event:BattleEvent)=>void};
 export class TriggerEngine{
  private depth=0;
