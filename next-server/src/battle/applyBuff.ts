@@ -4,7 +4,7 @@ type AppliedBuff=Buff&{hpBonus?:number;shield?:number;cshield?:number;immunity?:
 const pairs=(p:number[]):[number,number][]=>Array.from({length:Math.floor(p.length/2)},(_,i)=>[p[i*2],p[i*2+1]]);
 export function changeMaxHp(u:BuffUnit,delta:number){const max=Math.max(u.hp_max+delta,1);u.hp=u.hp>0?Math.min(max,Math.max(1,Math.trunc(u.hp*max/Math.max(u.hp_max,1)))):0;u.hp_max=max}
 export function applyBuff(actor:EffectUnit,target:EffectUnit,cfg:BuffConfig,opts:{random:()=>number;key:()=>number;fresh:boolean;chance?:number;condition?:(rows:number[][])=>boolean;baseValue?:(param:number)=>number;instant?:(items:number[])=>void;allowRevive?:boolean;unchecked?:boolean}){
- const supported=new Set([601,111,371,345,117,405,411,412,413,501,502,504,602,603,122]);
+ const supported=new Set([601,111,371,345,117,405,411,412,413,501,502,504,602,603,122,373,374]);
  const unsupported=cfg.StartEffect.map(x=>x.Items[0]).filter(k=>k!==undefined&&!supported.has(k)&&!opts.instant);
  if(unsupported.length)return {status:'unsupported' as const,codes:unsupported};
  if(cfg.StartEffect.some(x=>x.Items[0]===501||(x.Items[0]===412&&x.Items.length>2))&&!opts.baseValue)return {status:'unsupported_base' as const};
@@ -30,6 +30,8 @@ export function applyBuff(actor:EffectUnit,target:EffectUnit,cfg:BuffConfig,opts
  else if(code===504)props.immunity=true;
  else if(code===602)(props.dmgAddon??=[]).unshift([ps[0],ps.slice(1)]);
  else if(code===603)(props.hurtAddon??=[]).unshift([ps[0],ps.slice(1)]);
+ else if(code===373)(props.head??=[]).push([ps[0],ps.slice(1)]);
+ else if(code===374)(props.tail??=[]).push([ps[0],ps.slice(1)]);
  else if(code===122)replacement=ps[0];
  else opts.instant?.([code,...ps]);
  }

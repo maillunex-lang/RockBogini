@@ -6,6 +6,7 @@ import {actionSkills,hitCounts} from './actionData.js';
 import {SkillEffect} from './SkillEffect.js';
 import {BuffBase} from './BuffBase.js';
 import {executeEffect,type CombatUnit,type ExecutionContext} from './execute.js';
+import {modifiedGroups} from "./skillMods.js";
 import {applyBuff,removeBuff} from './applyBuff.js';
 import {effectiveAttr,immune,hasTag,dropTemp,holdAfterDeath} from './buffs.js';
 import {selectTargets,eventTargets,type TargetEvent} from './target.js';
@@ -14,9 +15,9 @@ import {TriggerEngine,type BattleEvent} from './triggers.js';
 export type Fighter=CombatUnit&ActionUnit&{passives?:number[]};
 export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15){
  const acted=new Set<number>();const done=new Set<number>();let ending=false;let skillDepth=0;type Acc={crit:boolean;attacked:Map<number,number>;healed:Set<number>};let acc:Acc|undefined;let key=0,extra=0;let engine:TriggerEngine;const queue:{actor:Fighter;sid:number;atype:number;event?:TargetEvent}[]=[];const issues=new Set<string>();const journal:{round:number;actor:number;target:number;code:number;hp:number}[]=[];
- const instant=new Set([101,102,105,137,118,103,104,119,112,113,115,116,131,121,120]);
+ const instant=new Set([101,102,105,106,137,118,103,104,119,112,113,115,116,131,121,120]);
  const chance=(p:number)=>p===0||p>=1000||(p>0&&random()*1000<p);
- const resolve=(a:Fighter,t:Fighter,b:{tags:number[]},items:number[],ctx:ExecutionContext,round:number,metadata:Partial<BattleEvent>={})=>{
+ const resolve=(a:Fighter,t:Fighter,b:{tags:number[];params?:number[]},items:number[],ctx:ExecutionContext,round:number,metadata:Partial<BattleEvent>={})=>{
  if([113,115,116,131].includes(items[0])){engine.removeMatching(t,items[0],items[1],items.slice(3));return}
  if(items[0]===120){useSkill(a,items[1],items[2]??0,{subject:t.id,other:a.id,targets:[t.id]},round);return}
  if(items[0]===121){engine.emit({code:items[1],subject:t.id});return}
@@ -48,7 +49,7 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  const attach=(cfg:typeof b,depth:number,checked:boolean)=>{
  if(depth>16){issues.add('replacement_depth:'+cfg.Id);return}
  const metadata={skill:plan.skillId===undefined?undefined:actionSkills[plan.skillId],buff:cfg,atype:plan.atype??0};
- const r=applyBuff(a,t,cfg,{random,key:()=>++key,fresh:ending||done.has(t.id),chance:ch,unchecked:checked,allowRevive:cfg.StartEffect.some(x=>x.Items[0]===112),condition:rows=>checked||startCondition(rows,a,t,ctx.overflow),baseValue:p=>baseValue(a,t,p,ctx),instant:items=>{if(instant.has(items[0]))resolve(a,t,{tags:cfg.Tags},items,ctx,round,metadata);else issues.add('start_effect:'+items[0])}});
+ const r=applyBuff(a,t,cfg,{random,key:()=>++key,fresh:ending||done.has(t.id),chance:ch,unchecked:checked,allowRevive:cfg.StartEffect.some(x=>x.Items[0]===112),condition:rows=>checked||startCondition(rows,a,t,ctx.overflow),baseValue:p=>baseValue(a,t,p,ctx),instant:items=>{if(instant.has(items[0]))resolve(a,t,{tags:cfg.Tags,params:cfg.Params},items,ctx,round,metadata);else issues.add('start_effect:'+items[0])}});
  if(r.status.startsWith('unsupported'))issues.add('buff:'+cfg.Id);
  else if(r.status==='applied'&&cfg.Round>0&&t.hp>0){
  engine.emit({code:157,subject:t.id,other:a.id,buff:cfg});
@@ -60,7 +61,9 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  }}
  for(const child of e.ChildEffects)walk(child,depth+1);
  };
- for(const g of plan.groups)for(const id of g.effects)walk(id,0);
+ const types=plan.skillId===undefined?[]:actionSkills[plan.skillId]?.EffectType??[];
+ const groups=modifiedGroups(a.buffs,types,plan.groups.map(g=>g.effects));
+ for(const g of groups)for(const id of g)walk(id,0);
  };
  const useSkill=(actor:Fighter,sid:number,atype:number,event:TargetEvent,round:number)=>{
  sid=sid===-2?actor.normal:sid===-1?(actor.actives[0]??actor.normal):sid;

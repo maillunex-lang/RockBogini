@@ -280,3 +280,9 @@ NEXT-012.9: ordered mixed instant/persistent effects, replacement 122 with depth
 NEXT-012.10: skill 120 instant vs animated queue, -1/-2 aliases, event target ordering 2/7, depth 8 and queue limit 12. 56 tests passed. Guard attack type and end-to-end action triggers/parity remain unverified. Gate closed.
 
 NEXT-012.11: taunt tag 15, animated action lifecycle events 153/101/102/154/155/123/144/162/161/503, target metadata and temporary cleanup. 56 regression tests passed. Dedicated differential action fixtures and head/tail modifiers remain. Gate closed.
+
+APK-002 isolated prototype built; no deployment or server changes.
+
+APK 0.2 built with static manifest and resource store; no production changes.
+
+NEXT-012.12 partial: max HP damage 106 with boss cap, skill head/tail modifiers 373/374. 58 tests passed. Remaining unsupported effects and description events require audit; gate closed.
