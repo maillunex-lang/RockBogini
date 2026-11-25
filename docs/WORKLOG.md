@@ -403,3 +403,5 @@ NEXT-013.3 partial: corrected one-based ActionIndex from AJBattleViewPort/Skills
 Landing refresh: curated two visible character assets from user screenshot, solo cards, duo scene, combat showcase, lazy portrait initialization. Build/HTTP verified; browser visual acceptance pending.
 
 Landing v3: explicit game entry URL, replaced cropped card illustrations with original full combat models, dark fantasy palette and 18+ label. TypeScript/Vite and HTTP verified; visual and click acceptance pending.
+
+Landing v4: nine distinct models, seven alternating gallery scenes, two requested exact assets, lazy canvas loading. Build and manifest verified, visual acceptance pending.
