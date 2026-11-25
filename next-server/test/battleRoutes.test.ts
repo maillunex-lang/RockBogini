@@ -13,7 +13,7 @@ test('authenticated preview does not advance progress',{skip:!process.env.PGHOST
  assert.equal((await app.inject({method:'POST',url,headers,payload:{mapId:100102}})).statusCode,403);
  const res=await app.inject({method:'POST',url,headers,payload:{mapId:100101}});
  assert.equal(res.statusCode,200,res.body);const r=res.json();
- assert.equal(r.preview,true);assert.equal(r.progressionApplied,false);assert.ok(r.pages.length);
+ assert.equal(r.preview,true);assert.equal(r.progressionApplied,false);assert.ok(r.pages.length);assert.ok(r.heroes.every((h:{heroId:number;starLevel:number;skills:number[]})=>h.heroId>0&&h.starLevel>0&&Array.isArray(h.skills)));assert.ok(r.pages.filter((p:{dataType:number})=>p.dataType===1).every((p:{roundSkills:object;roundBuffId:number})=>p.roundSkills&&p.roundBuffId===0));
  assert.deepEqual(await getProfile(s,guest.id),before);
  const challenge=await app.inject({method:'POST',url:'/v1/battle/challenge',headers,payload:{mapId:100101}});
  assert.equal(challenge.statusCode,200,challenge.body);const battle=challenge.json();assert.equal(battle.summary.resultCode,2);
