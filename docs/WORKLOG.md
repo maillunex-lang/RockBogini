@@ -407,3 +407,5 @@ Landing v3: explicit game entry URL, replaced cropped card illustrations with or
 Landing v4: nine distinct models, seven alternating gallery scenes, two requested exact assets, lazy canvas loading. Build and manifest verified, visual acceptance pending.
 
 NEXT-013.3.1 partial: original AJBattleActor death opacity sequence 1000ms, revive delay/fade 500ms, hurt return 200ms, per-unit tween cancellation and authoritative snapshot reconciliation. 9/9 lifecycle assertions, TypeScript/Vite and HTTP200. Common Core/Pet model lookup and browser acceptance remain pending.
+
+Fixed session HTTP404 caused by missing VITE_NEXT_API_URL in manual builds; default now derived from Vite BASE_URL. Public session endpoint 401 without token, ready true, compiled API path verified. No account changes.
