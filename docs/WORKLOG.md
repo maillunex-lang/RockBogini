@@ -465,3 +465,5 @@ NEXT-013.8 in_progress: inventoried 10 invalid common-skill ActionIndex values; 
 2026-11-25 NEXT-017.4: holy equipment put-on/off/level-up + attrs/suit→power; publish. reports/NEXT-017.4.md.
 
 2026-11-25 NEXT-017.5: holy star/step up (HolyEquipmentStar materials+unlock); publish. reports/NEXT-017.5.md.
+
+2026-11-25 NEXT-017.6: holy blessing unlock/bless/replace/clear + attrs→power; publish. reports/NEXT-017.6.md.

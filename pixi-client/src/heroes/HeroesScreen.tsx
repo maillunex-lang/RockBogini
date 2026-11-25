@@ -46,9 +46,13 @@ type EquipSlot={
  nextNeed?:number|null;
  ownXp?:number;
 };
+type HolyBlessing={BlessingId:number;Level:number;Xp:number;Pool:number[]};
 type HolySlot={
  slot:number;
- equip:{Sid:number;ItemId:number;Star:number;Level:number;Xp:number;Step?:number;score:number}|null;
+ equip:{
+  Sid:number;ItemId:number;Star:number;Level:number;Xp:number;Step?:number;score:number;
+  Blessing1?:HolyBlessing|null;Blessing2?:HolyBlessing|null;blessingUnlock?:number[];
+ }|null;
  maxLevel?:number;
  nextStar?:{value:number;materials:[number,number][]}|null;
  nextStep?:{value:number;materials:[number,number][]}|null;
@@ -142,7 +146,7 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
   }finally{setBusy(false)}
  };
 
- const holyAct=async(kind:'put-on'|'put-off'|'level-up'|'star-up',body:object,label:string)=>{
+ const holyAct=async(kind:string,body:object,label:string)=>{
   if(busy||selected==null)return;
   setBusy(true);setStatus(label);
   try{
@@ -157,6 +161,7 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
    await refreshHeroes();
    if(kind==='level-up')setStatus(`Священное → ур.${j.after?.Level} (xp ${j.after?.Xp??0})`);
    else if(kind==='star-up')setStatus(`Священное → ★${j.after?.Star} шаг ${j.after?.Step}`);
+   else if(kind.startsWith('blessing/'))setStatus(`Благословение: ${kind.split('/')[1]}`);
    else setStatus(kind==='put-on'?'Священное надето':'Священное снято');
   }catch(e){
    setStatus(e instanceof Error?e.message:'Не удалось изменить священную экипировку');
@@ -273,6 +278,24 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
          <button type="button" disabled={busy||!info?.nextStep} onClick={()=>void holyAct('star-up',{sid:worn.Sid,type:2},'Шаг…')}>
           Шаг+1{info?.nextStep?` (${info.nextStep.materials.map(([id,n])=>`${n}×${id}`).join(', ')})`:''}
          </button>
+         {[1,2].map(bi=>{
+          const b=bi===1?worn.Blessing1:worn.Blessing2;
+          const need=(worn.blessingUnlock??[1,3])[bi-1]??bi;
+          return <React.Fragment key={bi}>
+           {!b?.BlessingId?(
+            <button type="button" disabled={busy||worn.Star<need} onClick={()=>void holyAct('blessing/unlock',{sid:worn.Sid,index:bi},'Благословение…')}>
+             Благо {bi}{worn.Star<need?` 🔒★${need}`:''}
+            </button>
+           ):(
+            <>
+             <span>Б{bi}:#{b.BlessingId} L{b.Level} pool {b.Pool.length}</span>
+             <button type="button" disabled={busy||b.Pool.length>=8} onClick={()=>void holyAct('blessing/bless',{sid:worn.Sid,index:bi,count:1},'Bless…')}>Bless</button>
+             <button type="button" disabled={busy||!b.Pool.length} onClick={()=>void holyAct('blessing/replace',{sid:worn.Sid,index:bi,poolIndex:0},'Replace…')}>Replace[0]</button>
+             <button type="button" disabled={busy||!b.Pool.length} onClick={()=>void holyAct('blessing/clear',{sid:worn.Sid,index:bi},'Clear…')}>Clear</button>
+            </>
+           )}
+          </React.Fragment>;
+         })}
          <button type="button" disabled={busy} onClick={()=>void holyAct('put-off',{sid:worn.Sid},'Снятие…')}>Снять</button>
         </>
        ):(

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {openStorage,migrate} from '../src/storage.js';
 import {createGuest} from '../src/auth.js';
 import {buildApp} from '../src/app.js';
-import {canStarUp,holyPieceExtra,holyWornBonus,nextStarTarget} from '../src/holy.js';
+import {blessOnce,canStarUp,holyPieceExtra,holyWornBonus,nextStarTarget,randomBlessing} from '../src/holy.js';
 
 test('holyPieceExtra applies base attrs and HolyEquipmentScore',()=>{
  const extra=holyPieceExtra({Sid:1,ItemId:41001,Star:0,Level:0,Xp:0,Stage:0,Step:0,OwnerId:0});
@@ -118,6 +118,58 @@ test('POST /v1/holy/star-up spends materials and raises star/step',{skip:!proces
   assert.equal(step.statusCode,200,JSON.stringify(step.json()));
   assert.equal(step.json().after.Step,1);
   assert.equal(step.json().after.Star,5);
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
+});
+
+test('randomBlessing and blessOnce advance pool/level',()=>{
+ const id=randomBlessing(1,1,()=>0);
+ assert.ok(id>=101);
+ const once=blessOnce({BlessingId:101,Level:1,Xp:9,Pool:[]},5,()=>0);
+ assert.equal(once.Level,2);
+ assert.equal(once.Xp,0);
+ assert.equal(once.Pool.length,1);
+ const score=holyPieceExtra({
+  Sid:1,ItemId:41001,Star:1,Level:0,Xp:0,Stage:0,Step:0,OwnerId:0,
+  Blessing1:{BlessingId:101,Level:1,Xp:0,Pool:[]},
+ });
+ assert.ok(score.some(p=>p[0]===105&&(p[1]??0)>=30));
+ assert.ok(score.some(p=>p[0]===82&&(p[1]??0)>=10000+1420));
+});
+
+test('holy blessing unlock/bless/replace/clear',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);const a=await createGuest(s);const app=await buildApp(s);
+ try{
+  await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}});
+  await s.pg.query(
+   `INSERT INTO player_items(account_id,item_id,amount) VALUES($1,41001,1),($1,110,200)
+    ON CONFLICT(account_id,item_id) DO UPDATE SET amount=EXCLUDED.amount`,
+   [a.id],
+  );
+  const on=await app.inject({method:'POST',url:'/v1/holy/put-on',headers:{authorization:'Bearer '+a.token},payload:{itemId:41001,ownerId:1001}});
+  assert.equal(on.statusCode,200);
+  const sid=on.json().holy.find((e:{OwnerId:number})=>e.OwnerId===1001).Sid;
+  const locked=await app.inject({method:'POST',url:'/v1/holy/blessing/unlock',headers:{authorization:'Bearer '+a.token},payload:{sid,index:1}});
+  assert.equal(locked.statusCode,409);
+  await s.pg.query('UPDATE player_holy_equipment SET star=1 WHERE account_id=$1 AND sid=$2',[a.id,sid]);
+  const before=(await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}})).json().heroes.find((h:{Sid:number})=>h.Sid===1001);
+  const unlock=await app.inject({method:'POST',url:'/v1/holy/blessing/unlock',headers:{authorization:'Bearer '+a.token},payload:{sid,index:1}});
+  assert.equal(unlock.statusCode,200,JSON.stringify(unlock.json()));
+  assert.ok(unlock.json().blessing.BlessingId>0);
+  const afterUnlock=(await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}})).json().heroes.find((h:{Sid:number})=>h.Sid===1001);
+  assert.ok(afterUnlock.Power>before.Power);
+  const bless=await app.inject({method:'POST',url:'/v1/holy/blessing/bless',headers:{authorization:'Bearer '+a.token},payload:{sid,index:1,count:2}});
+  assert.equal(bless.statusCode,200,JSON.stringify(bless.json()));
+  assert.equal(bless.json().blessing.Pool.length,2);
+  const pick=bless.json().blessing.Pool[1];
+  const rep=await app.inject({method:'POST',url:'/v1/holy/blessing/replace',headers:{authorization:'Bearer '+a.token},payload:{sid,index:1,poolIndex:1}});
+  assert.equal(rep.statusCode,200);
+  assert.equal(rep.json().blessing.BlessingId,pick);
+  assert.deepEqual(rep.json().blessing.Pool,[]);
+  // refill pool then clear
+  await app.inject({method:'POST',url:'/v1/holy/blessing/bless',headers:{authorization:'Bearer '+a.token},payload:{sid,index:1,count:1}});
+  const clr=await app.inject({method:'POST',url:'/v1/holy/blessing/clear',headers:{authorization:'Bearer '+a.token},payload:{sid,index:1}});
+  assert.equal(clr.statusCode,200);
+  assert.deepEqual(clr.json().blessing.Pool,[]);
  }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
 });
 
