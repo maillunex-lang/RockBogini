@@ -7,8 +7,15 @@ WWW=/var/www/testtest
 STATIC_DIRS=(skill-effects hero-models battle-sounds battle-backgrounds battle-hud profile item-icons landing-portraits recovered-effects squad city library hero)
 
 cd "$ROOT"
-# Hardlink ItemIcon natives → public/item-icons (no byte copies)
-python3 tools/import_item_icons.py
+# Icons ship in git under public/item-icons. Re-import from runtime/ only if missing
+# and the original bundle is present on this machine (optional recovery path).
+if [[ ! -f public/item-icons/manifest.json ]] || [[ $(find public/item-icons -name '*.webp' 2>/dev/null | wc -l) -lt 100 ]]; then
+  if [[ -d ../runtime/client/G123Live/Queen-Blade/assets/ItemIcon ]]; then
+    python3 tools/import_item_icons.py
+  else
+    echo "warn: item-icons incomplete and runtime ItemIcon bundle missing" >&2
+  fi
+fi
 VITE_NEXT_API_URL=/testtest/api npm run build -- --base=/testtest/
 
 # Reclaim dist duplicates: hardlink immutable public assets instead of second full copy.

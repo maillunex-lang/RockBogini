@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Hardlink original ItemIcon natives into public/item-icons/{itemId}.webp (no duplicate bytes)."""
+"""Optional recovery: hardlink original ItemIcon natives into public/item-icons/{itemId}.webp.
+
+Icons are committed in git for clone→VPS. Run this only when regenerating from local runtime/.
+"""
 from __future__ import annotations
 
 import base64
