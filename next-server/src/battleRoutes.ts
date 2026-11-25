@@ -55,4 +55,20 @@ export async function battleRoutes(app:FastifyInstance,s:Storage){
  await c.query('UPDATE campaign_battles SET settlement=$2 WHERE id=$1',[b.id,JSON.stringify(result)]);await c.query('DELETE FROM campaign_pending WHERE account_id=$1',[id]);await c.query('COMMIT');return result;
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
  });
+
+ app.get('/v1/battle/pending',async(req,reply)=>{
+ const token=/^Bearer ([A-Za-z0-9_-]{43})$/.exec(req.headers.authorization??'')?.[1],id=token&&await sessionAccount(s,token);
+ if(!id)return reply.code(401).send({error:'invalid_session'});
+ const row=(await s.pg.query('SELECT b.report FROM campaign_pending p JOIN campaign_battles b ON b.id=p.battle_id AND b.account_id=p.account_id WHERE p.account_id=$1',[id])).rows[0];
+ return {report:row?.report??null};
+ });
+ app.post<{Body:{battleId:string}}>('/v1/battle/cancel',{schema:{body:{type:'object',required:['battleId'],additionalProperties:false,properties:{battleId:{type:'string',pattern:'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'}}}}},async(req,reply)=>{
+ const token=/^Bearer ([A-Za-z0-9_-]{43})$/.exec(req.headers.authorization??'')?.[1],id=token&&await sessionAccount(s,token);
+ if(!id)return reply.code(401).send({error:'invalid_session'});
+ const c=await s.pg.connect();try{await c.query('BEGIN');
+ await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
+ const r=await c.query('DELETE FROM campaign_pending WHERE account_id=$1 AND battle_id=$2 RETURNING battle_id',[id,req.body.battleId]);
+ await c.query('COMMIT');return {cancelled:r.rowCount===1};
+ }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
+ });
 }

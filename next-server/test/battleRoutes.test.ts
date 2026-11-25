@@ -24,3 +24,28 @@ test('authenticated preview does not advance progress',{skip:!process.env.PGHOST
  const settled=await app.inject({method:'POST',url:'/v1/battle/settle',headers,payload:{battleId:replay.json().battleId}});assert.equal(settled.statusCode,200);assert.deepEqual(settled.json().rewards,[]);assert.deepEqual(await getProfile(s,guest.id),after);
  }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[guest.id]);await s.redis.del('battle-preview:'+guest.id);await app.close()}
 });
+
+test('pending battle recovery, replacement, cancellation and account isolation',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);const a=await createGuest(s),b=await createGuest(s);const app=await buildApp(s);
+ const headers={authorization:'Bearer '+a.token},other={authorization:'Bearer '+b.token};
+ const pending=(h=headers)=>app.inject({url:'/v1/battle/pending',headers:h});
+ const post=(route:string,payload:object,h=headers)=>app.inject({method:'POST',url:'/v1/battle/'+route,headers:h,payload});
+ try{
+ assert.equal((await pending()).json().report,null);
+ const first=await post('challenge',{mapId:100101});assert.equal(first.statusCode,200,first.body);
+ const report=first.json();assert.deepEqual((await pending()).json().report,report);
+ assert.equal((await pending(other)).json().report,null);
+ assert.equal((await post('cancel',{battleId:report.battleId},other)).json().cancelled,false);
+ assert.equal((await post('settle',{battleId:report.battleId},other)).statusCode,404);
+ const next=await post('challenge',{mapId:100101});assert.equal(next.statusCode,200);const id=next.json().battleId;
+ assert.equal((await post('cancel',{battleId:report.battleId})).json().cancelled,false);
+ assert.equal((await post('settle',{battleId:report.battleId})).statusCode,409);
+ assert.equal((await pending()).json().report.battleId,id);
+ const before=await getProfile(s,a.id);
+ assert.equal((await post('cancel',{battleId:id})).json().cancelled,true);
+ assert.equal((await post('cancel',{battleId:id})).json().cancelled,false);
+ assert.equal((await pending()).json().report,null);
+ assert.equal((await post('settle',{battleId:id})).statusCode,409);
+ assert.deepEqual(await getProfile(s,a.id),before);
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=ANY($1::uuid[])',[[a.id,b.id]]);await s.redis.del(['battle-preview:'+a.id,'battle-preview:'+b.id]);await app.close()}
+});
