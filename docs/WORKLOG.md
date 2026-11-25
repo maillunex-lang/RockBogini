@@ -339,3 +339,5 @@ NEXT-012.18 partial: trigger 117 resets selected/all cooldowns; 111/601 trigger 
 NEXT-012.19 partial: isolated Elixir reference and TypeScript comparison on stage 100101, four seeds, identical initial units; 4/4 winner and round count match, no unsupported issues. RNG algorithms differ; exact hero stats and skill sequence parity not established. Export and comparison scripts saved, gate closed.
 
 NEXT-012.20 partial: OTP 27 exsss BigInt port matches 3200/3200 reference RNG draws; 100/100 stage 100101 battles match result, rounds and final per-unit HP/damage/hurt/healing exactly. 70/70 tests. Same stage and lineup only; diverse stages, bosses, skill sequence and production RNG wiring pending; parity gate closed.
+
+NEXT-012.21 partial: 120 comparative battles across 12 campaign maps, two formations, five seeds. 115/120 exact final metrics, 120/120 winner and rounds, zero reported unsupported issues. Five mismatches on map 100134 require trace comparison. Same three starter heroes, no dedicated boss coverage. Gate closed.
