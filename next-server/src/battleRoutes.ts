@@ -7,6 +7,7 @@ import {campaignUnits} from './campaignUnits.js';
 import {simulate,type Fighter} from './battle/simulation.js';
 import {battleRandom} from './battle/random.js';
 import {readFileSync} from 'node:fs';
+import {settleIdle,refreshModules} from './campaignDependencies.js';
 import {playerLevels} from './playerLevels.js';
 const rewards=JSON.parse(readFileSync(new URL('../../data/campaign-rewards.json',import.meta.url),'utf8')) as Record<string,{level:number;next:number;rewards:number[][]}>;
 import {randomInt,randomUUID} from 'node:crypto';
@@ -46,13 +47,15 @@ export async function battleRoutes(app:FastifyInstance,s:Storage){
  if(win&&b.map_id===stage&&cfg){
  const clear=await c.query('INSERT INTO campaign_clears(account_id,map_id) VALUES($1,$2) ON CONFLICT DO NOTHING RETURNING map_id',[id,b.map_id]);
  if(clear.rowCount){
+ await settleIdle(c,id,stage);
  const grant=async(item:number,amount:number)=>{await c.query('INSERT INTO player_items(account_id,item_id,amount) VALUES($1,$2,$3) ON CONFLICT(account_id,item_id) DO UPDATE SET amount=CASE WHEN EXCLUDED.item_id=7 THEN LEAST(30000,player_items.amount+EXCLUDED.amount) ELSE player_items.amount+EXCLUDED.amount END',[id,item,amount])};
  granted=cfg.rewards;for(const [item,amount] of granted)await grant(item,amount);
  const xp=BigInt((await c.query('SELECT amount FROM player_items WHERE account_id=$1 AND item_id=5',[id])).rows[0]?.amount??0);
  for(const row of playerLevels)if(row.id>level&&BigInt(row.xp)<=xp){level=row.id;for(const [item,amount] of row.rewards)await grant(item,amount)}
  stage=cfg.next>0?cfg.next:stage;await c.query('UPDATE player_profiles SET stage=$2,level=$3 WHERE account_id=$1',[id,stage,level]);
  }}
- const result={battleId:b.id,mapId:b.map_id,result:win?1:0,rewards:granted,playerLevel:profile.level,level,stage};
+ const unlockedModules=win?await refreshModules(c,id,level,stage):[];
+ const result={unlockedModules,battleId:b.id,mapId:b.map_id,result:win?1:0,rewards:granted,playerLevel:profile.level,level,stage};
  await c.query('UPDATE campaign_battles SET settlement=$2 WHERE id=$1',[b.id,JSON.stringify(result)]);await c.query('DELETE FROM campaign_pending WHERE account_id=$1',[id]);await c.query('COMMIT');return result;
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
  });
