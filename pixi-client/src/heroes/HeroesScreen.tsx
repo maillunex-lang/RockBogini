@@ -38,7 +38,13 @@ const ATTR_LABEL:Record<string,string>={'0':'Атака','1':'ОЗ','2':'Защ�
 const MAT_TYPE:Record<number,string>={1:'тот же герой',2:'связка',3:'та же стихия',4:'любой',5:'только копия'};
 const SLOT_STARTER:Record<number,number>={1:40111,2:40211,3:40311,4:40411};
 const SLOT_NAME:Record<number,string>={1:'Оружие',2:'Броня',3:'Шлем',4:'Аксессуар'};
-type EquipSlot={slot:number;equip:{Sid:number;ItemId:number;score:number;star:number}|null};
+type EquipSlot={
+ slot:number;
+ equip:{Sid:number;ItemId:number;score:number;star:number;Xp?:number}|null;
+ nextId?:number|null;
+ nextNeed?:number|null;
+ ownXp?:number;
+};
 
 export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClose:()=>void}){
  const [formation,setFormation]=useState(false);
@@ -100,7 +106,7 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
   }finally{setBusy(false)}
  };
 
- const equipAct=async(kind:'put-on'|'put-off',body:object,label:string)=>{
+ const equipAct=async(kind:'put-on'|'put-off'|'forge',body:object,label:string)=>{
   if(busy||selected==null)return;
   setBusy(true);setStatus(label);
   try{
@@ -112,7 +118,8 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
    const j=await r.json().catch(()=>({}));
    if(!r.ok)throw Error(j.error||kind+'_'+r.status);
    await loadEquip(selected);
-   setStatus(kind==='put-on'?'Экипировано':'Снято');
+   if(kind==='forge')setStatus(`Ковка → #${j.after?.ItemId} (xp ${j.after?.Xp??0})`);
+   else setStatus(kind==='put-on'?'Экипировано':'Снято');
   }catch(e){
    setStatus(e instanceof Error?e.message:'Не удалось изменить экипировку');
   }finally{setBusy(false)}
@@ -187,12 +194,18 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
     <h3>Экипировка</h3>
     <ul>
      {[1,2,3,4].map(slot=>{
-      const worn=equipSlots.find(s=>s.slot===slot)?.equip??null;
+      const info=equipSlots.find(s=>s.slot===slot);
+      const worn=info?.equip??null;
       const starter=SLOT_STARTER[slot];
       return <li key={slot}>
-       <span>{SLOT_NAME[slot]}: {worn?`#${worn.ItemId} ★${worn.star} · ${worn.score}`:'пусто'}</span>
+       <span>{SLOT_NAME[slot]}: {worn?`#${worn.ItemId} ★${worn.star} · ${worn.score}`:'пусто'}{info?.nextId?` → #${info.nextId} (нужно ${info.nextNeed} xp, сейчас ${info.ownXp})`:worn?' · макс':''}</span>
        {worn?(
-        <button type="button" disabled={busy} onClick={()=>void equipAct('put-off',{sid:worn.Sid},'Снятие…')}>Снять</button>
+        <>
+         <button type="button" disabled={busy||!info?.nextId} onClick={()=>void equipAct('forge',{sid:worn.Sid,materials:[{itemId:starter,count:1}]},'Ковка…')}>
+          Ковка +{starter}
+         </button>
+         <button type="button" disabled={busy} onClick={()=>void equipAct('put-off',{sid:worn.Sid},'Снятие…')}>Снять</button>
+        </>
        ):(
         <button type="button" disabled={busy} onClick={()=>void equipAct('put-on',{itemId:starter,ownerId:h.Sid},'Надевание…')}>
          Надеть #{starter}

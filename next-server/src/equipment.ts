@@ -1,4 +1,4 @@
-/** Hero equipment put-on / put-off from ItemEquipment (slots 1..4). */
+/** Hero equipment put-on / put-off / forge from ItemEquipment (slots 1..4). */
 import {readFileSync} from 'node:fs';
 import {dirname,join} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -8,6 +8,11 @@ import {sessionAccount} from './auth.js';
 
 type EquipCfg={slot:number;star:number;nextId:number;score:number;xp:number;attrs:number[][]};
 type EquipMap=Record<string,EquipCfg>;
+type Mat={itemId:number;count:number;unit:number};
+
+const COIN=1;
+/** GlobalSetting EquipmentXpPrice */
+export const EQUIP_XP_PRICE=200;
 
 const here=dirname(fileURLToPath(import.meta.url));
 const candidates=[join(process.cwd(),'data'),join(here,'..','data'),join(here,'..','..','data')];
@@ -24,6 +29,30 @@ const EQ:EquipMap=loadJson('item-equipment.json',{});
 
 export function equipConfig(itemId:number):EquipCfg|undefined{
  return EQ[String(itemId)];
+}
+
+/** Coin XP cost from original forge_cost (own base+xp vs materials). */
+export function forgeCost(own:number,mats:Mat[]):number{
+ if(!mats.length)return 0;
+ const sorted=[...mats].sort((a,b)=>a.unit-b.unit);
+ const last=sorted[sorted.length-1]!;
+ const init=sorted.slice(0,-1);
+ const total=(list:Mat[])=>list.reduce((s,m)=>s+m.unit*m.count,0);
+ return own>last.unit?total(sorted):own+total(init);
+}
+
+/** Climb NextId while total >= next.Xp; return final itemId + leftover xp. */
+export function climbEquip(startId:number,total:number):{itemId:number;xp:number}|null{
+ let id=startId;
+ let cfg=equipConfig(id);
+ if(!cfg)return null;
+ for(;;){
+  if(cfg.nextId<=0)return {itemId:id,xp:0};
+  const next=equipConfig(cfg.nextId);
+  if(!next||total<next.xp)return {itemId:id,xp:Math.max(0,total-cfg.xp)};
+  id=cfg.nextId;
+  cfg=next;
+ }
 }
 
 async function account(req:{headers:{authorization?:string}},s:Storage){
@@ -97,8 +126,8 @@ export async function equipmentRoutes(app:FastifyInstance,s:Storage){
   if(!(await payItem(s,id,itemId,1)))return reply.code(409).send({error:'insufficient_items'});
   const cur=await slotEquip(s,id,ownerId,cfg.slot);
   if(cur){
-   await s.pg.query('UPDATE player_equipment SET owner_sid=0 WHERE account_id=$1 AND sid=$2',[id,cur.Sid]);
    await grantItem(s,id,cur.ItemId,1);
+   await s.pg.query('DELETE FROM player_equipment WHERE account_id=$1 AND sid=$2',[id,cur.Sid]);
   }
   const sid=await nextSid(s,id);
   await s.pg.query(
@@ -131,7 +160,62 @@ export async function equipmentRoutes(app:FastifyInstance,s:Storage){
   const owner=Number(req.params.sid);
   if(!(await heroExists(s,id,owner)))return reply.code(404).send({error:'hero_not_found'});
   const worn=(await listEquip(s,id)).filter(e=>e.OwnerId===owner);
-  const slots=[1,2,3,4].map(slot=>({slot,equip:worn.find(e=>e.slot===slot)??null}));
+  const slots=[1,2,3,4].map(slot=>{
+   const equip=worn.find(e=>e.slot===slot)??null;
+   const cur=equip?equipConfig(equip.ItemId):null;
+   const next=cur?.nextId?equipConfig(cur.nextId):null;
+   return {slot,equip,nextId:cur?.nextId||null,nextNeed:next?.xp??null,ownXp:cur?(cur.xp+(equip?.Xp??0)):0};
+  });
   return {ownerId:owner,slots};
+ });
+
+ app.post<{Body:{sid:number;materials:{itemId:number;count:number}[]}}>('/v1/equipment/forge',{
+  schema:{body:{type:'object',required:['sid','materials'],additionalProperties:false,properties:{
+   sid:{type:'integer',minimum:1},
+   materials:{type:'array',minItems:1,maxItems:32,items:{type:'object',required:['itemId','count'],additionalProperties:false,properties:{
+    itemId:{type:'integer',minimum:1},
+    count:{type:'integer',minimum:1,maximum:999},
+   }}},
+  }}},
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  const row=await s.pg.query(
+   'SELECT sid,item_id,owner_sid,xp FROM player_equipment WHERE account_id=$1 AND sid=$2',
+   [id,req.body.sid],
+  );
+  if(!row.rowCount)return reply.code(404).send({error:'equip_not_found'});
+  const rec=row.rows[0] as {sid:number;item_id:number;owner_sid:number;xp:number};
+  const cfg=equipConfig(rec.item_id);
+  if(!cfg)return reply.code(404).send({error:'equip_config_missing'});
+  if(cfg.nextId<=0)return reply.code(409).send({error:'equip_max'});
+  const mats:Mat[]=[];
+  for(const m of req.body.materials){
+   const mc=equipConfig(m.itemId);
+   if(!mc)return reply.code(400).send({error:'invalid_material',itemId:m.itemId});
+   mats.push({itemId:m.itemId,count:m.count,unit:mc.xp});
+  }
+  const own=cfg.xp+rec.xp;
+  const gained=mats.reduce((s,m)=>s+m.unit*m.count,0);
+  const xpCost=forgeCost(own,mats);
+  const coin=xpCost*EQUIP_XP_PRICE;
+  for(const m of mats){
+   if(!(await payItem(s,id,m.itemId,m.count)))return reply.code(409).send({error:'insufficient_materials',itemId:m.itemId});
+  }
+  if(coin>0&&!(await payItem(s,id,COIN,coin)))return reply.code(409).send({error:'insufficient_coin',cost:coin});
+  const climbed=climbEquip(rec.item_id,own+gained);
+  if(!climbed)return reply.code(500).send({error:'forge_failed'});
+  await s.pg.query(
+   'UPDATE player_equipment SET item_id=$3,xp=$4 WHERE account_id=$1 AND sid=$2',
+   [id,rec.sid,climbed.itemId,climbed.xp],
+  );
+  return {
+   ok:true,
+   cost:[[COIN,coin],...mats.map(m=>[m.itemId,m.count] as [number,number])],
+   gained,
+   before:{ItemId:rec.item_id,Xp:rec.xp},
+   after:{ItemId:climbed.itemId,Xp:climbed.xp},
+   equipment:await listEquip(s,id),
+  };
  });
 }
