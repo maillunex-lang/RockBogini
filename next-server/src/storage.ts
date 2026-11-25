@@ -64,6 +64,13 @@ export async function migrate(s:Storage){
  await c.query('ALTER TABLE player_holy_equipment ADD COLUMN IF NOT EXISTS blessing1 jsonb');
  await c.query('ALTER TABLE player_holy_equipment ADD COLUMN IF NOT EXISTS blessing2 jsonb');
  await c.query('INSERT INTO schema_migrations(version) VALUES(14) ON CONFLICT DO NOTHING');
+ await c.query('ALTER TABLE player_holy_equipment ADD COLUMN IF NOT EXISTS gallery_slot integer NOT NULL DEFAULT 0');
+ await c.query(`CREATE TABLE IF NOT EXISTS player_holy_gallery(
+  account_id uuid PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,
+  levels integer[4] NOT NULL DEFAULT ARRAY[0,0,0,0]::integer[],
+  CHECK(cardinality(levels)=4)
+ )`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(15) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }
