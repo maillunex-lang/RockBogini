@@ -1,0 +1,56 @@
+# Dependencies & build
+node_modules/
+dist/
+**/_build/
+deps/
+*.ez
+.elixir_ls/
+.venv/
+__pycache__/
+*.pyc
+
+# Secrets & local env
+.env
+.env.*
+!.env.example
+**/.env
+
+# Original runtime / large local-only trees (never publish)
+runtime/
+decompiled/
+backups/
+browser-test/
+experiments/
+recovery-download/
+localization/
+android-rtb/
+recovered/
+next-audit/
+# Docker local volumes if any
+postgres-data/
+redis-data/
+
+# OS / editor
+.DS_Store
+*.swp
+*~
+.idea/
+.vscode/
+
+# Temp / logs / large local dumps
+*.bak*
+*.bundle
+/tmp/
+reports/**/*.log
+reports/**/*.png
+reports/**/*.webm
+reports/**/chromium-*/
+pixi-client/public/**/*.bak*
+
+# Legacy root tooling (not the Next game packages)
+/package.json
+/package-lock.json
+
+# Migration safety snapshot lives outside repo; ignore if copied
+rockbogini-history.bundle
+rocbogini-git-migrate/

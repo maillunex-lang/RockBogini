@@ -28,3 +28,6 @@ D-010: WEB-01 isolated test regression fixed without changing battle behavior; W
 
 ## 2026-11-25
 - SINGLE-PROJECT-001 | Единый проект финальной версии. Вся разработка только в `/home/gamedev/rocbogini/`. Alpha/Beta/Release — состояния одного проекта, не отдельные копии. Не дублировать графику/сборки/инстансы. Единственная публикация Next: https://rikagro.ru/testtest/. Оригинал (runtime) только для сравнения. Диск ≥90%: аудит перед крупной сборкой; ≥95%: стоп и сообщение владельцу. Миграция Git с `rockbogini-publish` → корень rocbogini — план владельцу, зеркало не удалять без согласования.
+
+## 2026-11-25
+- GIT-MIGRATE-001 | Git history перенесена в `/home/gamedev/rocbogini/` (`next/`→root via filter-repo). Зеркало `rockbogini-publish` удалено по разрешению владельца. Bundle: `/home/gamedev/rockbogini-history.bundle`.
