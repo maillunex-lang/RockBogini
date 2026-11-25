@@ -211,12 +211,19 @@
 .campaign-idle p{margin:0 0 6px;opacity:.9}
 .campaign-idle ul{margin:0;padding-left:18px;columns:2;gap:18px}
 .campaign-idle-empty{opacity:.7;font-size:.9rem}
-.campaign-idle>button{
+.campaign-idle-actions{
+ display:flex;
+ flex-direction:column;
+ gap:8px;
  flex:0 0 auto;
+}
+.campaign-idle-actions button{
  padding:10px 16px;
  border:1px solid #e8c48c;
  background:rgba(90,58,28,.9);
  color:inherit;
  cursor:pointer;
+ white-space:nowrap;
 }
-.campaign-idle>button:disabled{opacity:.45;cursor:not-allowed}
+.campaign-idle-actions button:disabled{opacity:.45;cursor:not-allowed}
+.campaign-idle-quick{font-size:.9rem;opacity:.85}

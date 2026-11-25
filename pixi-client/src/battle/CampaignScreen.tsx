@@ -97,6 +97,14 @@ function initialPhase(t:TutorialPending):TutorialPhase{
  return null;
 }
 
+type IdleQuick={
+ freeLeft:number;
+ paidLeft:number;
+ nextCost:number|null;
+ durationMinutes:number;
+ dailyCount:number;
+ dailyQuickCount:number;
+};
 type IdleInfo={
  stage:number;
  minutes:number;
@@ -104,6 +112,7 @@ type IdleInfo={
  capped:boolean;
  rewards:number[][];
  rates:{common:{itemId:number;perMinute:number}[];random:{libId:number;perMinute:number}[]};
+ quick?:IdleQuick;
 };
 
 export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:string;onFight:(mapId:number)=>void;onClose:()=>void}){
@@ -165,6 +174,25 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
    setIdleMsg(`Получено: ${body.rewards.length} видов · ${total} шт.`);
    await loadIdle();
   }catch(e){setIdleMsg(e instanceof Error?e.message:'Ошибка сбора')}
+  finally{setIdleBusy(false)}
+ };
+
+ const runQuickBattle=async()=>{
+  if(idleBusy)return;
+  setIdleBusy(true);setIdleMsg('');
+  try{
+   const res=await fetch(api+'/v1/campaign/idle/quick',{
+    method:'POST',
+    headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},
+   });
+   if(res.status===402){setIdleMsg('Не хватает алмазов');await loadIdle();return}
+   if(res.status===409){setIdleMsg('Лимит быстрых боёв на сегодня');await loadIdle();return}
+   if(!res.ok)throw Error('idle_quick_'+res.status);
+   const body=await res.json() as {rewards:number[][];paid:number;durationMinutes:number};
+   const total=body.rewards.reduce((s,[,n])=>s+(n??0),0);
+   setIdleMsg(`Быстрый бой ${body.durationMinutes}м: ${body.rewards.length} видов · ${total} шт.${body.paid?` · −${body.paid}💎`:''}`);
+   await loadIdle();
+  }catch(e){setIdleMsg(e instanceof Error?e.message:'Ошибка быстрого боя')}
   finally{setIdleBusy(false)}
  };
 
@@ -295,14 +323,26 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
     {idle.rewards.length>0
      ?<ul>{idle.rewards.slice(0,8).map(([id,n])=><li key={id}>{itemDisplayName(id)} ×{n}</li>)}</ul>
      :<p className="campaign-idle-empty">Награды копятся, пока вы в городе или офлайн.</p>}
+    {idle.quick&&<p className="campaign-idle-quick">
+     Быстрый бой {idle.quick.durationMinutes}м · бесплатно {idle.quick.freeLeft} · платно {idle.quick.paidLeft}
+     {idle.quick.nextCost!=null&&idle.quick.nextCost>0?` · след. ${idle.quick.nextCost}💎`:idle.quick.nextCost===0?' · след. бесплатно':''}
+    </p>}
     {idleMsg&&<p role="status">{idleMsg}</p>}
    </div>
-   <button
-    type="button"
-    data-guide="campaign-idle-claim"
-    disabled={idleBusy||idle.rewards.length===0}
-    onClick={()=>void claimIdleRewards()}
-   >{idleBusy?'Сбор…':'Забрать'}</button>
+   <div className="campaign-idle-actions">
+    <button
+     type="button"
+     data-guide="campaign-idle-claim"
+     disabled={idleBusy||idle.rewards.length===0}
+     onClick={()=>void claimIdleRewards()}
+    >{idleBusy?'…':'Забрать'}</button>
+    <button
+     type="button"
+     data-guide="campaign-idle-quick"
+     disabled={idleBusy||!idle.quick||(idle.quick.freeLeft<=0&&idle.quick.paidLeft<=0)}
+     onClick={()=>void runQuickBattle()}
+    >{idleBusy?'…':idle.quick?.nextCost?`Быстрый (−${idle.quick.nextCost}💎)`:'Быстрый бой'}</button>
+   </div>
   </section>}
   {data&&view==='worlds'&&<>
    <div className="campaign-sheet-nav" aria-label="Листы карты">

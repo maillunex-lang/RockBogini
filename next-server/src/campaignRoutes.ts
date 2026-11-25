@@ -17,7 +17,15 @@ import {
 import {mapWorldName} from './campaignLocales.js';
 import {campaignStoryStats,guideGroups,guideLinesForMap,playableTutorial,storyChapters} from './campaignStory.js';
 import {mapMeta,mapMetaStats} from './campaignMapMeta.js';
-import {claimIdle,IDLE_LIMIT_MINUTES,idleStageRates,orderedIdleRewards,settleIdle} from './campaignDependencies.js';
+import {
+ claimIdle,
+ IDLE_LIMIT_MINUTES,
+ idleStageRates,
+ orderedIdleRewards,
+ previewQuickBattle,
+ runQuickBattle,
+ settleIdle,
+} from './campaignDependencies.js';
 
 async function authAccount(req:{headers:{authorization?:string}},s:Storage){
  const token=/^Bearer ([A-Za-z0-9_-]{43})$/.exec(req.headers.authorization??'')?.[1];
@@ -177,6 +185,7 @@ export async function campaignRoutes(app:FastifyInstance,s:Storage){
    await c.query('BEGIN');
    await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
    const settled=await settleIdle(c,id,stage);
+   const quick=await previewQuickBattle(c,id);
    await c.query('COMMIT');
    const elapsed=Math.min(
     IDLE_LIMIT_MINUTES,
@@ -192,6 +201,7 @@ export async function campaignRoutes(app:FastifyInstance,s:Storage){
     rates:idleStageRates(stage),
     receivedAt:new Date(settled.receivedAt).toISOString(),
     settledAt:new Date(settled.settledAt).toISOString(),
+    quick,
    };
   }catch(e){
    await c.query('ROLLBACK');
@@ -220,6 +230,30 @@ export async function campaignRoutes(app:FastifyInstance,s:Storage){
     receivedAt:new Date(result.receivedAt).toISOString(),
     settledAt:new Date(result.settledAt).toISOString(),
    };
+  }catch(e){
+   await c.query('ROLLBACK');
+   throw e;
+  }finally{c.release()}
+ });
+
+ /** Instant 120m hang-up accrual (Req_Map_AdventureQuickBattle). */
+ app.post('/v1/campaign/idle/quick',async(req,reply)=>{
+  const id=await authAccount(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  const profile=await getProfile(s,id);
+  const stage=profile.stage as number;
+  const c=await s.pg.connect();
+  try{
+   await c.query('BEGIN');
+   await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
+   const result=await runQuickBattle(c,id,stage);
+   if('error' in result){
+    await c.query('ROLLBACK');
+    const code=result.error==='insufficient_diamond'?402:409;
+    return reply.code(code).send({error:result.error});
+   }
+   await c.query('COMMIT');
+   return {stage,...result};
   }catch(e){
    await c.query('ROLLBACK');
    throw e;
