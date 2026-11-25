@@ -53,6 +53,40 @@ function stepCfg(step:number):StarCfg|undefined{return STAR[String(200+step)]}
 function levelCfg(level:number):LevelCfg|undefined{return LEVEL[String(level)]}
 function xpUnits():number[]{return LP['123']??[1000,5000,20000,50000]}
 
+/** type 1 = Star, type 2 = Step (Req_Holy_EquipmentStarUp). */
+export function nextStarTarget(star:number,step:number,type:1|2):{
+ field:'Star'|'Step';value:number;cfg:StarCfg;materials:[number,number][];
+}|null{
+ if(type===2){
+  const cfg=stepCfg(step+1);
+  if(!cfg)return null;
+  return {field:'Step',value:step+1,cfg,materials:matPairs(cfg.materials)};
+ }
+ const cfg=starCfg(star+1);
+ if(!cfg)return null;
+ return {field:'Star',value:star+1,cfg,materials:matPairs(cfg.materials)};
+}
+
+function matPairs(rows:number[][]):[number,number][]{
+ const out:[number,number][]=[];
+ for(const row of rows){
+  const id=row[0],n=row[1];
+  if(id&&n)out.push([id,n]);
+ }
+ return out;
+}
+
+function unlockOk(star:number,step:number,unlock:number[]):boolean{
+ if(unlock.length<2)return true;
+ return star>=(unlock[0]??0)&&step>=(unlock[1]??0);
+}
+
+export function canStarUp(star:number,step:number,type:1|2):boolean{
+ const next=nextStarTarget(star,step,type);
+ if(!next)return false;
+ return unlockOk(star,step,next.cfg.unlock);
+}
+
 function addPairs(out:number[][],rows:number[][]|undefined){
  if(!rows)return;
  for(const row of rows){
@@ -356,7 +390,13 @@ export async function holyRoutes(app:FastifyInstance,s:Storage){
   const slots=[1,2,3,4].map(slot=>{
    const equip=worn.find(e=>e.type===slot)??null;
    const maxLevel=equip?starCfg(equip.Star)?.maxLevel??0:0;
-   return {slot,equip,maxLevel};
+   const starNext=equip?nextStarTarget(equip.Star,equip.Step,1):null;
+   const stepNext=equip?nextStarTarget(equip.Star,equip.Step,2):null;
+   return {
+    slot,equip,maxLevel,
+    nextStar:starNext&&canStarUp(equip!.Star,equip!.Step,1)?{value:starNext.value,materials:starNext.materials}:null,
+    nextStep:stepNext&&canStarUp(equip!.Star,equip!.Step,2)?{value:stepNext.value,materials:stepNext.materials}:null,
+   };
   });
   const bonus=holyWornBonus(worn.map(e=>({
    Sid:e.Sid,ItemId:e.ItemId,Star:e.Star,Level:e.Level,Xp:e.Xp,Stage:e.Stage,Step:e.Step,OwnerId:e.OwnerId,
@@ -413,6 +453,44 @@ export async function holyRoutes(app:FastifyInstance,s:Storage){
    refund,
    before:{Level:rec.level,Xp:rec.xp},
    after:{Level:level,Xp:newXp},
+   holy:await listHoly(s,id),
+  };
+ });
+
+ app.post<{Body:{sid:number;type?:number}}>('/v1/holy/star-up',{
+  schema:{body:{type:'object',required:['sid'],additionalProperties:false,properties:{
+   sid:{type:'integer',minimum:1},
+   type:{type:'integer',enum:[1,2]},
+  }}},
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  const kind=(req.body.type===2?2:1) as 1|2;
+  const row=await s.pg.query(
+   'SELECT sid,item_id,star,level,xp,stage,step,owner_sid FROM player_holy_equipment WHERE account_id=$1 AND sid=$2',
+   [id,req.body.sid],
+  );
+  if(!row.rowCount)return reply.code(404).send({error:'holy_not_found'});
+  const rec=row.rows[0] as {sid:number;item_id:number;star:number;level:number;xp:number;stage:number;step:number;owner_sid:number};
+  const next=nextStarTarget(rec.star,rec.step,kind);
+  if(!next)return reply.code(409).send({error:kind===2?'holy_max_step':'holy_max_star'});
+  if(!unlockOk(rec.star,rec.step,next.cfg.unlock))return reply.code(409).send({error:'holy_unlock',need:next.cfg.unlock});
+  if(!next.materials.length)return reply.code(500).send({error:'star_materials_missing'});
+  for(const [itemId,n] of next.materials){
+   if(!(await payItem(s,id,itemId,n)))return reply.code(409).send({error:'insufficient_materials',itemId});
+  }
+  if(next.field==='Star'){
+   await s.pg.query('UPDATE player_holy_equipment SET star=$3 WHERE account_id=$1 AND sid=$2',[id,rec.sid,next.value]);
+  }else{
+   await s.pg.query('UPDATE player_holy_equipment SET step=$3 WHERE account_id=$1 AND sid=$2',[id,rec.sid,next.value]);
+  }
+  if(rec.owner_sid>0)await refreshHeroGear(s,id,rec.owner_sid);
+  return {
+   ok:true,
+   type:kind,
+   cost:next.materials,
+   before:{Star:rec.star,Step:rec.step},
+   after:{Star:next.field==='Star'?next.value:rec.star,Step:next.field==='Step'?next.value:rec.step},
    holy:await listHoly(s,id),
   };
  });
