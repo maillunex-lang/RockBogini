@@ -3,12 +3,13 @@ import {readFileSync} from 'node:fs';
 import {dirname, join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
-export type ItemKind='currency'|'consume'|'material'|'shard'|'other';
+export type ItemKind='currency'|'consume'|'material'|'shard'|'personality'|'other';
 
 type ConsumeRow={subType:number;param:number[][]};
 type SellMap=Record<string,number>;
 type TypeMap=Record<string,number>;
 type ConsumeMap=Record<string,ConsumeRow>;
+type PersMap=Record<string,{type:number;element:number}>;
 
 const here=dirname(fileURLToPath(import.meta.url));
 const dataCandidates=[
@@ -28,9 +29,11 @@ function loadJson<T>(name:string,fallback:T):T{
 const TYPES:TypeMap=loadJson('item-base-types.json',{});
 const SELL:SellMap=loadJson('item-sell-overrides.json',{});
 const CONSUME:ConsumeMap=loadJson('item-consume-usable.json',{});
+const PERS:PersMap=loadJson('item-personality.json',{});
 
 /** Original EnumType.ItemType → inventory filter kind. */
 export function itemKind(itemId:number):ItemKind{
+ if(PERS[String(itemId)]||TYPES[String(itemId)]===10)return 'personality';
  const t=TYPES[String(itemId)];
  if(t===1)return 'currency';
  if(t===2)return 'consume';
@@ -44,6 +47,10 @@ export function itemKind(itemId:number):ItemKind{
  return 'other';
 }
 
+export function personalityElement(itemId:number){
+ return PERS[String(itemId)]?.element??0;
+}
+
 export function sellPrice(itemId:number):number{
  return SELL[String(itemId)]??0;
 }
@@ -55,14 +62,18 @@ export function consumeConfig(itemId:number):ConsumeRow|undefined{
 export function enrichItem(itemId:number,amount:string){
  const cfg=consumeConfig(itemId);
  const price=sellPrice(itemId);
+ const kind=itemKind(itemId);
+ const element=personalityElement(itemId);
  return {
   itemId,
   amount,
-  kind:itemKind(itemId),
+  kind,
   sellPrice:price,
   canSell:price>0,
   usable:!!cfg,
   useSubType:cfg?.subType??null,
+  canPersonalityDisplace:kind==='personality'&&element>=1&&element<=3,
+  element:element||undefined,
   icon:`item-icons/${itemId}.webp`,
  };
 }
