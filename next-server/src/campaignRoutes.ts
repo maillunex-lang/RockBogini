@@ -17,6 +17,7 @@ import {
 import {mapWorldName} from './campaignLocales.js';
 import {campaignStoryStats,guideGroups,guideLinesForMap,playableTutorial,storyChapters} from './campaignStory.js';
 import {mapMeta,mapMetaStats} from './campaignMapMeta.js';
+import {claimIdle,IDLE_LIMIT_MINUTES,idleStageRates,orderedIdleRewards,settleIdle} from './campaignDependencies.js';
 
 async function authAccount(req:{headers:{authorization?:string}},s:Storage){
  const token=/^Bearer ([A-Za-z0-9_-]{43})$/.exec(req.headers.authorization??'')?.[1];
@@ -163,5 +164,65 @@ export async function campaignRoutes(app:FastifyInstance,s:Storage){
    completedGroupIds:[...completedGuides].sort((a,b)=>a-b),
    pending:playableTutorial(completedGuides),
   };
+ });
+
+ /** Hang-up (idle) chest preview — settles accrual then returns pending rewards. */
+ app.get('/v1/campaign/idle',async(req,reply)=>{
+  const id=await authAccount(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  const profile=await getProfile(s,id);
+  const stage=profile.stage as number;
+  const c=await s.pg.connect();
+  try{
+   await c.query('BEGIN');
+   await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
+   const settled=await settleIdle(c,id,stage);
+   await c.query('COMMIT');
+   const elapsed=Math.min(
+    IDLE_LIMIT_MINUTES,
+    Math.max(0,Math.floor((Date.now()-settled.receivedAt)/60000)),
+   );
+   return {
+    stage,
+    minutes:elapsed,
+    accruedMinutes:settled.minutes,
+    limitMinutes:IDLE_LIMIT_MINUTES,
+    capped:elapsed>=IDLE_LIMIT_MINUTES,
+    rewards:orderedIdleRewards(stage,settled.rewards as Record<number,number>),
+    rates:idleStageRates(stage),
+    receivedAt:new Date(settled.receivedAt).toISOString(),
+    settledAt:new Date(settled.settledAt).toISOString(),
+   };
+  }catch(e){
+   await c.query('ROLLBACK');
+   throw e;
+  }finally{c.release()}
+ });
+
+ /** Claim hang-up chest (Req_Map_AdventureReceiveHangUpReward). */
+ app.post('/v1/campaign/idle/claim',async(req,reply)=>{
+  const id=await authAccount(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  const profile=await getProfile(s,id);
+  const stage=profile.stage as number;
+  const c=await s.pg.connect();
+  try{
+   await c.query('BEGIN');
+   await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
+   const result=await claimIdle(c,id,stage);
+   await c.query('COMMIT');
+   if(!result.rewards.length)return reply.code(409).send({error:'nothing_to_claim'});
+   return {
+    stage,
+    rewards:result.rewards,
+    minutes:result.minutes,
+    limitMinutes:result.limitMinutes,
+    receivedAt:new Date(result.receivedAt).toISOString(),
+    settledAt:new Date(result.settledAt).toISOString(),
+   };
+  }catch(e){
+   await c.query('ROLLBACK');
+   throw e;
+  }finally{c.release()}
  });
 }

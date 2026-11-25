@@ -1,3 +1,4 @@
+2026-11-25 NEXT-019.1: hang-up idle claim API + campaign UI panel; settle/claim keep fractional points; 7/7 tests; testtest publish. reports/NEXT-019.1.md.
 # Журнал
 2026-11-24: архив удален по запросу, распакованный оригинал сохранен.
 2026-11-24: REC-01/02: job kvs1cjgt7r exit 0; инвентаризация и извлечение модулей завершены. Предупреждения Node записаны в STATUS.

@@ -1,7 +1,7 @@
 # Актуальное состояние 2026-11-25
 
-Активная задача: **NEXT-018.6** (personality displace done). Live https://rikagro.ru/testtest/.
-Проверено: personality+displace+storage 5/5; publish ok.
+Активная задача: **NEXT-019.1** (idle claim done). Live https://rikagro.ru/testtest/.
+Проверено: idle claim 7/7; publish ok.
 
 | Подэтап | Состояние |
 |---|---|

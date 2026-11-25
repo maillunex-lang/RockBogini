@@ -12,6 +12,18 @@ test('idle fractional points survive split intervals and stage changes',()=>{
  assert.deepEqual(combined,all.rewards);
  const c=accrueIdle(100102,0,b.points,pick);assert.deepEqual(c.rewards,{});assert.deepEqual(c.points,b.points);
 });
+test('settleIdle returns accrued snapshot',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);const a=await createGuest(s);await getProfile(s,a.id);const c=await s.pg.connect();
+ try{
+  await c.query('BEGIN');
+  await c.query("UPDATE accounts SET created_at=now()-interval '45 minutes' WHERE id=$1",[a.id]);
+  const snap=await settleIdle(c,a.id,100101);
+  assert.ok(snap.minutes>=40);
+  assert.equal(snap.limitMinutes,720);
+  assert.ok(Object.keys(snap.rewards).length>0);
+  await c.query('ROLLBACK');
+ }finally{await c.query('ROLLBACK');c.release();await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await s.close()}
+});
 test('module unlock uses strictly passed stage',()=>{
  const p={level:1,stage:100106,days:1,vip:0,power:0};
  assert.ok(!eligibleModules(p).includes(1053));assert.ok(eligibleModules({...p,stage:100107}).includes(1053));
