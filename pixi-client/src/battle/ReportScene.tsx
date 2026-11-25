@@ -41,7 +41,7 @@ export function ReportScene({report,cursor,onReady}:{report:BattleReport;cursor:
  const actor=rt.units.get(p.actor),model=rt.models.get(p.actor),index=rt.skills[p.skillId],common=rt.common.skills[p.skillId],timeline=common?rt.common.models[common.model]?.Skills[timelineIndex(common.index)]:model===undefined?undefined:rt.timelines[model]?.Skills[timelineIndex(index)];
  const home=report.heroes.find(h=>h.id===p.actor),target=report.heroes.find(h=>h.id===p.targets[0]);
  const activeEffects=new Set<Spine>(),effectReleases:(()=>void)[]=[];
- const effectEvents=timeline?.Events.filter(e=>[2,6,8].includes(e.EventType)&&e.ActionName&&e.Duration>0)??[];
+ const effectEvents=timeline?.Events.filter(e=>[2,6,7,8].includes(e.EventType)&&e.ActionName&&e.Duration>0)??[];
  const prepared=new Map<string,{data:Awaited<ReturnType<typeof acquireSkeleton>>['data'];name:string}>();
  async function prepareEffects(){
  await Promise.all([...new Set(effectEvents.map(e=>e.ActionName))].map(async name=>{
@@ -57,6 +57,16 @@ export function ReportScene({report,cursor,onReady}:{report:BattleReport;cursor:
  fx.position.set(base.x+e.OffsetX*avatarScale*camp,base.y-e.OffsetY*avatarScale);fx.scale.set(avatarScale*camp,avatarScale);
  fx.state.setAnimation(0,asset.name,false);(e.ShowAtBottom?rt!.bottom:rt!.top).addChild(fx);activeEffects.add(fx);
  later(e.Duration,()=>{activeEffects.delete(fx);fx.destroy({children:true})});
+ }
+ function bullet(e:Timeline['Events'][number],target:Spine|undefined){
+ const asset=prepared.get(e.ActionName);if(!asset||!actor||!target)return;
+ const fx=new Spine(asset.data),skin=asset.data.skins[0];if(skin){fx.skeleton.setSkin(skin);fx.skeleton.setSlotsToSetupPose()}
+ const from={x:actor.x+e.OffsetX*avatarScale*(home?.camp??1),y:actor.y-e.OffsetY*avatarScale};
+ const to={x:target.x,y:target.y-90};fx.position.set(from.x,from.y);fx.scale.set(avatarScale);fx.rotation=Math.atan2(to.y-from.y,to.x-from.x);
+ fx.state.setAnimation(0,asset.name,true);(e.ShowAtBottom?rt.bottom:rt.top).addChild(fx);activeEffects.add(fx);
+ const start=performance.now();let frame=0;
+ const tick=(now:number)=>{frames.delete(frame);if(cancelled||!activeEffects.has(fx))return;const t=Math.min(1,(now-start)/e.Duration);fx.position.set(from.x+(to.x-from.x)*t,from.y+(to.y-from.y)*t);if(t<1){frame=requestAnimationFrame(tick);frames.add(frame)}else{activeEffects.delete(fx);fx.destroy({children:true})}};
+ frame=requestAnimationFrame(tick);frames.add(frame);
  }
  const lifeFrames=new Map<number,number>();
  function lifecycle(id:number,type:number){
@@ -76,8 +86,9 @@ export function ReportScene({report,cursor,onReady}:{report:BattleReport;cursor:
  }
  async function play(){await prepareEffects();if(cancelled)return;
  if(p.dataType===2&&timeline)for(const e of timeline.Events){
- if([2,6,8].includes(e.EventType)&&e.ActionName&&e.Duration>0)later(e.StartTime,()=>{
- if(e.EventType===6){for(const id of new Set(p.events.filter(h=>h.index===e.HitPointId&&h.type<=20).map(h=>h.target))){const h=report.heroes.find(x=>x.id===id);showEffect(e,rt.units.get(id),-(h?.camp??-1))}}
+ if([2,6,7,8].includes(e.EventType)&&e.ActionName&&e.Duration>0)later(e.StartTime,()=>{
+ if(e.EventType===7){for(const id of new Set(p.targets))bullet(e,rt.units.get(id))}
+ else if(e.EventType===6){for(const id of new Set(p.events.filter(h=>h.index===e.HitPointId&&h.type<=20).map(h=>h.target))){const h=report.heroes.find(x=>x.id===id);showEffect(e,rt.units.get(id),-(h?.camp??-1))}}
  else if(e.EventType===8||e.ReferenceType===1)showEffect(e,actor,home?.camp??1);
  else showEffect(e,e.ReferenceType===3?rt.units.get(p.targets[0]):undefined,-(target?.camp??-1));
  });
