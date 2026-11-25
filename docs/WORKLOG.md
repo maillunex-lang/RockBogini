@@ -445,3 +445,5 @@ NEXT-013.8 in_progress: inventoried 10 invalid common-skill ActionIndex values; 
 2026-11-25 Plan A: RU StoryChapter titles, plot-video stub, GET /v1/inventory + InventoryScreen; 86/86; publish. reports/NEXT-014-tails-015-*.
 
 2026-11-25 NEXT-015.2: ItemIcon hardlinks (3724), POST use/sell, InventoryScreen actions; publish testtest. reports/NEXT-015.2.md.
+
+2026-11-25 NEXT-016.1: hero level/star growth MVP; HeroLevel costs; publish. reports/NEXT-016.1.md.

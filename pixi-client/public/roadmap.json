@@ -138,9 +138,9 @@
   "id": "NEXT-016",
   "title": "Развитие героев",
   "phase": "IV. RPG и экономика",
-  "scope": "Уровни, звёзды, ранги, таланты, навыки, пробуждение, сброс",
-  "status": "pending",
-  "evidence": ""
+  "scope": "016.1: level-up + star without fodder. Fodder/talents/awaken open.",
+  "status": "in_progress",
+  "evidence": "reports/NEXT-016.1.md"
  },
  {
   "id": "NEXT-017",
