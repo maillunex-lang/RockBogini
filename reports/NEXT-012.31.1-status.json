@@ -1,0 +1,367 @@
+{
+  "total": 10065,
+  "matched": 10065,
+  "battles": 72,
+  "rows": [
+    {
+      "mapId": 300101,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300101,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300101,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300101,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300101,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300101,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300126,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300126,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300126,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300126,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300126,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300126,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300115,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300115,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300115,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300115,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300115,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300115,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300144,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300144,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300144,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300144,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300144,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300144,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300125,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300125,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300125,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300125,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300125,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300125,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300139,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300139,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300139,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300139,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300139,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300139,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300133,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300133,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300133,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300133,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300133,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300133,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300118,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300118,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300118,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300118,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300118,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300118,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300140,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300140,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300140,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300140,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300140,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300140,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300122,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300122,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300122,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300122,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300122,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300122,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300145,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300145,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300145,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300145,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300145,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300145,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300127,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300127,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300127,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 300127,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 300127,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 300127,
+      "seed": 3,
+      "bad": 0
+    }
+  ]
+}

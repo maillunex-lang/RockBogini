@@ -1,0 +1,727 @@
+{
+  "total": 2085,
+  "matched": 2085,
+  "battles": 144,
+  "rows": [
+    {
+      "mapId": 100101,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 100101,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 100101,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 100101,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 100101,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 100101,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 100314,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 100314,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 100314,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 100314,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 100314,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 100314,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 100527,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 100527,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 100527,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 100527,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 100527,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 100527,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 100740,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 100740,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 100740,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 100740,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 100740,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 100740,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 101013,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 101013,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 101013,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 101013,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 101013,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 101013,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 101226,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 101226,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 101226,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 101226,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 101226,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 101226,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 101439,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 101439,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 101439,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 101439,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 101439,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 101439,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 101712,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 101712,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 101712,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 101712,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 101712,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 101712,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 101925,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 101925,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 101925,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 101925,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 101925,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 101925,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 102138,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 102138,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 102138,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 102138,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 102138,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 102138,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 102411,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 102411,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 102411,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 102411,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 102411,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 102411,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 102624,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 102624,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 102624,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 102624,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 102624,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 102624,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 102837,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 102837,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 102837,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 102837,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 102837,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 102837,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 103110,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 103110,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 103110,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 103110,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 103110,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 103110,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 103323,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 103323,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 103323,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 103323,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 103323,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 103323,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 103536,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 103536,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 103536,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 103536,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 103536,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 103536,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 103809,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 103809,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 103809,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 103809,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 103809,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 103809,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 104022,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 104022,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 104022,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 104022,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 104022,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 104022,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 104235,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 104235,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 104235,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 104235,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 104235,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 104235,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 104508,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 104508,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 104508,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 104508,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 104508,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 104508,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 104721,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 104721,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 104721,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 104721,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 104721,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 104721,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 104934,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 104934,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 104934,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 104934,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 104934,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 104934,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 105207,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 105207,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 105207,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 105207,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 105207,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 105207,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 105420,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 105420,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 105420,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 105420,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 105420,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 105420,
+      "seed": 3,
+      "bad": 0
+    }
+  ]
+}

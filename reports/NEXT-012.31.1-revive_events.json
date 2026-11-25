@@ -1,0 +1,82 @@
+{
+  "total": 1249,
+  "matched": 1249,
+  "battles": 15,
+  "rows": [
+    {
+      "mapId": 100101,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 100101,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 100101,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 100101,
+      "seed": 4,
+      "bad": 0
+    },
+    {
+      "mapId": 100101,
+      "seed": 5,
+      "bad": 0
+    },
+    {
+      "mapId": 100101,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 100101,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 100101,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 100101,
+      "seed": 4,
+      "bad": 0
+    },
+    {
+      "mapId": 100101,
+      "seed": 5,
+      "bad": 0
+    },
+    {
+      "mapId": 100101,
+      "seed": 1,
+      "bad": 0
+    },
+    {
+      "mapId": 100101,
+      "seed": 2,
+      "bad": 0
+    },
+    {
+      "mapId": 100101,
+      "seed": 3,
+      "bad": 0
+    },
+    {
+      "mapId": 100101,
+      "seed": 4,
+      "bad": 0
+    },
+    {
+      "mapId": 100101,
+      "seed": 5,
+      "bad": 0
+    }
+  ]
+}
