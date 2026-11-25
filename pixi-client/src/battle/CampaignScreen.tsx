@@ -97,6 +97,15 @@ function initialPhase(t:TutorialPending):TutorialPhase{
  return null;
 }
 
+type IdleInfo={
+ stage:number;
+ minutes:number;
+ limitMinutes:number;
+ capped:boolean;
+ rewards:number[][];
+ rates:{common:{itemId:number;perMinute:number}[];random:{libId:number;perMinute:number}[]};
+};
+
 export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:string;onFight:(mapId:number)=>void;onClose:()=>void}){
  const [data,setData]=useState<CampaignProgress|null>(null);
  const [chapterId,setChapterId]=useState<number|null>(null);
@@ -109,12 +118,19 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
  const [phase,setPhase]=useState<TutorialPhase>(null);
  const [fingerIndex,setFingerIndex]=useState(0);
  const [preview,setPreview]=useState<CampaignMap|null>(null);
+ const [idle,setIdle]=useState<IdleInfo|null>(null);
+ const [idleBusy,setIdleBusy]=useState(false);
+ const [idleMsg,setIdleMsg]=useState('');
 
  const applyPending=(pending:TutorialPending|null)=>{
   setTutorial(pending);
   setFingerIndex(0);
   setPhase(pending?initialPhase(pending):null);
  };
+
+ const loadIdle=()=>fetch(api+'/v1/campaign/idle',{headers:{Authorization:'Bearer '+token}})
+  .then(r=>{if(!r.ok)throw Error('idle_'+r.status);return r.json() as Promise<IdleInfo>})
+  .then(d=>{setIdle(d);return d});
 
  const loadCampaign=(focus?:number|null)=>{
   const q=focus?`?chapterId=${focus}`:'';
@@ -129,9 +145,29 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
     if(pending&&(pending.hasDialog||pending.hasPlot||pending.hasFinger))applyPending(pending);
     else applyPending(null);
     setStatus('');
+    void loadIdle().catch(()=>setIdle(null));
     return d;
    });
  };
+
+ const claimIdleRewards=async()=>{
+  if(idleBusy)return;
+  setIdleBusy(true);setIdleMsg('');
+  try{
+   const res=await fetch(api+'/v1/campaign/idle/claim',{
+    method:'POST',
+    headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},
+   });
+   if(res.status===409){setIdleMsg('Пока нечего забирать');await loadIdle();return}
+   if(!res.ok)throw Error('idle_claim_'+res.status);
+   const body=await res.json() as {rewards:number[][]};
+   const total=body.rewards.reduce((s,[,n])=>s+(n??0),0);
+   setIdleMsg(`Получено: ${body.rewards.length} видов · ${total} шт.`);
+   await loadIdle();
+  }catch(e){setIdleMsg(e instanceof Error?e.message:'Ошибка сбора')}
+  finally{setIdleBusy(false)}
+ };
+
  useEffect(()=>{
   const c=new AbortController();
   loadCampaign(chapterId).catch(e=>{if(!c.signal.aborted)setStatus(e instanceof Error?e.message:'Не удалось загрузить кампанию')});
@@ -248,6 +284,26 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
    </div>
   </header>
   {status&&<p role="status">{status}</p>}
+  {data&&idle&&<section className="campaign-idle" aria-label="Офлайн награды" data-guide="campaign-idle">
+   <div>
+    <h2>Офлайн награды</h2>
+    <p>
+     {idle.minutes}/{idle.limitMinutes} мин
+     {idle.capped?' · лимит':''}
+     {idle.rates.common[0]?` · ${itemDisplayName(idle.rates.common[0].itemId)} ~${idle.rates.common[0].perMinute.toFixed(2)}/м`:''}
+    </p>
+    {idle.rewards.length>0
+     ?<ul>{idle.rewards.slice(0,8).map(([id,n])=><li key={id}>{itemDisplayName(id)} ×{n}</li>)}</ul>
+     :<p className="campaign-idle-empty">Награды копятся, пока вы в городе или офлайн.</p>}
+    {idleMsg&&<p role="status">{idleMsg}</p>}
+   </div>
+   <button
+    type="button"
+    data-guide="campaign-idle-claim"
+    disabled={idleBusy||idle.rewards.length===0}
+    onClick={()=>void claimIdleRewards()}
+   >{idleBusy?'Сбор…':'Забрать'}</button>
+  </section>}
   {data&&view==='worlds'&&<>
    <div className="campaign-sheet-nav" aria-label="Листы карты">
     {owningMaps.map(id=>{

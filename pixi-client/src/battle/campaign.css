@@ -197,3 +197,26 @@
  color:inherit;
  cursor:pointer;
 }
+.campaign-idle{
+ display:flex;
+ justify-content:space-between;
+ gap:16px;
+ align-items:flex-start;
+ margin:0 0 16px;
+ padding:14px 16px;
+ border:1px solid rgba(232,196,140,.35);
+ background:rgba(36,28,20,.75);
+}
+.campaign-idle h2{margin:0 0 6px;font-size:1.1rem}
+.campaign-idle p{margin:0 0 6px;opacity:.9}
+.campaign-idle ul{margin:0;padding-left:18px;columns:2;gap:18px}
+.campaign-idle-empty{opacity:.7;font-size:.9rem}
+.campaign-idle>button{
+ flex:0 0 auto;
+ padding:10px 16px;
+ border:1px solid #e8c48c;
+ background:rgba(90,58,28,.9);
+ color:inherit;
+ cursor:pointer;
+}
+.campaign-idle>button:disabled{opacity:.45;cursor:not-allowed}
