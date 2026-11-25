@@ -180,3 +180,5 @@ NEXT-012.13 partial: original BuffBase/BuffDescription export used for descripti
 NEXT-012.14 partial: dodge emits 158 and counts as attacked; element damage 137 no longer emits ordinary attack reactions; passive silence and death listener extra-skill tests added. Full suite 64/64 passed. Differential battle report and dodge integration fixtures pending.
 
 NEXT-012.15 partial: shield absorption report type 4 journal, death guard description and guard skill ordering aligned to reference; combined shield and low-HP guard regression tests. Full suite 66/66 passed. Client rendering and differential reports pending.
+
+NEXT-012.16 partial: healing overflow and full-HP heal reactions aligned, recovery journal types 5/7/22 added, damage-based healing and blocked-overflow regression tests. Full suite 68/68 passed. Nested extra-effect report parity and client integration pending.

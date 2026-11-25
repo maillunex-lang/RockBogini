@@ -8,3 +8,16 @@ const b=(key:number):Buff=>({id:key,key,from:1,rounds:2,stacks:1,max:1,attrs:{},
 test('normal hit and periodic damage use same shield pipeline',()=>{const a=u(1),d=u(2),ctx:ExecutionContext={random:()=>.5};d.buffs.push({...b(1),shield:150} as Buff);assert.equal(executeEffect(a,d,b(0),[101,1000],ctx).status,'damage');assert.equal(d.hp,1000);assert.equal(executeEffect(a,d,b(0),[118,100,103],ctx).status,'damage');assert.equal(d.hp,950);assert.equal(ctx.dealt?.[2],50);assert.equal(a.damage,50)});
 test('round-end DOT and HOT execute through shared health pipeline',()=>{const a=u(1),d=u(2),ctx:ExecutionContext={random:()=>.5};d.hp=800;d.buffs.push({...b(1),trig:listener({Id:1,Round:2,MaxCount:1,Tags:[],StartEffect:[],StartWorkChance:1000,StartWorkCondition:[],TriggerCondition:[{Items:[502]}],TriggerWorkCondition:[],TriggerEffect:[{Items:[118,100,103]},{Items:[103,500]}]})});const e=new TriggerEngine([a,d],1,{random:()=>.5,execute:(s,t,b,fx)=>{executeEffect(s as CombatUnit,t as CombatUnit,b,fx,ctx)}});e.endRound();assert.equal(d.hp,750);assert.equal(a.damage,100);assert.equal(a.cure,50);assert.equal(ctx.cured,50)});
 test('max HP true damage uses boss cap and attacker HP parameter',()=>{const a=u(1),d=u(2);d.hp=d.hp_max=100000;d.is_boss=1;executeEffect(a,d,b(0),[106,100],{random:()=>.5});assert.equal(d.hp,99800);executeEffect(a,d,{tags:[],params:[102]},[106,100],{random:()=>.5});assert.equal(d.hp,99700)});
+test('damage based recovery uses actual HP loss, overflow remains available to later effects',()=>{
+ const a=u(1),d=u(2),ctx:ExecutionContext={random:()=>.5};a.hp=980;d.hp=40;
+ executeEffect(a,d,b(0),[101,1000],ctx);
+ executeEffect(a,a,b(0),[119,1000,201],ctx);
+ assert.equal(a.hp,1000);assert.equal(a.cure,20);assert.equal(ctx.overflow?.[1],20);
+ executeEffect(a,a,b(0),[119,1000,203],ctx);
+ assert.equal(ctx.overflow?.[1],20);assert.equal(a.cure,20);
+});
+test('blocked healing does not erase previous overflow',()=>{
+ const a=u(1),ctx:ExecutionContext={random:()=>.5,overflow:{1:25}};
+ a.buffs.push({...b(1),tags:[10]});executeEffect(a,a,b(0),[103,1000],ctx);
+ assert.equal(ctx.overflow?.[1],25);
+});

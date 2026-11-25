@@ -19,7 +19,7 @@ export function executeEffect(a:CombatUnit,t:CombatUnit,b:Pick<Buff,'tags'>&{par
  let raw=Math.trunc((code===103?effectiveAttr(a,0):code===104?t.hp_max:baseValue(a,t,param,ctx))*coef/1000);
  if(code===119&&cap>0)raw=Math.min(raw,Math.trunc(effectiveAttr(a,0)*cap/1000));
  const result=heal(a,t,raw);
- if(raw>0&&t.hp>0){ctx.overflow??={};ctx.overflow[t.id]=result.overflow;ctx.cured=(ctx.cured??0)+result.healed}
+ if(result.healed+result.overflow>0&&t.hp>0){ctx.overflow??={};ctx.overflow[t.id]=result.overflow;ctx.cured=(ctx.cured??0)+result.healed}
  return {status:'heal' as const,...result};
  }
  if(code===112)return {status:'revive' as const,hp:revive(a,t,items.slice(1),ctx)};
