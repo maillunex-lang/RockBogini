@@ -1,0 +1,29 @@
+{
+  "unique_fixture_sets": [
+    "compare",
+    "diverse",
+    "advanced",
+    "bosses",
+    "campaign-bosses",
+    "type3-bosses",
+    "revive-events",
+    "round-buffs"
+  ],
+  "battles": 681,
+  "matched": 681,
+  "snapshots": 16771,
+  "snapshotsMatched": 16771,
+  "paramsEvents": 39114,
+  "paramsMatched": 39114,
+  "testsPassed": 75,
+  "scope": "reference engine tested fixtures only",
+  "gate": "partial",
+  "remaining": [
+    "hero identity differential",
+    "round metadata regression",
+    "broader Params coverage",
+    "noncampaign integration",
+    "commercial engine unknown",
+    "visual client acceptance"
+  ]
+}
