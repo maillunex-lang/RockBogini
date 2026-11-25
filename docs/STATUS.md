@@ -342,3 +342,5 @@ NEXT-012.21 partial: 120 comparative battles across 12 campaign maps, two format
 NEXT-012.22 partial: fixed premature StartWorkCondition evaluation before chance draw, matching reference try_apply order. Replayed all 220 fixtures: 220/220 exact final metrics; 70/70 tests. Dedicated boss and diverse hero coverage pending, parity gate closed.
 
 NEXT-012.23: 80 synthetic six-v-six comparisons using 24 original hero IDs, levels 60/120, 38 distinct passive skills, 40 normal and 40 boss-flagged scenarios. 80/80 exact final metrics. Eight diagnostic categories remain (reference skip/false candidates); real boss encounters and event sequence parity pending. Gate closed.
+
+NEXT-012.24: reference source confirms start effects 301/372/403/414/505/506/615 skipped and unknown trigger 11/start condition 8 false. Retained diagnostics. 72/72 real AllianceTest boss-map fixtures match final metrics and animated action sequence (round, actor, skill, targets). Synthetic attackers, not full guild handler; campaign bosses and hitpoint event parity pending. 70/70 tests. Gate closed.
