@@ -5,7 +5,7 @@ import {createGuest} from '../src/auth.js';
 import {buildApp} from '../src/app.js';
 import {starterHeroes} from '../src/starterHeroes.js';
 
-const strip=(h:any)=>{const {base,skillSlots,maxLevel,maxStar,starPreview,talent,jobs,luck,equipExtra,...rest}=h;return rest};
+const strip=(h:any)=>{const {base,skillSlots,maxLevel,maxStar,starPreview,talent,jobs,luck,equipExtra,holyPowerBonus,...rest}=h;return rest};
 
 test('starter collection is atomic, persistent and isolated',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);const a=await createGuest(s),b=await createGuest(s);const app=await buildApp(s);

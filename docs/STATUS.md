@@ -1,7 +1,7 @@
 # Актуальное состояние 2026-11-25
 
-Активная задача: **NEXT-017.3** (equip attrs). Live https://rikagro.ru/testtest/.
-Проверено: equipment+heroes 11/11; publish ok.
+Активная задача: **NEXT-017.4** (holy MVP done). Live https://rikagro.ru/testtest/.
+Проверено: holy+equip+heroes+storage 17/17; publish ok.
 
 | Подэтап | Состояние |
 |---|---|
@@ -10,7 +10,7 @@
 | 014 tails | done: RU StoryChapter, plot stub, settle hotfix |
 | 015 MVP–015.2 | done: inventory + filters + icons/use/sell |
 | 016.1–016.5 | done: level/star/fodder/talent/jobs/luck |
-| 017.1–017.3 | done: put-on/off, forge, attrs→power |
+| 017.1–017.4 | done: put-on/off, forge, attrs→power, holy MVP |
 
 
 ---

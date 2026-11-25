@@ -5,8 +5,6 @@ import {fileURLToPath} from 'node:url';
 import type {FastifyInstance} from 'fastify';
 import type {Storage} from './storage.js';
 import {sessionAccount} from './auth.js';
-import {calculateHero} from './heroAttrs.js';
-
 type EquipCfg={slot:number;star:number;nextId:number;score:number;xp:number;attrs:number[][]};
 type EquipMap=Record<string,EquipCfg>;
 type Mat={itemId:number;count:number;unit:number};
@@ -129,20 +127,23 @@ async function slotEquip(s:Storage,id:string,owner:number,slot:number){
 
 async function refreshOwner(s:Storage,id:string,ownerSid:number){
  if(ownerSid<=0)return;
- const r=await s.pg.query(
-  'SELECT sid,hero_id,level,star,power,locked,state FROM player_heroes WHERE account_id=$1 AND sid=$2',
-  [id,ownerSid],
- );
- if(!r.rowCount)return;
- const row=r.rows[0];
- const h={...row.state,Sid:row.sid,HeroId:row.hero_id,Level:row.level,StarLevel:row.star,Power:row.power,Locked:row.locked};
- const extra=equipExtraPairs(await wornItemIds(s,id,ownerSid));
- const base=calculateHero(h.HeroId,h.Level,h.StarLevel,false,extra);
- const state={...h,Attrs:Object.fromEntries(Object.entries(base.attrs).map(([k,v])=>[k,v])),Skills:base.skills,Power:base.power};
- await s.pg.query(
-  'UPDATE player_heroes SET power=$3,state=$4 WHERE account_id=$1 AND sid=$2',
-  [id,ownerSid,base.power,JSON.stringify(state)],
- );
+ const {refreshHeroGear}=await import('./holy.js');
+ await refreshHeroGear(s,id,ownerSid);
+}
+
+/** Clear holy occupying slot when normal gear is put on (OwnerId → 0). */
+async function clearHolyOnSlot(s:Storage,id:string,owner:number,slot:number){
+ try{
+  const {holyConfig}=await import('./holy.js');
+  const rows=(await s.pg.query(
+   'SELECT sid,item_id FROM player_holy_equipment WHERE account_id=$1 AND owner_sid=$2',[id,owner],
+  )).rows as {sid:number;item_id:number}[];
+  for(const row of rows){
+   if(holyConfig(row.item_id)?.type===slot){
+    await s.pg.query('UPDATE player_holy_equipment SET owner_sid=0 WHERE account_id=$1 AND sid=$2',[id,row.sid]);
+   }
+  }
+ }catch{/* table may not exist yet */}
 }
 
 export async function equipmentRoutes(app:FastifyInstance,s:Storage){
@@ -165,6 +166,7 @@ export async function equipmentRoutes(app:FastifyInstance,s:Storage){
   if(!cfg)return reply.code(404).send({error:'equip_not_found'});
   if(!(await heroExists(s,id,ownerId)))return reply.code(404).send({error:'hero_not_found'});
   if(!(await payItem(s,id,itemId,1)))return reply.code(409).send({error:'insufficient_items'});
+  await clearHolyOnSlot(s,id,ownerId,cfg.slot);
   const cur=await slotEquip(s,id,ownerId,cfg.slot);
   if(cur){
    await grantItem(s,id,cur.ItemId,1);

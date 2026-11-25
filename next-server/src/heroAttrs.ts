@@ -1,7 +1,7 @@
 import {modifiers} from './starterModifiers.js';
 import {data,type Pair} from './heroAttrData.js';
 const heroes=new Map(data.heroes.map(x=>[x.Id,x])),stars=new Map(data.stars.map(x=>[x.Id,x])),growth=new Map(data.growth.map(x=>[x.Id,x])),skills=new Map(data.skills.map(x=>[x.Id,x]));
-export function calculateHero(id:number,level:number,star:number,starter=false,extra:number[][]=[]){
+export function calculateHero(id:number,level:number,star:number,starter=false,extra:number[][]=[],powerBonus=0){
  const h=heroes.get(id);if(!h)throw Error('unknown hero');
  const a:Record<number,number>={};
  const add=(k:number,v:number)=>{if(v!==0)a[k]=(a[k]??0)+v};
@@ -19,7 +19,7 @@ export function calculateHero(id:number,level:number,star:number,starter=false,e
  for(const t of modifiers.teams)if(t.Sid<=1000000&&[0,h.ElementType].includes(t.Sid%10)&&[0,h.Career].includes(Math.floor(t.Sid/10)%10))for(const [k,v] of Object.entries(t.AttrBonus))a[Number(k)]=(a[Number(k)]??0)+v;
  }
  for(let layer=0;layer<2;layer++)for(let i=0;i<4;i++){const p=100+10*layer;const v=(a[i]??0)*(1+(a[p+4+i]??0)/1000)+(a[p+i]??0);a[i]=layer===1?Math.floor(v):v}
- const power=Math.floor(Object.entries(a).reduce((sum,[k,v])=>sum+v*(data.weights[Number(k)]??0),0));
+ const power=Math.floor(Object.entries(a).reduce((sum,[k,v])=>sum+v*(data.weights[Number(k)]??0),0))+powerBonus;
  return {attrs:a,power,skills:starter?[...new Set(active.filter(x=>modifiers.effectSkills.includes(x)))].sort((a,b)=>a-b):active};
 }
 export function skillSlots(id:number,level:number,star:number){

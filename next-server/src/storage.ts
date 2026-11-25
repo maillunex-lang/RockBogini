@@ -47,6 +47,20 @@ export async function migrate(s:Storage){
  )`);
  await c.query('CREATE INDEX IF NOT EXISTS player_equipment_owner ON player_equipment(account_id,owner_sid)');
  await c.query('INSERT INTO schema_migrations(version) VALUES(12) ON CONFLICT DO NOTHING');
+ await c.query(`CREATE TABLE IF NOT EXISTS player_holy_equipment(
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  sid integer NOT NULL,
+  item_id integer NOT NULL,
+  star integer NOT NULL DEFAULT 0 CHECK(star>=0),
+  level integer NOT NULL DEFAULT 0 CHECK(level>=0),
+  xp integer NOT NULL DEFAULT 0 CHECK(xp>=0),
+  stage integer NOT NULL DEFAULT 0 CHECK(stage>=0),
+  step integer NOT NULL DEFAULT 0 CHECK(step>=0),
+  owner_sid integer NOT NULL DEFAULT 0,
+  PRIMARY KEY(account_id,sid)
+ )`);
+ await c.query('CREATE INDEX IF NOT EXISTS player_holy_equipment_owner ON player_holy_equipment(account_id,owner_sid)');
+ await c.query('INSERT INTO schema_migrations(version) VALUES(13) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }
