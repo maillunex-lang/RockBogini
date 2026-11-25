@@ -43,6 +43,25 @@ test('equipment put-on from bag and put-off returns item',{skip:!process.env.PGH
  }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
 });
 
+test('equipment put-on raises hero power via attrs + score',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);const a=await createGuest(s);const app=await buildApp(s);
+ try{
+  await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}});
+  const before=(await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}})).json().heroes.find((h:{Sid:number})=>h.Sid===1001);
+  await s.pg.query(
+   `INSERT INTO player_items(account_id,item_id,amount) VALUES($1,40111,1)
+    ON CONFLICT(account_id,item_id) DO UPDATE SET amount=EXCLUDED.amount`,
+   [a.id],
+  );
+  const on=await app.inject({method:'POST',url:'/v1/equipment/put-on',headers:{authorization:'Bearer '+a.token},payload:{itemId:40111,ownerId:1001}});
+  assert.equal(on.statusCode,200,JSON.stringify(on.json()));
+  const after=(await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}})).json().heroes.find((h:{Sid:number})=>h.Sid===1001);
+  assert.ok(after.Power>before.Power,`power ${before.Power} -> ${after.Power}`);
+  assert.ok(after.equipExtra.some((p:[number,number])=>p[0]===82&&p[1]===1000));
+  assert.ok(after.base.attrs[100]>(before.base.attrs[100]??0)||after.base.attrs[0]>=(before.base.attrs[0]??0));
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
+});
+
 test('POST /v1/equipment/forge climbs NextId with bag materials + coin',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);const a=await createGuest(s);const app=await buildApp(s);
  try{

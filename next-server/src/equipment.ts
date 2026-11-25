@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 import type {FastifyInstance} from 'fastify';
 import type {Storage} from './storage.js';
 import {sessionAccount} from './auth.js';
+import {calculateHero} from './heroAttrs.js';
 
 type EquipCfg={slot:number;star:number;nextId:number;score:number;xp:number;attrs:number[][]};
 type EquipMap=Record<string,EquipCfg>;
@@ -29,6 +30,28 @@ const EQ:EquipMap=loadJson('item-equipment.json',{});
 
 export function equipConfig(itemId:number):EquipCfg|undefined{
  return EQ[String(itemId)];
+}
+
+/** Flat attr pairs for worn ItemEquipment (+ Score → attr 82). */
+export function equipExtraPairs(itemIds:number[]):number[][]{
+ const out:number[][]=[];
+ let score=0;
+ for(const id of itemIds){
+  const cfg=equipConfig(id);
+  if(!cfg)continue;
+  for(const [k,v] of cfg.attrs)if(k&&v)out.push([k,v]);
+  score+=cfg.score;
+ }
+ if(score)out.push([82,score]);
+ return out;
+}
+
+export async function wornItemIds(s:Storage,accountId:string,ownerSid:number):Promise<number[]>{
+ const r=await s.pg.query(
+  'SELECT item_id FROM player_equipment WHERE account_id=$1 AND owner_sid=$2 ORDER BY sid',
+  [accountId,ownerSid],
+ );
+ return r.rows.map(x=>Number(x.item_id));
 }
 
 /** Coin XP cost from original forge_cost (own base+xp vs materials). */
@@ -104,6 +127,24 @@ async function slotEquip(s:Storage,id:string,owner:number,slot:number){
  return all.find(e=>e.OwnerId===owner&&e.slot===slot)??null;
 }
 
+async function refreshOwner(s:Storage,id:string,ownerSid:number){
+ if(ownerSid<=0)return;
+ const r=await s.pg.query(
+  'SELECT sid,hero_id,level,star,power,locked,state FROM player_heroes WHERE account_id=$1 AND sid=$2',
+  [id,ownerSid],
+ );
+ if(!r.rowCount)return;
+ const row=r.rows[0];
+ const h={...row.state,Sid:row.sid,HeroId:row.hero_id,Level:row.level,StarLevel:row.star,Power:row.power,Locked:row.locked};
+ const extra=equipExtraPairs(await wornItemIds(s,id,ownerSid));
+ const base=calculateHero(h.HeroId,h.Level,h.StarLevel,false,extra);
+ const state={...h,Attrs:Object.fromEntries(Object.entries(base.attrs).map(([k,v])=>[k,v])),Skills:base.skills,Power:base.power};
+ await s.pg.query(
+  'UPDATE player_heroes SET power=$3,state=$4 WHERE account_id=$1 AND sid=$2',
+  [id,ownerSid,base.power,JSON.stringify(state)],
+ );
+}
+
 export async function equipmentRoutes(app:FastifyInstance,s:Storage){
  app.get('/v1/equipment',async(req,reply)=>{
   const id=await account(req,s);
@@ -134,6 +175,7 @@ export async function equipmentRoutes(app:FastifyInstance,s:Storage){
    'INSERT INTO player_equipment(account_id,sid,item_id,owner_sid,xp) VALUES($1,$2,$3,$4,0)',
    [id,sid,itemId,ownerId],
   );
+  await refreshOwner(s,id,ownerId);
   return {ok:true,equipment:await listEquip(s,id)};
  });
 
@@ -142,13 +184,15 @@ export async function equipmentRoutes(app:FastifyInstance,s:Storage){
  },async(req,reply)=>{
   const id=await account(req,s);
   if(!id)return reply.code(401).send({error:'invalid_session'});
-  const r=await s.pg.query(
-   'UPDATE player_equipment SET owner_sid=0 WHERE account_id=$1 AND sid=$2 AND owner_sid>0 RETURNING item_id',
+  const cur=await s.pg.query(
+   'SELECT item_id,owner_sid FROM player_equipment WHERE account_id=$1 AND sid=$2 AND owner_sid>0',
    [id,req.body.sid],
   );
-  if(r.rowCount!==1)return reply.code(409).send({error:'equip_not_worn'});
-  await grantItem(s,id,r.rows[0].item_id,1);
+  if(cur.rowCount!==1)return reply.code(409).send({error:'equip_not_worn'});
+  const ownerSid=Number(cur.rows[0].owner_sid);
+  await grantItem(s,id,cur.rows[0].item_id,1);
   await s.pg.query('DELETE FROM player_equipment WHERE account_id=$1 AND sid=$2',[id,req.body.sid]);
+  await refreshOwner(s,id,ownerSid);
   return {ok:true,equipment:await listEquip(s,id)};
  });
 
@@ -209,6 +253,7 @@ export async function equipmentRoutes(app:FastifyInstance,s:Storage){
    'UPDATE player_equipment SET item_id=$3,xp=$4 WHERE account_id=$1 AND sid=$2',
    [id,rec.sid,climbed.itemId,climbed.xp],
   );
+  if(rec.owner_sid>0)await refreshOwner(s,id,rec.owner_sid);
   return {
    ok:true,
    cost:[[COIN,coin],...mats.map(m=>[m.itemId,m.count] as [number,number])],

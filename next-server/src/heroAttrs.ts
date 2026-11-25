@@ -1,12 +1,13 @@
 import {modifiers} from './starterModifiers.js';
 import {data,type Pair} from './heroAttrData.js';
 const heroes=new Map(data.heroes.map(x=>[x.Id,x])),stars=new Map(data.stars.map(x=>[x.Id,x])),growth=new Map(data.growth.map(x=>[x.Id,x])),skills=new Map(data.skills.map(x=>[x.Id,x]));
-export function calculateHero(id:number,level:number,star:number,starter=false){
+export function calculateHero(id:number,level:number,star:number,starter=false,extra:number[][]=[]){
  const h=heroes.get(id);if(!h)throw Error('unknown hero');
  const a:Record<number,number>={};
  const add=(k:number,v:number)=>{if(v!==0)a[k]=(a[k]??0)+v};
  const pairs=(p:Pair[])=>{for(const {Items:v} of p)if(v.length>=2)add(v[0],v[1])};
- pairs(h.Attrs);const s=stars.get(star);if(s){add(104,s.AttackAddon);add(105,s.HpAddon)}
+ pairs(h.Attrs);for(const e of extra)if(e.length>=2)add(e[0],e[1]);
+ const s=stars.get(star);if(s){add(104,s.AttackAddon);add(105,s.HpAddon)}
  const g=growth.get(100*h.ElementType+10*h.Career+((starter?({2:6,3:7,4:8,5:9} as Record<number,number>)[h.CoreHero]:[0,6,7,8,9][h.CoreHero])||h.StarLevel)),d=data.stages;
  const grow=(v:number[],k:number)=>{for(let i=0;i<4;i++)a[i]=(a[i]??0)+(v[i]??0)*k};
  if(g){let c=d[0]??1;for(let i=0;i<g.LevelAttr.length;i++){if(i>=d.length||level<=d[i])break;const b=i+1<g.LevelAttr.length?Math.min(level,d[i+1]??level):level;grow(g.LevelAttr[i].Items,(b-c)/1000);c=b}
