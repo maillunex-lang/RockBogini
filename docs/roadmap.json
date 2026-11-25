@@ -105,17 +105,18 @@
         "Differential tests against Elixir; resolve unexplained discrepancies",
         "Document evidence and remaining baseline defects; obtain approval for any scope exception"
       ],
-      "next_stage_blocked": true
+      "next_stage_blocked": false,
+      "release_blocked": true
     },
-    "execution_note": "Paused pending full hero catalog and asset mapping; existing implementation preserved."
+    "execution_note": "Verified reference scope accepted for visual integration only; full parity gate remains open for release."
   },
   {
     "id": "NEXT-013",
     "title": "Визуализация боя",
     "phase": "III. Боевое ядро",
-    "scope": "NEXT-013.5.1 частично: HP HUD, счётчик эффектов и цвет урона; далее точные HUD offsets, иконки, энергия при наличии серверных данных.",
+    "scope": "Активный NEXT-013.5.2: точные HUD offsets, оригинальные иконки баффов, исследование энергии. Далее 013.6–013.8. Остаточные дефекты 013.3–013.4 закрыть до приёмки.",
     "status": "in_progress",
-    "evidence": "reports/NEXT-013.1-build.log; reports/NEXT-013.1.1-build.log; reports/NEXT-013.2-build.log; reports/NEXT-013.3-build.log"
+    "evidence": "reports/NEXT-013-impact-build.log; reports/NEXT-013.1-build.log; reports/NEXT-013.1.1-build.log; reports/NEXT-013.2-build.log; reports/NEXT-013.3-build.log; reports/NEXT-013.3.1-build.log; reports/NEXT-013.3.2-build.log; reports/NEXT-013.4.1-build.log; reports/NEXT-013.4.2-build.log; reports/NEXT-013.4.3-build.log; reports/NEXT-013.4.4-build.log; reports/NEXT-013.5-build.log"
   },
   {
     "id": "NEXT-014",

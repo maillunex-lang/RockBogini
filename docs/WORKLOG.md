@@ -423,3 +423,5 @@ NEXT-013.4.3 partial: original type9 dark_screen (190/255, 200ms fades) and shoc
 NEXT-013.4.4 partial: 1669/1733 original sound events mapped through bundle dependencies, 328 unique clips, timeline playback and volume slider. 64 unresolved events, browser autoplay and audible acceptance pending. TypeScript/Vite and HTTP200. Next NEXT-013.5 HUD.
 
 NEXT-013.5.1 partial: per-actor HP bars, buff count, damage/heal/crit colors, event-based approximate HP with authoritative page reconciliation. Fixed HUD height 175px, energy absent from report, original buff icons and visual acceptance pending. TypeScript/Vite HTTP200.
+
+Cursor handoff: NEXT-013.5.2; stale roadmap headers and missing original path corrected; docs/CURSOR_HANDOFF.md added. No game code changed.
