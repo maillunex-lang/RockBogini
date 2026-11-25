@@ -1,0 +1,66 @@
+{
+  "stage": "NEXT-013.5.2",
+  "date": "2026-11-25",
+  "mechanics": [
+    {
+      "name": "HUDOffsetY",
+      "original_file": "decompiled/main/AJBattleActor.js",
+      "original_table": "HeroBase.HUDOffsetY",
+      "original_ids": "354 hero IDs",
+      "server": "n/a (client layout)",
+      "client": "pixi-client/src/battle/hudAssets.ts hudPixelOffset; ReportScene positions HUD at unit.y-(HUDOffsetY+15)",
+      "assets": "pixi-client/public/battle-hud/hero-hud-offsets.json",
+      "tests": "offsets unique values [0,256,280,300,473,512,567,590,600,610]",
+      "differences": "HUDRootNode is unscaled in original (sibling of AvatarRoot); Pixi applies avatarScale only to Spine, HUD uses raw HUDOffsetY+15 matching AJBattleActor GapBetweenAvatarAndHUD=15",
+      "status": "ported"
+    },
+    {
+      "name": "Buff icons",
+      "original_file": "decompiled/main/AJBattleActor.js AddBuffIndicator",
+      "original_table": "BuffBase.DescriptionId -> BuffDescription; BattleUI/Atlas/BattleBuffList frame name=DescriptionId",
+      "original_ids": "BuffDescription Id as atlas frame",
+      "server": "next-server simulation events type 25/26 value=BuffBase.Id; heroStatus.buffs filtered by descriptionEvent",
+      "client": "hud.ts syncIcons via buff-icon-map + buff-list atlas; add/remove on events 25/26; reconcile on page heroStatus",
+      "assets": "battle-hud/buff-list.webp (834 frames), buff-icon-map.json (4793 buffs)",
+      "tests": "tools/hud-health.test.mjs buff add/remove",
+      "differences": "Boss HUD buff container and icon scale 50/70 not yet; common buff Spine EffectType=1 still open",
+      "status": "partial"
+    },
+    {
+      "name": "HP delta semantics",
+      "original_file": "decompiled/main/AJBattleViewPort.js ProcessReportDataEvent; BattleConsts HitPointEventType",
+      "original_table": "n/a",
+      "original_ids": "1,2,3,4,5,6,7,8,21,22,25,26,27,28",
+      "server": "simulation.ts event emission",
+      "client": "healthEvents.ts applyHealth",
+      "assets": "n/a",
+      "tests": "tools/hud-health.test.mjs 4/4",
+      "differences": "Intermediate HP still event-approximate until page heroStatus reconciliation; BlockedHpMax gray bar not ported",
+      "status": "ported"
+    },
+    {
+      "name": "Battle energy / MP",
+      "original_file": "AJBattlePlayer.js PetEnergy; AJBattleActor SetPetMpBarNoAnimation",
+      "original_table": "Hero report PetId/PetEnergy/PetEnergyMax",
+      "original_ids": "only when PetId>0",
+      "server": "next-server campaign fighters have no PetId/PetEnergy fields",
+      "client": "no energy bar rendered (not invented)",
+      "assets": "battle-hud/import-report.json energy section",
+      "tests": "research only",
+      "differences": "GenreEnergy is meta stamina (NEXT-003 gap), not battle HUD. Pet MP bar exists in original only with pets.",
+      "status": "verified"
+    },
+    {
+      "name": "Float damage / crit / dodge / heal",
+      "original_file": "AJBattleFloatText.js",
+      "original_table": "n/a",
+      "original_ids": "FloatNumberType 0-7",
+      "server": "n/a",
+      "client": "floatText.ts + ReportScene showFloat",
+      "assets": "player-numbers.webp, float-labels.webp (status_Miss, label_Critical, label_Absorb, label_Restrain, label_Block)",
+      "tests": "build + asset HTTP 200",
+      "differences": "Tween easing approximates original; digit scale pop 2.5x not fully matched; Chromium visual QA open",
+      "status": "partial"
+    }
+  ]
+}

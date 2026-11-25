@@ -425,3 +425,5 @@ NEXT-013.4.4 partial: 1669/1733 original sound events mapped through bundle depe
 NEXT-013.5.1 partial: per-actor HP bars, buff count, damage/heal/crit colors, event-based approximate HP with authoritative page reconciliation. Fixed HUD height 175px, energy absent from report, original buff icons and visual acceptance pending. TypeScript/Vite HTTP200.
 
 Cursor handoff: NEXT-013.5.2; stale roadmap headers and missing original path corrected; docs/CURSOR_HANDOFF.md added. No game code changed.
+
+NEXT-013.5.2 partial: HeroBase HUDOffsetY+15 per actor (10 distinct values), BattleBuffList 834 icons via DescriptionId, HP semantics (incl. share/shield/dodge/revive) and buff add/remove events, original float digit/label atlases. Energy researched: no hero energy bar; PetEnergy only with PetId; not invented. TypeScript/Vite/publish HTTP200; health tests 4/4. Chromium/Playwright unavailable — visual/mobile acceptance open. Matrix reports/NEXT-013.5.2-hud-matrix.json. Next NEXT-013.6.

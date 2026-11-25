@@ -114,9 +114,9 @@
     "id": "NEXT-013",
     "title": "Визуализация боя",
     "phase": "III. Боевое ядро",
-    "scope": "Активный NEXT-013.5.2: точные HUD offsets, оригинальные иконки баффов, исследование энергии. Далее 013.6–013.8. Остаточные дефекты 013.3–013.4 закрыть до приёмки.",
+    "scope": "013.5.2 partial: HUDOffsetY, buff icons, HP semantics, float digits; energy researched absent. Активный NEXT-013.6: автобой/пауза/x1-x3. Остаточные 013.3–013.4 и Chromium QA открыты.",
     "status": "in_progress",
-    "evidence": "reports/NEXT-013-impact-build.log; reports/NEXT-013.1-build.log; reports/NEXT-013.1.1-build.log; reports/NEXT-013.2-build.log; reports/NEXT-013.3-build.log; reports/NEXT-013.3.1-build.log; reports/NEXT-013.3.2-build.log; reports/NEXT-013.4.1-build.log; reports/NEXT-013.4.2-build.log; reports/NEXT-013.4.3-build.log; reports/NEXT-013.4.4-build.log; reports/NEXT-013.5-build.log"
+    "evidence": "reports/NEXT-013-impact-build.log; reports/NEXT-013.1-build.log; reports/NEXT-013.1.1-build.log; reports/NEXT-013.2-build.log; reports/NEXT-013.3-build.log; reports/NEXT-013.3.1-build.log; reports/NEXT-013.3.2-build.log; reports/NEXT-013.4.1-build.log; reports/NEXT-013.4.2-build.log; reports/NEXT-013.4.3-build.log; reports/NEXT-013.4.4-build.log; reports/NEXT-013.5-build.log; reports/NEXT-013.5.2-build.log; reports/NEXT-013.5.2-health-test.log; reports/NEXT-013.5.2-hud-matrix.json; reports/NEXT-013.5.2-energy-research.md; reports/NEXT-013.5.2-import.json; reports/NEXT-013.5.2-publish.log"
   },
   {
     "id": "NEXT-014",

@@ -1,0 +1,43 @@
+{
+  "atlases": [
+    {
+      "name": "buff-list",
+      "frames": 834,
+      "sha256": "f8db0712909700e22b9026e63b7df905062666e97ecc2e70f307de8816abaf74",
+      "file": "buff-list.webp"
+    },
+    {
+      "name": "player-numbers",
+      "frames": 118,
+      "sha256": "babf4eed35b7561c2a09d7445f03d037c2414fbd23356568b44f91e34c93781e",
+      "file": "player-numbers.webp"
+    },
+    {
+      "name": "float-labels",
+      "frames": 20,
+      "sha256": "897b79578b842e6e4468ff8f16caf27157285787e0899546e6a49a1de9952705",
+      "file": "float-labels.webp"
+    }
+  ],
+  "heroes": 354,
+  "buffs": 4793,
+  "offsetValues": [
+    0,
+    256,
+    280,
+    300,
+    473,
+    512,
+    567,
+    590,
+    600,
+    610
+  ],
+  "gapBetweenAvatarAndHUD": 15,
+  "energy": {
+    "battleHeroEnergy": false,
+    "petEnergy": "PetEnergy/PetEnergyMax only when PetId>0 (AJBattlePlayer.js)",
+    "genreEnergy": "meta stamina, not battle HUD (NEXT-003 GenreEnergy gap)",
+    "nextServerCampaignPets": false
+  }
+}

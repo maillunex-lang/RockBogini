@@ -1,0 +1,6 @@
+tsc --noEmit: PASS
+vite build base=/testtest/: PASS
+hud-health tests: 4/4
+publish: https://rikagro.ru/testtest/
+assets: buff-list.webp HTTP200 size 831942
+chromium/playwright: unavailable — visual acceptance not closed

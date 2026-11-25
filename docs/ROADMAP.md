@@ -4,7 +4,7 @@ VPS is the development stand; GitHub main is the published source mirror. Origin
 
 ## Актуальный срез: 2026-11-25
 
-Активная задача: **NEXT-013.5.2**. Последний кодовый коммит: c92a703. Передача Cursor: docs/CURSOR_HANDOFF.md.
+Активная задача: **NEXT-013.6**. NEXT-013.5.2 partial. Передача Cursor: docs/CURSOR_HANDOFF.md.
 9 из 28 основных этапов закрыты, 4 в работе, 1 отложен, 14 ожидают. Это не процент готовности игры.
 NEXT-012 принят только в проверенном эталонном объёме для подключения визуализации; общий статус остаётся in_progress.
 Проверено: 681/681 уникальных боёв, 16 771/16 771 снимков состояния, 3 132/3 132 записей героев, 2 131/2 131 метаданных раундов, 68 712/68 712 событий с Params, 75/75 серверных тестов.
@@ -16,8 +16,8 @@ NEXT-012 принят только в проверенном эталонном 
 | 013.4.1–013.4.3 | VFX, снаряды, затемнение и тряска; общие VFX, точные позиции и браузерная приёмка открыты |
 | 013.4.4 | 1669/1733 звуковых событий, 328 файлов; 64 события и autoplay открыты |
 | 013.5.1 | HP, счётчик баффов, цвет урона; промежуточное HP приблизительное |
-| 013.5.2 | АКТИВНО: HUDOffsetY, оригинальные иконки, энергия только по подтверждённым данным |
-| 013.6 | Автобой, настоящая пауза, x1/x2/x3, синхронные часы |
+| 013.5.2 | partial: HUDOffsetY, BattleBuffList icons, HP/buff semantics, float digits; энергия в бою отсутствует; Chromium QA открыта |
+| 013.6 | АКТИВНО: автобой, настоящая пауза, x1/x2/x3, синхронные часы |
 | 013.7 | Итоги, награды, статистика, идемпотентность |
 | 013.8 | Браузерная/мобильная приёмка, закрытие остаточных дефектов, оптимизация |
 
@@ -35,7 +35,7 @@ NEXT-012 принят только в проверенном эталонном 
 | NEXT-010 | Система героев | in_progress | Каталог, классы, фракции, редкость, параметры, способности; собственные фантазийные имена героев без изменения ID и баланса | next-audit/hero-catalog.json; reports/NEXT-010-skills-export.log; reports/NEXT-010-catalog-test.log; reports/NEXT-010-catalog-deploy.log; reports/NEXT-010-ownership-retry.log; reports/NEXT-010-ownership-deploy.log; reports/NEXT-010-heroes-ui-browser.log; reports/NEXT-010-heroes-ui-publish.log; reports/NEXT-010-fantasy-names-browser.log; reports/NEXT-010-attrs-test.log; reports/NEXT-010-skills-test.log; reports/NEXT-010-skills-ui-browser.log; reports/NEXT-010-hero-assets.json; reports/NEXT-010-preview-build.log; hero-preview.html |
 | NEXT-011 | Формирование отряда | done | Формирование и сохранение стартового отряда; стартовый объём принят. | reports/NEXT-011-server-test.log; reports/NEXT-011-server-deploy.log; reports/NEXT-011-ui-browser.log; reports/NEXT-011-ui-publish.log; reports/NEXT-011-units-test.log; reports/NEXT-011-complete-test.log |
 | NEXT-012 | Пошаговый боевой движок | in_progress | Эталонное боевое ядро принято для визуальной интеграции: 681/681 боёв, 75/75 тестов. Полная коммерческая идентичность, дополнительные модификаторы и некампанийные режимы не подтверждены. | reports/NEXT-012.31.5-acceptance.json; reports/NEXT-012.31.5.1-metadata-*.json; reports/NEXT-012.31.5.1-tests.log |
-| NEXT-013 | Визуализация боя | in_progress | Активный NEXT-013.5.2: точные HUD offsets, оригинальные иконки баффов, исследование энергии. Далее 013.6–013.8. Остаточные дефекты 013.3–013.4 закрыть до приёмки. | reports/NEXT-013-impact-build.log; reports/NEXT-013.1-build.log; reports/NEXT-013.1.1-build.log; reports/NEXT-013.2-build.log; reports/NEXT-013.3-build.log; reports/NEXT-013.3.1-build.log; reports/NEXT-013.3.2-build.log; reports/NEXT-013.4.1-build.log; reports/NEXT-013.4.2-build.log; reports/NEXT-013.4.3-build.log; reports/NEXT-013.4.4-build.log; reports/NEXT-013.5-build.log |
+| NEXT-013 | Визуализация боя | in_progress | 013.5.2 partial (HUDOffsetY, buff icons, HP semantics, float digits; энергия отсутствует). Активный NEXT-013.6. Остаточные 013.3–013.4 и Chromium QA открыты. | reports/NEXT-013-impact-build.log; reports/NEXT-013.1-build.log; reports/NEXT-013.1.1-build.log; reports/NEXT-013.2-build.log; reports/NEXT-013.3-build.log; reports/NEXT-013.3.1-build.log; reports/NEXT-013.3.2-build.log; reports/NEXT-013.4.1-build.log; reports/NEXT-013.4.2-build.log; reports/NEXT-013.4.3-build.log; reports/NEXT-013.4.4-build.log; reports/NEXT-013.5-build.log; reports/NEXT-013.5.2-build.log; reports/NEXT-013.5.2-hud-matrix.json; reports/NEXT-013.5.2-energy-research.md |
 | NEXT-014 | Сюжетная кампания | pending | Главы, этапы, боссы, обучение, сюжетные задания, награды. Серверный фундамент 2241 этапа и challenge/settle уже есть; полноценная кампания не принята. |  |
 | NEXT-015 | Инвентарь и предметы | pending | Валюты, материалы, осколки, расходники |  |
 | NEXT-016 | Развитие героев | pending | Уровни, звёзды, ранги, таланты, навыки, пробуждение, сброс |  |
