@@ -1,6 +1,26 @@
 # RockBogini Next — утверждённая генеральная дорожная карта
 
-VPS only; GitHub deferred. Original game and Elixir unchanged until separate cutover approval. Vertical slices: reference → server → parity → UI/assets → integration → tests → visual QA → documentation. Old roadmap: archive/ROADMAP-before-next.md.
+VPS is the development stand; GitHub main is the published source mirror. Original game and Elixir unchanged until separate cutover approval. Vertical slices: reference → server → parity → UI/assets → integration → tests → visual QA → documentation. Old roadmap: archive/ROADMAP-before-next.md.
+
+## Актуальный срез: 2026-11-25
+
+Активная задача: **NEXT-013.3.1**. Последний кодовый коммит: c8e0d53.
+9 из 28 основных этапов закрыты, 4 в работе, 1 отложен, 14 ожидают. Это не процент готовности игры.
+NEXT-012 принят только в проверенном эталонном объёме для подключения визуализации; общий статус остаётся in_progress.
+Проверено: 681/681 уникальных боёв, 16 771/16 771 снимков состояния, 3 132/3 132 записей героев, 2 131/2 131 метаданных раундов, 68 712/68 712 событий с Params, 75/75 серверных тестов.
+
+| Подэтап | Состояние |
+|---|---|
+| 013.1 | Подключение отчётов, pending/challenge/cancel/settle; технический экран, браузерная приёмка открыта |
+| 013.1.1 | Spine и временные точки ударов подключены; визуальная приёмка открыта |
+| 013.2 | 19 оригинальных фонов, 2241 карта, позиции и масштаб; кадрирование требует проверки |
+| 013.3 | MoveTo/MoveBack, blink, ActionIndex, 8/8 проверок движения |
+| 013.3.1 | Следующая задача: смерть, воскрешение, общие способности |
+| 013.4 | Оригинальные VFX, снаряды, затемнение, звук |
+| 013.5 | Боевой HUD, HP, энергия, баффы |
+| 013.6 | Автобой, скорость, пауза |
+| 013.7 | Итоги, награды, статистика |
+| 013.8 | Браузерная и мобильная приёмка, оптимизация |
 
 | ID | Этап | Статус | Объём | Доказательство |
 |---|---|---|---|---|
@@ -8,16 +28,16 @@ VPS only; GitHub deferred. Original game and Elixir unchanged until separate cut
 | NEXT-002 | Архитектура сервера | done | Fastify, REST, WebSocket, тесты | reports/SERVER-01-test.log |
 | NEXT-003 | Полный аудит оригинала | done | Реестр экранов, протоколов, конфигураций, формул, зависимостей и тестов | reports/NEXT-003-inventory.json; reports/NEXT-003-mapping.json; reports/NEXT-003-findings.md; reports/NEXT-003-baseline.log; reports/NEXT-003-fixtures.json; reports/NEXT-003-coverage.json; reports/NEXT-003-ui-dependencies.json; reports/NEXT-003-rpc-gaps.json; reports/NEXT-003-gap-review.json; reports/NEXT-003-deferred.json |
 | NEXT-004 | Ресурсы и рендеринг | done | Lunex Asset Library, WebGL, Spine, кеш, атласы, эффекты | reports/PIXI-02-library-build.log; reports/NEXT-004-smoke.log; reports/NEXT-004-squad.png; reports/NEXT-004-cache-build.log; reports/NEXT-004-cache-smoke.log; reports/NEXT-004-eviction-build.log; reports/NEXT-004-eviction-smoke.log; reports/NEXT-004-stress.log; reports/NEXT-004-stress-retry.log; reports/NEXT-004-effects-build.log; reports/NEXT-004-effects-smoke.log; reports/NEXT-004-final-smoke.log; reports/NEXT-004-hit.png (visual defect); reports/NEXT-004-skin-build.log; reports/NEXT-004-skin-smoke.log; reports/NEXT-004-layout-smoke.log; reports/NEXT-004-body-build.log; reports/NEXT-004-body-smoke.log; reports/NEXT-004-quality-build.log; reports/NEXT-004-quality-smoke.log; reports/NEXT-004-auto-build.log; reports/NEXT-004-auto-smoke.log |
-| NEXT-005 | Общая инфраструктура | done | PostgreSQL, Redis, миграции, Docker, общие типы | next-server/compose.yaml; reports/NEXT-005-compose.log; reports/NEXT-005-storage-test.log; reports/NEXT-005-api-compose.log; reports/NEXT-005-restart.log; reports/NEXT-005-contract-test.log; reports/NEXT-005-reference-retry.log |
-| NEXT-006 | Авторизация | done | Регистрация, гости, сессии, восстановление, выбор сервера | reports/NEXT-006-auth-test.log; reports/NEXT-006-routes-test.log; reports/NEXT-006-login-smoke.log; reports/NEXT-006-link-test.log; reports/NEXT-006-browser-auth-flow.log; reports/NEXT-006-guest-link-browser.log; reports/NEXT-006-api-deploy.log; reports/NEXT-006-recovery-test.log; reports/NEXT-006-real-e2e.log |
-| NEXT-007 | Игровой профиль | done | Ник, аватар, уровень, опыт, энергия, валюты, сохранение | reports/NEXT-007-profile-test.log; reports/NEXT-007-edit-test.log; reports/NEXT-007-profile-ui-build.log; reports/NEXT-007-progression-test.log; reports/NEXT-007-profile-browser.log; reports/NEXT-007-assets-browser.log; reports/NEXT-007-final-browser.log |
-| NEXT-008 | Главный интерфейс | done | Функциональный город, навигация, ресурсы, окна, адаптация; уведомления подключать вместе с соответствующими механиками. Графическая полировка отложена до NEXT-026. | reports/NEXT-008-city-build.log; reports/NEXT-008-city-browser.log; reports/NEXT-008-navigation-browser.log; reports/NEXT-008-navigation-publish.log; reports/NEXT-008-icons-browser.log; reports/NEXT-008-icons-publish.log; reports/NEXT-008-frames-browser.log; reports/NEXT-008-frames-publish.log; reports/NEXT-008-prefab-browser.log; reports/NEXT-008-prefab-publish.log; reports/NEXT-008-common-browser.log; reports/NEXT-008-common-publish.log; reports/NEXT-008-scene-browser.log; reports/NEXT-008-scene-publish.log; reports/NEXT-008-picker-browser.log; reports/NEXT-008-picker-publish.log; reports/NEXT-008-picker-final-browser.log; reports/NEXT-008-picker-final-publish.log; reports/NEXT-008-frame-effects.json; reports/NEXT-008-frame-import.json; reports/NEXT-008-frame-final-browser.log; reports/NEXT-008-frame-final-publish.log |
+| NEXT-005 | Общая инфраструктура | done | PostgreSQL, Redis, миграции, Docker, общие типы | next-server/compose.yaml; reports/NEXT-005-compose.log; reports/NEXT-005-pull.log; reports/NEXT-005-storage-build.log; reports/NEXT-005-storage-test.log; reports/NEXT-005-api-compose.log; reports/NEXT-005-restart.log; reports/NEXT-005-contract-test.log; reports/NEXT-005-reference-retry.log |
+| NEXT-006 | Авторизация | done | Регистрация, гости, сессии, восстановление, выбор сервера | reports/NEXT-006-auth-build.log; reports/NEXT-006-auth-test.log; reports/NEXT-006-routes-test.log; reports/NEXT-006-login-ui-build.log; reports/NEXT-006-login-smoke.log; reports/NEXT-006-client-integration-build.log; reports/NEXT-006-browser-auth-flow.log; reports/NEXT-006-link-test.log; reports/NEXT-006-link-client-build.log; reports/NEXT-006-guest-link-browser.log; reports/NEXT-006-api-deploy.log; reports/NEXT-006-recovery-test.log; reports/NEXT-006-recovery-ui-build.log; reports/NEXT-006-recovery-deploy.log; reports/NEXT-006-real-e2e.log |
+| NEXT-007 | Игровой профиль | done | Ник, аватар, уровень, опыт, энергия, валюты, сохранение | reports/NEXT-007-profile-test.log; reports/NEXT-007-config-export.log; reports/NEXT-007-edit-test.log; reports/NEXT-007-profile-ui-build.log; reports/NEXT-007-progression-test.log; reports/NEXT-007-profile-browser.log; reports/NEXT-007-assets-browser.log; reports/NEXT-007-final-browser.log; reports/NEXT-007-final-publish.log; frame 3101 visual fallback deferred NEXT-026; reports/NEXT-007-frame-fix-browser.log |
+| NEXT-008 | Главный интерфейс | done | Функциональный город, навигация, ресурсы, окна, адаптация; уведомления подключать вместе с соответствующими механиками. Графическая полировка отложена до NEXT-026. | reports/NEXT-008-city-build.log; reports/NEXT-008-city-browser.log; reports/NEXT-008-navigation-browser.log; reports/NEXT-008-navigation-publish.log; reports/NEXT-008-icons-browser.log; reports/NEXT-008-icons-publish.log; reports/NEXT-008-frames-browser.log; reports/NEXT-008-frames-publish.log; reports/NEXT-008-prefab-browser.log; reports/NEXT-008-prefab-publish.log; reports/NEXT-008-common-browser.log; reports/NEXT-008-common-publish.log; reports/NEXT-008-scene-browser.log; reports/NEXT-008-scene-publish.log; reports/NEXT-008-picker-browser.log; reports/NEXT-008-picker-publish.log; reports/NEXT-008-picker-final-browser.log; reports/NEXT-008-picker-final-publish.log; reports/NEXT-008-frame-effects.json; reports/NEXT-008-frame-import.json; reports/NEXT-008-frame-final-browser.log; reports/NEXT-008-frame-final-publish.log; reports/NEXT-008-functional-browser.log; reports/NEXT-008-functional-publish.log |
 | NEXT-009 | Редактор интерфейса | deferred | Позиции, размеры, цвета, фоны, кнопки |  |
-| NEXT-010 | Система героев | in_progress | Каталог, классы, фракции, редкость, параметры, способности |  |
-| NEXT-011 | Формирование отряда | pending | 5×5, позиции, сохранение составов |  |
-| NEXT-012 | Пошаговый боевой движок | pending | Очередность, скорость, урон, крит, лечение, эффекты, цели, пассивы; сравнение Elixir |  |
-| NEXT-013 | Визуализация боя | in_progress | Spine, атаки, попадания, эффекты, HP, цифры урона | reports/PIXI-02-squad-build.log |
-| NEXT-014 | Сюжетная кампания | pending | Главы, этапы, боссы, открытие, награды |  |
+| NEXT-010 | Система героев | in_progress | Каталог, классы, фракции, редкость, параметры, способности; собственные фантазийные имена героев без изменения ID и баланса | next-audit/hero-catalog.json; reports/NEXT-010-skills-export.log; reports/NEXT-010-catalog-test.log; reports/NEXT-010-catalog-deploy.log; reports/NEXT-010-ownership-retry.log; reports/NEXT-010-ownership-deploy.log; reports/NEXT-010-heroes-ui-browser.log; reports/NEXT-010-heroes-ui-publish.log; reports/NEXT-010-fantasy-names-browser.log; reports/NEXT-010-attrs-test.log; reports/NEXT-010-skills-test.log; reports/NEXT-010-skills-ui-browser.log; reports/NEXT-010-hero-assets.json; reports/NEXT-010-preview-build.log; hero-preview.html |
+| NEXT-011 | Формирование отряда | done | Формирование и сохранение стартового отряда; стартовый объём принят. | reports/NEXT-011-server-test.log; reports/NEXT-011-server-deploy.log; reports/NEXT-011-ui-browser.log; reports/NEXT-011-ui-publish.log; reports/NEXT-011-units-test.log; reports/NEXT-011-complete-test.log |
+| NEXT-012 | Пошаговый боевой движок | in_progress | Эталонное боевое ядро принято для визуальной интеграции: 681/681 боёв, 75/75 тестов. Полная коммерческая идентичность, дополнительные модификаторы и некампанийные режимы не подтверждены. | reports/NEXT-012.31.5-acceptance.json; reports/NEXT-012.31.5.1-metadata-*.json; reports/NEXT-012.31.5.1-tests.log |
+| NEXT-013 | Визуализация боя | in_progress | Активный этап NEXT-013.3.1. Серверные отчёты, оригинальные модели, 19 фонов, позиции и перемещения подключены; смерть, воскрешение, общие навыки, VFX, HUD, управление и визуальная приёмка впереди. | reports/NEXT-013.1-build.log; reports/NEXT-013.1.1-build.log; reports/NEXT-013.2-build.log; reports/NEXT-013.3-build.log |
+| NEXT-014 | Сюжетная кампания | pending | Главы, этапы, боссы, обучение, сюжетные задания, награды. Серверный фундамент 2241 этапа и challenge/settle уже есть; полноценная кампания не принята. |  |
 | NEXT-015 | Инвентарь и предметы | pending | Валюты, материалы, осколки, расходники |  |
 | NEXT-016 | Развитие героев | pending | Уровни, звёзды, ранги, таланты, навыки, пробуждение, сброс |  |
 | NEXT-017 | Экипировка | pending | Слоты, улучшение, комплекты, параметры |  |
@@ -27,7 +47,7 @@ VPS only; GitHub deferred. Original game and Elixir unchanged until separate cut
 | NEXT-021 | PvE-режимы | pending | Башни, подземелья, испытания, боссы, специальные режимы |  |
 | NEXT-022 | PvP и социальные системы | pending | Арена, рейтинги, гильдии, чат, друзья, почта |  |
 | NEXT-023 | События и монетизация | pending | Календарь, события, VIP, пропуски, предложения, платежи |  |
-| NEXT-024 | Редакторы игрового контента | pending | Герои, навыки, предметы, противники, локации, квесты, награды, баннеры, магазины, события |  |
+| NEXT-024 | Редакторы игрового контента | pending | Герои, навыки, предметы, противники, локации, квесты, награды, баннеры, магазины, события; выполнить отложенный NEXT-009 (редактор интерфейса) |  |
 | NEXT-025 | Администрирование | pending | Аккаунты, аналитика, журналы, серверы, баланс, версии, бэкапы |  |
 | NEXT-026 | Русификация и визуальное качество | in_progress | Контекстный перевод, терминология, шрифты, UI, удобство; восстановление оригинальных графических заголовков 10 входов города, замков, Spine-эффектов четырёх входов, геометрии камеры, окон и выбора оформления, рамок и портретов, визуальная сверка с оригиналом. | localization/ru.json |
 | NEXT-027 | Оптимизация и сборки | pending | APK, PWA, докачка, обновления, кеш, память, FPS, безопасность |  |

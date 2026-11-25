@@ -84,7 +84,7 @@
     "id": "NEXT-011",
     "title": "Формирование отряда",
     "phase": "III. Боевое ядро",
-    "scope": "5×5, позиции, сохранение составов",
+    "scope": "Формирование и сохранение стартового отряда; стартовый объём принят.",
     "status": "done",
     "evidence": "reports/NEXT-011-server-test.log; reports/NEXT-011-server-deploy.log; reports/NEXT-011-ui-browser.log; reports/NEXT-011-ui-publish.log; reports/NEXT-011-units-test.log; reports/NEXT-011-complete-test.log"
   },
@@ -92,9 +92,9 @@
     "id": "NEXT-012",
     "title": "Пошаговый боевой движок",
     "phase": "III. Боевое ядро",
-    "scope": "Очередность, скорость, урон, крит, лечение, эффекты, цели, пассивы; сравнение Elixir",
+    "scope": "Эталонное боевое ядро принято для визуальной интеграции: 681/681 боёв, 75/75 тестов. Полная коммерческая идентичность, дополнительные модификаторы и некампанийные режимы не подтверждены.",
     "status": "in_progress",
-    "evidence": "reports/NEXT-012-rounds-test.log; reports/NEXT-012-target-test.log; reports/NEXT-012-damage-test.log; reports/NEXT-012-actions-test.log; reports/NEXT-012-hits-export.log; reports/NEXT-012-buffs-test.log; reports/NEXT-012-apply-buff-test.log; reports/NEXT-012-triggers-test.log; reports/NEXT-012-periodic-test.log; reports/NEXT-012-health-test.log; reports/NEXT-012-execute-test.log; reports/NEXT-012-simulation-test.log; reports/NEXT-012-defense-config-test.log; reports/NEXT-012-passives-test.log; reports/NEXT-012-reactions-test.log; reports/NEXT-012-result-test.log; reports/NEXT-012-completion-audit.json; reports/NEXT-012-conditions-test.log; reports/NEXT-012-start-conditions-test.log; reports/NEXT-012-trigger-conditions-test.log; reports/NEXT-012-event-metadata-test.log; reports/NEXT-012-attack-type-test.log; reports/NEXT-012-buff-lifecycle-test.log; reports/NEXT-012-mixed-test.log; reports/NEXT-012-extra-test.log; reports/NEXT-012-action-events-test.log; reports/NEXT-012-effects-test.log",
+    "evidence": "reports/NEXT-012.31.5-acceptance.json; reports/NEXT-012.31.5.1-metadata-*.json; reports/NEXT-012.31.5.1-tests.log",
     "acceptance_gate": {
       "policy": "100% approved scope before advancing",
       "requirements": [
@@ -113,15 +113,15 @@
     "id": "NEXT-013",
     "title": "Визуализация боя",
     "phase": "III. Боевое ядро",
-    "scope": "Spine, атаки, попадания, эффекты, HP, цифры урона",
+    "scope": "Активный этап NEXT-013.3.1. Серверные отчёты, оригинальные модели, 19 фонов, позиции и перемещения подключены; смерть, воскрешение, общие навыки, VFX, HUD, управление и визуальная приёмка впереди.",
     "status": "in_progress",
-    "evidence": "reports/PIXI-02-squad-build.log; reports/NEXT-013-impact-build.log; provisional impact 45% accepted by user for preview"
+    "evidence": "reports/NEXT-013.1-build.log; reports/NEXT-013.1.1-build.log; reports/NEXT-013.2-build.log; reports/NEXT-013.3-build.log"
   },
   {
     "id": "NEXT-014",
     "title": "Сюжетная кампания",
     "phase": "III. Боевое ядро",
-    "scope": "Главы, этапы, боссы, открытие, награды",
+    "scope": "Главы, этапы, боссы, обучение, сюжетные задания, награды. Серверный фундамент 2241 этапа и challenge/settle уже есть; полноценная кампания не принята.",
     "status": "pending",
     "evidence": ""
   },

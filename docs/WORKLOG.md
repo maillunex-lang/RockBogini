@@ -397,3 +397,5 @@ NEXT-013.1.1 partial: server report drives original Spine model selection, Actio
 NEXT-013.2 partial: recovered 19 original BattleBg WebP assets by UUID/version, verified hashes and image decode, all 2241 campaign maps covered. Ported BattleHelper station map, camp orientation and original .875 avatar scale, depth sorting, 1080x1920 viewport with centered 2520 background. Viewport origin and crop provisional, visual browser acceptance pending. Build and HTTP200 verified.
 
 NEXT-013.3 partial: corrected one-based ActionIndex from AJBattleViewPort/Skills.hit_count; all PlayAction timeline events, MoveTo/MoveBack reference coordinates, quartic easing and blink thirds, cleanup of motion frames, stable fallback hit timing. 8/8 pure motion assertions, TypeScript/Vite and HTTP200. Browser acceptance, common skill models, death animation and VFX remain pending.
+
+2026-11-25: synchronized canonical roadmap, Markdown table, current status, public landing and GitHub documentation; NEXT-013.3.1 next, NEXT-012 limited reference acceptance only.
