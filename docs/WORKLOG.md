@@ -399,3 +399,5 @@ NEXT-013.2 partial: recovered 19 original BattleBg WebP assets by UUID/version, 
 NEXT-013.3 partial: corrected one-based ActionIndex from AJBattleViewPort/Skills.hit_count; all PlayAction timeline events, MoveTo/MoveBack reference coordinates, quartic easing and blink thirds, cleanup of motion frames, stable fallback hit timing. 8/8 pure motion assertions, TypeScript/Vite and HTTP200. Browser acceptance, common skill models, death animation and VFX remain pending.
 
 2026-11-25: synchronized canonical roadmap, Markdown table, current status, public landing and GitHub documentation; NEXT-013.3.1 next, NEXT-012 limited reference acceptance only.
+
+Landing refresh: curated two visible character assets from user screenshot, solo cards, duo scene, combat showcase, lazy portrait initialization. Build/HTTP verified; browser visual acceptance pending.
