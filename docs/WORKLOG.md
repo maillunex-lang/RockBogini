@@ -421,3 +421,5 @@ NEXT-013.4.2 partial: original type7 Spine projectiles per server target, linear
 NEXT-013.4.3 partial: original type9 dark_screen (190/255, 200ms fades) and shock_screen (30ms, 6px vertical/3px horizontal approximate deterministic shake), 967 hero timeline events. TypeScript/Vite HTTP200. Browser acceptance pending; next sound.
 
 NEXT-013.4.4 partial: 1669/1733 original sound events mapped through bundle dependencies, 328 unique clips, timeline playback and volume slider. 64 unresolved events, browser autoplay and audible acceptance pending. TypeScript/Vite and HTTP200. Next NEXT-013.5 HUD.
+
+NEXT-013.5.1 partial: per-actor HP bars, buff count, damage/heal/crit colors, event-based approximate HP with authoritative page reconciliation. Fixed HUD height 175px, energy absent from report, original buff icons and visual acceptance pending. TypeScript/Vite HTTP200.

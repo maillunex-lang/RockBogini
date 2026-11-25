@@ -1,3 +1,4 @@
+import {createHud} from './hud';
 import {lifecycleAlpha,lifecycleDuration} from './lifecycle';
 import {moveDestination,motionSample,timelineIndex} from './motion';
 import {fieldPosition,fieldWidth,fieldHeight,avatarScale} from './fieldLayout';
@@ -13,7 +14,7 @@ type Model={assetId:string;name:string;texture:string;animations:string[]};
 const json=async<T,>(path:string):Promise<T>=>{const r=await fetch(path);if(!r.ok)throw Error(path+' '+r.status);return r.json()};
 export function ReportScene({report,cursor,onReady,volume=0.5}:{report:BattleReport;cursor:number;volume?:number;onReady:(ready:boolean)=>void}){
  const volumeRef=useRef(volume);volumeRef.current=volume;
- const host=useRef<HTMLDivElement>(null),runtime=useRef<{app:Application;units:Map<number,Spine>;models:Map<number,string>;timelines:Record<string,{Skills:Timeline[]}>;skills:Record<string,number>;common:CommonSkills;effects:Effects;bottom:Container;top:Container;mask:Graphics;sounds:Record<string,Record<string,string>>}>();
+ const host=useRef<HTMLDivElement>(null),runtime=useRef<{app:Application;units:Map<number,Spine>;models:Map<number,string>;timelines:Record<string,{Skills:Timeline[]}>;skills:Record<string,number>;common:CommonSkills;effects:Effects;bottom:Container;top:Container;mask:Graphics;huds:Map<number,ReturnType<typeof createHud>>;sounds:Record<string,Record<string,string>>}>();
  const [loaded,setLoaded]=useState(false),[status,setStatus]=useState('Загрузка боевой сцены');
  useEffect(()=>{let cancelled=false;let app:Application|undefined;const releases:(()=>void)[]=[];setLoaded(false);onReady(false);
  async function init(){
@@ -25,15 +26,16 @@ export function ReportScene({report,cursor,onReady,volume=0.5}:{report:BattleRep
  const texture=await Assets.load('./battle-backgrounds/'+bg.file);if(cancelled)return;
  const background=new Sprite(texture);background.anchor.set(.5);background.position.set(fieldWidth/2,fieldHeight/2);background.height=2520*1.01;background.width=fieldWidth*1.01;app.stage.addChild(background);const mask=new Graphics();mask.beginFill(0x000000).drawRect(-20,-20,fieldWidth+40,fieldHeight+40).endFill();mask.alpha=0;app.stage.addChild(mask);
  const actors=new Container(),bottom=new Container(),top=new Container();actors.sortableChildren=true;app.stage.addChild(bottom,actors,top);
- const units=new Map<number,Spine>(),models=new Map<number,string>();
+ const units=new Map<number,Spine>(),models=new Map<number,string>(),huds=new Map<number,ReturnType<typeof createHud>>();const hudLayer=new Container();app.stage.addChild(hudLayer);
  for(const h of report.heroes){
  const model=String(h.model),a=catalog.models[model];if(!a)throw Error('Нет модели '+model);
  const lease=await acquireSkeleton({id:a.assetId,name:a.name,texture:a.texture,animations:a.animations,directory:'hero-models',requiredAnimations:[]});if(cancelled){lease.release();return}releases.push(lease.release);
  const s=new Spine(lease.data),skin=lease.data.skins.find(x=>x.name==='skin1')??lease.data.skins[0];if(skin){s.skeleton.setSkin(skin);s.skeleton.setSlotsToSetupPose()}
  const idle=lease.data.animations.find(x=>x.name==='standby')??lease.data.animations[0];if(idle)s.state.setAnimation(0,idle.name,true);s.update(.1);
- const pos=fieldPosition(h.stationId,h.camp);s.scale.set(h.camp===1?avatarScale:-avatarScale,avatarScale);s.position.set(pos.x,pos.y);s.zIndex=pos.z;s.visible=h.hp>0;actors.addChild(s);units.set(h.id,s);models.set(h.id,model);
+ const pos=fieldPosition(h.stationId,h.camp);s.scale.set(h.camp===1?avatarScale:-avatarScale,avatarScale);s.position.set(pos.x,pos.y);s.zIndex=pos.z;s.visible=h.hp>0;actors.addChild(s);units.set(h.id,s);models.set(h.id,model);if(h.stationId>=0){const hud=createHud(h.camp,h);hudLayer.addChild(hud.root);huds.set(h.id,hud);hud.root.position.set(s.x,s.y-175)}
  }
- runtime.current={app,units,models,timelines,skills,common,effects,bottom,top,mask,sounds};setLoaded(true);setStatus('Сцена готова');onReady(true);
+ app.ticker.add(()=>{for(const [id,hud] of huds){const unit=units.get(id);if(unit){hud.root.position.set(unit.x,unit.y-175);hud.root.visible=unit.visible}}});
+ runtime.current={app,units,models,huds,timelines,skills,common,effects,bottom,top,mask,sounds};setLoaded(true);setStatus('Сцена готова');onReady(true);
  }init().catch(e=>{if(!cancelled)setStatus(String(e))});return()=>{cancelled=true;runtime.current=undefined;app?.destroy(true,{children:true});releases.forEach(r=>r())}
  },[report]);
  useEffect(()=>{const rt=runtime.current!,p=report.pages[cursor];if(!loaded||!rt||!p)return;onReady(false);let cancelled=false;const timers:ReturnType<typeof setTimeout>[]=[];const labels:Text[]=[];const frames=new Set<number>();
@@ -113,8 +115,8 @@ export function ReportScene({report,cursor,onReady,volume=0.5}:{report:BattleRep
  if(e.EventType===4&&home)later(e.StartTime,()=>move(fieldPosition(home.stationId,home.camp),e.Duration,true,e.IsBlink));
  }
  const events=orderedEvents(p);let duration=Math.max(timeline?.Duration??300,...effectEvents.map(e=>e.StartTime+e.Duration),...(timeline?.Events.filter(e=>e.EventType===9).map(e=>e.StartTime+Math.max(e.ActionName==='dark_screen'?400:0,e.Duration))??[]));const fallbackTime=duration;
- for(const e of events){const hit=timeline?.Events.find(x=>x.EventType===6&&x.HitPointId===e.index),ms=hit?.StartTime??(p.dataType===2?fallbackTime:0);duration=Math.max(duration,ms+300,ms+lifecycleDuration(e.type)+50);later(ms,()=>{const t=rt.units.get(e.target);if(!t)return;if(e.type===7||e.type===27)lifecycle(e.target,e.type);if([1,2,3,21].includes(e.type)&&!hit?.NoHurtAction){anim(t,'hurt');later(200,()=>{if(!lifeFrames.has(e.target)&&t.visible)anim(t,'standby',true)})}if([1,2,3,4,5,21,22].includes(e.type)){const label=new Text(String(e.value),{fontSize:48,fill:[5,22].includes(e.type)?0x7dff91:0xffffff,stroke:0x000000,strokeThickness:3});label.anchor.set(.5);label.position.set(t.x,t.y-135);rt.app.stage.addChild(label);labels.push(label);later(300,()=>{label.visible=false})}})}
- later(duration,()=>{for(const h of p.heroStatus){const s=rt.units.get(h.id);if(s){s.visible=!h.isDead;s.alpha=1;const home=report.heroes.find(x=>x.id===h.id);if(home){const pos=fieldPosition(home.stationId,home.camp);s.position.set(pos.x,pos.y)}anim(s,'standby',true)}}setStatus('Раунд '+p.round);onReady(true)});
+ for(const e of events){const hit=timeline?.Events.find(x=>x.EventType===6&&x.HitPointId===e.index),ms=hit?.StartTime??(p.dataType===2?fallbackTime:0);duration=Math.max(duration,ms+300,ms+lifecycleDuration(e.type)+50);later(ms,()=>{const t=rt.units.get(e.target);if(!t)return;rt.huds.get(e.target)?.event(e);if(e.type===7||e.type===27)lifecycle(e.target,e.type);if([1,2,3,21].includes(e.type)&&!hit?.NoHurtAction){anim(t,'hurt');later(200,()=>{if(!lifeFrames.has(e.target)&&t.visible)anim(t,'standby',true)})}if([1,2,3,4,5,21,22].includes(e.type)){const label=new Text(([5,22].includes(e.type)?"+":e.type===3?"КРИТ ":"")+String(e.value),{fontSize:e.type===3?62:48,fill:[5,22].includes(e.type)?0x7dff91:e.type===3?0xffd166:e.type===4?0x8ad9ff:0xffffff,stroke:0x000000,strokeThickness:3});label.anchor.set(.5);label.position.set(t.x,t.y-135);rt.app.stage.addChild(label);labels.push(label);later(300,()=>{label.visible=false})}})}
+ later(duration,()=>{for(const h of p.heroStatus){rt.huds.get(h.id)?.set(h);const s=rt.units.get(h.id);if(s){s.visible=!h.isDead;s.alpha=1;const home=report.heroes.find(x=>x.id===h.id);if(home){const pos=fieldPosition(home.stationId,home.camp);s.position.set(pos.x,pos.y)}anim(s,'standby',true)}}setStatus('Раунд '+p.round);onReady(true)});
  }void play();
  return()=>{cancelled=true;playing.forEach(a=>{a.pause();a.src=''});if(!rt.mask.destroyed)rt.mask.alpha=0;if(!rt.app.stage.destroyed)rt.app.stage.position.set(0,0);activeEffects.forEach(f=>f.destroy({children:true}));effectReleases.forEach(r=>r());timers.forEach(clearTimeout);frames.forEach(cancelAnimationFrame);labels.forEach(l=>l.destroy())};
  },[cursor,loaded,report]);
