@@ -1,4 +1,4 @@
-/** Common summon: normal 1/2 → 101, senior 3/4 → 102. */
+/** Common summon (101/102) + oracle/prophet (201, types 1/5). */
 import {readFileSync} from 'node:fs';
 import {dirname,join} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -12,11 +12,14 @@ type CommonCfg={consume:number[][];summonCount:number;summonType:number;extra:nu
 type TypeCfg={libs:number[][];onceLibs:number[];startFreeCount:number;dailyFreeCount:number};
 type LibCfg={startChance:number;maxCount:number;modifyChance:number[][];randomLib:number[][];elementType:number};
 type HeroCardCfg={heroId:number;starLevel:number};
+type ProphetCfg={currencyId:number;baseCurrencyCount:number;advCurrencyCount:number;summonType:number;extra:number[][];times:number};
 
 const PPM=1_000_000;
 const TICKET_NORMAL=10401;
 const TICKET_SENIOR=10403;
 const DIAMOND=3;
+const ORACLE_CURRENCY=14001;
+const PROPHET_OTHER=4;
 
 const here=dirname(fileURLToPath(import.meta.url));
 const candidates=[join(process.cwd(),'data'),join(here,'..','data'),join(here,'..','..','data')];
@@ -32,6 +35,7 @@ const COMMON=loadJson<Record<string,CommonCfg>>('card-common-summon.json',{});
 const STYPE=loadJson<Record<string,TypeCfg>>('card-summon-type.json',{});
 const LIBS=loadJson<Record<string,LibCfg>>('card-random-lib.json',{});
 const CARDS=loadJson<Record<string,HeroCardCfg>>('item-hero-card.json',{});
+const PROPHET=loadJson<Record<string,ProphetCfg>>('card-prophet-summon.json',{});
 
 export function heroCard(itemId:number):HeroCardCfg|undefined{return CARDS[String(itemId)]}
 
@@ -63,18 +67,22 @@ function weightedPick(rows:number[][],rng:()=>number):[number,number]|null{
 
 type Model={libCount:Record<string,number>;libStatus:Record<string,number>;freeCount:number;todayCount:number;totalCount:number};
 
-/** One pull using Cards.Pull semantics (OnceLibs + pity). */
+/** One pull using Cards.Pull semantics (OnceLibs + pity + optional element filter). */
 export function pullOnce(
  typeCfg:TypeCfg,
  model:Model,
  rng:()=>number=Math.random,
+ element=0,
 ):{item:[number,number]|null;model:Model}{
  const slots=typeCfg.libs.map(row=>({order:row[0]??0,ids:row.slice(1)})).filter(s=>s.ids.length>0);
  const candidates:{order:number;libId:number;cfg:LibCfg}[]=[];
  for(const slot of slots){
   const alive=slot.ids.filter(id=>{
+   const cfg=LIBS[String(id)];
+   if(!cfg)return false;
+   if(element>0&&cfg.elementType!==element)return false;
    if(typeCfg.onceLibs.includes(slot.order)&&(model.libStatus[String(id)]??0)>0)return false;
-   return !!LIBS[String(id)];
+   return true;
   });
   if(!alive.length)continue;
   const libId=alive[Math.floor(rng()*alive.length)]!;
@@ -99,17 +107,27 @@ export function pullOnce(
  return {item:weightedPick(hit.cfg.randomLib,rng),model:{...model,libCount,libStatus}};
 }
 
-export function pullMany(typeId:number,model:Model,times:number,rng:()=>number=Math.random):{items:[number,number][];model:Model}{
+export function pullMany(
+ typeId:number,
+ model:Model,
+ times:number,
+ rng:()=>number=Math.random,
+ element=0,
+):{items:[number,number][];model:Model}{
  const typeCfg=STYPE[String(typeId)];
  if(!typeCfg)return {items:[],model};
  const items:[number,number][]=[];
  let m=model;
  for(let i=0;i<times;i++){
-  const r=pullOnce(typeCfg,m,rng);
+  const r=pullOnce(typeCfg,m,rng,element);
   m=r.model;
   if(r.item)items.push(r.item);
  }
  return {items,model:m};
+}
+
+export function prophetCost(cfg:ProphetCfg,element:number):number{
+ return element===PROPHET_OTHER?cfg.advCurrencyCount||cfg.baseCurrencyCount:cfg.baseCurrencyCount;
 }
 
 async function account(req:{headers:{authorization?:string}},s:Storage){
@@ -235,16 +253,31 @@ export async function summonRoutes(app:FastifyInstance,s:Storage){
     free:typeCfg?.startFreeCount??0,
    };
   });
+  if((await itemAmount(s,id,ORACLE_CURRENCY))===0)await grantItem(s,id,ORACLE_CURRENCY,20);
   const tickets=await ticketSnapshot(s,id);
   const normal=await stateFor(s,id,101);
   const senior=await stateFor(s,id,102);
+  const oracle=await stateFor(s,id,201);
+  const oracleBanners=Object.entries(PROPHET).map(([bannerId,cfg])=>({
+   id:Number(bannerId),
+   times:cfg.times,
+   summonType:cfg.summonType,
+   currencyId:cfg.currencyId,
+   baseCost:cfg.baseCurrencyCount,
+   advCost:cfg.advCurrencyCount,
+   extra:cfg.extra,
+  }));
   return {
    banners,
-   tickets,
+   tickets:{
+    ...tickets,
+    oracle:{itemId:ORACLE_CURRENCY,amount:await itemAmount(s,id,ORACLE_CURRENCY)},
+   },
    // back-compat for 018.1 clients
    ticket:{itemId:TICKET_NORMAL,amount:tickets.normal.amount},
-   states:{'101':normal,'102':senior},
+   states:{'101':normal,'102':senior,'201':oracle},
    state:normal,
+   oracle:{banners:oracleBanners,state:oracle,elements:[1,2,3,4]},
   };
  });
 
@@ -306,6 +339,57 @@ export async function summonRoutes(app:FastifyInstance,s:Storage){
     '101':cfg.summonType===101?{summonType:101,freeCount:saved.freeCount,todayCount:saved.todayCount,totalCount:saved.totalCount}:await stateFor(s,id,101),
     '102':cfg.summonType===102?{summonType:102,freeCount:saved.freeCount,todayCount:saved.todayCount,totalCount:saved.totalCount}:await stateFor(s,id,102),
    },
+   heroCount:(await getHeroes(s,id)).length,
+  };
+ });
+
+ app.post<{Body:{type:number;element:number}}>('/v1/summon/oracle',{
+  schema:{body:{type:'object',required:['type','element'],additionalProperties:false,properties:{
+   type:{type:'integer',enum:[1,5]},
+   element:{type:'integer',minimum:1,maximum:4},
+  }}},
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  const cfg=PROPHET[String(req.body.type)];
+  if(!cfg)return reply.code(404).send({error:'oracle_not_found'});
+  const typeCfg=STYPE[String(cfg.summonType)];
+  if(!typeCfg)return reply.code(500).send({error:'summon_type_missing'});
+  const element=req.body.element;
+  const cost=prophetCost(cfg,element);
+  if(!(await payItem(s,id,cfg.currencyId,cost))){
+   return reply.code(409).send({error:'insufficient_oracle_currency',itemId:cfg.currencyId,need:cost});
+  }
+  let model=await loadModel(s,id,cfg.summonType,typeCfg);
+  const times=Math.max(cfg.times,1);
+  const {items,model:after}=pullMany(cfg.summonType,model,times,Math.random,element);
+  const heroes:{sid:number;heroId:number;star:number;cardId:number}[]=[];
+  for(const [cardId,n] of items){
+   heroes.push(...await grantHeroCard(s,id,cardId,n));
+  }
+  // ExtraReward already scaled for ×10 in config — grant once per request
+  const extras:[number,number][]=[];
+  for(const row of cfg.extra){
+   const itemId=row[0],n=row[1]??0;
+   if(itemId&&n){extras.push([itemId,n]);await grantItem(s,id,itemId,n)}
+  }
+  const saved={
+   ...after,
+   todayCount:after.todayCount+times,
+   totalCount:after.totalCount+times,
+  };
+  await saveModel(s,id,cfg.summonType,saved);
+  return {
+   ok:true,
+   type:req.body.type,
+   element,
+   times,
+   cost:{itemId:cfg.currencyId,amount:cost},
+   pulls:items,
+   heroes,
+   extras,
+   oracle:{itemId:ORACLE_CURRENCY,amount:await itemAmount(s,id,ORACLE_CURRENCY)},
+   state:{summonType:cfg.summonType,freeCount:saved.freeCount,todayCount:saved.todayCount,totalCount:saved.totalCount},
    heroCount:(await getHeroes(s,id)).length,
   };
  });
