@@ -5,5 +5,5 @@ export function fieldPosition(station:number,camp:number){
  if(station<0)return {x:540-280*camp,y:960-565,z:1000};
  const row=Math.min(2,Math.max(0,Math.floor(station/3))),col=station%3;
  const [x,y]=positions[col][row];
- return {x:540-camp*x,y:960-y,z:100*col+10-row-(camp===1?0:5)};
+ return {x:540-camp*x,y:1220-y,z:100*col+10-row-(camp===1?0:5)};
 }

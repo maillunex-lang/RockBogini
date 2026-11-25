@@ -1,7 +1,7 @@
 import {fieldPosition,fieldWidth,fieldHeight} from './fieldLayout';
 export type Point={x:number;y:number};
 export function moveDestination(reference:number,target:{stationId:number;camp:number}|undefined,camp:number,distance:number):Point{
- let p:Point={x:fieldWidth/2,y:fieldHeight/2};
+ let p:Point={x:fieldWidth/2,y:fieldHeight/2+260};
  if(target){if(reference===2)p=fieldPosition(target.stationId,target.camp);else if(reference===3||reference===4)p=fieldPosition(4,target.camp);else if(reference===5)p=fieldPosition(target.stationId%3,target.camp)}
  return {x:p.x-distance*camp,y:p.y};
 }
