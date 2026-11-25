@@ -268,3 +268,5 @@ NEXT-013.3 partial: corrected one-based ActionIndex from AJBattleViewPort/Skills
 NEXT-013.3.1 partial: original AJBattleActor death opacity sequence 1000ms, revive delay/fade 500ms, hurt return 200ms, per-unit tween cancellation and authoritative snapshot reconciliation. 9/9 lifecycle assertions, TypeScript/Vite and HTTP200. Common Core/Pet model lookup and browser acceptance remain pending.
 
 NEXT-013.3.2 partial: exported 249 Core/Pet skill mappings and 63 original timelines, client selects CoreModel and one-based ActionIndex. Angel actor assets and common skill VFX remain pending; no browser acceptance. Build and public manifest verified. Next NEXT-013.4.1.
+
+NEXT-013.4.1 partial: original Spine effects types 2/6/8 loaded per action before playback, timed layers, hit target selection, offsets and cleanup. Team/multirow references approximate; common assets, projectiles and browser acceptance pending. TypeScript/Vite and HTTP200 verified.

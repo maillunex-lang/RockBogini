@@ -413,3 +413,5 @@ Fixed session HTTP404 caused by missing VITE_NEXT_API_URL in manual builds; defa
 Battle screenshot fixes: automatic sequential playback, pause after current action, service page labels instead of actor 0, ground positions shifted 260 design pixels down; movement center aligned. Build passed, visual acceptance pending.
 
 NEXT-013.3.2 partial: exported 249 Core/Pet skill mappings and 63 original timelines, client selects CoreModel and one-based ActionIndex. Angel actor assets and common skill VFX remain pending; no browser acceptance. Build and public manifest verified. Next NEXT-013.4.1.
+
+NEXT-013.4.1 partial: original Spine effects types 2/6/8 loaded per action before playback, timed layers, hit target selection, offsets and cleanup. Team/multirow references approximate; common assets, projectiles and browser acceptance pending. TypeScript/Vite and HTTP200 verified.
