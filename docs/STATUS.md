@@ -415,3 +415,5 @@ NEXT-013.2 partial: recovered 19 original BattleBg WebP assets by UUID/version, 
 NEXT-013.3 partial: corrected one-based ActionIndex from AJBattleViewPort/Skills.hit_count; all PlayAction timeline events, MoveTo/MoveBack reference coordinates, quartic easing and blink thirds, cleanup of motion frames, stable fallback hit timing. 8/8 pure motion assertions, TypeScript/Vite and HTTP200. Browser acceptance, common skill models, death animation and VFX remain pending.
 
 NEXT-013.3.1 partial: original AJBattleActor death opacity sequence 1000ms, revive delay/fade 500ms, hurt return 200ms, per-unit tween cancellation and authoritative snapshot reconciliation. 9/9 lifecycle assertions, TypeScript/Vite and HTTP200. Common Core/Pet model lookup and browser acceptance remain pending.
+
+NEXT-013.3.2 partial: exported 249 Core/Pet skill mappings and 63 original timelines, client selects CoreModel and one-based ActionIndex. Angel actor assets and common skill VFX remain pending; no browser acceptance. Build and public manifest verified. Next NEXT-013.4.1.

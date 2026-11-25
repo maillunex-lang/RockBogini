@@ -7,14 +7,15 @@ import {Spine} from '@pixi-spine/all-3.8';
 import {acquireSkeleton} from '../assets/spineLibrary';
 import {orderedEvents,type BattleReport} from './reportClient';
 type Timeline={Duration:number;Events:{EventType:number;ActionName:string;StartTime:number;Duration:number;ReferenceType:number;TargetDistance:number;IsBlink:boolean;HitPointId:number;NoHurtAction:boolean}[]};
+type CommonSkills={skills:Record<string,{type:number;model:string;index:number}>;models:Record<string,{Skills:Timeline[]}>};
 type Model={assetId:string;name:string;texture:string;animations:string[]};
 const json=async<T,>(path:string):Promise<T>=>{const r=await fetch(path);if(!r.ok)throw Error(path+' '+r.status);return r.json()};
 export function ReportScene({report,cursor,onReady}:{report:BattleReport;cursor:number;onReady:(ready:boolean)=>void}){
- const host=useRef<HTMLDivElement>(null),runtime=useRef<{app:Application;units:Map<number,Spine>;models:Map<number,string>;timelines:Record<string,{Skills:Timeline[]}>;skills:Record<string,number>}>();
+ const host=useRef<HTMLDivElement>(null),runtime=useRef<{app:Application;units:Map<number,Spine>;models:Map<number,string>;timelines:Record<string,{Skills:Timeline[]}>;skills:Record<string,number>;common:CommonSkills}>();
  const [loaded,setLoaded]=useState(false),[status,setStatus]=useState('Загрузка боевой сцены');
  useEffect(()=>{let cancelled=false;let app:Application|undefined;const releases:(()=>void)[]=[];setLoaded(false);onReady(false);
  async function init(){
- const [catalog,timelines,skills]=await Promise.all([json<{models:Record<string,Model>;heroes?:Record<string,string>}>('./hero-asset-map.json'),json<Record<string,{Skills:Timeline[]}>>('./hero-animation-timelines.json'),json<Record<string,number>>('./battle-action-index.json')]);
+ const [catalog,timelines,skills,common]=await Promise.all([json<{models:Record<string,Model>;heroes?:Record<string,string>}>('./hero-asset-map.json'),json<Record<string,{Skills:Timeline[]}>>('./hero-animation-timelines.json'),json<Record<string,number>>('./battle-action-index.json'),json<CommonSkills>('./common-skills.json')]);
  if(cancelled)return;
  app=new Application({width:fieldWidth,height:fieldHeight,backgroundColor:0x20243a});app.ticker.maxFPS=30;const canvas=app.view as HTMLCanvasElement;canvas.style.width='100%';host.current!.appendChild(canvas);
  const bgManifest=await json<Record<string,{file:string;width:number;height:number}>>('./battle-backgrounds/manifest.json');
@@ -30,13 +31,13 @@ export function ReportScene({report,cursor,onReady}:{report:BattleReport;cursor:
  const idle=lease.data.animations.find(x=>x.name==='standby')??lease.data.animations[0];if(idle)s.state.setAnimation(0,idle.name,true);s.update(.1);
  const pos=fieldPosition(h.stationId,h.camp);s.scale.set(h.camp===1?avatarScale:-avatarScale,avatarScale);s.position.set(pos.x,pos.y);s.zIndex=pos.z;s.visible=h.hp>0;actors.addChild(s);units.set(h.id,s);models.set(h.id,model);
  }
- runtime.current={app,units,models,timelines,skills};setLoaded(true);setStatus('Сцена готова');onReady(true);
+ runtime.current={app,units,models,timelines,skills,common};setLoaded(true);setStatus('Сцена готова');onReady(true);
  }init().catch(e=>{if(!cancelled)setStatus(String(e))});return()=>{cancelled=true;runtime.current=undefined;app?.destroy(true,{children:true});releases.forEach(r=>r())}
  },[report]);
  useEffect(()=>{const rt=runtime.current,p=report.pages[cursor];if(!loaded||!rt||!p)return;onReady(false);let cancelled=false;const timers:ReturnType<typeof setTimeout>[]=[];const labels:Text[]=[];const frames=new Set<number>();
  const later=(ms:number,fn:()=>void)=>timers.push(setTimeout(()=>{if(!cancelled)fn()},ms));
  const anim=(s:Spine|undefined,name:string,loop=false)=>{if(s?.spineData.findAnimation(name))s.state.setAnimation(0,name,loop)};
- const actor=rt.units.get(p.actor),model=rt.models.get(p.actor),index=rt.skills[p.skillId],timeline=model===undefined?undefined:rt.timelines[model]?.Skills[timelineIndex(index)];
+ const actor=rt.units.get(p.actor),model=rt.models.get(p.actor),index=rt.skills[p.skillId],common=rt.common.skills[p.skillId],timeline=common?rt.common.models[common.model]?.Skills[timelineIndex(common.index)]:model===undefined?undefined:rt.timelines[model]?.Skills[timelineIndex(index)];
  const home=report.heroes.find(h=>h.id===p.actor),target=report.heroes.find(h=>h.id===p.targets[0]);
  const lifeFrames=new Map<number,number>();
  function lifecycle(id:number,type:number){
