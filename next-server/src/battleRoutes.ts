@@ -1,3 +1,4 @@
+import {reportHeroes} from './battle/reportHeroes.js';
 import type {FastifyInstance} from 'fastify';
 import type {Storage} from './storage.js';
 import {sessionAccount} from './auth.js';
@@ -24,7 +25,7 @@ export async function battleRoutes(app:FastifyInstance,s:Storage){
  let squad:Awaited<ReturnType<typeof prepareSquad>>;try{squad=await prepareSquad(s,id)}catch(e){if(e instanceof Error&&['empty_formation','invalid_formation','hero_attributes_pending','hero_not_owned'].includes(e.message))return reply.code(409).send({error:e.message});throw e}
  const units:Fighter[]=[...squad.map((u:ReturnType<typeof import("./battleUnits.js").buildUnit>)=>({...u,camp:1 as const,is_boss:0,hurt:0,damage:0,cure:0,buffs:[]})),...map.units.map(u=>({...u,buffs:[]}))];
  const seed=randomInt(1,2147483647),r=simulate(units,battleRandom(seed),map.maxRounds);
- const heroes=units.map(u=>{const m=u as Fighter&{hero_id:number;sid:number;star:number;skin_id:number;skills:number[]};const f=r.units.find(x=>x.id===u.id)!;return {id:u.id,heroId:m.hero_id,stationId:u.station,camp:u.camp,hpMax:u.hp_max,hp:u.hp,starLevel:m.star,level:u.level,sid:m.sid,isBoss:u.is_boss,skinId:m.skin_id??0,attrs:Object.fromEntries(Object.entries(u.attrs).filter(([k])=>[0,1,2,3].includes(Number(k)))),skills:m.skills,statDamage:f.damage,statHurt:f.hurt,statCure:f.cure,statHp:f.hp,statHpMax:f.hp_max}}).sort((a,b)=>a.id-b.id);
+ const heroes=reportHeroes(units,r.units);
  const report={version:1,heroes,battleId:randomUUID(),mapId:req.body.mapId,background:map.bg,seed,maxRounds:map.maxRounds,preview:mode==='preview',progressionApplied:false,initialUnits:units,summary:r.summary,pages:r.pages,finalPage:{dataType:99,round:r.rounds,battleResult:r.summary.resultCode,heroStatus:r.summary.heroes},issues:r.issues,parityReady:r.parityReady};
  if(mode==='challenge'){
  const c=await s.pg.connect();try{await c.query('BEGIN');await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);

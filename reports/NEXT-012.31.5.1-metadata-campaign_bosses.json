@@ -1,0 +1,10 @@
+{
+  "battles": 144,
+  "heroes": 1560,
+  "heroMatches": 1560,
+  "rounds": 256,
+  "roundMatches": 256,
+  "events": 12131,
+  "eventMatches": 12131,
+  "failures": []
+}
