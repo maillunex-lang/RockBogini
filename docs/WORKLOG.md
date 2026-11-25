@@ -1,3 +1,4 @@
+2026-11-25 NEXT-019.2: quick battle 120m (1 free + 3×50/100/150💎), migration 19, campaign UI; 10/10 tests; testtest publish. reports/NEXT-019.2.md.
 2026-11-25 NEXT-019.1: hang-up idle claim API + campaign UI panel; settle/claim keep fractional points; 7/7 tests; testtest publish. reports/NEXT-019.1.md.
 # Журнал
 2026-11-24: архив удален по запросу, распакованный оригинал сохранен.

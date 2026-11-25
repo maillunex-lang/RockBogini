@@ -4,6 +4,12 @@ import type {PoolClient} from 'pg';
 const cfg=JSON.parse(readFileSync(new URL('../../data/campaign-dependencies.json',import.meta.url),'utf8')) as {idle:Record<number,{common:number[][];random:number[][]}>;libs:Record<number,number[][]>;modules:{id:number;r1:number[][];r2:number[][]}[];limit:number};
 type Counts=Record<number,number>;
 export const IDLE_LIMIT_MINUTES=cfg.limit;
+/** GlobalSetting / LevelParam 109 (non-VIP). */
+export const QUICK_BATTLE_MINUTES=120;
+export const QUICK_FREE_DAILY=1;
+export const QUICK_PAID_DAILY=3;
+export const QUICK_DIAMOND_COSTS=[50,100,150] as const;
+export const DIAMOND_ITEM=3;
 export function idleStageRates(stage:number){
  const row=cfg.idle[stage];
  if(!row)return {common:[] as {itemId:number;perMinute:number}[],random:[] as {libId:number;perMinute:number}[]};
@@ -70,6 +76,114 @@ export async function claimIdle(c:PoolClient,id:string,stage:number){
   [id,JSON.stringify({}),now],
  );
  return {rewards:pending,minutes:settled.minutes,limitMinutes:cfg.limit,receivedAt:+now,settledAt:+now};
+}
+
+function utcDay(d=new Date()){return d.toISOString().slice(0,10)}
+
+async function ensureIdleRow(c:PoolClient,id:string){
+ await c.query(
+  'INSERT INTO campaign_idle(account_id,received_at,settled_at) SELECT id,created_at,created_at FROM accounts WHERE id=$1 ON CONFLICT DO NOTHING',
+  [id],
+ );
+}
+
+/** Reset daily quick-battle counters when UTC day rolls. */
+export async function refreshQuickDaily(c:PoolClient,id:string){
+ await ensureIdleRow(c,id);
+ const row=(await c.query(
+  'SELECT daily_count,daily_quick_count,daily_day,quick_points FROM campaign_idle WHERE account_id=$1 FOR UPDATE',[id],
+ )).rows[0];
+ const today=utcDay();
+ const day=row.daily_day instanceof Date?row.daily_day.toISOString().slice(0,10):String(row.daily_day).slice(0,10);
+ if(day!==today){
+  await c.query(
+   'UPDATE campaign_idle SET daily_count=0,daily_quick_count=0,daily_day=$2 WHERE account_id=$1',
+   [id,today],
+  );
+  return {dailyCount:0,dailyQuickCount:0,quickPoints:(row.quick_points??{}) as Counts};
+ }
+ return {
+  dailyCount:Number(row.daily_count??0),
+  dailyQuickCount:Number(row.daily_quick_count??0),
+  quickPoints:(row.quick_points??{}) as Counts,
+ };
+}
+
+export function quickBattleCost(dailyQuickCount:number){
+ return QUICK_DIAMOND_COSTS[Math.min(dailyQuickCount,QUICK_DIAMOND_COSTS.length-1)]!;
+}
+
+export type QuickBattlePreview={
+ freeLeft:number;
+ paidLeft:number;
+ nextCost:number|null;
+ durationMinutes:number;
+ dailyCount:number;
+ dailyQuickCount:number;
+};
+
+export async function previewQuickBattle(c:PoolClient,id:string):Promise<QuickBattlePreview>{
+ const d=await refreshQuickDaily(c,id);
+ const freeLeft=Math.max(0,QUICK_FREE_DAILY-d.dailyCount);
+ const paidLeft=Math.max(0,QUICK_PAID_DAILY-d.dailyQuickCount);
+ return {
+  freeLeft,paidLeft,
+  nextCost:freeLeft>0?0:paidLeft>0?quickBattleCost(d.dailyQuickCount):null,
+  durationMinutes:QUICK_BATTLE_MINUTES,
+  dailyCount:d.dailyCount,
+  dailyQuickCount:d.dailyQuickCount,
+ };
+}
+
+/**
+ * Instant 120-minute accrual (separate QuickPoints). Free once/day, then diamond costs.
+ * Grants immediately — does not fill hang-up chest.
+ */
+export async function runQuickBattle(c:PoolClient,id:string,stage:number){
+ const d=await refreshQuickDaily(c,id);
+ let paid=0;
+ let dailyCount=d.dailyCount;
+ let dailyQuickCount=d.dailyQuickCount;
+ if(dailyCount<QUICK_FREE_DAILY){
+  dailyCount+=1;
+ }else if(dailyQuickCount<QUICK_PAID_DAILY){
+  paid=quickBattleCost(dailyQuickCount);
+  const pay=await c.query(
+   'UPDATE player_items SET amount=amount-$3 WHERE account_id=$1 AND item_id=$2 AND amount>=$3 RETURNING amount',
+   [id,DIAMOND_ITEM,paid],
+  );
+  if(!pay.rowCount)return {error:'insufficient_diamond' as const};
+  dailyQuickCount+=1;
+ }else{
+  return {error:'quick_limit' as const};
+ }
+ const a=accrueIdle(stage,QUICK_BATTLE_MINUTES,d.quickPoints);
+ const rewards=orderedIdleRewards(stage,a.rewards);
+ const grant=async(item:number,amount:number)=>{
+  await c.query(
+   `INSERT INTO player_items(account_id,item_id,amount) VALUES($1,$2,$3)
+    ON CONFLICT(account_id,item_id) DO UPDATE SET amount=
+     CASE WHEN EXCLUDED.item_id=7 THEN LEAST(30000,player_items.amount+EXCLUDED.amount)
+     ELSE player_items.amount+EXCLUDED.amount END`,
+   [id,item,amount],
+  );
+ };
+ for(const [item,amount] of rewards)await grant(item,amount);
+ await c.query(
+  `UPDATE campaign_idle SET quick_points=$2::jsonb,daily_count=$3,daily_quick_count=$4,daily_day=$5
+   WHERE account_id=$1`,
+  [id,JSON.stringify(a.points),dailyCount,dailyQuickCount,utcDay()],
+ );
+ return {
+  rewards,
+  paid,
+  durationMinutes:QUICK_BATTLE_MINUTES,
+  dailyCount,
+  dailyQuickCount,
+  freeLeft:Math.max(0,QUICK_FREE_DAILY-dailyCount),
+  paidLeft:Math.max(0,QUICK_PAID_DAILY-dailyQuickCount),
+  nextCost:dailyCount<QUICK_FREE_DAILY?0:dailyQuickCount<QUICK_PAID_DAILY?quickBattleCost(dailyQuickCount):null,
+ };
 }
 export function eligibleModules(p:{level:number;stage:number;days:number;vip:number;power:number;towers?:Counts}){
  const met=(r:number[][])=>r.length>0&&r.every(([k,v,w])=>k===1?p.level>=v:k===2?p.days>=v:k===3?p.stage>v:k===4?p.vip>=v:k===5?p.power>=v:k===101?(p.towers?.[99]??0)>=v:k===102?(p.towers?.[v]??0)>=w:false);

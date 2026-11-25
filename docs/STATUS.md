@@ -1,7 +1,7 @@
 # Актуальное состояние 2026-11-25
 
-Активная задача: **NEXT-019.1** (idle claim done). Live https://rikagro.ru/testtest/.
-Проверено: idle claim 7/7; publish ok.
+Активная задача: **NEXT-019.2** (quick battle done). Live https://rikagro.ru/testtest/.
+Проверено: quick+idle+storage 10/10; publish ok.
 
 | Подэтап | Состояние |
 |---|---|

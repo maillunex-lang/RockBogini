@@ -98,6 +98,12 @@ export async function migrate(s:Storage){
   created_at timestamptz NOT NULL DEFAULT now()
  )`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(18) ON CONFLICT DO NOTHING');
+ await c.query(`ALTER TABLE campaign_idle
+  ADD COLUMN IF NOT EXISTS quick_points jsonb NOT NULL DEFAULT '{}',
+  ADD COLUMN IF NOT EXISTS daily_count integer NOT NULL DEFAULT 0,
+  ADD COLUMN IF NOT EXISTS daily_quick_count integer NOT NULL DEFAULT 0,
+  ADD COLUMN IF NOT EXISTS daily_day date NOT NULL DEFAULT CURRENT_DATE`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(19) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }
