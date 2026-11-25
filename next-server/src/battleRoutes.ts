@@ -28,6 +28,7 @@ export async function battleRoutes(app:FastifyInstance,s:Storage){
  const report={version:1,heroes,battleId:randomUUID(),mapId:req.body.mapId,background:map.bg,seed,maxRounds:map.maxRounds,preview:mode==='preview',progressionApplied:false,initialUnits:units,summary:r.summary,pages:r.pages,finalPage:{dataType:99,round:r.rounds,battleResult:r.summary.resultCode,heroStatus:r.summary.heroes},issues:r.issues,parityReady:r.parityReady};
  if(mode==='challenge'){
  const c=await s.pg.connect();try{await c.query('BEGIN');await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
+ await c.query("UPDATE campaign_battles SET report=jsonb_build_object('archived',true) WHERE id=(SELECT battle_id FROM campaign_pending WHERE account_id=$1) AND account_id=$1 AND settlement IS NULL",[id]);
  await c.query('INSERT INTO campaign_battles(id,account_id,map_id,report) VALUES($1,$2,$3,$4)',[report.battleId,id,report.mapId,JSON.stringify(report)]);
  await c.query('INSERT INTO campaign_pending(account_id,battle_id) VALUES($1,$2) ON CONFLICT(account_id) DO UPDATE SET battle_id=EXCLUDED.battle_id',[id,report.battleId]);await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
@@ -56,7 +57,7 @@ export async function battleRoutes(app:FastifyInstance,s:Storage){
  }}
  const unlockedModules=win?await refreshModules(c,id,level,stage):[];
  const result={unlockedModules,battleId:b.id,mapId:b.map_id,result:win?1:0,rewards:granted,playerLevel:profile.level,level,stage};
- await c.query('UPDATE campaign_battles SET settlement=$2 WHERE id=$1',[b.id,JSON.stringify(result)]);await c.query('DELETE FROM campaign_pending WHERE account_id=$1',[id]);await c.query('COMMIT');return result;
+ await c.query("UPDATE campaign_battles SET settlement=$2,report=jsonb_build_object('archived',true) WHERE id=$1",[b.id,JSON.stringify(result)]);await c.query('DELETE FROM campaign_pending WHERE account_id=$1',[id]);await c.query('COMMIT');return result;
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
  });
 
@@ -72,6 +73,7 @@ export async function battleRoutes(app:FastifyInstance,s:Storage){
  const c=await s.pg.connect();try{await c.query('BEGIN');
  await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
  const r=await c.query('DELETE FROM campaign_pending WHERE account_id=$1 AND battle_id=$2 RETURNING battle_id',[id,req.body.battleId]);
+ if(r.rowCount===1)await c.query("UPDATE campaign_battles SET report=jsonb_build_object('archived',true) WHERE id=$1 AND account_id=$2 AND settlement IS NULL",[req.body.battleId,id]);
  await c.query('COMMIT');return {cancelled:r.rowCount===1};
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
  });

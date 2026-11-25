@@ -20,6 +20,7 @@ test('authenticated preview does not advance progress',{skip:!process.env.PGHOST
  await s.pg.query("UPDATE accounts SET created_at=now()-interval '10 minutes' WHERE id=$1",[guest.id]);
  const settle=()=>app.inject({method:'POST',url:'/v1/battle/settle',headers,payload:{battleId:battle.battleId}});
  const [a,b]=await Promise.all([settle(),settle()]);assert.equal(a.statusCode,200,a.body);assert.equal(b.statusCode,200,b.body);assert.deepEqual(a.json(),b.json());
+ assert.deepEqual((await s.pg.query('SELECT report FROM campaign_battles WHERE id=$1',[battle.battleId])).rows[0].report,{archived:true});
  const idle=(await s.pg.query('SELECT * FROM campaign_idle WHERE account_id=$1',[guest.id])).rows[0];assert.equal(Math.floor((+idle.settled_at-+idle.received_at)/60000),10);assert.ok(Object.keys(idle.points).length>0);assert.ok(Array.isArray(a.json().unlockedModules));
  const after=await getProfile(s,guest.id);assert.equal(after.stage,100102);assert.equal(after.experience,'200');assert.equal(after.level,2);assert.equal(after.currencies.coin,'4000');assert.equal(after.currencies.diamond,'10');
  const replay=await app.inject({method:'POST',url:'/v1/battle/challenge',headers,payload:{mapId:100101}});assert.equal(replay.statusCode,200);
@@ -40,11 +41,13 @@ test('pending battle recovery, replacement, cancellation and account isolation',
  assert.equal((await post('cancel',{battleId:report.battleId},other)).json().cancelled,false);
  assert.equal((await post('settle',{battleId:report.battleId},other)).statusCode,404);
  const next=await post('challenge',{mapId:100101});assert.equal(next.statusCode,200);const id=next.json().battleId;
+ assert.deepEqual((await s.pg.query('SELECT report FROM campaign_battles WHERE id=$1',[report.battleId])).rows[0].report,{archived:true});
  assert.equal((await post('cancel',{battleId:report.battleId})).json().cancelled,false);
  assert.equal((await post('settle',{battleId:report.battleId})).statusCode,409);
  assert.equal((await pending()).json().report.battleId,id);
  const before=await getProfile(s,a.id);
  assert.equal((await post('cancel',{battleId:id})).json().cancelled,true);
+ assert.deepEqual((await s.pg.query('SELECT report FROM campaign_battles WHERE id=$1',[id])).rows[0].report,{archived:true});
  assert.equal((await post('cancel',{battleId:id})).json().cancelled,false);
  assert.equal((await pending()).json().report,null);
  assert.equal((await post('settle',{battleId:id})).statusCode,409);
