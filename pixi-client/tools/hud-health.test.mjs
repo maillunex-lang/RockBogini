@@ -48,5 +48,12 @@ test('buff add and remove sync',()=>{
  assert.deepEqual(d.buffs,[]);
 });
 
+test('missing buffs array is treated as empty',()=>{
+ const h={id:1,hp:100,hpMax:100,isDead:false};
+ const next=applyHealth(h,{index:1,target:1,type:25,value:42});
+ assert.deepEqual(next.buffs,[{id:42,count:1}]);
+ assert.equal(applyHealth(h,{index:1,target:1,type:1,value:10}).hp,90);
+});
+
 void createRequire;
 void readFileSync;

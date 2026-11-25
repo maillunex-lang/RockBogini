@@ -1,0 +1,5 @@
+ok [
+  { id: 2, model: 'Alina1301', buffs: 0, camp: 1 },
+  { id: 4, model: 'Ally2301', buffs: 0, camp: 1 },
+  { id: 102, model: 'Strayer1301', buffs: 0, camp: -1 }
+]

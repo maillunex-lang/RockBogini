@@ -422,3 +422,4 @@ NEXT-013.4.4 partial: 1669/1733 original sound events mapped through bundle depe
 NEXT-013.5.1 partial: per-actor HP bars, buff count, damage/heal/crit colors, event-based approximate HP with authoritative page reconciliation. Fixed HUD height 175px, energy absent from report, original buff icons and visual acceptance pending. TypeScript/Vite HTTP200.
 
 2026-11-25 D-011: владелец принимает визуальную приёмку NEXT-013; NEXT-013.8/013 закрыты для перехода. NEXT-014.1: экспорт AdventureChapter/MapWorld (56 глав, 2240 карт в главах, orphan 105701), data/campaign-chapters.json, GET /v1/campaign, CampaignScreen вместо «Тест боя», 77/77 тестов, API deploy + testtest publish. reports/NEXT-014.1-*.
+2026-11-25 NEXT-014.1.1: fixed TypeError buffs not iterable — report.heroes lacked buffs; HUD init crashed after first unit so enemies missing. Normalized buffs in validateReport/createHud/applyHealth. reports/NEXT-014.1.1-*.

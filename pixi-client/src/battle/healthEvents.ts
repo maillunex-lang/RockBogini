@@ -7,7 +7,7 @@ const HEAL=new Set([5,22]);
 export function applyHealth(h:HeroStatus,e:BattleEvent):HeroStatus{
  let hp=h.hp;
  let isDead=h.isDead;
- let buffs=h.buffs.map(b=>({...b}));
+ let buffs=(h.buffs??[]).map(b=>({...b}));
  if(DAMAGE.has(e.type))hp-=Math.abs(e.value);
  else if(HEAL.has(e.type))hp+=Math.abs(e.value);
  else if(e.type===27){hp=0;isDead=true}

@@ -274,3 +274,4 @@ NEXT-013.4.4 partial: 1669/1733 original sound events mapped through bundle depe
 NEXT-013.5.1 partial: per-actor HP bars, buff count, damage/heal/crit colors, event-based approximate HP with authoritative page reconciliation. Fixed HUD height 175px, energy absent from report, original buff icons and visual acceptance pending. TypeScript/Vite HTTP200.
 
 2026-11-25 NEXT-013 closed via D-011 owner visual acceptance. NEXT-014.1 partial: campaign-chapters export (56/30, orphan 105701), GET /v1/campaign, CampaignScreen, City nav «Кампания», 77/77 tests, testtest publish.
+2026-11-25 NEXT-014.1.1: fixed TypeError buffs not iterable — report.heroes lacked buffs; HUD init crashed after first unit so enemies missing. Normalized buffs in validateReport/createHud/applyHealth. reports/NEXT-014.1.1-*.

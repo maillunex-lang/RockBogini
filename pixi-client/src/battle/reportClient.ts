@@ -9,7 +9,10 @@ export function validateReport(value:unknown):BattleReport{
  if(!r||r.version!==1||typeof r.battleId!=='string'||!Array.isArray(r.heroes)||!Array.isArray(r.pages)||!r.summary)throw Error('Некорректный боевой отчёт');
  const ids=new Set(r.heroes.map(h=>h.id));
  for(const p of r.pages)if(![1,2,3].includes(p.dataType)||!Array.isArray(p.events)||!Array.isArray(p.heroStatus)||p.heroStatus.some(h=>!ids.has(h.id))||p.events.some(e=>!ids.has(e.target)))throw Error('Некорректное событие боя');
- return {...r,heroes:r.heroes.map(h=>({...h,model:String(r.initialUnits.find(u=>u.id===h.id)?.model??"")}))};
+ return {...r,heroes:r.heroes.map(h=>{
+  const model=String(r.initialUnits.find(u=>u.id===h.id)?.model??h.model??'');
+  return {...h,model,hp:h.hp??0,hpMax:h.hpMax??h.hp??0,isDead:h.isDead??h.hp<=0,buffs:Array.isArray(h.buffs)?h.buffs:[]};
+ })};
 }
 export function battleClient(api:string,token:string){
  async function request(path:string,body?:object){const res=await fetch(api.replace(/\/$/,'')+'/v1/battle/'+path,{method:body?'POST':'GET',headers:{Authorization:'Bearer '+token,...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined});if(!res.ok)throw Error('Ошибка сервера: '+res.status);return res.json()}

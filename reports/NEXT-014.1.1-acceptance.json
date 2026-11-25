@@ -1,0 +1,9 @@
+{
+  "id": "NEXT-014.1.1",
+  "status": "fixed",
+  "issue": "TypeError: x.buffs is not iterable; enemies missing",
+  "cause": "createHud received report.heroes without buffs; init threw after first unit",
+  "fix": ["validateReport normalizes buffs/isDead", "hud/healthEvents tolerate missing buffs", "ReportScene passes HeroStatus"],
+  "tests": "5/5 hud-health",
+  "publish": "https://rikagro.ru/testtest/"
+}

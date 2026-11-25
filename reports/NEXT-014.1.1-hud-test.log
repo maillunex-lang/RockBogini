@@ -1,0 +1,13 @@
+✔ damage and share damage reduce HP (0.788228ms)
+✔ shield and dodge do not change HP (0.169555ms)
+✔ heal and revive/death semantics (0.141523ms)
+✔ buff add and remove sync (0.645764ms)
+✔ missing buffs array is treated as empty (0.177667ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 123.848721

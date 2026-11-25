@@ -435,3 +435,4 @@ NEXT-013.7 partial: ResultScreen with win/lose, rewards, squad damage/hurt/heal 
 NEXT-013.8 in_progress: inventoried 10 invalid common-skill ActionIndex values; client skips invalid timelines. Visual/mobile acceptance blocked without Chromium/Playwright. Residual list reports/NEXT-013.8-residuals.json.
 
 2026-11-25 D-011: owner accepts NEXT-013 visual QA personally; close 013.8/013 for roadmap advance. NEXT-014.1: exported AdventureChapter+MapWorld via next-audit; shipped campaign-chapters.json, campaignRoutes GET /v1/campaign, CampaignScreen; City label Кампания; 77/77 tests; API rebuild; testtest publish. Evidence reports/NEXT-014.1-*.
+2026-11-25 NEXT-014.1.1: fixed TypeError buffs not iterable — report.heroes lacked buffs; HUD init crashed after first unit so enemies missing. Normalized buffs in validateReport/createHud/applyHealth. reports/NEXT-014.1.1-*.

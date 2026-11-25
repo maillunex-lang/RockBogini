@@ -21,7 +21,7 @@ export function createHud(camp:number,initial:HeroStatus,assets:BattleHudAssets,
 
  function syncIcons(){
   const keep=new Set<number>();
-  for(const b of state.buffs){
+  for(const b of state.buffs??[]){
    const info=assets.buffMap[String(b.id)];
    if(!info||info.noIcon)continue;
    const frameName=String(info.descriptionId);

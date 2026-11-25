@@ -40,7 +40,7 @@ export function ReportScene({report,cursor,onReady,volume=0.5,speed=1,paused=fal
  const pos=fieldPosition(h.stationId,h.camp);s.scale.set(h.camp===1?avatarScale:-avatarScale,avatarScale);s.position.set(pos.x,pos.y);s.zIndex=pos.z;s.visible=h.hp>0;actors.addChild(s);units.set(h.id,s);models.set(h.id,model);
  if(h.stationId>=0){
   const offsetY=hudPixelOffset(h.heroId,hudAssets.offsets);
-  const hud=createHud(h.camp,h,hudAssets,offsetY);hudLayer.addChild(hud.root);huds.set(h.id,hud);hud.root.position.set(s.x,s.y-offsetY);
+  const hud=createHud(h.camp,{id:h.id,hp:h.hp,hpMax:h.hpMax,isDead:h.isDead??h.hp<=0,buffs:h.buffs??[]},hudAssets,offsetY);hudLayer.addChild(hud.root);huds.set(h.id,hud);hud.root.position.set(s.x,s.y-offsetY);
  }
  }
  app.ticker.add(()=>{for(const [id,hud] of huds){const unit=units.get(id);if(unit&&!unit.destroyed){hud.root.position.set(unit.x,unit.y-hud.offsetY);hud.root.visible=unit.visible}}});
@@ -138,7 +138,7 @@ export function ReportScene({report,cursor,onReady,volume=0.5,speed=1,paused=fal
  }
  const events=orderedEvents(p);let duration=Math.max(timeline?.Duration??300,...effectEvents.map(e=>e.StartTime+e.Duration),...(timeline?.Events.filter(e=>e.EventType===9).map(e=>e.StartTime+Math.max(e.ActionName==='dark_screen'?400:0,e.Duration))??[]));const fallbackTime=duration;
  for(const e of events){const hit=timeline?.Events.find(x=>x.EventType===6&&x.HitPointId===e.index),ms=hit?.StartTime??(p.dataType===2?fallbackTime:0);duration=Math.max(duration,ms+300,ms+lifecycleDuration(e.type)+50);later(ms,()=>{const t=rt.units.get(e.target);if(!t)return;rt.huds.get(e.target)?.event(e);if(e.type===7||e.type===27)lifecycle(e.target,e.type);if([1,2,3,21].includes(e.type)&&!hit?.NoHurtAction){anim(t,'hurt');later(200,()=>{if(!lifeActive.has(e.target)&&t.visible)anim(t,'standby',true)})}if([1,2,3,4,5,6,8,21,22,28].includes(e.type))showFloat(e.target,e.type,e.value)})}
- later(duration,()=>{for(const h of p.heroStatus){rt.huds.get(h.id)?.set(h);const s=rt.units.get(h.id);if(s){s.visible=!h.isDead;s.alpha=1;const home=report.heroes.find(x=>x.id===h.id);if(home){const pos=fieldPosition(home.stationId,home.camp);s.position.set(pos.x,pos.y)}anim(s,'standby',true)}}setStatus('Раунд '+p.round);onReady(true)});
+ later(duration,()=>{for(const h of p.heroStatus){rt.huds.get(h.id)?.set({...h,buffs:h.buffs??[]});const s=rt.units.get(h.id);if(s){s.visible=!h.isDead;s.alpha=1;const home=report.heroes.find(x=>x.id===h.id);if(home){const pos=fieldPosition(home.stationId,home.camp);s.position.set(pos.x,pos.y)}anim(s,'standby',true)}}setStatus('Раунд '+p.round);onReady(true)});
  }void play();
  return()=>{cancelled=true;for(const a of rt.audio){a.pause();a.src=''}rt.audio.clear();if(!rt.mask.destroyed)rt.mask.alpha=0;if(!rt.app.stage.destroyed)rt.app.stage.position.set(0,0);for(const fx of [...rt.effectsLive])fx.destroy({children:true});rt.effectsLive.clear();effectReleases.forEach(r=>r());cleanups.forEach(c=>c());clock.clear();floats.forEach(l=>{if(!l.destroyed)l.destroy({children:true})})};
  },[cursor,loaded,report]);
