@@ -39,6 +39,7 @@ import {
  luckUnlocked,
  sameLuckType,
 } from './heroLuck.js';
+import {equipExtraPairs,wornItemIds} from './equipment.js';
 
 async function account(req:{headers:{authorization?:string}},s:Storage){
  const token=/^Bearer ([A-Za-z0-9_-]{43})$/.exec(req.headers.authorization??'')?.[1];
@@ -62,7 +63,7 @@ function enrich(h:{
  PVETalentLevel?:number;PVPTalentLevel?:number;Job?:number;JobMap?:Record<string|number,number>;
  LuckSkill1?:number;LuckSkill2?:number;
  Attrs?:Record<string,number>;Skills?:number[];
-}){
+},extra:number[][]=[]){
  const pve=h.PVETalentLevel??0,pvp=h.PVPTalentLevel??0;
  const luck1=h.LuckSkill1??0,luck2=h.LuckSkill2??0;
  const jobMap=h.JobMap??{};
@@ -82,13 +83,15 @@ function enrich(h:{
   index,id,unlocked:luckUnlocked(h.StarLevel,index),needStar:LUCK_UNLOCK_STAR[index],
   ...(id?{type:luckSkill(id)?.type,quality:luckSkill(id)?.quality,power:luckSkill(id)?.power}:{}),
  });
+ const base=calculateHero(h.HeroId,h.Level,h.StarLevel,false,extra);
  return {
   ...h,
   Job:h.Job??0,
   JobMap:jobMap,
   LuckSkill1:luck1,
   LuckSkill2:luck2,
-  base:calculateHero(h.HeroId,h.Level,h.StarLevel),
+  ...(extra.length?{Power:base.power}:{}),
+  base,
   skillSlots:skillSlots(h.HeroId,h.Level,h.StarLevel),
   maxLevel:starMaxLevel(h.StarLevel),
   maxStar:heroMaxStar(h.HeroId),
@@ -100,7 +103,17 @@ function enrich(h:{
   },
   jobs:tree,
   luck:{slots:[luckSlot(1,luck1),luckSlot(2,luck2)]},
+  equipExtra:extra,
  };
+}
+
+async function enrichAll(s:Storage,id:string,heroes:Awaited<ReturnType<typeof getHeroes>>){
+ const out=[];
+ for(const h of heroes){
+  const extra=equipExtraPairs(await wornItemIds(s,id,h.Sid));
+  out.push(enrich(h,extra));
+ }
+ return out;
 }
 
 async function payItems(s:Storage,id:string,costs:[number,number][]){
@@ -143,20 +156,21 @@ async function formationBlocked(s:Storage,id:string):Promise<Set<number>>{
 }
 
 async function saveHero(s:Storage,id:string,h:{Sid:number;HeroId:number;Level:number;StarLevel:number;Power:number;Locked:boolean}){
- const base=calculateHero(h.HeroId,h.Level,h.StarLevel);
+ const extra=equipExtraPairs(await wornItemIds(s,id,h.Sid));
+ const base=calculateHero(h.HeroId,h.Level,h.StarLevel,false,extra);
  const state={...h,Attrs:Object.fromEntries(Object.entries(base.attrs).map(([k,v])=>[k,v])),Skills:base.skills,Power:base.power};
  await s.pg.query(
   'UPDATE player_heroes SET level=$3,star=$4,power=$5,state=$6 WHERE account_id=$1 AND sid=$2',
   [id,h.Sid,h.Level,h.StarLevel,base.power,JSON.stringify(state)],
  );
- return enrich({...h,Power:base.power});
+ return enrich({...h,Power:base.power},extra);
 }
 
 export async function heroRoutes(app:FastifyInstance,s:Storage){
  app.get('/v1/heroes',async(req,reply)=>{
   const id=await account(req,s);
   if(!id)return reply.code(401).send({error:'invalid_session'});
-  return {heroes:(await getHeroes(s,id)).map(enrich)};
+  return {heroes:await enrichAll(s,id,await getHeroes(s,id))};
  });
 
  app.post<{Params:{sid:string};Body:{newLevel:number}}>('/v1/heroes/:sid/level',{
@@ -243,7 +257,7 @@ export async function heroRoutes(app:FastifyInstance,s:Storage){
   const cap=starMaxLevel(newStar);
   const level=Math.min(hero.Level,cap||hero.Level);
   const updated=await saveHero(s,id,{...hero,StarLevel:newStar,Level:level});
-  return {ok:true,cost:itemCost,fodder,refund:refundList,hero:updated,heroes:(await getHeroes(s,id)).map(enrich)};
+  return {ok:true,cost:itemCost,fodder,refund:refundList,hero:updated,heroes:await enrichAll(s,id,await getHeroes(s,id))};
  });
 
  app.post<{Params:{sid:string};Body:{type:number;count?:number;materials?:number[];auto?:boolean}}>('/v1/heroes/:sid/talent',{
@@ -301,7 +315,7 @@ export async function heroRoutes(app:FastifyInstance,s:Storage){
   if(!(await payItems(s,id,cost.items)))return reply.code(409).send({error:'insufficient_materials',cost:cost.items});
   const next={...hero,[field]:cur+count};
   const updated=await saveHero(s,id,next);
-  return {ok:true,cost:cost.items,fodder,hero:updated,heroes:(await getHeroes(s,id)).map(enrich)};
+  return {ok:true,cost:cost.items,fodder,hero:updated,heroes:await enrichAll(s,id,await getHeroes(s,id))};
  });
 
  app.post<{Params:{sid:string};Body:{type:number}}>('/v1/heroes/:sid/talent/reset',{

@@ -459,3 +459,5 @@ NEXT-013.8 in_progress: inventoried 10 invalid common-skill ActionIndex values; 
 2026-11-25 NEXT-017.1: equipment put-on/off (slots 1–4); publish. reports/NEXT-017.1.md.
 
 2026-11-25 NEXT-017.2: equipment forge NextId/Xp + coin; publish. reports/NEXT-017.2.md.
+
+2026-11-25 NEXT-017.3: equipment attrs + score into hero power; publish. reports/NEXT-017.3.md.
