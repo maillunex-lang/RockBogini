@@ -194,3 +194,5 @@ NEXT-012.20 partial: OTP 27 exsss BigInt port matches 3200/3200 reference RNG dr
 NEXT-012.21 partial: 120 comparative battles across 12 campaign maps, two formations, five seeds. 115/120 exact final metrics, 120/120 winner and rounds, zero reported unsupported issues. Five mismatches on map 100134 require trace comparison. Same three starter heroes, no dedicated boss coverage. Gate closed.
 
 NEXT-012.22 partial: fixed premature StartWorkCondition evaluation before chance draw, matching reference try_apply order. Replayed all 220 fixtures: 220/220 exact final metrics; 70/70 tests. Dedicated boss and diverse hero coverage pending, parity gate closed.
+
+NEXT-012.23: 80 synthetic six-v-six comparisons using 24 original hero IDs, levels 60/120, 38 distinct passive skills, 40 normal and 40 boss-flagged scenarios. 80/80 exact final metrics. Eight diagnostic categories remain (reference skip/false candidates); real boss encounters and event sequence parity pending. Gate closed.
