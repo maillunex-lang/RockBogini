@@ -455,3 +455,5 @@ NEXT-013.8 in_progress: inventoried 10 invalid common-skill ActionIndex values; 
 2026-11-25 NEXT-016.4: hero job unlock/switch/reset (★12 roots); publish. reports/NEXT-016.4.md.
 
 2026-11-25 NEXT-016.5: luck skill study/upgrade/clear (★11/12); publish. reports/NEXT-016.5.md.
+
+2026-11-25 NEXT-017.1: equipment put-on/off (slots 1–4); publish. reports/NEXT-017.1.md.

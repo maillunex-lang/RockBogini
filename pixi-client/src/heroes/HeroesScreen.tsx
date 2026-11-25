@@ -36,15 +36,28 @@ type Hero={
 
 const ATTR_LABEL:Record<string,string>={'0':'Атака','1':'ОЗ','2':'Защита','3':'Скорость'};
 const MAT_TYPE:Record<number,string>={1:'тот же герой',2:'связка',3:'та же стихия',4:'любой',5:'только копия'};
+const SLOT_STARTER:Record<number,number>={1:40111,2:40211,3:40311,4:40411};
+const SLOT_NAME:Record<number,string>={1:'Оружие',2:'Броня',3:'Шлем',4:'Аксессуар'};
+type EquipSlot={slot:number;equip:{Sid:number;ItemId:number;score:number;star:number}|null};
 
 export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClose:()=>void}){
  const [formation,setFormation]=useState(false);
  const [heroes,setHeroes]=useState<Hero[]>([]);
  const [selected,setSelected]=useState<number|null>(null);
+ const [equipSlots,setEquipSlots]=useState<EquipSlot[]>([]);
  const [status,setStatus]=useState('Загрузка…');
  const [busy,setBusy]=useState(false);
 
  const applyList=(list:Hero[])=>setHeroes(list);
+
+ const loadEquip=async(sid:number)=>{
+  try{
+   const r=await fetch(`${api}/v1/heroes/${sid}/equipment`,{headers:{Authorization:'Bearer '+token}});
+   if(!r.ok)return;
+   const j=await r.json();
+   setEquipSlots(j.slots??[]);
+  }catch{/* ignore */}
+ };
 
  useEffect(()=>{
   const c=new AbortController();
@@ -54,6 +67,11 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
    .catch(()=>{if(!c.signal.aborted)setStatus('Не удалось загрузить героев')});
   return()=>c.abort();
  },[api,token]);
+
+ useEffect(()=>{
+  if(selected==null){setEquipSlots([]);return}
+  void loadEquip(selected);
+ },[api,token,selected]);
 
  const grow=async(path:string,sid:number,body?:object,label?:string)=>{
   if(busy)return;
@@ -79,6 +97,24 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
    else setStatus('Готово');
   }catch(e){
    setStatus(e instanceof Error?e.message:'Не удалось улучшить героя');
+  }finally{setBusy(false)}
+ };
+
+ const equipAct=async(kind:'put-on'|'put-off',body:object,label:string)=>{
+  if(busy||selected==null)return;
+  setBusy(true);setStatus(label);
+  try{
+   const r=await fetch(`${api}/v1/equipment/${kind}`,{
+    method:'POST',
+    headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},
+    body:JSON.stringify(body),
+   });
+   const j=await r.json().catch(()=>({}));
+   if(!r.ok)throw Error(j.error||kind+'_'+r.status);
+   await loadEquip(selected);
+   setStatus(kind==='put-on'?'Экипировано':'Снято');
+  }catch(e){
+   setStatus(e instanceof Error?e.message:'Не удалось изменить экипировку');
   }finally{setBusy(false)}
  };
 
@@ -147,6 +183,25 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
      {h.StarLevel<12&&<p className="hero-star-req">Корни профессий открываются с ★12 (сейчас ★{h.StarLevel}).</p>}
     </div>
    )}
+   <div className="hero-equip">
+    <h3>Экипировка</h3>
+    <ul>
+     {[1,2,3,4].map(slot=>{
+      const worn=equipSlots.find(s=>s.slot===slot)?.equip??null;
+      const starter=SLOT_STARTER[slot];
+      return <li key={slot}>
+       <span>{SLOT_NAME[slot]}: {worn?`#${worn.ItemId} ★${worn.star} · ${worn.score}`:'пусто'}</span>
+       {worn?(
+        <button type="button" disabled={busy} onClick={()=>void equipAct('put-off',{sid:worn.Sid},'Снятие…')}>Снять</button>
+       ):(
+        <button type="button" disabled={busy} onClick={()=>void equipAct('put-on',{itemId:starter,ownerId:h.Sid},'Надевание…')}>
+         Надеть #{starter}
+        </button>
+       )}
+      </li>;
+     })}
+    </ul>
+   </div>
    {!!h.luck?.slots?.length&&(
     <div className="hero-luck">
      <h3>Удача</h3>
