@@ -2,6 +2,7 @@ import type {FastifyInstance} from 'fastify';
 import type {Storage} from './storage.js';
 import {sessionAccount} from './auth.js';
 import {getProfile} from './profile.js';
+import {enrichItem} from './itemCatalog.js';
 
 const CURRENCY_IDS={coin:1,vipPoint:2,diamond:3,colorDiamond:4,intelligence:7,xpWater:22} as const;
 
@@ -16,8 +17,10 @@ export async function inventoryRoutes(app:FastifyInstance,s:Storage){
    [id],
   )).rows as {item_id:number;amount:string}[];
   const balances=Object.fromEntries(rows.map(r=>[r.item_id,r.amount]));
+  const items=rows.map(r=>enrichItem(r.item_id,r.amount));
+  const byKind=items.reduce((acc,it)=>{acc[it.kind]=(acc[it.kind]??0)+1;return acc},{} as Record<string,number>);
   return {
-   items:rows.map(r=>({itemId:r.item_id,amount:r.amount})),
+   items,
    currencies:{
     coin:balances[CURRENCY_IDS.coin]??'0',
     diamond:balances[CURRENCY_IDS.diamond]??'0',
@@ -27,6 +30,7 @@ export async function inventoryRoutes(app:FastifyInstance,s:Storage){
     xpWater:balances[CURRENCY_IDS.xpWater]??'0',
    },
    itemCount:rows.length,
+   byKind,
   };
  });
 }
