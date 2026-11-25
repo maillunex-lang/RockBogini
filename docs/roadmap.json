@@ -114,17 +114,17 @@
     "id": "NEXT-013",
     "title": "Визуализация боя",
     "phase": "III. Боевое ядро",
-    "scope": "013.5.2–013.7 partial. Активный NEXT-013.8 визуальная приёмка и остаточные дефекты.",
-    "status": "in_progress",
-    "evidence": "reports/NEXT-013-impact-build.log; reports/NEXT-013.1-build.log; reports/NEXT-013.1.1-build.log; reports/NEXT-013.2-build.log; reports/NEXT-013.3-build.log; reports/NEXT-013.3.1-build.log; reports/NEXT-013.3.2-build.log; reports/NEXT-013.4.1-build.log; reports/NEXT-013.4.2-build.log; reports/NEXT-013.4.3-build.log; reports/NEXT-013.4.4-build.log; reports/NEXT-013.5-build.log; reports/NEXT-013.5.2-build.log; reports/NEXT-013.5.2-health-test.log; reports/NEXT-013.5.2-hud-matrix.json; reports/NEXT-013.5.2-energy-research.md; reports/NEXT-013.5.2-import.json; reports/NEXT-013.5.2-publish.log; reports/NEXT-013.6-build.log; reports/NEXT-013.6-clock-test.log; reports/NEXT-013.6-clock-matrix.json; reports/NEXT-013.6-publish.log; reports/NEXT-013.7-build.log; reports/NEXT-013.7-result-matrix.json; reports/NEXT-013.7-publish.log"
+    "scope": "Закрыт по D-011 (визуальная приёмка владельцем). Технические остатки 013.8 известны.",
+    "status": "done",
+    "evidence": "reports/NEXT-013.*; D-011"
   },
   {
     "id": "NEXT-014",
     "title": "Сюжетная кампания",
     "phase": "III. Боевое ядро",
-    "scope": "Главы, этапы, боссы, обучение, сюжетные задания, награды. Серверный фундамент 2241 этапа и challenge/settle уже есть; полноценная кампания не принята.",
-    "status": "pending",
-    "evidence": ""
+    "scope": "014.1 partial: 56 глав, GET /v1/campaign, CampaignScreen; обучение/сюжет/world map открыты.",
+    "status": "in_progress",
+    "evidence": "reports/NEXT-014.1-*"
   },
   {
     "id": "NEXT-015",

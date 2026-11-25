@@ -21,3 +21,7 @@ D-010: WEB-01 isolated test regression fixed without changing battle behavior; W
 - D-RTB02 | Approved alternate concurrent battle playback on isolated /game1-rtb/, original untouched. This is visual playback, not a server simulation rewrite.
 
 2026-11-24: project renamed to /home/gamedev/rocbogini. RTB 0.2 is sole active version, container rocbogini, /game1 redirects to /game1-rtb/. Legacy server and player data archived, no deletion. Next development RTB 0.3 server timing.
+
+
+## 2026-11-25
+- D-011 | Владелец принимает визуальную приёмку NEXT-013 самостоятельно («Визуальную приемку я сам приму, поэтому утверждай и давай дальше»). Технические остатки 013.8 (angel actors, 10 ActionIndex, multi-texture, 64 sounds, autoplay, WinBoard art) остаются известными, но не блокируют переход к NEXT-014. Визуальная сверка переносится на владельца.

@@ -4,22 +4,17 @@ VPS is the development stand; GitHub main is the published source mirror. Origin
 
 ## Актуальный срез: 2026-11-25
 
-Активная задача: **NEXT-013.8**. NEXT-013.5.2–013.7 partial. Передача Cursor: docs/CURSOR_HANDOFF.md.
+Активная задача: **NEXT-014.1**. NEXT-013 закрыт (D-011). Передача Cursor: docs/CURSOR_HANDOFF.md.
 9 из 28 основных этапов закрыты, 4 в работе, 1 отложен, 14 ожидают. Это не процент готовности игры.
 NEXT-012 принят только в проверенном эталонном объёме для подключения визуализации; общий статус остаётся in_progress.
-Проверено: 681/681 уникальных боёв, 16 771/16 771 снимков состояния, 3 132/3 132 записей героев, 2 131/2 131 метаданных раундов, 68 712/68 712 событий с Params, 75/75 серверных тестов.
+Проверено: эталонный бой + 77/77 серверных тестов после кампанийного API.
 
 | Подэтап | Состояние |
 |---|---|
-| 013.1–013.2 | Отчёты, Spine, 19 фонов для 2241 карты; визуальная сверка открыта |
-| 013.3–013.3.2 | Движение, смерть/воскрешение, 249 общих навыков/63 модели; 10 индексов и angel actors не закрыты |
-| 013.4.1–013.4.3 | VFX, снаряды, затемнение и тряска; общие VFX, точные позиции и браузерная приёмка открыты |
-| 013.4.4 | 1669/1733 звуковых событий, 328 файлов; 64 события и autoplay открыты |
-| 013.5.1 | HP, счётчик баффов, цвет урона; промежуточное HP приблизительное |
-| 013.5.2 | partial: HUDOffsetY, BattleBuffList icons, HP/buff semantics, float digits; энергия в бою отсутствует; Chromium QA открыта |
-| 013.6 | partial: gameClock, пауза, x1/x2/x3, автобой; отличие от 1.3/1.7/2.4 задокументировано |
-| 013.7 | partial: ResultScreen, auto-settle, stats/rewards; WinBoard art open |
-| 013.8 | АКТИВНО: residuals inventoried; Chromium/Playwright unavailable — visual acceptance blocked |
+| 013.1–013.8 | CLOSED (D-011): owner visual QA; residuals known |
+| 014.1 | АКТИВНО/partial: chapters export, GET /v1/campaign, CampaignScreen |
+| 014.2+ | pending: world map UX, story/tutorial, bosses polish, localization names |
+
 
 | ID | Этап | Статус | Объём | Доказательство |
 |---|---|---|---|---|
@@ -35,8 +30,8 @@ NEXT-012 принят только в проверенном эталонном 
 | NEXT-010 | Система героев | in_progress | Каталог, классы, фракции, редкость, параметры, способности; собственные фантазийные имена героев без изменения ID и баланса | next-audit/hero-catalog.json; reports/NEXT-010-skills-export.log; reports/NEXT-010-catalog-test.log; reports/NEXT-010-catalog-deploy.log; reports/NEXT-010-ownership-retry.log; reports/NEXT-010-ownership-deploy.log; reports/NEXT-010-heroes-ui-browser.log; reports/NEXT-010-heroes-ui-publish.log; reports/NEXT-010-fantasy-names-browser.log; reports/NEXT-010-attrs-test.log; reports/NEXT-010-skills-test.log; reports/NEXT-010-skills-ui-browser.log; reports/NEXT-010-hero-assets.json; reports/NEXT-010-preview-build.log; hero-preview.html |
 | NEXT-011 | Формирование отряда | done | Формирование и сохранение стартового отряда; стартовый объём принят. | reports/NEXT-011-server-test.log; reports/NEXT-011-server-deploy.log; reports/NEXT-011-ui-browser.log; reports/NEXT-011-ui-publish.log; reports/NEXT-011-units-test.log; reports/NEXT-011-complete-test.log |
 | NEXT-012 | Пошаговый боевой движок | in_progress | Эталонное боевое ядро принято для визуальной интеграции: 681/681 боёв, 75/75 тестов. Полная коммерческая идентичность, дополнительные модификаторы и некампанийные режимы не подтверждены. | reports/NEXT-012.31.5-acceptance.json; reports/NEXT-012.31.5.1-metadata-*.json; reports/NEXT-012.31.5.1-tests.log |
-| NEXT-013 | Визуализация боя | in_progress | 013.5.2–013.7 partial. Активный NEXT-013.8. Chromium/mobile QA и остатки открыты. | reports/NEXT-013.5.2-*; reports/NEXT-013.6-*; reports/NEXT-013.7-* |
-| NEXT-014 | Сюжетная кампания | pending | Главы, этапы, боссы, обучение, сюжетные задания, награды. Серверный фундамент 2241 этапа и challenge/settle уже есть; полноценная кампания не принята. |  |
+| NEXT-013 | Визуализация боя | done | Закрыт по D-011 (визуальная приёмка владельцем). Технические остатки 013.8 известны. | reports/NEXT-013.*; D-011 |
+| NEXT-014 | Сюжетная кампания | in_progress | 014.1 partial: 56 глав AdventureChapter, GET /v1/campaign, CampaignScreen; challenge/settle уже были. Обучение/сюжет/world map/имена локалей открыты. | reports/NEXT-014.1-* |
 | NEXT-015 | Инвентарь и предметы | pending | Валюты, материалы, осколки, расходники |  |
 | NEXT-016 | Развитие героев | pending | Уровни, звёзды, ранги, таланты, навыки, пробуждение, сброс |  |
 | NEXT-017 | Экипировка | pending | Слоты, улучшение, комплекты, параметры |  |
@@ -277,3 +272,5 @@ NEXT-013.4.3 partial: original type9 dark_screen (190/255, 200ms fades) and shoc
 NEXT-013.4.4 partial: 1669/1733 original sound events mapped through bundle dependencies, 328 unique clips, timeline playback and volume slider. 64 unresolved events, browser autoplay and audible acceptance pending. TypeScript/Vite and HTTP200. Next NEXT-013.5 HUD.
 
 NEXT-013.5.1 partial: per-actor HP bars, buff count, damage/heal/crit colors, event-based approximate HP with authoritative page reconciliation. Fixed HUD height 175px, energy absent from report, original buff icons and visual acceptance pending. TypeScript/Vite HTTP200.
+
+2026-11-25 NEXT-013 closed via D-011 owner visual acceptance. NEXT-014.1 partial: campaign-chapters export (56/30, orphan 105701), GET /v1/campaign, CampaignScreen, City nav «Кампания», 77/77 tests, testtest publish.

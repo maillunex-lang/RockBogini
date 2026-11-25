@@ -1,0 +1,33 @@
+{
+  "id": "NEXT-014.1",
+  "status": "partial",
+  "closedPrev": "NEXT-013 via D-011 owner visual acceptance",
+  "export": {
+    "chapters": 56,
+    "worlds": 30,
+    "mapsInChapters": 2240,
+    "orphanMapIds": [
+      105701
+    ],
+    "firstMapId": 100101
+  },
+  "api": {
+    "GET": "/v1/campaign",
+    "auth": true
+  },
+  "ui": [
+    "CampaignScreen",
+    "City nav Кампания",
+    "ReportScreen mapId"
+  ],
+  "tests": "77/77",
+  "publish": "https://rikagro.ru/testtest/",
+  "evidence": [
+    "reports/NEXT-014.1-export.log",
+    "reports/NEXT-014.1-tests.log",
+    "reports/NEXT-014.1-api-deploy.log",
+    "reports/NEXT-014.1-api-smoke.log",
+    "reports/NEXT-014.1-publish.log",
+    "reports/NEXT-014.1-acceptance.json"
+  ]
+}

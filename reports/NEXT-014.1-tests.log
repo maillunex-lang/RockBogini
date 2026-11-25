@@ -1,0 +1,480 @@
+
+> next-server@1.0.0 test
+> npm run build && node --test dist/test/*.test.js --test-name-pattern campaign|authenticated preview|pending battle
+
+
+> next-server@1.0.0 build
+> tsc
+
+TAP version 13
+# Subtest: original skill catalog and starter action selection
+ok 1 - original skill catalog and starter action selection
+  ---
+  duration_ms: 3.057356
+  type: 'test'
+  ...
+# Subtest: fallback when burst has no target, multi-hit groups and damage conservation
+ok 2 - fallback when burst has no target, multi-hit groups and damage conservation
+  ---
+  duration_ms: 0.319612
+  type: 'test'
+  ...
+# Subtest: health explicitly reports migration state
+ok 3 - health explicitly reports migration state
+  ---
+  duration_ms: 114.590486
+  type: 'test'
+  ...
+# Subtest: no gameplay falsely advertised
+ok 4 - no gameplay falsely advertised
+  ---
+  duration_ms: 4.98487
+  type: 'test'
+  ...
+# Subtest: stack, cap, refresh, proportional health and removal
+ok 5 - stack, cap, refresh, proportional health and removal
+  ---
+  duration_ms: 1.701114
+  type: 'test'
+  ...
+# Subtest: control chance, temporary attributes, reset and fail closed
+ok 6 - control chance, temporary attributes, reset and fail closed
+  ---
+  duration_ms: 0.329928
+  type: 'test'
+  ...
+# Subtest: mixed effects execute in order before attachment and expose replacement
+ok 7 - mixed effects execute in order before attachment and expose replacement
+  ---
+  duration_ms: 2.564063
+  type: 'test'
+  ...
+# Subtest: mixed lethal effect does not attach persistent buff
+ok 8 - mixed lethal effect does not attach persistent buff
+  ---
+  duration_ms: 0.250448
+  type: 'test'
+  ...
+# Subtest: salted password hash
+ok 9 - salted password hash
+  ---
+  duration_ms: 197.426203
+  type: 'test'
+  ...
+# Subtest: guest session persisted and revocable
+ok 10 - guest session persisted and revocable
+  ---
+  duration_ms: 124.083559
+  type: 'test'
+  ...
+# Subtest: registration login session logout
+ok 11 - registration login session logout
+  ---
+  duration_ms: 497.070835
+  type: 'test'
+  ...
+# Subtest: authenticated preview does not advance progress
+ok 12 - authenticated preview does not advance progress
+  ---
+  duration_ms: 348.340956
+  type: 'test'
+  ...
+# Subtest: pending battle recovery, replacement, cancellation and account isolation
+ok 13 - pending battle recovery, replacement, cancellation and account isolation
+  ---
+  duration_ms: 144.203792
+  type: 'test'
+  ...
+# Subtest: stored hero battle units match original exactly
+ok 14 - stored hero battle units match original exactly
+  ---
+  duration_ms: 1.920724
+  type: 'test'
+  ...
+# Subtest: prepare persisted squad snapshot and reject incomplete heroes
+ok 15 - prepare persisted squad snapshot and reject incomplete heroes
+  ---
+  duration_ms: 105.652631
+  type: 'test'
+  ...
+# Subtest: original config inventory and attribute stacking
+ok 16 - original config inventory and attribute stacking
+  ---
+  duration_ms: 7.397965
+  type: 'test'
+  ...
+# Subtest: immunity, listener limits and expiry
+ok 17 - immunity, listener limits and expiry
+  ---
+  duration_ms: 7.719239
+  type: 'test'
+  ...
+# Subtest: idle fractional points survive split intervals and stage changes
+ok 18 - idle fractional points survive split intervals and stage changes
+  ---
+  duration_ms: 1.514873
+  type: 'test'
+  ...
+# Subtest: module unlock uses strictly passed stage
+ok 19 - module unlock uses strictly passed stage
+  ---
+  duration_ms: 0.446603
+  type: 'test'
+  ...
+# Subtest: idle cap and persistent module refresh are idempotent
+ok 20 - idle cap and persistent module refresh are idempotent
+  ---
+  duration_ms: 95.445244
+  type: 'test'
+  ...
+# Subtest: campaign chapter and map status helpers
+ok 21 - campaign chapter and map status helpers
+  ---
+  duration_ms: 0.823942
+  type: 'test'
+  ...
+# Subtest: authenticated campaign progress lists chapters and current maps
+ok 22 - authenticated campaign progress lists chapters and current maps
+  ---
+  duration_ms: 285.629017
+  type: 'test'
+  ...
+# Subtest: effect conditions: HP comparisons, tags, layers, first action and AND/OR
+ok 23 - effect conditions: HP comparisons, tags, layers, first action and AND/OR
+  ---
+  duration_ms: 1.211016
+  type: 'test'
+  ...
+# Subtest: start conditions evaluate target HP, tags, element, career, speed, overflow and camp
+ok 24 - start conditions evaluate target HP, tags, element, career, speed, overflow and camp
+  ---
+  duration_ms: 0.521065
+  type: 'test'
+  ...
+# Subtest: trigger conditions use owner, subject, other, event and round
+ok 25 - trigger conditions use owner, subject, other, event and round
+  ---
+  duration_ms: 1.085886
+  type: 'test'
+  ...
+# Subtest: attack type condition distinguishes round, additional and counterattack from damage opcode
+ok 26 - attack type condition distinguishes round, additional and counterattack from damage opcode
+  ---
+  duration_ms: 0.338089
+  type: 'test'
+  ...
+# Subtest: shared protocol accepts actual API and rejects invalid versions and fields
+ok 27 - shared protocol accepts actual API and rejects invalid versions and fields
+  ---
+  duration_ms: 66.785055
+  type: 'test'
+  ...
+# Subtest: physical, magical, true and elemental formulas
+ok 28 - physical, magical, true and elemental formulas
+  ---
+  duration_ms: 0.889941
+  type: 'test'
+  ...
+# Subtest: dodge, critical, elemental bypass and random consumption
+ok 29 - dodge, critical, elemental bypass and random consumption
+  ---
+  duration_ms: 0.271128
+  type: 'test'
+  ...
+# Subtest: penetration cap, faction advantage, pvp and multiplier floor
+ok 30 - penetration cap, faction advantage, pvp and multiplier floor
+  ---
+  duration_ms: 0.283546
+  type: 'test'
+  ...
+# Subtest: configured shield attaches, stacks and absorbs actual damage
+ok 31 - configured shield attaches, stacks and absorbs actual damage
+  ---
+  duration_ms: 1.176152
+  type: 'test'
+  ...
+# Subtest: original description codes validate IDs and preserve report types
+ok 32 - original description codes validate IDs and preserve report types
+  ---
+  duration_ms: 7.941494
+  type: 'test'
+  ...
+# Subtest: persistent skill modifiers are attached and applied in original order
+ok 33 - persistent skill modifiers are attached and applied in original order
+  ---
+  duration_ms: 0.82329
+  type: 'test'
+  ...
+# Subtest: normal hit and periodic damage use same shield pipeline
+ok 34 - normal hit and periodic damage use same shield pipeline
+  ---
+  duration_ms: 1.432809
+  type: 'test'
+  ...
+# Subtest: round-end DOT and HOT execute through shared health pipeline
+ok 35 - round-end DOT and HOT execute through shared health pipeline
+  ---
+  duration_ms: 0.644431
+  type: 'test'
+  ...
+# Subtest: max HP true damage uses boss cap and attacker HP parameter
+ok 36 - max HP true damage uses boss cap and attacker HP parameter
+  ---
+  duration_ms: 0.173611
+  type: 'test'
+  ...
+# Subtest: damage based recovery uses actual HP loss, overflow remains available to later effects
+ok 37 - damage based recovery uses actual HP loss, overflow remains available to later effects
+  ---
+  duration_ms: 0.185749
+  type: 'test'
+  ...
+# Subtest: blocked healing does not erase previous overflow
+ok 38 - blocked healing does not erase previous overflow
+  ---
+  duration_ms: 0.199641
+  type: 'test'
+  ...
+# Subtest: original formation, ownership, duplicates, persistence and power
+ok 39 - original formation, ownership, duplicates, persistence and power
+  ---
+  duration_ms: 410.662737
+  type: 'test'
+  ...
+# Subtest: guest links email, retains UUID, rotates bearer; duplicate email stays unattached
+ok 40 - guest links email, retains UUID, rotates bearer; duplicate email stays unattached
+  ---
+  duration_ms: 582.92585
+  type: 'test'
+  ...
+# Subtest: auth rate limit rejects the 31st request for same remote address
+ok 41 - auth rate limit rejects the 31st request for same remote address
+  ---
+  duration_ms: 101.836783
+  type: 'test'
+  ...
+# Subtest: immunity, counted shield, ratio/flat mitigation and absorption
+ok 42 - immunity, counted shield, ratio/flat mitigation and absorption
+  ---
+  duration_ms: 2.206084
+  type: 'test'
+  ...
+# Subtest: lethal guard consumed once and hit cap
+ok 43 - lethal guard consumed once and hit cap
+  ---
+  duration_ms: 0.19206
+  type: 'test'
+  ...
+# Subtest: healing modifiers, overflow, prohibition and revival
+ok 44 - healing modifiers, overflow, prohibition and revival
+  ---
+  duration_ms: 0.427164
+  type: 'test'
+  ...
+# Subtest: combined counted and numeric shield persists until both exhausted
+ok 45 - combined counted and numeric shield persists until both exhausted
+  ---
+  duration_ms: 0.248634
+  type: 'test'
+  ...
+# Subtest: guard cannot raise current HP and reports consumed buff identity
+ok 46 - guard cannot raise current HP and reports consumed buff identity
+  ---
+  duration_ms: 0.152741
+  type: 'test'
+  ...
+# Subtest: 72 original Elixir hero attribute and skill fixtures
+ok 47 - 72 original Elixir hero attribute and skill fixtures
+  ---
+  duration_ms: 3.035734
+  type: 'test'
+  ...
+# Subtest: original hero catalog and lookup
+ok 48 - original hero catalog and lookup
+  ---
+  duration_ms: 89.332894
+  type: 'test'
+  ...
+# Subtest: starter collection is atomic, persistent and isolated
+ok 49 - starter collection is atomic, persistent and isolated
+  ---
+  duration_ms: 344.756655
+  type: 'test'
+  ...
+# Subtest: special damage bases, resistance, cap and boss limit
+ok 50 - special damage bases, resistance, cap and boss limit
+  ---
+  duration_ms: 0.93579
+  type: 'test'
+  ...
+# Subtest: round end executes actual periodic damage, credits source and expires
+ok 51 - round end executes actual periodic damage, credits source and expires
+  ---
+  duration_ms: 1.76581
+  type: 'test'
+  ...
+# Subtest: profile initialization, persistence and account isolation
+ok 52 - profile initialization, persistence and account isolation
+  ---
+  duration_ms: 329.419008
+  type: 'test'
+  ...
+# Subtest: original cumulative XP thresholds and atomic level rewards
+ok 53 - original cumulative XP thresholds and atomic level rewards
+  ---
+  duration_ms: 117.089213
+  type: 'test'
+  ...
+# Subtest: OTP 27 exsss matches 3200 exported values exactly
+ok 54 - OTP 27 exsss matches 3200 exported values exactly
+  ---
+  duration_ms: 9.851742
+  type: 'test'
+  ...
+# Subtest: one-time recovery and session revocation
+ok 55 - one-time recovery and session revocation
+  ---
+  duration_ms: 513.301527
+  type: 'test'
+  ...
+# Subtest: original speed, attacker tie priority, station tie priority and dead exclusion
+ok 56 - original speed, attacker tie priority, station tie priority and dead exclusion
+  ---
+  duration_ms: 1.126548
+  type: 'test'
+  ...
+# Subtest: round snapshot, dead skip, victory and immutable input
+ok 57 - round snapshot, dead skip, victory and immutable input
+  ---
+  duration_ms: 0.453334
+  type: 'test'
+  ...
+# Subtest: round start speed, round end resolution, timeout and simultaneous defeat priority
+ok 58 - round start speed, round end resolution, timeout and simultaneous defeat priority
+  ---
+  duration_ms: 0.32571
+  type: 'test'
+  ...
+# Subtest: automatic battle using original skill data is deterministic and does not mutate input
+ok 59 - automatic battle using original skill data is deterministic and does not mutate input
+  ---
+  duration_ms: 5.783583
+  type: 'test'
+  ...
+# Subtest: stunned actor skips action; two squads resolve without mutating input
+ok 60 - stunned actor skips action; two squads resolve without mutating input
+  ---
+  duration_ms: 1.40019
+  type: 'test'
+  ...
+# Subtest: dead target loses ordinary buffs but retains hold-after-death buff
+ok 61 - dead target loses ordinary buffs but retains hold-after-death buff
+  ---
+  duration_ms: 0.759725
+  type: 'test'
+  ...
+# Subtest: result summary matches actual HP and damage, original result codes
+ok 62 - result summary matches actual HP and damage, original result codes
+  ---
+  duration_ms: 1.260749
+  type: 'test'
+  ...
+# Subtest: head and tail modifiers preserve group order and filter effect type
+ok 63 - head and tail modifiers preserve group order and filter effect type
+  ---
+  duration_ms: 1.229673
+  type: 'test'
+  ...
+# Subtest: starter modifiers reproduce three original battle attribute sets
+ok 64 - starter modifiers reproduce three original battle attribute sets
+  ---
+  duration_ms: 1.6325
+  type: 'test'
+  ...
+# Subtest: isolated storage and migration
+ok 65 - isolated storage and migration
+  ---
+  duration_ms: 271.170263
+  type: 'test'
+  ...
+# Subtest: studio append-only versions, conflict, restore and isolation
+ok 66 - studio append-only versions, conflict, restore and isolation
+  ---
+  duration_ms: 101.22475
+  type: 'test'
+  ...
+# Subtest: studio routes deny guest and non-admin; persist versions and restore only for active admin
+ok 67 - studio routes deny guest and non-admin; persist versions and restore only for active admin
+  ---
+  duration_ms: 252.147984
+  type: 'test'
+  ...
+# Subtest: original row, column and fixed-row fallback
+ok 68 - original row, column and fixed-row fallback
+  ---
+  duration_ms: 2.142047
+  type: 'test'
+  ...
+# Subtest: self, allies, previous, neighbors and dead targets
+ok 69 - self, allies, previous, neighbors and dead targets
+  ---
+  duration_ms: 0.278129
+  type: 'test'
+  ...
+# Subtest: priorities, count and injected randomness
+ok 70 - priorities, count and injected randomness
+  ---
+  duration_ms: 2.278782
+  type: 'test'
+  ...
+# Subtest: event targets preserve original subject/other priority, deduplicate and exclude dead allies
+ok 71 - event targets preserve original subject/other priority, deduplicate and exclude dead allies
+  ---
+  duration_ms: 0.35758
+  type: 'test'
+  ...
+# Subtest: relative event codes, source attribution and recursion guard
+ok 72 - relative event codes, source attribution and recursion guard
+  ---
+  duration_ms: 1.19565
+  type: 'test'
+  ...
+# Subtest: round end trigger before expiry, new buff preserved, cooldown tick
+ok 73 - round end trigger before expiry, new buff preserved, cooldown tick
+  ---
+  duration_ms: 1.38025
+  type: 'test'
+  ...
+# Subtest: dispel respects protected tags, stack budget and before-dispel event
+ok 74 - dispel respects protected tags, stack budget and before-dispel event
+  ---
+  duration_ms: 0.440423
+  type: 'test'
+  ...
+# Subtest: passive silence blocks self sourced listeners but not external buffs; extra skill uses owner
+ok 75 - passive silence blocks self sourced listeners but not external buffs; extra skill uses owner
+  ---
+  duration_ms: 0.297489
+  type: 'test'
+  ...
+# Subtest: death listeners can queue extra skills but cannot execute ordinary damage while dead
+ok 76 - death listeners can queue extra skills but cannot execute ordinary damage while dead
+  ---
+  duration_ms: 0.320292
+  type: 'test'
+  ...
+# Subtest: reference trigger cooldown reset and discarded attribute accumulators
+ok 77 - reference trigger cooldown reset and discarded attribute accumulators
+  ---
+  duration_ms: 0.369207
+  type: 'test'
+  ...
+1..77
+# tests 77
+# suites 0
+# pass 77
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7784.928719

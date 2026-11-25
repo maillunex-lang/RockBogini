@@ -1,0 +1,3 @@
+{'stage': 100101, 'level': 1, 'chapterCount': 56, 'currentChapterId': 1, 'focusChapterId': 1}
+maps 40 {'id': 100101, 'level': 1, 'next': 100102, 'rewards': [[5, 200], [22, 500], [1, 4000], [7, 50], [1011403, 30]], 'status': 'available', 'levelLocked': False, 'canChallenge': True}
+ch0 {'id': 1, 'name': 'Глава 1', 'bg': 'Street', 'worldId': 1, 'mapCount': 40, 'firstMapId': 100101, 'lastMapId': 100140, 'status': 'current', 'clearedCount': 0, 'complete': False}

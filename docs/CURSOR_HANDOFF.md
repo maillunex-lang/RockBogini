@@ -1,24 +1,21 @@
-# RockBogini Next: передача Cursor
-Дата: 2026-11-25. Рабочая папка /home/gamedev/rocbogini. NEXT-013.5.2–013.7 partial; активный NEXT-013.8.
-Цель: полное функциональное и визуальное портирование оригинала, затем утверждённые расширения. Не начинать новый проект. Клиент PixiJS 7 + Spine 3.8 + React + TypeScript + Vite; сервер Fastify/Node + PostgreSQL + Redis, REST/WS. Русский интерфейс, оригинальные ID и баланс, собственные имена героев согласно решениям.
+# Cursor handoff — RockBogini Next
 
-## Источники (проверены на VPS)
-- /home/gamedev/rocbogini/runtime/client/G123Live/Queen-Blade/assets — оригинальные Cocos bundles, config, import, native, Spine, атласы, звуки, Prefab.
-- /home/gamedev/rocbogini/runtime/client/config — игровые таблицы, локализация, конфигурации.
-- /home/gamedev/rocbogini/decompiled/main — извлечённые JS оригинального клиента, не исходный редакторский проект Cocos.
-- /home/gamedev/rocbogini/runtime/server — восстановленный Elixir сервер работающего оригинала. Не изменять.
-- /home/gamedev/rocbogini/next-audit/server — изолированный эталон Elixir, lib/racon, scripts, test; не считать доказанной копией коммерческого backend.
-- /home/gamedev/rocbogini/next-audit — экспорт таблиц, эталонные JSON fixtures, hero-animations.json, common-skills.json, campaign-*.
-- /home/gamedev/lunex-asset-library/data/index/catalog.json — индекс ресурсов; пути брать из записей каталога. Не импортировать всю библиотеку.
-- /home/gamedev/rocbogini/localization/{en.json,ru.json,glossary.json} — перевод и терминология.
-- Старый путь /home/gamedev/archive-analysis-kyrwCl/extracted/racon2-main отсутствует; не использовать.
-## Рабочие папки
-pixi-client/src, pixi-client/public, pixi-client/tools; next-server/src, next-server/data, next-server/test, next-server/tools; docs, reports, tools.
-GitHub https://github.com/maillunex-lang/RockBogini, main; зеркало /home/gamedev/rockbogini-publish/next/{pixi-client,next-server,docs}. В зеркале уже есть постороннее изменение next/install.sh, не включать и не откатывать.
-Тест: https://rikagro.ru/testtest/index.html; API /testtest/api; публикация /var/www/testtest. Оригинал https://rikagro.ru/game1-rtb/ не менять. Не сбрасывать БД и аккаунты. Свободно около 11 ГБ на момент передачи, избегать копий больших ресурсов; hardlinks не редактировать in-place.
-## Старт
-Прочитать AGENTS.md, docs/ROADMAP.md, roadmap.json, STATUS.md, DECISIONS.md, WORKLOG.md, карточки задач. Проверить фактический код и отчёты. NEXT-013.5.2 partial: HUDOffsetY, BattleBuffList icons, healthEvents, float atlases; энергия отсутствует (см. reports/NEXT-013.5.2-energy-research.md); Chromium QA открыта. 013.7 partial: ResultScreen.tsx. Активный NEXT-013.8: браузерные/мобильные проверки и закрытие остаточных дефектов (ангелы, 10 common skill indices, multi-texture, 64 sounds, autoplay, cleanup, WinBoard art). Далее NEXT-014–028 строго по roadmap.
-## Контроль
-681 эталонный бой и 75 серверных тестов — исторически проверенный объём, не доказательство полного коммерческого паритета. Повторить при изменениях движка. Для каждой механики фиксировать оригинальный файл/таблицу, ID, реализацию, тест, статус not_ported/partial/ported/verified. Не скрывать отсутствующие ресурсы или неизвестные формулы. Сначала оригинал, затем реализация, тесты, визуальная сверка, документация.
-Клиент: cd pixi-client; npx tsc --noEmit; VITE_NEXT_API_URL=/testtest/api node --input-type=module -e "import {build} from 'vite'; await build({base:'/testtest/',build:{outDir:'/tmp/rockbogini-next-build',emptyOutDir:true,copyPublicDir:false}})". Публиковать только проверенные assets/index и новые public ресурсы; не копировать всю библиотеку. Проверить HTTP и реальные запросы, не только 200. Сервер: cd next-server; npm run build; docker run --rm --network rockbogini-next_private --env-file .env -e PGHOST=postgres -e REDIS_URL=redis://redis:6379 -v "$PWD:/app:ro" -w /app node:22-bookworm-slim node --test dist/test/*.test.js. Проверить compose и тестовую изоляцию перед запуском. Не выводить .env. Браузер: проверить наличие Chromium/Playwright, тесты pixi-client/tests и browser-test; если нет, зафиксировать ограничение. Не выдавать сборку за визуальную приёмку.
-После каждого подэтапа обновить docs/roadmap.json, ROADMAP.md, STATUS.md, WORKLOG.md, reports; python3 tools/publish_landing_roadmap.py. Синхронизировать только изменённые файлы в GitHub зеркало, исключить секреты, node_modules, dist, резервные копии и посторонние файлы. Проверить git diff, commit/push main и CI если настроен. Публикация оригинальных ресурсов только при наличии прав. Не удалять исходники, не менять production, не включать реальные платежи без согласования. Продолжать разрешённые задачи самостоятельно, остановиться на блокере, изменении архитектуры или опасной операции. Не отмечать done без доказательств.
+Обновлено: 2026-11-25
+
+## Сейчас
+Активная задача: **NEXT-014.1** (partial). NEXT-013 закрыт по **D-011** (визуальная приёмка владельцем).
+
+Прочитать AGENTS.md, docs/ROADMAP.md, roadmap.json, STATUS.md, DECISIONS.md, WORKLOG.md. Эталон только для чтения. Работать в /home/gamedev/rocbogini. GitHub RockBogini — через /home/gamedev/rockbogini-publish.
+
+## Сделано в этом срезе
+- AdventureChapter/MapWorld export → next-audit/campaign-chapters.json + next-server/data/campaign-chapters.json (56 глав, 30 миров, 2240 карт в главах, orphan map 105701).
+- GET /v1/campaign (auth): stage/level, chapter summaries, maps for focus chapter, canChallenge.
+- CampaignScreen + City «Кампания»; ReportScreen принимает mapId.
+- 77/77 server tests; API deployed; https://rikagro.ru/testtest/ published.
+
+## Далее
+- NEXT-014.2+: world map / MapWorld UI, сюжетные тексты StoryChapter, обучение, имена глав из локалей (AdventureChapter_name_*), orphan 105701 policy, boss presentation.
+- Известные остатки боя 013.8 не блокируют, но не забывать: angel actors, 10 ActionIndex, multi-texture VFX, 64 sounds, autoplay, WinBoard art.
+
+## Критерии
+Не отмечать NEXT-014 done без глав/этапов/наград/обучения по roadmap. Не изобретать ID/баланс. Не трогать другие проекты.

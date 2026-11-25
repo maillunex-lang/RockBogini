@@ -1,19 +1,15 @@
 # Актуальное состояние 2026-11-25
 
-Активная задача: **NEXT-013.8**. NEXT-013.5.2–013.7 — partial.
-9 из 28 основных этапов закрыты, 4 в работе, 1 отложен, 14 ожидают. Это не процент готовности игры.
+Активная задача: **NEXT-014.1**. NEXT-013 закрыт по D-011 (визуальная приёмка владельцем); технические остатки 013.8 известны и не блокируют кампанию.
+9 из 28 основных этапов закрыты, 4 в работе (010/012/014/026), 1 отложен, 14 ожидают. Это не процент готовности игры.
 NEXT-012 принят только в проверенном эталонном объёме для подключения визуализации; общий статус остаётся in_progress.
-Проверено: 681/681 уникальных боёв, 16 771/16 771 снимков состояния, 3 132/3 132 записей героев, 2 131/2 131 метаданных раундов, 68 712/68 712 событий с Params, 75/75 серверных тестов.
+Проверено ранее: 681/681 уникальных боёв, 16 771/16 771 снимков состояния, 75→77 серверных тестов после NEXT-014.1.
 
 | Подэтап | Состояние |
 |---|---|
-| 013.1–013.2 | Отчёты, Spine, 19 фонов; визуальная сверка открыта |
-| 013.3–013.3.2 | Движение, смерть/воскрешение; 10 индексов и angel actors открыты |
-| 013.4.1–013.4.4 | VFX/снаряды/камера/звук; общие VFX, 64 звука, autoplay открыты |
-| 013.5.2 | partial: HUDOffsetY, buff icons, HP semantics, float digits; энергия отсутствует |
-| 013.6 | partial: gameClock pause/x1-x3/auto; отличие от 1.3/1.7/2.4 |
-| 013.7 | partial: ResultScreen, auto-settle, stats/rewards; original WinBoard art open |
-| 013.8 | АКТИВНО: residuals inventoried; Chromium/Playwright unavailable — visual acceptance blocked |
+| 013.1–013.7 | accepted (D-011 owner visual QA); known gaps retained |
+| 013.8 | closed for gate: residuals inventoried, owner owns visual QA |
+| 014.1 | АКТИВНО/partial: AdventureChapter export, GET /v1/campaign, CampaignScreen |
 
 
 ---
@@ -424,3 +420,5 @@ NEXT-013.4.3 partial: original type9 dark_screen (190/255, 200ms fades) and shoc
 NEXT-013.4.4 partial: 1669/1733 original sound events mapped through bundle dependencies, 328 unique clips, timeline playback and volume slider. 64 unresolved events, browser autoplay and audible acceptance pending. TypeScript/Vite and HTTP200. Next NEXT-013.5 HUD.
 
 NEXT-013.5.1 partial: per-actor HP bars, buff count, damage/heal/crit colors, event-based approximate HP with authoritative page reconciliation. Fixed HUD height 175px, energy absent from report, original buff icons and visual acceptance pending. TypeScript/Vite HTTP200.
+
+2026-11-25 D-011: владелец принимает визуальную приёмку NEXT-013; NEXT-013.8/013 закрыты для перехода. NEXT-014.1: экспорт AdventureChapter/MapWorld (56 глав, 2240 карт в главах, orphan 105701), data/campaign-chapters.json, GET /v1/campaign, CampaignScreen вместо «Тест боя», 77/77 тестов, API deploy + testtest publish. reports/NEXT-014.1-*.
