@@ -423,3 +423,5 @@ NEXT-013.4.1 partial: original Spine effects types 2/6/8 loaded per action befor
 NEXT-013.4.2 partial: original type7 Spine projectiles per server target, linear flight, rotation, original duration, layer and cleanup. Target HUD offset temporarily 90px; common effect assets and browser acceptance pending. TypeScript/Vite and HTTP200. Next 013.4.3.
 
 NEXT-013.4.3 partial: original type9 dark_screen (190/255, 200ms fades) and shock_screen (30ms, 6px vertical/3px horizontal approximate deterministic shake), 967 hero timeline events. TypeScript/Vite HTTP200. Browser acceptance pending; next sound.
+
+NEXT-013.4.4 partial: 1669/1733 original sound events mapped through bundle dependencies, 328 unique clips, timeline playback and volume slider. 64 unresolved events, browser autoplay and audible acceptance pending. TypeScript/Vite and HTTP200. Next NEXT-013.5 HUD.
