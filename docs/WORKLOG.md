@@ -401,3 +401,5 @@ NEXT-013.3 partial: corrected one-based ActionIndex from AJBattleViewPort/Skills
 2026-11-25: synchronized canonical roadmap, Markdown table, current status, public landing and GitHub documentation; NEXT-013.3.1 next, NEXT-012 limited reference acceptance only.
 
 Landing refresh: curated two visible character assets from user screenshot, solo cards, duo scene, combat showcase, lazy portrait initialization. Build/HTTP verified; browser visual acceptance pending.
+
+Landing v3: explicit game entry URL, replaced cropped card illustrations with original full combat models, dark fantasy palette and 18+ label. TypeScript/Vite and HTTP verified; visual and click acceptance pending.
