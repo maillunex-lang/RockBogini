@@ -6,12 +6,12 @@
 Только `/home/gamedev/rocbogini/`. Live: https://rikagro.ru/testtest/.
 
 ## Сейчас
-**NEXT-015.1** фильтры/kinds. Live: https://rikagro.ru/testtest/.
+**NEXT-015.2** icons + use/sell. Live: https://rikagro.ru/testtest/.
 
 ## Сделано
-- 015 MVP + 015.1: kind/byKind, фильтры, поиск, деталь; icon placeholders (ItemIcon UUID map deferred).
+- 015 MVP + 015.1 + 015.2: inventory filters, ItemIcon hardlinks (3724), FixedBox/ManualBox use, sell overrides
 
 ## Далее
-- 015.2: реальные ItemIcon webp + use/sell
 - NEXT-016 развитие героев
+- Random/event consume (subType≠1/3), original SellPrice when present
 - Finger-hint overlays / plot video player

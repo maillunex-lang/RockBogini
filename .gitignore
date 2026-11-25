@@ -54,3 +54,6 @@ pixi-client/public/**/*.bak*
 # Migration safety snapshot lives outside repo; ignore if copied
 rockbogini-history.bundle
 rocbogini-git-migrate/
+
+# Item icons are hardlinked from runtime at publish (import_item_icons.py)
+pixi-client/public/item-icons/*.webp

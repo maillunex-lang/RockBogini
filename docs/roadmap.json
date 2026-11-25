@@ -130,9 +130,9 @@
   "id": "NEXT-015",
   "title": "Инвентарь и предметы",
   "phase": "IV. RPG и экономика",
-  "scope": "MVP: GET /v1/inventory + InventoryScreen + city shortcut. Icons/use/sell open.",
+  "scope": "015.2: ItemIcon hardlinks, Fixed/Manual use, sell overrides. Random/event consume open.",
   "status": "in_progress",
-  "evidence": "reports/NEXT-014-tails-015-*"
+  "evidence": "reports/NEXT-015.2.md; reports/NEXT-015.1.md; reports/NEXT-014-tails-015-*"
  },
  {
   "id": "NEXT-016",
