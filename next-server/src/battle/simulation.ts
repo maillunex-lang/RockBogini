@@ -14,7 +14,7 @@ import {selectTargets,eventTargets,type TargetEvent} from './target.js';
 import {baseValue} from './periodic.js';
 import {TriggerEngine,type BattleEvent} from './triggers.js';
 export type Fighter=CombatUnit&ActionUnit&{passives?:number[]};
-export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15){
+export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15,roundBuffs:Readonly<Record<number,number>>={}){
  const acted=new Set<number>();const done=new Set<number>();let ending=false;let skillDepth=0;type Acc={crit:boolean;attacked:Map<number,number>;healed:Set<number>};let acc:Acc|undefined;let key=0,extra=0;let engine:TriggerEngine;const queue:{actor:Fighter;sid:number;atype:number;event?:TargetEvent}[]=[];const issues=new Set<string>();type HitEvent={index:number;target:number;type:number;value:number;params?:number[]};type ActionTrace={round:number;actor:number;skillId:number;targets:number[];hits:number;events:HitEvent[]};const actions:ActionTrace[]=[];const pages:(ActionTrace&{dataType:number;roundSkills?:Record<number,number>;roundBuffId?:number;heroStatus?:ReturnType<typeof snapshot>})[]=[];let trace:ActionTrace|undefined;let instantExtra=false;let hitIndex=1,split=true;const journal:{round:number;actor:number;target:number;code:number;hp:number}[]=[];
  const recovery:{round:number;actor:number;target:number;type:number;value:number}[]=[];
  const shields:{round:number;actor:number;target:number;type:number;value:number}[]=[];
@@ -109,7 +109,8 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  speed:u=>effectiveAttr(u as Fighter,3),
  start:(units,round)=>{for(const u of units)u.onBuffRemoved=(b,n)=>{if(!b.temp&&descriptionEvent(b.id,[125]))for(let i=0;i<n;i++)trace?.events.push({index:hitIndex,target:u.id,type:26,value:b.id})};beginInstant(round);acted.clear();done.clear();ending=false;engine=makeEngine(units,round);extra=0;
  if(round===1)for(const id of turnOrder(units,u=>effectiveAttr(u as Fighter,3))){const a=units.find(u=>u.id===id)!;for(const sid of a.passives??[]){if(a.hp<=0)break;const skill=actionSkills[sid];if(!skill){issues.add('missing_passive:'+sid);continue}perform(units,a,round,{skillId:sid,targets:selectTargets(units,a,skill,[],random),groups:skill.Effects.map(x=>({effects:x.Items}))})}}
- engine.emit({code:501});for(const u of units)dropTemp(u);flushInstant(1,true);const page=pages.at(-1)!;page.roundSkills=Object.fromEntries(units.filter(u=>u.hp>0).flatMap(u=>{const sid=u.actives.find(s=>(u.cd[s]??0)<=0);return sid===undefined?[]:[[u.id,sid]]}));page.roundBuffId=0;drain(units,round);
+ const roundBuffId=roundBuffs[round]??0;const cfg=BuffBase[roundBuffId];if(cfg){for(const u of units.filter(u=>u.hp>0).sort((a,b)=>a.id-b.id)){const r=applyBuff(u,u,cfg,{random,key:()=>++key,fresh:false,unchecked:true});if(r.status==="applied"&&cfg.Round>0){if(descriptionEvent(cfg.Id,[125]))for(let i=0;i<r.added;i++)trace?.events.push({index:1,target:u.id,type:25,value:cfg.Id});engine.emit({code:157,subject:u.id,other:u.id,buff:cfg})}}}
+ engine.emit({code:501});for(const u of units)dropTemp(u);flushInstant(1,true);const page=pages.at(-1)!;page.roundSkills=Object.fromEntries(units.filter(u=>u.hp>0).flatMap(u=>{const sid=u.actives.find(s=>(u.cd[s]??0)<=0);return sid===undefined?[]:[[u.id,sid]]}));page.roundBuffId=cfg?roundBuffId:0;drain(units,round);
  },
  action:(units,a,round)=>{
  beginInstant(round);extra=0;done.add(a.id);engine.emit({code:163,subject:a.id});for(const u of units)dropTemp(u);

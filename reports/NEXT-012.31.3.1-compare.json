@@ -1,0 +1,1382 @@
+{
+  "rng": "OTP exsss; draw ordering still requires verification",
+  "rows": [
+    {
+      "seed": 1,
+      "mapId": 7,
+      "lineup": [
+        11101,
+        11403,
+        11507,
+        11553,
+        11560,
+        12302
+      ],
+      "level": 120,
+      "boss": false,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 99999860,
+            "hp_max": 100000000,
+            "hurt": 145,
+            "damage": 15,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 99999943,
+            "hp_max": 100000000,
+            "hurt": 57,
+            "damage": 41,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 99999941,
+            "hp_max": 100000000,
+            "hurt": 59,
+            "damage": 70,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 99999940,
+            "hp_max": 100000000,
+            "hurt": 60,
+            "damage": 60,
+            "cure": 0
+          },
+          {
+            "id": 7,
+            "hp": 99999946,
+            "hp_max": 100000000,
+            "hurt": 54,
+            "damage": 272,
+            "cure": 0
+          },
+          {
+            "id": 9,
+            "hp": 99999942,
+            "hp_max": 100000000,
+            "hurt": 58,
+            "damage": 10,
+            "cure": 5
+          },
+          {
+            "id": 102,
+            "hp": 99999849,
+            "hp_max": 100000000,
+            "hurt": 156,
+            "damage": 14,
+            "cure": 0
+          },
+          {
+            "id": 104,
+            "hp": 99999939,
+            "hp_max": 100000000,
+            "hurt": 61,
+            "damage": 36,
+            "cure": 0
+          },
+          {
+            "id": 105,
+            "hp": 99999939,
+            "hp_max": 100000000,
+            "hurt": 61,
+            "damage": 58,
+            "cure": 0
+          },
+          {
+            "id": 106,
+            "hp": 99999933,
+            "hp_max": 100000000,
+            "hurt": 67,
+            "damage": 56,
+            "cure": 0
+          },
+          {
+            "id": 107,
+            "hp": 99999941,
+            "hp_max": 100000000,
+            "hurt": 59,
+            "damage": 258,
+            "cure": 0
+          },
+          {
+            "id": 109,
+            "hp": 99999936,
+            "hp_max": 100000000,
+            "hurt": 64,
+            "damage": 11,
+            "cure": 5
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 99999860,
+            "hp_max": 100000000,
+            "damage": 15,
+            "hurt": 145,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 99999943,
+            "hp_max": 100000000,
+            "damage": 41,
+            "hurt": 57,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 99999941,
+            "hp_max": 100000000,
+            "damage": 70,
+            "hurt": 59,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 99999940,
+            "hp_max": 100000000,
+            "damage": 60,
+            "hurt": 60,
+            "cure": 0
+          },
+          {
+            "id": 7,
+            "hp": 99999946,
+            "hp_max": 100000000,
+            "damage": 272,
+            "hurt": 54,
+            "cure": 0
+          },
+          {
+            "id": 9,
+            "hp": 99999942,
+            "hp_max": 100000000,
+            "damage": 10,
+            "hurt": 58,
+            "cure": 5
+          },
+          {
+            "id": 102,
+            "hp": 99999849,
+            "hp_max": 100000000,
+            "damage": 14,
+            "hurt": 156,
+            "cure": 0
+          },
+          {
+            "id": 104,
+            "hp": 99999939,
+            "hp_max": 100000000,
+            "damage": 36,
+            "hurt": 61,
+            "cure": 0
+          },
+          {
+            "id": 105,
+            "hp": 99999939,
+            "hp_max": 100000000,
+            "damage": 58,
+            "hurt": 61,
+            "cure": 0
+          },
+          {
+            "id": 106,
+            "hp": 99999933,
+            "hp_max": 100000000,
+            "damage": 56,
+            "hurt": 67,
+            "cure": 0
+          },
+          {
+            "id": 107,
+            "hp": 99999941,
+            "hp_max": 100000000,
+            "damage": 258,
+            "hurt": 59,
+            "cure": 0
+          },
+          {
+            "id": 109,
+            "hp": 99999936,
+            "hp_max": 100000000,
+            "damage": 11,
+            "hurt": 64,
+            "cure": 5
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "matchRoundBuffs": true,
+      "issues": [
+        "start_effect:414",
+        "start_effect:403",
+        "start_effect:372",
+        "buff_condition:8:11560300201"
+      ]
+    },
+    {
+      "seed": 2,
+      "mapId": 7,
+      "lineup": [
+        11101,
+        11403,
+        11507,
+        11553,
+        11560,
+        12302
+      ],
+      "level": 120,
+      "boss": false,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 99999850,
+            "hp_max": 100000000,
+            "hurt": 155,
+            "damage": 15,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 99999939,
+            "hp_max": 100000000,
+            "hurt": 61,
+            "damage": 38,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 99999941,
+            "hp_max": 100000000,
+            "hurt": 59,
+            "damage": 70,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 99999935,
+            "hp_max": 100000000,
+            "hurt": 65,
+            "damage": 62,
+            "cure": 0
+          },
+          {
+            "id": 7,
+            "hp": 99999943,
+            "hp_max": 100000000,
+            "hurt": 57,
+            "damage": 298,
+            "cure": 0
+          },
+          {
+            "id": 9,
+            "hp": 99999940,
+            "hp_max": 100000000,
+            "hurt": 60,
+            "damage": 11,
+            "cure": 5
+          },
+          {
+            "id": 102,
+            "hp": 99999843,
+            "hp_max": 100000000,
+            "hurt": 162,
+            "damage": 15,
+            "cure": 0
+          },
+          {
+            "id": 104,
+            "hp": 99999932,
+            "hp_max": 100000000,
+            "hurt": 68,
+            "damage": 36,
+            "cure": 0
+          },
+          {
+            "id": 105,
+            "hp": 99999935,
+            "hp_max": 100000000,
+            "hurt": 65,
+            "damage": 64,
+            "cure": 0
+          },
+          {
+            "id": 106,
+            "hp": 99999932,
+            "hp_max": 100000000,
+            "hurt": 68,
+            "damage": 58,
+            "cure": 0
+          },
+          {
+            "id": 107,
+            "hp": 99999936,
+            "hp_max": 100000000,
+            "hurt": 64,
+            "damage": 274,
+            "cure": 0
+          },
+          {
+            "id": 109,
+            "hp": 99999933,
+            "hp_max": 100000000,
+            "hurt": 67,
+            "damage": 10,
+            "cure": 5
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 99999850,
+            "hp_max": 100000000,
+            "damage": 15,
+            "hurt": 155,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 99999939,
+            "hp_max": 100000000,
+            "damage": 38,
+            "hurt": 61,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 99999941,
+            "hp_max": 100000000,
+            "damage": 70,
+            "hurt": 59,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 99999935,
+            "hp_max": 100000000,
+            "damage": 62,
+            "hurt": 65,
+            "cure": 0
+          },
+          {
+            "id": 7,
+            "hp": 99999943,
+            "hp_max": 100000000,
+            "damage": 298,
+            "hurt": 57,
+            "cure": 0
+          },
+          {
+            "id": 9,
+            "hp": 99999940,
+            "hp_max": 100000000,
+            "damage": 11,
+            "hurt": 60,
+            "cure": 5
+          },
+          {
+            "id": 102,
+            "hp": 99999843,
+            "hp_max": 100000000,
+            "damage": 15,
+            "hurt": 162,
+            "cure": 0
+          },
+          {
+            "id": 104,
+            "hp": 99999932,
+            "hp_max": 100000000,
+            "damage": 36,
+            "hurt": 68,
+            "cure": 0
+          },
+          {
+            "id": 105,
+            "hp": 99999935,
+            "hp_max": 100000000,
+            "damage": 64,
+            "hurt": 65,
+            "cure": 0
+          },
+          {
+            "id": 106,
+            "hp": 99999932,
+            "hp_max": 100000000,
+            "damage": 58,
+            "hurt": 68,
+            "cure": 0
+          },
+          {
+            "id": 107,
+            "hp": 99999936,
+            "hp_max": 100000000,
+            "damage": 274,
+            "hurt": 64,
+            "cure": 0
+          },
+          {
+            "id": 109,
+            "hp": 99999933,
+            "hp_max": 100000000,
+            "damage": 10,
+            "hurt": 67,
+            "cure": 5
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "matchRoundBuffs": true,
+      "issues": [
+        "start_effect:414",
+        "start_effect:403",
+        "start_effect:372",
+        "buff_condition:8:11560300201"
+      ]
+    },
+    {
+      "seed": 3,
+      "mapId": 7,
+      "lineup": [
+        11101,
+        11403,
+        11507,
+        11553,
+        11560,
+        12302
+      ],
+      "level": 120,
+      "boss": false,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 99999843,
+            "hp_max": 100000000,
+            "hurt": 162,
+            "damage": 15,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 99999935,
+            "hp_max": 100000000,
+            "hurt": 65,
+            "damage": 40,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 99999932,
+            "hp_max": 100000000,
+            "hurt": 68,
+            "damage": 64,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 99999931,
+            "hp_max": 100000000,
+            "hurt": 69,
+            "damage": 61,
+            "cure": 0
+          },
+          {
+            "id": 7,
+            "hp": 99999937,
+            "hp_max": 100000000,
+            "hurt": 63,
+            "damage": 286,
+            "cure": 0
+          },
+          {
+            "id": 9,
+            "hp": 99999933,
+            "hp_max": 100000000,
+            "hurt": 67,
+            "damage": 9,
+            "cure": 5
+          },
+          {
+            "id": 102,
+            "hp": 99999847,
+            "hp_max": 100000000,
+            "hurt": 158,
+            "damage": 15,
+            "cure": 0
+          },
+          {
+            "id": 104,
+            "hp": 99999937,
+            "hp_max": 100000000,
+            "hurt": 63,
+            "damage": 37,
+            "cure": 0
+          },
+          {
+            "id": 105,
+            "hp": 99999937,
+            "hp_max": 100000000,
+            "hurt": 63,
+            "damage": 64,
+            "cure": 0
+          },
+          {
+            "id": 106,
+            "hp": 99999932,
+            "hp_max": 100000000,
+            "hurt": 68,
+            "damage": 58,
+            "cure": 0
+          },
+          {
+            "id": 107,
+            "hp": 99999940,
+            "hp_max": 100000000,
+            "hurt": 60,
+            "damage": 310,
+            "cure": 0
+          },
+          {
+            "id": 109,
+            "hp": 99999937,
+            "hp_max": 100000000,
+            "hurt": 63,
+            "damage": 10,
+            "cure": 5
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 99999843,
+            "hp_max": 100000000,
+            "damage": 15,
+            "hurt": 162,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 99999935,
+            "hp_max": 100000000,
+            "damage": 40,
+            "hurt": 65,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 99999932,
+            "hp_max": 100000000,
+            "damage": 64,
+            "hurt": 68,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 99999931,
+            "hp_max": 100000000,
+            "damage": 61,
+            "hurt": 69,
+            "cure": 0
+          },
+          {
+            "id": 7,
+            "hp": 99999937,
+            "hp_max": 100000000,
+            "damage": 286,
+            "hurt": 63,
+            "cure": 0
+          },
+          {
+            "id": 9,
+            "hp": 99999933,
+            "hp_max": 100000000,
+            "damage": 9,
+            "hurt": 67,
+            "cure": 5
+          },
+          {
+            "id": 102,
+            "hp": 99999847,
+            "hp_max": 100000000,
+            "damage": 15,
+            "hurt": 158,
+            "cure": 0
+          },
+          {
+            "id": 104,
+            "hp": 99999937,
+            "hp_max": 100000000,
+            "damage": 37,
+            "hurt": 63,
+            "cure": 0
+          },
+          {
+            "id": 105,
+            "hp": 99999937,
+            "hp_max": 100000000,
+            "damage": 64,
+            "hurt": 63,
+            "cure": 0
+          },
+          {
+            "id": 106,
+            "hp": 99999932,
+            "hp_max": 100000000,
+            "damage": 58,
+            "hurt": 68,
+            "cure": 0
+          },
+          {
+            "id": 107,
+            "hp": 99999940,
+            "hp_max": 100000000,
+            "damage": 310,
+            "hurt": 60,
+            "cure": 0
+          },
+          {
+            "id": 109,
+            "hp": 99999937,
+            "hp_max": 100000000,
+            "damage": 10,
+            "hurt": 63,
+            "cure": 5
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "matchRoundBuffs": true,
+      "issues": [
+        "start_effect:414",
+        "start_effect:403",
+        "start_effect:372",
+        "buff_condition:8:11560300201"
+      ]
+    },
+    {
+      "seed": 1,
+      "mapId": 7,
+      "lineup": [
+        12503,
+        12511,
+        12557,
+        12601,
+        13401,
+        13505
+      ],
+      "level": 120,
+      "boss": false,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 100001360,
+            "hp_max": 100001390,
+            "hurt": 30,
+            "damage": 9000139,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 100001831,
+            "hp_max": 100001839,
+            "hurt": 8,
+            "damage": 7,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 100001798,
+            "hp_max": 100001811,
+            "hurt": 13,
+            "damage": 32,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 100002128,
+            "hp_max": 100002131,
+            "hurt": 3,
+            "damage": 18,
+            "cure": 0
+          },
+          {
+            "id": 7,
+            "hp": 100001235,
+            "hp_max": 100001241,
+            "hurt": 6,
+            "damage": 6,
+            "cure": 0
+          },
+          {
+            "id": 9,
+            "hp": 100001690,
+            "hp_max": 100001699,
+            "hurt": 9,
+            "damage": 8,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 91001232,
+            "hp_max": 100001390,
+            "hurt": 9000158,
+            "damage": 21,
+            "cure": 0
+          },
+          {
+            "id": 104,
+            "hp": 100001824,
+            "hp_max": 100001839,
+            "hurt": 15,
+            "damage": 3,
+            "cure": 0
+          },
+          {
+            "id": 105,
+            "hp": 100001793,
+            "hp_max": 100001811,
+            "hurt": 18,
+            "damage": 19,
+            "cure": 0
+          },
+          {
+            "id": 106,
+            "hp": 100002127,
+            "hp_max": 100002131,
+            "hurt": 4,
+            "damage": 18,
+            "cure": 0
+          },
+          {
+            "id": 107,
+            "hp": 100001232,
+            "hp_max": 100001241,
+            "hurt": 9,
+            "damage": 4,
+            "cure": 0
+          },
+          {
+            "id": 109,
+            "hp": 100001693,
+            "hp_max": 100001699,
+            "hurt": 6,
+            "damage": 4,
+            "cure": 0
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 100001360,
+            "hp_max": 100001390,
+            "damage": 9000139,
+            "hurt": 30,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 100001831,
+            "hp_max": 100001839,
+            "damage": 7,
+            "hurt": 8,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 100001798,
+            "hp_max": 100001811,
+            "damage": 32,
+            "hurt": 13,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 100002128,
+            "hp_max": 100002131,
+            "damage": 18,
+            "hurt": 3,
+            "cure": 0
+          },
+          {
+            "id": 7,
+            "hp": 100001235,
+            "hp_max": 100001241,
+            "damage": 6,
+            "hurt": 6,
+            "cure": 0
+          },
+          {
+            "id": 9,
+            "hp": 100001690,
+            "hp_max": 100001699,
+            "damage": 8,
+            "hurt": 9,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 91001232,
+            "hp_max": 100001390,
+            "damage": 21,
+            "hurt": 9000158,
+            "cure": 0
+          },
+          {
+            "id": 104,
+            "hp": 100001824,
+            "hp_max": 100001839,
+            "damage": 3,
+            "hurt": 15,
+            "cure": 0
+          },
+          {
+            "id": 105,
+            "hp": 100001793,
+            "hp_max": 100001811,
+            "damage": 19,
+            "hurt": 18,
+            "cure": 0
+          },
+          {
+            "id": 106,
+            "hp": 100002127,
+            "hp_max": 100002131,
+            "damage": 18,
+            "hurt": 4,
+            "cure": 0
+          },
+          {
+            "id": 107,
+            "hp": 100001232,
+            "hp_max": 100001241,
+            "damage": 4,
+            "hurt": 9,
+            "cure": 0
+          },
+          {
+            "id": 109,
+            "hp": 100001693,
+            "hp_max": 100001699,
+            "damage": 4,
+            "hurt": 6,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "matchRoundBuffs": true,
+      "issues": [
+        "start_effect:414",
+        "start_effect:506",
+        "trigger_condition:11"
+      ]
+    },
+    {
+      "seed": 2,
+      "mapId": 7,
+      "lineup": [
+        12503,
+        12511,
+        12557,
+        12601,
+        13401,
+        13505
+      ],
+      "level": 120,
+      "boss": false,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 73000882,
+            "hp_max": 100001390,
+            "hurt": 27000508,
+            "damage": 15,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 86001606,
+            "hp_max": 100001839,
+            "hurt": 14000233,
+            "damage": 4,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 100001786,
+            "hp_max": 100001811,
+            "hurt": 25,
+            "damage": 16,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 100002128,
+            "hp_max": 100002131,
+            "hurt": 3,
+            "damage": 17,
+            "cure": 0
+          },
+          {
+            "id": 7,
+            "hp": 77950891,
+            "hp_max": 100001241,
+            "hurt": 22050350,
+            "damage": 3,
+            "cure": 0
+          },
+          {
+            "id": 9,
+            "hp": 100001663,
+            "hp_max": 100001699,
+            "hurt": 36,
+            "damage": 5,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 100001365,
+            "hp_max": 100001390,
+            "hurt": 25,
+            "damage": 36050564,
+            "cure": 0
+          },
+          {
+            "id": 104,
+            "hp": 100001833,
+            "hp_max": 100001839,
+            "hurt": 6,
+            "damage": 5000078,
+            "cure": 0
+          },
+          {
+            "id": 105,
+            "hp": 100001798,
+            "hp_max": 100001811,
+            "hurt": 13,
+            "damage": 14000316,
+            "cure": 0
+          },
+          {
+            "id": 106,
+            "hp": 100002127,
+            "hp_max": 100002131,
+            "hurt": 4,
+            "damage": 41,
+            "cure": 0
+          },
+          {
+            "id": 107,
+            "hp": 100001241,
+            "hp_max": 100001241,
+            "hurt": 3,
+            "damage": 8000136,
+            "cure": 3
+          },
+          {
+            "id": 109,
+            "hp": 100001690,
+            "hp_max": 100001699,
+            "hurt": 9,
+            "damage": 20,
+            "cure": 0
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 73000882,
+            "hp_max": 100001390,
+            "damage": 15,
+            "hurt": 27000508,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 86001606,
+            "hp_max": 100001839,
+            "damage": 4,
+            "hurt": 14000233,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 100001786,
+            "hp_max": 100001811,
+            "damage": 16,
+            "hurt": 25,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 100002128,
+            "hp_max": 100002131,
+            "damage": 17,
+            "hurt": 3,
+            "cure": 0
+          },
+          {
+            "id": 7,
+            "hp": 77950891,
+            "hp_max": 100001241,
+            "damage": 3,
+            "hurt": 22050350,
+            "cure": 0
+          },
+          {
+            "id": 9,
+            "hp": 100001663,
+            "hp_max": 100001699,
+            "damage": 5,
+            "hurt": 36,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 100001365,
+            "hp_max": 100001390,
+            "damage": 36050564,
+            "hurt": 25,
+            "cure": 0
+          },
+          {
+            "id": 104,
+            "hp": 100001833,
+            "hp_max": 100001839,
+            "damage": 5000078,
+            "hurt": 6,
+            "cure": 0
+          },
+          {
+            "id": 105,
+            "hp": 100001798,
+            "hp_max": 100001811,
+            "damage": 14000316,
+            "hurt": 13,
+            "cure": 0
+          },
+          {
+            "id": 106,
+            "hp": 100002127,
+            "hp_max": 100002131,
+            "damage": 41,
+            "hurt": 4,
+            "cure": 0
+          },
+          {
+            "id": 107,
+            "hp": 100001241,
+            "hp_max": 100001241,
+            "damage": 8000136,
+            "hurt": 3,
+            "cure": 3
+          },
+          {
+            "id": 109,
+            "hp": 100001690,
+            "hp_max": 100001699,
+            "damage": 20,
+            "hurt": 9,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "matchRoundBuffs": true,
+      "issues": [
+        "start_effect:414",
+        "start_effect:506",
+        "trigger_condition:11"
+      ]
+    },
+    {
+      "seed": 3,
+      "mapId": 7,
+      "lineup": [
+        12503,
+        12511,
+        12557,
+        12601,
+        13401,
+        13505
+      ],
+      "level": 120,
+      "boss": false,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 83001081,
+            "hp_max": 100001390,
+            "hurt": 17000309,
+            "damage": 6000128,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 100001826,
+            "hp_max": 100001839,
+            "hurt": 13,
+            "damage": 3000050,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 100001794,
+            "hp_max": 100001811,
+            "hurt": 17,
+            "damage": 46,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 100002128,
+            "hp_max": 100002131,
+            "hurt": 3,
+            "damage": 46,
+            "cure": 0
+          },
+          {
+            "id": 7,
+            "hp": 100001237,
+            "hp_max": 100001241,
+            "hurt": 6,
+            "damage": 20,
+            "cure": 2
+          },
+          {
+            "id": 9,
+            "hp": 86001411,
+            "hp_max": 100001699,
+            "hurt": 14000288,
+            "damage": 17,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 91001186,
+            "hp_max": 100001390,
+            "hurt": 9000204,
+            "damage": 5000094,
+            "cure": 0
+          },
+          {
+            "id": 104,
+            "hp": 100001817,
+            "hp_max": 100001839,
+            "hurt": 22,
+            "damage": 14000263,
+            "cure": 0
+          },
+          {
+            "id": 105,
+            "hp": 100001779,
+            "hp_max": 100001811,
+            "hurt": 32,
+            "damage": 7000154,
+            "cure": 0
+          },
+          {
+            "id": 106,
+            "hp": 100002130,
+            "hp_max": 100002131,
+            "hurt": 1,
+            "damage": 29,
+            "cure": 0
+          },
+          {
+            "id": 107,
+            "hp": 100001233,
+            "hp_max": 100001241,
+            "hurt": 12,
+            "damage": 5000085,
+            "cure": 4
+          },
+          {
+            "id": 109,
+            "hp": 100001663,
+            "hp_max": 100001699,
+            "hurt": 36,
+            "damage": 11,
+            "cure": 0
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 83001081,
+            "hp_max": 100001390,
+            "damage": 6000128,
+            "hurt": 17000309,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 100001826,
+            "hp_max": 100001839,
+            "damage": 3000050,
+            "hurt": 13,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 100001794,
+            "hp_max": 100001811,
+            "damage": 46,
+            "hurt": 17,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 100002128,
+            "hp_max": 100002131,
+            "damage": 46,
+            "hurt": 3,
+            "cure": 0
+          },
+          {
+            "id": 7,
+            "hp": 100001237,
+            "hp_max": 100001241,
+            "damage": 20,
+            "hurt": 6,
+            "cure": 2
+          },
+          {
+            "id": 9,
+            "hp": 86001411,
+            "hp_max": 100001699,
+            "damage": 17,
+            "hurt": 14000288,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 91001186,
+            "hp_max": 100001390,
+            "damage": 5000094,
+            "hurt": 9000204,
+            "cure": 0
+          },
+          {
+            "id": 104,
+            "hp": 100001817,
+            "hp_max": 100001839,
+            "damage": 14000263,
+            "hurt": 22,
+            "cure": 0
+          },
+          {
+            "id": 105,
+            "hp": 100001779,
+            "hp_max": 100001811,
+            "damage": 7000154,
+            "hurt": 32,
+            "cure": 0
+          },
+          {
+            "id": 106,
+            "hp": 100002130,
+            "hp_max": 100002131,
+            "damage": 29,
+            "hurt": 1,
+            "cure": 0
+          },
+          {
+            "id": 107,
+            "hp": 100001233,
+            "hp_max": 100001241,
+            "damage": 5000085,
+            "hurt": 12,
+            "cure": 4
+          },
+          {
+            "id": 109,
+            "hp": 100001663,
+            "hp_max": 100001699,
+            "damage": 11,
+            "hurt": 36,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "matchRoundBuffs": true,
+      "issues": [
+        "start_effect:414",
+        "start_effect:506",
+        "trigger_condition:11"
+      ]
+    }
+  ]
+}
