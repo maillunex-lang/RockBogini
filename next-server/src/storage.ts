@@ -37,6 +37,16 @@ export async function migrate(s:Storage){
  await c.query('INSERT INTO schema_migrations(version) VALUES(10) ON CONFLICT DO NOTHING');
  await c.query(`CREATE TABLE IF NOT EXISTS player_guide_groups(account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,group_id integer NOT NULL,completed_at timestamptz NOT NULL DEFAULT now(),PRIMARY KEY(account_id,group_id))`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(11) ON CONFLICT DO NOTHING');
+ await c.query(`CREATE TABLE IF NOT EXISTS player_equipment(
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  sid integer NOT NULL,
+  item_id integer NOT NULL,
+  owner_sid integer NOT NULL DEFAULT 0,
+  xp integer NOT NULL DEFAULT 0 CHECK(xp>=0),
+  PRIMARY KEY(account_id,sid)
+ )`);
+ await c.query('CREATE INDEX IF NOT EXISTS player_equipment_owner ON player_equipment(account_id,owner_sid)');
+ await c.query('INSERT INTO schema_migrations(version) VALUES(12) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }
