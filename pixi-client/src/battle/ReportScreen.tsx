@@ -1,4 +1,5 @@
 import {ReportScene} from './ReportScene';
+import type {BattleSpeed} from './gameClock';
 import {useEffect,useMemo,useState} from 'react';
 import {battleClient,orderedEvents,type BattleReport,type Settlement} from './reportClient';
 export function ReportScreen({api,token}:{api:string;token:string}){
@@ -9,11 +10,22 @@ export function ReportScreen({api,token}:{api:string;token:string}){
  const [sceneReady,setSceneReady]=useState(false);
  const [volume,setVolume]=useState(0.5);
  const [auto,setAuto]=useState(true);
+ const [paused,setPaused]=useState(false);
+ const [speed,setSpeed]=useState<BattleSpeed>(1);
  const page=report?.pages[cursor],finished=!!report&&cursor===report.pages.length-1;
- useEffect(()=>{if(!report||busy||!sceneReady||finished||(!auto&&page?.dataType===2))return;const t=setTimeout(()=>{setSceneReady(false);setCursor(c=>c+1)},150);return()=>clearTimeout(t)},[report,busy,sceneReady,finished,auto,cursor,page]);
+ useEffect(()=>{if(!report||busy||!sceneReady||finished||paused||(!auto&&page?.dataType===2))return;const t=setTimeout(()=>{setSceneReady(false);setCursor(c=>c+1)},150);return()=>clearTimeout(t)},[report,busy,sceneReady,finished,auto,paused,cursor,page]);
  return <section style={{padding:16,background:'#20243a',color:'white'}}><h2>Кампания: серверный бой</h2><p>Автоматическое воспроизведение серверного боя.</p>{error&&<p role="alert">{error}</p>}
- {!report&&<><label>Этап <input type="number" value={stage} onChange={e=>setStage(Number(e.target.value))}/></label><button disabled={busy} onClick={()=>void run(async()=>{setReport(await client.challenge(stage));setCursor(-1);setResult(null)})}>Начать бой</button></>}
- {report&&<><ReportScene key={report.battleId} report={report} cursor={cursor} volume={volume} onReady={setSceneReady}/><label>Звук <input type="range" min="0" max="1" step="0.05" value={volume} onChange={e=>setVolume(Number(e.target.value))}/></label><p>Этап {report.mapId} · {cursor+1}/{report.pages.length}</p><button onClick={()=>setAuto(a=>!a)}>{auto?"Пауза":"Продолжить"}</button><button disabled={auto||busy||finished||!sceneReady} onClick={()=>{setSceneReady(false);setCursor(c=>c+1)}}>Следующее действие</button><button disabled={busy} onClick={()=>void run(async()=>{await client.cancel(report.battleId);setReport(null);setCursor(-1)})}>Отменить</button>
+ {!report&&<><label>Этап <input type="number" value={stage} onChange={e=>setStage(Number(e.target.value))}/></label><button disabled={busy} onClick={()=>void run(async()=>{setReport(await client.challenge(stage));setCursor(-1);setResult(null);setPaused(false)})}>Начать бой</button></>}
+ {report&&<><ReportScene key={report.battleId} report={report} cursor={cursor} volume={volume} speed={speed} paused={paused} onReady={setSceneReady}/>
+ <div style={{display:'flex',flexWrap:'wrap',gap:8,alignItems:'center',marginTop:8}}>
+ <label>Звук <input type="range" min="0" max="1" step="0.05" value={volume} onChange={e=>setVolume(Number(e.target.value))}/></label>
+ <button type="button" onClick={()=>setPaused(p=>!p)}>{paused?'Продолжить':'Пауза'}</button>
+ <button type="button" onClick={()=>setAuto(a=>!a)}>{auto?'Авто: вкл':'Авто: выкл'}</button>
+ {([1,2,3] as BattleSpeed[]).map(s=><button key={s} type="button" aria-pressed={speed===s} onClick={()=>setSpeed(s)} style={{fontWeight:speed===s?700:400}}>x{s}</button>)}
+ </div>
+ <p>Этап {report.mapId} · {cursor+1}/{report.pages.length} · скорость x{speed}{paused?' · пауза':''}</p>
+ <button disabled={auto||busy||finished||!sceneReady||paused} onClick={()=>{setSceneReady(false);setCursor(c=>c+1)}}>Следующее действие</button>
+ <button disabled={busy} onClick={()=>void run(async()=>{await client.cancel(report.battleId);setReport(null);setCursor(-1)})}>Отменить</button>
  {page&&<><p>Раунд {page.round} · {page.actor>0?"Герой "+page.actor+" · Навык "+page.skillId:page.dataType===1?"Начало раунда":page.dataType===3?"Конец раунда":"Служебное событие"}</p><ul>{orderedEvents(page).map((e,i)=><li key={i}>Удар {e.index}: цель {e.target}, событие {e.type}, значение {e.value}</li>)}</ul><ul>{page.heroStatus.map(h=><li key={h.id}>Герой {h.id}: {h.hp}/{h.hpMax} HP</li>)}</ul></>}
  <button disabled={busy||!finished||!sceneReady} onClick={()=>void run(async()=>{const r=await client.settle(report.battleId);setResult(r);setStage(r.stage);setReport(null);setCursor(-1)})}>Получить результат</button></>}
  {result&&<p>{result.result===1?'Победа':'Поражение'} · Награды: {result.rewards.map(([id,n])=>id+': '+n).join(', ')||'нет'}</p>}</section>

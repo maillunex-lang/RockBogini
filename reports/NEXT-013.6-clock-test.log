@@ -1,0 +1,11 @@
+✔ rate is zero when paused (1.548042ms)
+✔ later fires in game time and respects pause (59.154611ms)
+✔ speed x2 advances game time faster (39.372908ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 222.112186

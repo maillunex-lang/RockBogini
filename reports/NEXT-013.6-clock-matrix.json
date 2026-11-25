@@ -1,0 +1,42 @@
+{
+  "stage": "NEXT-013.6",
+  "date": "2026-11-25",
+  "mechanics": [
+    {
+      "name": "Unified battle clock",
+      "original_file": "AJBattleViewPort.js BattlePlaySpeed; AJBattleData BattlePlaySpeedList",
+      "original_table": "n/a",
+      "original_ids": "BattlePlaySpeedList=[1.3,1.7,2.4] (VN [1,1.7,2.4])",
+      "server": "n/a (playback only)",
+      "client": "pixi-client/src/battle/gameClock.ts; ReportScene later/animate/spine timeScale/audio playbackRate",
+      "assets": "n/a",
+      "tests": "tools/game-clock.test.mjs 3/3",
+      "differences": "Roadmap requires x1/x2/x3; original non-VN multipliers were 1.3/1.7/2.4. Documented, not silently replaced as identical.",
+      "status": "partial"
+    },
+    {
+      "name": "Real pause",
+      "original_file": "AJBattleViewPort IsPauseTime / _NeedPauseTime",
+      "original_table": "n/a",
+      "original_ids": "n/a",
+      "server": "n/a",
+      "client": "gameClock.setPaused; ReportScreen Пауза; freezes timers, motion, spine rate=0, audio pause; blocks auto-advance",
+      "assets": "n/a",
+      "tests": "game-clock rate()===0 when paused",
+      "differences": "Original also pauses for angel/pre-skill cutscenes via IsPauseTime; those cutscenes not ported yet",
+      "status": "ported"
+    },
+    {
+      "name": "Auto-battle",
+      "original_file": "battle UI auto play",
+      "original_table": "n/a",
+      "original_ids": "n/a",
+      "server": "n/a",
+      "client": "ReportScreen auto toggle + paused gate",
+      "assets": "n/a",
+      "tests": "build/publish",
+      "differences": "No separate original auto-button asset wired; functional auto-advance only. Chromium QA open",
+      "status": "partial"
+    }
+  ]
+}
