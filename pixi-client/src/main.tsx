@@ -1,3 +1,4 @@
+import {ReportScreen} from './battle/ReportScreen';
 import {HeroesScreen} from './heroes/HeroesScreen';
 import {City} from './city/City';
 import {ProfileScreen} from './profile/ProfileScreen';
@@ -42,6 +43,6 @@ function App(){
  <button onClick={async()=>{try{await signOut(API,session);setSession(null);setShowRecovery(false)}catch(e){setError(e instanceof Error?e.message:String(e))}}}>Выйти из аккаунта</button></div>
  {recoverError&&<p role="alert">{recoverError}</p>}
  <button onClick={()=>{setOpen(!open);setIdle(-1)}}>{open?'Вернуться в город':'Войти в сцену'}</button>
- {open?<Squad/>:<><City api={API} token={session.token} onProfile={()=>setShowProfile(true)} onBattle={()=>setOpen(true)} onHeroes={()=>setShowHeroes(true)}/><button onClick={async()=>{await cacheSettled();setIdle(cacheSize())}}>Проверить кеш</button><output data-idle-cache={idle}>{idle}</output></>}</main>;
+ {open?<><ReportScreen api={API} token={session.token}/><Squad/></>:<><City api={API} token={session.token} onProfile={()=>setShowProfile(true)} onBattle={()=>setOpen(true)} onHeroes={()=>setShowHeroes(true)}/><button onClick={async()=>{await cacheSettled();setIdle(cacheSize())}}>Проверить кеш</button><output data-idle-cache={idle}>{idle}</output></>}</main>;
 }
 createRoot(document.getElementById('root')!).render(<App/>);
