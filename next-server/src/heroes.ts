@@ -39,7 +39,7 @@ import {
  luckUnlocked,
  sameLuckType,
 } from './heroLuck.js';
-import {equipExtraPairs,wornItemIds} from './equipment.js';
+import {heroGear} from './holy.js';
 
 async function account(req:{headers:{authorization?:string}},s:Storage){
  const token=/^Bearer ([A-Za-z0-9_-]{43})$/.exec(req.headers.authorization??'')?.[1];
@@ -63,7 +63,7 @@ function enrich(h:{
  PVETalentLevel?:number;PVPTalentLevel?:number;Job?:number;JobMap?:Record<string|number,number>;
  LuckSkill1?:number;LuckSkill2?:number;
  Attrs?:Record<string,number>;Skills?:number[];
-},extra:number[][]=[]){
+},extra:number[][]=[],powerBonus=0){
  const pve=h.PVETalentLevel??0,pvp=h.PVPTalentLevel??0;
  const luck1=h.LuckSkill1??0,luck2=h.LuckSkill2??0;
  const jobMap=h.JobMap??{};
@@ -83,14 +83,14 @@ function enrich(h:{
   index,id,unlocked:luckUnlocked(h.StarLevel,index),needStar:LUCK_UNLOCK_STAR[index],
   ...(id?{type:luckSkill(id)?.type,quality:luckSkill(id)?.quality,power:luckSkill(id)?.power}:{}),
  });
- const base=calculateHero(h.HeroId,h.Level,h.StarLevel,false,extra);
+ const base=calculateHero(h.HeroId,h.Level,h.StarLevel,false,extra,powerBonus);
  return {
   ...h,
   Job:h.Job??0,
   JobMap:jobMap,
   LuckSkill1:luck1,
   LuckSkill2:luck2,
-  ...(extra.length?{Power:base.power}:{}),
+  ...(extra.length||powerBonus?{Power:base.power}:{}),
   base,
   skillSlots:skillSlots(h.HeroId,h.Level,h.StarLevel),
   maxLevel:starMaxLevel(h.StarLevel),
@@ -104,14 +104,15 @@ function enrich(h:{
   jobs:tree,
   luck:{slots:[luckSlot(1,luck1),luckSlot(2,luck2)]},
   equipExtra:extra,
+  holyPowerBonus:powerBonus,
  };
 }
 
 async function enrichAll(s:Storage,id:string,heroes:Awaited<ReturnType<typeof getHeroes>>){
  const out=[];
  for(const h of heroes){
-  const extra=equipExtraPairs(await wornItemIds(s,id,h.Sid));
-  out.push(enrich(h,extra));
+  const gear=await heroGear(s,id,h.Sid);
+  out.push(enrich(h,gear.extra,gear.powerBonus));
  }
  return out;
 }
@@ -156,14 +157,14 @@ async function formationBlocked(s:Storage,id:string):Promise<Set<number>>{
 }
 
 async function saveHero(s:Storage,id:string,h:{Sid:number;HeroId:number;Level:number;StarLevel:number;Power:number;Locked:boolean}){
- const extra=equipExtraPairs(await wornItemIds(s,id,h.Sid));
- const base=calculateHero(h.HeroId,h.Level,h.StarLevel,false,extra);
+ const gear=await heroGear(s,id,h.Sid);
+ const base=calculateHero(h.HeroId,h.Level,h.StarLevel,false,gear.extra,gear.powerBonus);
  const state={...h,Attrs:Object.fromEntries(Object.entries(base.attrs).map(([k,v])=>[k,v])),Skills:base.skills,Power:base.power};
  await s.pg.query(
   'UPDATE player_heroes SET level=$3,star=$4,power=$5,state=$6 WHERE account_id=$1 AND sid=$2',
   [id,h.Sid,h.Level,h.StarLevel,base.power,JSON.stringify(state)],
  );
- return enrich({...h,Power:base.power},extra);
+ return enrich({...h,Power:base.power},gear.extra,gear.powerBonus);
 }
 
 export async function heroRoutes(app:FastifyInstance,s:Storage){

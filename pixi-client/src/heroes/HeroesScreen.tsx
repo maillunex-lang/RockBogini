@@ -37,6 +37,7 @@ type Hero={
 const ATTR_LABEL:Record<string,string>={'0':'Атака','1':'ОЗ','2':'Защита','3':'Скорость'};
 const MAT_TYPE:Record<number,string>={1:'тот же герой',2:'связка',3:'та же стихия',4:'любой',5:'только копия'};
 const SLOT_STARTER:Record<number,number>={1:40111,2:40211,3:40311,4:40411};
+const HOLY_STARTER:Record<number,number>={1:41001,2:41002,3:41003,4:41004};
 const SLOT_NAME:Record<number,string>={1:'Оружие',2:'Броня',3:'Шлем',4:'Аксессуар'};
 type EquipSlot={
  slot:number;
@@ -45,12 +46,18 @@ type EquipSlot={
  nextNeed?:number|null;
  ownXp?:number;
 };
+type HolySlot={
+ slot:number;
+ equip:{Sid:number;ItemId:number;Star:number;Level:number;Xp:number;score:number}|null;
+ maxLevel?:number;
+};
 
 export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClose:()=>void}){
  const [formation,setFormation]=useState(false);
  const [heroes,setHeroes]=useState<Hero[]>([]);
  const [selected,setSelected]=useState<number|null>(null);
  const [equipSlots,setEquipSlots]=useState<EquipSlot[]>([]);
+ const [holySlots,setHolySlots]=useState<HolySlot[]>([]);
  const [status,setStatus]=useState('Загрузка…');
  const [busy,setBusy]=useState(false);
 
@@ -58,10 +65,12 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
 
  const loadEquip=async(sid:number)=>{
   try{
-   const r=await fetch(`${api}/v1/heroes/${sid}/equipment`,{headers:{Authorization:'Bearer '+token}});
-   if(!r.ok)return;
-   const j=await r.json();
-   setEquipSlots(j.slots??[]);
+   const [eq,holy]=await Promise.all([
+    fetch(`${api}/v1/heroes/${sid}/equipment`,{headers:{Authorization:'Bearer '+token}}),
+    fetch(`${api}/v1/heroes/${sid}/holy`,{headers:{Authorization:'Bearer '+token}}),
+   ]);
+   if(eq.ok){const j=await eq.json();setEquipSlots(j.slots??[])}
+   if(holy.ok){const j=await holy.json();setHolySlots(j.slots??[])}
   }catch{/* ignore */}
  };
 
@@ -75,9 +84,14 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
  },[api,token]);
 
  useEffect(()=>{
-  if(selected==null){setEquipSlots([]);return}
+  if(selected==null){setEquipSlots([]);setHolySlots([]);return}
   void loadEquip(selected);
  },[api,token,selected]);
+
+ const refreshHeroes=async()=>{
+  const r=await fetch(api+'/v1/heroes',{headers:{Authorization:'Bearer '+token}});
+  if(r.ok){const d=await r.json();applyList(d.heroes)}
+ };
 
  const grow=async(path:string,sid:number,body?:object,label?:string)=>{
   if(busy)return;
@@ -118,10 +132,31 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
    const j=await r.json().catch(()=>({}));
    if(!r.ok)throw Error(j.error||kind+'_'+r.status);
    await loadEquip(selected);
+   await refreshHeroes();
    if(kind==='forge')setStatus(`Ковка → #${j.after?.ItemId} (xp ${j.after?.Xp??0})`);
    else setStatus(kind==='put-on'?'Экипировано':'Снято');
   }catch(e){
    setStatus(e instanceof Error?e.message:'Не удалось изменить экипировку');
+  }finally{setBusy(false)}
+ };
+
+ const holyAct=async(kind:'put-on'|'put-off'|'level-up',body:object,label:string)=>{
+  if(busy||selected==null)return;
+  setBusy(true);setStatus(label);
+  try{
+   const r=await fetch(`${api}/v1/holy/${kind}`,{
+    method:'POST',
+    headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},
+    body:JSON.stringify(body),
+   });
+   const j=await r.json().catch(()=>({}));
+   if(!r.ok)throw Error(j.error||kind+'_'+r.status);
+   await loadEquip(selected);
+   await refreshHeroes();
+   if(kind==='level-up')setStatus(`Священное → ур.${j.after?.Level} (xp ${j.after?.Xp??0})`);
+   else setStatus(kind==='put-on'?'Священное надето':'Священное снято');
+  }catch(e){
+   setStatus(e instanceof Error?e.message:'Не удалось изменить священную экипировку');
   }finally{setBusy(false)}
  };
 
@@ -208,6 +243,31 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
         </>
        ):(
         <button type="button" disabled={busy} onClick={()=>void equipAct('put-on',{itemId:starter,ownerId:h.Sid},'Надевание…')}>
+         Надеть #{starter}
+        </button>
+       )}
+      </li>;
+     })}
+    </ul>
+   </div>
+   <div className="hero-equip hero-holy">
+    <h3>Священная экипировка</h3>
+    <ul>
+     {[1,2,3,4].map(slot=>{
+      const info=holySlots.find(s=>s.slot===slot);
+      const worn=info?.equip??null;
+      const starter=HOLY_STARTER[slot];
+      return <li key={slot}>
+       <span>{SLOT_NAME[slot]}: {worn?`#${worn.ItemId} ★${worn.Star} ур.${worn.Level} · ${worn.score}`:'пусто'}</span>
+       {worn?(
+        <>
+         <button type="button" disabled={busy||(worn.Level>=(info?.maxLevel??0))} onClick={()=>void holyAct('level-up',{sid:worn.Sid,counts:[1,0,0,0]},'Усиление…')}>
+          +ур (101×1)
+         </button>
+         <button type="button" disabled={busy} onClick={()=>void holyAct('put-off',{sid:worn.Sid},'Снятие…')}>Снять</button>
+        </>
+       ):(
+        <button type="button" disabled={busy} onClick={()=>void holyAct('put-on',{itemId:starter,ownerId:h.Sid},'Надевание…')}>
          Надеть #{starter}
         </button>
        )}

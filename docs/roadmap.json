@@ -146,9 +146,9 @@
   "id": "NEXT-017",
   "title": "Экипировка",
   "phase": "IV. RPG и экономика",
-  "scope": "Слоты, улучшение, комплекты, параметры",
-  "status": "pending",
-  "evidence": ""
+  "scope": "017.4 holy MVP put-on/off/level+suit. Star/blessing open.",
+  "status": "in_progress",
+  "evidence": "reports/NEXT-017.4.md; reports/NEXT-017.3.md"
  },
  {
   "id": "NEXT-018",
