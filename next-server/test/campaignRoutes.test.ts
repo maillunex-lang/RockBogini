@@ -18,6 +18,7 @@ import {
 } from '../src/campaignChapters.js';
 import {mapWorldName} from '../src/campaignLocales.js';
 import {guideLinesForMap,storyChapters,campaignStoryStats,guideGroups,playableTutorial,dialogLinesForGroup} from '../src/campaignStory.js';
+import {isBossMap,mapMeta,moduleName,mapMetaStats} from '../src/campaignMapMeta.js';
 
 test('main-line chain reaches terminal 105701 with next 0',()=>{
  const chain=mainLineChain();
@@ -104,6 +105,16 @@ test('GuideGroup sequences resolve NPC dialog steps in order',()=>{
  assert.equal(afterPlot?.hasDialog,true);
 });
 
+test('MapAdventure Type=2 marks boss stages; meta has stage labels and enemies',()=>{
+ assert.equal(isBossMap(100105),true);
+ assert.equal(isBossMap(100101),false);
+ assert.equal(mapMeta(100105)?.label,'1-5');
+ assert.ok((mapMeta(100105)?.enemies.length??0)>=1);
+ assert.ok(mapMetaStats().bosses>=400);
+ assert.ok(moduleName(1).length>0);
+ assert.ok((campaignChapters.chapters[0].heros?.length??0)>=1);
+});
+
 test('authenticated campaign progress lists chapters and terminal stage',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);const guest=await createGuest(s);const app=await buildApp(s);
  const headers={authorization:'Bearer '+guest.token};
@@ -121,6 +132,13 @@ test('authenticated campaign progress lists chapters and terminal stage',{skip:!
   assert.equal(body.worlds[0].name,'Town of Porte');
   assert.equal(body.worlds[0].status,'current');
   assert.equal(body.campaignComplete,false);
+  assert.equal(body.maps[0].stageLabel,'1-1');
+  assert.equal(body.maps[0].boss,false);
+  const boss=body.maps.find((m:{id:number})=>m.id===100105);
+  assert.ok(boss);
+  assert.equal(boss.boss,true);
+  assert.equal(boss.stageLabel,'1-5');
+  assert.ok(boss.enemies.length>=1);
   assert.ok(body.tutorial);
   // Non-dialog groups auto-advance; pending should be a dialog group or null.
   if(body.tutorial.pending){

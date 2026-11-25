@@ -1,7 +1,9 @@
 import {useEffect,useMemo,useState} from 'react';
 import {StoryDialog,type StoryLine} from './StoryDialog';
+import {itemDisplayName} from '../shared/itemNames';
 import './campaign.css';
 
+export type EnemyPreview={heroId?:number;model?:string;level?:number;star?:number;station?:number};
 export type CampaignMap={
  id:number;
  level:number;
@@ -13,6 +15,15 @@ export type CampaignMap={
  terminal?:boolean;
  hasGuide?:boolean;
  guide?:StoryLine[];
+ boss?:boolean;
+ mapType?:number;
+ stageLabel?:string;
+ stageIndex?:number|null;
+ stageCount?:number|null;
+ enemyCount?:number;
+ enemies?:EnemyPreview[];
+ bg?:string;
+ maxRounds?:number|null;
 };
 export type CampaignChapter={
  id:number;
@@ -56,8 +67,11 @@ export type CampaignProgress={
  chapters:CampaignChapter[];
  maps:CampaignMap[];
  worlds:CampaignWorld[];
+ campaignComplete?:boolean;
  story?:{stats:Record<string,number>;chapters:StoryChapterCard[]};
  tutorial?:{completedGroupIds:number[];groupCount:number;pending:TutorialPending|null};
+ focusChapterHeros?:number[][];
+ mapMetaStats?:{maps:number;bosses:number;modules:number};
 };
 
 type ViewMode='worlds'|'chapters'|'story';
@@ -77,6 +91,7 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
  const [pendingFight,setPendingFight]=useState<{mapId:number;lines:StoryLine[];title:string}|null>(null);
  const [storyOpen,setStoryOpen]=useState<StoryChapterCard|null>(null);
  const [tutorial,setTutorial]=useState<TutorialPending|null>(null);
+ const [preview,setPreview]=useState<CampaignMap|null>(null);
  const loadCampaign=(focus?:number|null)=>{
   const q=focus?`?chapterId=${focus}`:'';
   return fetch(api+'/v1/campaign'+q,{headers:{Authorization:'Bearer '+token}})
@@ -111,6 +126,16 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
   await loadCampaign(chapterId);
  };
 
+ const skipAllTutorial=async()=>{
+  let guard=0;
+  while(guard++<30){
+   const d=await loadCampaign(chapterId);
+   const pending=d.tutorial?.pending;
+   if(!pending)break;
+   await completeTutorial(pending.groupId);
+  }
+ };
+
  const focus=data?.chapters.find(c=>c.id===data.focusChapterId);
  const sheetWorlds=useMemo(()=>{
   if(!data)return [];
@@ -143,19 +168,19 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
 
  const challenge=(m:CampaignMap)=>{
   if(!m.canChallenge)return;
+  setPreview(m);
   const lines=m.guide??[];
   if(lines.length){
-   setPendingFight({mapId:m.id,lines,title:`Этап ${m.id}`});
-   return;
+   setPendingFight({mapId:m.id,lines,title:`${m.boss?'Босс ':''}${m.stageLabel??m.id}`});
   }
-  onFight(m.id);
  };
 
  return <main className="campaign-screen">
   <header>
    <div>
     <h1>Кампания</h1>
-    {data&&<p>Прогресс: этап {data.stage} · уровень {data.level}{data.story?.stats?.mapGuides!=null?` · сюжетов карт ${data.story.stats.mapGuides}`:''}</p>}
+    {data&&<p>Прогресс: этап {data.stage} · уровень {data.level}{data.mapMetaStats?` · боссов в данных ${data.mapMetaStats.bosses}`:''}</p>}
+    {data?.campaignComplete&&<p className="campaign-complete-banner">MainLine завершён — все этапы пройдены.</p>}
    </div>
    <div className="campaign-header-actions">
     <div className="campaign-view-toggle" role="group" aria-label="Вид кампании">
@@ -163,6 +188,7 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
      <button type="button" aria-pressed={view==='chapters'} onClick={()=>setView('chapters')}>Главы</button>
      <button type="button" aria-pressed={view==='story'} onClick={()=>setView('story')}>Сюжет</button>
     </div>
+    {data?.tutorial?.pending&&<button type="button" onClick={()=>void skipAllTutorial().catch(e=>setStatus(String(e)))}>Пропустить обучение</button>}
     <button type="button" onClick={onClose}>Вернуться в город</button>
    </div>
   </header>
@@ -207,20 +233,30 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
      </button>;
     })}
    </nav>
+   {!!data.focusChapterHeros?.length&&<p className="campaign-chapter-heros">Герои главы (конфиг): {data.focusChapterHeros.map(h=>h[0]).join(', ')}</p>}
    <section className="campaign-maps" aria-label={focus?.name??'Этапы'}>
     <h2>{focus?.name??'Этапы'}{focus?.worldId?` · ${data.worlds.find(w=>w.id===focus.worldId)?.name??''}`:''}</h2>
     <div className="campaign-map-grid">
-     {data.maps.map(m=><button key={m.id} type="button" data-status={m.status} disabled={!m.canChallenge} onClick={()=>challenge(m)}>
-      <strong>{m.terminal?'Финал · ':''}{m.id}{m.hasGuide?' · сюжет':''}</strong>
-      <span>Ур. {m.level}</span>
+     {data.maps.map(m=><button key={m.id} type="button" data-status={m.status} data-boss={m.boss?'1':'0'} disabled={!m.canChallenge} onClick={()=>challenge(m)}>
+      <strong>{m.boss?'Босс · ':''}{m.stageLabel??m.id}{m.terminal?' · финал':''}</strong>
+      <span>Ур. {m.level}{m.enemyCount?` · врагов ${m.enemyCount}`:''}</span>
       <span>{m.status==='cleared'?'Пройден':m.status==='available'?(m.levelLocked?'Нужен уровень':'Бой'):'Закрыт'}</span>
      </button>)}
     </div>
    </section>
+   {preview&&preview.canChallenge&&!pendingFight&&<aside className="campaign-preview" aria-label="Превью этапа">
+    <h3>{preview.boss?'Босс ':''}{preview.stageLabel??preview.id}</h3>
+    <p>Фон {preview.bg??'—'} · раундов {preview.maxRounds??'—'}</p>
+    <h4>Враги</h4>
+    <ul>{(preview.enemies??[]).map((e,i)=><li key={i}>{e.model??e.heroId} · ур.{e.level} ★{e.star}</li>)}</ul>
+    <h4>Награды</h4>
+    <ul>{(preview.rewards??[]).map(([id,n])=><li key={id}>{itemDisplayName(id)} ×{n}</li>)}</ul>
+    <button type="button" onClick={()=>onFight(preview.id)}>В бой</button>
+   </aside>}
   </>}
   {data&&view==='story'&&<section className="campaign-story-list" aria-label="Сюжетные главы">
    <h2>Сюжетные главы</h2>
-   <p className="campaign-story-note">Тексты из оригинальных ключей StoryChapter_* (локаль). RU для заголовков событий пока не переведён — показываем доступный текст пака.</p>
+   <p className="campaign-story-note">Тексты StoryChapter_* из оригинальной локали.</p>
    <div className="campaign-story-grid">
     {(data.story?.chapters??[]).map(c=><button key={c.id} type="button" onClick={()=>setStoryOpen(c)}>
      <strong>{c.title||`История ${c.id}`}</strong>
@@ -229,7 +265,7 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
    </div>
   </section>}
   {tutorial&&!pendingFight&&!storyOpen&&<StoryDialog
-   title={`Обучение · группа ${tutorial.groupId}`}
+   title={`Обучение · группа ${tutorial.groupId}${tutorial.fingerSteps?` · подсказок ${tutorial.fingerSteps}`:''}`}
    lines={tutorial.lines}
    onSkip={()=>{void completeTutorial(tutorial.groupId).catch(e=>setStatus(String(e)))}}
    onContinue={()=>{void completeTutorial(tutorial.groupId).catch(e=>setStatus(String(e)))}}
@@ -237,8 +273,8 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
   {pendingFight&&<StoryDialog
    title={pendingFight.title}
    lines={pendingFight.lines}
-   onSkip={()=>{const id=pendingFight.mapId;setPendingFight(null);onFight(id)}}
-   onContinue={()=>{const id=pendingFight.mapId;setPendingFight(null);onFight(id)}}
+   onSkip={()=>setPendingFight(null)}
+   onContinue={()=>setPendingFight(null)}
   />}
   {storyOpen&&<StoryDialog
    title={storyOpen.title||`История ${storyOpen.id}`}

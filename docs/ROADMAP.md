@@ -4,10 +4,10 @@ VPS is the development stand; GitHub main is the published source mirror. **SING
 
 ## Актуальный срез: 2026-11-25
 
-Активная задача: **NEXT-014.4**. NEXT-013 закрыт (D-011). Передача Cursor: docs/CURSOR_HANDOFF.md.
+Активная задача: **NEXT-014** (014.5–014.14 закрыты). NEXT-013 закрыт (D-011). Передача Cursor: docs/CURSOR_HANDOFF.md.
 10 из 28 основных этапов закрыты, 4 в работе, 1 отложен, 13 ожидают. (авто из roadmap.json)
 NEXT-012 принят только в проверенном эталонном объёме для подключения визуализации; общий статус остаётся in_progress.
-Проверено: эталонный бой + 77/77 серверных тестов после кампанийного API.
+Проверено: эталонный бой + 84/84 серверных тестов после 014.5–14.
 
 | Подэтап | Состояние |
 |---|---|
@@ -15,7 +15,8 @@ NEXT-012 принят только в проверенном эталонном 
 | 014.1 | done: chapters export, GET /v1/campaign, CampaignScreen |
 | 014.2 | done: MapWorld карта + locale names |
 | 014.3 | done: guide/story lines + StoryDialog |
-| 014.4 | АКТИВНО/partial: GuideGroup sequencing; boss/WinBoard open |
+| 014.4 | done: GuideGroup tutorial sequencing |
+| 014.5–014.14 | done: boss/preview/modules/WinBoard/complete/heros/labels/skip/UI |
 
 
 | ID | Этап | Статус | Объём | Доказательство |
@@ -33,7 +34,7 @@ NEXT-012 принят только в проверенном эталонном 
 | NEXT-011 | Формирование отряда | done | Формирование и сохранение стартового отряда; стартовый объём принят. | reports/NEXT-011-server-test.log; reports/NEXT-011-server-deploy.log; reports/NEXT-011-ui-browser.log; reports/NEXT-011-ui-publish.log; reports/NEXT-011-units-test.log; reports/NEXT-011-complete-test.log |
 | NEXT-012 | Пошаговый боевой движок | in_progress | Эталонное боевое ядро принято для визуальной интеграции: 681/681 боёв, 75/75 тестов. Полная коммерческая идентичность, дополнительные модификаторы и некампанийные режимы не подтверждены. | reports/NEXT-012.31.5-acceptance.json; reports/NEXT-012.31.5.1-metadata-*.json; reports/NEXT-012.31.5.1-tests.log |
 | NEXT-013 | Визуализация боя | done | Закрыт по D-011 (визуальная приёмка владельцем). Технические остатки 013.8 известны. | reports/NEXT-013.*; D-011 |
-| NEXT-014 | Сюжетная кампания | in_progress | 014.2 partial: MapWorld UI + MapWorld_name_* locales; 014.1 chapters API/UI закрыт. Обучение/сюжет/WinBoard/RU place names open. | reports/NEXT-014.1-* |
+| NEXT-014 | Сюжетная кампания | in_progress | 014.1–014.14: chapters, MapWorld, guides, GuideGroup, bosses Type=2, preview, modules, WinBoard, complete, heros, stage labels, tutorial skip. Finger-hint overlays / plot video / full RU story titles open. | reports/NEXT-014.5-14-*; reports/NEXT-014.4-* |
 | NEXT-015 | Инвентарь и предметы | pending | Валюты, материалы, осколки, расходники |  |
 | NEXT-016 | Развитие героев | pending | Уровни, звёзды, ранги, таланты, навыки, пробуждение, сброс |  |
 | NEXT-017 | Экипировка | pending | Слоты, улучшение, комплекты, параметры |  |
@@ -283,3 +284,5 @@ NEXT-013.5.1 partial: per-actor HP bars, buff count, damage/heal/crit colors, ev
 2026-11-25 NEXT-014.3: map guide RU lines + StoryChapter tab + StoryDialog; 82/82 tests; publish. reports/NEXT-014.3-*.
 
 2026-11-25 NEXT-014.4: GuideGroup tutorial sequencing + player_guide_groups; 83/83 tests; publish. reports/NEXT-014.4-*.
+
+2026-11-25 NEXT-014.5–014.14: boss Type=2, enemy/reward preview, modules, WinBoard, campaignComplete, chapter heros, stage labels, tutorial skip, item names; 84/84 tests; publish. reports/NEXT-014.5-14-*.

@@ -122,9 +122,9 @@
   "id": "NEXT-014",
   "title": "Сюжетная кампания",
   "phase": "III. Боевое ядро",
-  "scope": "014.4 partial: GuideGroup tutorial sequencing; boss/WinBoard open.",
+  "scope": "014.1–014.14 delivered (chapters, MapWorld, guides, GuideGroup, bosses, preview, modules, WinBoard, complete, heros, labels, skip). Finger-hint overlays / plot video / full RU story titles open.",
   "status": "in_progress",
-  "evidence": "reports/NEXT-014.4-*; reports/NEXT-014.3-*; reports/NEXT-014.2-*; reports/NEXT-014.1-*"
+  "evidence": "reports/NEXT-014.5-14-*; reports/NEXT-014.4-*; reports/NEXT-014.3-*; reports/NEXT-014.2-*; reports/NEXT-014.1-*"
  },
  {
   "id": "NEXT-015",

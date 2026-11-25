@@ -1,15 +1,8 @@
 import type {BattleReport,Settlement} from './reportClient';
 import {heroDisplayName} from '../shared/heroNames';
-
-const ITEM_RU:Record<number,string>={
- 1:'Золото',
- 2:'Очки VIP',
- 3:'Алмазы',
- 4:'Цветные алмазы',
- 5:'Опыт',
- 7:'Энергия',
- 22:'Вода опыта',
-};
+import {itemDisplayName} from '../shared/itemNames';
+import {moduleDisplayName} from '../shared/moduleNames';
+import './resultScreen.css';
 
 export type HeroBattleStat={
  id:number;
@@ -21,29 +14,32 @@ export type HeroBattleStat={
  statCure?:number;
 };
 
-function itemLabel(id:number){
- return ITEM_RU[id]??('Предмет '+id);
-}
-
 export function ResultScreen({report,settlement,onContinue}:{report:BattleReport;settlement:Settlement;onContinue:()=>void}){
  const win=settlement.result===1;
  const heroes=(report.heroes as HeroBattleStat[]).slice().sort((a,b)=>(b.statDamage??0)-(a.statDamage??0));
- return <section style={{marginTop:16,padding:16,borderRadius:12,background:win?'linear-gradient(160deg,#1d3b2a,#20243a)':'linear-gradient(160deg,#3b1d22,#20243a)',color:'#fff'}} aria-label={win?'Победа':'Поражение'}>
-  <h2 style={{margin:'0 0 8px',fontSize:28}}>{win?'Победа':'Поражение'}</h2>
-  <p style={{margin:'0 0 12px',opacity:.9}}>Этап {settlement.mapId??report.mapId} · Раундов {report.summary.rounds}{settlement.level?` · Уровень ${settlement.level}`:''}</p>
-  <p style={{margin:'0 0 12px',opacity:.7,fontSize:13}}>Оригинальный WinBoard UI — отдельная задача (AUDIT-014 residual): требуется восстановление prefab/атласа SettlementWinPanel.</p>
-  <h3 style={{margin:'12px 0 8px',fontSize:18}}>Награды</h3>
+ const complete=!!settlement.campaignComplete;
+ return <section className={'result-screen'+(win?' is-win':' is-lose')+(complete?' is-complete':'')} aria-label={win?'Победа':'Поражение'}>
+  {win&&<div className="result-winboard" role="img" aria-label="WinBoard" style={{backgroundImage:`linear-gradient(180deg,rgba(8,6,4,.15),rgba(8,6,4,.55)),url(${import.meta.env.BASE_URL}battle-hud/settlement-winboard.webp)`}}/>}
+  <h2>{complete?'Кампания пройдена':win?'Победа':'Поражение'}</h2>
+  <p className="result-meta">Этап {settlement.mapId??report.mapId} · Раундов {report.summary.rounds}{settlement.level?` · Уровень ${settlement.level}`:''}</p>
+  {complete&&<p className="result-complete">Финальный этап зачищен. Дальнейший прогресс MainLine завершён.</p>}
+  <h3>Награды</h3>
   {settlement.rewards.length===0
-   ? <p style={{opacity:.8}}>{win?'Награды уже получены или отсутствуют':'Наград нет'}</p>
-   : <ul style={{listStyle:'none',padding:0,margin:0,display:'grid',gap:6}}>{settlement.rewards.map(([id,n])=><li key={id+':'+n} style={{display:'flex',justifyContent:'space-between',background:'rgba(0,0,0,.25)',padding:'8px 12px',borderRadius:8}}><span>{itemLabel(id)}</span><strong>×{n}</strong></li>)}</ul>}
-  {!!settlement.unlockedModules?.length&&<p style={{marginTop:12}}>Открыто функций: {settlement.unlockedModules.map(id=>'модуль '+id).join(', ')}</p>}
-  <h3 style={{margin:'16px 0 8px',fontSize:18}}>Статистика отряда</h3>
-  <div style={{overflowX:'auto'}}>
-   <table style={{width:'100%',borderCollapse:'collapse',fontSize:14}}>
+   ? <p className="result-empty">{win?'Награды уже получены или отсутствуют':'Наград нет'}</p>
+   : <ul className="result-rewards">{settlement.rewards.map(([id,n])=><li key={id+':'+n}><span>{itemDisplayName(id)}</span><strong>×{n}</strong></li>)}</ul>}
+  {!!settlement.unlockedModules?.length&&(
+   <div className="result-modules">
+    <h3>Открыто</h3>
+    <ul>{settlement.unlockedModules.map(id=><li key={id}>{moduleDisplayName(id)}</li>)}</ul>
+   </div>
+  )}
+  <h3>Статистика отряда</h3>
+  <div className="result-stats-wrap">
+   <table>
     <thead><tr><th align="left">Герой</th><th align="right">Урон</th><th align="right">Получено</th><th align="right">Лечение</th></tr></thead>
     <tbody>{heroes.filter(h=>h.camp===1).map(h=><tr key={h.id}><td>{heroDisplayName(h.heroId)}</td><td align="right">{h.statDamage??0}</td><td align="right">{h.statHurt??0}</td><td align="right">{h.statCure??0}</td></tr>)}</tbody>
    </table>
   </div>
-  <button type="button" style={{marginTop:16,padding:'10px 16px'}} onClick={onContinue}>Продолжить</button>
- </section>
+  <button type="button" className="result-continue" onClick={onContinue}>Продолжить</button>
+ </section>;
 }

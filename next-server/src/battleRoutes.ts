@@ -10,6 +10,8 @@ import {battleRandom} from './battle/random.js';
 import {readFileSync} from 'node:fs';
 import {settleIdle,refreshModules} from './campaignDependencies.js';
 import {playerLevels} from './playerLevels.js';
+import {campaignComplete} from './campaignChapters.js';
+import {mapMeta} from './campaignMapMeta.js';
 const rewards=JSON.parse(readFileSync(new URL('../../data/campaign-rewards.json',import.meta.url),'utf8')) as Record<string,{level:number;next:number;rewards:number[][]}>;
 import {randomInt,randomUUID} from 'node:crypto';
 export async function battleRoutes(app:FastifyInstance,s:Storage){
@@ -57,7 +59,21 @@ export async function battleRoutes(app:FastifyInstance,s:Storage){
  stage=cfg.next>0?cfg.next:stage;await c.query('UPDATE player_profiles SET stage=$2,level=$3 WHERE account_id=$1',[id,stage,level]);
  }}
  const unlockedModules=win?await refreshModules(c,id,level,stage):[];
- const result={unlockedModules,battleId:b.id,mapId:b.map_id,result:win?1:0,rewards:granted,playerLevel:profile.level,level,stage};
+ const clearIds=(await c.query('SELECT map_id FROM campaign_clears WHERE account_id=$1',[id])).rows.map((r:{map_id:number})=>r.map_id);
+ const meta=mapMeta(b.map_id);
+ const result={
+  unlockedModules,
+  battleId:b.id,
+  mapId:b.map_id,
+  result:win?1:0,
+  rewards:granted,
+  playerLevel:profile.level,
+  level,
+  stage,
+  boss:!!meta?.boss,
+  stageLabel:meta?.label??String(b.map_id),
+  campaignComplete:campaignComplete(stage,new Set(clearIds)),
+ };
  await c.query("UPDATE campaign_battles SET settlement=$2,report=jsonb_build_object('archived',true) WHERE id=$1",[b.id,JSON.stringify(result)]);await c.query('DELETE FROM campaign_pending WHERE account_id=$1',[id]);await c.query('COMMIT');return result;
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
  });
