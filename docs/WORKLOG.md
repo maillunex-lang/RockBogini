@@ -351,3 +351,5 @@ NEXT-012.24: reference source confirms start effects 301/372/403/414/505/506/615
 NEXT-012.25 partial: added animated action hitpoint damage/dodge trace, original split and extra damage classification, fixed effect chance before condition. 72/72 boss damage-event sequences and 372/372 final metrics match, 70/70 tests. Healing/shield/death/buff event ordering, instant pages, API wiring and campaign bosses remain pending; gate closed.
 
 Landing refresh: eight original Spine models in two showcases, rotating burst attacks, decorative particles, offscreen ticker suspension, NEXT-012.25 metrics. TypeScript/Vite and HTTP 200 verified; browser visual QA pending.
+
+Landing: six original UIHeroAvatar Dynamic portraits, touch pan-y and pointer-events none on canvas. Build and HTTP verified; browser/mobile QA pending.

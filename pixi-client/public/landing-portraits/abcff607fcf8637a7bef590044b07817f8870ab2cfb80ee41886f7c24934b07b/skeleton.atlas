@@ -1,0 +1,166 @@
+texture0.png
+size: 2048,804
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Arm_L
+  rotate: true
+  xy: 1413, 335
+  size: 111, 371
+  orig: 111, 371
+  offset: 0, 0
+  index: -1
+Arm_R_B
+  rotate: false
+  xy: 1407, 197
+  size: 184, 163
+  orig: 184, 163
+  offset: 0, 0
+  index: -1
+Arm_R_S
+  rotate: false
+  xy: 1099, 247
+  size: 273, 209
+  orig: 273, 209
+  offset: 0, 0
+  index: -1
+Body
+  rotate: 180
+  xy: 240, 440
+  size: 364, 363
+  orig: 364, 363
+  offset: 0, 0
+  index: -1
+Body02
+  rotate: true
+  xy: 1800, 300
+  size: 221, 246
+  orig: 221, 246
+  offset: 0, 0
+  index: -1
+Breast_L
+  rotate: false
+  xy: 1856, 650
+  size: 130, 153
+  orig: 130, 170
+  offset: 0, 0
+  index: -1
+Breast_R
+  rotate: false
+  xy: 129, 213
+  size: 127, 135
+  orig: 128, 135
+  offset: 0, 0
+  index: -1
+Face
+  rotate: false
+  xy: 544, 708
+  size: 137, 95
+  orig: 137, 95
+  offset: 0, 0
+  index: -1
+Hair01
+  rotate: 270
+  xy: 252, 279
+  size: 199, 213
+  orig: 199, 228
+  offset: 0, 15
+  index: -1
+Hair02
+  rotate: false
+  xy: 2, 91
+  size: 106, 278
+  orig: 106, 278
+  offset: 0, 0
+  index: -1
+Hair03
+  rotate: false
+  xy: 1562, 181
+  size: 92, 159
+  orig: 92, 159
+  offset: 0, 0
+  index: -1
+Hair04
+  rotate: false
+  xy: 583, 484
+  size: 172, 134
+  orig: 172, 134
+  offset: 0, 0
+  index: -1
+Hair05
+  rotate: false
+  xy: 2, 341
+  size: 286, 461
+  orig: 286, 461
+  offset: 0, 0
+  index: -1
+Head
+  rotate: true
+  xy: 905, 286
+  size: 169, 192
+  orig: 169, 192
+  offset: 0, 0
+  index: -1
+Head_Parts
+  rotate: false
+  xy: 1158, 548
+  size: 194, 134
+  orig: 194, 134
+  offset: 0, 0
+  index: -1
+Leg_LB
+  rotate: true
+  xy: 1406, 422
+  size: 177, 422
+  orig: 185, 422
+  offset: 0, 0
+  index: -1
+Leg_LS
+  rotate: true
+  xy: 1376, 574
+  size: 153, 670
+  orig: 153, 670
+  offset: 0, 0
+  index: -1
+Leg_RB
+  rotate: 270
+  xy: 511, 317
+  size: 226, 393
+  orig: 226, 400
+  offset: 0, 4
+  index: -1
+Leg_RS
+  rotate: true
+  xy: 821, 416
+  size: 202, 588
+  orig: 202, 588
+  offset: 0, 0
+  index: -1
+Neck_Parts
+  rotate: false
+  xy: 2, 715
+  size: 116, 88
+  orig: 116, 88
+  offset: 0, 0
+  index: -1
+weapon
+  rotate: true
+  xy: 527, 540
+  size: 264, 1290
+  orig: 272, 1290
+  offset: 8, 0
+  index: -1
+weapon_Parts
+  rotate: 180
+  xy: 401, 92
+  size: 1011, 312
+  orig: 1011, 312
+  offset: 0, 0
+  index: -1
+weapon_Parts2
+  rotate: 180
+  xy: 927, 4
+  size: 939, 337
+  orig: 939, 337
+  offset: 0, 0
+  index: -1
