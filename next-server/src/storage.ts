@@ -82,6 +82,15 @@ export async function migrate(s:Storage){
   PRIMARY KEY(account_id,summon_type)
  )`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(16) ON CONFLICT DO NOTHING');
+ await c.query(`CREATE TABLE IF NOT EXISTS player_displace(
+  account_id uuid PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,
+  sid integer NOT NULL,
+  old_hero_id integer NOT NULL,
+  new_hero_id integer NOT NULL,
+  prophet_type integer NOT NULL,
+  created_at timestamptz NOT NULL DEFAULT now()
+ )`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(17) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }

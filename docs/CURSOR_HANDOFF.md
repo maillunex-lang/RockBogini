@@ -6,14 +6,14 @@
 Только `/home/gamedev/rocbogini/`. Live: https://rikagro.ru/testtest/.
 
 ## Сейчас
-**NEXT-014.15** finger-hint + plot video done. Далее displace / activity или усиление гайда.
+**NEXT-018.5** element displace done. Далее personality / activity или idle.
 
 ## Сделано
 - 014.1–014.15 campaign + finger/plot
 - 015.* inventory · 016.* hero growth
 - 017.1–017.8 equipment + holy full slice
-- 018.1–018.4 normal + senior + oracle + crystal
+- 018.1–018.5 normal + senior + oracle + crystal + element displace
 
 ## Далее
-- NEXT-018.5+ displace / activity event summons
-- Richer finger targets (formation slots, hang-up panels)
+- Personality displace / activity event summons
+- Idle / economy (019) or richer finger targets

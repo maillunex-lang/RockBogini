@@ -156,15 +156,29 @@ async function formationBlocked(s:Storage,id:string):Promise<Set<number>>{
  return new Set<number>((row?.hero_ids??[]).filter((x:number)=>x>0));
 }
 
-async function saveHero(s:Storage,id:string,h:{Sid:number;HeroId:number;Level:number;StarLevel:number;Power:number;Locked:boolean}){
+export async function saveHero(s:Storage,id:string,h:{Sid:number;HeroId:number;Level:number;StarLevel:number;Power:number;Locked:boolean}&Record<string,unknown>){
  const gear=await heroGear(s,id,h.Sid);
  const base=calculateHero(h.HeroId,h.Level,h.StarLevel,false,gear.extra,gear.powerBonus);
- const state={...h,Attrs:Object.fromEntries(Object.entries(base.attrs).map(([k,v])=>[k,v])),Skills:base.skills,Power:base.power};
+ const state={
+  ...h,
+  SkinId:0,
+  Attrs:Object.fromEntries(Object.entries(base.attrs).map(([k,v])=>[k,v])),
+  Skills:base.skills,
+  Power:base.power,
+ };
  await s.pg.query(
-  'UPDATE player_heroes SET level=$3,star=$4,power=$5,state=$6 WHERE account_id=$1 AND sid=$2',
-  [id,h.Sid,h.Level,h.StarLevel,base.power,JSON.stringify(state)],
+  'UPDATE player_heroes SET hero_id=$3,level=$4,star=$5,power=$6,state=$7 WHERE account_id=$1 AND sid=$2',
+  [id,h.Sid,h.HeroId,h.Level,h.StarLevel,base.power,JSON.stringify(state)],
  );
  return enrich({...h,Power:base.power},gear.extra,gear.powerBonus);
+}
+
+export async function loadHeroRow(s:Storage,id:string,sid:number){
+ return loadHero(s,id,sid);
+}
+
+export async function formationBlockedSids(s:Storage,id:string){
+ return formationBlocked(s,id);
 }
 
 export async function heroRoutes(app:FastifyInstance,s:Storage){

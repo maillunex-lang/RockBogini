@@ -72,6 +72,11 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
  const [equipSlots,setEquipSlots]=useState<EquipSlot[]>([]);
  const [holySlots,setHolySlots]=useState<HolySlot[]>([]);
  const [gallery,setGallery]=useState<GalleryInfo|null>(null);
+ const [displace,setDisplace]=useState<{
+  eligible:boolean;reason?:string;cost?:{itemId:number;amount:number};
+  currency?:{itemId:number;amount:number};
+  pending?:{sid:number;oldHeroId:number;newHeroId:number}|null;
+ }|null>(null);
  const [status,setStatus]=useState('Загрузка…');
  const [busy,setBusy]=useState(false);
 
@@ -105,10 +110,54 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
   return()=>c.abort();
  },[api,token]);
 
+ const loadDisplace=async(sid:number)=>{
+  try{
+   const r=await fetch(`${api}/v1/heroes/${sid}/displace`,{headers:{Authorization:'Bearer '+token}});
+   if(r.ok)setDisplace(await r.json());
+   else setDisplace(null);
+  }catch{setDisplace(null)}
+ };
+
  useEffect(()=>{
-  if(selected==null){setEquipSlots([]);setHolySlots([]);return}
+  if(selected==null){setEquipSlots([]);setHolySlots([]);setDisplace(null);return}
   void loadEquip(selected);
+  void loadDisplace(selected);
  },[api,token,selected]);
+
+ const runDisplace=async(kind:'roll'|'save'|'cancel')=>{
+  if(busy||selected==null)return;
+  setBusy(true);
+  setStatus(kind==='roll'?'Замена стихии…':kind==='save'?'Сохранение…':'Отмена…');
+  try{
+   const url=kind==='roll'
+    ?`${api}/v1/heroes/${selected}/displace`
+    :`${api}/v1/heroes/${selected}/displace/${kind}`;
+   const body=kind==='save'&&displace?.pending
+    ?JSON.stringify({newHeroId:displace.pending.newHeroId})
+    :undefined;
+   const r=await fetch(url,{
+    method:'POST',
+    headers:{Authorization:'Bearer '+token,...(body?{'Content-Type':'application/json'}:{})},
+    body,
+   });
+   const j=await r.json().catch(()=>({}));
+   if(!r.ok)throw Error(j.error||j.reason||`displace_${r.status}`);
+   if(kind==='save'&&j.hero){
+    setHeroes(prev=>prev.map(h=>h.Sid===j.hero.Sid?{...h,...j.hero}:h));
+    setStatus(`Замена: ${heroDisplayName(j.hero.HeroId)} · мощь ${j.hero.Power}`);
+   }else if(kind==='roll'){
+    setStatus(`Вариант: ${heroDisplayName(j.pending.newHeroId)} (сохраните или отмените)`);
+   }else{
+    setStatus('Замена отменена (валюта не возвращена)');
+   }
+   // refresh list + displace state
+   const list=await fetch(`${api}/v1/heroes`,{headers:{Authorization:'Bearer '+token}});
+   if(list.ok){const body=await list.json();applyList(body.heroes??[])}
+   await loadDisplace(selected);
+  }catch(e){
+   setStatus(e instanceof Error?e.message:'Не удалось заменить героя');
+  }finally{setBusy(false)}
+ };
 
  const refreshHeroes=async()=>{
   const r=await fetch(api+'/v1/heroes',{headers:{Authorization:'Bearer '+token}});
@@ -229,6 +278,26 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
      Сброс PVE
     </button>
    </div>
+   {(displace?.eligible||displace?.pending)&&(
+    <div className="hero-displace" data-guide="hero-displace">
+     <h3>Замена стихии</h3>
+     <p>
+      Валюта #{displace.currency?.itemId??14002}: {displace.currency?.amount??'—'}
+      {displace.cost?` · стоимость ${displace.cost.amount}`:''}
+     </p>
+     {displace.pending?(
+      <>
+       <p>{heroDisplayName(displace.pending.oldHeroId)} → {heroDisplayName(displace.pending.newHeroId)}</p>
+       <button type="button" disabled={busy} onClick={()=>void runDisplace('save')}>Сохранить</button>
+       <button type="button" disabled={busy} onClick={()=>void runDisplace('cancel')}>Отменить</button>
+      </>
+     ):(
+      <button type="button" disabled={busy||!displace.eligible} onClick={()=>void runDisplace('roll')}>
+       Случайная замена{displace.cost?` (${displace.cost.amount}×${displace.cost.itemId})`:''}
+      </button>
+     )}
+    </div>
+   )}
    {!h.talent?.pveUnlocked&&<p className="hero-star-req">Таланты открываются с ★{10}+ (сейчас ★{h.StarLevel}).</p>}
    {h.starPreview?.needsFodder&&h.starPreview.heroMaterials.length>0&&(
     <p className="hero-star-req">Для ★{h.starPreview.nextStar}: {h.starPreview.heroMaterials.map(([t,st,n])=>`${n}× ${MAT_TYPE[t]??t} ★${st}`).join('; ')}</p>
