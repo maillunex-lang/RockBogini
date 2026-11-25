@@ -71,13 +71,15 @@ function weightedPick(rows:number[][],rng:()=>number):[number,number]|null{
 
 type Model={libCount:Record<string,number>;libStatus:Record<string,number>;freeCount:number;todayCount:number;totalCount:number};
 
-/** One pull using Cards.Pull semantics (OnceLibs + pity + optional element filter). */
+/** One pull using Cards.Pull semantics (OnceLibs + pity + optional element / exclude). */
 export function pullOnce(
  typeCfg:TypeCfg,
  model:Model,
  rng:()=>number=Math.random,
  element=0,
+ exclude:readonly number[]=[],
 ):{item:[number,number]|null;model:Model}{
+ const ban=new Set(exclude);
  const slots=typeCfg.libs.map(row=>({order:row[0]??0,ids:row.slice(1)})).filter(s=>s.ids.length>0);
  const candidates:{order:number;libId:number;cfg:LibCfg}[]=[];
  for(const slot of slots){
@@ -86,6 +88,8 @@ export function pullOnce(
    if(!cfg)return false;
    if(element>0&&cfg.elementType!==element)return false;
    if(typeCfg.onceLibs.includes(slot.order)&&(model.libStatus[String(id)]??0)>0)return false;
+   // keep lib if at least one non-excluded row remains
+   if(ban.size&&!cfg.randomLib.some(row=>row[0]&&!ban.has(row[0]!)))return false;
    return true;
   });
   if(!alive.length)continue;
@@ -108,7 +112,8 @@ export function pullOnce(
  }
  const libStatus={...model.libStatus};
  if(typeCfg.onceLibs.includes(hit.order))libStatus[String(hit.libId)]=1;
- return {item:weightedPick(hit.cfg.randomLib,rng),model:{...model,libCount,libStatus}};
+ const pool=ban.size?hit.cfg.randomLib.filter(row=>row[0]&&!ban.has(row[0]!)):hit.cfg.randomLib;
+ return {item:weightedPick(pool,rng),model:{...model,libCount,libStatus}};
 }
 
 export function pullMany(
@@ -117,17 +122,27 @@ export function pullMany(
  times:number,
  rng:()=>number=Math.random,
  element=0,
+ exclude:readonly number[]=[],
 ):{items:[number,number][];model:Model}{
  const typeCfg=STYPE[String(typeId)];
  if(!typeCfg)return {items:[],model};
  const items:[number,number][]=[];
  let m=model;
  for(let i=0;i<times;i++){
-  const r=pullOnce(typeCfg,m,rng,element);
+  const r=pullOnce(typeCfg,m,rng,element,exclude);
   m=r.model;
   if(r.item)items.push(r.item);
  }
  return {items,model:m};
+}
+
+/** Expose summon type cfg for displace (401/402). */
+export function summonTypeCfg(typeId:number):TypeCfg|undefined{
+ return STYPE[String(typeId)];
+}
+
+export function prophetBanner(id:number):ProphetCfg|undefined{
+ return PROPHET[String(id)];
 }
 
 export function prophetCost(cfg:ProphetCfg,element:number):number{
