@@ -2,7 +2,7 @@ import {lifecycleAlpha,lifecycleDuration} from './lifecycle';
 import {moveDestination,motionSample,timelineIndex} from './motion';
 import {fieldPosition,fieldWidth,fieldHeight,avatarScale} from './fieldLayout';
 import {useEffect,useRef,useState} from 'react';
-import {Application,Text,Assets,Sprite,Container} from 'pixi.js';
+import {Application,Text,Assets,Sprite,Container,Graphics} from 'pixi.js';
 import {Spine} from '@pixi-spine/all-3.8';
 import {acquireSkeleton,type Asset} from '../assets/spineLibrary';
 import {orderedEvents,type BattleReport} from './reportClient';
@@ -12,7 +12,7 @@ type Effects={assets:Record<string,Asset>;models:Record<string,{effects:Record<s
 type Model={assetId:string;name:string;texture:string;animations:string[]};
 const json=async<T,>(path:string):Promise<T>=>{const r=await fetch(path);if(!r.ok)throw Error(path+' '+r.status);return r.json()};
 export function ReportScene({report,cursor,onReady}:{report:BattleReport;cursor:number;onReady:(ready:boolean)=>void}){
- const host=useRef<HTMLDivElement>(null),runtime=useRef<{app:Application;units:Map<number,Spine>;models:Map<number,string>;timelines:Record<string,{Skills:Timeline[]}>;skills:Record<string,number>;common:CommonSkills;effects:Effects;bottom:Container;top:Container}>();
+ const host=useRef<HTMLDivElement>(null),runtime=useRef<{app:Application;units:Map<number,Spine>;models:Map<number,string>;timelines:Record<string,{Skills:Timeline[]}>;skills:Record<string,number>;common:CommonSkills;effects:Effects;bottom:Container;top:Container;mask:Graphics}>();
  const [loaded,setLoaded]=useState(false),[status,setStatus]=useState('Загрузка боевой сцены');
  useEffect(()=>{let cancelled=false;let app:Application|undefined;const releases:(()=>void)[]=[];setLoaded(false);onReady(false);
  async function init(){
@@ -22,7 +22,7 @@ export function ReportScene({report,cursor,onReady}:{report:BattleReport;cursor:
  const bgManifest=await json<Record<string,{file:string;width:number;height:number}>>('./battle-backgrounds/manifest.json');
  const bg=bgManifest[report.background];if(!bg)throw Error('Нет оригинального фона '+report.background);
  const texture=await Assets.load('./battle-backgrounds/'+bg.file);if(cancelled)return;
- const background=new Sprite(texture);background.anchor.set(.5);background.position.set(fieldWidth/2,fieldHeight/2);background.height=2520*1.01;background.width=fieldWidth*1.01;app.stage.addChild(background);
+ const background=new Sprite(texture);background.anchor.set(.5);background.position.set(fieldWidth/2,fieldHeight/2);background.height=2520*1.01;background.width=fieldWidth*1.01;app.stage.addChild(background);const mask=new Graphics();mask.beginFill(0x000000).drawRect(-20,-20,fieldWidth+40,fieldHeight+40).endFill();mask.alpha=0;app.stage.addChild(mask);
  const actors=new Container(),bottom=new Container(),top=new Container();actors.sortableChildren=true;app.stage.addChild(bottom,actors,top);
  const units=new Map<number,Spine>(),models=new Map<number,string>();
  for(const h of report.heroes){
@@ -32,7 +32,7 @@ export function ReportScene({report,cursor,onReady}:{report:BattleReport;cursor:
  const idle=lease.data.animations.find(x=>x.name==='standby')??lease.data.animations[0];if(idle)s.state.setAnimation(0,idle.name,true);s.update(.1);
  const pos=fieldPosition(h.stationId,h.camp);s.scale.set(h.camp===1?avatarScale:-avatarScale,avatarScale);s.position.set(pos.x,pos.y);s.zIndex=pos.z;s.visible=h.hp>0;actors.addChild(s);units.set(h.id,s);models.set(h.id,model);
  }
- runtime.current={app,units,models,timelines,skills,common,effects,bottom,top};setLoaded(true);setStatus('Сцена готова');onReady(true);
+ runtime.current={app,units,models,timelines,skills,common,effects,bottom,top,mask};setLoaded(true);setStatus('Сцена готова');onReady(true);
  }init().catch(e=>{if(!cancelled)setStatus(String(e))});return()=>{cancelled=true;runtime.current=undefined;app?.destroy(true,{children:true});releases.forEach(r=>r())}
  },[report]);
  useEffect(()=>{const rt=runtime.current!,p=report.pages[cursor];if(!loaded||!rt||!p)return;onReady(false);let cancelled=false;const timers:ReturnType<typeof setTimeout>[]=[];const labels:Text[]=[];const frames=new Set<number>();
@@ -84,6 +84,18 @@ export function ReportScene({report,cursor,onReady}:{report:BattleReport;cursor:
  const tick=(now:number)=>{frames.delete(motionFrame);if(cancelled)return;const t=ms<=0?1:Math.min(1,(now-start)/ms),v=motionSample(from,to,t,back,blink);actor.position.set(v.x,v.y);actor.alpha=v.alpha;if(t<1){motionFrame=requestAnimationFrame(tick);frames.add(motionFrame)}else if(back)anim(actor,'standby',true)};
  motionFrame=requestAnimationFrame(tick);frames.add(motionFrame);
  }
+ const screenFrames=new Map<string,number>();
+ function screen(e:Timeline['Events'][number]){
+ const name=e.ActionName;if(!['dark_screen','shock_screen'].includes(name)||e.Duration<=0)return;
+ const old=screenFrames.get(name);if(old!==undefined){cancelAnimationFrame(old);frames.delete(old)}
+ const start=performance.now(),length=name==='dark_screen'?Math.max(400,e.Duration):e.Duration;
+ let frame=0;
+ const tick=(now:number)=>{frames.delete(frame);if(cancelled)return;const t=Math.min(length,now-start);
+ if(name==='dark_screen')rt.mask.alpha=190/255*Math.min(1,t/200,(length-t)/200);
+ else if(t<length){const step=Math.floor(t/30),f=(t%30)/30;rt.app.stage.position.set(Math.sin(step*2.4)*3,6*(step%2?1:-1)*(1-2*f))}
+ if(t<length){frame=requestAnimationFrame(tick);screenFrames.set(name,frame);frames.add(frame)}else{screenFrames.delete(name);if(name==='dark_screen')rt.mask.alpha=0;else rt.app.stage.position.set(0,0)}
+ };frame=requestAnimationFrame(tick);screenFrames.set(name,frame);frames.add(frame);
+ }
  async function play(){await prepareEffects();if(cancelled)return;
  if(p.dataType===2&&timeline)for(const e of timeline.Events){
  if([2,6,7,8].includes(e.EventType)&&e.ActionName&&e.Duration>0)later(e.StartTime,()=>{
@@ -92,15 +104,16 @@ export function ReportScene({report,cursor,onReady}:{report:BattleReport;cursor:
  else if(e.EventType===8||e.ReferenceType===1)showEffect(e,actor,home?.camp??1);
  else showEffect(e,e.ReferenceType===3?rt.units.get(p.targets[0]):undefined,-(target?.camp??-1));
  });
+ if(e.EventType===9)later(e.StartTime,()=>screen(e));
  if(e.EventType===1){later(e.StartTime,()=>anim(actor,e.ActionName));later(e.StartTime+e.Duration,()=>anim(actor,'standby',true))}
  if(e.EventType===3&&home)later(e.StartTime,()=>move(moveDestination(e.ReferenceType,target,home.camp,e.TargetDistance),e.Duration,false,e.IsBlink));
  if(e.EventType===4&&home)later(e.StartTime,()=>move(fieldPosition(home.stationId,home.camp),e.Duration,true,e.IsBlink));
  }
- const events=orderedEvents(p);let duration=Math.max(timeline?.Duration??300,...effectEvents.map(e=>e.StartTime+e.Duration));const fallbackTime=duration;
+ const events=orderedEvents(p);let duration=Math.max(timeline?.Duration??300,...effectEvents.map(e=>e.StartTime+e.Duration),...(timeline?.Events.filter(e=>e.EventType===9).map(e=>e.StartTime+Math.max(e.ActionName==='dark_screen'?400:0,e.Duration))??[]));const fallbackTime=duration;
  for(const e of events){const hit=timeline?.Events.find(x=>x.EventType===6&&x.HitPointId===e.index),ms=hit?.StartTime??(p.dataType===2?fallbackTime:0);duration=Math.max(duration,ms+300,ms+lifecycleDuration(e.type)+50);later(ms,()=>{const t=rt.units.get(e.target);if(!t)return;if(e.type===7||e.type===27)lifecycle(e.target,e.type);if([1,2,3,21].includes(e.type)&&!hit?.NoHurtAction){anim(t,'hurt');later(200,()=>{if(!lifeFrames.has(e.target)&&t.visible)anim(t,'standby',true)})}if([1,2,3,4,5,21,22].includes(e.type)){const label=new Text(String(e.value),{fontSize:48,fill:[5,22].includes(e.type)?0x7dff91:0xffffff,stroke:0x000000,strokeThickness:3});label.anchor.set(.5);label.position.set(t.x,t.y-135);rt.app.stage.addChild(label);labels.push(label);later(300,()=>{label.visible=false})}})}
  later(duration,()=>{for(const h of p.heroStatus){const s=rt.units.get(h.id);if(s){s.visible=!h.isDead;s.alpha=1;const home=report.heroes.find(x=>x.id===h.id);if(home){const pos=fieldPosition(home.stationId,home.camp);s.position.set(pos.x,pos.y)}anim(s,'standby',true)}}setStatus('Раунд '+p.round);onReady(true)});
  }void play();
- return()=>{cancelled=true;activeEffects.forEach(f=>f.destroy({children:true}));effectReleases.forEach(r=>r());timers.forEach(clearTimeout);frames.forEach(cancelAnimationFrame);labels.forEach(l=>l.destroy())};
+ return()=>{cancelled=true;if(!rt.mask.destroyed)rt.mask.alpha=0;if(!rt.app.stage.destroyed)rt.app.stage.position.set(0,0);activeEffects.forEach(f=>f.destroy({children:true}));effectReleases.forEach(r=>r());timers.forEach(clearTimeout);frames.forEach(cancelAnimationFrame);labels.forEach(l=>l.destroy())};
  },[cursor,loaded,report]);
  return <><p>{status}</p><div ref={host} style={{maxWidth:360,margin:'auto'}}/></>
 }

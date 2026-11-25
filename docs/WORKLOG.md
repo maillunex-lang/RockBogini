@@ -417,3 +417,5 @@ NEXT-013.3.2 partial: exported 249 Core/Pet skill mappings and 63 original timel
 NEXT-013.4.1 partial: original Spine effects types 2/6/8 loaded per action before playback, timed layers, hit target selection, offsets and cleanup. Team/multirow references approximate; common assets, projectiles and browser acceptance pending. TypeScript/Vite and HTTP200 verified.
 
 NEXT-013.4.2 partial: original type7 Spine projectiles per server target, linear flight, rotation, original duration, layer and cleanup. Target HUD offset temporarily 90px; common effect assets and browser acceptance pending. TypeScript/Vite and HTTP200. Next 013.4.3.
+
+NEXT-013.4.3 partial: original type9 dark_screen (190/255, 200ms fades) and shock_screen (30ms, 6px vertical/3px horizontal approximate deterministic shake), 967 hero timeline events. TypeScript/Vite HTTP200. Browser acceptance pending; next sound.
