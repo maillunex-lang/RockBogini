@@ -22,9 +22,9 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  const instant=new Set([125,128,101,102,105,106,137,118,103,104,119,112,113,115,116,131,121,120]);
  const chance=(p:number)=>p===0||p>=1000||(p>0&&random()*1000<p);
  const resolve=(a:Fighter,t:Fighter,b:{tags:number[];params?:number[]},items:number[],ctx:ExecutionContext,round:number,metadata:Partial<BattleEvent>={},extraEffect=instantExtra)=>{
- if(items[0]===125||items[0]===128){const d=descriptionEvent((metadata.buff as {Id?:number}|undefined)?.Id??0,items);if(d)descriptions.push({round,actor:a.id,target:t.id,...d});return}
+ if(items[0]===125||items[0]===128){const d=descriptionEvent((metadata.buff as {Id?:number}|undefined)?.Id??0,items);if(d){descriptions.push({round,actor:a.id,target:t.id,...d});trace?.events.push({index:hitIndex,target:t.id,type:d.type,value:d.descriptionId})};return}
  if([113,115,116,131].includes(items[0])){engine.removeMatching(t,items[0],items[1],items.slice(3));return}
- if(items[0]===120){useSkill(a,items[1],items[2]??0,{subject:t.id,other:a.id,targets:[t.id]},round);return}
+ if(items[0]===120){useSkill(a,items[1],items[2]??0,{subject:t.id,other:a.id,targets:[t.id]},round,extraEffect);return}
  if(items[0]===121){engine.emit({code:items[1],subject:t.id});return}
  const beforeEvents=trace?.events.length??0;const countedShield=t.buffs.some(b=>((b as {cshield?:number}).cshield??0)>0);const r=executeEffect(a,t,b,items,ctx);
  if(r.status==='unsupported'){issues.add('trigger:'+items[0]);return}
@@ -32,12 +32,12 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  const emit=(code:number,subject:Fighter,other:Fighter)=>engine.emit({...metadata,code,subject:subject.id,other:other.id,value:r.status==="damage"?r.damage:r.status==="heal"?r.healed:undefined,atype:metadata.atype??0});
  if(r.status==='damage'){
  if(r.absorbed>0){shields.push({round,actor:a.id,target:t.id,type:4,value:r.absorbed});trace?.events.splice(countedShield?beforeEvents:trace.events.length,0,{index:split?1:hitIndex,target:t.id,type:4,value:r.absorbed})}
- if(r.guardBuffId!==undefined){const d=descriptionEvent(r.guardBuffId,[125]);if(d)descriptions.push({round,actor:a.id,target:t.id,...d})}
+ if(r.guardBuffId!==undefined){const d=descriptionEvent(r.guardBuffId,[125]);if(d){descriptions.push({round,actor:a.id,target:t.id,...d});trace?.events.push({index:hitIndex,target:t.id,type:d.type,value:d.descriptionId})}}
  if(acc&&[101,102,105,106].includes(items[0])){acc.attacked.set(t.id,(acc.attacked.get(t.id)??0)+r.damage);if(r.event==='crit')acc.crit=true}
  if(r.event==='dodge'){trace?.events.push({index:split?1:hitIndex,target:t.id,type:6,value:0});emit(158,t,a);return}
  const parts=trace&&split&&!extraEffect?splitDamage(r.damage,trace.hits):[r.damage];
  for(const [i,value] of parts.entries())if(value>0)trace?.events.push({index:split&&!extraEffect?i+1:hitIndex,target:t.id,type:extraEffect?21:r.event==='crit'?3:r.event==='advance'?2:1,value});
- if(r.guardSkill>0)useSkill(t,r.guardSkill,0,{subject:t.id,other:a.id,targets:[a.id]},round);
+ if(r.guardSkill>0)useSkill(t,r.guardSkill,0,{subject:t.id,other:a.id,targets:[a.id]},round,true);
  if(r.damage>0)emit(173,t,a);
  if(items[0]===118)emit(147,t,a);
  else if([101,102,105,106].includes(items[0])){emit(143,t,a);if(items[0]===101||items[0]===102)emit(items[0]===101?121:122,a,t);emit(129,a,t);if(r.event==='crit'){emit(128,a,t);emit(145,t,a)}}
@@ -77,14 +77,14 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  const groups=modifiedGroups(a.buffs,types,plan.groups.map(g=>g.effects));
  const prevIndex=hitIndex,prevSplit=split;try{for(const [i,g] of groups.entries()){if(trace&&groups.length>1){hitIndex=Math.min(i+1,trace.hits);split=false}for(const id of g)walk(id,0)}}finally{hitIndex=prevIndex;split=prevSplit}
  };
- const useSkill=(actor:Fighter,sid:number,atype:number,event:TargetEvent,round:number)=>{
+ const useSkill=(actor:Fighter,sid:number,atype:number,event:TargetEvent,round:number,asExtra=instantExtra)=>{
  sid=sid===-2?actor.normal:sid===-1?(actor.actives[0]??actor.normal):sid;
  const skill=actionSkills[sid];if(!skill){issues.add('extra_skill:'+sid);return}
  if(skill.ActionIndex>0){queue.push({actor,sid,atype,event});return}
  if(skillDepth>=8){issues.add('instant_skill_depth:'+sid);return}
- const prevExtra=instantExtra;instantExtra=true;skillDepth++;try{const units=engine.units as Fighter[];perform(units,actor,round,{skillId:sid,atype:0,targets:eventTargets(units,actor,skill,event,random),groups:skill.Effects.map(x=>({effects:x.Items}))})}finally{skillDepth--;instantExtra=prevExtra}
+ const prevExtra=instantExtra;instantExtra=asExtra;skillDepth++;try{const units=engine.units as Fighter[];perform(units,actor,round,{skillId:sid,atype:0,targets:eventTargets(units,actor,skill,event,random),groups:skill.Effects.map(x=>({effects:x.Items}))})}finally{skillDepth--;instantExtra=prevExtra}
  };
- const makeEngine=(units:Fighter[],round:number)=>new TriggerEngine(units,round,{random,condition:(owner,event,rows)=>triggerCondition(rows,owner,units,round,event,code=>issues.add("trigger_condition:"+code)),execute:(a,t,b,fx,event)=>{if(fx[0]===120){useSkill(a as Fighter,fx[1],fx[2]??0,event,round);return}resolve(a as Fighter,t as Fighter,b,fx,{random},round,{skill:event.skill,buff:BuffBase[b.id],atype:event.atype},true)}});
+ const makeEngine=(units:Fighter[],round:number)=>new TriggerEngine(units,round,{random,condition:(owner,event,rows)=>triggerCondition(rows,owner,units,round,event,code=>issues.add("trigger_condition:"+code)),execute:(a,t,b,fx,event)=>{if(fx[0]===120){useSkill(a as Fighter,fx[1],fx[2]??0,event,round,true);return}resolve(a as Fighter,t as Fighter,b,fx,{random},round,{skill:event.skill,buff:BuffBase[b.id],atype:event.atype},true)}});
  const animated=(units:Fighter[],a:Fighter,round:number,plan:{skillId:number;atype:number;targets:number[];groups:{effects:number[]}[]},turn:boolean)=>{
  const previousTrace=trace;const previousIndex=hitIndex,previousSplit=split;trace={round,actor:a.id,skillId:plan.skillId,targets:[...plan.targets],hits:Math.max(1,hitCounts[a.model]?.[actionSkills[plan.skillId].ActionIndex]??1),events:[]};actions.push(trace);pages.push({...trace,dataType:2});hitIndex=trace.hits;split=true;
  const skill=actionSkills[plan.skillId],base={skill,atype:plan.atype,targets:plan.targets};

@@ -1,0 +1,1400 @@
+{
+  "rng": "OTP exsss; draw ordering still requires verification",
+  "rows": [
+    {
+      "seed": 1,
+      "mapId": 100101,
+      "lineup": [
+        11101,
+        11403,
+        11507
+      ],
+      "level": 120,
+      "boss": true,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 6892,
+            "hp_max": 7093,
+            "hurt": 201,
+            "damage": 15490,
+            "cure": 13111
+          },
+          {
+            "id": 4,
+            "hp": 13112,
+            "hp_max": 16873,
+            "hurt": 0,
+            "damage": 51028,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "hurt": 0,
+            "damage": 55205,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 878271,
+            "hp_max": 1000000,
+            "hurt": 121729,
+            "damage": 207,
+            "cure": 0
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 6892,
+            "hp_max": 7093,
+            "damage": 15490,
+            "hurt": 201,
+            "cure": 13111
+          },
+          {
+            "id": 4,
+            "hp": 13112,
+            "hp_max": 16873,
+            "damage": 51028,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "damage": 55205,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 878271,
+            "hp_max": 1000000,
+            "damage": 207,
+            "hurt": 121729,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "issues": []
+    },
+    {
+      "seed": 2,
+      "mapId": 100101,
+      "lineup": [
+        11101,
+        11403,
+        11507
+      ],
+      "level": 120,
+      "boss": true,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 6906,
+            "hp_max": 7093,
+            "hurt": 187,
+            "damage": 15785,
+            "cure": 13111
+          },
+          {
+            "id": 4,
+            "hp": 13112,
+            "hp_max": 16873,
+            "hurt": 0,
+            "damage": 50678,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "hurt": 0,
+            "damage": 54646,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 878885,
+            "hp_max": 1000000,
+            "hurt": 121115,
+            "damage": 193,
+            "cure": 0
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 6906,
+            "hp_max": 7093,
+            "damage": 15785,
+            "hurt": 187,
+            "cure": 13111
+          },
+          {
+            "id": 4,
+            "hp": 13112,
+            "hp_max": 16873,
+            "damage": 50678,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "damage": 54646,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 878885,
+            "hp_max": 1000000,
+            "damage": 193,
+            "hurt": 121115,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "issues": []
+    },
+    {
+      "seed": 3,
+      "mapId": 100101,
+      "lineup": [
+        11101,
+        11403,
+        11507
+      ],
+      "level": 120,
+      "boss": true,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 6894,
+            "hp_max": 7093,
+            "hurt": 199,
+            "damage": 15598,
+            "cure": 13111
+          },
+          {
+            "id": 4,
+            "hp": 13112,
+            "hp_max": 16873,
+            "hurt": 0,
+            "damage": 51719,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "hurt": 0,
+            "damage": 55260,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 877417,
+            "hp_max": 1000000,
+            "hurt": 122583,
+            "damage": 205,
+            "cure": 0
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 6894,
+            "hp_max": 7093,
+            "damage": 15598,
+            "hurt": 199,
+            "cure": 13111
+          },
+          {
+            "id": 4,
+            "hp": 13112,
+            "hp_max": 16873,
+            "damage": 51719,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "damage": 55260,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 877417,
+            "hp_max": 1000000,
+            "damage": 205,
+            "hurt": 122583,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "issues": []
+    },
+    {
+      "seed": 4,
+      "mapId": 100101,
+      "lineup": [
+        11101,
+        11403,
+        11507
+      ],
+      "level": 120,
+      "boss": true,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 6884,
+            "hp_max": 7093,
+            "hurt": 209,
+            "damage": 15488,
+            "cure": 13111
+          },
+          {
+            "id": 4,
+            "hp": 13112,
+            "hp_max": 16873,
+            "hurt": 0,
+            "damage": 50101,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "hurt": 0,
+            "damage": 54567,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 879820,
+            "hp_max": 1000000,
+            "hurt": 120180,
+            "damage": 233,
+            "cure": 0
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 6884,
+            "hp_max": 7093,
+            "damage": 15488,
+            "hurt": 209,
+            "cure": 13111
+          },
+          {
+            "id": 4,
+            "hp": 13112,
+            "hp_max": 16873,
+            "damage": 50101,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "damage": 54567,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 879820,
+            "hp_max": 1000000,
+            "damage": 233,
+            "hurt": 120180,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "issues": []
+    },
+    {
+      "seed": 5,
+      "mapId": 100101,
+      "lineup": [
+        11101,
+        11403,
+        11507
+      ],
+      "level": 120,
+      "boss": true,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 6905,
+            "hp_max": 7093,
+            "hurt": 188,
+            "damage": 15451,
+            "cure": 13111
+          },
+          {
+            "id": 4,
+            "hp": 13112,
+            "hp_max": 16873,
+            "hurt": 0,
+            "damage": 50956,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "hurt": 0,
+            "damage": 54101,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 879492,
+            "hp_max": 1000000,
+            "hurt": 120508,
+            "damage": 188,
+            "cure": 0
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 6905,
+            "hp_max": 7093,
+            "damage": 15451,
+            "hurt": 188,
+            "cure": 13111
+          },
+          {
+            "id": 4,
+            "hp": 13112,
+            "hp_max": 16873,
+            "damage": 50956,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "damage": 54101,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 879492,
+            "hp_max": 1000000,
+            "damage": 188,
+            "hurt": 120508,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "issues": []
+    },
+    {
+      "seed": 1,
+      "mapId": 100101,
+      "lineup": [
+        11101,
+        11403,
+        11507
+      ],
+      "level": 120,
+      "boss": true,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 6892,
+            "hp_max": 7093,
+            "hurt": 201,
+            "damage": 15490,
+            "cure": 9547
+          },
+          {
+            "id": 4,
+            "hp": 9548,
+            "hp_max": 16873,
+            "hurt": 0,
+            "damage": 51028,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "hurt": 0,
+            "damage": 55205,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 878271,
+            "hp_max": 1000000,
+            "hurt": 121729,
+            "damage": 207,
+            "cure": 0
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 6892,
+            "hp_max": 7093,
+            "damage": 15490,
+            "hurt": 201,
+            "cure": 9547
+          },
+          {
+            "id": 4,
+            "hp": 9548,
+            "hp_max": 16873,
+            "damage": 51028,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "damage": 55205,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 878271,
+            "hp_max": 1000000,
+            "damage": 207,
+            "hurt": 121729,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "issues": []
+    },
+    {
+      "seed": 2,
+      "mapId": 100101,
+      "lineup": [
+        11101,
+        11403,
+        11507
+      ],
+      "level": 120,
+      "boss": true,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 6906,
+            "hp_max": 7093,
+            "hurt": 187,
+            "damage": 15785,
+            "cure": 9547
+          },
+          {
+            "id": 4,
+            "hp": 9548,
+            "hp_max": 16873,
+            "hurt": 0,
+            "damage": 50678,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "hurt": 0,
+            "damage": 54646,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 878885,
+            "hp_max": 1000000,
+            "hurt": 121115,
+            "damage": 193,
+            "cure": 0
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 6906,
+            "hp_max": 7093,
+            "damage": 15785,
+            "hurt": 187,
+            "cure": 9547
+          },
+          {
+            "id": 4,
+            "hp": 9548,
+            "hp_max": 16873,
+            "damage": 50678,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "damage": 54646,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 878885,
+            "hp_max": 1000000,
+            "damage": 193,
+            "hurt": 121115,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "issues": []
+    },
+    {
+      "seed": 3,
+      "mapId": 100101,
+      "lineup": [
+        11101,
+        11403,
+        11507
+      ],
+      "level": 120,
+      "boss": true,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 6894,
+            "hp_max": 7093,
+            "hurt": 199,
+            "damage": 15598,
+            "cure": 9547
+          },
+          {
+            "id": 4,
+            "hp": 9548,
+            "hp_max": 16873,
+            "hurt": 0,
+            "damage": 51719,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "hurt": 0,
+            "damage": 55260,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 877417,
+            "hp_max": 1000000,
+            "hurt": 122583,
+            "damage": 205,
+            "cure": 0
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 6894,
+            "hp_max": 7093,
+            "damage": 15598,
+            "hurt": 199,
+            "cure": 9547
+          },
+          {
+            "id": 4,
+            "hp": 9548,
+            "hp_max": 16873,
+            "damage": 51719,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "damage": 55260,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 877417,
+            "hp_max": 1000000,
+            "damage": 205,
+            "hurt": 122583,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "issues": []
+    },
+    {
+      "seed": 4,
+      "mapId": 100101,
+      "lineup": [
+        11101,
+        11403,
+        11507
+      ],
+      "level": 120,
+      "boss": true,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 6884,
+            "hp_max": 7093,
+            "hurt": 209,
+            "damage": 15488,
+            "cure": 9547
+          },
+          {
+            "id": 4,
+            "hp": 9548,
+            "hp_max": 16873,
+            "hurt": 0,
+            "damage": 50101,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "hurt": 0,
+            "damage": 54567,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 879820,
+            "hp_max": 1000000,
+            "hurt": 120180,
+            "damage": 233,
+            "cure": 0
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 6884,
+            "hp_max": 7093,
+            "damage": 15488,
+            "hurt": 209,
+            "cure": 9547
+          },
+          {
+            "id": 4,
+            "hp": 9548,
+            "hp_max": 16873,
+            "damage": 50101,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "damage": 54567,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 879820,
+            "hp_max": 1000000,
+            "damage": 233,
+            "hurt": 120180,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "issues": []
+    },
+    {
+      "seed": 5,
+      "mapId": 100101,
+      "lineup": [
+        11101,
+        11403,
+        11507
+      ],
+      "level": 120,
+      "boss": true,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 6905,
+            "hp_max": 7093,
+            "hurt": 188,
+            "damage": 15451,
+            "cure": 9547
+          },
+          {
+            "id": 4,
+            "hp": 9548,
+            "hp_max": 16873,
+            "hurt": 0,
+            "damage": 50956,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "hurt": 0,
+            "damage": 54101,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 879492,
+            "hp_max": 1000000,
+            "hurt": 120508,
+            "damage": 188,
+            "cure": 0
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 6905,
+            "hp_max": 7093,
+            "damage": 15451,
+            "hurt": 188,
+            "cure": 9547
+          },
+          {
+            "id": 4,
+            "hp": 9548,
+            "hp_max": 16873,
+            "damage": 50956,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "damage": 54101,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 879492,
+            "hp_max": 1000000,
+            "damage": 188,
+            "hurt": 120508,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "issues": []
+    },
+    {
+      "seed": 1,
+      "mapId": 100101,
+      "lineup": [
+        11101,
+        11403,
+        11507
+      ],
+      "level": 120,
+      "boss": true,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 7053,
+            "hp_max": 7093,
+            "hurt": 179,
+            "damage": 15532,
+            "cure": 139
+          },
+          {
+            "id": 4,
+            "hp": 0,
+            "hp_max": 16873,
+            "hurt": 0,
+            "damage": 0,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "hurt": 0,
+            "damage": 55815,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 928647,
+            "hp_max": 1000000,
+            "hurt": 71353,
+            "damage": 185,
+            "cure": 0
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 7053,
+            "hp_max": 7093,
+            "damage": 15532,
+            "hurt": 179,
+            "cure": 139
+          },
+          {
+            "id": 4,
+            "hp": 0,
+            "hp_max": 16873,
+            "damage": 0,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "damage": 55815,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 928647,
+            "hp_max": 1000000,
+            "damage": 185,
+            "hurt": 71353,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "issues": []
+    },
+    {
+      "seed": 2,
+      "mapId": 100101,
+      "lineup": [
+        11101,
+        11403,
+        11507
+      ],
+      "level": 120,
+      "boss": true,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 7053,
+            "hp_max": 7093,
+            "hurt": 181,
+            "damage": 15470,
+            "cure": 141
+          },
+          {
+            "id": 4,
+            "hp": 0,
+            "hp_max": 16873,
+            "hurt": 0,
+            "damage": 0,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "hurt": 0,
+            "damage": 55777,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 928747,
+            "hp_max": 1000000,
+            "hurt": 71253,
+            "damage": 187,
+            "cure": 0
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 7053,
+            "hp_max": 7093,
+            "damage": 15470,
+            "hurt": 181,
+            "cure": 141
+          },
+          {
+            "id": 4,
+            "hp": 0,
+            "hp_max": 16873,
+            "damage": 0,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "damage": 55777,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 928747,
+            "hp_max": 1000000,
+            "damage": 187,
+            "hurt": 71253,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "issues": []
+    },
+    {
+      "seed": 3,
+      "mapId": 100101,
+      "lineup": [
+        11101,
+        11403,
+        11507
+      ],
+      "level": 120,
+      "boss": true,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 7052,
+            "hp_max": 7093,
+            "hurt": 192,
+            "damage": 15635,
+            "cure": 151
+          },
+          {
+            "id": 4,
+            "hp": 0,
+            "hp_max": 16873,
+            "hurt": 0,
+            "damage": 0,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "hurt": 0,
+            "damage": 55085,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 929280,
+            "hp_max": 1000000,
+            "hurt": 70720,
+            "damage": 192,
+            "cure": 0
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 7052,
+            "hp_max": 7093,
+            "damage": 15635,
+            "hurt": 192,
+            "cure": 151
+          },
+          {
+            "id": 4,
+            "hp": 0,
+            "hp_max": 16873,
+            "damage": 0,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "damage": 55085,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 929280,
+            "hp_max": 1000000,
+            "damage": 192,
+            "hurt": 70720,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "issues": []
+    },
+    {
+      "seed": 4,
+      "mapId": 100101,
+      "lineup": [
+        11101,
+        11403,
+        11507
+      ],
+      "level": 120,
+      "boss": true,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 7052,
+            "hp_max": 7093,
+            "hurt": 192,
+            "damage": 15326,
+            "cure": 151
+          },
+          {
+            "id": 4,
+            "hp": 0,
+            "hp_max": 16873,
+            "hurt": 0,
+            "damage": 0,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "hurt": 0,
+            "damage": 54385,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 930289,
+            "hp_max": 1000000,
+            "hurt": 69711,
+            "damage": 192,
+            "cure": 0
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 7052,
+            "hp_max": 7093,
+            "damage": 15326,
+            "hurt": 192,
+            "cure": 151
+          },
+          {
+            "id": 4,
+            "hp": 0,
+            "hp_max": 16873,
+            "damage": 0,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "damage": 54385,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 930289,
+            "hp_max": 1000000,
+            "damage": 192,
+            "hurt": 69711,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "issues": []
+    },
+    {
+      "seed": 5,
+      "mapId": 100101,
+      "lineup": [
+        11101,
+        11403,
+        11507
+      ],
+      "level": 120,
+      "boss": true,
+      "expected": {
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 7054,
+            "hp_max": 7093,
+            "hurt": 174,
+            "damage": 15369,
+            "cure": 135
+          },
+          {
+            "id": 4,
+            "hp": 0,
+            "hp_max": 16873,
+            "hurt": 0,
+            "damage": 0,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "hurt": 0,
+            "damage": 55729,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 928890,
+            "hp_max": 1000000,
+            "hurt": 71110,
+            "damage": 186,
+            "cure": 0
+          }
+        ],
+        "resultCode": 4,
+        "rounds": 15
+      },
+      "actual": {
+        "resultCode": 4,
+        "rounds": 15,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 7054,
+            "hp_max": 7093,
+            "damage": 15369,
+            "hurt": 174,
+            "cure": 135
+          },
+          {
+            "id": 4,
+            "hp": 0,
+            "hp_max": 16873,
+            "damage": 0,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 5,
+            "hp": 19530,
+            "hp_max": 19530,
+            "damage": 55729,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 928890,
+            "hp_max": 1000000,
+            "damage": 186,
+            "hurt": 71110,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "matchActions": true,
+      "matchDamageEvents": true,
+      "matchPages": true,
+      "issues": []
+    }
+  ]
+}
