@@ -17,12 +17,17 @@ type StarCfg={
 };
 type LevelCfg={xp:number;score:number;weapon:number[][];coat:number[][];glove:number[][];shoes:number[][]};
 type SuitCfg={skillTwoId:number;skillFourId:number;upStepSkillTwoId:number;upStepSkillFourId:number};
+type BlessCfg={typeId:number;level:number;attrs:number[];score:number};
+type BlessTypeCfg={unlockLevel:number;type:number;weight:number;desc:number[]};
+type BlessLevelCfg={xp:number;materials:number[][];levelUp:number[];levelCrit:number[]};
+export type BlessingModel={BlessingId:number;Level:number;Xp:number;Pool:number[]};
 
 const SLOT_KEYS=['weapon','coat','glove','shoes'] as const;
 const UNMATCHED_KEYS=['unmatchedWeapon','unmatchedCoat','unmatchedGlove','unmatchedShoes'] as const;
 const XP_ITEMS=[101,102,103,104];
 const COIN=1;
 const SCORE_ATTR=82;
+const POOL_MAX=8;
 
 const here=dirname(fileURLToPath(import.meta.url));
 const candidates=[join(process.cwd(),'data'),join(here,'..','data'),join(here,'..','..','data')];
@@ -42,6 +47,9 @@ const SUIT=loadJson<Record<string,SuitCfg>>('holy-equip-suit.json',{});
 const GS=loadJson<Record<string,number>>('holy-global.json',{});
 const LP=loadJson<Record<string,number[]>>('holy-level-param.json',{'123':[1000,5000,20000,50000]});
 const SOUL=loadJson<Record<string,{attr:number}>>('holy-equip-soul.json',{});
+const BLESS=loadJson<Record<string,BlessCfg>>('holy-equip-blessing.json',{});
+const BLESS_TYPE=loadJson<Record<string,BlessTypeCfg>>('holy-equip-blessing-type.json',{});
+const BLESS_LEVEL=loadJson<Record<string,BlessLevelCfg>>('holy-equip-blessing-level.json',{});
 
 export function holyConfig(itemId:number):HolyCfg|undefined{return HE[String(itemId)]}
 function gs(key:string,fallback=0):number{
@@ -52,6 +60,11 @@ function starCfg(star:number):StarCfg|undefined{return STAR[String(100+star)]}
 function stepCfg(step:number):StarCfg|undefined{return STAR[String(200+step)]}
 function levelCfg(level:number):LevelCfg|undefined{return LEVEL[String(level)]}
 function xpUnits():number[]{return LP['123']??[1000,5000,20000,50000]}
+function blessCfg(id:number):BlessCfg|undefined{return BLESS[String(id)]}
+function blessLevelCfg(level:number):BlessLevelCfg|undefined{return BLESS_LEVEL[String(level)]}
+export function blessingUnlockStar(index:1|2):number{
+ return Math.trunc(gs(`HolyEquipBlessingUnlock${index}`,index));
+}
 
 /** type 1 = Star, type 2 = Step (Req_Holy_EquipmentStarUp). */
 export function nextStarTarget(star:number,step:number,type:1|2):{
@@ -97,9 +110,45 @@ function addPairs(out:number[][],rows:number[][]|undefined){
 
 export type HolyRec={
  Sid:number;ItemId:number;Star:number;Level:number;Xp:number;Stage:number;Step:number;OwnerId:number;
+ Blessing1?:BlessingModel|null;Blessing2?:BlessingModel|null;
 };
 
-/** Piece attrs + score (attr 82) from GetHolyEquipmentData (no gallery/blessing). */
+function applyBlessing(attrs:number[][],score:number,b:BlessingModel|null|undefined):number{
+ if(!b||!b.BlessingId)return score;
+ const cfg=blessCfg(b.BlessingId);
+ if(!cfg)return score;
+ if(cfg.attrs.length>=2)attrs.push([cfg.attrs[0]!,cfg.attrs[1]!]);
+ return score+cfg.score;
+}
+
+/** Weighted random blessing id = TypeId*100 + effect (HolyEquipBlessing). */
+export function randomBlessing(level:number,effect:number,rng:()=>number=Math.random):number{
+ const types=Object.entries(BLESS_TYPE)
+  .map(([id,t])=>({id:Number(id),...t}))
+  .filter(t=>t.unlockLevel<=level&&!!blessCfg(t.id*100+effect));
+ const pool=types.length?types:Object.entries(BLESS_TYPE).map(([id,t])=>({id:Number(id),...t}));
+ const total=pool.reduce((s,t)=>s+Math.max(t.weight,1),0);
+ let roll=Math.floor(rng()*Math.max(total,1))+1;
+ let picked=pool[0]!;
+ for(const t of pool){
+  const w=Math.max(t.weight,1);
+  if(roll<=w){picked=t;break}
+  roll-=w;
+ }
+ const id=picked.id*100+effect;
+ return blessCfg(id)?id:picked.id*100+1;
+}
+
+export function blessOnce(bl:BlessingModel,effectMax:number,rng:()=>number=Math.random):BlessingModel{
+ const next=blessLevelCfg(bl.Level+1);
+ let xp=bl.Xp+1;
+ let level=bl.Level;
+ if(next&&xp>=next.xp){level=bl.Level+1;xp=0}
+ const effect=Math.max(Math.min(level,effectMax),1);
+ return {...bl,Level:level,Xp:xp,Pool:[...bl.Pool,randomBlessing(level,effect,rng)]};
+}
+
+/** Piece attrs + score (attr 82) from GetHolyEquipmentData (no gallery). */
 export function holyPieceExtra(e:HolyRec):number[][]{
  const c=holyConfig(e.ItemId);
  if(!c)return [];
@@ -126,12 +175,27 @@ export function holyPieceExtra(e:HolyRec):number[][]{
    score+=st.score;
   }
  }
+ score=applyBlessing(attrs,score,e.Blessing1);
+ score=applyBlessing(attrs,score,e.Blessing2);
  const f=e.Stage>0?1000+(SOUL[String(e.Stage)]?.attr??0):1000;
  if(e.Stage>0)score=Math.floor(score*f/1000);
  const out:number[][]=[];
  for(const [k,v] of attrs)out.push([k,Math.floor(v*f/1000)]);
  if(score)out.push([SCORE_ATTR,score]);
  return out;
+}
+
+function parseBlessing(raw:unknown):BlessingModel|null{
+ if(!raw||typeof raw!=='object')return null;
+ const o=raw as Record<string,unknown>;
+ const id=Number(o.BlessingId??0);
+ if(!id)return null;
+ return {
+  BlessingId:id,
+  Level:Number(o.Level??1),
+  Xp:Number(o.Xp??0),
+  Pool:Array.isArray(o.Pool)?o.Pool.map(Number):[],
+ };
 }
 
 /** Worn holy extras + suit flat power (HolyEquipSuit/Step N Power). */
@@ -165,13 +229,14 @@ export function holyWornBonus(worn:HolyRec[]):{extra:number[][];powerBonus:numbe
 
 export async function wornHoly(s:Storage,accountId:string,ownerSid:number):Promise<HolyRec[]>{
  const r=await s.pg.query(
-  `SELECT sid,item_id,star,level,xp,stage,step,owner_sid
+  `SELECT sid,item_id,star,level,xp,stage,step,owner_sid,blessing1,blessing2
    FROM player_holy_equipment WHERE account_id=$1 AND owner_sid=$2 ORDER BY sid`,
   [accountId,ownerSid],
  );
  return r.rows.map(row=>({
   Sid:row.sid,ItemId:row.item_id,Star:row.star,Level:row.level,Xp:row.xp,
   Stage:row.stage,Step:row.step,OwnerId:row.owner_sid,
+  Blessing1:parseBlessing(row.blessing1),Blessing2:parseBlessing(row.blessing2),
  }));
 }
 
@@ -212,21 +277,33 @@ async function nextSid(s:Storage,id:string){
 
 async function listHoly(s:Storage,id:string){
  const rows=(await s.pg.query(
-  `SELECT sid,item_id,star,level,xp,stage,step,owner_sid
+  `SELECT sid,item_id,star,level,xp,stage,step,owner_sid,blessing1,blessing2
    FROM player_holy_equipment WHERE account_id=$1 ORDER BY sid`,[id],
- )).rows as {sid:number;item_id:number;star:number;level:number;xp:number;stage:number;step:number;owner_sid:number}[];
+ )).rows as {sid:number;item_id:number;star:number;level:number;xp:number;stage:number;step:number;owner_sid:number;blessing1:unknown;blessing2:unknown}[];
  return rows.map(r=>{
   const cfg=holyConfig(r.item_id);
-  const rec:HolyRec={Sid:r.sid,ItemId:r.item_id,Star:r.star,Level:r.level,Xp:r.xp,Stage:r.stage,Step:r.step,OwnerId:r.owner_sid};
+  const rec:HolyRec={
+   Sid:r.sid,ItemId:r.item_id,Star:r.star,Level:r.level,Xp:r.xp,Stage:r.stage,Step:r.step,OwnerId:r.owner_sid,
+   Blessing1:parseBlessing(r.blessing1),Blessing2:parseBlessing(r.blessing2),
+  };
+  const extra=holyPieceExtra(rec);
   return {
    ...rec,
    type:cfg?.type??0,suitId:cfg?.suitId??0,
    maxLevel:starCfg(r.star)?.maxLevel??0,
-   attrs:holyPieceExtra(rec).filter(p=>p[0]!==SCORE_ATTR),
-   score:holyPieceExtra(rec).find(p=>p[0]===SCORE_ATTR)?.[1]??0,
+   blessingUnlock:[blessingUnlockStar(1),blessingUnlockStar(2)],
+   attrs:extra.filter(p=>p[0]!==SCORE_ATTR),
+   score:extra.find(p=>p[0]===SCORE_ATTR)?.[1]??0,
   };
  });
 }
+
+function blessingField(index:number):'blessing1'|'blessing2'|null{
+ if(index===1)return 'blessing1';
+ if(index===2)return 'blessing2';
+ return null;
+}
+
 
 async function heroExists(s:Storage,id:string,sid:number){
  const r=await s.pg.query('SELECT 1 FROM player_heroes WHERE account_id=$1 AND sid=$2',[id,sid]);
@@ -400,6 +477,7 @@ export async function holyRoutes(app:FastifyInstance,s:Storage){
   });
   const bonus=holyWornBonus(worn.map(e=>({
    Sid:e.Sid,ItemId:e.ItemId,Star:e.Star,Level:e.Level,Xp:e.Xp,Stage:e.Stage,Step:e.Step,OwnerId:e.OwnerId,
+   Blessing1:e.Blessing1,Blessing2:e.Blessing2,
   })));
   return {ownerId:owner,slots,powerBonus:bonus.powerBonus,score:bonus.extra.filter(p=>p[0]===SCORE_ATTR).reduce((s,p)=>s+(p[1]??0),0)};
  });
@@ -493,5 +571,138 @@ export async function holyRoutes(app:FastifyInstance,s:Storage){
    after:{Star:next.field==='Star'?next.value:rec.star,Step:next.field==='Step'?next.value:rec.step},
    holy:await listHoly(s,id),
   };
+ });
+
+ async function loadHolyRow(id:string,sid:number){
+  const row=await s.pg.query(
+   `SELECT sid,item_id,star,level,xp,stage,step,owner_sid,blessing1,blessing2
+    FROM player_holy_equipment WHERE account_id=$1 AND sid=$2`,[id,sid],
+  );
+  if(!row.rowCount)return null;
+  const r=row.rows[0];
+  return {
+   sid:r.sid as number,item_id:r.item_id as number,star:r.star as number,level:r.level as number,
+   xp:r.xp as number,stage:r.stage as number,step:r.step as number,owner_sid:r.owner_sid as number,
+   Blessing1:parseBlessing(r.blessing1),Blessing2:parseBlessing(r.blessing2),
+  };
+ }
+
+ app.post<{Body:{sid:number;index:number}}>('/v1/holy/blessing/unlock',{
+  schema:{body:{type:'object',required:['sid','index'],additionalProperties:false,properties:{
+   sid:{type:'integer',minimum:1},
+   index:{type:'integer',enum:[1,2]},
+  }}},
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  const index=req.body.index as 1|2;
+  const field=blessingField(index);
+  if(!field)return reply.code(400).send({error:'invalid_index'});
+  const rec=await loadHolyRow(id,req.body.sid);
+  if(!rec)return reply.code(404).send({error:'holy_not_found'});
+  const need=blessingUnlockStar(index);
+  if(rec.star<need)return reply.code(409).send({error:'holy_blessing_locked',need});
+  const cur=index===1?rec.Blessing1:rec.Blessing2;
+  if(cur&&cur.BlessingId>0)return reply.code(409).send({error:'holy_blessing_exists'});
+  const blessing:BlessingModel={BlessingId:randomBlessing(1,1),Level:1,Xp:0,Pool:[]};
+  await s.pg.query(
+   `UPDATE player_holy_equipment SET ${field}=$3 WHERE account_id=$1 AND sid=$2`,
+   [id,rec.sid,JSON.stringify(blessing)],
+  );
+  if(rec.owner_sid>0)await refreshHeroGear(s,id,rec.owner_sid);
+  return {ok:true,index,blessing,holy:await listHoly(s,id)};
+ });
+
+ app.post<{Body:{sid:number;index:number;count?:number}}>('/v1/holy/blessing/bless',{
+  schema:{body:{type:'object',required:['sid','index'],additionalProperties:false,properties:{
+   sid:{type:'integer',minimum:1},
+   index:{type:'integer',enum:[1,2]},
+   count:{type:'integer',minimum:1,maximum:8},
+  }}},
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  const index=req.body.index as 1|2;
+  const field=blessingField(index)!;
+  const rec=await loadHolyRow(id,req.body.sid);
+  if(!rec)return reply.code(404).send({error:'holy_not_found'});
+  const bl=index===1?rec.Blessing1:rec.Blessing2;
+  if(!bl||bl.BlessingId<=0)return reply.code(409).send({error:'holy_blessing_missing'});
+  if(bl.Pool.length>=POOL_MAX)return reply.code(409).send({error:'holy_blessing_pool_full'});
+  const effectMax=starCfg(rec.star)?.blessingMaxLevel??0;
+  const want=Math.min(req.body.count??1,POOL_MAX-bl.Pool.length);
+  let cur={...bl,Pool:[...bl.Pool]};
+  const costs:[number,number][]=[];
+  for(let i=0;i<want;i++){
+   const cost=matPairs(blessLevelCfg(cur.Level)?.materials??[]);
+   const paid:typeof cost=[];
+   let failed:number|null=null;
+   for(const [itemId,n] of cost){
+    if(!(await payItem(s,id,itemId,n))){failed=itemId;break}
+    paid.push([itemId,n]);
+   }
+   if(failed!=null){
+    for(const [itemId,n] of paid)await grantItem(s,id,itemId,n);
+    if(costs.length===0)return reply.code(409).send({error:'insufficient_materials',itemId:failed});
+    break;
+   }
+   costs.push(...paid);
+   cur=blessOnce(cur,effectMax);
+   if(cur.Pool.length>=POOL_MAX)break;
+  }
+  await s.pg.query(
+   `UPDATE player_holy_equipment SET ${field}=$3 WHERE account_id=$1 AND sid=$2`,
+   [id,rec.sid,JSON.stringify(cur)],
+  );
+  if(rec.owner_sid>0)await refreshHeroGear(s,id,rec.owner_sid);
+  return {ok:true,index,blessing:cur,cost:costs,holy:await listHoly(s,id)};
+ });
+
+ app.post<{Body:{sid:number;index:number;poolIndex:number}}>('/v1/holy/blessing/replace',{
+  schema:{body:{type:'object',required:['sid','index','poolIndex'],additionalProperties:false,properties:{
+   sid:{type:'integer',minimum:1},
+   index:{type:'integer',enum:[1,2]},
+   poolIndex:{type:'integer',minimum:0,maximum:7},
+  }}},
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  const index=req.body.index as 1|2;
+  const field=blessingField(index)!;
+  const rec=await loadHolyRow(id,req.body.sid);
+  if(!rec)return reply.code(404).send({error:'holy_not_found'});
+  const bl=index===1?rec.Blessing1:rec.Blessing2;
+  if(!bl)return reply.code(409).send({error:'holy_blessing_missing'});
+  const pick=bl.Pool[req.body.poolIndex];
+  if(pick==null)return reply.code(409).send({error:'holy_blessing_pool_miss'});
+  const next:BlessingModel={...bl,BlessingId:pick,Pool:[]};
+  await s.pg.query(
+   `UPDATE player_holy_equipment SET ${field}=$3 WHERE account_id=$1 AND sid=$2`,
+   [id,rec.sid,JSON.stringify(next)],
+  );
+  if(rec.owner_sid>0)await refreshHeroGear(s,id,rec.owner_sid);
+  return {ok:true,index,blessing:next,holy:await listHoly(s,id)};
+ });
+
+ app.post<{Body:{sid:number;index:number}}>('/v1/holy/blessing/clear',{
+  schema:{body:{type:'object',required:['sid','index'],additionalProperties:false,properties:{
+   sid:{type:'integer',minimum:1},
+   index:{type:'integer',enum:[1,2]},
+  }}},
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  const index=req.body.index as 1|2;
+  const field=blessingField(index)!;
+  const rec=await loadHolyRow(id,req.body.sid);
+  if(!rec)return reply.code(404).send({error:'holy_not_found'});
+  const bl=index===1?rec.Blessing1:rec.Blessing2;
+  if(!bl||!bl.Pool.length)return reply.code(409).send({error:'holy_blessing_pool_empty'});
+  const next:BlessingModel={...bl,Pool:[]};
+  await s.pg.query(
+   `UPDATE player_holy_equipment SET ${field}=$3 WHERE account_id=$1 AND sid=$2`,
+   [id,rec.sid,JSON.stringify(next)],
+  );
+  return {ok:true,index,blessing:next,holy:await listHoly(s,id)};
  });
 }

@@ -61,6 +61,9 @@ export async function migrate(s:Storage){
  )`);
  await c.query('CREATE INDEX IF NOT EXISTS player_holy_equipment_owner ON player_holy_equipment(account_id,owner_sid)');
  await c.query('INSERT INTO schema_migrations(version) VALUES(13) ON CONFLICT DO NOTHING');
+ await c.query('ALTER TABLE player_holy_equipment ADD COLUMN IF NOT EXISTS blessing1 jsonb');
+ await c.query('ALTER TABLE player_holy_equipment ADD COLUMN IF NOT EXISTS blessing2 jsonb');
+ await c.query('INSERT INTO schema_migrations(version) VALUES(14) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }

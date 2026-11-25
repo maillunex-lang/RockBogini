@@ -1,7 +1,7 @@
 # Актуальное состояние 2026-11-25
 
-Активная задача: **NEXT-017.5** (holy star/step done). Live https://rikagro.ru/testtest/.
-Проверено: holy+equip+heroes 18/18; publish ok.
+Активная задача: **NEXT-017.6** (holy blessing done). Live https://rikagro.ru/testtest/.
+Проверено: holy+equip+heroes+storage 21/21; publish ok.
 
 | Подэтап | Состояние |
 |---|---|
@@ -10,7 +10,7 @@
 | 014 tails | done: RU StoryChapter, plot stub, settle hotfix |
 | 015 MVP–015.2 | done: inventory + filters + icons/use/sell |
 | 016.1–016.5 | done: level/star/fodder/talent/jobs/luck |
-| 017.1–017.5 | done: equip + holy level/star/step |
+| 017.1–017.6 | done: equip + holy level/star/step/blessing |
 
 
 ---
