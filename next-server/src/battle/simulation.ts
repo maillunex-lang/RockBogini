@@ -15,7 +15,7 @@ import {baseValue} from './periodic.js';
 import {TriggerEngine,type BattleEvent} from './triggers.js';
 export type Fighter=CombatUnit&ActionUnit&{passives?:number[]};
 export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15){
- const acted=new Set<number>();const done=new Set<number>();let ending=false;let skillDepth=0;type Acc={crit:boolean;attacked:Map<number,number>;healed:Set<number>};let acc:Acc|undefined;let key=0,extra=0;let engine:TriggerEngine;const queue:{actor:Fighter;sid:number;atype:number;event?:TargetEvent}[]=[];const issues=new Set<string>();type HitEvent={index:number;target:number;type:number;value:number};type ActionTrace={round:number;actor:number;skillId:number;targets:number[];hits:number;events:HitEvent[]};const actions:ActionTrace[]=[];const pages:(ActionTrace&{dataType:number;heroStatus?:ReturnType<typeof snapshot>})[]=[];let trace:ActionTrace|undefined;let instantExtra=false;let hitIndex=1,split=true;const journal:{round:number;actor:number;target:number;code:number;hp:number}[]=[];
+ const acted=new Set<number>();const done=new Set<number>();let ending=false;let skillDepth=0;type Acc={crit:boolean;attacked:Map<number,number>;healed:Set<number>};let acc:Acc|undefined;let key=0,extra=0;let engine:TriggerEngine;const queue:{actor:Fighter;sid:number;atype:number;event?:TargetEvent}[]=[];const issues=new Set<string>();type HitEvent={index:number;target:number;type:number;value:number;params?:number[]};type ActionTrace={round:number;actor:number;skillId:number;targets:number[];hits:number;events:HitEvent[]};const actions:ActionTrace[]=[];const pages:(ActionTrace&{dataType:number;heroStatus?:ReturnType<typeof snapshot>})[]=[];let trace:ActionTrace|undefined;let instantExtra=false;let hitIndex=1,split=true;const journal:{round:number;actor:number;target:number;code:number;hp:number}[]=[];
  const recovery:{round:number;actor:number;target:number;type:number;value:number}[]=[];
  const shields:{round:number;actor:number;target:number;type:number;value:number}[]=[];
  const descriptions:{round:number;actor:number;target:number;type:number;descriptionId:number}[]=[];
@@ -37,7 +37,7 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  if(acc&&[101,102,105,106].includes(items[0])){acc.attacked.set(t.id,(acc.attacked.get(t.id)??0)+r.damage);if(r.event==='crit')acc.crit=true}
  if(r.event==='dodge'){trace?.events.push({index:split?1:hitIndex,target:t.id,type:6,value:0});emit(158,t,a);return}
  const parts=trace&&split&&!extraEffect?splitDamage(r.damage,trace.hits):[r.damage];
- for(const [i,value] of parts.entries())if(value>0)trace?.events.push({index:split&&!extraEffect?i+1:hitIndex,target:t.id,type:extraEffect?21:r.event==='crit'?3:r.event==='advance'?2:1,value});
+ for(const [i,value] of parts.entries())if(value>0)trace?.events.push({index:split&&!extraEffect?i+1:hitIndex,target:t.id,type:extraEffect?21:r.event==='crit'?3:r.event==='advance'?2:1,value,params:extraEffect?[a.id]:[]});
  if(r.guardSkill>0)useSkill(t,r.guardSkill,0,{subject:t.id,other:a.id,targets:[a.id]},round,true);
  if(r.damage>0)emit(173,t,a);
  if(items[0]===118)emit(147,t,a);

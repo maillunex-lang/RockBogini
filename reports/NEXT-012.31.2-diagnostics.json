@@ -1,0 +1,138 @@
+[
+  {
+    "diagnostic": "start_effect:403",
+    "fixtures": 185,
+    "referenceBehavior": "skip unchanged state",
+    "source": "battle.ex:start_effect/5 fallback skip/2",
+    "classification": "reference-compatible unsupported",
+    "retainDiagnostic": true
+  },
+  {
+    "diagnostic": "start_effect:372",
+    "fixtures": 58,
+    "referenceBehavior": "skip unchanged state",
+    "source": "battle.ex:start_effect/5 fallback skip/2",
+    "classification": "reference-compatible unsupported",
+    "retainDiagnostic": true
+  },
+  {
+    "diagnostic": "buff_condition:8:11560300201",
+    "fixtures": 57,
+    "referenceBehavior": "unknown condition returns false",
+    "source": "conditions.ex:twc/swc fallback unknown/2",
+    "classification": "reference-compatible unsupported",
+    "retainDiagnostic": true
+  },
+  {
+    "diagnostic": "start_effect:506",
+    "fixtures": 194,
+    "referenceBehavior": "skip unchanged state",
+    "source": "battle.ex:start_effect/5 fallback skip/2",
+    "classification": "reference-compatible unsupported",
+    "retainDiagnostic": true
+  },
+  {
+    "diagnostic": "trigger_condition:11",
+    "fixtures": 191,
+    "referenceBehavior": "unknown condition returns false",
+    "source": "conditions.ex:twc/swc fallback unknown/2",
+    "classification": "reference-compatible unsupported",
+    "retainDiagnostic": true
+  },
+  {
+    "diagnostic": "start_effect:414",
+    "fixtures": 382,
+    "referenceBehavior": "skip unchanged state",
+    "source": "battle.ex:start_effect/5 fallback skip/2",
+    "classification": "reference-compatible unsupported",
+    "retainDiagnostic": true
+  },
+  {
+    "diagnostic": "start_effect:123",
+    "fixtures": 24,
+    "referenceBehavior": "skip unchanged state",
+    "source": "battle.ex:start_effect/5 fallback skip/2",
+    "classification": "reference-compatible unsupported",
+    "retainDiagnostic": true
+  },
+  {
+    "diagnostic": "start_effect:343",
+    "fixtures": 6,
+    "referenceBehavior": "skip unchanged state",
+    "source": "battle.ex:start_effect/5 fallback skip/2",
+    "classification": "reference-compatible unsupported",
+    "retainDiagnostic": true
+  },
+  {
+    "diagnostic": "start_effect:605",
+    "fixtures": 6,
+    "referenceBehavior": "skip unchanged state",
+    "source": "battle.ex:start_effect/5 fallback skip/2",
+    "classification": "reference-compatible unsupported",
+    "retainDiagnostic": true
+  },
+  {
+    "diagnostic": "start_effect:342",
+    "fixtures": 6,
+    "referenceBehavior": "skip unchanged state",
+    "source": "battle.ex:start_effect/5 fallback skip/2",
+    "classification": "reference-compatible unsupported",
+    "retainDiagnostic": true
+  },
+  {
+    "diagnostic": "start_effect:402",
+    "fixtures": 6,
+    "referenceBehavior": "skip unchanged state",
+    "source": "battle.ex:start_effect/5 fallback skip/2",
+    "classification": "reference-compatible unsupported",
+    "retainDiagnostic": true
+  },
+  {
+    "diagnostic": "start_effect:129",
+    "fixtures": 3,
+    "referenceBehavior": "skip unchanged state",
+    "source": "battle.ex:start_effect/5 fallback skip/2",
+    "classification": "reference-compatible unsupported",
+    "retainDiagnostic": true
+  },
+  {
+    "diagnostic": "trigger_condition:17",
+    "fixtures": 6,
+    "referenceBehavior": "unknown condition returns false",
+    "source": "conditions.ex:twc/swc fallback unknown/2",
+    "classification": "reference-compatible unsupported",
+    "retainDiagnostic": true
+  },
+  {
+    "diagnostic": "start_effect:615",
+    "fixtures": 38,
+    "referenceBehavior": "skip unchanged state",
+    "source": "battle.ex:start_effect/5 fallback skip/2",
+    "classification": "reference-compatible unsupported",
+    "retainDiagnostic": true
+  },
+  {
+    "diagnostic": "start_effect:376",
+    "fixtures": 6,
+    "referenceBehavior": "skip unchanged state",
+    "source": "battle.ex:start_effect/5 fallback skip/2",
+    "classification": "reference-compatible unsupported",
+    "retainDiagnostic": true
+  },
+  {
+    "diagnostic": "start_effect:301",
+    "fixtures": 6,
+    "referenceBehavior": "skip unchanged state",
+    "source": "battle.ex:start_effect/5 fallback skip/2",
+    "classification": "reference-compatible unsupported",
+    "retainDiagnostic": true
+  },
+  {
+    "diagnostic": "start_effect:505",
+    "fixtures": 30,
+    "referenceBehavior": "skip unchanged state",
+    "source": "battle.ex:start_effect/5 fallback skip/2",
+    "classification": "reference-compatible unsupported",
+    "retainDiagnostic": true
+  }
+]

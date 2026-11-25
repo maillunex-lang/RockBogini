@@ -1,0 +1,4 @@
+import fs from 'node:fs';import {simulate} from '../dist/src/battle/simulation.js';import {battleRandom} from '../dist/src/battle/random.js';
+const fixtures=JSON.parse(fs.readFileSync(process.argv[2]));const norm=e=>[e.index,e.target,e.type,e.value,e.params??[]];let total=0,matched=0;const rows=[];
+for(const f of fixtures){const r=simulate(f.input.map(u=>({...u,buffs:[]})),battleRandom(f.seed),f.maxRounds);let bad=Math.abs(f.pages.length-r.pages.length),first;for(let i=0;i<f.pages.length;i++){const e=f.pages[i].events.map(norm),a=r.pages[i]?.events.slice().sort((x,y)=>x.index-y.index).map(norm)??[];total+=e.length;for(let j=0;j<e.length;j++)if(JSON.stringify(e[j])===JSON.stringify(a[j]))matched++;else{bad++;first??={page:i,expected:e[j],actual:a[j]}}if(a.length!==e.length)bad++}rows.push({mapId:f.mapId,seed:f.seed,bad,first})}
+console.log(JSON.stringify({total,matched,battles:rows.filter(r=>!r.bad).length,rows},null,2));if(rows.some(r=>r.bad))process.exitCode=1;
