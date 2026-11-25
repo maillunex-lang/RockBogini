@@ -1,0 +1,36 @@
+.inventory-screen{
+ min-height:100dvh;
+ padding:16px;
+ color:#f4efe6;
+ background:radial-gradient(ellipse at 20% 0%,rgba(120,72,36,.35),transparent 55%),linear-gradient(160deg,#1a1410,#2a2118 45%,#12100e);
+ font-family:Segoe UI,Tahoma,sans-serif;
+ box-sizing:border-box;
+ max-width:680px;
+ margin:auto;
+}
+.inventory-screen header{
+ display:flex;
+ justify-content:space-between;
+ gap:12px;
+ align-items:flex-start;
+ flex-wrap:wrap;
+ margin-bottom:16px;
+}
+.inventory-screen h1{margin:0;font-size:1.8rem}
+.inventory-screen h2{margin:0 0 10px;font-size:1.15rem}
+.inventory-screen header p{margin:6px 0 0;opacity:.85}
+.inventory-screen header button,.inventory-screen button{
+ font:inherit;padding:8px 14px;cursor:pointer;
+ border:1px solid #e8c48c;background:rgba(90,58,28,.9);color:inherit;
+}
+.inventory-currencies,.inventory-bag{margin-bottom:18px}
+.inventory-currencies ul,.inventory-bag ul{
+ list-style:none;padding:0;margin:0;display:grid;gap:6px;
+}
+.inventory-currencies li,.inventory-bag li{
+ display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;
+ background:rgba(0,0,0,.25);padding:10px 12px;
+ border:1px solid rgba(232,196,140,.22);
+}
+.inventory-bag li small{opacity:.65;font-size:.8rem}
+.inventory-empty{opacity:.8}

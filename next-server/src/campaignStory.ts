@@ -77,13 +77,17 @@ export function playableTutorial(completed:ReadonlySet<number>){
  const lines=dialogLinesForGroup(group.id);
  const fingerSteps=group.sequence.filter(s=>s.kindName==='fingerHint').length;
  const panelSteps=group.sequence.filter(s=>s.kindName==='showPanel').length;
+ const plotSteps=group.sequence.filter(s=>s.kindName==='plotVideo'||s.kind===100).length;
+ const hasPlot=plotSteps>0&&lines.length===0;
  return {
   groupId:group.id,
   desc:group.desc,
-  lines,
+  lines:hasPlot?[{key:`plot_${group.id}`,infoKey:`plot_${group.id}`,text:'Сюжетный ролик этого шага обучения пока не перенесён. Продолжите, чтобы пропустить.'}]:lines,
   hasDialog:lines.length>0,
+  hasPlot,
   fingerSteps,
   panelSteps,
+  plotSteps,
   sequence:group.sequence.map(s=>({
    stepId:s.stepId,
    kindName:s.kindName??'other',

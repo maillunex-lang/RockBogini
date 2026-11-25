@@ -54,8 +54,10 @@ export type TutorialPending={
  desc:string;
  lines:StoryLine[];
  hasDialog:boolean;
+ hasPlot?:boolean;
  fingerSteps:number;
  panelSteps:number;
+ plotSteps?:number;
 };
 export type CampaignProgress={
  stage:number;
@@ -101,7 +103,7 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
     setChapterId(d.focusChapterId);
     const focusWorld=d.worlds.find(w=>w.id===d.focusWorldId)||d.worlds.find(w=>w.id===d.currentWorldId);
     if(focusWorld)setOwningMap(focusWorld.owningMap);
-    if(d.tutorial?.pending?.hasDialog)setTutorial(d.tutorial.pending);
+    if(d.tutorial?.pending?.hasDialog||d.tutorial?.pending?.hasPlot)setTutorial(d.tutorial.pending);
     else setTutorial(null);
     setStatus('');
     return d;
@@ -121,7 +123,7 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
   });
   if(!res.ok)throw Error('guide_complete_'+res.status);
   const body=await res.json() as {pending:TutorialPending|null};
-  if(body.pending?.hasDialog)setTutorial(body.pending);
+  if(body.pending?.hasDialog||body.pending?.hasPlot)setTutorial(body.pending);
   else setTutorial(null);
   await loadCampaign(chapterId);
  };
@@ -265,7 +267,9 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
    </div>
   </section>}
   {tutorial&&!pendingFight&&!storyOpen&&<StoryDialog
-   title={`Обучение · группа ${tutorial.groupId}${tutorial.fingerSteps?` · подсказок ${tutorial.fingerSteps}`:''}`}
+   title={tutorial.hasPlot
+    ?`Сюжет · группа ${tutorial.groupId}`
+    :`Обучение · группа ${tutorial.groupId}${tutorial.fingerSteps?` · подсказок ${tutorial.fingerSteps}`:''}`}
    lines={tutorial.lines}
    onSkip={()=>{void completeTutorial(tutorial.groupId).catch(e=>setStatus(String(e)))}}
    onContinue={()=>{void completeTutorial(tutorial.groupId).catch(e=>setStatus(String(e)))}}

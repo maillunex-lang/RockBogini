@@ -1,19 +1,14 @@
 # Актуальное состояние 2026-11-25
 
-Активная задача: **NEXT-014** (после 014.5–014.14). NEXT-013 закрыт по D-011; технические остатки 013.8 не блокируют кампанию.
-10 из 28 основных этапов закрыты, 4 в работе, 1 отложен, 13 ожидают. (авто из roadmap.json)
-NEXT-012 принят только в проверенном эталонном объёме для подключения визуализации; общий статус остаётся in_progress.
-Проверено: 84/84 серверных тестов после NEXT-014.5–14; live https://rikagro.ru/testtest/.
+Активная задача: **NEXT-015** (MVP инвентарь). NEXT-014 tails закрыты (RU story + plot stub). Live https://rikagro.ru/testtest/.
+Проверено: 86/86 серверных тестов; inventory smoke + plot pending.
 
 | Подэтап | Состояние |
 |---|---|
-| 013.1–013.7 | accepted (D-011 owner visual QA); known gaps retained |
-| 013.8 | closed for gate: residuals inventoried, owner owns visual QA |
-| 014.1 | done: chapters/campaign API+UI |
-| 014.2 | done: MapWorld карта + locale names |
-| 014.3 | done: map guide/story lines + StoryDialog |
-| 014.4 | done: GuideGroup tutorial sequencing |
-| 014.5–014.14 | done: boss/preview/modules/WinBoard/complete/heros/labels/skip/UI |
+| 013.1–013.8 | CLOSED (D-011) |
+| 014.1–014.14 | done |
+| 014 tails | done: RU StoryChapter, plot stub, settle hotfix |
+| 015 MVP | done: GET /v1/inventory + InventoryScreen |
 
 
 ---
@@ -434,3 +429,5 @@ NEXT-013.5.1 partial: per-actor HP bars, buff count, damage/heal/crit colors, ev
 
 2026-11-25 NEXT-014.4: GuideGroup tutorial sequencing + player_guide_groups; 83/83 tests; publish. reports/NEXT-014.4-*.
 2026-11-25 NEXT-014.5–014.14 batch: MapAdventure Type=2 bosses, enemy/reward preview, modules, WinBoard, campaignComplete, chapter heros, stage labels, tutorial skip, item names; 84/84 tests; publish. reports/NEXT-014.5-14-*.
+2026-11-25 Hotfix: white screen after settle — Pixi teardown + ResultScreen boundary. reports/FIX-white-screen-settle-publish.log.
+2026-11-25 Plan A: 014 tails (RU StoryChapter, plot stub) + NEXT-015 inventory MVP; 86/86; publish. reports/NEXT-014-tails-015-*.

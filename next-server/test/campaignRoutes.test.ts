@@ -100,9 +100,17 @@ test('GuideGroup sequences resolve NPC dialog steps in order',()=>{
  assert.match(lines[0].text,/Победим|враг/i);
  const pending=playableTutorial(new Set());
  assert.equal(pending?.groupId,1); // first group is plot placeholder
+ assert.equal(pending?.hasPlot,true);
+ assert.ok((pending?.lines.length??0)>=1);
  const afterPlot=playableTutorial(new Set([1]));
  assert.equal(afterPlot?.groupId,31);
  assert.equal(afterPlot?.hasDialog,true);
+});
+
+test('StoryChapter titles are Russian after 014 tails',()=>{
+ const ch=storyChapters().find(c=>c.id===10100100);
+ assert.ok(ch);
+ assert.match(ch!.title,/ангел|Дар/i);
 });
 
 test('MapAdventure Type=2 marks boss stages; meta has stage labels and enemies',()=>{
@@ -140,9 +148,9 @@ test('authenticated campaign progress lists chapters and terminal stage',{skip:!
   assert.equal(boss.stageLabel,'1-5');
   assert.ok(boss.enemies.length>=1);
   assert.ok(body.tutorial);
-  // Non-dialog groups auto-advance; pending should be a dialog group or null.
+  // Finger-only groups auto-advance; pending should be dialog, plot stub, or null.
   if(body.tutorial.pending){
-   assert.equal(body.tutorial.pending.hasDialog,true);
+   assert.ok(body.tutorial.pending.hasDialog||body.tutorial.pending.hasPlot);
    assert.ok(body.tutorial.pending.lines.length>0);
    const done=await app.inject({method:'POST',url:'/v1/campaign/guide/complete',headers,payload:{groupId:body.tutorial.pending.groupId}});
    assert.equal(done.statusCode,200,done.body);

@@ -34,10 +34,10 @@ export async function campaignRoutes(app:FastifyInstance,s:Storage){
   const clears=new Set(clearRows.map(r=>r.map_id));
   const guideRows=(await s.pg.query('SELECT group_id FROM player_guide_groups WHERE account_id=$1',[id])).rows as {group_id:number}[];
   const completedGuides=new Set(guideRows.map(r=>r.group_id));
-  // Finger/panel-only groups have no NPC lines yet — advance past them until a dialog group (or end).
+  // Finger/panel-only groups (no NPC lines, no plot stub) — advance until dialog/plot (or end).
   for(;;){
    const pending=playableTutorial(completedGuides);
-   if(!pending||pending.hasDialog)break;
+   if(!pending||pending.hasDialog||pending.hasPlot)break;
    await s.pg.query(
     'INSERT INTO player_guide_groups(account_id,group_id) VALUES($1,$2) ON CONFLICT DO NOTHING',
     [id,pending.groupId],
