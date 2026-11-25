@@ -3,6 +3,8 @@
 .summon-screen h1{margin:0;font-size:1.75rem;letter-spacing:0.04em}
 .summon-screen button{cursor:pointer;border:1px solid #c4a574;background:#2c241c;color:#f2ebe3;padding:0.45rem 0.85rem}
 .summon-screen button:disabled{opacity:0.45;cursor:not-allowed}
+.summon-tabs{display:flex;gap:0.5rem;margin:0.8rem 0}
+.summon-tabs button[aria-selected="true"]{background:#5a4632}
 .summon-tickets,.summon-meta{margin:0.35rem 0}
 .summon-actions{display:flex;flex-wrap:wrap;gap:0.6rem;margin:1.2rem 0}
 .summon-results ul{list-style:none;padding:0;margin:0;display:grid;gap:0.5rem}

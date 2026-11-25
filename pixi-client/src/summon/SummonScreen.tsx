@@ -2,16 +2,21 @@ import React,{useEffect,useState} from 'react';
 import {heroDisplayName} from '../shared/heroNames';
 import './summon.css';
 
-type Banner={id:number;summonCount:number;consume:[number,number][];extra:[number,number][]};
+type Banner={id:number;summonCount:number;summonType:number;consume:[number,number][];extra:[number,number][]};
 type PullHero={sid:number;heroId:number;star:number;cardId:number};
+type PoolState={summonType:number;freeCount:number;todayCount:number;totalCount:number}|null;
+type Tickets={normal:{itemId:number;amount:number};senior:{itemId:number;amount:number};diamond:{itemId:number;amount:number}};
 type SummonInfo={
  banners:Banner[];
- ticket:{itemId:number;amount:number};
- state:{freeCount:number;todayCount:number;totalCount:number}|null;
+ tickets?:Tickets;
+ ticket?:{itemId:number;amount:number};
+ states?:{'101':PoolState;'102':PoolState};
+ state:PoolState;
 };
 
 export function SummonScreen({api,token,onClose}:{api:string;token:string;onClose:()=>void}){
  const [info,setInfo]=useState<SummonInfo|null>(null);
+ const [tab,setTab]=useState<'normal'|'senior'>('normal');
  const [status,setStatus]=useState('Загрузка…');
  const [busy,setBusy]=useState(false);
  const [results,setResults]=useState<PullHero[]>([]);
@@ -29,22 +34,26 @@ export function SummonScreen({api,token,onClose}:{api:string;token:string;onClos
   return()=>c.abort();
  },[api,token]);
 
- const pull=async(type:1|2,free=false)=>{
+ const pull=async(type:1|2|3|4,free=false)=>{
   if(busy)return;
-  setBusy(true);setStatus(type===1?'Призыв ×1…':'Призыв ×10…');
+  const senior=type===3||type===4;
+  setBusy(true);setStatus(senior?`Старший ×${type===4?10:1}…`:`Обычный ×${type===2?10:1}…`);
   try{
+   const itemId=free?0:senior?10403:10401;
    const r=await fetch(`${api}/v1/summon/pull`,{
     method:'POST',
     headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},
-    body:JSON.stringify(free?{type:1,itemId:0}:{type,itemId:10401}),
+    body:JSON.stringify({type,itemId}),
    });
    const j=await r.json().catch(()=>({}));
    if(!r.ok)throw Error(j.error||'pull_'+r.status);
    setResults(j.heroes??[]);
    setInfo(prev=>prev?{
     ...prev,
+    tickets:j.tickets??prev.tickets,
     ticket:j.ticket??prev.ticket,
-    state:j.state??prev.state,
+    states:j.states??prev.states,
+    state:j.states?.['101']??j.state??prev.state,
    }:prev);
    setStatus(`Получено героев: ${(j.heroes??[]).length}`);
   }catch(e){
@@ -52,8 +61,13 @@ export function SummonScreen({api,token,onClose}:{api:string;token:string;onClos
   }finally{setBusy(false)}
  };
 
- const one=info?.banners.find(b=>b.id===1);
- const ten=info?.banners.find(b=>b.id===2);
+ const one=info?.banners.find(b=>b.id===(tab==='normal'?1:3));
+ const ten=info?.banners.find(b=>b.id===(tab==='normal'?2:4));
+ const pool=tab==='normal'?(info?.states?.['101']??info?.state):(info?.states?.['102']??null);
+ const tickets=info?.tickets;
+ const ticketLine=tab==='normal'
+  ?`Билеты #${tickets?.normal.itemId??10401}: ${tickets?.normal.amount??info?.ticket?.amount??'—'}`
+  :`Билеты #${tickets?.senior.itemId??10403}: ${tickets?.senior.amount??'—'} · алмазы #3: ${tickets?.diamond.amount??'—'}`;
 
  return <main className="summon-screen">
   <header>
@@ -61,17 +75,21 @@ export function SummonScreen({api,token,onClose}:{api:string;token:string;onClos
    <button type="button" onClick={onClose}>Вернуться в город</button>
   </header>
   {status&&<p role="status">{status}</p>}
-  <p className="summon-tickets">Билеты #{info?.ticket.itemId??10401}: {info?.ticket.amount??'—'}</p>
-  <p className="summon-meta">Бесплатно: {info?.state?.freeCount??'—'} · сегодня {info?.state?.todayCount??0} · всего {info?.state?.totalCount??0}</p>
+  <div className="summon-tabs" role="tablist">
+   <button type="button" role="tab" aria-selected={tab==='normal'} disabled={busy} onClick={()=>setTab('normal')}>Обычный</button>
+   <button type="button" role="tab" aria-selected={tab==='senior'} disabled={busy} onClick={()=>setTab('senior')}>Старший</button>
+  </div>
+  <p className="summon-tickets">{ticketLine}</p>
+  <p className="summon-meta">Бесплатно: {pool?.freeCount??'—'} · сегодня {pool?.todayCount??0} · всего {pool?.totalCount??0}</p>
   <div className="summon-actions">
-   <button type="button" disabled={busy||!one} onClick={()=>void pull(1)}>
-    ×1{one?` (${one.consume.map(([id,n])=>`${n}×${id}`).join(', ')})`:''}
+   <button type="button" disabled={busy||!one} onClick={()=>void pull((tab==='normal'?1:3) as 1|3)}>
+    ×1{one?` (${one.consume.map(([id,n])=>`${n}×${id}`).join(' / ')})`:''}
    </button>
-   <button type="button" disabled={busy||!(info?.state?.freeCount)} onClick={()=>void pull(1,true)}>
+   <button type="button" disabled={busy||!(pool?.freeCount)} onClick={()=>void pull((tab==='normal'?1:3) as 1|3,true)}>
     Бесплатно ×1
    </button>
-   <button type="button" disabled={busy||!ten} onClick={()=>void pull(2)}>
-    ×10{ten?` (${ten.consume.map(([id,n])=>`${n}×${id}`).join(', ')})`:''}
+   <button type="button" disabled={busy||!ten} onClick={()=>void pull((tab==='normal'?2:4) as 2|4)}>
+    ×10{ten?` (${ten.consume.map(([id,n])=>`${n}×${id}`).join(' / ')})`:''}
    </button>
   </div>
   {!!results.length&&(

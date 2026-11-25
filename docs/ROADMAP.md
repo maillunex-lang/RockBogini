@@ -4,10 +4,10 @@ VPS is the development stand; GitHub main is the published source mirror. **SING
 
 ## Актуальный срез: 2026-11-25
 
-Активная задача: **NEXT-018.1**. Далее senior/oracle summon или finger-hint. Передача Cursor: docs/CURSOR_HANDOFF.md.
+Активная задача: **NEXT-018.2**. Далее oracle summon или finger-hint. Передача Cursor: docs/CURSOR_HANDOFF.md.
 11 из 28 основных этапов закрыты, 3 в работе, 1 отложен, 13 ожидают. (авто из roadmap.json)
 NEXT-012 принят только в проверенном эталонном объёме для подключения визуализации; общий статус остаётся in_progress.
-Проверено: normal summon MVP; summon+storage 5/5.
+Проверено: senior summon; summon 6/6.
 
 | Подэтап | Состояние |
 |---|---|
@@ -36,7 +36,7 @@ NEXT-012 принят только в проверенном эталонном 
 | NEXT-015 | Инвентарь и предметы | in_progress | 015.2: icons hardlink, Fixed/Manual use, sell overrides. Random/event consume open. | reports/NEXT-015.2.md; reports/NEXT-015.1.md |
 | NEXT-016 | Развитие героев | done | 016.1–016.5 level/star/talent/jobs/luck | reports/NEXT-016.5.md |
 | NEXT-017 | Экипировка | done | 017.1–017.8 equip + holy full slice (gallery/resonance). | reports/NEXT-017.8.md; reports/NEXT-017.7.md |
-| NEXT-018 | Призыв героев | in_progress | 018.1 normal ×1/×10. Senior/oracle open. | reports/NEXT-018.1.md |
+| NEXT-018 | Призыв героев | in_progress | 018.2 senior. Oracle open. | reports/NEXT-018.2.md; reports/NEXT-018.1.md |
 | NEXT-019 | Экономика и Idle | pending | Idle, офлайн, магазины, ресурсы, таймеры |  |
 | NEXT-020 | Задания и достижения | pending | Сюжетные, ежедневные, еженедельные задания, достижения |  |
 | NEXT-021 | PvE-режимы | pending | Башни, подземелья, испытания, боссы, специальные режимы |  |

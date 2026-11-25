@@ -37,6 +37,12 @@ test('pullMany returns summonCount items',()=>{
  assert.equal(items.length,10);
 });
 
+test('pullMany senior type 102 returns items with pity libs',()=>{
+ const model={libCount:{},libStatus:{},freeCount:0,todayCount:0,totalCount:0};
+ const {items}=pullMany(102,model,10,()=>0.5);
+ assert.equal(items.length,10);
+});
+
 test('POST /v1/summon/pull grants heroes and spends tickets',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);const a=await createGuest(s);const app=await buildApp(s);
  try{
@@ -65,5 +71,38 @@ test('POST /v1/summon/pull grants heroes and spends tickets',{skip:!process.env.
   assert.equal(ten.statusCode,200,JSON.stringify(ten.json()));
   assert.equal(ten.json().times,10);
   assert.equal(ten.json().heroes.length,10);
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
+});
+
+test('POST /v1/summon/pull senior spends 10403 and grants heroes',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);const a=await createGuest(s);const app=await buildApp(s);
+ try{
+  await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}});
+  const info=await app.inject({url:'/v1/summon',headers:{authorization:'Bearer '+a.token}});
+  assert.equal(info.statusCode,200);
+  assert.ok(info.json().banners.some((b:{id:number})=>b.id===3));
+  assert.ok(info.json().tickets.senior.amount>=11);
+  const before=info.json().tickets.senior.amount;
+  const beforeHeroes=(await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}})).json().heroes.length;
+  const pull=await app.inject({
+   method:'POST',url:'/v1/summon/pull',
+   headers:{authorization:'Bearer '+a.token},
+   payload:{type:3,itemId:10403},
+  });
+  assert.equal(pull.statusCode,200,JSON.stringify(pull.json()));
+  assert.equal(pull.json().times,1);
+  assert.ok(pull.json().heroes.length>=1);
+  assert.equal(pull.json().tickets.senior.amount,before-1);
+  assert.equal(pull.json().state.summonType,102);
+  const ten=await app.inject({
+   method:'POST',url:'/v1/summon/pull',
+   headers:{authorization:'Bearer '+a.token},
+   payload:{type:4,itemId:10403},
+  });
+  assert.equal(ten.statusCode,200,JSON.stringify(ten.json()));
+  assert.equal(ten.json().times,10);
+  assert.equal(ten.json().heroes.length,10);
+  const afterHeroes=(await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}})).json().heroes.length;
+  assert.ok(afterHeroes>=beforeHeroes+11);
  }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
 });
