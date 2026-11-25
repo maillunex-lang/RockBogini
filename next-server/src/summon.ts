@@ -1,4 +1,4 @@
-/** Normal summon (CardCommonSummon 1/2 → SummonType 101). */
+/** Common summon: normal 1/2 → 101, senior 3/4 → 102. */
 import {readFileSync} from 'node:fs';
 import {dirname,join} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -14,7 +14,9 @@ type LibCfg={startChance:number;maxCount:number;modifyChance:number[][];randomLi
 type HeroCardCfg={heroId:number;starLevel:number};
 
 const PPM=1_000_000;
-const TICKET=10401;
+const TICKET_NORMAL=10401;
+const TICKET_SENIOR=10403;
+const DIAMOND=3;
 
 const here=dirname(fileURLToPath(import.meta.url));
 const candidates=[join(process.cwd(),'data'),join(here,'..','data'),join(here,'..','..','data')];
@@ -199,12 +201,29 @@ async function grantHeroCard(s:Storage,id:string,cardId:number,count:number){
  return granted;
 }
 
+async function ticketSnapshot(s:Storage,id:string){
+ return {
+  normal:{itemId:TICKET_NORMAL,amount:await itemAmount(s,id,TICKET_NORMAL)},
+  senior:{itemId:TICKET_SENIOR,amount:await itemAmount(s,id,TICKET_SENIOR)},
+  diamond:{itemId:DIAMOND,amount:await itemAmount(s,id,DIAMOND)},
+ };
+}
+
+async function stateFor(s:Storage,id:string,summonType:number){
+ const typeCfg=STYPE[String(summonType)];
+ if(!typeCfg)return null;
+ const m=await loadModel(s,id,summonType,typeCfg);
+ return {summonType,freeCount:m.freeCount,todayCount:m.todayCount,totalCount:m.totalCount};
+}
+
 export async function summonRoutes(app:FastifyInstance,s:Storage){
  app.get('/v1/summon',async(req,reply)=>{
   const id=await account(req,s);
   if(!id)return reply.code(401).send({error:'invalid_session'});
   // seed starter tickets for empty bag (dev/test)
-  if((await itemAmount(s,id,TICKET))===0)await grantItem(s,id,TICKET,20);
+  if((await itemAmount(s,id,TICKET_NORMAL))===0)await grantItem(s,id,TICKET_NORMAL,20);
+  if((await itemAmount(s,id,TICKET_SENIOR))===0)await grantItem(s,id,TICKET_SENIOR,30);
+  if((await itemAmount(s,id,DIAMOND))===0)await grantItem(s,id,DIAMOND,500);
   const banners=Object.entries(COMMON).map(([bannerId,cfg])=>{
    const typeCfg=STYPE[String(cfg.summonType)];
    return {
@@ -216,18 +235,22 @@ export async function summonRoutes(app:FastifyInstance,s:Storage){
     free:typeCfg?.startFreeCount??0,
    };
   });
-  const typeCfg=STYPE['101'];
-  const model=typeCfg?await loadModel(s,id,101,typeCfg):null;
+  const tickets=await ticketSnapshot(s,id);
+  const normal=await stateFor(s,id,101);
+  const senior=await stateFor(s,id,102);
   return {
    banners,
-   ticket:{itemId:TICKET,amount:await itemAmount(s,id,TICKET)},
-   state:model?{summonType:101,freeCount:model.freeCount,todayCount:model.todayCount,totalCount:model.totalCount}:null,
+   tickets,
+   // back-compat for 018.1 clients
+   ticket:{itemId:TICKET_NORMAL,amount:tickets.normal.amount},
+   states:{'101':normal,'102':senior},
+   state:normal,
   };
  });
 
  app.post<{Body:{type:number;itemId?:number}}>('/v1/summon/pull',{
   schema:{body:{type:'object',required:['type'],additionalProperties:false,properties:{
-   type:{type:'integer',enum:[1,2]},
+   type:{type:'integer',enum:[1,2,3,4]},
    itemId:{type:'integer',minimum:0},
   }}},
  },async(req,reply)=>{
@@ -250,7 +273,7 @@ export async function summonRoutes(app:FastifyInstance,s:Storage){
    for(const [itemId,n] of preferred.length?preferred:costs){
     if(await payItem(s,id,itemId,n)){paid=true;break}
    }
-   if(!paid)return reply.code(409).send({error:'insufficient_tickets',need:costs});
+   if(!paid)return reply.code(409).send({error:'insufficient_currency',need:costs});
   }
   const {items,model:after}=pullMany(cfg.summonType,model,times);
   const heroes:{sid:number;heroId:number;star:number;cardId:number}[]=[];
@@ -268,6 +291,7 @@ export async function summonRoutes(app:FastifyInstance,s:Storage){
    totalCount:after.totalCount+times,
   };
   await saveModel(s,id,cfg.summonType,saved);
+  const tickets=await ticketSnapshot(s,id);
   return {
    ok:true,
    type:req.body.type,
@@ -275,8 +299,13 @@ export async function summonRoutes(app:FastifyInstance,s:Storage){
    pulls:items,
    heroes,
    extras,
-   ticket:{itemId:TICKET,amount:await itemAmount(s,id,TICKET)},
+   tickets,
+   ticket:{itemId:TICKET_NORMAL,amount:tickets.normal.amount},
    state:{summonType:cfg.summonType,freeCount:saved.freeCount,todayCount:saved.todayCount,totalCount:saved.totalCount},
+   states:{
+    '101':cfg.summonType===101?{summonType:101,freeCount:saved.freeCount,todayCount:saved.todayCount,totalCount:saved.totalCount}:await stateFor(s,id,101),
+    '102':cfg.summonType===102?{summonType:102,freeCount:saved.freeCount,todayCount:saved.todayCount,totalCount:saved.totalCount}:await stateFor(s,id,102),
+   },
    heroCount:(await getHeroes(s,id)).length,
   };
  });

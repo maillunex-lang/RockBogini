@@ -154,9 +154,9 @@
   "id": "NEXT-018",
   "title": "Призыв героев",
   "phase": "IV. RPG и экономика",
-  "scope": "018.1 normal ×1/×10. Senior/oracle open.",
+  "scope": "018.2 senior. Oracle open.",
   "status": "in_progress",
-  "evidence": "reports/NEXT-018.1.md"
+  "evidence": "reports/NEXT-018.2.md; reports/NEXT-018.1.md"
  },
  {
   "id": "NEXT-019",

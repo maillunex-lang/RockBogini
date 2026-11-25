@@ -470,3 +470,4 @@ NEXT-013.8 in_progress: inventoried 10 invalid common-skill ActionIndex values; 
 2026-11-25 NEXT-017.7: holy soul cast (spare holy materials → Stage++); publish. reports/NEXT-017.7.md.
 2026-11-25 NEXT-017.8: holy gallery/resonance (display slots, levels, team+self attrs); publish. reports/NEXT-017.8.md.
 2026-11-25 NEXT-018.1: normal summon MVP (CardCommonSummon 1/2, city Призыв); publish. reports/NEXT-018.1.md.
+2026-11-25 NEXT-018.2: senior summon (3/4 → 102, tickets 10403 / diamonds); publish. reports/NEXT-018.2.md.
