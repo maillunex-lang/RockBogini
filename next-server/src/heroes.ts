@@ -30,6 +30,15 @@ import {
  jobMaterials,
  jobRoots,
 } from './heroJob.js';
+import {
+ LUCK_UNLOCK_STAR,
+ luckClear,
+ luckField,
+ luckSkill,
+ luckStudyCost,
+ luckUnlocked,
+ sameLuckType,
+} from './heroLuck.js';
 
 async function account(req:{headers:{authorization?:string}},s:Storage){
  const token=/^Bearer ([A-Za-z0-9_-]{43})$/.exec(req.headers.authorization??'')?.[1];
@@ -51,9 +60,11 @@ export async function getHeroes(s:Storage,id:string){
 function enrich(h:{
  Sid:number;HeroId:number;Level:number;StarLevel:number;Power:number;Locked:boolean;
  PVETalentLevel?:number;PVPTalentLevel?:number;Job?:number;JobMap?:Record<string|number,number>;
+ LuckSkill1?:number;LuckSkill2?:number;
  Attrs?:Record<string,number>;Skills?:number[];
 }){
  const pve=h.PVETalentLevel??0,pvp=h.PVPTalentLevel??0;
+ const luck1=h.LuckSkill1??0,luck2=h.LuckSkill2??0;
  const jobMap=h.JobMap??{};
  const tree=heroJobTree(h.HeroId).map(node=>{
   const unlocked=(jobMap[node.jobId]??jobMap[String(node.jobId)]??0)>0;
@@ -67,10 +78,16 @@ function enrich(h:{
    skill:node.cfg?.skill??0,
   };
  });
+ const luckSlot=(index:1|2,id:number)=>({
+  index,id,unlocked:luckUnlocked(h.StarLevel,index),needStar:LUCK_UNLOCK_STAR[index],
+  ...(id?{type:luckSkill(id)?.type,quality:luckSkill(id)?.quality,power:luckSkill(id)?.power}:{}),
+ });
  return {
   ...h,
   Job:h.Job??0,
   JobMap:jobMap,
+  LuckSkill1:luck1,
+  LuckSkill2:luck2,
   base:calculateHero(h.HeroId,h.Level,h.StarLevel),
   skillSlots:skillSlots(h.HeroId,h.Level,h.StarLevel),
   maxLevel:starMaxLevel(h.StarLevel),
@@ -82,6 +99,7 @@ function enrich(h:{
    pvpUnlocked:talentUnlocked(h.Level,h.StarLevel,2,pve),
   },
   jobs:tree,
+  luck:{slots:[luckSlot(1,luck1),luckSlot(2,luck2)]},
  };
 }
 
@@ -371,5 +389,67 @@ export async function heroRoutes(app:FastifyInstance,s:Storage){
   const nextJob=roots.has(curJob)?curJob:(Number(Object.keys(keep)[0])||0);
   const updated=await saveHero(s,id,{...hero,Job:nextJob,JobMap:keep});
   return {ok:true,refund:refundList,hero:updated};
+ });
+
+ app.post<{Params:{sid:string};Body:{index:number;type:number;param:number}}>('/v1/heroes/:sid/luck',{
+  schema:{
+   params:{type:'object',required:['sid'],properties:{sid:{type:'string',pattern:'^[0-9]+$'}}},
+   body:{type:'object',required:['index','type','param'],additionalProperties:false,properties:{
+    index:{type:'integer',enum:[1,2]},
+    type:{type:'integer',enum:[1,2]},
+    param:{type:'integer',minimum:1},
+   }},
+  },
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  await getHeroes(s,id);
+  const sid=Number(req.params.sid);
+  const hero=await loadHero(s,id,sid);
+  if(!hero)return reply.code(404).send({error:'hero_not_found'});
+  const field=luckField(req.body.index);
+  if(!field)return reply.code(400).send({error:'invalid_luck_slot'});
+  if(!luckUnlocked(hero.StarLevel,req.body.index)){
+   return reply.code(409).send({error:'luck_locked',needStar:LUCK_UNLOCK_STAR[req.body.index]});
+  }
+  const cur=Number(hero[field]??0);
+  const studied=luckStudyCost(cur,req.body.type,req.body.param);
+  if(!studied)return reply.code(404).send({error:'luck_skill_not_found'});
+  const otherField=luckField(3-req.body.index)!;
+  if(sameLuckType(Number(hero[otherField]??0),studied.skill)){
+   return reply.code(409).send({error:'luck_same_type'});
+  }
+  if(!(await payItems(s,id,studied.cost)))return reply.code(409).send({error:'insufficient_materials',cost:studied.cost});
+  const updated=await saveHero(s,id,{...hero,[field]:studied.skill});
+  return {ok:true,cost:studied.cost,hero:updated};
+ });
+
+ app.post<{Params:{sid:string};Body:{index:number;type:number}}>('/v1/heroes/:sid/luck/clear',{
+  schema:{
+   params:{type:'object',required:['sid'],properties:{sid:{type:'string',pattern:'^[0-9]+$'}}},
+   body:{type:'object',required:['index','type'],additionalProperties:false,properties:{
+    index:{type:'integer',enum:[1,2]},
+    type:{type:'integer',enum:[1,2]},
+   }},
+  },
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  await getHeroes(s,id);
+  const sid=Number(req.params.sid);
+  const hero=await loadHero(s,id,sid);
+  if(!hero)return reply.code(404).send({error:'hero_not_found'});
+  const field=luckField(req.body.index);
+  if(!field)return reply.code(400).send({error:'invalid_luck_slot'});
+  const cur=Number(hero[field]??0);
+  if(cur<=0)return reply.code(409).send({error:'luck_empty'});
+  const cleared=luckClear(cur,req.body.type);
+  if(!cleared)return reply.code(404).send({error:'luck_skill_not_found'});
+  if(cleared.cost.length&&!(await payItems(s,id,cleared.cost))){
+   return reply.code(409).send({error:'insufficient_materials',cost:cleared.cost});
+  }
+  await grantItems(s,id,cleared.refund);
+  const updated=await saveHero(s,id,{...hero,[field]:0});
+  return {ok:true,refund:cleared.refund,cost:cleared.cost,hero:updated};
  });
 }
