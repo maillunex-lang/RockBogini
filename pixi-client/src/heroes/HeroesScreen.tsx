@@ -50,12 +50,13 @@ type HolyBlessing={BlessingId:number;Level:number;Xp:number;Pool:number[]};
 type HolySlot={
  slot:number;
  equip:{
-  Sid:number;ItemId:number;Star:number;Level:number;Xp:number;Step?:number;score:number;
+  Sid:number;ItemId:number;Star:number;Level:number;Xp:number;Step?:number;Stage?:number;score:number;
   Blessing1?:HolyBlessing|null;Blessing2?:HolyBlessing|null;blessingUnlock?:number[];
  }|null;
  maxLevel?:number;
  nextStar?:{value:number;materials:[number,number][]}|null;
  nextStep?:{value:number;materials:[number,number][]}|null;
+ nextSoul?:{stage:number;itemId:number;count:number;unlockStar:number;ready:boolean}|null;
 };
 
 export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClose:()=>void}){
@@ -161,6 +162,7 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
    await refreshHeroes();
    if(kind==='level-up')setStatus(`Священное → ур.${j.after?.Level} (xp ${j.after?.Xp??0})`);
    else if(kind==='star-up')setStatus(`Священное → ★${j.after?.Star} шаг ${j.after?.Step}`);
+   else if(kind==='soul')setStatus(`Душа → стадия ${j.after?.Stage}`);
    else if(kind.startsWith('blessing/'))setStatus(`Благословение: ${kind.split('/')[1]}`);
    else setStatus(kind==='put-on'?'Священное надето':'Священное снято');
   }catch(e){
@@ -266,7 +268,7 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
       const worn=info?.equip??null;
       const starter=HOLY_STARTER[slot];
       return <li key={slot}>
-       <span>{SLOT_NAME[slot]}: {worn?`#${worn.ItemId} ★${worn.Star} шаг ${worn.Step??0} ур.${worn.Level} · ${worn.score}`:'пусто'}</span>
+       <span>{SLOT_NAME[slot]}: {worn?`#${worn.ItemId} ★${worn.Star} шаг ${worn.Step??0} душа ${worn.Stage??0} ур.${worn.Level} · ${worn.score}`:'пусто'}</span>
        {worn?(
         <>
          <button type="button" disabled={busy||(worn.Level>=(info?.maxLevel??0))} onClick={()=>void holyAct('level-up',{sid:worn.Sid,counts:[1,0,0,0]},'Усиление…')}>
@@ -277,6 +279,9 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
          </button>
          <button type="button" disabled={busy||!info?.nextStep} onClick={()=>void holyAct('star-up',{sid:worn.Sid,type:2},'Шаг…')}>
           Шаг+1{info?.nextStep?` (${info.nextStep.materials.map(([id,n])=>`${n}×${id}`).join(', ')})`:''}
+         </button>
+         <button type="button" disabled={busy||!info?.nextSoul?.ready} onClick={()=>void holyAct('soul',{sid:worn.Sid},'Душа…')}>
+          Душа+1{info?.nextSoul?` (${info.nextSoul.count}×${info.nextSoul.itemId}${info.nextSoul.ready?'':` 🔒★${info.nextSoul.unlockStar}`})`:''}
          </button>
          {[1,2].map(bi=>{
           const b=bi===1?worn.Blessing1:worn.Blessing2;

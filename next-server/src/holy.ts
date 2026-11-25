@@ -46,7 +46,8 @@ const LEVEL=loadJson<Record<string,LevelCfg>>('holy-equipment-level.json',{});
 const SUIT=loadJson<Record<string,SuitCfg>>('holy-equip-suit.json',{});
 const GS=loadJson<Record<string,number>>('holy-global.json',{});
 const LP=loadJson<Record<string,number[]>>('holy-level-param.json',{'123':[1000,5000,20000,50000]});
-const SOUL=loadJson<Record<string,{attr:number}>>('holy-equip-soul.json',{});
+type SoulCfg={attr:number;materials:number[][];unlockStar:number};
+const SOUL=loadJson<Record<string,SoulCfg>>('holy-equip-soul.json',{});
 const BLESS=loadJson<Record<string,BlessCfg>>('holy-equip-blessing.json',{});
 const BLESS_TYPE=loadJson<Record<string,BlessTypeCfg>>('holy-equip-blessing-type.json',{});
 const BLESS_LEVEL=loadJson<Record<string,BlessLevelCfg>>('holy-equip-blessing-level.json',{});
@@ -62,8 +63,26 @@ function levelCfg(level:number):LevelCfg|undefined{return LEVEL[String(level)]}
 function xpUnits():number[]{return LP['123']??[1000,5000,20000,50000]}
 function blessCfg(id:number):BlessCfg|undefined{return BLESS[String(id)]}
 function blessLevelCfg(level:number):BlessLevelCfg|undefined{return BLESS_LEVEL[String(level)]}
+function soulCfg(stage:number):SoulCfg|undefined{return SOUL[String(stage)]}
 export function blessingUnlockStar(index:1|2):number{
  return Math.trunc(gs(`HolyEquipBlessingUnlock${index}`,index));
+}
+
+/** Next soul stage cost for equipment Type (1..4): Materials[type-1] = [itemId, count]. */
+export function nextSoulTarget(itemId:number,stage:number,star:number):{
+ stage:number;attr:number;unlockStar:number;itemId:number;count:number;ready:boolean;
+}|null{
+ const cfg=holyConfig(itemId);
+ const next=soulCfg(stage+1);
+ if(!cfg||!next)return null;
+ const mat=next.materials[cfg.type-1];
+ const fodderId=mat?.[0]??0;
+ const count=mat?.[1]??0;
+ if(!fodderId||!count)return null;
+ return {
+  stage:stage+1,attr:next.attr,unlockStar:next.unlockStar,
+  itemId:fodderId,count,ready:star>=next.unlockStar,
+ };
 }
 
 /** type 1 = Star, type 2 = Step (Req_Holy_EquipmentStarUp). */
@@ -177,7 +196,7 @@ export function holyPieceExtra(e:HolyRec):number[][]{
  }
  score=applyBlessing(attrs,score,e.Blessing1);
  score=applyBlessing(attrs,score,e.Blessing2);
- const f=e.Stage>0?1000+(SOUL[String(e.Stage)]?.attr??0):1000;
+ const f=e.Stage>0?1000+(soulCfg(e.Stage)?.attr??0):1000;
  if(e.Stage>0)score=Math.floor(score*f/1000);
  const out:number[][]=[];
  for(const [k,v] of attrs)out.push([k,Math.floor(v*f/1000)]);
@@ -473,6 +492,7 @@ export async function holyRoutes(app:FastifyInstance,s:Storage){
     slot,equip,maxLevel,
     nextStar:starNext&&canStarUp(equip!.Star,equip!.Step,1)?{value:starNext.value,materials:starNext.materials}:null,
     nextStep:stepNext&&canStarUp(equip!.Star,equip!.Step,2)?{value:stepNext.value,materials:stepNext.materials}:null,
+    nextSoul:equip?nextSoulTarget(equip.ItemId,equip.Stage,equip.Star):null,
    };
   });
   const bonus=holyWornBonus(worn.map(e=>({
@@ -704,5 +724,42 @@ export async function holyRoutes(app:FastifyInstance,s:Storage){
    [id,rec.sid,JSON.stringify(next)],
   );
   return {ok:true,index,blessing:next,holy:await listHoly(s,id)};
+ });
+
+ app.post<{Body:{sid:number}}>('/v1/holy/soul',{
+  schema:{body:{type:'object',required:['sid'],additionalProperties:false,properties:{sid:{type:'integer',minimum:1}}}},
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  const rec=await loadHolyRow(id,req.body.sid);
+  if(!rec)return reply.code(404).send({error:'holy_not_found'});
+  const target=nextSoulTarget(rec.item_id,rec.stage,rec.star);
+  if(!target)return reply.code(409).send({error:'holy_max_soul'});
+  if(!target.ready)return reply.code(409).send({error:'holy_soul_locked',need:target.unlockStar});
+  const spare=await s.pg.query(
+   `SELECT sid FROM player_holy_equipment
+    WHERE account_id=$1 AND item_id=$2 AND owner_sid=0 AND sid<>$3
+    ORDER BY sid LIMIT $4`,
+   [id,target.itemId,rec.sid,target.count],
+  );
+  if((spare.rowCount??0)<target.count){
+   return reply.code(409).send({error:'insufficient_soul_materials',itemId:target.itemId,need:target.count,have:spare.rowCount??0});
+  }
+  const sids=spare.rows.map(r=>Number(r.sid));
+  await s.pg.query(
+   'DELETE FROM player_holy_equipment WHERE account_id=$1 AND sid=ANY($2::int[])',[id,sids],
+  );
+  const stage=rec.stage+1;
+  await s.pg.query(
+   'UPDATE player_holy_equipment SET stage=$3 WHERE account_id=$1 AND sid=$2',[id,rec.sid,stage],
+  );
+  if(rec.owner_sid>0)await refreshHeroGear(s,id,rec.owner_sid);
+  return {
+   ok:true,
+   consumed:sids.map(sid=>({sid,itemId:target.itemId})),
+   before:{Stage:rec.stage},
+   after:{Stage:stage,attr:target.attr},
+   holy:await listHoly(s,id),
+  };
  });
 }
