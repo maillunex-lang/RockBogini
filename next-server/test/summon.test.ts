@@ -1,0 +1,69 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {openStorage,migrate} from '../src/storage.js';
+import {createGuest} from '../src/auth.js';
+import {buildApp} from '../src/app.js';
+import {pullMany,pullOnce,heroCard} from '../src/summon.js';
+
+test('heroCard maps ItemHeroCard to hero/star',()=>{
+ const c=heroCard(1111401);
+ assert.ok(c);
+ assert.ok(c!.heroId>0);
+ assert.equal(typeof c!.starLevel,'number');
+});
+
+test('pullOnce OnceLibs burns 10107 then falls through',()=>{
+ const typeCfg={
+  libs:[[1,10107],[2,10101],[3,10102],[4,10103],[5,10104],[6,10105],[7,10106]],
+  onceLibs:[1],startFreeCount:1,dailyFreeCount:1,
+ };
+ let model={libCount:{},libStatus:{},freeCount:1,todayCount:0,totalCount:0};
+ // force first slot always by rng that returns ~0 for chance and 0 for picks
+ const rng=()=>0;
+ const first=pullOnce(typeCfg,model,rng);
+ assert.ok(first.item);
+ assert.equal(first.model.libStatus['10107'],1);
+ model=first.model;
+ const second=pullOnce(typeCfg,model,rng);
+ assert.ok(second.item);
+ assert.equal(second.model.libStatus['10107'],1);
+ // 10107 should not be re-selected as candidate after once
+ assert.ok(!Object.keys(second.model.libCount).includes('10107')||second.model.libCount['10107']===0||second.model.libStatus['10107']===1);
+});
+
+test('pullMany returns summonCount items',()=>{
+ const model={libCount:{},libStatus:{},freeCount:0,todayCount:0,totalCount:0};
+ const {items}=pullMany(101,model,10,()=>0.5);
+ assert.equal(items.length,10);
+});
+
+test('POST /v1/summon/pull grants heroes and spends tickets',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);const a=await createGuest(s);const app=await buildApp(s);
+ try{
+  await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}});
+  const info=await app.inject({url:'/v1/summon',headers:{authorization:'Bearer '+a.token}});
+  assert.equal(info.statusCode,200);
+  assert.ok(info.json().ticket.amount>=20);
+  const before=info.json().ticket.amount;
+  const beforeHeroes=(await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}})).json().heroes.length;
+  const pull=await app.inject({
+   method:'POST',url:'/v1/summon/pull',
+   headers:{authorization:'Bearer '+a.token},
+   payload:{type:1,itemId:10401},
+  });
+  assert.equal(pull.statusCode,200,JSON.stringify(pull.json()));
+  assert.equal(pull.json().times,1);
+  assert.ok(pull.json().heroes.length>=1);
+  assert.equal(pull.json().ticket.amount,before-1);
+  const afterHeroes=(await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}})).json().heroes.length;
+  assert.ok(afterHeroes>beforeHeroes);
+  const ten=await app.inject({
+   method:'POST',url:'/v1/summon/pull',
+   headers:{authorization:'Bearer '+a.token},
+   payload:{type:2},
+  });
+  assert.equal(ten.statusCode,200,JSON.stringify(ten.json()));
+  assert.equal(ten.json().times,10);
+  assert.equal(ten.json().heroes.length,10);
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
+});

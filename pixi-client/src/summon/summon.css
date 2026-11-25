@@ -1,0 +1,10 @@
+.summon-screen{min-height:100vh;padding:1rem 1.25rem 2rem;background:linear-gradient(165deg,#1a2230 0%,#2a3344 45%,#3d2e28 100%);color:#f2ebe3;font-family:"Segoe UI",Tahoma,sans-serif}
+.summon-screen header{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem}
+.summon-screen h1{margin:0;font-size:1.75rem;letter-spacing:0.04em}
+.summon-screen button{cursor:pointer;border:1px solid #c4a574;background:#2c241c;color:#f2ebe3;padding:0.45rem 0.85rem}
+.summon-screen button:disabled{opacity:0.45;cursor:not-allowed}
+.summon-tickets,.summon-meta{margin:0.35rem 0}
+.summon-actions{display:flex;flex-wrap:wrap;gap:0.6rem;margin:1.2rem 0}
+.summon-results ul{list-style:none;padding:0;margin:0;display:grid;gap:0.5rem}
+.summon-results li{display:flex;flex-direction:column;gap:0.15rem;padding:0.55rem 0;border-bottom:1px solid rgba(196,165,116,0.25)}
+@media (max-width:640px){.summon-screen{padding:0.85rem}.summon-screen h1{font-size:1.4rem}}

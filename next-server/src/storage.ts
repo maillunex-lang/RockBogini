@@ -71,6 +71,17 @@ export async function migrate(s:Storage){
   CHECK(cardinality(levels)=4)
  )`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(15) ON CONFLICT DO NOTHING');
+ await c.query(`CREATE TABLE IF NOT EXISTS player_summon(
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  summon_type integer NOT NULL,
+  lib_count jsonb NOT NULL DEFAULT '{}',
+  lib_status jsonb NOT NULL DEFAULT '{}',
+  free_count integer NOT NULL DEFAULT 0,
+  today_count integer NOT NULL DEFAULT 0,
+  total_count integer NOT NULL DEFAULT 0,
+  PRIMARY KEY(account_id,summon_type)
+ )`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(16) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }
