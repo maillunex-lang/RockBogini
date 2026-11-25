@@ -1,7 +1,7 @@
 # Актуальное состояние 2026-11-25
 
-Активная задача: **NEXT-018.5** (element displace done). Live https://rikagro.ru/testtest/.
-Проверено: displace+storage 3/3; publish ok.
+Активная задача: **NEXT-018.6** (personality displace done). Live https://rikagro.ru/testtest/.
+Проверено: personality+displace+storage 5/5; publish ok.
 
 | Подэтап | Состояние |
 |---|---|
@@ -11,7 +11,7 @@
 | 015 MVP–015.2 | done: inventory + filters + icons/use/sell |
 | 016.1–016.5 | done: level/star/fodder/talent/jobs/luck |
 | 017.1–017.8 | done: equip + holy full slice |
-| 018.1–018.5 | done: summon + crystal + element displace |
+| 018.1–018.6 | done: summon + crystal + element/personality displace |
 
 
 ---

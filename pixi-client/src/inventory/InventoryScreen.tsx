@@ -2,7 +2,7 @@ import {useEffect,useMemo,useState} from 'react';
 import {itemDisplayName} from '../shared/itemNames';
 import './inventory.css';
 
-type ItemKind='currency'|'consume'|'material'|'shard'|'other';
+type ItemKind='currency'|'consume'|'material'|'shard'|'personality'|'other';
 type InventoryItem={
  itemId:number;
  amount:string;
@@ -11,6 +11,8 @@ type InventoryItem={
  canSell?:boolean;
  usable?:boolean;
  useSubType?:number|null;
+ canPersonalityDisplace?:boolean;
+ element?:number;
  icon?:string;
 };
 type InventoryPayload={
@@ -21,6 +23,7 @@ type InventoryPayload={
 };
 
 type Filter='all'|ItemKind;
+type PersPending={oldItemId:number;newItemId:number};
 
 const CURRENCY_LABELS:[string,string][]=[
  ['coin','Золото'],
@@ -39,11 +42,12 @@ const FILTERS:{id:Filter;label:string}[]=[
  {id:'consume',label:'Расход'},
  {id:'material',label:'Материалы'},
  {id:'shard',label:'Осколки'},
+ {id:'personality',label:'Личность'},
  {id:'other',label:'Прочее'},
 ];
 
 const KIND_LABEL:Record<ItemKind,string>={
- currency:'Валюта',consume:'Расход',material:'Материал',shard:'Осколок',other:'Прочее',
+ currency:'Валюта',consume:'Расход',material:'Материал',shard:'Осколок',personality:'Личность',other:'Прочее',
 };
 
 function kindOf(it:InventoryItem):ItemKind{
@@ -69,6 +73,9 @@ export function InventoryScreen({api,token,onClose}:{api:string;token:string;onC
  const [filter,setFilter]=useState<Filter>('all');
  const [query,setQuery]=useState('');
  const [selected,setSelected]=useState<InventoryItem|null>(null);
+ const [pers,setPers]=useState<{
+  eligible?:boolean;cost?:{itemId:number;amount:number};currency?:{itemId:number;amount:number};pending?:PersPending|null;
+ }|null>(null);
  const [busy,setBusy]=useState(false);
 
  useEffect(()=>{
@@ -91,6 +98,27 @@ export function InventoryScreen({api,token,onClose}:{api:string;token:string;onC
    return name.includes(q)||String(it.itemId).includes(q);
   });
  },[data,filter,query]);
+
+ const reloadBag=async()=>{
+  const r=await fetch(api+'/v1/inventory',{headers:{Authorization:'Bearer '+token}});
+  if(!r.ok)return null;
+  const inv=await r.json() as InventoryPayload;
+  setData(inv);
+  return inv;
+ };
+
+ const loadPers=async(itemId:number)=>{
+  try{
+   const r=await fetch(`${api}/v1/inventory/personality/displace?itemId=${itemId}`,{headers:{Authorization:'Bearer '+token}});
+   if(r.ok)setPers(await r.json());
+   else setPers(null);
+  }catch{setPers(null)}
+ };
+
+ useEffect(()=>{
+  if(!selected?.canPersonalityDisplace){setPers(null);return}
+  void loadPers(selected.itemId);
+ },[api,token,selected?.itemId,selected?.canPersonalityDisplace]);
 
  const act=async(path:'use'|'sell',item:InventoryItem)=>{
   if(busy)return;
@@ -115,6 +143,44 @@ export function InventoryScreen({api,token,onClose}:{api:string;token:string;onC
   }finally{
    setBusy(false);
   }
+ };
+
+ const runPers=async(kind:'roll'|'save'|'cancel')=>{
+  if(busy||!selected)return;
+  setBusy(true);
+  setStatus(kind==='roll'?'Замена личности…':kind==='save'?'Сохранение…':'Отмена…');
+  try{
+   const url=kind==='roll'
+    ?`${api}/v1/inventory/personality/displace`
+    :`${api}/v1/inventory/personality/displace/${kind}`;
+   const body=kind==='roll'
+    ?JSON.stringify({itemId:selected.itemId})
+    :kind==='save'&&pers?.pending
+     ?JSON.stringify({itemId:pers.pending.oldItemId,newItemId:pers.pending.newItemId})
+     :undefined;
+   const r=await fetch(url,{
+    method:'POST',
+    headers:{Authorization:'Bearer '+token,...(body?{'Content-Type':'application/json'}:{})},
+    body,
+   });
+   const j=await r.json().catch(()=>({}));
+   if(!r.ok)throw Error(j.error||`personality_${r.status}`);
+   const inv=await reloadBag();
+   if(kind==='save'){
+    setStatus(`Личность: ${itemDisplayName(j.swapped.from)} → ${itemDisplayName(j.swapped.to)}`);
+    const next=inv?.items.find(i=>i.itemId===j.swapped.to)??null;
+    setSelected(next);
+   }else if(kind==='roll'){
+    setStatus(`Вариант: ${itemDisplayName(j.pending.newItemId)}`);
+    setPers(p=>({...(p??{}),pending:j.pending,currency:j.currency}));
+   }else{
+    setStatus('Замена личности отменена (валюта не возвращена)');
+    await loadPers(selected.itemId);
+   }
+   if(kind!=='roll'&&selected)await loadPers(selected.itemId);
+  }catch(e){
+   setStatus(e instanceof Error?e.message:'Не удалось заменить личность');
+  }finally{setBusy(false)}
  };
 
  return <main className="inventory-screen">
@@ -175,7 +241,24 @@ export function InventoryScreen({api,token,onClose}:{api:string;token:string;onC
       <button type="button" disabled={busy||!selected.usable} onClick={()=>void act('use',selected)}>Использовать</button>
       <button type="button" disabled={busy||!selected.canSell} onClick={()=>void act('sell',selected)}>Продать</button>
      </div>
-     {!selected.usable&&!selected.canSell&&<p className="inventory-note">Для этого предмета нет действий использования или продажи.</p>}
+     {selected.canPersonalityDisplace&&(
+      <div className="inventory-personality" data-guide="personality-displace">
+       <h3>Замена личности</h3>
+       <p>Валюта #{pers?.currency?.itemId??50}: {pers?.currency?.amount??'—'}{pers?.cost?` · ${pers.cost.amount}×${pers.cost.itemId}`:''}</p>
+       {pers?.pending?(
+        <>
+         <p>{itemDisplayName(pers.pending.oldItemId)} → {itemDisplayName(pers.pending.newItemId)}</p>
+         <button type="button" disabled={busy} onClick={()=>void runPers('save')}>Сохранить</button>
+         <button type="button" disabled={busy} onClick={()=>void runPers('cancel')}>Отменить</button>
+        </>
+       ):(
+        <button type="button" disabled={busy||!pers?.eligible} onClick={()=>void runPers('roll')}>
+         Случайная замена{pers?.cost?` (${pers.cost.amount}×${pers.cost.itemId})`:''}
+        </button>
+       )}
+      </div>
+     )}
+     {!selected.usable&&!selected.canSell&&!selected.canPersonalityDisplace&&<p className="inventory-note">Для этого предмета нет действий использования или продажи.</p>}
      {selected.usable===false&&kindOf(selected)==='consume'&&<p className="inventory-note">Сложные расходники (события/случайные ящики) — следующие подэтапы.</p>}
     </div>
    </section>

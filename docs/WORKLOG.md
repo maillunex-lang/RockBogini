@@ -479,3 +479,5 @@ NEXT-013.8 in_progress: inventoried 10 invalid common-skill ActionIndex values; 
 2026-11-25 NEXT-014.15: finger-hint overlays + GuidePlot_EN video; publish. reports/NEXT-014.15.md.
 
 2026-11-25 NEXT-018.5: element displace ★4/★5 (401/402, currency 14002); publish. reports/NEXT-018.5.md.
+
+2026-11-25 NEXT-018.6: personality displace (type 6 → 12, currency 50); publish. reports/NEXT-018.6.md.
