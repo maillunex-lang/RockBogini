@@ -1,0 +1,14 @@
+✔ damage and share damage reduce HP (0.937302ms)
+✔ shield and dodge do not change HP (0.117236ms)
+✔ heal and revive/death semantics (0.151208ms)
+✔ buff add and remove sync (0.725222ms)
+✔ missing buffs array is treated as empty (0.159471ms)
+✔ revive does not invent HP; following cure restores it (0.09932ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 129.896465

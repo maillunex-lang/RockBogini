@@ -5,7 +5,6 @@ import {City} from './city/City';
 import {ProfileScreen} from './profile/ProfileScreen';
 import React,{useEffect,useState} from 'react';
 import {createRoot} from 'react-dom/client';
-import {Squad} from './battle/Squad';
 import {LoginScreen} from './auth/LoginScreen';
 import {LinkGuest} from './auth/LinkGuest';
 import {RecoveryScreen,RecoveryCodes} from './auth/RecoveryScreen';
@@ -39,7 +38,7 @@ function App(){
  if(showProfile)return <ProfileScreen api={API} token={session.token} onClose={()=>setShowProfile(false)}/>;
  if(codes)return <RecoveryCodes codes={codes} onDone={()=>setCodes(null)}/>;
  if(showLink)return <LinkGuest onCancel={()=>setShowLink(false)} onLink={async(email,password)=>{const linked=await linkGuest(API,session,email,password);setSession(linked);setIsGuest(false);setShowLink(false)}}/>;
- if(fightMapId!=null)return <><ReportScreen api={API} token={session.token} mapId={fightMapId} onBack={()=>setFightMapId(null)}/><details><summary>Старая демонстрационная сцена</summary><Squad/></details></>;
+ if(fightMapId!=null)return <ReportScreen api={API} token={session.token} mapId={fightMapId} onBack={()=>setFightMapId(null)}/>;
  if(showCampaign)return <CampaignScreen api={API} token={session.token} onFight={id=>setFightMapId(id)} onClose={()=>setShowCampaign(false)}/>;
  return <main><div style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:8,padding:10,background:'#222137',color:'white',flexWrap:'wrap'}}>
  <strong>RockBogini Next</strong><button onClick={()=>setShowProfile(true)}>Профиль</button><span>Аккаунт: {session.id.slice(0,8)}</span>

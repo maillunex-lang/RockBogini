@@ -55,5 +55,15 @@ test('missing buffs array is treated as empty',()=>{
  assert.equal(applyHealth(h,{index:1,target:1,type:1,value:10}).hp,90);
 });
 
+test('revive does not invent HP; following cure restores it',()=>{
+ const dead={id:1,hp:0,hpMax:100,isDead:true,buffs:[]};
+ const revived=applyHealth(dead,{index:1,target:1,type:7,value:0});
+ assert.equal(revived.isDead,false);
+ assert.equal(revived.hp,0);
+ const healed=applyHealth(revived,{index:1,target:1,type:5,value:40});
+ assert.equal(healed.hp,40);
+ assert.equal(healed.isDead,false);
+});
+
 void createRequire;
 void readFileSync;

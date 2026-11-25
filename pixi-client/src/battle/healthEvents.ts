@@ -3,7 +3,11 @@ import type {BattleEvent,HeroStatus} from './reportClient';
 const DAMAGE=new Set([1,2,3,8,21]);
 const HEAL=new Set([5,22]);
 
-/** Intermediate HP/buff reconciliation from original AJBattleViewPort hit events. */
+/**
+ * Intermediate HP/buff reconciliation from original AJBattleViewPort hit events.
+ * Type 7 Revive matches AJBattleActor.Revive: visual only — does not invent HP.
+ * Server emits Revive(value=0) then Cure/ExtraCure with restored HP (simulation.ts).
+ */
 export function applyHealth(h:HeroStatus,e:BattleEvent):HeroStatus{
  let hp=h.hp;
  let isDead=h.isDead;

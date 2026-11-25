@@ -1,0 +1,11 @@
+✔ auto-settle only from idle when finished and ready (0.696929ms)
+✔ retry only from error; start blocks parallel pending (0.148354ms)
+✔ failed settle does not re-enter auto path without reset (0.088783ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 136.543976

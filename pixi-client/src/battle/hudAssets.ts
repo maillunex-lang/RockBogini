@@ -28,13 +28,16 @@ export function hudPixelOffset(heroId:number,offsets:Record<string,number>){
  return y+GAP_BETWEEN_AVATAR_AND_HUD;
 }
 
+async function loadJson<T>(url:string):Promise<T>{
+ const r=await fetch(url);if(!r.ok)throw Error('HUD resource '+r.status+': '+url);return r.json() as Promise<T>;
+}
 export async function loadBattleHudAssets():Promise<BattleHudAssets>{
  const [buff,numbers,labels,offsets,buffMap]=await Promise.all([
-  fetch('./battle-hud/buff-list.json').then(r=>r.json()) as Promise<AtlasMeta>,
-  fetch('./battle-hud/player-numbers.json').then(r=>r.json()) as Promise<AtlasMeta>,
-  fetch('./battle-hud/float-labels.json').then(r=>r.json()) as Promise<AtlasMeta>,
-  fetch('./battle-hud/hero-hud-offsets.json').then(r=>r.json()) as Promise<Record<string,number>>,
-  fetch('./battle-hud/buff-icon-map.json').then(r=>r.json()) as Promise<Record<string,BuffIconInfo>>,
+  loadJson<AtlasMeta>('./battle-hud/buff-list.json'),
+  loadJson<AtlasMeta>('./battle-hud/player-numbers.json'),
+  loadJson<AtlasMeta>('./battle-hud/float-labels.json'),
+  loadJson<Record<string,number>>('./battle-hud/hero-hud-offsets.json'),
+  loadJson<Record<string,BuffIconInfo>>('./battle-hud/buff-icon-map.json'),
  ]);
  const [buffTex,numberTex,labelTex]=await Promise.all([
   Assets.load('./battle-hud/buff-list.webp') as Promise<Texture>,

@@ -7,7 +7,8 @@ export function createGameClock(initial:BattleSpeed=1){
  let gameOrigin=0;
  let wallOrigin=performance.now();
  let gameAtPause=0;
- const timers=new Set<{at:number;fn:()=>void}>();
+ type Timer={at:number;fn:()=>void;seq:number};
+ const timers=new Set<Timer>();
  const frames=new Set<number>();
 
  function syncOrigin(now=performance.now()){
@@ -31,8 +32,9 @@ export function createGameClock(initial:BattleSpeed=1){
   else{paused=false;gameOrigin=gameAtPause;wallOrigin=wall}
  }
 
+ let seq=0;
  function later(ms:number,fn:()=>void){
-  const item={at:nowGame()+ms,fn};
+  const item={at:nowGame()+ms,fn,seq:seq++};
   timers.add(item);
   return ()=>timers.delete(item);
  }
@@ -40,8 +42,12 @@ export function createGameClock(initial:BattleSpeed=1){
  function pump(wall=performance.now()){
   if(paused)return;
   const g=nowGame(wall);
-  for(const t of [...timers]){
-   if(t.at<=g){timers.delete(t);t.fn()}
+  // Fire due timers by scheduled time, then stable insertion order — never rely on Set iteration.
+  const due=[...timers].filter(t=>t.at<=g).sort((a,b)=>a.at-b.at||a.seq-b.seq);
+  for(const t of due){
+   if(!timers.has(t))continue; // cancelled while earlier callback ran
+   timers.delete(t);
+   t.fn();
   }
  }
 

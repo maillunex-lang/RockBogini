@@ -1,0 +1,22 @@
+✔ rate is zero when paused (1.989869ms)
+✔ later fires in game time and respects pause (61.317788ms)
+✔ speed x2 advances game time faster (40.793537ms)
+✔ pump fires overdue timers by scheduled time then stable seq (92.205332ms)
+✔ callback can cancel later sibling; clear cancels animate frames (72.345822ms)
+✔ damage and share damage reduce HP (1.224175ms)
+✔ shield and dodge do not change HP (0.165499ms)
+✔ heal and revive/death semantics (0.20517ms)
+✔ buff add and remove sync (0.929781ms)
+✔ missing buffs array is treated as empty (0.208374ms)
+✔ revive does not invent HP; following cure restores it (0.142816ms)
+✔ auto-settle only from idle when finished and ready (0.783601ms)
+✔ retry only from error; start blocks parallel pending (0.147983ms)
+✔ failed settle does not re-enter auto path without reset (0.095143ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 406.430015

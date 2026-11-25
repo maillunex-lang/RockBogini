@@ -2,20 +2,22 @@
 
 Обновлено: 2026-11-25
 
+## SINGLE-PROJECT-001
+Работать только в `/home/gamedev/rocbogini/`. Одна публикация: https://rikagro.ru/testtest/. Оригинал не трогать. Диск ≥90% — аудит; ≥95% — стоп. Зеркало GitHub пока `rockbogini-publish` (план: docs/GIT_MIGRATION_PLAN.md).
+
 ## Сейчас
-Активная задача: **NEXT-014.1** (partial). NEXT-013 закрыт по **D-011** (визуальная приёмка владельцем).
+Активно: **AUDIT-001…018** (исправления по независимому аудиту) → затем продолжение **NEXT-014**. NEXT-013 закрыт (D-011).
 
-Прочитать AGENTS.md, docs/ROADMAP.md, roadmap.json, STATUS.md, DECISIONS.md, WORKLOG.md. Эталон только для чтения. Работать в /home/gamedev/rocbogini. GitHub RockBogini — через /home/gamedev/rockbogini-publish.
+Прочитать AGENTS.md, ROADMAP.md, roadmap.json, STATUS.md, DECISIONS.md, WORKLOG.md, reports/audit/QUEUE.md.
 
-## Сделано в этом срезе
-- AdventureChapter/MapWorld export → next-audit/campaign-chapters.json + next-server/data/campaign-chapters.json (56 глав, 30 миров, 2240 карт в главах, orphan map 105701).
-- GET /v1/campaign (auth): stage/level, chapter summaries, maps for focus chapter, canChallenge.
-- CampaignScreen + City «Кампания»; ReportScreen принимает mapId.
-- 77/77 server tests; API deployed; https://rikagro.ru/testtest/ published.
+## Сделано (срез)
+- NEXT-014.1 campaign API/UI; hotfix buffs; AUDIT-001 settlement state; AUDIT-002/003 terminal 105701 + NextId/clears; AUDIT-004 revive semantics; AUDIT-005 multi-texture wiring; AUDIT-006 clock order; AUDIT-007 float lifecycle; AUDIT-008 volume sync; AUDIT-009 Squad off play path; AUDIT-010 HUD HTTP checks; AUDIT-011 ActionIndex 0 = no anim (documented); AUDIT-012 partial aim offsets; AUDIT-014 names/items (WinBoard residual); AUDIT-016 disk audit; AUDIT-017 roadmap stats; publish hardlink economy.
 
 ## Далее
-- NEXT-014.2+: world map / MapWorld UI, сюжетные тексты StoryChapter, обучение, имена глав из локалей (AdventureChapter_name_*), orphan 105701 policy, boss presentation.
-- Известные остатки боя 013.8 не блокируют, но не забывать: angel actors, 10 ActionIndex, multi-texture VFX, 64 sounds, autoplay, WinBoard art.
+- Добить residuals AUDIT-011/012/014 (ангелы, точные координаты, WinBoard art, 64 sounds).
+- AUDIT-015 расширенные campaign E2E.
+- После закрытия критических AUDIT — NEXT-014.2 world map / сюжет.
+- Миграция Git — только после утверждения плана владельцем.
 
 ## Критерии
-Не отмечать NEXT-014 done без глав/этапов/наград/обучения по roadmap. Не изобретать ID/баланс. Не трогать другие проекты.
+Не отмечать done без доказательств. Не изобретать ID/баланс. Не плодить копии проекта.

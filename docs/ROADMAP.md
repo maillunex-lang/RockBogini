@@ -1,11 +1,11 @@
 # RockBogini Next — утверждённая генеральная дорожная карта
 
-VPS is the development stand; GitHub main is the published source mirror. Original game and Elixir unchanged until separate cutover approval. Vertical slices: reference → server → parity → UI/assets → integration → tests → visual QA → documentation. Old roadmap: archive/ROADMAP-before-next.md.
+VPS is the development stand; GitHub main is the published source mirror. **SINGLE-PROJECT-001**: одна финальная кодовая база в `/home/gamedev/rocbogini/`; единственная публикация Next — `/testtest/`; без параллельных копий проекта. Original game and Elixir unchanged until separate cutover approval. Vertical slices: reference → server → parity → UI/assets → integration → tests → visual QA → documentation. Old roadmap: archive/ROADMAP-before-next.md.
 
 ## Актуальный срез: 2026-11-25
 
 Активная задача: **NEXT-014.1**. NEXT-013 закрыт (D-011). Передача Cursor: docs/CURSOR_HANDOFF.md.
-9 из 28 основных этапов закрыты, 4 в работе, 1 отложен, 14 ожидают. Это не процент готовности игры.
+10 из 28 основных этапов закрыты, 4 в работе, 1 отложен, 13 ожидают. (авто из roadmap.json)
 NEXT-012 принят только в проверенном эталонном объёме для подключения визуализации; общий статус остаётся in_progress.
 Проверено: эталонный бой + 77/77 серверных тестов после кампанийного API.
 

@@ -1,0 +1,9 @@
+map=105639 advType=1 next=105640 level=599 mapType=1 heros=5 bg=CrystalCave boss=0
+map=105640 advType=2 next=105701 level=600 mapType=1 heros=5 bg=CrystalCave boss=0
+map=105701 advType=1 next=0 level=600 mapType=1 heros=5 bg=CrystalCave boss=0
+chapters_with_105701: []
+lastChapter=56 lastMaps=[105636, 105637, 105638, 105639, 105640] count=40
+prev_to_105701: [105640]
+type1_next0: [105701]
+mapAdventure_type1=1793
+ui_clamp_map=105640

@@ -1,0 +1,13 @@
+✔ rate is zero when paused (1.657347ms)
+✔ later fires in game time and respects pause (60.798826ms)
+✔ speed x2 advances game time faster (40.175887ms)
+✔ pump fires overdue timers by scheduled time then stable seq (91.373929ms)
+✔ callback can cancel later sibling; clear cancels animate frames (70.095142ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 379.146532

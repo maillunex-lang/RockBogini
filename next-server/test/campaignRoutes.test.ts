@@ -3,19 +3,66 @@ import assert from 'node:assert/strict';
 import {openStorage,migrate} from '../src/storage.js';
 import {createGuest} from '../src/auth.js';
 import {buildApp} from '../src/app.js';
-import {chapterStatus,mapStatus} from '../src/campaignChapters.js';
+import {
+ campaignComplete,
+ canChallengeMap,
+ chapterForMap,
+ chapterStatus,
+ mainLineChain,
+ mapStatus,
+ mapsForChapter,
+ uiClampMapId,
+ campaignChapters,
+} from '../src/campaignChapters.js';
 
-test('campaign chapter and map status helpers',()=>{
- assert.equal(mapStatus(100101,100101),'available');
- assert.equal(mapStatus(100100,100101),'cleared');
- assert.equal(mapStatus(100102,100101),'locked');
- const chapter={id:1,name:'Глава 1',bg:'Street',mapIds:[100101,100102,100140],maps:[]};
- assert.equal(chapterStatus(chapter,100101),'current');
- assert.equal(chapterStatus(chapter,100141),'cleared');
- assert.equal(chapterStatus(chapter,100100),'locked');
+test('main-line chain reaches terminal 105701 with next 0',()=>{
+ const chain=mainLineChain();
+ assert.equal(chain[0],100101);
+ assert.equal(chain[chain.length-1],105701);
+ assert.ok(chain.includes(105640));
+ assert.equal(uiClampMapId(),105640);
 });
 
-test('authenticated campaign progress lists chapters and current maps',{skip:!process.env.PGHOST},async()=>{
+test('chapterForMap clamps terminal 105701 to last chapter like original DataUtlity',()=>{
+ const ch=chapterForMap(105701);
+ assert.equal(ch?.id,56);
+ assert.equal(chapterForMap(105640)?.id,56);
+ assert.equal(chapterForMap(100101)?.id,1);
+ // Must not fall back to chapter 1 for terminal stage.
+ assert.notEqual(chapterForMap(105701)?.id,1);
+});
+
+test('mapsForChapter appends terminal 105701 after last chapter only',()=>{
+ const last=campaignChapters.chapters[campaignChapters.chapters.length-1];
+ const maps=mapsForChapter(last);
+ assert.ok(maps.some(m=>m.id===105701));
+ assert.equal(maps[maps.length-1].id,105701);
+ assert.equal(maps[maps.length-1].next,0);
+ const first=mapsForChapter(campaignChapters.chapters[0]);
+ assert.ok(!first.some(m=>m.id===105701));
+});
+
+test('map/chapter status uses NextId chain and clears, not raw id comparison',()=>{
+ const clears=new Set<number>();
+ assert.equal(mapStatus(100101,100101,clears),'available');
+ assert.equal(mapStatus(100102,100101,clears),'locked');
+ assert.equal(mapStatus(100101,100102,clears),'cleared');
+ // Non-monotonic jump: 105640 -> 105701 still ordered by chain.
+ assert.equal(mapStatus(105640,105701,clears),'cleared');
+ assert.equal(mapStatus(105701,105701,clears),'available');
+ clears.add(105701);
+ assert.equal(mapStatus(105701,105701,clears),'cleared');
+ assert.equal(campaignComplete(105701,clears),true);
+ assert.equal(campaignComplete(105701,new Set()),false);
+ assert.equal(canChallengeMap(100101,100101,1,clears),true);
+ assert.equal(canChallengeMap(100102,100101,1,clears),false);
+ assert.equal(canChallengeMap(100101,100102,1,clears),true); // replay
+ const ch1=campaignChapters.chapters[0];
+ assert.equal(chapterStatus(ch1,100101,clears),'current');
+ assert.equal(chapterStatus(ch1,105701,clears),'cleared');
+});
+
+test('authenticated campaign progress lists chapters and terminal stage',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);const guest=await createGuest(s);const app=await buildApp(s);
  const headers={authorization:'Bearer '+guest.token};
  try{
@@ -24,23 +71,29 @@ test('authenticated campaign progress lists chapters and current maps',{skip:!pr
   assert.equal(res.statusCode,200,res.body);
   const body=res.json();
   assert.equal(body.stage,100101);
-  assert.equal(body.level,1);
   assert.equal(body.chapterCount,56);
+  assert.equal(body.uiClampMapId,105640);
   assert.equal(body.currentChapterId,1);
-  assert.equal(body.focusChapterId,1);
-  assert.equal(body.chapters.length,56);
-  assert.equal(body.chapters[0].status,'current');
-  assert.equal(body.chapters[1].status,'locked');
-  assert.ok(body.maps.length>=1);
-  assert.equal(body.maps[0].id,100101);
-  assert.equal(body.maps[0].status,'available');
+  assert.equal(body.campaignComplete,false);
   assert.equal(body.maps[0].canChallenge,true);
-  assert.equal(body.maps[1].status,'locked');
   assert.equal(body.maps[1].canChallenge,false);
-  const other=await app.inject({url:'/v1/campaign?chapterId=2',headers});
-  assert.equal(other.statusCode,200,other.body);
-  const ch2=other.json();
-  assert.equal(ch2.focusChapterId,2);
-  assert.ok(ch2.maps.every((m:{status:string})=>m.status==='locked'));
+  // Simulate terminal progress
+  await s.pg.query('UPDATE player_profiles SET stage=$2,level=$3 WHERE account_id=$1',[guest.id,105701,600]);
+  await s.pg.query('INSERT INTO campaign_clears(account_id,map_id) VALUES($1,$2) ON CONFLICT DO NOTHING',[guest.id,105640]);
+  const mid=await app.inject({url:'/v1/campaign',headers});
+  assert.equal(mid.statusCode,200,mid.body);
+  const atTerminal=mid.json();
+  assert.equal(atTerminal.currentChapterId,56);
+  assert.equal(atTerminal.focusChapterId,56);
+  assert.ok(atTerminal.maps.some((m:{id:number})=>m.id===105701));
+  const term=atTerminal.maps.find((m:{id:number})=>m.id===105701);
+  assert.equal(term.status,'available');
+  assert.equal(term.terminal,true);
+  assert.equal(term.canChallenge,true);
+  assert.equal(atTerminal.campaignComplete,false);
+  await s.pg.query('INSERT INTO campaign_clears(account_id,map_id) VALUES($1,$2) ON CONFLICT DO NOTHING',[guest.id,105701]);
+  const done=await app.inject({url:'/v1/campaign',headers});
+  assert.equal(done.json().campaignComplete,true);
+  assert.equal(done.json().maps.find((m:{id:number})=>m.id===105701).status,'cleared');
  }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[guest.id]);await app.close()}
 });

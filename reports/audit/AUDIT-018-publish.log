@@ -1,0 +1,32 @@
+
+> pixi-client@1.0.0 build
+> tsc --noEmit && vite build --base=/testtest/
+
+vite v6.4.1 building for production...
+transforming...
+✓ 555 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/login-preview.html                 0.57 kB │ gzip:   0.32 kB
+dist/landing.html                       0.67 kB │ gzip:   0.38 kB
+dist/hero-preview.html                  0.75 kB │ gzip:   0.43 kB
+dist/index.html                         0.77 kB │ gzip:   0.34 kB
+dist/assets/LoginScreen-DRv0fOdg.css    1.38 kB │ gzip:   0.60 kB
+dist/assets/landing-DGnBdOhT.css        6.77 kB │ gzip:   2.10 kB
+dist/assets/main-B8zTCMly.css          12.12 kB │ gzip:   3.00 kB
+dist/assets/login-D1kAFlG-.js           0.27 kB │ gzip:   0.26 kB
+dist/assets/bodyBounds-Bfdw5l3R.js      0.80 kB │ gzip:   0.50 kB
+dist/assets/LoginScreen-DZ7haDXo.js     2.70 kB │ gzip:   1.25 kB
+dist/assets/session-BI_fQRHg.js         4.36 kB │ gzip:   1.58 kB
+dist/assets/landing-C65yuI8j.js        11.02 kB │ gzip:   4.52 kB
+dist/assets/heroes-DjRkH6T6.js         26.09 kB │ gzip:   8.88 kB
+dist/assets/main-BhOcX5zu.js           51.65 kB │ gzip:  17.73 kB
+dist/assets/client-DM8-Uwh_.js        144.29 kB │ gzip:  46.29 kB
+dist/assets/spineLibrary-DgUsp0Mr.js  622.41 kB │ gzip: 184.43 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 5.67s
+{"ready":true}

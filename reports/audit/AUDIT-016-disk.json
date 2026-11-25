@@ -1,0 +1,50 @@
+{
+  "df": [
+    "Filesystem       1B-blocks        Used  Available Use% Mounted on",
+    "/dev/vda1      63311654912 54098337792 6566027264  90% /"
+  ],
+  "sizes": [
+    {
+      "path": "/home/gamedev/rocbogini/pixi-client/dist",
+      "bytes": 1580528222
+    },
+    {
+      "path": "/home/gamedev/rocbogini/pixi-client/node_modules",
+      "bytes": 78272281
+    },
+    {
+      "path": "/home/gamedev/rocbogini/next-server/node_modules",
+      "bytes": 39048947
+    },
+    {
+      "path": "/home/gamedev/rocbogini/next-server/dist",
+      "bytes": 14049080
+    },
+    {
+      "path": "/var/www/testtest",
+      "bytes": 1595711896
+    },
+    {
+      "path": "/home/gamedev/rockbogini-publish",
+      "bytes": 3145272786
+    },
+    {
+      "path": "/home/gamedev/rocbogini/next-audit/server/_build",
+      "bytes": 26475671
+    },
+    {
+      "path": "/home/gamedev/rocbogini/next-audit/server/deps",
+      "bytes": 1671074
+    },
+    {
+      "path": "/tmp",
+      "bytes": 88172494
+    }
+  ],
+  "docker_df": "{\"Active\":\"4\",\"Reclaimable\":\"3.887GB (97%)\",\"Size\":\"3.97GB\",\"TotalCount\":\"5\",\"Type\":\"Images\"}\n{\"Active\":\"5\",\"Reclaimable\":\"98.3kB (61%)\",\"Size\":\"159.7kB\",\"TotalCount\":\"10\",\"Type\":\"Containers\"}\n{\"Active\":\"2\",\"Reclaimable\":\"0B (0%)\",\"Size\":\"66.58MB\",\"TotalCount\":\"2\",\"Type\":\"Local Volumes\"}\n{\"Active\":\"0\",\"Reclaimable\":\"302.6MB\",\"Size\":\"789.5MB\",\"TotalCount\":\"73\",\"Type\":\"Build Cache\"}\n",
+  "publish_hardlink": {
+    "dist": 1,
+    "www": 1,
+    "same_inode": false
+  }
+}

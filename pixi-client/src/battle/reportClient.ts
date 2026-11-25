@@ -3,7 +3,12 @@ export type HeroStatus={id:number;hp:number;hpMax:number;isDead:boolean;buffs:{i
 export type BattlePage={dataType:number;round:number;actor:number;skillId:number;targets:number[];hits:number;events:BattleEvent[];heroStatus:HeroStatus[]};
 export type BattleReport={version:1;battleId:string;mapId:number;background:string;preview:boolean;heroes:({heroId:number;camp:number;stationId:number;model:string;statDamage?:number;statHurt?:number;statCure?:number}&HeroStatus)[];initialUnits:{id:number;model:string}[];pages:BattlePage[];summary:{resultCode:number;rounds:number}};
 export type Settlement={battleId:string;result:number;rewards:number[][];stage:number;level:number;mapId?:number;unlockedModules?:number[];playerLevel?:number};
-export function orderedEvents(page:BattlePage){return [...page.events].sort((a,b)=>a.index-b.index)}
+/** Hit-point order: index asc; same index keeps Revive(7) before Cure(5/22) like server emit order. */
+export function orderedEvents(page:BattlePage){
+ const rank=(t:number)=>t===7?0:HEAL_TYPES.has(t)?1:2;
+ return [...page.events].sort((a,b)=>a.index-b.index||rank(a.type)-rank(b.type));
+}
+const HEAL_TYPES=new Set([5,22]);
 export function validateReport(value:unknown):BattleReport{
  const r=value as BattleReport;
  if(!r||r.version!==1||typeof r.battleId!=='string'||!Array.isArray(r.heroes)||!Array.isArray(r.pages)||!r.summary)throw Error('Некорректный боевой отчёт');

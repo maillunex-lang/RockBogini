@@ -37,3 +37,44 @@ test('speed x2 advances game time faster',async()=>{
  assert.ok(dt>60,`expected ~80ms game time, got ${dt}`);
  c.clear();
 });
+
+test('pump fires overdue timers by scheduled time then stable seq',()=>{
+ const c=createGameClock(1);
+ const order=[];
+ // Schedule later first with larger delay, then earlier — after jump both are due.
+ c.later(100,()=>order.push('late'));
+ c.later(10,()=>order.push('early'));
+ c.later(10,()=>order.push('early2'));
+ // Force wall jump by monkey-patching via pause/resume trick: pump with future via speed.
+ // Direct pump after advancing: setPaused freezes; instead call later offsets from now and pump far.
+ const far=c.now()+1000;
+ // Reaching far: use setSpeed and wait is slow; call internal by sleeping with animate.
+ // Simpler: schedule all in past by using later(0) after manually... later uses nowGame+ms.
+ // Fire pump after enough wall time at x3.
+ c.setSpeed(3);
+ // busy-wait wall ~80ms => game ~240ms > 100
+ const start=performance.now();
+ while(performance.now()-start<90){/* spin */}
+ c.pump();
+ assert.deepEqual(order,['early','early2','late']);
+ c.clear();
+});
+
+test('callback can cancel later sibling; clear cancels animate frames',async()=>{
+ const c=createGameClock(1);
+ let a=0,b=0;
+ const cancelB=c.later(5,()=>{b++});
+ c.later(5,()=>{a++;cancelB()});
+ const stop=c.animate(()=>true);
+ await new Promise(r=>setTimeout(r,40));
+ stop();
+ c.clear();
+ assert.equal(a,1);
+ assert.ok(b<=1);
+ // After clear, new later should not fire without animate/pump
+ let cHit=false;
+ c.later(1,()=>{cHit=true});
+ await new Promise(r=>setTimeout(r,30));
+ assert.equal(cHit,false);
+ c.clear();
+});

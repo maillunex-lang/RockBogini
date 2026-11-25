@@ -1,0 +1,78 @@
+{
+  "count": 27,
+  "sample": [
+    {
+      "id": "1abe3200ef12467be3ad8b32d81504013b3be2209e1fb61e578fac6672401d25",
+      "name": "Angel_Effect_Ecstatic",
+      "texture": "texture0.png",
+      "textures": [
+        "texture0.png",
+        "texture1.png"
+      ],
+      "animations": [
+        "attack_weapon_effect",
+        "attack_weapon_effect_2",
+        "burstattack2_1_bomb_effect",
+        "burstattack2_2_bomb_effect",
+        "burstattack2_3_bomb_effect",
+        "burstattack2_3_bomb_effect_2",
+        "burstattack2_3_weapon_effect",
+        "burstattack3_bomb_effect",
+        "burstattack3_bomb_effect_2",
+        "burstattack3_weapon_effect",
+        "burstattack3_weapon_effect_2",
+        "burstattack_1_weapon_effect",
+        "burstattack_2_weapon_effect",
+        "burstattack_3_weapon_effect",
+        "burstattack_3_weapon_effect_2"
+      ],
+      "key": "1abe3200ef12467be3ad8b32d81504013b3be2209e1fb61e578fac6672401d25"
+    },
+    {
+      "id": "662295c7a0c9a68bd087bf516e158ff4b76e54ddd6a65536876156701a2c2ca4",
+      "name": "Hero_Effect_AjdinaIrma6601",
+      "texture": "texture0.png",
+      "textures": [
+        "texture0.png",
+        "texture1.png"
+      ],
+      "animations": [
+        "B_attack_weapon_effect",
+        "B_attack_weapon_effect_2",
+        "B_burstattack3_effect",
+        "B_burstattack3_weapon_effect",
+        "B_burstattack3_weapon_effect_2",
+        "B_burstattack_effect",
+        "B_burstattack_weapon_effect",
+        "B_burstattack_weapon_effect_2",
+        "attack_weapon_effect",
+        "burstattack3_effect",
+        "burstattack3_weapon_effect",
+        "burstattack_effect",
+        "burstattack_weapon_effect",
+        "burstattack_weapon_effect_2"
+      ],
+      "key": "662295c7a0c9a68bd087bf516e158ff4b76e54ddd6a65536876156701a2c2ca4"
+    },
+    {
+      "id": "0e0a5164b924e098102c8f5a64438a0a1856e94074a33845f879b7717556daa9",
+      "name": "Hero_Effect_Shade5501",
+      "texture": "texture0.png",
+      "textures": [
+        "texture0.png",
+        "texture1.png"
+      ],
+      "animations": [
+        "attack_weapon_effect",
+        "burstattack2_weapon_effect",
+        "burstattack2_weapon_effect_2",
+        "burstattack3_weapon_effect",
+        "burstattack3_weapon_effect_2",
+        "burstattack_weapon_effect",
+        "burstattack_weapon_effect_2"
+      ],
+      "key": "0e0a5164b924e098102c8f5a64438a0a1856e94074a33845f879b7717556daa9"
+    }
+  ],
+  "missing": []
+}
