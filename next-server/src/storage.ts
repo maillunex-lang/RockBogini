@@ -28,6 +28,10 @@ export async function migrate(s:Storage){
  await c.query('INSERT INTO schema_migrations(version) VALUES(7) ON CONFLICT DO NOTHING');
  await c.query(`CREATE TABLE IF NOT EXISTS studio_admins(account_id uuid PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,created_at timestamptz NOT NULL DEFAULT now())`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(8) ON CONFLICT DO NOTHING');
+ await c.query(`CREATE TABLE IF NOT EXISTS campaign_battles(id uuid PRIMARY KEY,account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,map_id integer NOT NULL,report jsonb NOT NULL,settlement jsonb,created_at timestamptz NOT NULL DEFAULT now())`);
+ await c.query(`CREATE TABLE IF NOT EXISTS campaign_pending(account_id uuid PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,battle_id uuid NOT NULL REFERENCES campaign_battles(id) ON DELETE CASCADE)`);
+ await c.query(`CREATE TABLE IF NOT EXISTS campaign_clears(account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,map_id integer NOT NULL,PRIMARY KEY(account_id,map_id))`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(9) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }
