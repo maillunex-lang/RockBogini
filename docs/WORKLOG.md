@@ -439,3 +439,4 @@ NEXT-013.8 in_progress: inventoried 10 invalid common-skill ActionIndex values; 
 2026-11-25 SINGLE-PROJECT-001 + AUDIT-001…018 (critical/partial): settlement state, campaign terminal 105701, clears/NextId, revive semantics, multi-tex wiring, clock order, floats, volume, Squad removed, HUD HTTP, ActionIndex0 documented, disk hardlink reclaim 90%→85%, publish script, GIT_MIGRATION_PLAN. Evidence reports/CURSOR-AUDIT-FIXES.md.
 2026-11-25 NEXT-014.2: MapWorld world map UI + locale names (en.json MapWorld_name_*), worldStatus API, spine multi-texture load, 81/81 tests, testtest publish. Evidence reports/NEXT-014.2-*.
 2026-11-25 NEXT-014.3: campaign map guides (RU locale_ui_guide_*) + StoryChapter tab + StoryDialog; export tool; 82/82 tests; publish. reports/NEXT-014.3-*.
+2026-11-25 NEXT-014.4: GuideGroup sequencing, player_guide_groups, tutorial API/UI; 83/83 tests; publish. reports/NEXT-014.4-*.

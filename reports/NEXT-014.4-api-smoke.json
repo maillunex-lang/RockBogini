@@ -1,0 +1,60 @@
+{
+ "tutorial": {
+  "completedGroupIds": [
+   1
+  ],
+  "groupCount": 19,
+  "pending": {
+   "groupId": 31,
+   "desc": "出战上阵引导（抽卡引导完成后）",
+   "lines": [
+    {
+     "key": "locale_ui_guide_100301",
+     "infoKey": "guide_100301",
+     "text": "Победим врага! ",
+     "npc": 1
+    }
+   ],
+   "hasDialog": true,
+   "fingerSteps": 4,
+   "panelSteps": 0,
+   "sequence": [
+    {
+     "stepId": 3101,
+     "kindName": "npcDialog",
+     "autoNext": true,
+     "dialogId": 1003,
+     "lineCount": 1
+    },
+    {
+     "stepId": 3102,
+     "kindName": "fingerHint",
+     "autoNext": true,
+     "hintId": 100000,
+     "lineCount": 0
+    },
+    {
+     "stepId": 3103,
+     "kindName": "fingerHint",
+     "autoNext": false,
+     "hintId": 310301,
+     "lineCount": 0
+    },
+    {
+     "stepId": 3104,
+     "kindName": "fingerHint",
+     "autoNext": false,
+     "hintId": 310401,
+     "lineCount": 0
+    },
+    {
+     "stepId": 3105,
+     "kindName": "fingerHint",
+     "autoNext": true,
+     "hintId": 100000,
+     "lineCount": 0
+    }
+   ]
+  }
+ }
+}

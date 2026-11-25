@@ -2,6 +2,8 @@
  "source": {
   "guideNPCDialog": "runtime/client/config/configure/d30e80da7448a76825f5a2b03a2594b8/GuideNPCDialog",
   "guideStep": "runtime/client/config/configure/1282292abfe0ae6b844a3ed8ff3a7245/GuideStep",
+  "guideGroup": "runtime/client/config/configure/9a2bd22714b3a953461e9af5f8921242/GuideGroup",
+  "guideFingerHint": "runtime/client/config/configure/ebf227cd18993fd311ed0227319bb760/GuideFingerHint",
   "localeRu": "localization/ru.json",
   "localeEn": "localization/en.json"
  },
@@ -3196,6 +3198,2126 @@
    "autoNextStep": 0
   }
  ],
+ "guideFingerHints": [
+  {
+   "id": 100000,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 210201,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 210601,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 310301,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 310401,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [
+    165,
+    165
+   ],
+   "offsetY": 15,
+   "text": ""
+  },
+  {
+   "id": 410201,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 1,
+   "size": [
+    95,
+    95
+   ],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 410401,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [
+    780,
+    110
+   ],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 410501,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [
+    780,
+    110
+   ],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 410601,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 510201,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 510401,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [
+    170,
+    180
+   ],
+   "offsetY": 5,
+   "text": ""
+  },
+  {
+   "id": 510601,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [
+    780,
+    110
+   ],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 610201,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 610301,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 810401,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [
+    165,
+    165
+   ],
+   "offsetY": 15,
+   "text": ""
+  },
+  {
+   "id": 810701,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 1010301,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 1010501,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [
+    780,
+    110
+   ],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 1010601,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [
+    780,
+    110
+   ],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 1110101,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 1110201,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [
+    165,
+    165
+   ],
+   "offsetY": 15,
+   "text": ""
+  },
+  {
+   "id": 1120101,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 1210101,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 1310201,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 1310401,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [
+    780,
+    110
+   ],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 1510201,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 1520301,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2001001,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2010001,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2011001,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2012001,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2013001,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2080015,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2080016,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [
+    2160,
+    5040
+   ],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2080017,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2080018,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2080019,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2090014,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2090015,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2090025,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [
+    660,
+    430
+   ],
+   "offsetY": 18446744073709551582,
+   "text": ""
+  },
+  {
+   "id": 2100004,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2100005,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2100006,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2100007,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2100008,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2100009,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2100010,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2100011,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2100012,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2100037,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2100038,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2100039,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2100040,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2100041,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2100042,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2100043,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2100044,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  },
+  {
+   "id": 2100045,
+   "infoKey": "",
+   "hideMask": 0,
+   "maskType": 0,
+   "size": [],
+   "offsetY": 0,
+   "text": ""
+  }
+ ],
+ "guideGroups": [
+  {
+   "id": 1,
+   "desc": "播放剧情",
+   "steps1": [
+    101
+   ],
+   "steps2": [
+    101
+   ],
+   "preStep": [],
+   "sequence": [
+    {
+     "stepId": 101,
+     "kind": 100,
+     "arg": 0,
+     "autoNext": false,
+     "type": [
+      100
+     ],
+     "kindName": "other"
+    }
+   ]
+  },
+  {
+   "id": 31,
+   "desc": "出战上阵引导（抽卡引导完成后）",
+   "steps1": [
+    3101,
+    3102,
+    3103,
+    3104,
+    3105
+   ],
+   "steps2": [
+    3101,
+    3102,
+    3103,
+    3104,
+    3105
+   ],
+   "preStep": [],
+   "sequence": [
+    {
+     "stepId": 3101,
+     "kind": 1,
+     "arg": 1003,
+     "autoNext": true,
+     "type": [
+      1,
+      1003
+     ],
+     "kindName": "npcDialog",
+     "dialogId": 1003,
+     "lines": [
+      {
+       "key": "locale_ui_guide_100301",
+       "infoKey": "guide_100301",
+       "text": "Победим врага! ",
+       "npc": 1
+      }
+     ]
+    },
+    {
+     "stepId": 3102,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": true,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 3103,
+     "kind": 2,
+     "arg": 310301,
+     "autoNext": false,
+     "type": [
+      2,
+      310301
+     ],
+     "kindName": "fingerHint",
+     "hintId": 310301,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 3104,
+     "kind": 2,
+     "arg": 310401,
+     "autoNext": false,
+     "type": [
+      2,
+      310401
+     ],
+     "kindName": "fingerHint",
+     "hintId": 310401,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 3105,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": true,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    }
+   ]
+  },
+  {
+   "id": 35,
+   "desc": "1-1界面战斗结算引导",
+   "steps1": [
+    3501
+   ],
+   "steps2": [
+    3601,
+    3602
+   ],
+   "preStep": [],
+   "sequence": [
+    {
+     "stepId": 3601,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 3602,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": true,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    }
+   ]
+  },
+  {
+   "id": 41,
+   "desc": "关卡进度奖励引导（第一关结算界面）",
+   "steps1": [
+    4101,
+    4102,
+    4103,
+    4104,
+    4105,
+    4106
+   ],
+   "steps2": [
+    4201,
+    4202,
+    4203,
+    4103,
+    4104,
+    4105,
+    4106
+   ],
+   "preStep": [],
+   "sequence": [
+    {
+     "stepId": 4201,
+     "kind": 1,
+     "arg": 1004,
+     "autoNext": true,
+     "type": [
+      1,
+      1004
+     ],
+     "kindName": "npcDialog",
+     "dialogId": 1004,
+     "lines": [
+      {
+       "key": "locale_ui_guide_100402",
+       "infoKey": "guide_100402",
+       "text": "Похоже, враг что-то обронил. Теперь это наше!",
+       "npc": 1
+      }
+     ]
+    },
+    {
+     "stepId": 4202,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": true,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 4203,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 4103,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 4104,
+     "kind": 2,
+     "arg": 410401,
+     "autoNext": false,
+     "type": [
+      2,
+      410401
+     ],
+     "kindName": "fingerHint",
+     "hintId": 410401,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 4105,
+     "kind": 2,
+     "arg": 410501,
+     "autoNext": false,
+     "type": [
+      2,
+      410501
+     ],
+     "kindName": "fingerHint",
+     "hintId": 410501,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 4106,
+     "kind": 2,
+     "arg": 410601,
+     "autoNext": true,
+     "type": [
+      2,
+      410601
+     ],
+     "kindName": "fingerHint",
+     "hintId": 410601,
+     "text": "",
+     "infoKey": ""
+    }
+   ]
+  },
+  {
+   "id": 51,
+   "desc": "合成英雄引导（关卡进度奖励领取完成后）",
+   "steps1": [
+    5101,
+    5102,
+    5103,
+    5104,
+    5105,
+    5106,
+    5107
+   ],
+   "steps2": [
+    5101,
+    5102,
+    5103,
+    5104,
+    5105,
+    5106,
+    5107
+   ],
+   "preStep": [],
+   "sequence": [
+    {
+     "stepId": 5101,
+     "kind": 1,
+     "arg": 1005,
+     "autoNext": true,
+     "type": [
+      1,
+      1005
+     ],
+     "kindName": "npcDialog",
+     "dialogId": 1005,
+     "lines": [
+      {
+       "key": "locale_ui_guide_100502",
+       "infoKey": "guide_100502",
+       "text": "Объединим осколки, полученные в прошлом бою.",
+       "npc": 1
+      }
+     ]
+    },
+    {
+     "stepId": 5102,
+     "kind": 2,
+     "arg": 510201,
+     "autoNext": true,
+     "type": [
+      2,
+      510201
+     ],
+     "kindName": "fingerHint",
+     "hintId": 510201,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 5103,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 5104,
+     "kind": 2,
+     "arg": 510401,
+     "autoNext": true,
+     "type": [
+      2,
+      510401
+     ],
+     "kindName": "fingerHint",
+     "hintId": 510401,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 5105,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 5106,
+     "kind": 2,
+     "arg": 510601,
+     "autoNext": false,
+     "type": [
+      2,
+      510601
+     ],
+     "kindName": "fingerHint",
+     "hintId": 510601,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 5107,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    }
+   ]
+  },
+  {
+   "id": 61,
+   "desc": "升级引导（完成合成引导后）",
+   "steps1": [
+    6101,
+    6102,
+    6103,
+    6104
+   ],
+   "steps2": [
+    6101,
+    6102,
+    6103,
+    6104
+   ],
+   "preStep": [],
+   "sequence": [
+    {
+     "stepId": 6101,
+     "kind": 1,
+     "arg": 1007,
+     "autoNext": true,
+     "type": [
+      1,
+      1007
+     ],
+     "kindName": "npcDialog",
+     "dialogId": 1007,
+     "lines": [
+      {
+       "key": "locale_ui_guide_100701",
+       "infoKey": "guide_100701",
+       "text": "Кроме осколков, нам досталась экипировка!",
+       "npc": 1
+      }
+     ]
+    },
+    {
+     "stepId": 6102,
+     "kind": 2,
+     "arg": 610201,
+     "autoNext": true,
+     "type": [
+      2,
+      610201
+     ],
+     "kindName": "fingerHint",
+     "hintId": 610201,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 6103,
+     "kind": 2,
+     "arg": 610301,
+     "autoNext": false,
+     "type": [
+      2,
+      610301
+     ],
+     "kindName": "fingerHint",
+     "hintId": 610301,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 6104,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    }
+   ]
+  },
+  {
+   "id": 71,
+   "desc": "装备穿戴引导（完成升级引导后）",
+   "steps1": [
+    7102,
+    7103,
+    7105,
+    7106,
+    7104
+   ],
+   "steps2": [
+    7201,
+    7202,
+    7203,
+    7105,
+    7106,
+    7204,
+    7103,
+    7105,
+    7106,
+    7104
+   ],
+   "preStep": [],
+   "sequence": [
+    {
+     "stepId": 7201,
+     "kind": 1,
+     "arg": 1007,
+     "autoNext": true,
+     "type": [
+      1,
+      1007
+     ],
+     "kindName": "npcDialog",
+     "dialogId": 1007,
+     "lines": [
+      {
+       "key": "locale_ui_guide_100701",
+       "infoKey": "guide_100701",
+       "text": "Кроме осколков, нам досталась экипировка!",
+       "npc": 1
+      }
+     ]
+    },
+    {
+     "stepId": 7202,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": true,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 7203,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 7105,
+     "kind": 1,
+     "arg": 1015,
+     "autoNext": true,
+     "type": [
+      1,
+      1015
+     ],
+     "kindName": "npcDialog",
+     "dialogId": 1015,
+     "lines": [
+      {
+       "key": "locale_ui_guide_101501",
+       "infoKey": "guide_101501",
+       "text": "Снаряжай воительниц оружием и бронёй, чтобы повысить характеристики!",
+       "npc": 1
+      }
+     ]
+    },
+    {
+     "stepId": 7106,
+     "kind": 1,
+     "arg": 1016,
+     "autoNext": true,
+     "type": [
+      1,
+      1016
+     ],
+     "kindName": "npcDialog",
+     "dialogId": 1016,
+     "lines": [
+      {
+       "key": "locale_ui_guide_101601",
+       "infoKey": "guide_101601",
+       "text": "Объединяй экипировку из приключений и магазинов, чтобы получить более мощную!",
+       "npc": 1
+      }
+     ]
+    },
+    {
+     "stepId": 7204,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 7103,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": true,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 7105,
+     "kind": 1,
+     "arg": 1015,
+     "autoNext": true,
+     "type": [
+      1,
+      1015
+     ],
+     "kindName": "npcDialog",
+     "dialogId": 1015,
+     "lines": [
+      {
+       "key": "locale_ui_guide_101501",
+       "infoKey": "guide_101501",
+       "text": "Снаряжай воительниц оружием и бронёй, чтобы повысить характеристики!",
+       "npc": 1
+      }
+     ]
+    },
+    {
+     "stepId": 7106,
+     "kind": 1,
+     "arg": 1016,
+     "autoNext": true,
+     "type": [
+      1,
+      1016
+     ],
+     "kindName": "npcDialog",
+     "dialogId": 1016,
+     "lines": [
+      {
+       "key": "locale_ui_guide_101601",
+       "infoKey": "guide_101601",
+       "text": "Объединяй экипировку из приключений и магазинов, чтобы получить более мощную!",
+       "npc": 1
+      }
+     ]
+    },
+    {
+     "stepId": 7104,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": true,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    }
+   ]
+  },
+  {
+   "id": 81,
+   "desc": "新英雄出战引导（完成装备穿戴引导后）",
+   "steps1": [
+    8101,
+    8102,
+    8103,
+    8104,
+    8105
+   ],
+   "steps2": [
+    8201,
+    8202,
+    8103,
+    8104,
+    8105
+   ],
+   "preStep": [],
+   "sequence": [
+    {
+     "stepId": 8201,
+     "kind": 1,
+     "arg": 1008,
+     "autoNext": false,
+     "type": [
+      1,
+      1008
+     ],
+     "kindName": "npcDialog",
+     "dialogId": 1008,
+     "lines": [
+      {
+       "key": "locale_ui_guide_100801",
+       "infoKey": "guide_100801",
+       "text": "Чувствуешь, как растёт её сила? Продолжим!",
+       "npc": 1
+      }
+     ]
+    },
+    {
+     "stepId": 8202,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": true,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 8103,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 8104,
+     "kind": 2,
+     "arg": 810401,
+     "autoNext": false,
+     "type": [
+      2,
+      810401
+     ],
+     "kindName": "fingerHint",
+     "hintId": 810401,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 8105,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": true,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    }
+   ]
+  },
+  {
+   "id": 85,
+   "desc": "1-2界面战斗结算引导",
+   "steps1": [
+    8501,
+    8502
+   ],
+   "steps2": [
+    8601
+   ],
+   "preStep": [],
+   "sequence": [
+    {
+     "stepId": 8601,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    }
+   ]
+  },
+  {
+   "id": 91,
+   "desc": "高级召唤引导（完成关卡1-2后）",
+   "steps1": [
+    9101,
+    9102,
+    9103,
+    9104,
+    9105
+   ],
+   "steps2": [
+    9101,
+    9102,
+    9103,
+    9104,
+    9105
+   ],
+   "preStep": [],
+   "sequence": [
+    {
+     "stepId": 9101,
+     "kind": 1,
+     "arg": 1010,
+     "autoNext": true,
+     "type": [
+      1,
+      1010
+     ],
+     "kindName": "npcDialog",
+     "dialogId": 1010,
+     "lines": [
+      {
+       "key": "locale_ui_guide_101001",
+       "infoKey": "guide_101001",
+       "text": "Используй свитки особого призыва, чтобы призвать воительниц!",
+       "npc": 1
+      }
+     ]
+    },
+    {
+     "stepId": 9102,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": true,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 9103,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 9104,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 9105,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    }
+   ]
+  },
+  {
+   "id": 101,
+   "desc": "快速挂机引导（完成高级召唤后）",
+   "steps1": [
+    10101,
+    10102,
+    10103,
+    10104,
+    10105,
+    10106
+   ],
+   "steps2": [
+    10101,
+    10102,
+    10103,
+    10104,
+    10105,
+    10106
+   ],
+   "preStep": [],
+   "sequence": [
+    {
+     "stepId": 10101,
+     "kind": 1,
+     "arg": 1011,
+     "autoNext": true,
+     "type": [
+      1,
+      1011
+     ],
+     "kindName": "npcDialog",
+     "dialogId": 1011,
+     "lines": [
+      {
+       "key": "locale_ui_guide_101102",
+       "infoKey": "guide_101102",
+       "text": "Здесь можно получить много наград! Не забывай о бесплатном быстром бое раз в день.",
+       "npc": 1
+      }
+     ]
+    },
+    {
+     "stepId": 10102,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": true,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 10103,
+     "kind": 2,
+     "arg": 1010301,
+     "autoNext": false,
+     "type": [
+      2,
+      1010301
+     ],
+     "kindName": "fingerHint",
+     "hintId": 1010301,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 10104,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 10105,
+     "kind": 2,
+     "arg": 1010501,
+     "autoNext": false,
+     "type": [
+      2,
+      1010501
+     ],
+     "kindName": "fingerHint",
+     "hintId": 1010501,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 10106,
+     "kind": 2,
+     "arg": 1010601,
+     "autoNext": false,
+     "type": [
+      2,
+      1010601
+     ],
+     "kindName": "fingerHint",
+     "hintId": 1010601,
+     "text": "",
+     "infoKey": ""
+    }
+   ]
+  },
+  {
+   "id": 111,
+   "desc": "新英雄出战引导（完成快速挂机引导后）",
+   "steps1": [
+    11101,
+    11102,
+    11103
+   ],
+   "steps2": [
+    11201,
+    11101,
+    11102,
+    11103
+   ],
+   "preStep": [],
+   "sequence": [
+    {
+     "stepId": 11201,
+     "kind": 2,
+     "arg": 1120101,
+     "autoNext": false,
+     "type": [
+      2,
+      1120101
+     ],
+     "kindName": "fingerHint",
+     "hintId": 1120101,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 11101,
+     "kind": 2,
+     "arg": 1110101,
+     "autoNext": false,
+     "type": [
+      2,
+      1110101
+     ],
+     "kindName": "fingerHint",
+     "hintId": 1110101,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 11102,
+     "kind": 2,
+     "arg": 1110201,
+     "autoNext": false,
+     "type": [
+      2,
+      1110201
+     ],
+     "kindName": "fingerHint",
+     "hintId": 1110201,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 11103,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": true,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    }
+   ]
+  },
+  {
+   "id": 115,
+   "desc": "1-3界面战斗结算引导",
+   "steps1": [
+    11501
+   ],
+   "steps2": [
+    11601,
+    11602
+   ],
+   "preStep": [],
+   "sequence": [
+    {
+     "stepId": 11601,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 11602,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": true,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    }
+   ]
+  },
+  {
+   "id": 121,
+   "desc": "继续战斗引导（完成关卡1-3后）",
+   "steps1": [
+    12101,
+    12102
+   ],
+   "steps2": [
+    12201,
+    12202,
+    12102
+   ],
+   "preStep": [],
+   "sequence": [
+    {
+     "stepId": 12201,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 12202,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 12102,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    }
+   ]
+  },
+  {
+   "id": 125,
+   "desc": "1-4界面战斗结算引导",
+   "steps1": [
+    12501
+   ],
+   "steps2": [
+    12601,
+    12602
+   ],
+   "preStep": [],
+   "sequence": [
+    {
+     "stepId": 12601,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 12602,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": true,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    }
+   ]
+  },
+  {
+   "id": 131,
+   "desc": "挂机奖励引导（完成关卡1-4后）",
+   "steps1": [
+    13101,
+    13102,
+    13103,
+    13104
+   ],
+   "steps2": [
+    13201,
+    13202,
+    13203,
+    13103,
+    13104
+   ],
+   "preStep": [],
+   "sequence": [
+    {
+     "stepId": 13201,
+     "kind": 1,
+     "arg": 1013,
+     "autoNext": false,
+     "type": [
+      1,
+      1013
+     ],
+     "kindName": "npcDialog",
+     "dialogId": 1013,
+     "lines": [
+      {
+       "key": "locale_ui_guide_101303",
+       "infoKey": "guide_101303",
+       "text": "Чем больше этапов пройдено, тем больше наград автобоя!",
+       "npc": 1
+      }
+     ]
+    },
+    {
+     "stepId": 13202,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": true,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 13203,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 13103,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 13104,
+     "kind": 2,
+     "arg": 1310401,
+     "autoNext": false,
+     "type": [
+      2,
+      1310401
+     ],
+     "kindName": "fingerHint",
+     "hintId": 1310401,
+     "text": "",
+     "infoKey": ""
+    }
+   ]
+  },
+  {
+   "id": 141,
+   "desc": "继续战斗引导（完成挂机奖励引导后）",
+   "steps1": [
+    14101,
+    14102
+   ],
+   "steps2": [
+    14201,
+    14202,
+    14102
+   ],
+   "preStep": [],
+   "sequence": [
+    {
+     "stepId": 14201,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 14202,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 14102,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    }
+   ]
+  },
+  {
+   "id": 145,
+   "desc": "1-5界面战斗结算引导",
+   "steps1": [
+    14501
+   ],
+   "steps2": [
+    14601,
+    14602
+   ],
+   "preStep": [],
+   "sequence": [
+    {
+     "stepId": 14601,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 14602,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": true,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    }
+   ]
+  },
+  {
+   "id": 151,
+   "desc": "我要变强引导（完成关卡1-5后）",
+   "steps1": [
+    15101,
+    15102,
+    15105,
+    15103,
+    15104
+   ],
+   "steps2": [
+    15201,
+    15202,
+    15203,
+    15105,
+    15103,
+    15104
+   ],
+   "preStep": [],
+   "sequence": [
+    {
+     "stepId": 15201,
+     "kind": 1,
+     "arg": 1014,
+     "autoNext": false,
+     "type": [
+      1,
+      1014
+     ],
+     "kindName": "npcDialog",
+     "dialogId": 1014,
+     "lines": [
+      {
+       "key": "locale_ui_guide_101402",
+       "infoKey": "guide_101402",
+       "text": "Повышай уровни и усиливай отряд!",
+       "npc": 1
+      }
+     ]
+    },
+    {
+     "stepId": 15202,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": true,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 15203,
+     "kind": 2,
+     "arg": 1520301,
+     "autoNext": false,
+     "type": [
+      2,
+      1520301
+     ],
+     "kindName": "fingerHint",
+     "hintId": 1520301,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 15105,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 15103,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": true,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    },
+    {
+     "stepId": 15104,
+     "kind": 2,
+     "arg": 100000,
+     "autoNext": false,
+     "type": [
+      2,
+      100000
+     ],
+     "kindName": "fingerHint",
+     "hintId": 100000,
+     "text": "",
+     "infoKey": ""
+    }
+   ]
+  }
+ ],
  "storyChapters": [
   {
    "id": 10100100,
@@ -3618,7 +5740,9 @@
   "dialogs": 109,
   "dialogsWithText": 95,
   "steps": 124,
+  "fingerHints": 58,
+  "guideGroups": 19,
   "storyChapters": 83
  },
- "exportedAt": "2026-11-25T00:00:00Z"
+ "exportedAt": "2026-11-25T10:54:52.901637+00:00"
 }

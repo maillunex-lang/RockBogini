@@ -38,6 +38,14 @@ export type CampaignWorld={
  chapterCount:number;
 };
 export type StoryChapterCard={id:number;title:string;content:string};
+export type TutorialPending={
+ groupId:number;
+ desc:string;
+ lines:StoryLine[];
+ hasDialog:boolean;
+ fingerSteps:number;
+ panelSteps:number;
+};
 export type CampaignProgress={
  stage:number;
  level:number;
@@ -49,6 +57,7 @@ export type CampaignProgress={
  maps:CampaignMap[];
  worlds:CampaignWorld[];
  story?:{stats:Record<string,number>;chapters:StoryChapterCard[]};
+ tutorial?:{completedGroupIds:number[];groupCount:number;pending:TutorialPending|null};
 };
 
 type ViewMode='worlds'|'chapters'|'story';
@@ -67,21 +76,40 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
  const [status,setStatus]=useState('Загрузка кампании…');
  const [pendingFight,setPendingFight]=useState<{mapId:number;lines:StoryLine[];title:string}|null>(null);
  const [storyOpen,setStoryOpen]=useState<StoryChapterCard|null>(null);
- useEffect(()=>{
-  const c=new AbortController();
-  const q=chapterId?`?chapterId=${chapterId}`:'';
-  fetch(api+'/v1/campaign'+q,{headers:{Authorization:'Bearer '+token},signal:c.signal})
+ const [tutorial,setTutorial]=useState<TutorialPending|null>(null);
+ const loadCampaign=(focus?:number|null)=>{
+  const q=focus?`?chapterId=${focus}`:'';
+  return fetch(api+'/v1/campaign'+q,{headers:{Authorization:'Bearer '+token}})
    .then(r=>{if(!r.ok)throw Error('campaign_'+r.status);return r.json()})
    .then((d:CampaignProgress)=>{
     setData(d);
     setChapterId(d.focusChapterId);
     const focusWorld=d.worlds.find(w=>w.id===d.focusWorldId)||d.worlds.find(w=>w.id===d.currentWorldId);
     if(focusWorld)setOwningMap(focusWorld.owningMap);
+    if(d.tutorial?.pending?.hasDialog)setTutorial(d.tutorial.pending);
+    else setTutorial(null);
     setStatus('');
-   })
-   .catch(e=>{if(!c.signal.aborted)setStatus(e instanceof Error?e.message:'Не удалось загрузить кампанию')});
+    return d;
+   });
+ };
+ useEffect(()=>{
+  const c=new AbortController();
+  loadCampaign(chapterId).catch(e=>{if(!c.signal.aborted)setStatus(e instanceof Error?e.message:'Не удалось загрузить кампанию')});
   return()=>c.abort();
  },[api,token,chapterId]);
+
+ const completeTutorial=async(groupId:number)=>{
+  const res=await fetch(api+'/v1/campaign/guide/complete',{
+   method:'POST',
+   headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},
+   body:JSON.stringify({groupId}),
+  });
+  if(!res.ok)throw Error('guide_complete_'+res.status);
+  const body=await res.json() as {pending:TutorialPending|null};
+  if(body.pending?.hasDialog)setTutorial(body.pending);
+  else setTutorial(null);
+  await loadCampaign(chapterId);
+ };
 
  const focus=data?.chapters.find(c=>c.id===data.focusChapterId);
  const sheetWorlds=useMemo(()=>{
@@ -200,6 +228,12 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
     </button>)}
    </div>
   </section>}
+  {tutorial&&!pendingFight&&!storyOpen&&<StoryDialog
+   title={`Обучение · группа ${tutorial.groupId}`}
+   lines={tutorial.lines}
+   onSkip={()=>{void completeTutorial(tutorial.groupId).catch(e=>setStatus(String(e)))}}
+   onContinue={()=>{void completeTutorial(tutorial.groupId).catch(e=>setStatus(String(e)))}}
+  />}
   {pendingFight&&<StoryDialog
    title={pendingFight.title}
    lines={pendingFight.lines}

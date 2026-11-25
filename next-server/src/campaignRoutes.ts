@@ -15,18 +15,34 @@ import {
  worldStatus,
 } from './campaignChapters.js';
 import {mapWorldName} from './campaignLocales.js';
-import {campaignStoryStats,guideLinesForMap,storyChapters} from './campaignStory.js';
+import {campaignStoryStats,guideGroups,guideLinesForMap,playableTutorial,storyChapters} from './campaignStory.js';
+
+async function authAccount(req:{headers:{authorization?:string}},s:Storage){
+ const token=/^Bearer ([A-Za-z0-9_-]{43})$/.exec(req.headers.authorization??'')?.[1];
+ return token?sessionAccount(s,token):null;
+}
 
 export async function campaignRoutes(app:FastifyInstance,s:Storage){
  app.get<{Querystring:{chapterId?:string}}>('/v1/campaign',async(req,reply)=>{
-  const token=/^Bearer ([A-Za-z0-9_-]{43})$/.exec(req.headers.authorization??'')?.[1];
-  const id=token&&await sessionAccount(s,token);
+  const id=await authAccount(req,s);
   if(!id)return reply.code(401).send({error:'invalid_session'});
   const profile=await getProfile(s,id);
   const stage=profile.stage as number;
   const level=profile.level as number;
   const clearRows=(await s.pg.query('SELECT map_id FROM campaign_clears WHERE account_id=$1',[id])).rows as {map_id:number}[];
   const clears=new Set(clearRows.map(r=>r.map_id));
+  const guideRows=(await s.pg.query('SELECT group_id FROM player_guide_groups WHERE account_id=$1',[id])).rows as {group_id:number}[];
+  const completedGuides=new Set(guideRows.map(r=>r.group_id));
+  // Finger/panel-only groups have no NPC lines yet — advance past them until a dialog group (or end).
+  for(;;){
+   const pending=playableTutorial(completedGuides);
+   if(!pending||pending.hasDialog)break;
+   await s.pg.query(
+    'INSERT INTO player_guide_groups(account_id,group_id) VALUES($1,$2) ON CONFLICT DO NOTHING',
+    [id,pending.groupId],
+   );
+   completedGuides.add(pending.groupId);
+  }
   const current=chapterForMap(stage)??campaignChapters.chapters[0];
   const requested=Number(req.query.chapterId);
   const focus=Number.isFinite(requested)&&requested>0
@@ -108,6 +124,31 @@ export async function campaignRoutes(app:FastifyInstance,s:Storage){
     stats:campaignStoryStats(),
     chapters:storyChapters().map(c=>({id:c.id,title:c.title,content:c.content})),
    },
+   tutorial:{
+    completedGroupIds:[...completedGuides].sort((a,b)=>a-b),
+    groupCount:guideGroups().length,
+    pending:playableTutorial(completedGuides),
+   },
+  };
+ });
+
+ app.post<{Body:{groupId?:number}}>('/v1/campaign/guide/complete',async(req,reply)=>{
+  const id=await authAccount(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  const groupId=Number(req.body?.groupId);
+  if(!Number.isFinite(groupId)||!guideGroups().some(g=>g.id===groupId)){
+   return reply.code(400).send({error:'invalid_guide_group'});
+  }
+  await s.pg.query(
+   'INSERT INTO player_guide_groups(account_id,group_id) VALUES($1,$2) ON CONFLICT DO NOTHING',
+   [id,groupId],
+  );
+  const guideRows=(await s.pg.query('SELECT group_id FROM player_guide_groups WHERE account_id=$1',[id])).rows as {group_id:number}[];
+  const completedGuides=new Set(guideRows.map(r=>r.group_id));
+  return {
+   ok:true,
+   completedGroupIds:[...completedGuides].sort((a,b)=>a-b),
+   pending:playableTutorial(completedGuides),
   };
  });
 }

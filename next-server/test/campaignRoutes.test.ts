@@ -17,7 +17,7 @@ import {
  worldStatus,
 } from '../src/campaignChapters.js';
 import {mapWorldName} from '../src/campaignLocales.js';
-import {guideLinesForMap,storyChapters,campaignStoryStats} from '../src/campaignStory.js';
+import {guideLinesForMap,storyChapters,campaignStoryStats,guideGroups,playableTutorial,dialogLinesForGroup} from '../src/campaignStory.js';
 
 test('main-line chain reaches terminal 105701 with next 0',()=>{
  const chain=mainLineChain();
@@ -89,6 +89,21 @@ test('campaign story guides come from original locale_ui_guide keys (RU preferre
  assert.ok(storyChapters()[0].title.length>0);
 });
 
+test('GuideGroup sequences resolve NPC dialog steps in order',()=>{
+ assert.ok(guideGroups().length>=19);
+ const g31=guideGroups().find(g=>g.id===31);
+ assert.ok(g31);
+ assert.equal(g31?.sequence[0]?.kindName,'npcDialog');
+ const lines=dialogLinesForGroup(31);
+ assert.ok(lines.length>=1);
+ assert.match(lines[0].text,/Победим|враг/i);
+ const pending=playableTutorial(new Set());
+ assert.equal(pending?.groupId,1); // first group is plot placeholder
+ const afterPlot=playableTutorial(new Set([1]));
+ assert.equal(afterPlot?.groupId,31);
+ assert.equal(afterPlot?.hasDialog,true);
+});
+
 test('authenticated campaign progress lists chapters and terminal stage',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);const guest=await createGuest(s);const app=await buildApp(s);
  const headers={authorization:'Bearer '+guest.token};
@@ -106,6 +121,15 @@ test('authenticated campaign progress lists chapters and terminal stage',{skip:!
   assert.equal(body.worlds[0].name,'Town of Porte');
   assert.equal(body.worlds[0].status,'current');
   assert.equal(body.campaignComplete,false);
+  assert.ok(body.tutorial);
+  // Non-dialog groups auto-advance; pending should be a dialog group or null.
+  if(body.tutorial.pending){
+   assert.equal(body.tutorial.pending.hasDialog,true);
+   assert.ok(body.tutorial.pending.lines.length>0);
+   const done=await app.inject({method:'POST',url:'/v1/campaign/guide/complete',headers,payload:{groupId:body.tutorial.pending.groupId}});
+   assert.equal(done.statusCode,200,done.body);
+   assert.ok(done.json().completedGroupIds.includes(body.tutorial.pending.groupId));
+  }
   assert.equal(body.maps[0].canChallenge,true);
   assert.equal(body.maps[1].canChallenge,false);
   // Simulate terminal progress

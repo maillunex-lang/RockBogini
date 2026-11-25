@@ -35,6 +35,8 @@ export async function migrate(s:Storage){
  await c.query(`CREATE TABLE IF NOT EXISTS campaign_idle(account_id uuid PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,received_at timestamptz NOT NULL,settled_at timestamptz NOT NULL,points jsonb NOT NULL DEFAULT '{}',rewards jsonb NOT NULL DEFAULT '{}')`);
  await c.query(`CREATE TABLE IF NOT EXISTS player_modules(account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,module_id integer NOT NULL,PRIMARY KEY(account_id,module_id))`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(10) ON CONFLICT DO NOTHING');
+ await c.query(`CREATE TABLE IF NOT EXISTS player_guide_groups(account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,group_id integer NOT NULL,completed_at timestamptz NOT NULL DEFAULT now(),PRIMARY KEY(account_id,group_id))`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(11) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }

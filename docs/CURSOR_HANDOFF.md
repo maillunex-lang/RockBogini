@@ -3,13 +3,14 @@
 Обновлено: 2026-11-25
 
 ## SINGLE-PROJECT-001
-Только `/home/gamedev/rocbogini/`. Git → RockBogini. Live: https://rikagro.ru/testtest/.
+Только `/home/gamedev/rocbogini/`. Live: https://rikagro.ru/testtest/.
 
 ## Сейчас
-**NEXT-014.3** (partial): сюжетные реплики кампании.
+**NEXT-014.4** (partial): GuideGroup обучение.
 
 ## Сделано
-- 014.3: `campaign-story.json` (62 map guides RU, 109 GuideNPCDialog, 83 StoryChapter), API guide/story, StoryDialog, 82/82 tests.
+- 014.4: 19 GuideGroups, tutorial.pending/complete API, auto-skip non-dialog groups, StoryDialog обучения, migration v11, 83/83.
 
 ## Далее
-- GuideStep sequencing + NPC portraits, RU StoryChapter titles, boss presentation, WinBoard, tutorial finger hints.
+- 014.5: boss presentation на карте/в бою
+- Finger-hint UI, WinBoard art, RU StoryChapter titles
