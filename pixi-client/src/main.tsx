@@ -43,6 +43,6 @@ function App(){
  <button onClick={async()=>{try{await signOut(API,session);setSession(null);setShowRecovery(false)}catch(e){setError(e instanceof Error?e.message:String(e))}}}>Выйти из аккаунта</button></div>
  {recoverError&&<p role="alert">{recoverError}</p>}
  <button onClick={()=>{setOpen(!open);setIdle(-1)}}>{open?'Вернуться в город':'Войти в сцену'}</button>
- {open?<><ReportScreen api={API} token={session.token}/><Squad/></>:<><City api={API} token={session.token} onProfile={()=>setShowProfile(true)} onBattle={()=>setOpen(true)} onHeroes={()=>setShowHeroes(true)}/><button onClick={async()=>{await cacheSettled();setIdle(cacheSize())}}>Проверить кеш</button><output data-idle-cache={idle}>{idle}</output></>}</main>;
+ {open?<><ReportScreen api={API} token={session.token}/><details><summary>Старая демонстрационная сцена</summary><Squad/></details></>:<><City api={API} token={session.token} onProfile={()=>setShowProfile(true)} onBattle={()=>setOpen(true)} onHeroes={()=>setShowHeroes(true)}/><button onClick={async()=>{await cacheSettled();setIdle(cacheSize())}}>Проверить кеш</button><output data-idle-cache={idle}>{idle}</output></>}</main>;
 }
 createRoot(document.getElementById('root')!).render(<App/>);
