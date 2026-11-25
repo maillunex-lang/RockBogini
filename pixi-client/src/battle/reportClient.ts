@@ -1,7 +1,7 @@
 export type BattleEvent={index:number;target:number;type:number;value:number;params?:number[]};
 export type HeroStatus={id:number;hp:number;hpMax:number;isDead:boolean;buffs:{id:number;count:number}[]};
 export type BattlePage={dataType:number;round:number;actor:number;skillId:number;targets:number[];hits:number;events:BattleEvent[];heroStatus:HeroStatus[]};
-export type BattleReport={version:1;battleId:string;mapId:number;preview:boolean;heroes:({heroId:number;camp:number;stationId:number;model:string}&HeroStatus)[];initialUnits:{id:number;model:string}[];pages:BattlePage[];summary:{resultCode:number;rounds:number}};
+export type BattleReport={version:1;battleId:string;mapId:number;background:string;preview:boolean;heroes:({heroId:number;camp:number;stationId:number;model:string}&HeroStatus)[];initialUnits:{id:number;model:string}[];pages:BattlePage[];summary:{resultCode:number;rounds:number}};
 export type Settlement={battleId:string;result:number;rewards:number[][];stage:number;level:number};
 export function orderedEvents(page:BattlePage){return [...page.events].sort((a,b)=>a.index-b.index)}
 export function validateReport(value:unknown):BattleReport{

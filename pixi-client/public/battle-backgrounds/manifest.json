@@ -1,0 +1,116 @@
+{
+  "Castle": {
+    "file": "Castle.webp",
+    "width": 1080,
+    "height": 2520,
+    "sha256": "dd6beaa1ce7dceffcf0a62f1ad0cec5d3baede50aa91c0b9f37f80427fac9314"
+  },
+  "Highland": {
+    "file": "Highland.webp",
+    "width": 1080,
+    "height": 2520,
+    "sha256": "fe24128ccc1677c471916c4eaac25de5acfb42c49bafa606f80ec1782ffe0c0f"
+  },
+  "Wilderness": {
+    "file": "Wilderness.webp",
+    "width": 1080,
+    "height": 2520,
+    "sha256": "5e4128862de02c8210fb5620bd3e829c6f5f77572e977556106f28b1ace7ab48"
+  },
+  "ArenaNight": {
+    "file": "ArenaNight.webp",
+    "width": 1080,
+    "height": 2520,
+    "sha256": "46945a530905ca7690ef4f949edca0e038283b7d6e73bc8351e6166ffa3cf8c8"
+  },
+  "Cave": {
+    "file": "Cave.webp",
+    "width": 1080,
+    "height": 2520,
+    "sha256": "35b45154d2e383333493c73d966cc45555b4e88d5cfe70001a6459989efab832"
+  },
+  "DarkForest": {
+    "file": "DarkForest.webp",
+    "width": 1080,
+    "height": 2520,
+    "sha256": "e7bb1b7a8ea15db0a2036d8817c72692a8058e525c2f8566ec6e99704db8c1ce"
+  },
+  "Street": {
+    "file": "Street.webp",
+    "width": 1080,
+    "height": 2520,
+    "sha256": "d8262c0045865a8285e06cfd2c8564b882cb8ea5b5e16610f0950d46d88cd168"
+  },
+  "IslandNight": {
+    "file": "IslandNight.webp",
+    "width": 1080,
+    "height": 2520,
+    "sha256": "6c4c5b3fa069cce0c7303bb1c75b1acd4f513fd3d220b3c1b94a8cc3985ff5d7"
+  },
+  "Desert": {
+    "file": "Desert.webp",
+    "width": 1080,
+    "height": 2520,
+    "sha256": "350c95d6b92f1ac2add4155fcf7577067f745820c1d1becaf31309700609adc6"
+  },
+  "Plain": {
+    "file": "Plain.webp",
+    "width": 1080,
+    "height": 2520,
+    "sha256": "a3215cd5329a6e8d7bbc0f9e0659eec362c81b89bf6e3fe4ad641a0519b5a552"
+  },
+  "Seaside": {
+    "file": "Seaside.webp",
+    "width": 1080,
+    "height": 2520,
+    "sha256": "ed5f3f9fb8a0c87c43e2edf279353de085787dffd6815ec61c7c64e167697a5c"
+  },
+  "Forest": {
+    "file": "Forest.webp",
+    "width": 1080,
+    "height": 2520,
+    "sha256": "c77fbbdb4510f5d4093e916052600ac541c974dd90dc238cc1c419ae49476e49"
+  },
+  "FogForest": {
+    "file": "FogForest.webp",
+    "width": 1080,
+    "height": 2520,
+    "sha256": "36ce43ea294a094c7808e853576cad0ba02ff85228b03db88eaa8155255bbfc5"
+  },
+  "RuinsStreet": {
+    "file": "RuinsStreet.webp",
+    "width": 1080,
+    "height": 2520,
+    "sha256": "aa3bdda33cc1084cfb65edf8ad0faa65cc34f21d8c1b9d1dbe38140bc2348eb2"
+  },
+  "Snowfield": {
+    "file": "Snowfield.webp",
+    "width": 1080,
+    "height": 2520,
+    "sha256": "24d54fb341331a007694509e92a8af60320f6674492a29e408de8d7d677d0c6c"
+  },
+  "CrystalCave": {
+    "file": "CrystalCave.webp",
+    "width": 1080,
+    "height": 2520,
+    "sha256": "6a2a130779903fc2cf4747cbff3b1db3bf9d7cb4dc8648a4dee515eb61929bef"
+  },
+  "DevilCastle": {
+    "file": "DevilCastle.webp",
+    "width": 1080,
+    "height": 2520,
+    "sha256": "61a0bb4a752aba836886a38fc0b6fa6db452a6b3fb0351651ba4b7ed702b95d8"
+  },
+  "ArenaDay": {
+    "file": "ArenaDay.webp",
+    "width": 1080,
+    "height": 2520,
+    "sha256": "742addecc59e5f2f6e9bd07d892627395cd26b4a327f70eb2acb90d98c60e5b4"
+  },
+  "UndergroundCave": {
+    "file": "UndergroundCave.webp",
+    "width": 1080,
+    "height": 2520,
+    "sha256": "ec5bc24cc34bcb82cc2858286e61175ced67a2c3b2f030f9a86f5fdd1c24ec14"
+  }
+}
