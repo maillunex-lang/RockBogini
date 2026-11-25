@@ -2,7 +2,7 @@ export type BattleEvent={index:number;target:number;type:number;value:number;par
 export type HeroStatus={id:number;hp:number;hpMax:number;isDead:boolean;buffs:{id:number;count:number}[]};
 export type BattlePage={dataType:number;round:number;actor:number;skillId:number;targets:number[];hits:number;events:BattleEvent[];heroStatus:HeroStatus[]};
 export type BattleReport={version:1;battleId:string;mapId:number;background:string;preview:boolean;heroes:({heroId:number;camp:number;stationId:number;model:string;statDamage?:number;statHurt?:number;statCure?:number}&HeroStatus)[];initialUnits:{id:number;model:string}[];pages:BattlePage[];summary:{resultCode:number;rounds:number}};
-export type Settlement={battleId:string;result:number;rewards:number[][];stage:number;level:number;mapId?:number;unlockedModules?:number[];playerLevel?:number};
+export type Settlement={battleId:string;result:number;rewards:number[][];stage:number;level:number;mapId?:number;unlockedModules?:number[];playerLevel?:number;boss?:boolean;stageLabel?:string;campaignComplete?:boolean};
 /** Hit-point order: index asc; same index keeps Revive(7) before Cure(5/22) like server emit order. */
 export function orderedEvents(page:BattlePage){
  const rank=(t:number)=>t===7?0:HEAL_TYPES.has(t)?1:2;

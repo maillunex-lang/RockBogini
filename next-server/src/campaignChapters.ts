@@ -8,6 +8,8 @@ export type CampaignChapterRow={
  worldId?:number;
  mapIds:number[];
  maps:CampaignMapRow[];
+ heros?:number[][];
+ monsters?:number[];
 };
 type CampaignChaptersFile={
  firstMapId:number;

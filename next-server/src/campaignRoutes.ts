@@ -16,6 +16,7 @@ import {
 } from './campaignChapters.js';
 import {mapWorldName} from './campaignLocales.js';
 import {campaignStoryStats,guideGroups,guideLinesForMap,playableTutorial,storyChapters} from './campaignStory.js';
+import {mapMeta,mapMetaStats} from './campaignMapMeta.js';
 
 async function authAccount(req:{headers:{authorization?:string}},s:Storage){
  const token=/^Bearer ([A-Za-z0-9_-]{43})$/.exec(req.headers.authorization??'')?.[1];
@@ -33,10 +34,10 @@ export async function campaignRoutes(app:FastifyInstance,s:Storage){
   const clears=new Set(clearRows.map(r=>r.map_id));
   const guideRows=(await s.pg.query('SELECT group_id FROM player_guide_groups WHERE account_id=$1',[id])).rows as {group_id:number}[];
   const completedGuides=new Set(guideRows.map(r=>r.group_id));
-  // Finger/panel-only groups have no NPC lines yet — advance past them until a dialog group (or end).
+  // Finger/panel-only groups (no NPC lines, no plot stub) — advance until dialog/plot (or end).
   for(;;){
    const pending=playableTutorial(completedGuides);
-   if(!pending||pending.hasDialog)break;
+   if(!pending||pending.hasDialog||pending.hasPlot)break;
    await s.pg.query(
     'INSERT INTO player_guide_groups(account_id,group_id) VALUES($1,$2) ON CONFLICT DO NOTHING',
     [id,pending.groupId],
@@ -69,6 +70,7 @@ export async function campaignRoutes(app:FastifyInstance,s:Storage){
    const status=mapStatus(m.id,stage,clears);
    const levelLocked=level<m.level;
    const guide=guideLinesForMap(m.id);
+   const meta=mapMeta(m.id);
    return {
     id:m.id,
     level:m.level,
@@ -77,9 +79,18 @@ export async function campaignRoutes(app:FastifyInstance,s:Storage){
     status,
     levelLocked,
     canChallenge:canChallengeMap(m.id,stage,level,clears),
-    terminal:m.next===0,
+    terminal:m.next===0||!!meta?.terminal,
     hasGuide:guide.length>0,
     guide,
+    boss:!!meta?.boss,
+    mapType:meta?.type??1,
+    stageLabel:meta?.label??String(m.id),
+    stageIndex:meta?.stageIndex??null,
+    stageCount:meta?.stageCount??null,
+    enemyCount:meta?.enemyCount??0,
+    enemies:meta?.enemies??[],
+    bg:meta?.bg??focus.bg,
+    maxRounds:meta?.maxRounds??null,
    };
   });
   const worlds=campaignChapters.worlds.map(w=>{
@@ -129,6 +140,8 @@ export async function campaignRoutes(app:FastifyInstance,s:Storage){
     groupCount:guideGroups().length,
     pending:playableTutorial(completedGuides),
    },
+   mapMetaStats:mapMetaStats(),
+   focusChapterHeros:(focus as {heros?:number[][]}).heros??[],
   };
  });
 

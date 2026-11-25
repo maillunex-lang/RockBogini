@@ -46,7 +46,25 @@ export function ReportScene({report,cursor,onReady,volume=0.5,speed=1,paused=fal
  }
  app.ticker.add(()=>{for(const [id,hud] of huds){const unit=units.get(id);if(unit&&!unit.destroyed){hud.root.position.set(unit.x,unit.y-hud.offsetY);hud.root.visible=unit.visible}}});
  runtime.current={app,units,models,huds,hudAssets,timelines,skills,common,effects,bottom,top,mask,sounds,clock,audio,effectsLive,floatsLive};setLoaded(true);setStatus('Сцена готова');onReady(true);
- }init().catch(e=>{releases.forEach(r=>r());releases.length=0;if(app){app.destroy(true,{children:true});app=undefined}if(!cancelled){setLoaded(false);setStatus(String(e));onReady(false)}});return()=>{cancelled=true;const rt=runtime.current;if(rt){rt.clock.clear();for(const a of rt.audio){a.pause();a.src=''}rt.audio.clear();for(const f of rt.floatsLive){if(!f.destroyed)f.destroy({children:true})}rt.floatsLive.clear()}runtime.current=undefined;app?.destroy(true,{children:true});releases.forEach(r=>r())};
+ }init().catch(e=>{releases.forEach(r=>{try{r()}catch{/* ignore */}});releases.length=0;if(app){try{app.destroy(true,{children:true})}catch{/* ignore */}app=undefined}if(!cancelled){setLoaded(false);setStatus(String(e));onReady(false)}});return()=>{
+  cancelled=true;
+  try{
+   const rt=runtime.current;
+   if(rt){
+    try{rt.clock.clear()}catch{/* ignore */}
+    try{rt.app.ticker?.stop()}catch{/* ignore */}
+    for(const a of rt.audio){try{a.pause();a.src=''}catch{/* ignore */}}
+    rt.audio.clear();
+    for(const f of [...rt.floatsLive]){try{if(!f.destroyed)f.destroy({children:true})}catch{/* ignore */}}
+    rt.floatsLive.clear();
+    for(const fx of [...rt.effectsLive]){try{if(!fx.destroyed)fx.destroy({children:true})}catch{/* ignore */}}
+    rt.effectsLive.clear();
+   }
+   runtime.current=undefined;
+   if(app){try{app.destroy(true,{children:true})}catch{/* ignore */}}
+   for(const r of releases){try{r()}catch{/* ignore */}}
+  }catch(e){console.warn('ReportScene teardown',e)}
+ };
  },[report]);
  useEffect(()=>{const rt=runtime.current;if(!rt)return;rt.clock.setSpeed(speed);rt.clock.setPaused(paused);const rate=rt.clock.rate();
  for(const s of rt.units.values())s.state.timeScale=rate;
@@ -154,7 +172,20 @@ export function ReportScene({report,cursor,onReady,volume=0.5,speed=1,paused=fal
  for(const e of events){const hit=timeline?.Events.find(x=>x.EventType===6&&x.HitPointId===e.index),ms=hit?.StartTime??(p.dataType===2?fallbackTime:0);duration=Math.max(duration,ms+300,ms+lifecycleDuration(e.type)+50);later(ms,()=>{const t=rt.units.get(e.target);if(!t)return;rt.huds.get(e.target)?.event(e);if(e.type===7||e.type===27)lifecycle(e.target,e.type);if([1,2,3,21].includes(e.type)&&!hit?.NoHurtAction){anim(t,'hurt');later(200,()=>{if(!lifeActive.has(e.target)&&t.visible)anim(t,'standby',true)})}if([1,2,3,4,5,6,8,21,22,28].includes(e.type))showFloat(e.target,e.type,e.value)})}
  later(duration,()=>{for(const h of p.heroStatus){rt.huds.get(h.id)?.set({...h,buffs:h.buffs??[]});const s=rt.units.get(h.id);if(s){s.visible=!h.isDead;s.alpha=1;const home=report.heroes.find(x=>x.id===h.id);if(home){const pos=fieldPosition(home.stationId,home.camp);s.position.set(pos.x,pos.y)}anim(s,'standby',true)}}setStatus('Раунд '+p.round);onReady(true)});
  }void play();
- return()=>{cancelled=true;for(const a of rt.audio){a.pause();a.src=''}rt.audio.clear();if(!rt.mask.destroyed)rt.mask.alpha=0;if(!rt.app.stage.destroyed)rt.app.stage.position.set(0,0);for(const fx of [...rt.effectsLive])fx.destroy({children:true});rt.effectsLive.clear();effectReleases.forEach(r=>r());cleanups.forEach(c=>c());clock.clear()};
+ return()=>{
+  cancelled=true;
+  try{
+   for(const a of rt.audio){try{a.pause();a.src=''}catch{/* ignore */}}
+   rt.audio.clear();
+   try{if(!rt.mask.destroyed)rt.mask.alpha=0}catch{/* ignore */}
+   try{if(!rt.app.stage.destroyed)rt.app.stage.position.set(0,0)}catch{/* ignore */}
+   for(const fx of [...rt.effectsLive]){try{if(!fx.destroyed)fx.destroy({children:true})}catch{/* ignore */}}
+   rt.effectsLive.clear();
+   for(const r of effectReleases){try{r()}catch{/* ignore */}}
+   for(const c of cleanups){try{c()}catch{/* ignore */}}
+   try{clock.clear()}catch{/* ignore */}
+  }catch(e){console.warn('ReportScene page cleanup',e)}
+ };
  },[cursor,loaded,report]);
  return <><p role="status">{status}</p><div ref={host} style={{maxWidth:360,margin:'auto'}}/></>
 }

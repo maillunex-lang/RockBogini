@@ -1,0 +1,39 @@
+{
+ "inventory": {
+  "itemCount": 1,
+  "hasChalice": true,
+  "currencies": {
+   "coin": "0",
+   "diamond": "0",
+   "colorDiamond": "0",
+   "intelligence": "0",
+   "vipPoint": "0",
+   "xpWater": "0"
+  }
+ },
+ "tutorial": {
+  "groupId": 1,
+  "desc": "播放剧情",
+  "lines": [
+   {
+    "key": "plot_1",
+    "infoKey": "plot_1",
+    "text": "Сюжетный ролик этого шага обучения пока не перенесён. Продолжите, чтобы пропустить."
+   }
+  ],
+  "hasDialog": false,
+  "hasPlot": true,
+  "fingerSteps": 0,
+  "panelSteps": 0,
+  "plotSteps": 1,
+  "sequence": [
+   {
+    "stepId": 101,
+    "kindName": "plotVideo",
+    "autoNext": false,
+    "lineCount": 0
+   }
+  ]
+ },
+ "storyTitle": "Дар ангела"
+}

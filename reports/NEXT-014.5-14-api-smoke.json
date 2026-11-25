@@ -1,0 +1,170 @@
+{
+ "focusChapterId": 1,
+ "campaignComplete": false,
+ "mapMetaStats": {
+  "maps": 2241,
+  "bosses": 449,
+  "modules": 284
+ },
+ "focusChapterHeros": [
+  [
+   11101,
+   3,
+   10
+  ],
+  [
+   12101,
+   3,
+   10
+  ],
+  [
+   13101,
+   3,
+   10
+  ]
+ ],
+ "map0": {
+  "id": 100101,
+  "stageLabel": "1-1",
+  "boss": false,
+  "enemyCount": 1,
+  "enemies": [
+   {
+    "heroId": 11302,
+    "model": "Strayer1301",
+    "level": 1,
+    "star": 3,
+    "station": 1
+   }
+  ],
+  "rewards": [
+   [
+    5,
+    200
+   ],
+   [
+    22,
+    500
+   ],
+   [
+    1,
+    4000
+   ],
+   [
+    7,
+    50
+   ],
+   [
+    1011403,
+    30
+   ]
+  ]
+ },
+ "boss100105": {
+  "id": 100105,
+  "stageLabel": "1-5",
+  "boss": true,
+  "mapType": 2,
+  "enemyCount": 3,
+  "enemies": [
+   {
+    "heroId": 14301,
+    "model": "Delmeer4301",
+    "level": 3,
+    "star": 3,
+    "station": 1
+   },
+   {
+    "heroId": 13201,
+    "model": "Bro3201",
+    "level": 3,
+    "star": 3,
+    "station": 3
+   },
+   {
+    "heroId": 12302,
+    "model": "Pla2301",
+    "level": 3,
+    "star": 3,
+    "station": 5
+   }
+  ],
+  "rewards": [
+   [
+    5,
+    1400
+   ],
+   [
+    22,
+    2450
+   ],
+   [
+    1,
+    14700
+   ],
+   [
+    7,
+    50
+   ]
+  ],
+  "bg": "Street"
+ },
+ "tutorial": {
+  "completedGroupIds": [
+   1
+  ],
+  "groupCount": 19,
+  "pending": {
+   "groupId": 31,
+   "desc": "出战上阵引导（抽卡引导完成后）",
+   "lines": [
+    {
+     "key": "locale_ui_guide_100301",
+     "infoKey": "guide_100301",
+     "text": "Победим врага! ",
+     "npc": 1
+    }
+   ],
+   "hasDialog": true,
+   "fingerSteps": 4,
+   "panelSteps": 0,
+   "sequence": [
+    {
+     "stepId": 3101,
+     "kindName": "npcDialog",
+     "autoNext": true,
+     "dialogId": 1003,
+     "lineCount": 1
+    },
+    {
+     "stepId": 3102,
+     "kindName": "fingerHint",
+     "autoNext": true,
+     "hintId": 100000,
+     "lineCount": 0
+    },
+    {
+     "stepId": 3103,
+     "kindName": "fingerHint",
+     "autoNext": false,
+     "hintId": 310301,
+     "lineCount": 0
+    },
+    {
+     "stepId": 3104,
+     "kindName": "fingerHint",
+     "autoNext": false,
+     "hintId": 310401,
+     "lineCount": 0
+    },
+    {
+     "stepId": 3105,
+     "kindName": "fingerHint",
+     "autoNext": true,
+     "hintId": 100000,
+     "lineCount": 0
+    }
+   ]
+  }
+ }
+}

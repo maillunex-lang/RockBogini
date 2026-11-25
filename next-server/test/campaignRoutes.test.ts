@@ -18,6 +18,7 @@ import {
 } from '../src/campaignChapters.js';
 import {mapWorldName} from '../src/campaignLocales.js';
 import {guideLinesForMap,storyChapters,campaignStoryStats,guideGroups,playableTutorial,dialogLinesForGroup} from '../src/campaignStory.js';
+import {isBossMap,mapMeta,moduleName,mapMetaStats} from '../src/campaignMapMeta.js';
 
 test('main-line chain reaches terminal 105701 with next 0',()=>{
  const chain=mainLineChain();
@@ -99,9 +100,27 @@ test('GuideGroup sequences resolve NPC dialog steps in order',()=>{
  assert.match(lines[0].text,/Победим|враг/i);
  const pending=playableTutorial(new Set());
  assert.equal(pending?.groupId,1); // first group is plot placeholder
+ assert.equal(pending?.hasPlot,true);
+ assert.ok((pending?.lines.length??0)>=1);
  const afterPlot=playableTutorial(new Set([1]));
  assert.equal(afterPlot?.groupId,31);
  assert.equal(afterPlot?.hasDialog,true);
+});
+
+test('StoryChapter titles are Russian after 014 tails',()=>{
+ const ch=storyChapters().find(c=>c.id===10100100);
+ assert.ok(ch);
+ assert.match(ch!.title,/ангел|Дар/i);
+});
+
+test('MapAdventure Type=2 marks boss stages; meta has stage labels and enemies',()=>{
+ assert.equal(isBossMap(100105),true);
+ assert.equal(isBossMap(100101),false);
+ assert.equal(mapMeta(100105)?.label,'1-5');
+ assert.ok((mapMeta(100105)?.enemies.length??0)>=1);
+ assert.ok(mapMetaStats().bosses>=400);
+ assert.ok(moduleName(1).length>0);
+ assert.ok((campaignChapters.chapters[0].heros?.length??0)>=1);
 });
 
 test('authenticated campaign progress lists chapters and terminal stage',{skip:!process.env.PGHOST},async()=>{
@@ -121,10 +140,17 @@ test('authenticated campaign progress lists chapters and terminal stage',{skip:!
   assert.equal(body.worlds[0].name,'Town of Porte');
   assert.equal(body.worlds[0].status,'current');
   assert.equal(body.campaignComplete,false);
+  assert.equal(body.maps[0].stageLabel,'1-1');
+  assert.equal(body.maps[0].boss,false);
+  const boss=body.maps.find((m:{id:number})=>m.id===100105);
+  assert.ok(boss);
+  assert.equal(boss.boss,true);
+  assert.equal(boss.stageLabel,'1-5');
+  assert.ok(boss.enemies.length>=1);
   assert.ok(body.tutorial);
-  // Non-dialog groups auto-advance; pending should be a dialog group or null.
+  // Finger-only groups auto-advance; pending should be dialog, plot stub, or null.
   if(body.tutorial.pending){
-   assert.equal(body.tutorial.pending.hasDialog,true);
+   assert.ok(body.tutorial.pending.hasDialog||body.tutorial.pending.hasPlot);
    assert.ok(body.tutorial.pending.lines.length>0);
    const done=await app.inject({method:'POST',url:'/v1/campaign/guide/complete',headers,payload:{groupId:body.tutorial.pending.groupId}});
    assert.equal(done.statusCode,200,done.body);
