@@ -54,11 +54,11 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  for(const {Items:[bid,ch]} of e.BuffList){
  const b=BuffBase[bid];if(!b){issues.add('missing_buff:'+bid);continue}
  for(const tid of targets){const t=units.find(u=>u.id===tid);if(!t)continue;
- if(!startCondition(b.StartWorkCondition.map(x=>x.Items),a,t,ctx.overflow,code=>issues.add('buff_condition:'+code+':'+bid)))continue;
+
  const attach=(cfg:typeof b,depth:number,checked:boolean)=>{
  if(depth>16){issues.add('replacement_depth:'+cfg.Id);return}
  const metadata={skill:plan.skillId===undefined?undefined:actionSkills[plan.skillId],buff:cfg,atype:plan.atype??0};
- const r=applyBuff(a,t,cfg,{random,key:()=>++key,fresh:ending||done.has(t.id),chance:ch,unchecked:checked,allowRevive:cfg.StartEffect.some(x=>x.Items[0]===112),condition:rows=>checked||startCondition(rows,a,t,ctx.overflow),baseValue:p=>baseValue(a,t,p,ctx),instant:items=>{if(instant.has(items[0]))resolve(a,t,{tags:cfg.Tags,params:cfg.Params},items,ctx,round,metadata);else issues.add('start_effect:'+items[0])}});
+ const r=applyBuff(a,t,cfg,{random,key:()=>++key,fresh:ending||done.has(t.id),chance:ch,unchecked:checked,allowRevive:cfg.StartEffect.some(x=>x.Items[0]===112),condition:rows=>checked||startCondition(rows,a,t,ctx.overflow,code=>issues.add("buff_condition:"+code+":"+cfg.Id)),baseValue:p=>baseValue(a,t,p,ctx),instant:items=>{if(instant.has(items[0]))resolve(a,t,{tags:cfg.Tags,params:cfg.Params},items,ctx,round,metadata);else issues.add('start_effect:'+items[0])}});
  if(r.status.startsWith('unsupported'))issues.add('buff:'+cfg.Id);
  else if(r.status==='applied'&&cfg.Round>0&&t.hp>0){
  engine.emit({code:157,subject:t.id,other:a.id,buff:cfg});

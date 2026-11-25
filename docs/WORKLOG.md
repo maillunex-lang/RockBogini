@@ -341,3 +341,5 @@ NEXT-012.19 partial: isolated Elixir reference and TypeScript comparison on stag
 NEXT-012.20 partial: OTP 27 exsss BigInt port matches 3200/3200 reference RNG draws; 100/100 stage 100101 battles match result, rounds and final per-unit HP/damage/hurt/healing exactly. 70/70 tests. Same stage and lineup only; diverse stages, bosses, skill sequence and production RNG wiring pending; parity gate closed.
 
 NEXT-012.21 partial: 120 comparative battles across 12 campaign maps, two formations, five seeds. 115/120 exact final metrics, 120/120 winner and rounds, zero reported unsupported issues. Five mismatches on map 100134 require trace comparison. Same three starter heroes, no dedicated boss coverage. Gate closed.
+
+NEXT-012.22 partial: fixed premature StartWorkCondition evaluation before chance draw, matching reference try_apply order. Replayed all 220 fixtures: 220/220 exact final metrics; 70/70 tests. Dedicated boss and diverse hero coverage pending, parity gate closed.
