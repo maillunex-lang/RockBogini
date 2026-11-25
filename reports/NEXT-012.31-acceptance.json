@@ -1,0 +1,34 @@
+{
+  "fixtures": 675,
+  "matched": 675,
+  "diagnostics": {
+    "start_effect:403": 185,
+    "start_effect:372": 58,
+    "buff_condition:8:11560300201": 57,
+    "start_effect:506": 194,
+    "trigger_condition:11": 191,
+    "start_effect:414": 382,
+    "start_effect:123": 24,
+    "start_effect:343": 6,
+    "start_effect:605": 6,
+    "start_effect:342": 6,
+    "start_effect:402": 6,
+    "start_effect:129": 3,
+    "trigger_condition:17": 6,
+    "start_effect:615": 38,
+    "start_effect:376": 6,
+    "start_effect:301": 6,
+    "start_effect:505": 30
+  },
+  "tests": 72,
+  "gate": "blocked",
+  "remaining": [
+    "verify heroStatus against original",
+    "event Params",
+    "RoundSkills and RoundBuffId",
+    "hero identity metadata",
+    "classify all diagnostic codes",
+    "idle settlement and module unlocks",
+    "report retention"
+  ]
+}
