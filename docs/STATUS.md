@@ -330,3 +330,5 @@ NEXT-012.15 partial: shield absorption report type 4 journal, death guard descri
 NEXT-012.16 partial: healing overflow and full-HP heal reactions aligned, recovery journal types 5/7/22 added, damage-based healing and blocked-overflow regression tests. Full suite 68/68 passed. Nested extra-effect report parity and client integration pending.
 
 NEXT-012.17 audit: static effect inventory reports/NEXT-012.17-inventory.json; distinguishes reference-handled and reference-skipped candidates, no parity claims. Baseline 68/68 tests. Next: differential fixtures and shared action context for trigger effects; parity gate remains closed.
+
+NEXT-012.18 partial: trigger 117 resets selected/all cooldowns; 111/601 trigger accumulators explicitly discarded as in reference fire(). Regression suite 69/69. Differential real battle fixtures still pending; parity gate closed.

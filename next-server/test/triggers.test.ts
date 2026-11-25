@@ -20,3 +20,9 @@ test('death listeners can queue extra skills but cannot execute ordinary damage 
  const seen:number[]=[];new TriggerEngine([a],1,{random:()=>.5,execute:(_s,_t,_b,fx)=>seen.push(fx[0])}).emit({code:150,subject:1});
  assert.deepEqual(seen,[120]);
 });
+test('reference trigger cooldown reset and discarded attribute accumulators',()=>{
+ const a=unit(1,1);a.cd={1:3,2:4};a.buffs.push(buff(1,1,[501],[[117,1],[111,0,50],[601,0,100,0]]));
+ const seen:number[]=[];const e=new TriggerEngine([a],1,{random:()=>.5,execute:(_s,_t,_b,fx)=>seen.push(fx[0])});
+ e.emit({code:501});assert.deepEqual(a.cd,{1:0,2:4});assert.deepEqual(a.attrs,{});assert.deepEqual(seen,[]);
+ a.buffs.push(buff(2,1,[502],[[117]]));e.emit({code:502});assert.deepEqual(a.cd,{1:0,2:0});
+});

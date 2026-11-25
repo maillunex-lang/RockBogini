@@ -20,7 +20,7 @@ export class TriggerEngine{
  if(!limitOk(t,this.round,target)||(t.conds.length&&(!this.hooks.condition||!this.hooks.condition(u,e,t.conds))))continue;
  if(t.chance>0&&t.chance<1000&&this.hooks.random()*1000>=t.chance)continue;
  countFire(t,this.round,target);this.depth++;this.firing.add(firingKey);
- try{for(const effect of t.effects){if(effect[0]===127)removeBuff(u,key);else if(effect[0]===120||u.hp>0)this.hooks.execute(effect[0]===120?u:this.units.find(x=>x.id===b.from)??u,u,b,effect,e)}}finally{this.depth--;this.firing.delete(firingKey)}
+ try{for(const effect of t.effects){if(effect[0]===127)removeBuff(u,key);else if(u.hp>0&&effect[0]===117){for(const k of Object.keys(u.cd))if(effect.length===1||effect.slice(1).includes(Number(k)))u.cd[Number(k)]=0}else if([111,601].includes(effect[0])){/* Reference discards the temporary property accumulator in fire(). */}else if(effect[0]===120||u.hp>0)this.hooks.execute(effect[0]===120?u:this.units.find(x=>x.id===b.from)??u,u,b,effect,e)}}finally{this.depth--;this.firing.delete(firingKey)}
  }
  }
  removeMatching(u:EffectUnit,kind:number,n:number,list:number[]){
