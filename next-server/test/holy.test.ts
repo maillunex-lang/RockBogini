@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {openStorage,migrate} from '../src/storage.js';
 import {createGuest} from '../src/auth.js';
 import {buildApp} from '../src/app.js';
-import {holyPieceExtra,holyWornBonus} from '../src/holy.js';
+import {canStarUp,holyPieceExtra,holyWornBonus,nextStarTarget} from '../src/holy.js';
 
 test('holyPieceExtra applies base attrs and HolyEquipmentScore',()=>{
  const extra=holyPieceExtra({Sid:1,ItemId:41001,Star:0,Level:0,Xp:0,Stage:0,Step:0,OwnerId:0});
@@ -71,6 +71,53 @@ test('POST /v1/holy/level-up spends xp items and coin',{skip:!process.env.PGHOST
   assert.equal(up.json().after.Xp,2000);
   assert.equal(up.json().after.Level,1);
   assert.equal(up.json().cost.find((c:[number,number])=>c[0]===1)?.[1],400);
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
+});
+
+test('nextStarTarget and canStarUp follow HolyEquipmentStar Unlock',()=>{
+ const s0=nextStarTarget(0,0,1);
+ assert.ok(s0);
+ assert.equal(s0!.value,1);
+ assert.deepEqual(s0!.materials,[[105,10]]);
+ assert.equal(canStarUp(0,0,1),true);
+ assert.equal(canStarUp(5,0,1),false);
+ assert.equal(canStarUp(4,0,2),false);
+ assert.equal(canStarUp(5,0,2),true);
+ const step=nextStarTarget(5,0,2);
+ assert.ok(step);
+ assert.equal(step!.value,1);
+ assert.deepEqual(step!.materials,[[403,2],[404,4]]);
+});
+
+test('POST /v1/holy/star-up spends materials and raises star/step',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);const a=await createGuest(s);const app=await buildApp(s);
+ try{
+  await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}});
+  await s.pg.query(
+   `INSERT INTO player_items(account_id,item_id,amount) VALUES($1,41001,1),($1,105,20),($1,403,2),($1,404,4)
+    ON CONFLICT(account_id,item_id) DO UPDATE SET amount=EXCLUDED.amount`,
+   [a.id],
+  );
+  const on=await app.inject({method:'POST',url:'/v1/holy/put-on',headers:{authorization:'Bearer '+a.token},payload:{itemId:41001,ownerId:1001}});
+  assert.equal(on.statusCode,200,JSON.stringify(on.json()));
+  const sid=on.json().holy.find((e:{OwnerId:number})=>e.OwnerId===1001).Sid;
+  const before=(await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}})).json().heroes.find((h:{Sid:number})=>h.Sid===1001);
+  const up=await app.inject({method:'POST',url:'/v1/holy/star-up',headers:{authorization:'Bearer '+a.token},payload:{sid,type:1}});
+  assert.equal(up.statusCode,200,JSON.stringify(up.json()));
+  assert.equal(up.json().after.Star,1);
+  assert.deepEqual(up.json().cost,[[105,10]]);
+  const after=(await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}})).json().heroes.find((h:{Sid:number})=>h.Sid===1001);
+  assert.ok(after.Power>before.Power,`power ${before.Power} -> ${after.Power}`);
+  const bag=(await s.pg.query('SELECT amount::int AS n FROM player_items WHERE account_id=$1 AND item_id=105',[a.id])).rows[0];
+  assert.equal(bag.n,10);
+  // Step requires ★5
+  const locked=await app.inject({method:'POST',url:'/v1/holy/star-up',headers:{authorization:'Bearer '+a.token},payload:{sid,type:2}});
+  assert.equal(locked.statusCode,409);
+  await s.pg.query('UPDATE player_holy_equipment SET star=5 WHERE account_id=$1 AND sid=$2',[a.id,sid]);
+  const step=await app.inject({method:'POST',url:'/v1/holy/star-up',headers:{authorization:'Bearer '+a.token},payload:{sid,type:2}});
+  assert.equal(step.statusCode,200,JSON.stringify(step.json()));
+  assert.equal(step.json().after.Step,1);
+  assert.equal(step.json().after.Star,5);
  }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
 });
 

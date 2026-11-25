@@ -48,8 +48,10 @@ type EquipSlot={
 };
 type HolySlot={
  slot:number;
- equip:{Sid:number;ItemId:number;Star:number;Level:number;Xp:number;score:number}|null;
+ equip:{Sid:number;ItemId:number;Star:number;Level:number;Xp:number;Step?:number;score:number}|null;
  maxLevel?:number;
+ nextStar?:{value:number;materials:[number,number][]}|null;
+ nextStep?:{value:number;materials:[number,number][]}|null;
 };
 
 export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClose:()=>void}){
@@ -140,7 +142,7 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
   }finally{setBusy(false)}
  };
 
- const holyAct=async(kind:'put-on'|'put-off'|'level-up',body:object,label:string)=>{
+ const holyAct=async(kind:'put-on'|'put-off'|'level-up'|'star-up',body:object,label:string)=>{
   if(busy||selected==null)return;
   setBusy(true);setStatus(label);
   try{
@@ -154,6 +156,7 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
    await loadEquip(selected);
    await refreshHeroes();
    if(kind==='level-up')setStatus(`Священное → ур.${j.after?.Level} (xp ${j.after?.Xp??0})`);
+   else if(kind==='star-up')setStatus(`Священное → ★${j.after?.Star} шаг ${j.after?.Step}`);
    else setStatus(kind==='put-on'?'Священное надето':'Священное снято');
   }catch(e){
    setStatus(e instanceof Error?e.message:'Не удалось изменить священную экипировку');
@@ -258,11 +261,17 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
       const worn=info?.equip??null;
       const starter=HOLY_STARTER[slot];
       return <li key={slot}>
-       <span>{SLOT_NAME[slot]}: {worn?`#${worn.ItemId} ★${worn.Star} ур.${worn.Level} · ${worn.score}`:'пусто'}</span>
+       <span>{SLOT_NAME[slot]}: {worn?`#${worn.ItemId} ★${worn.Star} шаг ${worn.Step??0} ур.${worn.Level} · ${worn.score}`:'пусто'}</span>
        {worn?(
         <>
          <button type="button" disabled={busy||(worn.Level>=(info?.maxLevel??0))} onClick={()=>void holyAct('level-up',{sid:worn.Sid,counts:[1,0,0,0]},'Усиление…')}>
           +ур (101×1)
+         </button>
+         <button type="button" disabled={busy||!info?.nextStar} onClick={()=>void holyAct('star-up',{sid:worn.Sid,type:1},'Звезда…')}>
+          ★+1{info?.nextStar?` (${info.nextStar.materials.map(([id,n])=>`${n}×${id}`).join(', ')})`:''}
+         </button>
+         <button type="button" disabled={busy||!info?.nextStep} onClick={()=>void holyAct('star-up',{sid:worn.Sid,type:2},'Шаг…')}>
+          Шаг+1{info?.nextStep?` (${info.nextStep.materials.map(([id,n])=>`${n}×${id}`).join(', ')})`:''}
          </button>
          <button type="button" disabled={busy} onClick={()=>void holyAct('put-off',{sid:worn.Sid},'Снятие…')}>Снять</button>
         </>

@@ -6,13 +6,13 @@
 Только `/home/gamedev/rocbogini/`. Live: https://rikagro.ru/testtest/.
 
 ## Сейчас
-**NEXT-017.4** holy equipment MVP done. Далее star/blessing holy tails или NEXT-018.
+**NEXT-017.5** holy star/step up done. Далее blessing/soul/gallery или NEXT-018.
 
 ## Сделано
 - 015.* inventory · 016.* hero growth
-- 017.1 put-on/off · 017.2 forge · 017.3 attrs→power · 017.4 holy put-on/off/level + attrs/suit
+- 017.1–017.5 equipment + holy put-on/off/level/star/step + attrs/suit
 
 ## Далее
-- Holy star/blessing/soul/gallery (хвосты 017)
+- Holy blessing / soul / gallery
 - NEXT-018 summon
 - Finger-hint overlays / plot video player
