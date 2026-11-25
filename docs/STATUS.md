@@ -332,3 +332,5 @@ NEXT-012.16 partial: healing overflow and full-HP heal reactions aligned, recove
 NEXT-012.17 audit: static effect inventory reports/NEXT-012.17-inventory.json; distinguishes reference-handled and reference-skipped candidates, no parity claims. Baseline 68/68 tests. Next: differential fixtures and shared action context for trigger effects; parity gate remains closed.
 
 NEXT-012.18 partial: trigger 117 resets selected/all cooldowns; 111/601 trigger accumulators explicitly discarded as in reference fire(). Regression suite 69/69. Differential real battle fixtures still pending; parity gate closed.
+
+NEXT-012.19 partial: isolated Elixir reference and TypeScript comparison on stage 100101, four seeds, identical initial units; 4/4 winner and round count match, no unsupported issues. RNG algorithms differ; exact hero stats and skill sequence parity not established. Export and comparison scripts saved, gate closed.
