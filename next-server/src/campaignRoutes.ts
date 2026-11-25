@@ -15,6 +15,7 @@ import {
  worldStatus,
 } from './campaignChapters.js';
 import {mapWorldName} from './campaignLocales.js';
+import {campaignStoryStats,guideLinesForMap,storyChapters} from './campaignStory.js';
 
 export async function campaignRoutes(app:FastifyInstance,s:Storage){
  app.get<{Querystring:{chapterId?:string}}>('/v1/campaign',async(req,reply)=>{
@@ -51,6 +52,7 @@ export async function campaignRoutes(app:FastifyInstance,s:Storage){
   const maps=mapsForChapter(focus).map(m=>{
    const status=mapStatus(m.id,stage,clears);
    const levelLocked=level<m.level;
+   const guide=guideLinesForMap(m.id);
    return {
     id:m.id,
     level:m.level,
@@ -60,6 +62,8 @@ export async function campaignRoutes(app:FastifyInstance,s:Storage){
     levelLocked,
     canChallenge:canChallengeMap(m.id,stage,level,clears),
     terminal:m.next===0,
+    hasGuide:guide.length>0,
+    guide,
    };
   });
   const worlds=campaignChapters.worlds.map(w=>{
@@ -100,6 +104,10 @@ export async function campaignRoutes(app:FastifyInstance,s:Storage){
    chapters,
    maps,
    worlds,
+   story:{
+    stats:campaignStoryStats(),
+    chapters:storyChapters().map(c=>({id:c.id,title:c.title,content:c.content})),
+   },
   };
  });
 }

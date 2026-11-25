@@ -1,0 +1,48 @@
+{
+ "map0": {
+  "id": 100101,
+  "level": 1,
+  "next": 100102,
+  "rewards": [
+   [
+    5,
+    200
+   ],
+   [
+    22,
+    500
+   ],
+   [
+    1,
+    4000
+   ],
+   [
+    7,
+    50
+   ],
+   [
+    1011403,
+    30
+   ]
+  ],
+  "status": "available",
+  "levelLocked": false,
+  "canChallenge": true,
+  "terminal": false,
+  "hasGuide": true,
+  "guide": [
+   {
+    "key": "locale_ui_guide_100101",
+    "infoKey": "guide_100101",
+    "text": "А-а-а!!"
+   }
+  ]
+ },
+ "stats": {
+  "mapGuides": 62,
+  "dialogs": 109,
+  "dialogsWithText": 95,
+  "steps": 124,
+  "storyChapters": 83
+ }
+}

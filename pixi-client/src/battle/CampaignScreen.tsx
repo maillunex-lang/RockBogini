@@ -1,4 +1,5 @@
 import {useEffect,useMemo,useState} from 'react';
+import {StoryDialog,type StoryLine} from './StoryDialog';
 import './campaign.css';
 
 export type CampaignMap={
@@ -10,6 +11,8 @@ export type CampaignMap={
  levelLocked:boolean;
  canChallenge:boolean;
  terminal?:boolean;
+ hasGuide?:boolean;
+ guide?:StoryLine[];
 };
 export type CampaignChapter={
  id:number;
@@ -34,6 +37,7 @@ export type CampaignWorld={
  clearedChapters:number;
  chapterCount:number;
 };
+export type StoryChapterCard={id:number;title:string;content:string};
 export type CampaignProgress={
  stage:number;
  level:number;
@@ -44,9 +48,10 @@ export type CampaignProgress={
  chapters:CampaignChapter[];
  maps:CampaignMap[];
  worlds:CampaignWorld[];
+ story?:{stats:Record<string,number>;chapters:StoryChapterCard[]};
 };
 
-type ViewMode='worlds'|'chapters';
+type ViewMode='worlds'|'chapters'|'story';
 
 function worldLabel(status:CampaignWorld['status']){
  if(status==='cleared')return 'Исследовано';
@@ -60,6 +65,8 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
  const [view,setView]=useState<ViewMode>('worlds');
  const [owningMap,setOwningMap]=useState<number>(1);
  const [status,setStatus]=useState('Загрузка кампании…');
+ const [pendingFight,setPendingFight]=useState<{mapId:number;lines:StoryLine[];title:string}|null>(null);
+ const [storyOpen,setStoryOpen]=useState<StoryChapterCard|null>(null);
  useEffect(()=>{
   const c=new AbortController();
   const q=chapterId?`?chapterId=${chapterId}`:'';
@@ -106,16 +113,27 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
   if(firstOpen){setChapterId(firstOpen.id);setView('chapters');}
  };
 
+ const challenge=(m:CampaignMap)=>{
+  if(!m.canChallenge)return;
+  const lines=m.guide??[];
+  if(lines.length){
+   setPendingFight({mapId:m.id,lines,title:`Этап ${m.id}`});
+   return;
+  }
+  onFight(m.id);
+ };
+
  return <main className="campaign-screen">
   <header>
    <div>
     <h1>Кампания</h1>
-    {data&&<p>Прогресс: этап {data.stage} · уровень {data.level}</p>}
+    {data&&<p>Прогресс: этап {data.stage} · уровень {data.level}{data.story?.stats?.mapGuides!=null?` · сюжетов карт ${data.story.stats.mapGuides}`:''}</p>}
    </div>
    <div className="campaign-header-actions">
     <div className="campaign-view-toggle" role="group" aria-label="Вид кампании">
      <button type="button" aria-pressed={view==='worlds'} onClick={()=>setView('worlds')}>Карта мира</button>
      <button type="button" aria-pressed={view==='chapters'} onClick={()=>setView('chapters')}>Главы</button>
+     <button type="button" aria-pressed={view==='story'} onClick={()=>setView('story')}>Сюжет</button>
     </div>
     <button type="button" onClick={onClose}>Вернуться в город</button>
    </div>
@@ -164,13 +182,35 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
    <section className="campaign-maps" aria-label={focus?.name??'Этапы'}>
     <h2>{focus?.name??'Этапы'}{focus?.worldId?` · ${data.worlds.find(w=>w.id===focus.worldId)?.name??''}`:''}</h2>
     <div className="campaign-map-grid">
-     {data.maps.map(m=><button key={m.id} type="button" data-status={m.status} disabled={!m.canChallenge} onClick={()=>onFight(m.id)}>
-      <strong>{m.terminal?'Финал · ':''}{m.id}</strong>
+     {data.maps.map(m=><button key={m.id} type="button" data-status={m.status} disabled={!m.canChallenge} onClick={()=>challenge(m)}>
+      <strong>{m.terminal?'Финал · ':''}{m.id}{m.hasGuide?' · сюжет':''}</strong>
       <span>Ур. {m.level}</span>
       <span>{m.status==='cleared'?'Пройден':m.status==='available'?(m.levelLocked?'Нужен уровень':'Бой'):'Закрыт'}</span>
      </button>)}
     </div>
    </section>
   </>}
+  {data&&view==='story'&&<section className="campaign-story-list" aria-label="Сюжетные главы">
+   <h2>Сюжетные главы</h2>
+   <p className="campaign-story-note">Тексты из оригинальных ключей StoryChapter_* (локаль). RU для заголовков событий пока не переведён — показываем доступный текст пака.</p>
+   <div className="campaign-story-grid">
+    {(data.story?.chapters??[]).map(c=><button key={c.id} type="button" onClick={()=>setStoryOpen(c)}>
+     <strong>{c.title||`История ${c.id}`}</strong>
+     <span>{(c.content||'').slice(0,90)}{(c.content||'').length>90?'…':''}</span>
+    </button>)}
+   </div>
+  </section>}
+  {pendingFight&&<StoryDialog
+   title={pendingFight.title}
+   lines={pendingFight.lines}
+   onSkip={()=>{const id=pendingFight.mapId;setPendingFight(null);onFight(id)}}
+   onContinue={()=>{const id=pendingFight.mapId;setPendingFight(null);onFight(id)}}
+  />}
+  {storyOpen&&<StoryDialog
+   title={storyOpen.title||`История ${storyOpen.id}`}
+   lines={[{key:`StoryChapter_content_${storyOpen.id}`,infoKey:`story_${storyOpen.id}`,text:storyOpen.content||'—'}]}
+   onSkip={()=>setStoryOpen(null)}
+   onContinue={()=>setStoryOpen(null)}
+  />}
  </main>;
 }

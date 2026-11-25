@@ -17,6 +17,7 @@ import {
  worldStatus,
 } from '../src/campaignChapters.js';
 import {mapWorldName} from '../src/campaignLocales.js';
+import {guideLinesForMap,storyChapters,campaignStoryStats} from '../src/campaignStory.js';
 
 test('main-line chain reaches terminal 105701 with next 0',()=>{
  const chain=mainLineChain();
@@ -75,6 +76,17 @@ test('world status and MapWorld locale names from original locale export',()=>{
  assert.equal(mapWorldName(1),'Town of Porte');
  assert.equal(mapWorldName(30),"Warrior's Ravine");
  assert.equal(campaignChapters.worldCount,30);
+});
+
+test('campaign story guides come from original locale_ui_guide keys (RU preferred)',()=>{
+ const lines=guideLinesForMap(100101);
+ assert.equal(lines.length,1);
+ assert.equal(lines[0].key,'locale_ui_guide_100101');
+ assert.match(lines[0].text,/А-а-а/);
+ assert.equal(guideLinesForMap(999999).length,0);
+ assert.ok(campaignStoryStats().mapGuides>=60);
+ assert.ok(storyChapters().length>=80);
+ assert.ok(storyChapters()[0].title.length>0);
 });
 
 test('authenticated campaign progress lists chapters and terminal stage',{skip:!process.env.PGHOST},async()=>{

@@ -1,6 +1,6 @@
 # Актуальное состояние 2026-11-25
 
-Активная задача: **NEXT-014.2**. NEXT-013 закрыт по D-011 (визуальная приёмка владельцем); технические остатки 013.8 известны и не блокируют кампанию.
+Активная задача: **NEXT-014.3**. NEXT-013 закрыт по D-011 (визуальная приёмка владельцем); технические остатки 013.8 известны и не блокируют кампанию.
 10 из 28 основных этапов закрыты, 4 в работе, 1 отложен, 13 ожидают. (авто из roadmap.json)
 NEXT-012 принят только в проверенном эталонном объёме для подключения визуализации; общий статус остаётся in_progress.
 Проверено ранее: 681/681 уникальных боёв, 16 771/16 771 снимков состояния, 75→77 серверных тестов после NEXT-014.1.
@@ -10,7 +10,8 @@ NEXT-012 принят только в проверенном эталонном 
 | 013.1–013.7 | accepted (D-011 owner visual QA); known gaps retained |
 | 013.8 | closed for gate: residuals inventoried, owner owns visual QA |
 | 014.1 | done: chapters/campaign API+UI |
-| 014.2 | АКТИВНО/partial: MapWorld карта, имена локалей, dual view |
+| 014.2 | done: MapWorld карта + locale names |
+| 014.3 | АКТИВНО/partial: guide/story lines + StoryDialog |
 
 
 ---
@@ -426,3 +427,5 @@ NEXT-013.5.1 partial: per-actor HP bars, buff count, damage/heal/crit colors, ev
 
 2026-11-25 D-011: владелец принимает визуальную приёмку NEXT-013; NEXT-013.8/013 закрыты для перехода. NEXT-014.1: экспорт AdventureChapter/MapWorld (56 глав, 2240 карт в главах, orphan 105701), data/campaign-chapters.json, GET /v1/campaign, CampaignScreen вместо «Тест боя», 77/77 тестов, API deploy + testtest publish. reports/NEXT-014.1-*.
 2026-11-25 NEXT-014.1.1: fixed TypeError buffs not iterable — report.heroes lacked buffs; HUD init crashed after first unit so enemies missing. Normalized buffs in validateReport/createHud/applyHealth. reports/NEXT-014.1.1-*.
+
+2026-11-25 NEXT-014.3: map guide RU lines + StoryChapter tab + StoryDialog; 82/82 tests; publish. reports/NEXT-014.3-*.

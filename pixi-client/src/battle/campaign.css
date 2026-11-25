@@ -153,3 +153,23 @@
  .campaign-world-plane{min-height:280px;width:100%}
  .campaign-world-node{min-width:88px;max-width:120px;padding:8px}
 }
+.campaign-story-note{
+ opacity:.8;
+ margin:0 0 12px;
+ max-width:52rem;
+}
+.campaign-story-grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+ gap:10px;
+}
+.campaign-story-grid button{
+ padding:12px;
+ border:1px solid rgba(232,196,140,.3);
+ background:rgba(28,22,16,.75);
+ color:inherit;
+ text-align:left;
+ cursor:pointer;
+}
+.campaign-story-grid strong,.campaign-story-grid span{display:block}
+.campaign-story-grid span{font-size:.85rem;opacity:.82;margin-top:6px;line-height:1.35}

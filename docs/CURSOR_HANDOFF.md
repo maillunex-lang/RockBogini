@@ -3,17 +3,13 @@
 Обновлено: 2026-11-25
 
 ## SINGLE-PROJECT-001
-Работать только в `/home/gamedev/rocbogini/`. Git → RockBogini. Публикация: https://rikagro.ru/testtest/. Диск ≥90% аудит; ≥95% стоп.
+Только `/home/gamedev/rocbogini/`. Git → RockBogini. Live: https://rikagro.ru/testtest/.
 
 ## Сейчас
-Активно: **NEXT-014.2** (MapWorld карта — partial). Критические AUDIT закрыты.
+**NEXT-014.3** (partial): сюжетные реплики кампании.
 
-## Сделано в этом срезе
-- NEXT-014.2: dual view «Карта мира / Главы»; 30 зон с position/owningMap; `MapWorld_name_*` из оригинального locale; `worldStatus`/`currentWorldId`; multi-texture `acquireSkeleton`; 81/81 tests; API+publish.
+## Сделано
+- 014.3: `campaign-story.json` (62 map guides RU, 109 GuideNPCDialog, 83 StoryChapter), API guide/story, StoryDialog, 82/82 tests.
 
 ## Далее
-- NEXT-014.3+: StoryChapter/диалоги, обучение (Guide*), RU перевод названий зон, boss presentation, WinBoard art.
-- Residuals AUDIT: angels, 64 sounds, exact effect coords.
-
-## Критерии
-Не изобретать ID/баланс/имена мест — только из конфигов/locale. Не отмечать done без доказательств.
+- GuideStep sequencing + NPC portraits, RU StoryChapter titles, boss presentation, WinBoard, tutorial finger hints.

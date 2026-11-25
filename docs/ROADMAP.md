@@ -4,7 +4,7 @@ VPS is the development stand; GitHub main is the published source mirror. **SING
 
 ## Актуальный срез: 2026-11-25
 
-Активная задача: **NEXT-014.2**. NEXT-013 закрыт (D-011). Передача Cursor: docs/CURSOR_HANDOFF.md.
+Активная задача: **NEXT-014.3**. NEXT-013 закрыт (D-011). Передача Cursor: docs/CURSOR_HANDOFF.md.
 10 из 28 основных этапов закрыты, 4 в работе, 1 отложен, 13 ожидают. (авто из roadmap.json)
 NEXT-012 принят только в проверенном эталонном объёме для подключения визуализации; общий статус остаётся in_progress.
 Проверено: эталонный бой + 77/77 серверных тестов после кампанийного API.
@@ -13,7 +13,8 @@ NEXT-012 принят только в проверенном эталонном 
 |---|---|
 | 013.1–013.8 | CLOSED (D-011): owner visual QA; residuals known |
 | 014.1 | done: chapters export, GET /v1/campaign, CampaignScreen |
-| 014.2 | АКТИВНО/partial: MapWorld карта + locale names; story/tutorial/boss polish open |
+| 014.2 | done: MapWorld карта + locale names |
+| 014.3 | АКТИВНО/partial: guide/story lines; tutorial/boss polish open |
 
 
 | ID | Этап | Статус | Объём | Доказательство |
@@ -277,3 +278,5 @@ NEXT-013.5.1 partial: per-actor HP bars, buff count, damage/heal/crit colors, ev
 2026-11-25 NEXT-014.1.1: fixed TypeError buffs not iterable — report.heroes lacked buffs; HUD init crashed after first unit so enemies missing. Normalized buffs in validateReport/createHud/applyHealth. reports/NEXT-014.1.1-*.
 
 2026-11-25 NEXT-014.2: world map dual-view, MapWorld locales, worldStatus API, 81/81 tests, publish. reports/NEXT-014.2-*.
+
+2026-11-25 NEXT-014.3: map guide RU lines + StoryChapter tab + StoryDialog; 82/82 tests; publish. reports/NEXT-014.3-*.
