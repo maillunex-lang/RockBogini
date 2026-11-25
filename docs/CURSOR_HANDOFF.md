@@ -6,14 +6,13 @@
 Только `/home/gamedev/rocbogini/`. Live: https://rikagro.ru/testtest/.
 
 ## Сейчас
-**NEXT-017.1** equipment put-on/off done. Далее forging / holy.
+**NEXT-017.2** forge done. Далее holy / attrs→power.
 
 ## Сделано
 - 015.* inventory
-- 016.* hero growth (level/star/talent/jobs/luck)
-- 017.1 equipment slots put-on/off
+- 016.* hero growth
+- 017.1 put-on/off · 017.2 forge NextId/Xp
 
 ## Далее
-- 017.2 forging (NextId / Xp)
+- 017.3 holy equipment / attrs into power
 - Finger-hint overlays / plot video player
-- Holy equipment / attrs → power

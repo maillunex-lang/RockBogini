@@ -1,7 +1,7 @@
 # Актуальное состояние 2026-11-25
 
-Активная задача: **NEXT-017.1** (equipment). Live https://rikagro.ru/testtest/.
-Проверено: equipment+heroes 8/8; publish ok.
+Активная задача: **NEXT-017.2** (forge). Live https://rikagro.ru/testtest/.
+Проверено: equipment 3/3; publish ok.
 
 | Подэтап | Состояние |
 |---|---|
@@ -10,7 +10,7 @@
 | 014 tails | done: RU StoryChapter, plot stub, settle hotfix |
 | 015 MVP–015.2 | done: inventory + filters + icons/use/sell |
 | 016.1–016.5 | done: level/star/fodder/talent/jobs/luck |
-| 017.1 | done: equipment put-on/off (slots 1–4) |
+| 017.1–017.2 | done: put-on/off + forge NextId/Xp |
 
 
 ---
