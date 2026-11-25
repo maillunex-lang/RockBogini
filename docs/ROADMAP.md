@@ -188,3 +188,5 @@ NEXT-012.17 audit: static effect inventory reports/NEXT-012.17-inventory.json; d
 NEXT-012.18 partial: trigger 117 resets selected/all cooldowns; 111/601 trigger accumulators explicitly discarded as in reference fire(). Regression suite 69/69. Differential real battle fixtures still pending; parity gate closed.
 
 NEXT-012.19 partial: isolated Elixir reference and TypeScript comparison on stage 100101, four seeds, identical initial units; 4/4 winner and round count match, no unsupported issues. RNG algorithms differ; exact hero stats and skill sequence parity not established. Export and comparison scripts saved, gate closed.
+
+NEXT-012.20 partial: OTP 27 exsss BigInt port matches 3200/3200 reference RNG draws; 100/100 stage 100101 battles match result, rounds and final per-unit HP/damage/hurt/healing exactly. 70/70 tests. Same stage and lineup only; diverse stages, bosses, skill sequence and production RNG wiring pending; parity gate closed.

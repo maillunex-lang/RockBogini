@@ -1,0 +1,8205 @@
+{
+  "rng": "OTP exsss; draw ordering still requires verification",
+  "rows": [
+    {
+      "seed": 1,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "hurt": 44,
+            "damage": 97,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 92,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 119,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 44,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "damage": 97,
+            "hurt": 44,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 92,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 119,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 44,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 2,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 97,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 96,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 115,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 97,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 96,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 115,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 3,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 100,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 88,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 120,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 100,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 88,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 120,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 4,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 99,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 92,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 117,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 99,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 92,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 117,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 5,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "hurt": 44,
+            "damage": 95,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 94,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 119,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 44,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "damage": 95,
+            "hurt": 44,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 94,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 119,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 44,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 6,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 98,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 90,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 120,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 98,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 90,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 120,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 7,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "hurt": 46,
+            "damage": 93,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 95,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 120,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 46,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "damage": 93,
+            "hurt": 46,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 95,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 120,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 46,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 8,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "hurt": 45,
+            "damage": 97,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 90,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 121,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 45,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "damage": 97,
+            "hurt": 45,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 90,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 121,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 45,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 9,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 101,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 88,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 119,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 101,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 88,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 119,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 10,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "hurt": 45,
+            "damage": 96,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 91,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 121,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 45,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "damage": 96,
+            "hurt": 45,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 91,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 121,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 45,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 11,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 104,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 84,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 120,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 104,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 84,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 120,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 12,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "hurt": 46,
+            "damage": 96,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 89,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 123,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 46,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "damage": 96,
+            "hurt": 46,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 89,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 123,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 46,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 13,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 93,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 93,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 122,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 93,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 93,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 122,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 14,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 96,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 91,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 121,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 96,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 91,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 121,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 15,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "hurt": 44,
+            "damage": 97,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 90,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 121,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 44,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "damage": 97,
+            "hurt": 44,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 90,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 121,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 44,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 16,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 98,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 88,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 122,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 98,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 88,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 122,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 17,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "hurt": 46,
+            "damage": 96,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 88,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 124,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 46,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "damage": 96,
+            "hurt": 46,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 88,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 124,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 46,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 18,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "hurt": 46,
+            "damage": 100,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 89,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 119,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 46,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "damage": 100,
+            "hurt": 46,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 89,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 119,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 46,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 19,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "hurt": 45,
+            "damage": 103,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 80,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 125,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 45,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "damage": 103,
+            "hurt": 45,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 80,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 125,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 45,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 20,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 98,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 90,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 120,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 98,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 90,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 120,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 21,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 98,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 87,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 123,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 98,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 87,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 123,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 22,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "hurt": 44,
+            "damage": 98,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 87,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 123,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 44,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "damage": 98,
+            "hurt": 44,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 87,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 123,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 44,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 23,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 98,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 87,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 123,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 98,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 87,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 123,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 24,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 94,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 98,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 116,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 94,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 98,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 116,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 25,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "hurt": 46,
+            "damage": 96,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 88,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 124,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 46,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "damage": 96,
+            "hurt": 46,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 88,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 124,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 46,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 26,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 102,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 86,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 120,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 102,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 86,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 120,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 27,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 99,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 93,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 116,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 99,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 93,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 116,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 28,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 93,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 98,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 117,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 93,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 98,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 117,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 29,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 93,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 97,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 118,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 93,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 97,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 118,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 30,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 98,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 90,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 120,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 98,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 90,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 120,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 31,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 97,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 92,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 119,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 97,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 92,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 119,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 32,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 97,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 93,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 118,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 97,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 93,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 118,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 33,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 96,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 87,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 125,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 96,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 87,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 125,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 34,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "hurt": 46,
+            "damage": 97,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 92,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 119,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 46,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "damage": 97,
+            "hurt": 46,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 92,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 119,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 46,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 35,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 94,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 92,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 122,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 94,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 92,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 122,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 36,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "hurt": 45,
+            "damage": 96,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 93,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 119,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 45,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "damage": 96,
+            "hurt": 45,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 93,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 119,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 45,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 37,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 98,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 90,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 120,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 98,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 90,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 120,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 38,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "hurt": 44,
+            "damage": 94,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 94,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 120,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 44,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "damage": 94,
+            "hurt": 44,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 94,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 120,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 44,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 39,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "hurt": 45,
+            "damage": 99,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 87,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 122,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 45,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "damage": 99,
+            "hurt": 45,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 87,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 122,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 45,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 40,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "hurt": 45,
+            "damage": 99,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 92,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 117,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 45,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "damage": 99,
+            "hurt": 45,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 92,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 117,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 45,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 41,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "hurt": 44,
+            "damage": 100,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 90,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 118,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 44,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "damage": 100,
+            "hurt": 44,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 90,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 118,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 44,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 42,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 97,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 95,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 116,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 97,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 95,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 116,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 43,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "hurt": 45,
+            "damage": 94,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 95,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 119,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 45,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "damage": 94,
+            "hurt": 45,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 95,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 119,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 45,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 44,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "hurt": 45,
+            "damage": 95,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 87,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 126,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 45,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "damage": 95,
+            "hurt": 45,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 87,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 126,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 45,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 45,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 95,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 95,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 118,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 95,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 95,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 118,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 46,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 99,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 87,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 122,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 99,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 87,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 122,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 47,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 99,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 90,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 119,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 99,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 90,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 119,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 48,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 98,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 88,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 122,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 98,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 88,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 122,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 49,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "hurt": 44,
+            "damage": 99,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 90,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 119,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 44,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "damage": 99,
+            "hurt": 44,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 90,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 119,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 44,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 50,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "hurt": 45,
+            "damage": 97,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 89,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 122,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 45,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "damage": 97,
+            "hurt": 45,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 89,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 122,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 45,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 51,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "hurt": 44,
+            "damage": 99,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 93,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 116,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 44,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "damage": 99,
+            "hurt": 44,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 93,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 116,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 44,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 52,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 93,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 90,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 125,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 93,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 90,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 125,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 53,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 100,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 83,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 125,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 100,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 83,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 125,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 54,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 98,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 91,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 119,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 98,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 91,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 119,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 55,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "hurt": 46,
+            "damage": 100,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 90,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 118,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 46,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "damage": 100,
+            "hurt": 46,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 90,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 118,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 46,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 56,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 97,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 93,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 118,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 97,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 93,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 118,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 57,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "hurt": 44,
+            "damage": 98,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 91,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 119,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 44,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "damage": 98,
+            "hurt": 44,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 91,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 119,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 44,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 58,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 100,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 83,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 125,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 100,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 83,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 125,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 59,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "hurt": 45,
+            "damage": 96,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 89,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 123,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 45,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "damage": 96,
+            "hurt": 45,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 89,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 123,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 45,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 60,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "hurt": 46,
+            "damage": 96,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 94,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 118,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 46,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "damage": 96,
+            "hurt": 46,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 94,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 118,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 46,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 61,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "hurt": 45,
+            "damage": 98,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 87,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 123,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 45,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "damage": 98,
+            "hurt": 45,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 87,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 123,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 45,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 62,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "hurt": 44,
+            "damage": 97,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 85,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 126,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 44,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "damage": 97,
+            "hurt": 44,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 85,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 126,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 44,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 63,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "hurt": 45,
+            "damage": 100,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 88,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 120,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 45,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "damage": 100,
+            "hurt": 45,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 88,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 120,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 45,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 64,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "hurt": 45,
+            "damage": 94,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 92,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 122,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 45,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "damage": 94,
+            "hurt": 45,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 92,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 122,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 45,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 65,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 101,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 86,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 121,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 101,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 86,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 121,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 66,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "hurt": 46,
+            "damage": 93,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 94,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 121,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 46,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "damage": 93,
+            "hurt": 46,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 94,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 121,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 46,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 67,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 98,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 89,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 121,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 98,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 89,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 121,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 68,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 96,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 92,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 120,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 96,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 92,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 120,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 69,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "hurt": 44,
+            "damage": 95,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 90,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 123,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 44,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "damage": 95,
+            "hurt": 44,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 90,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 123,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 44,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 70,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 97,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 89,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 122,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 97,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 89,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 122,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 71,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 96,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 93,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 119,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 96,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 93,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 119,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 72,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 98,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 90,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 120,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 98,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 90,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 120,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 73,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 97,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 86,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 125,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 97,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 86,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 125,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 74,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 96,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 88,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 124,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 96,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 88,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 124,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 75,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 99,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 90,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 119,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 99,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 90,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 119,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 76,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 93,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 95,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 120,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 93,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 95,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 120,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 77,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 94,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 90,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 124,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 94,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 90,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 124,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 78,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 98,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 92,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 118,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 98,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 92,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 118,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 79,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "hurt": 46,
+            "damage": 96,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 94,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 118,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 46,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "damage": 96,
+            "hurt": 46,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 94,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 118,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 46,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 80,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "hurt": 44,
+            "damage": 97,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 94,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 117,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 44,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "damage": 97,
+            "hurt": 44,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 94,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 117,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 44,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 81,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "hurt": 45,
+            "damage": 97,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 93,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 118,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 45,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "damage": 97,
+            "hurt": 45,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 93,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 118,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 45,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 82,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "hurt": 46,
+            "damage": 100,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 87,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 121,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 46,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "damage": 100,
+            "hurt": 46,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 87,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 121,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 46,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 83,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "hurt": 44,
+            "damage": 95,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 96,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 117,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 44,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "damage": 95,
+            "hurt": 44,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 96,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 117,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 44,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 84,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "hurt": 44,
+            "damage": 94,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 95,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 119,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 44,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "damage": 94,
+            "hurt": 44,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 95,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 119,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 44,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 85,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "hurt": 46,
+            "damage": 94,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 91,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 123,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 46,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "damage": 94,
+            "hurt": 46,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 91,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 123,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 46,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 86,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "hurt": 44,
+            "damage": 93,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 91,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 124,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 44,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 250,
+            "hp_max": 294,
+            "damage": 93,
+            "hurt": 44,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 91,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 124,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 44,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 87,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 96,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 90,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 122,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 96,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 90,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 122,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 88,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 99,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 90,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 119,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 99,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 90,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 119,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 89,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 95,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 92,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 121,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 95,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 92,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 121,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 90,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 101,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 83,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 124,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 101,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 83,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 124,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 91,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "hurt": 45,
+            "damage": 100,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 93,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 115,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 45,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "damage": 100,
+            "hurt": 45,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 93,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 115,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 45,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 92,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 99,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 87,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 122,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 99,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 87,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 122,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 93,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "hurt": 45,
+            "damage": 96,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 93,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 119,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 45,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "damage": 96,
+            "hurt": 45,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 93,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 119,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 45,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 94,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "hurt": 45,
+            "damage": 97,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 89,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 122,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 45,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "damage": 97,
+            "hurt": 45,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 89,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 122,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 45,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 95,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "hurt": 45,
+            "damage": 92,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 98,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 118,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 45,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 249,
+            "hp_max": 294,
+            "damage": 92,
+            "hurt": 45,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 98,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 118,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 45,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 96,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 96,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 87,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 125,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 96,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 87,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 125,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 97,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "hurt": 46,
+            "damage": 93,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 96,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 119,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 46,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "damage": 93,
+            "hurt": 46,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 96,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 119,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 46,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 98,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "hurt": 48,
+            "damage": 97,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 88,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 123,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 48,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 246,
+            "hp_max": 294,
+            "damage": 97,
+            "hurt": 48,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 88,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 123,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 48,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 99,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "hurt": 46,
+            "damage": 100,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 88,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 120,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 46,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 248,
+            "hp_max": 294,
+            "damage": 100,
+            "hurt": 46,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 88,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 120,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 46,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    },
+    {
+      "seed": 100,
+      "expected": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "hurt": 47,
+            "damage": 99,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "hurt": 0,
+            "damage": 86,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "hurt": 0,
+            "damage": 123,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "hurt": 308,
+            "damage": 47,
+            "cure": 0
+          }
+        ]
+      },
+      "actual": {
+        "resultCode": 2,
+        "rounds": 2,
+        "heroes": [
+          {
+            "id": 2,
+            "hp": 247,
+            "hp_max": 294,
+            "damage": 99,
+            "hurt": 47,
+            "cure": 0
+          },
+          {
+            "id": 4,
+            "hp": 294,
+            "hp_max": 294,
+            "damage": 86,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 6,
+            "hp": 370,
+            "hp_max": 370,
+            "damage": 123,
+            "hurt": 0,
+            "cure": 0
+          },
+          {
+            "id": 102,
+            "hp": 0,
+            "hp_max": 308,
+            "damage": 47,
+            "hurt": 308,
+            "cure": 0
+          }
+        ]
+      },
+      "matchResult": true,
+      "matchRounds": true,
+      "issues": []
+    }
+  ]
+}

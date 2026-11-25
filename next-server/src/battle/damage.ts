@@ -4,7 +4,7 @@ const restrain:Record<number,number>={1:2,2:3,3:1,4:5,5:4};
 export function calculateHit(a:DamageUnit,d:DamageUnit,coef:number,kind:DamageKind,random:()=>number,options:{pvp?:boolean;banCrit?:boolean;attr?:(u:DamageUnit,k:number)=>number}={}){
  const attr=options.attr??((u,k)=>u.attrs[k]??0);
  const A=(k:number)=>attr(a,k),D=(k:number)=>attr(d,k);
- const draw=()=>{const x=random();if(!Number.isFinite(x)||x<=0||x>1)throw Error('invalid_random');return x};
+ const draw=()=>{const x=random();if(!Number.isFinite(x)||x<0||x>1)throw Error('invalid_random');return x};
  const roll=(p:number)=>p>0&&draw()<p;
  const advantage=restrain[a.element]===d.element;
  const hit=A(9)+(advantage?A(36):0)-D(11)-(advantage?D(38):0);
