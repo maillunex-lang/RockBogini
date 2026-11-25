@@ -1,13 +1,13 @@
 # Актуальное состояние 2026-11-25
 
-Активная задача: **NEXT-018.4** (crystal exchange done). Live https://rikagro.ru/testtest/.
-Проверено: summon 10/10; publish ok.
+Активная задача: **NEXT-014.15** (finger-hint + plot video done). Live https://rikagro.ru/testtest/.
+Проверено: campaignRoutes 11/11; plot mp4 200; publish ok.
 
 | Подэтап | Состояние |
 |---|---|
 | 013.1–013.8 | CLOSED (D-011) |
-| 014.1–014.14 | done |
-| 014 tails | done: RU StoryChapter, plot stub, settle hotfix |
+| 014.1–014.15 | done: campaign + finger overlays + plot video |
+| 014 tails | done: RU StoryChapter, settle hotfix; plot stub replaced |
 | 015 MVP–015.2 | done: inventory + filters + icons/use/sell |
 | 016.1–016.5 | done: level/star/fodder/talent/jobs/luck |
 | 017.1–017.8 | done: equip + holy full slice |

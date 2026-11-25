@@ -1,0 +1,73 @@
+.finger-hint{
+ position:fixed;
+ inset:0;
+ z-index:90;
+ pointer-events:none;
+}
+.finger-hint-dim{
+ position:absolute;
+ inset:0;
+ background:rgba(8,6,4,.55);
+ pointer-events:auto;
+}
+.finger-hint-hole{
+ position:absolute;
+ border-radius:12px;
+ box-shadow:0 0 0 9999px rgba(8,6,4,.55);
+ background:transparent;
+ outline:2px solid rgba(255,210,120,.85);
+ pointer-events:none;
+ animation:finger-pulse 1.2s ease-in-out infinite;
+}
+.finger-hint-pointer{
+ position:absolute;
+ width:28px;
+ height:28px;
+ margin-left:-6px;
+ margin-top:-6px;
+ border-radius:50% 50% 50% 0;
+ background:linear-gradient(145deg,#ffe7a8,#e8a040);
+ transform:rotate(-45deg);
+ box-shadow:0 2px 8px rgba(0,0,0,.45);
+ pointer-events:none;
+ animation:finger-bob .9s ease-in-out infinite;
+}
+.finger-hint-bar{
+ position:absolute;
+ left:12px;
+ right:12px;
+ bottom:16px;
+ display:flex;
+ justify-content:space-between;
+ gap:12px;
+ align-items:center;
+ flex-wrap:wrap;
+ padding:12px 14px;
+ border-radius:10px;
+ background:rgba(28,22,16,.94);
+ color:#f4efe6;
+ pointer-events:auto;
+ font-family:"Segoe UI",Tahoma,sans-serif;
+}
+.finger-hint-bar p{margin:0;opacity:.9}
+.finger-hint-bar button{
+ margin-left:8px;
+ padding:8px 14px;
+ border:1px solid rgba(232,196,140,.4);
+ border-radius:8px;
+ background:#2a2118;
+ color:#f4efe6;
+ cursor:pointer;
+}
+.finger-hint-bar .finger-hint-next{
+ background:#8a5a28;
+ border-color:#e8c48c;
+}
+@keyframes finger-bob{
+ 0%,100%{transform:rotate(-45deg) translate(0,0)}
+ 50%{transform:rotate(-45deg) translate(4px,6px)}
+}
+@keyframes finger-pulse{
+ 0%,100%{outline-color:rgba(255,210,120,.55)}
+ 50%{outline-color:rgba(255,230,160,.95)}
+}

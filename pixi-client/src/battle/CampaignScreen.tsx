@@ -1,5 +1,7 @@
 import {useEffect,useMemo,useState} from 'react';
 import {StoryDialog,type StoryLine} from './StoryDialog';
+import {FingerHintOverlay,type FingerHint} from './FingerHintOverlay';
+import {PlotVideoPlayer} from './PlotVideoPlayer';
 import {itemDisplayName} from '../shared/itemNames';
 import './campaign.css';
 
@@ -55,9 +57,12 @@ export type TutorialPending={
  lines:StoryLine[];
  hasDialog:boolean;
  hasPlot?:boolean;
+ hasFinger?:boolean;
  fingerSteps:number;
  panelSteps:number;
  plotSteps?:number;
+ plotVideoUrl?:string|null;
+ hints?:FingerHint[];
 };
 export type CampaignProgress={
  stage:number;
@@ -77,11 +82,19 @@ export type CampaignProgress={
 };
 
 type ViewMode='worlds'|'chapters'|'story';
+type TutorialPhase='plot'|'dialog'|'finger'|null;
 
 function worldLabel(status:CampaignWorld['status']){
  if(status==='cleared')return 'Исследовано';
  if(status==='current')return 'Текущая';
  return 'Закрыто';
+}
+
+function initialPhase(t:TutorialPending):TutorialPhase{
+ if(t.hasPlot)return 'plot';
+ if(t.hasDialog)return 'dialog';
+ if(t.hasFinger&&(t.hints?.length??0)>0)return 'finger';
+ return null;
 }
 
 export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:string;onFight:(mapId:number)=>void;onClose:()=>void}){
@@ -93,7 +106,16 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
  const [pendingFight,setPendingFight]=useState<{mapId:number;lines:StoryLine[];title:string}|null>(null);
  const [storyOpen,setStoryOpen]=useState<StoryChapterCard|null>(null);
  const [tutorial,setTutorial]=useState<TutorialPending|null>(null);
+ const [phase,setPhase]=useState<TutorialPhase>(null);
+ const [fingerIndex,setFingerIndex]=useState(0);
  const [preview,setPreview]=useState<CampaignMap|null>(null);
+
+ const applyPending=(pending:TutorialPending|null)=>{
+  setTutorial(pending);
+  setFingerIndex(0);
+  setPhase(pending?initialPhase(pending):null);
+ };
+
  const loadCampaign=(focus?:number|null)=>{
   const q=focus?`?chapterId=${focus}`:'';
   return fetch(api+'/v1/campaign'+q,{headers:{Authorization:'Bearer '+token}})
@@ -103,8 +125,9 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
     setChapterId(d.focusChapterId);
     const focusWorld=d.worlds.find(w=>w.id===d.focusWorldId)||d.worlds.find(w=>w.id===d.currentWorldId);
     if(focusWorld)setOwningMap(focusWorld.owningMap);
-    if(d.tutorial?.pending?.hasDialog||d.tutorial?.pending?.hasPlot)setTutorial(d.tutorial.pending);
-    else setTutorial(null);
+    const pending=d.tutorial?.pending??null;
+    if(pending&&(pending.hasDialog||pending.hasPlot||pending.hasFinger))applyPending(pending);
+    else applyPending(null);
     setStatus('');
     return d;
    });
@@ -123,14 +146,39 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
   });
   if(!res.ok)throw Error('guide_complete_'+res.status);
   const body=await res.json() as {pending:TutorialPending|null};
-  if(body.pending?.hasDialog||body.pending?.hasPlot)setTutorial(body.pending);
-  else setTutorial(null);
+  const pending=body.pending&&(body.pending.hasDialog||body.pending.hasPlot||body.pending.hasFinger)?body.pending:null;
+  applyPending(pending);
   await loadCampaign(chapterId);
+ };
+
+ const finishGroup=()=>{
+  if(!tutorial)return;
+  void completeTutorial(tutorial.groupId).catch(e=>setStatus(String(e)));
+ };
+
+ const afterDialog=()=>{
+  if(tutorial?.hasFinger&&(tutorial.hints?.length??0)>0){
+   setFingerIndex(0);
+   setPhase('finger');
+   return;
+  }
+  finishGroup();
+ };
+
+ const afterPlot=()=>{
+  if(tutorial?.hasDialog){setPhase('dialog');return}
+  afterDialog();
+ };
+
+ const afterFinger=()=>{
+  const hints=tutorial?.hints??[];
+  if(fingerIndex+1<hints.length){setFingerIndex(i=>i+1);return}
+  finishGroup();
  };
 
  const skipAllTutorial=async()=>{
   let guard=0;
-  while(guard++<30){
+  while(guard++<40){
    const d=await loadCampaign(chapterId);
    const pending=d.tutorial?.pending;
    if(!pending)break;
@@ -177,6 +225,11 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
   }
  };
 
+ const hints=tutorial?.hints??[];
+ const currentHint=phase==='finger'?hints[fingerIndex]:undefined;
+ const plotSrc=tutorial?.plotVideoUrl?`./${tutorial.plotVideoUrl}`:'./guide/GuidePlot_EN.mp4';
+ const blocking=!!tutorial&&!!phase&&!pendingFight&&!storyOpen;
+
  return <main className="campaign-screen">
   <header>
    <div>
@@ -191,7 +244,7 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
      <button type="button" aria-pressed={view==='story'} onClick={()=>setView('story')}>Сюжет</button>
     </div>
     {data?.tutorial?.pending&&<button type="button" onClick={()=>void skipAllTutorial().catch(e=>setStatus(String(e)))}>Пропустить обучение</button>}
-    <button type="button" onClick={onClose}>Вернуться в город</button>
+    <button type="button" data-guide="campaign-close" onClick={onClose}>Вернуться в город</button>
    </div>
   </header>
   {status&&<p role="status">{status}</p>}
@@ -239,11 +292,22 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
    <section className="campaign-maps" aria-label={focus?.name??'Этапы'}>
     <h2>{focus?.name??'Этапы'}{focus?.worldId?` · ${data.worlds.find(w=>w.id===focus.worldId)?.name??''}`:''}</h2>
     <div className="campaign-map-grid">
-     {data.maps.map(m=><button key={m.id} type="button" data-status={m.status} data-boss={m.boss?'1':'0'} disabled={!m.canChallenge} onClick={()=>challenge(m)}>
-      <strong>{m.boss?'Босс · ':''}{m.stageLabel??m.id}{m.terminal?' · финал':''}</strong>
-      <span>Ур. {m.level}{m.enemyCount?` · врагов ${m.enemyCount}`:''}</span>
-      <span>{m.status==='cleared'?'Пройден':m.status==='available'?(m.levelLocked?'Нужен уровень':'Бой'):'Закрыт'}</span>
-     </button>)}
+     {data.maps.map((m,i)=>{
+      const firstAvailable=m.canChallenge&&!data.maps.slice(0,i).some(x=>x.canChallenge);
+      return <button
+       key={m.id}
+       type="button"
+       data-status={m.status}
+       data-boss={m.boss?'1':'0'}
+       data-guide={firstAvailable?'campaign-map-available':undefined}
+       disabled={!m.canChallenge}
+       onClick={()=>challenge(m)}
+      >
+       <strong>{m.boss?'Босс · ':''}{m.stageLabel??m.id}{m.terminal?' · финал':''}</strong>
+       <span>Ур. {m.level}{m.enemyCount?` · врагов ${m.enemyCount}`:''}</span>
+       <span>{m.status==='cleared'?'Пройден':m.status==='available'?(m.levelLocked?'Нужен уровень':'Бой'):'Закрыт'}</span>
+      </button>;
+     })}
     </div>
    </section>
    {preview&&preview.canChallenge&&!pendingFight&&<aside className="campaign-preview" aria-label="Превью этапа">
@@ -253,7 +317,7 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
     <ul>{(preview.enemies??[]).map((e,i)=><li key={i}>{e.model??e.heroId} · ур.{e.level} ★{e.star}</li>)}</ul>
     <h4>Награды</h4>
     <ul>{(preview.rewards??[]).map(([id,n])=><li key={id}>{itemDisplayName(id)} ×{n}</li>)}</ul>
-    <button type="button" onClick={()=>onFight(preview.id)}>В бой</button>
+    <button type="button" data-guide="campaign-fight" onClick={()=>onFight(preview.id)}>В бой</button>
    </aside>}
   </>}
   {data&&view==='story'&&<section className="campaign-story-list" aria-label="Сюжетные главы">
@@ -266,13 +330,24 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
     </button>)}
    </div>
   </section>}
-  {tutorial&&!pendingFight&&!storyOpen&&<StoryDialog
-   title={tutorial.hasPlot
-    ?`Сюжет · группа ${tutorial.groupId}`
-    :`Обучение · группа ${tutorial.groupId}${tutorial.fingerSteps?` · подсказок ${tutorial.fingerSteps}`:''}`}
+  {blocking&&phase==='plot'&&tutorial&&<PlotVideoPlayer
+   title={`Сюжет · группа ${tutorial.groupId}`}
+   src={plotSrc}
+   onSkip={finishGroup}
+   onContinue={afterPlot}
+  />}
+  {blocking&&phase==='dialog'&&tutorial&&<StoryDialog
+   title={`Обучение · группа ${tutorial.groupId}${tutorial.fingerSteps?` · подсказок ${tutorial.fingerSteps}`:''}`}
    lines={tutorial.lines}
-   onSkip={()=>{void completeTutorial(tutorial.groupId).catch(e=>setStatus(String(e)))}}
-   onContinue={()=>{void completeTutorial(tutorial.groupId).catch(e=>setStatus(String(e)))}}
+   onSkip={finishGroup}
+   onContinue={afterDialog}
+  />}
+  {blocking&&phase==='finger'&&currentHint&&tutorial&&<FingerHintOverlay
+   hint={currentHint}
+   index={fingerIndex}
+   total={hints.length}
+   onSkip={finishGroup}
+   onContinue={afterFinger}
   />}
   {pendingFight&&<StoryDialog
    title={pendingFight.title}

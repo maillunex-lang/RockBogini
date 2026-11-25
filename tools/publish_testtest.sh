@@ -4,7 +4,7 @@
 set -euo pipefail
 ROOT=/home/gamedev/rocbogini/pixi-client
 WWW=/var/www/testtest
-STATIC_DIRS=(skill-effects hero-models battle-sounds battle-backgrounds battle-hud profile item-icons landing-portraits recovered-effects squad city library hero)
+STATIC_DIRS=(skill-effects hero-models battle-sounds battle-backgrounds battle-hud profile item-icons landing-portraits recovered-effects squad city library hero guide)
 
 cd "$ROOT"
 # Icons ship in git under public/item-icons. Re-import from runtime/ only if missing

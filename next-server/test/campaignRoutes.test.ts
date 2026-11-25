@@ -99,12 +99,26 @@ test('GuideGroup sequences resolve NPC dialog steps in order',()=>{
  assert.ok(lines.length>=1);
  assert.match(lines[0].text,/Победим|враг/i);
  const pending=playableTutorial(new Set());
- assert.equal(pending?.groupId,1); // first group is plot placeholder
+ assert.equal(pending?.groupId,1); // first group is plot video
  assert.equal(pending?.hasPlot,true);
- assert.ok((pending?.lines.length??0)>=1);
+ assert.equal(pending?.plotVideoUrl,'guide/GuidePlot_EN.mp4');
  const afterPlot=playableTutorial(new Set([1]));
  assert.equal(afterPlot?.groupId,31);
  assert.equal(afterPlot?.hasDialog,true);
+ assert.equal(afterPlot?.hasFinger,true);
+ assert.ok((afterPlot?.hints.length??0)>=1);
+ assert.ok(afterPlot?.hints.some(h=>h.targetKey==='city-nav-hero'||h.targetKey==='campaign-map-available'));
+});
+
+test('finger-only groups stay pending with hasFinger',()=>{
+ const afterDialogChain=playableTutorial(new Set([1,31]));
+ // next may be finger-only 35
+ assert.ok(afterDialogChain);
+ if(afterDialogChain!.groupId===35){
+  assert.equal(afterDialogChain!.hasFinger,true);
+  assert.equal(afterDialogChain!.hasDialog,false);
+  assert.ok((afterDialogChain!.hints.length??0)>=1);
+ }
 });
 
 test('StoryChapter titles are Russian after 014 tails',()=>{
@@ -148,13 +162,16 @@ test('authenticated campaign progress lists chapters and terminal stage',{skip:!
   assert.equal(boss.stageLabel,'1-5');
   assert.ok(boss.enemies.length>=1);
   assert.ok(body.tutorial);
-  // Finger-only groups auto-advance; pending should be dialog, plot stub, or null.
+  // Pending is plot, dialog, or finger-hint (finger-only groups no longer silent-skip).
   if(body.tutorial.pending){
-   assert.ok(body.tutorial.pending.hasDialog||body.tutorial.pending.hasPlot);
-   assert.ok(body.tutorial.pending.lines.length>0);
-   const done=await app.inject({method:'POST',url:'/v1/campaign/guide/complete',headers,payload:{groupId:body.tutorial.pending.groupId}});
+   const p=body.tutorial.pending;
+   assert.ok(p.hasDialog||p.hasPlot||p.hasFinger);
+   if(p.hasPlot)assert.equal(p.plotVideoUrl,'guide/GuidePlot_EN.mp4');
+   if(p.hasDialog)assert.ok(p.lines.length>0);
+   if(p.hasFinger)assert.ok((p.hints?.length??0)>=1);
+   const done=await app.inject({method:'POST',url:'/v1/campaign/guide/complete',headers,payload:{groupId:p.groupId}});
    assert.equal(done.statusCode,200,done.body);
-   assert.ok(done.json().completedGroupIds.includes(body.tutorial.pending.groupId));
+   assert.ok(done.json().completedGroupIds.includes(p.groupId));
   }
   assert.equal(body.maps[0].canChallenge,true);
   assert.equal(body.maps[1].canChallenge,false);

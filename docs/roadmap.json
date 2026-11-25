@@ -122,9 +122,9 @@
   "id": "NEXT-014",
   "title": "Сюжетная кампания",
   "phase": "III. Боевое ядро",
-  "scope": "014.1–014.14 + tails (RU StoryChapter, plot stub). Finger-hint overlays / real plot video open.",
-  "status": "in_progress",
-  "evidence": "reports/NEXT-014-tails-015-*; reports/NEXT-014.5-14-*; reports/NEXT-014.4-*"
+  "scope": "014.1–014.15 campaign + finger overlays + plot video. Richer targets open.",
+  "status": "done",
+  "evidence": "reports/NEXT-014.15.md; reports/NEXT-014-tails-015-*; reports/NEXT-014.5-14-*"
  },
  {
   "id": "NEXT-015",

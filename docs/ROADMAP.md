@@ -4,16 +4,16 @@ VPS is the development stand; GitHub main is the published source mirror. **SING
 
 ## Актуальный срез: 2026-11-25
 
-Активная задача: **NEXT-018.4**. Далее activity summons или finger-hint. Передача Cursor: docs/CURSOR_HANDOFF.md.
+Активная задача: **NEXT-014.15**. Далее displace / activity summons. Передача Cursor: docs/CURSOR_HANDOFF.md.
 11 из 28 основных этапов закрыты, 3 в работе, 1 отложен, 13 ожидают. (авто из roadmap.json)
 NEXT-012 принят только в проверенном эталонном объёме для подключения визуализации; общий статус остаётся in_progress.
-Проверено: crystal exchange; summon 10/10.
+Проверено: finger-hint + plot video; campaignRoutes 11/11.
 
 | Подэтап | Состояние |
 |---|---|
 | 013.1–013.8 | CLOSED (D-011): owner visual QA; residuals known |
-| 014.1–014.14 | done |
-| 014 tails | done: RU StoryChapter, plot stub |
+| 014.1–014.15 | done: campaign + finger + plot video |
+| 014 tails | done: RU StoryChapter; plot stub replaced |
 | 015 MVP–015.2 | done: inventory + filters + icons/use/sell |
 
 
@@ -32,7 +32,7 @@ NEXT-012 принят только в проверенном эталонном 
 | NEXT-011 | Формирование отряда | done | Формирование и сохранение стартового отряда; стартовый объём принят. | reports/NEXT-011-server-test.log; reports/NEXT-011-server-deploy.log; reports/NEXT-011-ui-browser.log; reports/NEXT-011-ui-publish.log; reports/NEXT-011-units-test.log; reports/NEXT-011-complete-test.log |
 | NEXT-012 | Пошаговый боевой движок | in_progress | Эталонное боевое ядро принято для визуальной интеграции: 681/681 боёв, 75/75 тестов. Полная коммерческая идентичность, дополнительные модификаторы и некампанийные режимы не подтверждены. | reports/NEXT-012.31.5-acceptance.json; reports/NEXT-012.31.5.1-metadata-*.json; reports/NEXT-012.31.5.1-tests.log |
 | NEXT-013 | Визуализация боя | done | Закрыт по D-011 (визуальная приёмка владельцем). Технические остатки 013.8 известны. | reports/NEXT-013.*; D-011 |
-| NEXT-014 | Сюжетная кампания | in_progress | 014.1–014.14 + tails: RU StoryChapter, plot stub. Finger-hint overlays / real plot video remain. | reports/NEXT-014-tails-015-*; reports/NEXT-014.5-14-* |
+| NEXT-014 | Сюжетная кампания | done | 014.1–014.15: campaign + finger overlays + plot video. Richer targets open. | reports/NEXT-014.15.md; reports/NEXT-014-tails-015-*; reports/NEXT-014.5-14-* |
 | NEXT-015 | Инвентарь и предметы | in_progress | 015.2: icons hardlink, Fixed/Manual use, sell overrides. Random/event consume open. | reports/NEXT-015.2.md; reports/NEXT-015.1.md |
 | NEXT-016 | Развитие героев | done | 016.1–016.5 level/star/talent/jobs/luck | reports/NEXT-016.5.md |
 | NEXT-017 | Экипировка | done | 017.1–017.8 equip + holy full slice (gallery/resonance). | reports/NEXT-017.8.md; reports/NEXT-017.7.md |
