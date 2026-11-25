@@ -1,7 +1,7 @@
 import {ReportScene} from './ReportScene';
 import {ResultScreen} from './ResultScreen';
 import type {BattleSpeed} from './gameClock';
-import {useEffect,useMemo,useRef,useState} from 'react';
+import {Component,useEffect,useMemo,useRef,useState,type ErrorInfo,type ReactNode} from 'react';
 import {battleClient,orderedEvents,type BattleReport,type Settlement} from './reportClient';
 import {canAutoSettle,canRetrySettle,nextPhaseOnResult,nextPhaseOnStart,resetSettlement,type SettlementPhase} from './settlementState';
 
@@ -42,8 +42,9 @@ export function ReportScreen({api,token,mapId,onBack}:{api:string;token:string;m
    setSettledReport(source);
    setResult(r);
    setSettlePhase(nextPhaseOnResult(true));
-   setReport(null);
+   // Drop battle scene after result is staged so Pixi teardown cannot blank the tree.
    setCursor(-1);
+   setReport(null);
   }catch(e){
    setSettlePhase(nextPhaseOnResult(false));
    setError(e instanceof Error?e.message:String(e));
@@ -100,6 +101,26 @@ export function ReportScreen({api,token,mapId,onBack}:{api:string;token:string;m
   <button disabled={busy||settlePhase==='pending'} onClick={()=>void run(async()=>{await client.cancel(report.battleId);setReport(null);setCursor(-1);setSettlePhase(resetSettlement())})}>Отменить</button>
   {page&&<><p>Раунд {page.round} · {page.actor>0?"Герой "+page.actor+" · Навык "+page.skillId:page.dataType===1?"Начало раунда":page.dataType===3?"Конец раунда":"Служебное событие"}</p><ul>{orderedEvents(page).map((e,i)=><li key={i}>Удар {e.index}: цель {e.target}, событие {e.type}, значение {e.value}</li>)}</ul></>}
  </>}
- {result&&settledReport&&settlePhase==='success'&&<ResultScreen report={settledReport} settlement={result} onContinue={()=>{setResult(null);setSettledReport(null);setSettlePhase(resetSettlement());onBack()}}/>}
+ {result&&settledReport&&settlePhase==='success'&&(
+  <ResultErrorBoundary onContinue={()=>{setResult(null);setSettledReport(null);setSettlePhase(resetSettlement());onBack()}}>
+   <ResultScreen report={settledReport} settlement={result} onContinue={()=>{setResult(null);setSettledReport(null);setSettlePhase(resetSettlement());onBack()}}/>
+  </ResultErrorBoundary>
+ )}
 </section>;
+}
+
+class ResultErrorBoundary extends Component<{children:ReactNode;onContinue:()=>void},{error:string|null}>{
+ state={error:null as string|null};
+ static getDerivedStateFromError(e:Error){return{error:e.message||'Ошибка экрана результата'}}
+ componentDidCatch(e:Error,info:ErrorInfo){console.warn('ResultScreen crash',e,info)}
+ render(){
+  if(this.state.error){
+   return <section style={{marginTop:16,padding:16,background:'#3b1d22',color:'#fff'}} role="alert">
+    <h2>Победа зафиксирована</h2>
+    <p>Экран результата не отрисовался: {this.state.error}</p>
+    <button type="button" onClick={this.props.onContinue}>К этапам</button>
+   </section>;
+  }
+  return this.props.children;
+ }
 }

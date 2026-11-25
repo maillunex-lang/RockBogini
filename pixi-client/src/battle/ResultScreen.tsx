@@ -14,23 +14,36 @@ export type HeroBattleStat={
  statCure?:number;
 };
 
+function winboardUrl(){
+ const base=typeof import.meta.env.BASE_URL==='string'?import.meta.env.BASE_URL:'/';
+ return `${base.endsWith('/')?base:base+'/'}battle-hud/settlement-winboard.webp`;
+}
+
 export function ResultScreen({report,settlement,onContinue}:{report:BattleReport;settlement:Settlement;onContinue:()=>void}){
  const win=settlement.result===1;
- const heroes=(report.heroes as HeroBattleStat[]).slice().sort((a,b)=>(b.statDamage??0)-(a.statDamage??0));
+ const rewards=Array.isArray(settlement.rewards)?settlement.rewards:[];
+ const modules=Array.isArray(settlement.unlockedModules)?settlement.unlockedModules:[];
+ const heroes=Array.isArray(report.heroes)?[...(report.heroes as HeroBattleStat[])]:[];
+ heroes.sort((a,b)=>(b.statDamage??0)-(a.statDamage??0));
+ const rounds=report.summary?.rounds??0;
  const complete=!!settlement.campaignComplete;
  return <section className={'result-screen'+(win?' is-win':' is-lose')+(complete?' is-complete':'')} aria-label={win?'Победа':'Поражение'}>
-  {win&&<div className="result-winboard" role="img" aria-label="WinBoard" style={{backgroundImage:`linear-gradient(180deg,rgba(8,6,4,.15),rgba(8,6,4,.55)),url(${import.meta.env.BASE_URL}battle-hud/settlement-winboard.webp)`}}/>}
+  {win&&<div className="result-winboard" role="img" aria-label="WinBoard" style={{backgroundImage:`linear-gradient(180deg,rgba(8,6,4,.15),rgba(8,6,4,.55)),url(${winboardUrl()})`}}/>}
   <h2>{complete?'Кампания пройдена':win?'Победа':'Поражение'}</h2>
-  <p className="result-meta">Этап {settlement.mapId??report.mapId} · Раундов {report.summary.rounds}{settlement.level?` · Уровень ${settlement.level}`:''}</p>
+  <p className="result-meta">Этап {settlement.mapId??report.mapId} · Раундов {rounds}{settlement.level?` · Уровень ${settlement.level}`:''}</p>
   {complete&&<p className="result-complete">Финальный этап зачищен. Дальнейший прогресс MainLine завершён.</p>}
   <h3>Награды</h3>
-  {settlement.rewards.length===0
+  {rewards.length===0
    ? <p className="result-empty">{win?'Награды уже получены или отсутствуют':'Наград нет'}</p>
-   : <ul className="result-rewards">{settlement.rewards.map(([id,n])=><li key={id+':'+n}><span>{itemDisplayName(id)}</span><strong>×{n}</strong></li>)}</ul>}
-  {!!settlement.unlockedModules?.length&&(
+   : <ul className="result-rewards">{rewards.map((row,i)=>{
+    const id=Array.isArray(row)?Number(row[0]):0;
+    const n=Array.isArray(row)?Number(row[1]):0;
+    return <li key={id+':'+n+':'+i}><span>{itemDisplayName(id)}</span><strong>×{n}</strong></li>;
+   })}</ul>}
+  {!!modules.length&&(
    <div className="result-modules">
     <h3>Открыто</h3>
-    <ul>{settlement.unlockedModules.map(id=><li key={id}>{moduleDisplayName(id)}</li>)}</ul>
+    <ul>{modules.map(id=><li key={id}>{moduleDisplayName(Number(id))}</li>)}</ul>
    </div>
   )}
   <h3>Статистика отряда</h3>
