@@ -6,12 +6,13 @@
 Только `/home/gamedev/rocbogini/`. Live: https://rikagro.ru/testtest/.
 
 ## Сейчас
-**NEXT-016.1** hero level/star MVP. Live: https://rikagro.ru/testtest/.
+**NEXT-016.2** star fodder. Live: https://rikagro.ru/testtest/.
 
 ## Сделано
-- 015.* inventory (icons/use/sell)
-- 016.1: level-up (HeroLevel costs), star +1 without fodder
+- 015.* inventory
+- 016.1 level-up + free star path
+- 016.2 MaxStarLevel + fodder star (auto-pick)
 
 ## Далее
-- 016.x: star fodder, talents, awakening
+- 016.3 talents / awakening / reset
 - Finger-hint overlays / plot video player
