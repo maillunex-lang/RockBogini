@@ -1,8 +1,18 @@
 import {readFileSync} from 'node:fs';
+import {guideTargetForStep} from './guideTargets.js';
 
 export type StoryLine={key:string;infoKey:string;text:string;npc?:number};
 export type GuideDialog={id:number;infoKeys:string[];audioKeys:number[];npcKeys:number[];lines:StoryLine[]};
 export type StoryChapterLocale={id:number;title:string;content:string};
+export type GuideFingerHint={
+ id:number;
+ infoKey?:string;
+ hideMask?:number;
+ maskType?:number;
+ size?:number[];
+ offsetY?:number;
+ text?:string;
+};
 export type GuideStepResolved={
  stepId:number;
  kind:number;
@@ -25,16 +35,29 @@ export type GuideGroup={
  preStep:number[];
  sequence:GuideStepResolved[];
 };
+export type PlayableHint={
+ stepId:number;
+ hintId:number;
+ autoNext:boolean;
+ size:number[];
+ offsetY:number;
+ maskType:number;
+ targetKey:string|null;
+};
 
 type CampaignStoryFile={
  mapGuides:Record<string,StoryLine[]>;
  guideNpcDialogs:GuideDialog[];
+ guideFingerHints?:GuideFingerHint[];
  guideGroups:GuideGroup[];
  storyChapters:StoryChapterLocale[];
  stats:Record<string,number>;
 };
 
 const story=JSON.parse(readFileSync(new URL('../../data/campaign-story.json',import.meta.url),'utf8')) as CampaignStoryFile;
+const FINGER_BY_ID=new Map((story.guideFingerHints??[]).map(h=>[h.id,h]));
+/** Served from pixi-client/public/guide/ (shipped in git). */
+export const PLOT_VIDEO_PATH='guide/GuidePlot_EN.mp4';
 
 export function guideLinesForMap(mapId:number):StoryLine[]{
  return story.mapGuides[String(mapId)]??[];
@@ -71,23 +94,57 @@ export function nextGuideGroup(completed:ReadonlySet<number>):GuideGroup|undefin
  return guideGroups().find(g=>!completed.has(g.id));
 }
 
+function isFingerStep(s:GuideStepResolved){
+ return s.kindName==='fingerHint'||s.kind===2;
+}
+
+function isPlotStep(s:GuideStepResolved){
+ return s.kindName==='plotVideo'||s.kind===100;
+}
+
+/** Dummy wait hints (id 100000) that only auto-advance — skip in UI. */
+function playableFingerHints(group:GuideGroup):PlayableHint[]{
+ const out:PlayableHint[]=[];
+ for(const s of group.sequence){
+  if(!isFingerStep(s))continue;
+  const hintId=s.hintId??s.arg??0;
+  if(hintId===100000&&s.autoNext)continue;
+  const cfg=FINGER_BY_ID.get(hintId);
+  out.push({
+   stepId:s.stepId,
+   hintId,
+   autoNext:!!s.autoNext,
+   size:cfg?.size??[],
+   offsetY:cfg?.offsetY??0,
+   maskType:cfg?.maskType??0,
+   targetKey:guideTargetForStep(s.stepId)??null,
+  });
+ }
+ return out;
+}
+
 export function playableTutorial(completed:ReadonlySet<number>){
  const group=nextGuideGroup(completed);
  if(!group)return null;
  const lines=dialogLinesForGroup(group.id);
- const fingerSteps=group.sequence.filter(s=>s.kindName==='fingerHint').length;
+ const hints=playableFingerHints(group);
  const panelSteps=group.sequence.filter(s=>s.kindName==='showPanel').length;
- const plotSteps=group.sequence.filter(s=>s.kindName==='plotVideo'||s.kind===100).length;
- const hasPlot=plotSteps>0&&lines.length===0;
+ const plotSteps=group.sequence.filter(isPlotStep).length;
+ const hasPlot=plotSteps>0;
+ const hasDialog=lines.length>0;
+ const hasFinger=hints.length>0;
  return {
   groupId:group.id,
   desc:group.desc,
-  lines:hasPlot?[{key:`plot_${group.id}`,infoKey:`plot_${group.id}`,text:'Сюжетный ролик этого шага обучения пока не перенесён. Продолжите, чтобы пропустить.'}]:lines,
-  hasDialog:lines.length>0,
+  lines:hasPlot&&!hasDialog?[]:lines,
+  hasDialog,
   hasPlot,
-  fingerSteps,
+  hasFinger,
+  fingerSteps:hints.length,
   panelSteps,
   plotSteps,
+  plotVideoUrl:hasPlot?PLOT_VIDEO_PATH:null,
+  hints,
   sequence:group.sequence.map(s=>({
    stepId:s.stepId,
    kindName:s.kindName??'other',
@@ -96,6 +153,7 @@ export function playableTutorial(completed:ReadonlySet<number>){
    hintId:s.hintId,
    panelId:s.panelId,
    lineCount:s.lines?.length??0,
+   targetKey:isFingerStep(s)?guideTargetForStep(s.stepId)??null:null,
   })),
  };
 }
