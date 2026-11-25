@@ -350,3 +350,5 @@ NEXT-012.25 partial: added animated action hitpoint damage/dodge trace, original
 NEXT-012.26 partial: added shield, heal, revive and death to animated hitpoint trace. 72/72 boss fixtures match expanded health-event sequence (838 heals, 403 shields, 25 deaths; no revives or extra heals in sample). 70/70 tests. Buff lifecycle, instant pages, revive coverage and API wiring pending; gate closed.
 
 NEXT-012.27 partial: animated visible buff add/remove events, stack count, counted shield versus numeric shield event ordering, death cleanup. 72/72 expanded event comparisons (6831 adds, 407 removes), 372/372 final metrics, 70/70 tests. Instant pages, revive cleanup and dedicated expiration/refresh coverage pending. Gate closed.
+
+NEXT-012.28 partial: ordered round-start, pre-turn instant and round-end health/buff event pages; revive cleanup emits visible buff removal; dead actor after pre-turn trigger cannot act. 72/72 full selected event page sequences, 372/372 final metrics, 70/70 tests. Dedicated revive fixtures, description events, report metadata and API pending. Gate closed.

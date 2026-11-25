@@ -23,4 +23,4 @@ export function dealDamage(a:PeriodicUnit,d:PeriodicUnit,raw:number){
  return {damage,absorbed,guardSkill,guardBuffId,killed:d.hp===0};
 }
 export function heal(a:HealthUnit,d:HealthUnit,raw:number){const amount=hasTag(d,10)?0:Math.max(Math.round(raw*(1+(effectiveAttr(a,12)+effectiveAttr(d,13))/1000)),0);if(amount<=0||d.hp<=0)return {healed:0,overflow:0};const healed=Math.min(amount,d.hp_max-d.hp);d.hp+=healed;a.cure+=healed;return {healed,overflow:amount-healed}}
-export function revive(a:PeriodicUnit,d:PeriodicUnit,params:number[],ctx:EffectContext={}){if(d.hp>0||hasTag(d,5))return 0;const hp=params.length>=2?Math.trunc(baseValue(a,d,params[1],ctx)*params[0]/1000):1;d.buffs=d.buffs.filter(holdAfterDeath);d.hp=Math.min(Math.max(hp,1),d.hp_max);return d.hp}
+export function revive(a:PeriodicUnit,d:PeriodicUnit,params:number[],ctx:EffectContext={}){if(d.hp>0||hasTag(d,5))return 0;const hp=params.length>=2?Math.trunc(baseValue(a,d,params[1],ctx)*params[0]/1000):1;for(const b of d.buffs.filter(b=>!holdAfterDeath(b)&&!b.temp))d.onBuffRemoved?.(b,b.stacks);d.buffs=d.buffs.filter(holdAfterDeath);d.hp=Math.min(Math.max(hp,1),d.hp_max);return d.hp}
