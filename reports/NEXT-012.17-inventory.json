@@ -1,0 +1,781 @@
+{
+  "StartEffect": [
+    {
+      "code": 11,
+      "occurrences": 6,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 101,
+      "occurrences": 1390,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 102,
+      "occurrences": 1209,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 103,
+      "occurrences": 183,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 104,
+      "occurrences": 149,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 105,
+      "occurrences": 380,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 106,
+      "occurrences": 378,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 111,
+      "occurrences": 1426,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 112,
+      "occurrences": 57,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 113,
+      "occurrences": 321,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 114,
+      "occurrences": 1,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 115,
+      "occurrences": 513,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 116,
+      "occurrences": 90,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 117,
+      "occurrences": 8,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 118,
+      "occurrences": 665,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 119,
+      "occurrences": 487,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 120,
+      "occurrences": 1046,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 121,
+      "occurrences": 73,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 122,
+      "occurrences": 40,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 123,
+      "occurrences": 18,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 124,
+      "occurrences": 15,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 125,
+      "occurrences": 4682,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 128,
+      "occurrences": 998,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 129,
+      "occurrences": 64,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 130,
+      "occurrences": 5,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 131,
+      "occurrences": 5,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 132,
+      "occurrences": 52,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 133,
+      "occurrences": 1,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 134,
+      "occurrences": 20,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 135,
+      "occurrences": 130,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 136,
+      "occurrences": 13,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 137,
+      "occurrences": 664,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 138,
+      "occurrences": 4,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 139,
+      "occurrences": 6,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 141,
+      "occurrences": 5,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 301,
+      "occurrences": 4,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 341,
+      "occurrences": 4,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 342,
+      "occurrences": 5,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 343,
+      "occurrences": 8,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 344,
+      "occurrences": 6,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 345,
+      "occurrences": 60,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 371,
+      "occurrences": 257,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 372,
+      "occurrences": 12,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 373,
+      "occurrences": 603,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 374,
+      "occurrences": 182,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 375,
+      "occurrences": 12,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 376,
+      "occurrences": 11,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 377,
+      "occurrences": 5,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 401,
+      "occurrences": 5,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 402,
+      "occurrences": 28,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 403,
+      "occurrences": 8,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 404,
+      "occurrences": 11,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 405,
+      "occurrences": 34,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 406,
+      "occurrences": 25,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 407,
+      "occurrences": 14,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 408,
+      "occurrences": 10,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 409,
+      "occurrences": 11,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 410,
+      "occurrences": 9,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 411,
+      "occurrences": 80,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 412,
+      "occurrences": 27,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 413,
+      "occurrences": 44,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 414,
+      "occurrences": 183,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 501,
+      "occurrences": 221,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 502,
+      "occurrences": 25,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 503,
+      "occurrences": 38,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 504,
+      "occurrences": 32,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 505,
+      "occurrences": 61,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 506,
+      "occurrences": 14,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 507,
+      "occurrences": 13,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 508,
+      "occurrences": 11,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 509,
+      "occurrences": 19,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 601,
+      "occurrences": 3409,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 602,
+      "occurrences": 66,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 603,
+      "occurrences": 120,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 604,
+      "occurrences": 4,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 605,
+      "occurrences": 3,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 606,
+      "occurrences": 12,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 609,
+      "occurrences": 4,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 610,
+      "occurrences": 3,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 611,
+      "occurrences": 8,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 612,
+      "occurrences": 1,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 613,
+      "occurrences": 12,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 614,
+      "occurrences": 47,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 615,
+      "occurrences": 103,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 616,
+      "occurrences": 27,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 617,
+      "occurrences": 3,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 999,
+      "occurrences": 6,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    }
+  ],
+  "TriggerEffect": [
+    {
+      "code": 101,
+      "occurrences": 1,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 102,
+      "occurrences": 1,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 103,
+      "occurrences": 17,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 104,
+      "occurrences": 22,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 105,
+      "occurrences": 6,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 111,
+      "occurrences": 27,
+      "reference": "handled",
+      "port": "review_required",
+      "verified": false
+    },
+    {
+      "code": 112,
+      "occurrences": 3,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 113,
+      "occurrences": 42,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 115,
+      "occurrences": 112,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 116,
+      "occurrences": 39,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 117,
+      "occurrences": 9,
+      "reference": "handled",
+      "port": "review_required",
+      "verified": false
+    },
+    {
+      "code": 118,
+      "occurrences": 416,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 119,
+      "occurrences": 34,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 120,
+      "occurrences": 3838,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 125,
+      "occurrences": 92,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 127,
+      "occurrences": 109,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 128,
+      "occurrences": 78,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 133,
+      "occurrences": 2,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 136,
+      "occurrences": 3,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 137,
+      "occurrences": 2,
+      "reference": "handled",
+      "port": "implemented_candidate",
+      "verified": false
+    },
+    {
+      "code": 140,
+      "occurrences": 1,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    },
+    {
+      "code": 601,
+      "occurrences": 7,
+      "reference": "handled",
+      "port": "review_required",
+      "verified": false
+    },
+    {
+      "code": 1201460493,
+      "occurrences": 2,
+      "reference": "skipped",
+      "port": "reference_skip_candidate",
+      "verified": false
+    }
+  ],
+  "limitations": [
+    "Static inventory, not behavioral parity",
+    "Reference skips require explicit differential verification",
+    "Trigger start-effect property accumulation is discarded by reference; side effects require review"
+  ]
+}
