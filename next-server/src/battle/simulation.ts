@@ -29,12 +29,13 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  journal.push({round,actor:a.id,target:t.id,code:items[0],hp:t.hp});
  const emit=(code:number,subject:Fighter,other:Fighter)=>engine.emit({...metadata,code,subject:subject.id,other:other.id,value:r.status==="damage"?r.damage:r.status==="heal"?r.healed:undefined,atype:metadata.atype??0});
  if(r.status==='damage'){
- if(acc&&items[0]!==118&&r.event!=='dodge'){acc.attacked.set(t.id,(acc.attacked.get(t.id)??0)+r.damage);if(r.event==='crit')acc.crit=true}
+ if(acc&&[101,102,105,106].includes(items[0])){acc.attacked.set(t.id,(acc.attacked.get(t.id)??0)+r.damage);if(r.event==='crit')acc.crit=true}
+ if(r.event==='dodge'){emit(158,t,a);return}
  if(r.damage>0)emit(173,t,a);
  if(items[0]===118)emit(147,t,a);
- else if(r.event!=='dodge'){emit(143,t,a);if(items[0]===101||items[0]===102)emit(items[0]===101?121:122,a,t);emit(129,a,t);if(r.event==='crit'){emit(128,a,t);emit(145,t,a)}}
+ else if([101,102,105,106].includes(items[0])){emit(143,t,a);if(items[0]===101||items[0]===102)emit(items[0]===101?121:122,a,t);emit(129,a,t);if(r.event==='crit'){emit(128,a,t);emit(145,t,a)}}
  if(r.guardSkill>0)useSkill(t,r.guardSkill,0,{subject:t.id,other:a.id,targets:[a.id]},round);
- if(r.killed&&t.hp<=0){if(items[0]!==118)emit(148,t,a);emit(150,t,a);if(t.hp<=0){emit(151,t,a);if(items[0]!==118)emit(149,t,a);if(t.hp<=0)t.buffs=t.buffs.filter(holdAfterDeath);emit(125,a,t);if(items[0]===101||items[0]===102)emit(items[0]===101?126:127,a,t)}}
+ if(r.killed&&t.hp<=0){if([101,102,105,106].includes(items[0]))emit(148,t,a);emit(150,t,a);if(t.hp<=0){emit(151,t,a);if([101,102,105,106].includes(items[0]))emit(149,t,a);if(t.hp<=0)t.buffs=t.buffs.filter(holdAfterDeath);emit(125,a,t);if(items[0]===101||items[0]===102)emit(items[0]===101?126:127,a,t)}}
  }else if(r.status==='heal'&&r.healed>0){acc?.healed.add(t.id);emit(172,t,a);}else if(r.status==='revive'&&r.hp>0)emit(152,t,a);
  };
  const perform=(units:Fighter[],a:Fighter,round:number,plan:{atype?:number;skillId?:number;targets:number[];groups:{effects:number[]}[]})=>{
