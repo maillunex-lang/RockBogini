@@ -1,0 +1,4 @@
+tsc PASS; vite PASS; published
+settle idempotency: next-server/test/battleRoutes.test.ts concurrent settle
+ResultScreen: win/lose, rewards, squad stats, auto-settle on finish
+Chromium visual QA / original WinBoard assets open

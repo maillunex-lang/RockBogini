@@ -429,3 +429,5 @@ Cursor handoff: NEXT-013.5.2; stale roadmap headers and missing original path co
 NEXT-013.5.2 partial: HeroBase HUDOffsetY+15 per actor (10 distinct values), BattleBuffList 834 icons via DescriptionId, HP semantics (incl. share/shield/dodge/revive) and buff add/remove events, original float digit/label atlases. Energy researched: no hero energy bar; PetEnergy only with PetId; not invented. TypeScript/Vite/publish HTTP200; health tests 4/4. Chromium/Playwright unavailable — visual/mobile acceptance open. Matrix reports/NEXT-013.5.2-hud-matrix.json. Next NEXT-013.6.
 
 NEXT-013.6 partial: unified gameClock with real pause and x1/x2/x3 driving timers, motion, Spine timeScale and audio rate; auto-battle respects pause. Original multipliers 1.3/1.7/2.4 documented as difference. Clock tests 3/3; TypeScript/Vite/publish HTTP200. Chromium QA open. Next NEXT-013.7.
+
+NEXT-013.7 partial: ResultScreen with win/lose, rewards, squad damage/hurt/heal stats; auto-settle after final page; server settle idempotency already covered by battleRoutes tests. Original WinBoard art and Chromium QA open. Next NEXT-013.8.

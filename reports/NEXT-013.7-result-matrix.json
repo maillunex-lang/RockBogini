@@ -1,0 +1,30 @@
+{
+  "stage": "NEXT-013.7",
+  "date": "2026-11-25",
+  "mechanics": [
+    {
+      "name": "Battle result screen",
+      "original_file": "BattlePanel.js WinBoard/WinSign/LoseSign; BattleStatisticsPanel.js",
+      "original_table": "campaign-rewards",
+      "original_ids": "resultCode 2 = attacker win",
+      "server": "battleRoutes settle returns result/rewards/level/stage/unlockedModules; idempotent if settlement exists",
+      "client": "ResultScreen.tsx + ReportScreen auto-settle on finish",
+      "assets": "functional UI; original WinBoard sprites not yet imported",
+      "tests": "battleRoutes.test.ts concurrent settle; client build",
+      "differences": "No original victory board art; item names limited to known IDs 1/5/7; Chromium QA open",
+      "status": "partial"
+    },
+    {
+      "name": "Reward idempotency",
+      "original_file": "n/a (next-server)",
+      "original_table": "campaign_battles.settlement",
+      "original_ids": "n/a",
+      "server": "if(b.settlement) return b.settlement; clear insert ON CONFLICT DO NOTHING",
+      "client": "auto-settle once; safe to retry",
+      "assets": "n/a",
+      "tests": "battleRoutes.test.ts",
+      "differences": "none known for campaign settle path",
+      "status": "ported"
+    }
+  ]
+}
