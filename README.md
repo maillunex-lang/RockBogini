@@ -1,22 +1,30 @@
 # RockBogini Next
 Current development snapshot, not a finished game.
 
-## Clone → VPS
-A fresh `git clone` of this repo is enough to run **RockBogini Next** (client assets + API). You do **not** need the local `runtime/` tree for day-to-day play or publish.
+## Clone → any VPS (полная игра Next)
+Репозиторий **самодостаточен**: после `git clone` есть клиент (код + Spine, эффекты, звуки, иконки предметов, UI) и API с конфигами. Локальный `runtime/` (~6 GB оригинала) **не нужен**.
 
-| In GitHub | Purpose |
-|---|---|
-| `pixi-client/` | Next client (code + Spine models, effects, UI, battle audio, **item icons**, …) |
-| `next-server/` | Fastify API, Docker Compose, exported game configs under `data/` |
-| `docs/`, `reports/` | Roadmap / evidence |
+```bash
+git clone git@github.com:maillunex-lang/RockBogini.git
+cd RockBogini
+bash install.sh
+# открыть http://SERVER:8080  (WEB_PORT=… чтобы сменить порт)
+```
 
-| Not in GitHub (VPS-only extract) | Purpose |
+| В GitHub | Назначение |
 |---|---|
-| `runtime/` | Original Queen-Blade client dump (~6 GB): Cocos assets + protobuf configs. Used only as a **source** to re-export icons/configs when inventing new imports. Optional; ignored by `.gitignore`. |
-| `decompiled/`, `next-audit/` | Reverse-engineering / Elixir reference. Not required to run Next. |
+| `pixi-client/` | Next-клиент: код + все игровые ассеты в `public/` (hero-models, skill-effects, item-icons, …) |
+| `next-server/` | Fastify API, Docker Compose, экспортированные конфиги в `data/` |
+| `compose.yaml`, `install.sh` | Однокомандный подъём web+api |
+| `docs/`, `reports/NEXT-*.md` | Дорожная карта / отчёты срезов |
+
+| Не в GitHub (не нужно для запуска) | Назначение |
+|---|---|
+| `runtime/` | Дамп оригинала Queen-Blade (~6 GB): только источник для редких re-export |
+| `decompiled/`, `next-audit/`, `localization/` | Reverse-engineering / локали оригинала |
+| `recovered/` | Промежуточные артефакты восстановления |
 
 Requirements: Linux VPS, Docker Engine, Compose v2.20+, OpenSSL.
-Run from repository root: `bash next/install.sh`. Open http://SERVER:8080.
-Set WEB_PORT to change the web port. API uses loopback 18991; choose a different host port in next-server/compose.yaml if occupied.
-For public production use configure HTTPS via a reverse proxy. Fresh database; no live player data or secrets included.
+API на loopback `18991` (см. `next-server/compose.yaml`). Для публичного доступа — HTTPS через reverse proxy.
+Свежая БД; живых игроков и секретов в репо нет (`.env` генерируется `install.sh`).
 See [ROADMAP](docs/ROADMAP.md). Verify redistribution rights before reuse.
