@@ -23,6 +23,13 @@ import {
  talentRefund,
  talentUnlocked,
 } from './heroTalent.js';
+import {
+ heroJobTree,
+ jobConditionOk,
+ jobConfig,
+ jobMaterials,
+ jobRoots,
+} from './heroJob.js';
 
 async function account(req:{headers:{authorization?:string}},s:Storage){
  const token=/^Bearer ([A-Za-z0-9_-]{43})$/.exec(req.headers.authorization??'')?.[1];
@@ -41,10 +48,29 @@ export async function getHeroes(s:Storage,id:string){
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }
 
-function enrich(h:{Sid:number;HeroId:number;Level:number;StarLevel:number;Power:number;Locked:boolean;PVETalentLevel?:number;PVPTalentLevel?:number;Attrs?:Record<string,number>;Skills?:number[]}){
+function enrich(h:{
+ Sid:number;HeroId:number;Level:number;StarLevel:number;Power:number;Locked:boolean;
+ PVETalentLevel?:number;PVPTalentLevel?:number;Job?:number;JobMap?:Record<string|number,number>;
+ Attrs?:Record<string,number>;Skills?:number[];
+}){
  const pve=h.PVETalentLevel??0,pvp=h.PVPTalentLevel??0;
+ const jobMap=h.JobMap??{};
+ const tree=heroJobTree(h.HeroId).map(node=>{
+  const unlocked=(jobMap[node.jobId]??jobMap[String(node.jobId)]??0)>0;
+  const preOk=node.pre===0||(jobMap[node.pre]??jobMap[String(node.pre)]??0)>0;
+  const condOk=!node.cfg||jobConditionOk(h.StarLevel,node.cfg.condition);
+  return {
+   index:node.index,jobId:node.jobId,pre:node.pre,unlocked,
+   canUnlock:!unlocked&&preOk&&condOk,
+   materials:node.cfg?jobMaterials(node.jobId):[],
+   condition:node.cfg?.condition??[],
+   skill:node.cfg?.skill??0,
+  };
+ });
  return {
   ...h,
+  Job:h.Job??0,
+  JobMap:jobMap,
   base:calculateHero(h.HeroId,h.Level,h.StarLevel),
   skillSlots:skillSlots(h.HeroId,h.Level,h.StarLevel),
   maxLevel:starMaxLevel(h.StarLevel),
@@ -55,6 +81,7 @@ function enrich(h:{Sid:number;HeroId:number;Level:number;StarLevel:number;Power:
    pveUnlocked:talentUnlocked(h.Level,h.StarLevel,TALENT_PVE,pve),
    pvpUnlocked:talentUnlocked(h.Level,h.StarLevel,2,pve),
   },
+  jobs:tree,
  };
 }
 
@@ -279,5 +306,70 @@ export async function heroRoutes(app:FastifyInstance,s:Storage){
   await grantItems(s,id,refund);
   const updated=await saveHero(s,id,{...hero,[field]:0});
   return {ok:true,refund,hero:updated};
+ });
+
+ app.post<{Params:{sid:string};Body:{index:number}}>('/v1/heroes/:sid/job',{
+  schema:{
+   params:{type:'object',required:['sid'],properties:{sid:{type:'string',pattern:'^[0-9]+$'}}},
+   body:{type:'object',required:['index'],additionalProperties:false,properties:{index:{type:'integer',minimum:0,maximum:63}}},
+  },
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  await getHeroes(s,id);
+  const sid=Number(req.params.sid);
+  const hero=await loadHero(s,id,sid);
+  if(!hero)return reply.code(404).send({error:'hero_not_found'});
+  const tree=heroJobTree(hero.HeroId);
+  const node=tree[req.body.index];
+  if(!node)return reply.code(400).send({error:'invalid_job_index'});
+  const cfg=jobConfig(node.jobId);
+  if(!cfg)return reply.code(404).send({error:'job_not_found'});
+  const jobMap:{[k:string]:number}={...(hero.JobMap??{})};
+  const already=(jobMap[node.jobId]??jobMap[String(node.jobId)]??0)>0;
+  if(already){
+   const updated=await saveHero(s,id,{...hero,Job:node.jobId,JobMap:jobMap});
+   return {ok:true,switched:true,hero:updated};
+  }
+  if(node.pre!==0&&!(jobMap[node.pre]??jobMap[String(node.pre)])){
+   return reply.code(409).send({error:'job_prereq',pre:node.pre});
+  }
+  if(!jobConditionOk(hero.StarLevel,cfg.condition)){
+   return reply.code(409).send({error:'job_locked',condition:cfg.condition});
+  }
+  const cost=jobMaterials(node.jobId);
+  if(!(await payItems(s,id,cost)))return reply.code(409).send({error:'insufficient_materials',cost});
+  jobMap[node.jobId]=1;
+  const updated=await saveHero(s,id,{...hero,Job:node.jobId,JobMap:jobMap});
+  return {ok:true,unlocked:true,cost,hero:updated};
+ });
+
+ app.post<{Params:{sid:string}}>('/v1/heroes/:sid/job/reset',{
+  schema:{params:{type:'object',required:['sid'],properties:{sid:{type:'string',pattern:'^[0-9]+$'}}}},
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  await getHeroes(s,id);
+  const sid=Number(req.params.sid);
+  const hero=await loadHero(s,id,sid);
+  if(!hero)return reply.code(404).send({error:'hero_not_found'});
+  const roots=new Set(jobRoots(hero.HeroId));
+  const jobMap:{[k:string]:number}={...(hero.JobMap??{})};
+  const refund:[number,number][]=[];
+  const keep:{[k:string]:number}={};
+  for(const [jid,v] of Object.entries(jobMap)){
+   if(!v)continue;
+   const idNum=Number(jid);
+   if(roots.has(idNum)){keep[jid]=1;continue}
+   refund.push(...jobMaterials(idNum));
+  }
+  const refundMap=new Map<number,number>();
+  for(const [iid,n] of refund)refundMap.set(iid,(refundMap.get(iid)??0)+n);
+  const refundList:[number,number][]=[...refundMap.entries()];
+  await grantItems(s,id,refundList);
+  const curJob=hero.Job??0;
+  const nextJob=roots.has(curJob)?curJob:(Number(Object.keys(keep)[0])||0);
+  const updated=await saveHero(s,id,{...hero,Job:nextJob,JobMap:keep});
+  return {ok:true,refund:refundList,hero:updated};
  });
 }
