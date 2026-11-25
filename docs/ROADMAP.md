@@ -198,3 +198,5 @@ NEXT-012.22 partial: fixed premature StartWorkCondition evaluation before chance
 NEXT-012.23: 80 synthetic six-v-six comparisons using 24 original hero IDs, levels 60/120, 38 distinct passive skills, 40 normal and 40 boss-flagged scenarios. 80/80 exact final metrics. Eight diagnostic categories remain (reference skip/false candidates); real boss encounters and event sequence parity pending. Gate closed.
 
 NEXT-012.24: reference source confirms start effects 301/372/403/414/505/506/615 skipped and unknown trigger 11/start condition 8 false. Retained diagnostics. 72/72 real AllianceTest boss-map fixtures match final metrics and animated action sequence (round, actor, skill, targets). Synthetic attackers, not full guild handler; campaign bosses and hitpoint event parity pending. 70/70 tests. Gate closed.
+
+NEXT-012.25 partial: added animated action hitpoint damage/dodge trace, original split and extra damage classification, fixed effect chance before condition. 72/72 boss damage-event sequences and 372/372 final metrics match, 70/70 tests. Healing/shield/death/buff event ordering, instant pages, API wiring and campaign bosses remain pending; gate closed.
