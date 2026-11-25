@@ -51,6 +51,7 @@ type HolySlot={
  slot:number;
  equip:{
   Sid:number;ItemId:number;Star:number;Level:number;Xp:number;Step?:number;Stage?:number;score:number;
+  GallerySlot?:number;
   Blessing1?:HolyBlessing|null;Blessing2?:HolyBlessing|null;blessingUnlock?:number[];
  }|null;
  maxLevel?:number;
@@ -58,6 +59,11 @@ type HolySlot={
  nextStep?:{value:number;materials:[number,number][]}|null;
  nextSoul?:{stage:number;itemId:number;count:number;unlockStar:number;ready:boolean}|null;
 };
+type GalleryType={
+ type:number;level:number;nextCost:[number,number][];
+ slots:{id:number;requirements:number;open:boolean;equip:{Sid:number;ItemId:number}|null}[];
+};
+type GalleryInfo={levels:number[];types:GalleryType[];resonance:{id:number;requirements:number}|null};
 
 export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClose:()=>void}){
  const [formation,setFormation]=useState(false);
@@ -65,10 +71,18 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
  const [selected,setSelected]=useState<number|null>(null);
  const [equipSlots,setEquipSlots]=useState<EquipSlot[]>([]);
  const [holySlots,setHolySlots]=useState<HolySlot[]>([]);
+ const [gallery,setGallery]=useState<GalleryInfo|null>(null);
  const [status,setStatus]=useState('Загрузка…');
  const [busy,setBusy]=useState(false);
 
  const applyList=(list:Hero[])=>setHeroes(list);
+
+ const loadGallery=async()=>{
+  try{
+   const r=await fetch(`${api}/v1/holy/gallery`,{headers:{Authorization:'Bearer '+token}});
+   if(r.ok)setGallery(await r.json());
+  }catch{/* ignore */}
+ };
 
  const loadEquip=async(sid:number)=>{
   try{
@@ -78,6 +92,7 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
    ]);
    if(eq.ok){const j=await eq.json();setEquipSlots(j.slots??[])}
    if(holy.ok){const j=await holy.json();setHolySlots(j.slots??[])}
+   await loadGallery();
   }catch{/* ignore */}
  };
 
@@ -164,6 +179,12 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
    else if(kind==='star-up')setStatus(`Священное → ★${j.after?.Star} шаг ${j.after?.Step}`);
    else if(kind==='soul')setStatus(`Душа → стадия ${j.after?.Stage}`);
    else if(kind.startsWith('blessing/'))setStatus(`Благословение: ${kind.split('/')[1]}`);
+   else if(kind.startsWith('gallery/')){
+    await loadGallery();
+    if(kind==='gallery/level-up')setStatus(`Галерея тип ${j.type} → ур.${j.after}`);
+    else if(kind==='gallery/put-on')setStatus(`В галерею слот ${j.slot}`);
+    else setStatus('Убрано из галереи');
+   }
    else setStatus(kind==='put-on'?'Священное надето':'Священное снято');
   }catch(e){
    setStatus(e instanceof Error?e.message:'Не удалось изменить священную экипировку');
@@ -268,7 +289,7 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
       const worn=info?.equip??null;
       const starter=HOLY_STARTER[slot];
       return <li key={slot}>
-       <span>{SLOT_NAME[slot]}: {worn?`#${worn.ItemId} ★${worn.Star} шаг ${worn.Step??0} душа ${worn.Stage??0} ур.${worn.Level} · ${worn.score}`:'пусто'}</span>
+       <span>{SLOT_NAME[slot]}: {worn?`#${worn.ItemId} ★${worn.Star} шаг ${worn.Step??0} душа ${worn.Stage??0} ур.${worn.Level}${worn.GallerySlot?` · гал.${worn.GallerySlot}`:''} · ${worn.score}`:'пусто'}</span>
        {worn?(
         <>
          <button type="button" disabled={busy||(worn.Level>=(info?.maxLevel??0))} onClick={()=>void holyAct('level-up',{sid:worn.Sid,counts:[1,0,0,0]},'Усиление…')}>
@@ -301,6 +322,15 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
            )}
           </React.Fragment>;
          })}
+         {worn.GallerySlot?(
+          <button type="button" disabled={busy} onClick={()=>void holyAct('gallery/put-off',{sid:worn.Sid},'Галерея…')}>Из галереи</button>
+         ):(
+          <button type="button" disabled={busy||!gallery?.types.find(t=>t.type===slot)?.slots.some(s=>s.open&&!s.equip)}
+           onClick={()=>{
+            const open=gallery?.types.find(t=>t.type===slot)?.slots.find(s=>s.open&&!s.equip);
+            if(open)void holyAct('gallery/put-on',{slot:open.id,sid:worn.Sid},'Галерея…');
+           }}>В галерею</button>
+         )}
          <button type="button" disabled={busy} onClick={()=>void holyAct('put-off',{sid:worn.Sid},'Снятие…')}>Снять</button>
         </>
        ):(
@@ -311,6 +341,22 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
       </li>;
      })}
     </ul>
+    {gallery&&(
+     <div className="hero-gallery">
+      <h4>Галерея {gallery.resonance?`· резонанс ${gallery.resonance.requirements}`:''}</h4>
+      <ul>
+       {gallery.types.map(t=>(
+        <li key={t.type}>
+         <span>{SLOT_NAME[t.type]} ур.{t.level} · слотов {t.slots.filter(s=>s.equip).length}/{t.slots.filter(s=>s.open).length}</span>
+         <button type="button" disabled={busy||!t.nextCost.length}
+          onClick={()=>void holyAct('gallery/level-up',{type:t.type},'Галерея ур…')}>
+          +ур{t.nextCost.length?` (${t.nextCost.map(([id,n])=>`${n}×${id}`).join(', ')})`:''}
+         </button>
+        </li>
+       ))}
+      </ul>
+     </div>
+    )}
    </div>
    {!!h.luck?.slots?.length&&(
     <div className="hero-luck">

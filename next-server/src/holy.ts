@@ -7,6 +7,10 @@ import type {Storage} from './storage.js';
 import {sessionAccount} from './auth.js';
 import {calculateHero} from './heroAttrs.js';
 import {equipConfig,equipExtraPairs,wornItemIds} from './equipment.js';
+import {
+ galleryLevelCfg,galleryLevelCost,gallerySelfExtra,gallerySlotCfg,gallerySlotsForType,
+ galleryTeamExtra,resonanceTier,type GalleryShown,
+} from './holyGallery.js';
 
 type HolyCfg={type:number;suitId:number;attrs:number[][];canDisplace:number;state:number;nextStateId:number};
 type StarCfg={
@@ -129,6 +133,7 @@ function addPairs(out:number[][],rows:number[][]|undefined){
 
 export type HolyRec={
  Sid:number;ItemId:number;Star:number;Level:number;Xp:number;Stage:number;Step:number;OwnerId:number;
+ GallerySlot?:number;
  Blessing1?:BlessingModel|null;Blessing2?:BlessingModel|null;
 };
 
@@ -196,6 +201,7 @@ export function holyPieceExtra(e:HolyRec):number[][]{
  }
  score=applyBlessing(attrs,score,e.Blessing1);
  score=applyBlessing(attrs,score,e.Blessing2);
+ if((e.GallerySlot??0)>0)addPairs(attrs,gallerySelfExtra(c.type,c.state,e.Star,e.GallerySlot??0));
  const f=e.Stage>0?1000+(soulCfg(e.Stage)?.attr??0):1000;
  if(e.Stage>0)score=Math.floor(score*f/1000);
  const out:number[][]=[];
@@ -248,22 +254,64 @@ export function holyWornBonus(worn:HolyRec[]):{extra:number[][];powerBonus:numbe
 
 export async function wornHoly(s:Storage,accountId:string,ownerSid:number):Promise<HolyRec[]>{
  const r=await s.pg.query(
-  `SELECT sid,item_id,star,level,xp,stage,step,owner_sid,blessing1,blessing2
+  `SELECT sid,item_id,star,level,xp,stage,step,owner_sid,gallery_slot,blessing1,blessing2
    FROM player_holy_equipment WHERE account_id=$1 AND owner_sid=$2 ORDER BY sid`,
   [accountId,ownerSid],
  );
  return r.rows.map(row=>({
   Sid:row.sid,ItemId:row.item_id,Star:row.star,Level:row.level,Xp:row.xp,
-  Stage:row.stage,Step:row.step,OwnerId:row.owner_sid,
+  Stage:row.stage,Step:row.step,OwnerId:row.owner_sid,GallerySlot:Number(row.gallery_slot??0),
   Blessing1:parseBlessing(row.blessing1),Blessing2:parseBlessing(row.blessing2),
  }));
+}
+
+async function galleryLevels(s:Storage,accountId:string):Promise<number[]>{
+ const r=await s.pg.query('SELECT levels FROM player_holy_gallery WHERE account_id=$1',[accountId]);
+ if(!r.rowCount)return [0,0,0,0];
+ const lv=r.rows[0].levels as number[];
+ return [Number(lv[0]??0),Number(lv[1]??0),Number(lv[2]??0),Number(lv[3]??0)];
+}
+
+async function setGalleryLevels(s:Storage,accountId:string,levels:number[]){
+ await s.pg.query(
+  `INSERT INTO player_holy_gallery(account_id,levels) VALUES($1,$2::int[])
+   ON CONFLICT(account_id) DO UPDATE SET levels=EXCLUDED.levels`,
+  [accountId,levels],
+ );
+}
+
+async function shownGallery(s:Storage,accountId:string):Promise<GalleryShown[]>{
+ const rows=(await s.pg.query(
+  `SELECT item_id,star,step,gallery_slot FROM player_holy_equipment
+   WHERE account_id=$1 AND gallery_slot>0`,[accountId],
+ )).rows as {item_id:number;star:number;step:number;gallery_slot:number}[];
+ const out:GalleryShown[]=[];
+ for(const row of rows){
+  const cfg=holyConfig(row.item_id);
+  if(!cfg)continue;
+  out.push({
+   ItemId:row.item_id,Star:row.star,Step:row.step,GallerySlot:row.gallery_slot,
+   type:cfg.type,state:cfg.state,
+  });
+ }
+ return out;
+}
+
+async function galleryBonusExtra(s:Storage,accountId:string):Promise<number[][]>{
+ return galleryTeamExtra(await galleryLevels(s,accountId),await shownGallery(s,accountId));
+}
+
+async function refreshAllHeroes(s:Storage,accountId:string){
+ const r=await s.pg.query('SELECT sid FROM player_heroes WHERE account_id=$1',[accountId]);
+ for(const row of r.rows)await refreshHeroGear(s,accountId,Number(row.sid));
 }
 
 /** Combined normal+holy gear for calculateHero. */
 export async function heroGear(s:Storage,accountId:string,ownerSid:number):Promise<{extra:number[][];powerBonus:number}>{
  const eq=equipExtraPairs(await wornItemIds(s,accountId,ownerSid));
  const holy=holyWornBonus(await wornHoly(s,accountId,ownerSid));
- return {extra:[...eq,...holy.extra],powerBonus:holy.powerBonus};
+ const gallery=await galleryBonusExtra(s,accountId);
+ return {extra:[...eq,...holy.extra,...gallery],powerBonus:holy.powerBonus};
 }
 
 export async function refreshHeroGear(s:Storage,id:string,ownerSid:number){
@@ -296,13 +344,14 @@ async function nextSid(s:Storage,id:string){
 
 async function listHoly(s:Storage,id:string){
  const rows=(await s.pg.query(
-  `SELECT sid,item_id,star,level,xp,stage,step,owner_sid,blessing1,blessing2
+  `SELECT sid,item_id,star,level,xp,stage,step,owner_sid,gallery_slot,blessing1,blessing2
    FROM player_holy_equipment WHERE account_id=$1 ORDER BY sid`,[id],
- )).rows as {sid:number;item_id:number;star:number;level:number;xp:number;stage:number;step:number;owner_sid:number;blessing1:unknown;blessing2:unknown}[];
+ )).rows as {sid:number;item_id:number;star:number;level:number;xp:number;stage:number;step:number;owner_sid:number;gallery_slot:number;blessing1:unknown;blessing2:unknown}[];
  return rows.map(r=>{
   const cfg=holyConfig(r.item_id);
   const rec:HolyRec={
    Sid:r.sid,ItemId:r.item_id,Star:r.star,Level:r.level,Xp:r.xp,Stage:r.stage,Step:r.step,OwnerId:r.owner_sid,
+   GallerySlot:Number(r.gallery_slot??0),
    Blessing1:parseBlessing(r.blessing1),Blessing2:parseBlessing(r.blessing2),
   };
   const extra=holyPieceExtra(rec);
@@ -497,7 +546,7 @@ export async function holyRoutes(app:FastifyInstance,s:Storage){
   });
   const bonus=holyWornBonus(worn.map(e=>({
    Sid:e.Sid,ItemId:e.ItemId,Star:e.Star,Level:e.Level,Xp:e.Xp,Stage:e.Stage,Step:e.Step,OwnerId:e.OwnerId,
-   Blessing1:e.Blessing1,Blessing2:e.Blessing2,
+   GallerySlot:e.GallerySlot??0,Blessing1:e.Blessing1,Blessing2:e.Blessing2,
   })));
   return {ownerId:owner,slots,powerBonus:bonus.powerBonus,score:bonus.extra.filter(p=>p[0]===SCORE_ATTR).reduce((s,p)=>s+(p[1]??0),0)};
  });
@@ -565,11 +614,11 @@ export async function holyRoutes(app:FastifyInstance,s:Storage){
   if(!id)return reply.code(401).send({error:'invalid_session'});
   const kind=(req.body.type===2?2:1) as 1|2;
   const row=await s.pg.query(
-   'SELECT sid,item_id,star,level,xp,stage,step,owner_sid FROM player_holy_equipment WHERE account_id=$1 AND sid=$2',
+   'SELECT sid,item_id,star,level,xp,stage,step,owner_sid,gallery_slot FROM player_holy_equipment WHERE account_id=$1 AND sid=$2',
    [id,req.body.sid],
   );
   if(!row.rowCount)return reply.code(404).send({error:'holy_not_found'});
-  const rec=row.rows[0] as {sid:number;item_id:number;star:number;level:number;xp:number;stage:number;step:number;owner_sid:number};
+  const rec=row.rows[0] as {sid:number;item_id:number;star:number;level:number;xp:number;stage:number;step:number;owner_sid:number;gallery_slot:number};
   const next=nextStarTarget(rec.star,rec.step,kind);
   if(!next)return reply.code(409).send({error:kind===2?'holy_max_step':'holy_max_star'});
   if(!unlockOk(rec.star,rec.step,next.cfg.unlock))return reply.code(409).send({error:'holy_unlock',need:next.cfg.unlock});
@@ -582,7 +631,8 @@ export async function holyRoutes(app:FastifyInstance,s:Storage){
   }else{
    await s.pg.query('UPDATE player_holy_equipment SET step=$3 WHERE account_id=$1 AND sid=$2',[id,rec.sid,next.value]);
   }
-  if(rec.owner_sid>0)await refreshHeroGear(s,id,rec.owner_sid);
+  if(Number(rec.gallery_slot)>0)await refreshAllHeroes(s,id);
+  else if(rec.owner_sid>0)await refreshHeroGear(s,id,rec.owner_sid);
   return {
    ok:true,
    type:kind,
@@ -595,7 +645,7 @@ export async function holyRoutes(app:FastifyInstance,s:Storage){
 
  async function loadHolyRow(id:string,sid:number){
   const row=await s.pg.query(
-   `SELECT sid,item_id,star,level,xp,stage,step,owner_sid,blessing1,blessing2
+   `SELECT sid,item_id,star,level,xp,stage,step,owner_sid,gallery_slot,blessing1,blessing2
     FROM player_holy_equipment WHERE account_id=$1 AND sid=$2`,[id,sid],
   );
   if(!row.rowCount)return null;
@@ -603,6 +653,7 @@ export async function holyRoutes(app:FastifyInstance,s:Storage){
   return {
    sid:r.sid as number,item_id:r.item_id as number,star:r.star as number,level:r.level as number,
    xp:r.xp as number,stage:r.stage as number,step:r.step as number,owner_sid:r.owner_sid as number,
+   gallery_slot:Number(r.gallery_slot??0),
    Blessing1:parseBlessing(r.blessing1),Blessing2:parseBlessing(r.blessing2),
   };
  }
@@ -738,7 +789,7 @@ export async function holyRoutes(app:FastifyInstance,s:Storage){
   if(!target.ready)return reply.code(409).send({error:'holy_soul_locked',need:target.unlockStar});
   const spare=await s.pg.query(
    `SELECT sid FROM player_holy_equipment
-    WHERE account_id=$1 AND item_id=$2 AND owner_sid=0 AND sid<>$3
+    WHERE account_id=$1 AND item_id=$2 AND owner_sid=0 AND gallery_slot=0 AND sid<>$3
     ORDER BY sid LIMIT $4`,
    [id,target.itemId,rec.sid,target.count],
   );
@@ -753,7 +804,8 @@ export async function holyRoutes(app:FastifyInstance,s:Storage){
   await s.pg.query(
    'UPDATE player_holy_equipment SET stage=$3 WHERE account_id=$1 AND sid=$2',[id,rec.sid,stage],
   );
-  if(rec.owner_sid>0)await refreshHeroGear(s,id,rec.owner_sid);
+  if(rec.gallery_slot>0)await refreshAllHeroes(s,id);
+  else if(rec.owner_sid>0)await refreshHeroGear(s,id,rec.owner_sid);
   return {
    ok:true,
    consumed:sids.map(sid=>({sid,itemId:target.itemId})),
@@ -762,4 +814,105 @@ export async function holyRoutes(app:FastifyInstance,s:Storage){
    holy:await listHoly(s,id),
   };
  });
+
+ app.get('/v1/holy/gallery',async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  const levels=await galleryLevels(s,id);
+  const shown=await shownGallery(s,id);
+  const bySlot=Object.fromEntries(
+   (await listHoly(s,id)).filter(e=>(e.GallerySlot??0)>0).map(e=>[e.GallerySlot!,e]),
+  );
+  const types=[1,2,3,4].map(type=>{
+   const level=levels[type-1]??0;
+   const next=level+1;
+   const cost=galleryLevelCfg(next)?galleryLevelCost(level,next):[];
+   const slots=gallerySlotsForType(type).map(sl=>({
+    id:sl.id,requirements:sl.requirements,open:level>=sl.requirements,equip:bySlot[sl.id]??null,
+   }));
+   return {type,level,nextCost:cost,slots};
+  });
+  return {
+   levels,types,
+   resonance:resonanceTier(shown),
+   teamExtra:galleryTeamExtra(levels,shown),
+  };
+ });
+
+ app.post<{Body:{slot:number;sid:number}}>('/v1/holy/gallery/put-on',{
+  schema:{body:{type:'object',required:['slot','sid'],additionalProperties:false,properties:{
+   slot:{type:'integer',minimum:1},
+   sid:{type:'integer',minimum:1},
+  }}},
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  const {slot,sid}=req.body;
+  const slotCfg=gallerySlotCfg(slot);
+  if(!slotCfg)return reply.code(404).send({error:'gallery_slot_missing'});
+  const levels=await galleryLevels(s,id);
+  if((levels[slotCfg.type-1]??0)<slotCfg.requirements){
+   return reply.code(409).send({error:'gallery_slot_locked',need:slotCfg.requirements});
+  }
+  const rec=await loadHolyRow(id,sid);
+  if(!rec)return reply.code(404).send({error:'holy_not_found'});
+  const cfg=holyConfig(rec.item_id);
+  if(!cfg||cfg.type!==slotCfg.type)return reply.code(409).send({error:'gallery_type_mismatch'});
+  await s.pg.query(
+   'UPDATE player_holy_equipment SET gallery_slot=0 WHERE account_id=$1 AND gallery_slot=$2 AND sid<>$3',
+   [id,slot,sid],
+  );
+  await s.pg.query(
+   'UPDATE player_holy_equipment SET gallery_slot=$3 WHERE account_id=$1 AND sid=$2',[id,sid,slot],
+  );
+  await refreshAllHeroes(s,id);
+  return {ok:true,slot,sid,gallery:await gallerySnapshot(id)};
+ });
+
+ app.post<{Body:{sid:number}}>('/v1/holy/gallery/put-off',{
+  schema:{body:{type:'object',required:['sid'],additionalProperties:false,properties:{sid:{type:'integer',minimum:1}}}},
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  const rec=await loadHolyRow(id,req.body.sid);
+  if(!rec)return reply.code(404).send({error:'holy_not_found'});
+  if(rec.gallery_slot<=0)return reply.code(409).send({error:'holy_not_displayed'});
+  await s.pg.query(
+   'UPDATE player_holy_equipment SET gallery_slot=0 WHERE account_id=$1 AND sid=$2',[id,req.body.sid],
+  );
+  await refreshAllHeroes(s,id);
+  return {ok:true,sid:req.body.sid,gallery:await gallerySnapshot(id)};
+ });
+
+ app.post<{Body:{type:number;newLevel?:number}}>('/v1/holy/gallery/level-up',{
+  schema:{body:{type:'object',required:['type'],additionalProperties:false,properties:{
+   type:{type:'integer',enum:[1,2,3,4]},
+   newLevel:{type:'integer',minimum:1,maximum:150},
+  }}},
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  const type=req.body.type;
+  const levels=await galleryLevels(s,id);
+  const cur=levels[type-1]??0;
+  const next=req.body.newLevel??cur+1;
+  if(next!==cur+1)return reply.code(409).send({error:'gallery_level_step',cur,next});
+  if(!galleryLevelCfg(next))return reply.code(409).send({error:'gallery_max_level'});
+  const cost=galleryLevelCost(cur,next);
+  if(!cost.length)return reply.code(500).send({error:'gallery_cost_missing'});
+  for(const [itemId,n] of cost){
+   if(!(await payItem(s,id,itemId,n)))return reply.code(409).send({error:'insufficient_materials',itemId,need:n});
+  }
+  const updated=[...levels];
+  updated[type-1]=next;
+  await setGalleryLevels(s,id,updated);
+  await refreshAllHeroes(s,id);
+  return {ok:true,type,before:cur,after:next,cost,gallery:await gallerySnapshot(id)};
+ });
+
+ async function gallerySnapshot(accountId:string){
+  const levels=await galleryLevels(s,accountId);
+  const shown=await shownGallery(s,accountId);
+  return {levels,resonance:resonanceTier(shown),teamExtra:galleryTeamExtra(levels,shown),holy:await listHoly(s,accountId)};
+ }
 }

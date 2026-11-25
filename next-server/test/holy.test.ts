@@ -4,6 +4,7 @@ import {openStorage,migrate} from '../src/storage.js';
 import {createGuest} from '../src/auth.js';
 import {buildApp} from '../src/app.js';
 import {blessOnce,canStarUp,holyPieceExtra,holyWornBonus,nextSoulTarget,nextStarTarget,randomBlessing} from '../src/holy.js';
+import {galleryLevelCost,galleryTeamExtra,resonanceTier} from '../src/holyGallery.js';
 
 test('holyPieceExtra applies base attrs and HolyEquipmentScore',()=>{
  const extra=holyPieceExtra({Sid:1,ItemId:41001,Star:0,Level:0,Xp:0,Stage:0,Step:0,OwnerId:0});
@@ -231,5 +232,65 @@ test('holy put-on clears normal equipment on same slot',{skip:!process.env.PGHOS
   assert.equal(bag.n,1);
   const wornEq=(await s.pg.query('SELECT count(*)::int AS n FROM player_equipment WHERE account_id=$1 AND owner_sid=1001',[a.id])).rows[0];
   assert.equal(wornEq.n,0);
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
+});
+
+test('galleryLevelCost is cumulative materials diff',()=>{
+ assert.deepEqual(galleryLevelCost(0,1),[[94,1]]);
+ assert.deepEqual(galleryLevelCost(1,2),[[94,1]]);
+ assert.deepEqual(galleryLevelCost(0,2),[[94,2]]);
+});
+
+test('galleryTeamExtra + resonance from shown stars',()=>{
+ const levels=[5,5,5,5];
+ const shown=[
+  {ItemId:41001,Star:5,Step:0,GallerySlot:1001,type:1,state:1},
+  {ItemId:41002,Star:5,Step:0,GallerySlot:2001,type:2,state:1},
+  {ItemId:41003,Star:5,Step:0,GallerySlot:3001,type:3,state:1},
+  {ItemId:41004,Star:5,Step:0,GallerySlot:4001,type:4,state:1},
+ ];
+ const extra=galleryTeamExtra(levels,shown);
+ assert.ok(extra.length>0);
+ const tier=resonanceTier(shown);
+ assert.equal(tier?.requirements,5);
+});
+
+test('holy gallery level-up put-on put-off and soul skips displayed',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);const a=await createGuest(s);const app=await buildApp(s);
+ try{
+  await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}});
+  await s.pg.query(
+   `INSERT INTO player_items(account_id,item_id,amount) VALUES($1,41001,1),($1,94,20)
+    ON CONFLICT(account_id,item_id) DO UPDATE SET amount=player_items.amount+EXCLUDED.amount`,
+   [a.id],
+  );
+  const on=await app.inject({method:'POST',url:'/v1/holy/put-on',headers:{authorization:'Bearer '+a.token},payload:{itemId:41001,ownerId:1001}});
+  assert.equal(on.statusCode,200);
+  const sid=on.json().holy.find((e:{OwnerId:number})=>e.OwnerId===1001).Sid;
+  // raise gallery type1 to 5 to unlock slot 1001
+  for(let i=0;i<5;i++){
+   const up=await app.inject({method:'POST',url:'/v1/holy/gallery/level-up',headers:{authorization:'Bearer '+a.token},payload:{type:1}});
+   assert.equal(up.statusCode,200,JSON.stringify(up.json()));
+  }
+  const before=(await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}})).json().heroes.find((h:{Sid:number})=>h.Sid===1001);
+  const put=await app.inject({method:'POST',url:'/v1/holy/gallery/put-on',headers:{authorization:'Bearer '+a.token},payload:{slot:1001,sid}});
+  assert.equal(put.statusCode,200,JSON.stringify(put.json()));
+  assert.equal(put.json().gallery.holy.find((e:{Sid:number})=>e.Sid===sid).GallerySlot,1001);
+  const after=(await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}})).json().heroes.find((h:{Sid:number})=>h.Sid===1001);
+  assert.ok(after.Power>=before.Power,`power ${before.Power} -> ${after.Power}`);
+  // displayed spare cannot feed soul
+  await s.pg.query('UPDATE player_holy_equipment SET star=2 WHERE account_id=$1 AND sid=$2',[a.id,sid]);
+  await s.pg.query(
+   `INSERT INTO player_holy_equipment(account_id,sid,item_id,star,level,xp,stage,step,owner_sid,gallery_slot)
+    VALUES($1,9101,40151,0,0,0,0,0,0,1002)`,
+   [a.id],
+  );
+  // unlock slot 1002 (req 10) — skip; fodder is displayed on 1002 without unlock check on insert
+  const soul=await app.inject({method:'POST',url:'/v1/holy/soul',headers:{authorization:'Bearer '+a.token},payload:{sid}});
+  assert.equal(soul.statusCode,409);
+  assert.equal(soul.json().error,'insufficient_soul_materials');
+  const off=await app.inject({method:'POST',url:'/v1/holy/gallery/put-off',headers:{authorization:'Bearer '+a.token},payload:{sid}});
+  assert.equal(off.statusCode,200);
+  assert.equal(off.json().gallery.holy.find((e:{Sid:number})=>e.Sid===sid).GallerySlot,0);
  }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
 });
