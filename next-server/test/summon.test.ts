@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {openStorage,migrate} from '../src/storage.js';
 import {createGuest} from '../src/auth.js';
 import {buildApp} from '../src/app.js';
-import {pullMany,pullOnce,heroCard} from '../src/summon.js';
+import {pullMany,pullOnce,heroCard,prophetCost} from '../src/summon.js';
 
 test('heroCard maps ItemHeroCard to hero/star',()=>{
  const c=heroCard(1111401);
@@ -41,6 +41,14 @@ test('pullMany senior type 102 returns items with pity libs',()=>{
  const model={libCount:{},libStatus:{},freeCount:0,todayCount:0,totalCount:0};
  const {items}=pullMany(102,model,10,()=>0.5);
  assert.equal(items.length,10);
+});
+
+test('pullMany oracle type 201 filters by element',()=>{
+ const model={libCount:{},libStatus:{},freeCount:0,todayCount:0,totalCount:0};
+ const {items}=pullMany(201,model,5,()=>0.5,1);
+ assert.equal(items.length,5);
+ assert.equal(prophetCost({currencyId:14001,baseCurrencyCount:1,advCurrencyCount:1,summonType:201,extra:[],times:1},4),1);
+ assert.equal(prophetCost({currencyId:14001,baseCurrencyCount:1,advCurrencyCount:2,summonType:201,extra:[],times:1},4),2);
 });
 
 test('POST /v1/summon/pull grants heroes and spends tickets',{skip:!process.env.PGHOST},async()=>{
@@ -98,6 +106,39 @@ test('POST /v1/summon/pull senior spends 10403 and grants heroes',{skip:!process
    method:'POST',url:'/v1/summon/pull',
    headers:{authorization:'Bearer '+a.token},
    payload:{type:4,itemId:10403},
+  });
+  assert.equal(ten.statusCode,200,JSON.stringify(ten.json()));
+  assert.equal(ten.json().times,10);
+  assert.equal(ten.json().heroes.length,10);
+  const afterHeroes=(await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}})).json().heroes.length;
+  assert.ok(afterHeroes>=beforeHeroes+11);
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
+});
+
+test('POST /v1/summon/oracle pulls by element and spends 14001',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);const a=await createGuest(s);const app=await buildApp(s);
+ try{
+  await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}});
+  const info=await app.inject({url:'/v1/summon',headers:{authorization:'Bearer '+a.token}});
+  assert.equal(info.statusCode,200);
+  assert.ok(info.json().oracle.banners.some((b:{id:number})=>b.id===1));
+  assert.ok(info.json().tickets.oracle.amount>=20);
+  const before=info.json().tickets.oracle.amount;
+  const beforeHeroes=(await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}})).json().heroes.length;
+  const pull=await app.inject({
+   method:'POST',url:'/v1/summon/oracle',
+   headers:{authorization:'Bearer '+a.token},
+   payload:{type:1,element:2},
+  });
+  assert.equal(pull.statusCode,200,JSON.stringify(pull.json()));
+  assert.equal(pull.json().times,1);
+  assert.equal(pull.json().element,2);
+  assert.ok(pull.json().heroes.length>=1);
+  assert.equal(pull.json().oracle.amount,before-1);
+  const ten=await app.inject({
+   method:'POST',url:'/v1/summon/oracle',
+   headers:{authorization:'Bearer '+a.token},
+   payload:{type:5,element:1},
   });
   assert.equal(ten.statusCode,200,JSON.stringify(ten.json()));
   assert.equal(ten.json().times,10);
