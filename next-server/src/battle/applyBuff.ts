@@ -46,4 +46,4 @@ export function applyBuff(actor:EffectUnit,target:EffectUnit,cfg:BuffConfig,opts
  if(hpBonus&&added>0)changeMaxHp(target,hpBonus*added);
  return {status:'applied' as const,added,replacement};
 }
-export function removeBuff(u:BuffUnit,key:number,count=Infinity){const b=u.buffs.find(x=>x.key===key) as AppliedBuff|undefined;if(!b||count<=0)return false;const n=Math.min(count,b.stacks);if(n===b.stacks)u.buffs=u.buffs.filter(x=>x.key!==key);else b.stacks-=n;if(b.hpBonus&&u.hp>0)changeMaxHp(u,-b.hpBonus*n);return true}
+export function removeBuff(u:BuffUnit,key:number,count=Infinity){const b=u.buffs.find(x=>x.key===key) as AppliedBuff|undefined;if(!b||count<=0)return false;const n=Math.min(count,b.stacks);if(n===b.stacks)u.buffs=u.buffs.filter(x=>x.key!==key);else b.stacks-=n;if(b.hpBonus&&u.hp>0)changeMaxHp(u,-b.hpBonus*n);u.onBuffRemoved?.(b,n);return true}

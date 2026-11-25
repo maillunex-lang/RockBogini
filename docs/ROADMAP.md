@@ -202,3 +202,5 @@ NEXT-012.24: reference source confirms start effects 301/372/403/414/505/506/615
 NEXT-012.25 partial: added animated action hitpoint damage/dodge trace, original split and extra damage classification, fixed effect chance before condition. 72/72 boss damage-event sequences and 372/372 final metrics match, 70/70 tests. Healing/shield/death/buff event ordering, instant pages, API wiring and campaign bosses remain pending; gate closed.
 
 NEXT-012.26 partial: added shield, heal, revive and death to animated hitpoint trace. 72/72 boss fixtures match expanded health-event sequence (838 heals, 403 shields, 25 deaths; no revives or extra heals in sample). 70/70 tests. Buff lifecycle, instant pages, revive coverage and API wiring pending; gate closed.
+
+NEXT-012.27 partial: animated visible buff add/remove events, stack count, counted shield versus numeric shield event ordering, death cleanup. 72/72 expanded event comparisons (6831 adds, 407 removes), 372/372 final metrics, 70/70 tests. Instant pages, revive cleanup and dedicated expiration/refresh coverage pending. Gate closed.

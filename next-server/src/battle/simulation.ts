@@ -26,12 +26,12 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  if([113,115,116,131].includes(items[0])){engine.removeMatching(t,items[0],items[1],items.slice(3));return}
  if(items[0]===120){useSkill(a,items[1],items[2]??0,{subject:t.id,other:a.id,targets:[t.id]},round);return}
  if(items[0]===121){engine.emit({code:items[1],subject:t.id});return}
- const r=executeEffect(a,t,b,items,ctx);
+ const beforeEvents=trace?.events.length??0;const countedShield=t.buffs.some(b=>((b as {cshield?:number}).cshield??0)>0);const r=executeEffect(a,t,b,items,ctx);
  if(r.status==='unsupported'){issues.add('trigger:'+items[0]);return}
  journal.push({round,actor:a.id,target:t.id,code:items[0],hp:t.hp});
  const emit=(code:number,subject:Fighter,other:Fighter)=>engine.emit({...metadata,code,subject:subject.id,other:other.id,value:r.status==="damage"?r.damage:r.status==="heal"?r.healed:undefined,atype:metadata.atype??0});
  if(r.status==='damage'){
- if(r.absorbed>0){shields.push({round,actor:a.id,target:t.id,type:4,value:r.absorbed});trace?.events.push({index:split?1:hitIndex,target:t.id,type:4,value:r.absorbed})}
+ if(r.absorbed>0){shields.push({round,actor:a.id,target:t.id,type:4,value:r.absorbed});trace?.events.splice(countedShield?beforeEvents:trace.events.length,0,{index:split?1:hitIndex,target:t.id,type:4,value:r.absorbed})}
  if(r.guardBuffId!==undefined){const d=descriptionEvent(r.guardBuffId,[125]);if(d)descriptions.push({round,actor:a.id,target:t.id,...d})}
  if(acc&&[101,102,105,106].includes(items[0])){acc.attacked.set(t.id,(acc.attacked.get(t.id)??0)+r.damage);if(r.event==='crit')acc.crit=true}
  if(r.event==='dodge'){trace?.events.push({index:split?1:hitIndex,target:t.id,type:6,value:0});emit(158,t,a);return}
@@ -42,7 +42,7 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  if(items[0]===118)emit(147,t,a);
  else if([101,102,105,106].includes(items[0])){emit(143,t,a);if(items[0]===101||items[0]===102)emit(items[0]===101?121:122,a,t);emit(129,a,t);if(r.event==='crit'){emit(128,a,t);emit(145,t,a)}}
 
- if(r.killed&&t.hp<=0){if([101,102,105,106].includes(items[0]))emit(148,t,a);emit(150,t,a);if(t.hp<=0){trace?.events.push({index:hitIndex,target:t.id,type:27,value:0});emit(151,t,a);if([101,102,105,106].includes(items[0]))emit(149,t,a);if(t.hp<=0)t.buffs=t.buffs.filter(holdAfterDeath);emit(125,a,t);if(items[0]===101||items[0]===102)emit(items[0]===101?126:127,a,t)}}
+ if(r.killed&&t.hp<=0){if([101,102,105,106].includes(items[0]))emit(148,t,a);emit(150,t,a);if(t.hp<=0){trace?.events.push({index:hitIndex,target:t.id,type:27,value:0});emit(151,t,a);if([101,102,105,106].includes(items[0]))emit(149,t,a);if(t.hp<=0){for(const b of t.buffs.filter(b=>!holdAfterDeath(b)&&!b.temp))t.onBuffRemoved?.(b,b.stacks);t.buffs=t.buffs.filter(holdAfterDeath);}emit(125,a,t);if(items[0]===101||items[0]===102)emit(items[0]===101?126:127,a,t)}}
  }else if(r.status==='heal'){if(r.healed+r.overflow>0)acc?.healed.add(t.id);if(r.healed>0){trace?.events.push({index:hitIndex,target:t.id,type:extraEffect?22:5,value:r.healed});recovery.push({round,actor:a.id,target:t.id,type:extraEffect?22:5,value:r.healed});engine.emit({code:172,subject:t.id,other:a.id,value:r.healed})}}else if(r.status==='revive'&&r.hp>0){trace?.events.push({index:hitIndex,target:t.id,type:7,value:0},{index:hitIndex,target:t.id,type:extraEffect?22:5,value:r.hp});recovery.push({round,actor:a.id,target:t.id,type:7,value:0},{round,actor:a.id,target:t.id,type:extraEffect?22:5,value:r.hp});engine.emit({code:152,subject:t.id,other:a.id})}
  };
  const perform=(units:Fighter[],a:Fighter,round:number,plan:{atype?:number;skillId?:number;targets:number[];groups:{effects:number[]}[]})=>{
@@ -63,6 +63,7 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  const r=applyBuff(a,t,cfg,{random,key:()=>++key,fresh:ending||done.has(t.id),chance:ch,unchecked:checked,allowRevive:cfg.StartEffect.some(x=>x.Items[0]===112),condition:rows=>checked||startCondition(rows,a,t,ctx.overflow,code=>issues.add("buff_condition:"+code+":"+cfg.Id)),baseValue:p=>baseValue(a,t,p,ctx),instant:items=>{if(instant.has(items[0]))resolve(a,t,{tags:cfg.Tags,params:cfg.Params},items,ctx,round,metadata);else issues.add('start_effect:'+items[0])}});
  if(r.status.startsWith('unsupported'))issues.add('buff:'+cfg.Id);
  else if(r.status==='applied'&&cfg.Round>0&&t.hp>0){
+ if(descriptionEvent(cfg.Id,[125]))for(let i=0;i<r.added;i++)trace?.events.push({index:hitIndex,target:t.id,type:25,value:cfg.Id});
  engine.emit({code:157,subject:t.id,other:a.id,buff:cfg});
  if(cfg.Tags.includes(13)||cfg.Tags.includes(4)){engine.emit({code:124,subject:a.id,other:t.id,buff:cfg});engine.emit({code:146,subject:t.id,other:a.id,buff:cfg})}
  if('replacement' in r&&r.replacement!==undefined){const old=t.buffs.find(x=>x.id===cfg.Id);const next=BuffBase[r.replacement];if(old&&next){removeBuff(t,old.key);if(t.hp>0)attach(next,depth+1,true)}else if(!next)issues.add('missing_replacement:'+r.replacement)}
@@ -103,7 +104,7 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  const drain=(units:Fighter[],round:number)=>{while(queue.length){const q=queue.shift()!;if(extra>=12||winner(units)||q.actor.hp<=0||hasTag(q.actor,4))continue;const skill=actionSkills[q.sid];if(!skill){issues.add('extra_skill:'+q.sid);continue}const targets=q.event?eventTargets(units,q.actor,skill,q.event,random):selectTargets(units,q.actor,skill,[],random);if(!targets.length)continue;extra++;animated(units,q.actor,round,{skillId:q.sid,atype:q.atype,targets,groups:skill.Effects.map(x=>({effects:x.Items}))},false)}};
  const result=runRounds(input,maxRounds,{
  speed:u=>effectiveAttr(u as Fighter,3),
- start:(units,round)=>{acted.clear();done.clear();ending=false;engine=makeEngine(units,round);extra=0;
+ start:(units,round)=>{for(const u of units)u.onBuffRemoved=(b,n)=>{if(!b.temp&&descriptionEvent(b.id,[125]))for(let i=0;i<n;i++)trace?.events.push({index:hitIndex,target:u.id,type:26,value:b.id})};acted.clear();done.clear();ending=false;engine=makeEngine(units,round);extra=0;
  if(round===1)for(const id of turnOrder(units,u=>effectiveAttr(u as Fighter,3))){const a=units.find(u=>u.id===id)!;for(const sid of a.passives??[]){if(a.hp<=0)break;const skill=actionSkills[sid];if(!skill){issues.add('missing_passive:'+sid);continue}perform(units,a,round,{skillId:sid,targets:selectTargets(units,a,skill,[],random),groups:skill.Effects.map(x=>({effects:x.Items}))})}}
  engine.emit({code:501});for(const u of units)dropTemp(u);drain(units,round);
  },
@@ -115,5 +116,6 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  },
  end:(units,round)=>{extra=0;ending=true;engine.endRound();drain(units,round)}
  });
+ for(const u of result.units)delete u.onBuffRemoved;
  return {...result,summary:summarizeBattle(result.units,result.result,result.rounds),actions,journal,descriptions,shields,recovery,issues:[...issues],parityReady:false};
 }
