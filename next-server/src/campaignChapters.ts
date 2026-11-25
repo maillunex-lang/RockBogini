@@ -111,3 +111,25 @@ export function campaignComplete(stage:number,clears:ReadonlySet<number>){
  const next=rewards[String(stage)]?.next??0;
  return next===0&&clears.has(stage);
 }
+
+export type CampaignWorldRow={id:number;chapterIds:number[];owningMap:number;position:number[]};
+
+/** World/area status from contained AdventureChapter statuses (original WorldMapPanel mask/check). */
+export function worldStatus(world:CampaignWorldRow,stage:number,clears?:ReadonlySet<number>):'cleared'|'current'|'locked'{
+ const chapters=world.chapterIds
+  .map(id=>cfg.chapters.find(c=>c.id===id))
+  .filter((c):c is CampaignChapterRow=>!!c);
+ if(!chapters.length)return 'locked';
+ const statuses=chapters.map(c=>chapterStatus(c,stage,clears));
+ if(statuses.every(s=>s==='cleared'))return 'cleared';
+ if(statuses.some(s=>s==='current'||s==='cleared'))return 'current';
+ return 'locked';
+}
+
+export function currentWorldId(stage:number,clears?:ReadonlySet<number>):number|null{
+ for(const w of cfg.worlds){
+  if(worldStatus(w,stage,clears)==='current')return w.id;
+ }
+ const cleared=cfg.worlds.filter(w=>worldStatus(w,stage,clears)==='cleared');
+ return cleared.length?cleared[cleared.length-1].id:cfg.worlds[0]?.id??null;
+}

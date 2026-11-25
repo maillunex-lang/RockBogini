@@ -8,12 +8,15 @@ import {
  canChallengeMap,
  chapterForMap,
  chapterStatus,
+ currentWorldId,
  mainLineChain,
  mapStatus,
  mapsForChapter,
  uiClampMapId,
  campaignChapters,
+ worldStatus,
 } from '../src/campaignChapters.js';
+import {mapWorldName} from '../src/campaignLocales.js';
 
 test('main-line chain reaches terminal 105701 with next 0',()=>{
  const chain=mainLineChain();
@@ -62,6 +65,18 @@ test('map/chapter status uses NextId chain and clears, not raw id comparison',()
  assert.equal(chapterStatus(ch1,105701,clears),'cleared');
 });
 
+test('world status and MapWorld locale names from original locale export',()=>{
+ const clears=new Set<number>();
+ const w1=campaignChapters.worlds[0];
+ assert.equal(w1.id,1);
+ assert.equal(worldStatus(w1,100101,clears),'current');
+ assert.equal(worldStatus(w1,105701,clears),'cleared');
+ assert.equal(currentWorldId(100101,clears),1);
+ assert.equal(mapWorldName(1),'Town of Porte');
+ assert.equal(mapWorldName(30),"Warrior's Ravine");
+ assert.equal(campaignChapters.worldCount,30);
+});
+
 test('authenticated campaign progress lists chapters and terminal stage',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);const guest=await createGuest(s);const app=await buildApp(s);
  const headers={authorization:'Bearer '+guest.token};
@@ -72,8 +87,12 @@ test('authenticated campaign progress lists chapters and terminal stage',{skip:!
   const body=res.json();
   assert.equal(body.stage,100101);
   assert.equal(body.chapterCount,56);
+  assert.equal(body.worldCount,30);
   assert.equal(body.uiClampMapId,105640);
   assert.equal(body.currentChapterId,1);
+  assert.equal(body.currentWorldId,1);
+  assert.equal(body.worlds[0].name,'Town of Porte');
+  assert.equal(body.worlds[0].status,'current');
   assert.equal(body.campaignComplete,false);
   assert.equal(body.maps[0].canChallenge,true);
   assert.equal(body.maps[1].canChallenge,false);

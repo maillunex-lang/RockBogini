@@ -4,7 +4,7 @@ VPS is the development stand; GitHub main is the published source mirror. **SING
 
 ## Актуальный срез: 2026-11-25
 
-Активная задача: **NEXT-014.1**. NEXT-013 закрыт (D-011). Передача Cursor: docs/CURSOR_HANDOFF.md.
+Активная задача: **NEXT-014.2**. NEXT-013 закрыт (D-011). Передача Cursor: docs/CURSOR_HANDOFF.md.
 10 из 28 основных этапов закрыты, 4 в работе, 1 отложен, 13 ожидают. (авто из roadmap.json)
 NEXT-012 принят только в проверенном эталонном объёме для подключения визуализации; общий статус остаётся in_progress.
 Проверено: эталонный бой + 77/77 серверных тестов после кампанийного API.
@@ -12,8 +12,8 @@ NEXT-012 принят только в проверенном эталонном 
 | Подэтап | Состояние |
 |---|---|
 | 013.1–013.8 | CLOSED (D-011): owner visual QA; residuals known |
-| 014.1 | АКТИВНО/partial: chapters export, GET /v1/campaign, CampaignScreen |
-| 014.2+ | pending: world map UX, story/tutorial, bosses polish, localization names |
+| 014.1 | done: chapters export, GET /v1/campaign, CampaignScreen |
+| 014.2 | АКТИВНО/partial: MapWorld карта + locale names; story/tutorial/boss polish open |
 
 
 | ID | Этап | Статус | Объём | Доказательство |
@@ -31,7 +31,7 @@ NEXT-012 принят только в проверенном эталонном 
 | NEXT-011 | Формирование отряда | done | Формирование и сохранение стартового отряда; стартовый объём принят. | reports/NEXT-011-server-test.log; reports/NEXT-011-server-deploy.log; reports/NEXT-011-ui-browser.log; reports/NEXT-011-ui-publish.log; reports/NEXT-011-units-test.log; reports/NEXT-011-complete-test.log |
 | NEXT-012 | Пошаговый боевой движок | in_progress | Эталонное боевое ядро принято для визуальной интеграции: 681/681 боёв, 75/75 тестов. Полная коммерческая идентичность, дополнительные модификаторы и некампанийные режимы не подтверждены. | reports/NEXT-012.31.5-acceptance.json; reports/NEXT-012.31.5.1-metadata-*.json; reports/NEXT-012.31.5.1-tests.log |
 | NEXT-013 | Визуализация боя | done | Закрыт по D-011 (визуальная приёмка владельцем). Технические остатки 013.8 известны. | reports/NEXT-013.*; D-011 |
-| NEXT-014 | Сюжетная кампания | in_progress | 014.1 partial: 56 глав AdventureChapter, GET /v1/campaign, CampaignScreen; challenge/settle уже были. Обучение/сюжет/world map/имена локалей открыты. | reports/NEXT-014.1-* |
+| NEXT-014 | Сюжетная кампания | in_progress | 014.2 partial: MapWorld UI + MapWorld_name_* locales; 014.1 chapters API/UI закрыт. Обучение/сюжет/WinBoard/RU place names open. | reports/NEXT-014.1-* |
 | NEXT-015 | Инвентарь и предметы | pending | Валюты, материалы, осколки, расходники |  |
 | NEXT-016 | Развитие героев | pending | Уровни, звёзды, ранги, таланты, навыки, пробуждение, сброс |  |
 | NEXT-017 | Экипировка | pending | Слоты, улучшение, комплекты, параметры |  |
@@ -275,3 +275,5 @@ NEXT-013.5.1 partial: per-actor HP bars, buff count, damage/heal/crit colors, ev
 
 2026-11-25 NEXT-013 closed via D-011 owner visual acceptance. NEXT-014.1 partial: campaign-chapters export (56/30, orphan 105701), GET /v1/campaign, CampaignScreen, City nav «Кампания», 77/77 tests, testtest publish.
 2026-11-25 NEXT-014.1.1: fixed TypeError buffs not iterable — report.heroes lacked buffs; HUD init crashed after first unit so enemies missing. Normalized buffs in validateReport/createHud/applyHealth. reports/NEXT-014.1.1-*.
+
+2026-11-25 NEXT-014.2: world map dual-view, MapWorld locales, worldStatus API, 81/81 tests, publish. reports/NEXT-014.2-*.

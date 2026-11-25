@@ -1,0 +1,21 @@
+{
+ "worldCount": 30,
+ "w0": {
+  "id": 1,
+  "name": "Town of Porte",
+  "nameKey": "MapWorld_name_1",
+  "position": [
+   -660,
+   -575
+  ],
+  "owningMap": 1,
+  "chapterIds": [
+   1,
+   2
+  ],
+  "status": "current",
+  "clearedChapters": 0,
+  "chapterCount": 2
+ },
+ "currentWorldId": 1
+}

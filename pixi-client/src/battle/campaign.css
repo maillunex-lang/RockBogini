@@ -79,3 +79,77 @@
 .campaign-screen header>button,.campaign-screen button{
  font:inherit;
 }
+.campaign-header-actions{
+ display:flex;
+ flex-wrap:wrap;
+ gap:10px;
+ align-items:center;
+}
+.campaign-view-toggle,.campaign-sheet-nav{
+ display:flex;
+ gap:6px;
+ flex-wrap:wrap;
+}
+.campaign-view-toggle button,.campaign-sheet-nav button{
+ padding:8px 12px;
+ border:1px solid rgba(232,196,140,.35);
+ background:rgba(40,30,22,.7);
+ color:inherit;
+ cursor:pointer;
+}
+.campaign-view-toggle button[aria-pressed="true"],
+.campaign-sheet-nav button[aria-pressed="true"]{
+ border-color:#e8c48c;
+ background:rgba(90,58,28,.85);
+}
+.campaign-world-map{
+ margin-top:8px;
+ border:1px solid rgba(232,196,140,.25);
+ background:
+  radial-gradient(ellipse at 50% 30%,rgba(70,48,28,.55),transparent 60%),
+  linear-gradient(180deg,rgba(24,18,14,.9),rgba(12,10,8,.95));
+ overflow:auto;
+ padding:12px;
+}
+.campaign-world-plane{
+ position:relative;
+ width:min(100%,920px);
+ margin:0 auto;
+ aspect-ratio:var(--map-aspect,16/9);
+ min-height:320px;
+}
+.campaign-world-node{
+ position:absolute;
+ transform:translate(-50%,-50%);
+ min-width:108px;
+ max-width:160px;
+ padding:10px 12px;
+ border:1px solid rgba(232,196,140,.4);
+ background:rgba(36,28,20,.88);
+ color:inherit;
+ text-align:left;
+ cursor:pointer;
+ transition:transform .18s ease,border-color .18s ease,opacity .18s ease;
+}
+.campaign-world-node:hover:not(:disabled){
+ transform:translate(-50%,-54%);
+ border-color:#e8c48c;
+}
+.campaign-world-node[data-status="current"]{
+ border-color:#e8c48c;
+ box-shadow:0 0 0 1px rgba(232,196,140,.35);
+}
+.campaign-world-node[data-status="cleared"]{
+ border-color:rgba(120,180,120,.5);
+}
+.campaign-world-node[data-status="locked"],
+.campaign-world-node:disabled{
+ opacity:.42;
+ cursor:not-allowed;
+}
+.campaign-world-node strong,.campaign-world-node span{display:block}
+.campaign-world-node span{font-size:.8rem;opacity:.82;margin-top:4px}
+@media (max-width:640px){
+ .campaign-world-plane{min-height:280px;width:100%}
+ .campaign-world-node{min-width:88px;max-width:120px;padding:8px}
+}

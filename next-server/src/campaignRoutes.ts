@@ -8,10 +8,13 @@ import {
  canChallengeMap,
  chapterForMap,
  chapterStatus,
+ currentWorldId,
  mapStatus,
  mapsForChapter,
  uiClampMapId,
+ worldStatus,
 } from './campaignChapters.js';
+import {mapWorldName} from './campaignLocales.js';
 
 export async function campaignRoutes(app:FastifyInstance,s:Storage){
  app.get<{Querystring:{chapterId?:string}}>('/v1/campaign',async(req,reply)=>{
@@ -59,6 +62,24 @@ export async function campaignRoutes(app:FastifyInstance,s:Storage){
     terminal:m.next===0,
    };
   });
+  const worlds=campaignChapters.worlds.map(w=>{
+   const status=worldStatus(w,stage,clears);
+   const chapterStatuses=w.chapterIds.map(id=>{
+    const ch=campaignChapters.chapters.find(c=>c.id===id);
+    return ch?chapterStatus(ch,stage,clears):'locked';
+   });
+   return {
+    id:w.id,
+    name:mapWorldName(w.id),
+    nameKey:`MapWorld_name_${w.id}`,
+    position:w.position,
+    owningMap:w.owningMap,
+    chapterIds:w.chapterIds,
+    status,
+    clearedChapters:chapterStatuses.filter(s=>s==='cleared').length,
+    chapterCount:w.chapterIds.length,
+   };
+  });
   return {
    stage,
    level,
@@ -73,10 +94,12 @@ export async function campaignRoutes(app:FastifyInstance,s:Storage){
    chapterCount:campaignChapters.chapterCount,
    worldCount:campaignChapters.worldCount,
    currentChapterId:current?.id??null,
+   currentWorldId:currentWorldId(stage,clears),
    focusChapterId:focus.id,
+   focusWorldId:focus.worldId??null,
    chapters,
    maps,
-   worlds:campaignChapters.worlds,
+   worlds,
   };
  });
 }
