@@ -31,7 +31,7 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  journal.push({round,actor:a.id,target:t.id,code:items[0],hp:t.hp});
  const emit=(code:number,subject:Fighter,other:Fighter)=>engine.emit({...metadata,code,subject:subject.id,other:other.id,value:r.status==="damage"?r.damage:r.status==="heal"?r.healed:undefined,atype:metadata.atype??0});
  if(r.status==='damage'){
- if(r.absorbed>0)shields.push({round,actor:a.id,target:t.id,type:4,value:r.absorbed});
+ if(r.absorbed>0){shields.push({round,actor:a.id,target:t.id,type:4,value:r.absorbed});trace?.events.push({index:split?1:hitIndex,target:t.id,type:4,value:r.absorbed})}
  if(r.guardBuffId!==undefined){const d=descriptionEvent(r.guardBuffId,[125]);if(d)descriptions.push({round,actor:a.id,target:t.id,...d})}
  if(acc&&[101,102,105,106].includes(items[0])){acc.attacked.set(t.id,(acc.attacked.get(t.id)??0)+r.damage);if(r.event==='crit')acc.crit=true}
  if(r.event==='dodge'){trace?.events.push({index:split?1:hitIndex,target:t.id,type:6,value:0});emit(158,t,a);return}
@@ -42,8 +42,8 @@ export function simulate(input:readonly Fighter[],random:()=>number,maxRounds=15
  if(items[0]===118)emit(147,t,a);
  else if([101,102,105,106].includes(items[0])){emit(143,t,a);if(items[0]===101||items[0]===102)emit(items[0]===101?121:122,a,t);emit(129,a,t);if(r.event==='crit'){emit(128,a,t);emit(145,t,a)}}
 
- if(r.killed&&t.hp<=0){if([101,102,105,106].includes(items[0]))emit(148,t,a);emit(150,t,a);if(t.hp<=0){emit(151,t,a);if([101,102,105,106].includes(items[0]))emit(149,t,a);if(t.hp<=0)t.buffs=t.buffs.filter(holdAfterDeath);emit(125,a,t);if(items[0]===101||items[0]===102)emit(items[0]===101?126:127,a,t)}}
- }else if(r.status==='heal'){if(r.healed+r.overflow>0)acc?.healed.add(t.id);if(r.healed>0){recovery.push({round,actor:a.id,target:t.id,type:extraEffect?22:5,value:r.healed});engine.emit({code:172,subject:t.id,other:a.id,value:r.healed})}}else if(r.status==='revive'&&r.hp>0){recovery.push({round,actor:a.id,target:t.id,type:7,value:0},{round,actor:a.id,target:t.id,type:extraEffect?22:5,value:r.hp});engine.emit({code:152,subject:t.id,other:a.id})}
+ if(r.killed&&t.hp<=0){if([101,102,105,106].includes(items[0]))emit(148,t,a);emit(150,t,a);if(t.hp<=0){trace?.events.push({index:hitIndex,target:t.id,type:27,value:0});emit(151,t,a);if([101,102,105,106].includes(items[0]))emit(149,t,a);if(t.hp<=0)t.buffs=t.buffs.filter(holdAfterDeath);emit(125,a,t);if(items[0]===101||items[0]===102)emit(items[0]===101?126:127,a,t)}}
+ }else if(r.status==='heal'){if(r.healed+r.overflow>0)acc?.healed.add(t.id);if(r.healed>0){trace?.events.push({index:hitIndex,target:t.id,type:extraEffect?22:5,value:r.healed});recovery.push({round,actor:a.id,target:t.id,type:extraEffect?22:5,value:r.healed});engine.emit({code:172,subject:t.id,other:a.id,value:r.healed})}}else if(r.status==='revive'&&r.hp>0){trace?.events.push({index:hitIndex,target:t.id,type:7,value:0},{index:hitIndex,target:t.id,type:extraEffect?22:5,value:r.hp});recovery.push({round,actor:a.id,target:t.id,type:7,value:0},{round,actor:a.id,target:t.id,type:extraEffect?22:5,value:r.hp});engine.emit({code:152,subject:t.id,other:a.id})}
  };
  const perform=(units:Fighter[],a:Fighter,round:number,plan:{atype?:number;skillId?:number;targets:number[];groups:{effects:number[]}[]})=>{
  const ctx:ExecutionContext={random,banCrit:hasTag(a,9)};

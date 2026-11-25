@@ -353,3 +353,5 @@ NEXT-012.25 partial: added animated action hitpoint damage/dodge trace, original
 Landing refresh: eight original Spine models in two showcases, rotating burst attacks, decorative particles, offscreen ticker suspension, NEXT-012.25 metrics. TypeScript/Vite and HTTP 200 verified; browser visual QA pending.
 
 Landing: six original UIHeroAvatar Dynamic portraits, touch pan-y and pointer-events none on canvas. Build and HTTP verified; browser/mobile QA pending.
+
+NEXT-012.26 partial: added shield, heal, revive and death to animated hitpoint trace. 72/72 boss fixtures match expanded health-event sequence (838 heals, 403 shields, 25 deaths; no revives or extra heals in sample). 70/70 tests. Buff lifecycle, instant pages, revive coverage and API wiring pending; gate closed.

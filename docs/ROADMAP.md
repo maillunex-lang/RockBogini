@@ -200,3 +200,5 @@ NEXT-012.23: 80 synthetic six-v-six comparisons using 24 original hero IDs, leve
 NEXT-012.24: reference source confirms start effects 301/372/403/414/505/506/615 skipped and unknown trigger 11/start condition 8 false. Retained diagnostics. 72/72 real AllianceTest boss-map fixtures match final metrics and animated action sequence (round, actor, skill, targets). Synthetic attackers, not full guild handler; campaign bosses and hitpoint event parity pending. 70/70 tests. Gate closed.
 
 NEXT-012.25 partial: added animated action hitpoint damage/dodge trace, original split and extra damage classification, fixed effect chance before condition. 72/72 boss damage-event sequences and 372/372 final metrics match, 70/70 tests. Healing/shield/death/buff event ordering, instant pages, API wiring and campaign bosses remain pending; gate closed.
+
+NEXT-012.26 partial: added shield, heal, revive and death to animated hitpoint trace. 72/72 boss fixtures match expanded health-event sequence (838 heals, 403 shields, 25 deaths; no revives or extra heals in sample). 70/70 tests. Buff lifecycle, instant pages, revive coverage and API wiring pending; gate closed.
