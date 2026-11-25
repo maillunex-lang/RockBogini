@@ -1,7 +1,7 @@
 # Актуальное состояние 2026-11-25
 
-Активная задача: **NEXT-016.3** (talents). Live https://rikagro.ru/testtest/.
-Проверено: heroes 5/5; publish ok.
+Активная задача: **NEXT-016.4** (jobs). Live https://rikagro.ru/testtest/.
+Проверено: heroes 6/6; publish ok.
 
 | Подэтап | Состояние |
 |---|---|
@@ -9,8 +9,8 @@
 | 014.1–014.14 | done |
 | 014 tails | done: RU StoryChapter, plot stub, settle hotfix |
 | 015 MVP–015.2 | done: inventory + filters + icons/use/sell |
-| 016.1–016.2 | done: level/star/fodder |
-| 016.3 | done: PVE talent + reset (★10+) |
+| 016.1–016.3 | done: level/star/fodder/talent |
+| 016.4 | done: job unlock/switch/reset (★12) |
 
 
 ---

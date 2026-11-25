@@ -451,3 +451,5 @@ NEXT-013.8 in_progress: inventoried 10 invalid common-skill ActionIndex values; 
 2026-11-25 NEXT-016.2: star fodder + MaxStarLevel; auto-pick; publish. reports/NEXT-016.2.md.
 
 2026-11-25 NEXT-016.3: PVE talent upgrade/reset; publish. reports/NEXT-016.3.md.
+
+2026-11-25 NEXT-016.4: hero job unlock/switch/reset (★12 roots); publish. reports/NEXT-016.4.md.

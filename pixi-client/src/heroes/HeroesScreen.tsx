@@ -13,16 +13,22 @@ type StarPreview={
 };
 
 type TalentInfo={pve:number;pvp:number;max:number;pveUnlocked:boolean;pvpUnlocked:boolean};
+type JobNode={
+ index:number;jobId:number;pre:number;unlocked:boolean;canUnlock:boolean;
+ materials:[number,number][];condition:number[][];skill:number;
+};
 type Hero={
  Sid:number;HeroId:number;Level:number;StarLevel:number;Power:number;
  Attrs:Record<string,number>;Skills:number[];
  PVETalentLevel?:number;PVPTalentLevel?:number;
+ Job?:number;JobMap?:Record<string,number>;
  base:{attrs:Record<string,number>;power:number};
  skillSlots:{id:number;unlockLevel:number;unlocked:boolean}[];
  maxLevel?:number;
  maxStar?:number;
  starPreview?:StarPreview;
  talent?:TalentInfo;
+ jobs?:JobNode[];
 };
 
 const ATTR_LABEL:Record<string,string>={'0':'Атака','1':'ОЗ','2':'Защита','3':'Скорость'};
@@ -63,6 +69,8 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
    else if(path==='star')setStatus(`Звезда → ${j.hero.StarLevel}${j.fodder?.length?` · списано ${j.fodder.length} героев`:''}`);
    else if(path==='talent')setStatus(`Талант PVE → ${j.hero.PVETalentLevel??j.hero.talent?.pve??'?'}`);
    else if(path==='talent/reset')setStatus('Талант сброшен');
+   else if(path==='job')setStatus(j.unlocked?`Профессия открыта → ${j.hero.Job}`:`Профессия → ${j.hero.Job}`);
+   else if(path==='job/reset')setStatus('Ветки профессий сброшены');
    else setStatus('Готово');
   }catch(e){
    setStatus(e instanceof Error?e.message:'Не удалось улучшить героя');
@@ -110,6 +118,29 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
    {!h.talent?.pveUnlocked&&<p className="hero-star-req">Таланты открываются с ★{10}+ (сейчас ★{h.StarLevel}).</p>}
    {h.starPreview?.needsFodder&&h.starPreview.heroMaterials.length>0&&(
     <p className="hero-star-req">Для ★{h.starPreview.nextStar}: {h.starPreview.heroMaterials.map(([t,st,n])=>`${n}× ${MAT_TYPE[t]??t} ★${st}`).join('; ')}</p>
+   )}
+   {!!h.jobs?.length&&(
+    <div className="hero-jobs">
+     <h3>Профессии {h.Job?`· активна ${h.Job}`:''}</h3>
+     <button type="button" disabled={busy||!Object.keys(h.JobMap||{}).length} onClick={()=>void grow('job/reset',h.Sid,{},'Сброс профессий…')}>
+      Сброс веток
+     </button>
+     <ul>
+      {h.jobs.map(j=>(
+       <li key={j.index}>
+        <span>#{j.index} · {j.jobId}{j.unlocked?' ✓':''}{h.Job===j.jobId?' ★':''}</span>
+        {j.unlocked?(
+         <button type="button" disabled={busy||h.Job===j.jobId} onClick={()=>void grow('job',h.Sid,{index:j.index},'Смена профессии…')}>Выбрать</button>
+        ):(
+         <button type="button" disabled={busy||!j.canUnlock} onClick={()=>void grow('job',h.Sid,{index:j.index},'Открытие профессии…')}>
+          Открыть{j.materials.length?` (${j.materials.map(([id,n])=>`${n}×${id}`).join(', ')})`:''}
+         </button>
+        )}
+       </li>
+      ))}
+     </ul>
+     {h.StarLevel<12&&<p className="hero-star-req">Корни профессий открываются с ★12 (сейчас ★{h.StarLevel}).</p>}
+    </div>
    )}
    {Object.keys(h.Attrs||{}).length===0?<p>Характеристики ещё не рассчитаны</p>:(
     <dl>{Object.entries(ATTR_LABEL).map(([k,n])=><React.Fragment key={k}><dt>{n}</dt><dd>{h.Attrs[k]??'—'}</dd></React.Fragment>)}</dl>

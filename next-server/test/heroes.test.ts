@@ -5,7 +5,7 @@ import {createGuest} from '../src/auth.js';
 import {buildApp} from '../src/app.js';
 import {starterHeroes} from '../src/starterHeroes.js';
 
-const strip=(h:any)=>{const {base,skillSlots,maxLevel,maxStar,starPreview,talent,...rest}=h;return rest};
+const strip=(h:any)=>{const {base,skillSlots,maxLevel,maxStar,starPreview,talent,jobs,...rest}=h;return rest};
 
 test('starter collection is atomic, persistent and isolated',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);const a=await createGuest(s),b=await createGuest(s);const app=await buildApp(s);
@@ -123,5 +123,48 @@ test('POST /v1/heroes/:sid/talent upgrades PVE talent with common items',{skip:!
   assert.equal(reset.statusCode,200);
   assert.equal(reset.json().hero.PVETalentLevel,0);
   assert.ok(reset.json().refund.some((c:[number,number])=>c[0]===3&&c[1]===50));
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
+});
+
+test('POST /v1/heroes/:sid/job unlocks root at ★12 and resets branches',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);const a=await createGuest(s);const app=await buildApp(s);
+ try{
+  await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}});
+  // 11501 job tree roots need ★12 + item 5500001
+  const low={Sid:6000,HeroId:11501,Level:1,StarLevel:11,Power:0,Locked:false,Job:0,JobMap:{},Attrs:{},Skills:[]};
+  await s.pg.query(
+   'INSERT INTO player_heroes(account_id,sid,hero_id,level,star,power,locked,state) VALUES($1,6000,11501,1,11,0,false,$2)',
+   [a.id,JSON.stringify(low)],
+  );
+  const st={Sid:6001,HeroId:11501,Level:1,StarLevel:12,Power:0,Locked:false,Job:0,JobMap:{},Attrs:{},Skills:[]};
+  await s.pg.query(
+   'INSERT INTO player_heroes(account_id,sid,hero_id,level,star,power,locked,state) VALUES($1,6001,11501,1,12,0,false,$2)',
+   [a.id,JSON.stringify(st)],
+  );
+  await s.pg.query(
+   `INSERT INTO player_items(account_id,item_id,amount) VALUES($1,5500001,5),($1,5500101,5)
+    ON CONFLICT(account_id,item_id) DO UPDATE SET amount=EXCLUDED.amount`,
+   [a.id],
+  );
+  const locked=await app.inject({method:'POST',url:'/v1/heroes/6000/job',headers:{authorization:'Bearer '+a.token},payload:{index:0}});
+  assert.equal(locked.statusCode,409);
+  assert.equal(locked.json().error,'job_locked');
+  const root=await app.inject({method:'POST',url:'/v1/heroes/6001/job',headers:{authorization:'Bearer '+a.token},payload:{index:0}});
+  assert.equal(root.statusCode,200,JSON.stringify(root.json()));
+  assert.equal(root.json().unlocked,true);
+  assert.equal(root.json().hero.Job,500001);
+  assert.equal(root.json().hero.JobMap['500001'],1);
+  const branch=await app.inject({method:'POST',url:'/v1/heroes/6001/job',headers:{authorization:'Bearer '+a.token},payload:{index:1}});
+  assert.equal(branch.statusCode,200,JSON.stringify(branch.json()));
+  assert.equal(branch.json().hero.Job,500101);
+  const reset=await app.inject({method:'POST',url:'/v1/heroes/6001/job/reset',headers:{authorization:'Bearer '+a.token},payload:{}});
+  assert.equal(reset.statusCode,200);
+  assert.equal(reset.json().hero.JobMap['500001'],1);
+  assert.equal(reset.json().hero.JobMap['500101'],undefined);
+  assert.ok(reset.json().refund.some((c:[number,number])=>c[0]===5500101&&c[1]===1));
+  const switchRoot=await app.inject({method:'POST',url:'/v1/heroes/6001/job',headers:{authorization:'Bearer '+a.token},payload:{index:0}});
+  assert.equal(switchRoot.statusCode,200);
+  assert.equal(switchRoot.json().switched,true);
+  assert.equal(switchRoot.json().hero.Job,500001);
  }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
 });
