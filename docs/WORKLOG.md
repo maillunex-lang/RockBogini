@@ -443,3 +443,5 @@ NEXT-013.8 in_progress: inventoried 10 invalid common-skill ActionIndex values; 
 2026-11-25 NEXT-014.5–014.14 batch: MapAdventure Type=2 (449 bosses), enemy/reward preview, module+item names, WinBoard, campaignComplete, chapter heros, stage labels, tutorial skip; campaign-map-meta.json; 84/84 tests; API deploy + testtest publish. reports/NEXT-014.5-14-*.
 2026-11-25 Settle white-screen hotfix (Pixi teardown/ResultScreen boundary) published.
 2026-11-25 Plan A: RU StoryChapter titles, plot-video stub, GET /v1/inventory + InventoryScreen; 86/86; publish. reports/NEXT-014-tails-015-*.
+
+2026-11-25 NEXT-015.2: ItemIcon hardlinks (3724), POST use/sell, InventoryScreen actions; publish testtest. reports/NEXT-015.2.md.

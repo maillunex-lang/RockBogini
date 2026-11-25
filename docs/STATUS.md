@@ -1,7 +1,7 @@
 # Актуальное состояние 2026-11-25
 
-Активная задача: **NEXT-015** (MVP инвентарь). NEXT-014 tails закрыты (RU story + plot stub). Live https://rikagro.ru/testtest/.
-Проверено: 86/86 серверных тестов; inventory smoke + plot pending.
+Активная задача: **NEXT-015** (015.2 icons/use/sell). Live https://rikagro.ru/testtest/.
+Проверено: inventory 3/3 + suite 87/88 (OTP flaky unrelated); publish ok.
 
 | Подэтап | Состояние |
 |---|---|
@@ -9,6 +9,8 @@
 | 014.1–014.14 | done |
 | 014 tails | done: RU StoryChapter, plot stub, settle hotfix |
 | 015 MVP | done: GET /v1/inventory + InventoryScreen |
+| 015.1 | done: kind filters / detail |
+| 015.2 | done: ItemIcon hardlinks, use Fixed/Manual, sell overrides |
 
 
 ---

@@ -4,9 +4,11 @@
 set -euo pipefail
 ROOT=/home/gamedev/rocbogini/pixi-client
 WWW=/var/www/testtest
-STATIC_DIRS=(skill-effects hero-models battle-sounds battle-backgrounds battle-hud profile landing-portraits recovered-effects squad city library hero)
+STATIC_DIRS=(skill-effects hero-models battle-sounds battle-backgrounds battle-hud profile item-icons landing-portraits recovered-effects squad city library hero)
 
 cd "$ROOT"
+# Hardlink ItemIcon natives → public/item-icons (no byte copies)
+python3 tools/import_item_icons.py
 VITE_NEXT_API_URL=/testtest/api npm run build -- --base=/testtest/
 
 # Reclaim dist duplicates: hardlink immutable public assets instead of second full copy.
