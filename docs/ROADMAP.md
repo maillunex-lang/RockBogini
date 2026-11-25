@@ -4,7 +4,7 @@ VPS is the development stand; GitHub main is the published source mirror. **SING
 
 ## Актуальный срез: 2026-11-25
 
-Активная задача: **NEXT-016.2**. Далее 016.3 talents. Передача Cursor: docs/CURSOR_HANDOFF.md.
+Активная задача: **NEXT-016.3**. Далее jobs/awaken или NEXT-017. Передача Cursor: docs/CURSOR_HANDOFF.md.
 10 из 28 основных этапов закрыты, 4 в работе, 1 отложен, 13 ожидают. (авто из roadmap.json)
 NEXT-012 принят только в проверенном эталонном объёме для подключения визуализации; общий статус остаётся in_progress.
 Проверено: inventory use/sell + icons; suite 87/88.
@@ -34,7 +34,7 @@ NEXT-012 принят только в проверенном эталонном 
 | NEXT-013 | Визуализация боя | done | Закрыт по D-011 (визуальная приёмка владельцем). Технические остатки 013.8 известны. | reports/NEXT-013.*; D-011 |
 | NEXT-014 | Сюжетная кампания | in_progress | 014.1–014.14 + tails: RU StoryChapter, plot stub. Finger-hint overlays / real plot video remain. | reports/NEXT-014-tails-015-*; reports/NEXT-014.5-14-* |
 | NEXT-015 | Инвентарь и предметы | in_progress | 015.2: icons hardlink, Fixed/Manual use, sell overrides. Random/event consume open. | reports/NEXT-015.2.md; reports/NEXT-015.1.md |
-| NEXT-016 | Развитие героев | in_progress | 016.2: fodder star + MaxStarLevel. Talents/awaken open. | reports/NEXT-016.2.md; reports/NEXT-016.1.md |
+| NEXT-016 | Развитие героев | in_progress | 016.3: PVE talent + reset. Jobs/luck/awaken open. | reports/NEXT-016.3.md; reports/NEXT-016.2.md |
 | NEXT-017 | Экипировка | pending | Слоты, улучшение, комплекты, параметры |  |
 | NEXT-018 | Призыв героев | pending | Баннеры, шансы, гарантии, массовый призыв, анимации |  |
 | NEXT-019 | Экономика и Idle | pending | Idle, офлайн, магазины, ресурсы, таймеры |  |

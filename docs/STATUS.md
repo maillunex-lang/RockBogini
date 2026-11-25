@@ -1,7 +1,7 @@
 # Актуальное состояние 2026-11-25
 
-Активная задача: **NEXT-016.2** (star fodder). Live https://rikagro.ru/testtest/.
-Проверено: heroes 4/4; publish ok.
+Активная задача: **NEXT-016.3** (talents). Live https://rikagro.ru/testtest/.
+Проверено: heroes 5/5; publish ok.
 
 | Подэтап | Состояние |
 |---|---|
@@ -9,8 +9,8 @@
 | 014.1–014.14 | done |
 | 014 tails | done: RU StoryChapter, plot stub, settle hotfix |
 | 015 MVP–015.2 | done: inventory + filters + icons/use/sell |
-| 016.1 | done: level-up + star without fodder |
-| 016.2 | done: MaxStarLevel + fodder star auto-pick |
+| 016.1–016.2 | done: level/star/fodder |
+| 016.3 | done: PVE talent + reset (★10+) |
 
 
 ---
