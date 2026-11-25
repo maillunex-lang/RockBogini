@@ -6,13 +6,14 @@
 Только `/home/gamedev/rocbogini/`. Live: https://rikagro.ru/testtest/.
 
 ## Сейчас
-**NEXT-016.2** star fodder. Live: https://rikagro.ru/testtest/.
+**NEXT-016.3** talents. Live: https://rikagro.ru/testtest/.
 
 ## Сделано
 - 015.* inventory
-- 016.1 level-up + free star path
-- 016.2 MaxStarLevel + fodder star (auto-pick)
+- 016.1–016.2 level/star/fodder
+- 016.3 PVE talent + reset (★10+)
 
 ## Далее
-- 016.3 talents / awakening / reset
+- 016.x jobs / luck skills / awakening
 - Finger-hint overlays / plot video player
+- NEXT-017 экипировка

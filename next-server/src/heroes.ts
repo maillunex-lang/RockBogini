@@ -15,6 +15,14 @@ import {
  starMaxLevel,
  type FodderHero,
 } from './heroGrowth.js';
+import {
+ TALENT_PVE,
+ talentCost,
+ talentField,
+ talentMaxLevel,
+ talentRefund,
+ talentUnlocked,
+} from './heroTalent.js';
 
 async function account(req:{headers:{authorization?:string}},s:Storage){
  const token=/^Bearer ([A-Za-z0-9_-]{43})$/.exec(req.headers.authorization??'')?.[1];
@@ -33,7 +41,8 @@ export async function getHeroes(s:Storage,id:string){
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }
 
-function enrich(h:{Sid:number;HeroId:number;Level:number;StarLevel:number;Power:number;Locked:boolean;Attrs?:Record<string,number>;Skills?:number[]}){
+function enrich(h:{Sid:number;HeroId:number;Level:number;StarLevel:number;Power:number;Locked:boolean;PVETalentLevel?:number;PVPTalentLevel?:number;Attrs?:Record<string,number>;Skills?:number[]}){
+ const pve=h.PVETalentLevel??0,pvp=h.PVPTalentLevel??0;
  return {
   ...h,
   base:calculateHero(h.HeroId,h.Level,h.StarLevel),
@@ -41,6 +50,11 @@ function enrich(h:{Sid:number;HeroId:number;Level:number;StarLevel:number;Power:
   maxLevel:starMaxLevel(h.StarLevel),
   maxStar:heroMaxStar(h.HeroId),
   starPreview:nextStarPreview(h.HeroId,h.StarLevel),
+  talent:{
+   pve,pvp,max:talentMaxLevel(),
+   pveUnlocked:talentUnlocked(h.Level,h.StarLevel,TALENT_PVE,pve),
+   pvpUnlocked:talentUnlocked(h.Level,h.StarLevel,2,pve),
+  },
  };
 }
 
@@ -185,5 +199,85 @@ export async function heroRoutes(app:FastifyInstance,s:Storage){
   const level=Math.min(hero.Level,cap||hero.Level);
   const updated=await saveHero(s,id,{...hero,StarLevel:newStar,Level:level});
   return {ok:true,cost:itemCost,fodder,refund:refundList,hero:updated,heroes:(await getHeroes(s,id)).map(enrich)};
+ });
+
+ app.post<{Params:{sid:string};Body:{type:number;count?:number;materials?:number[];auto?:boolean}}>('/v1/heroes/:sid/talent',{
+  schema:{
+   params:{type:'object',required:['sid'],properties:{sid:{type:'string',pattern:'^[0-9]+$'}}},
+   body:{type:'object',required:['type'],additionalProperties:false,properties:{
+    type:{type:'integer',enum:[1,2]},
+    count:{type:'integer',minimum:1,maximum:6},
+    materials:{type:'array',items:{type:'integer',minimum:1},maxItems:64},
+    auto:{type:'boolean'},
+   }},
+  },
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  const all=await getHeroes(s,id);
+  const sid=Number(req.params.sid);
+  const hero=await loadHero(s,id,sid);
+  if(!hero)return reply.code(404).send({error:'hero_not_found'});
+  const type=req.body.type;
+  const field=talentField(type);
+  if(!field)return reply.code(400).send({error:'invalid_talent_type'});
+  const cur=Number(hero[field]??0);
+  const count=req.body.count??1;
+  if(!talentUnlocked(hero.Level,hero.StarLevel,type,hero.PVETalentLevel??0)){
+   return reply.code(409).send({error:'talent_locked',needStar:10});
+  }
+  if(cur+count>talentMaxLevel())return reply.code(409).send({error:'talent_cap',max:talentMaxLevel()});
+  const cost=talentCost(cur,type,count);
+  if(!cost)return reply.code(409).send({error:'talent_cap'});
+  const pool:FodderHero[]=all.map(h=>({sid:h.Sid,heroId:h.HeroId,star:h.StarLevel,locked:!!h.Locked}));
+  const blocked=await formationBlocked(s,id);
+  let fodder:number[]=[];
+  if(cost.heroReqs.length){
+   if(req.body.auto||!req.body.materials){
+    const picked=autoPickFodder(hero.HeroId,sid,cost.heroReqs,pool,blocked);
+    if(!picked)return reply.code(409).send({error:'talent_needs_fodder',requirements:cost.heroReqs});
+    fodder=picked;
+   }else{
+    const assigned=assignFodder(hero.HeroId,sid,cost.heroReqs,req.body.materials,pool.filter(h=>!blocked.has(h.sid)));
+    if(!assigned)return reply.code(409).send({error:'invalid_fodder'});
+    fodder=assigned;
+   }
+  }
+  const refund:[number,number][]=[];
+  for(const fsid of fodder){
+   const f=await loadHero(s,id,fsid);
+   if(!f||f.Locked||blocked.has(fsid))return reply.code(409).send({error:'fodder_unavailable',sid:fsid});
+   refund.push(...levelRefund(f.Level));
+  }
+  if(fodder.length)await s.pg.query('DELETE FROM player_heroes WHERE account_id=$1 AND sid=ANY($2::int[])',[id,fodder]);
+  const refundMap=new Map<number,number>();
+  for(const [iid,n] of refund)refundMap.set(iid,(refundMap.get(iid)??0)+n);
+  await grantItems(s,id,[...refundMap.entries()]);
+  if(!(await payItems(s,id,cost.items)))return reply.code(409).send({error:'insufficient_materials',cost:cost.items});
+  const next={...hero,[field]:cur+count};
+  const updated=await saveHero(s,id,next);
+  return {ok:true,cost:cost.items,fodder,hero:updated,heroes:(await getHeroes(s,id)).map(enrich)};
+ });
+
+ app.post<{Params:{sid:string};Body:{type:number}}>('/v1/heroes/:sid/talent/reset',{
+  schema:{
+   params:{type:'object',required:['sid'],properties:{sid:{type:'string',pattern:'^[0-9]+$'}}},
+   body:{type:'object',required:['type'],additionalProperties:false,properties:{type:{type:'integer',enum:[1,2]}}},
+  },
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  await getHeroes(s,id);
+  const sid=Number(req.params.sid);
+  const hero=await loadHero(s,id,sid);
+  if(!hero)return reply.code(404).send({error:'hero_not_found'});
+  const field=talentField(req.body.type);
+  if(!field)return reply.code(400).send({error:'invalid_talent_type'});
+  const cur=Number(hero[field]??0);
+  if(cur<=0)return reply.code(409).send({error:'talent_empty'});
+  const refund=talentRefund(cur,req.body.type);
+  await grantItems(s,id,refund);
+  const updated=await saveHero(s,id,{...hero,[field]:0});
+  return {ok:true,refund,hero:updated};
  });
 }

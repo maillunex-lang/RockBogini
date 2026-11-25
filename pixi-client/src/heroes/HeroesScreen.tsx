@@ -12,14 +12,17 @@ type StarPreview={
  needsFodder:boolean;
 };
 
+type TalentInfo={pve:number;pvp:number;max:number;pveUnlocked:boolean;pvpUnlocked:boolean};
 type Hero={
  Sid:number;HeroId:number;Level:number;StarLevel:number;Power:number;
  Attrs:Record<string,number>;Skills:number[];
+ PVETalentLevel?:number;PVPTalentLevel?:number;
  base:{attrs:Record<string,number>;power:number};
  skillSlots:{id:number;unlockLevel:number;unlocked:boolean}[];
  maxLevel?:number;
  maxStar?:number;
  starPreview?:StarPreview;
+ talent?:TalentInfo;
 };
 
 const ATTR_LABEL:Record<string,string>={'0':'Атака','1':'ОЗ','2':'Защита','3':'Скорость'};
@@ -43,9 +46,9 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
   return()=>c.abort();
  },[api,token]);
 
- const grow=async(path:'level'|'star',sid:number,body?:object)=>{
+ const grow=async(path:string,sid:number,body?:object,label?:string)=>{
   if(busy)return;
-  setBusy(true);setStatus(path==='level'?'Повышение уровня…':'Повышение звезды…');
+  setBusy(true);setStatus(label??'Улучшение…');
   try{
    const r=await fetch(`${api}/v1/heroes/${sid}/${path}`,{
     method:'POST',
@@ -56,9 +59,11 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
    if(!r.ok)throw Error(j.error||path+'_'+r.status);
    if(Array.isArray(j.heroes))applyList(j.heroes);
    else setHeroes(hs=>hs.map(h=>h.Sid===sid?{...h,...j.hero}:h));
-   setStatus(path==='level'
-    ?`Уровень → ${j.hero.Level}`
-    :`Звезда → ${j.hero.StarLevel}${j.fodder?.length?` · списано ${j.fodder.length} героев`:''}`);
+   if(path==='level')setStatus(`Уровень → ${j.hero.Level}`);
+   else if(path==='star')setStatus(`Звезда → ${j.hero.StarLevel}${j.fodder?.length?` · списано ${j.fodder.length} героев`:''}`);
+   else if(path==='talent')setStatus(`Талант PVE → ${j.hero.PVETalentLevel??j.hero.talent?.pve??'?'}`);
+   else if(path==='talent/reset')setStatus('Талант сброшен');
+   else setStatus('Готово');
   }catch(e){
    setStatus(e instanceof Error?e.message:'Не удалось улучшить героя');
   }finally{setBusy(false)}
@@ -90,12 +95,19 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
    <h2>{heroDisplayName(h.HeroId)}</h2>
    <p>Ур. {h.Level}/{h.maxLevel??'—'} · ★ {h.StarLevel}/{h.maxStar??'—'} · Мощь {h.Power}</p>
    <div className="hero-growth">
-    <button type="button" disabled={busy||h.Level>=(h.maxLevel??0)} onClick={()=>void grow('level',h.Sid,{newLevel:h.Level+1})}>+1 уровень</button>
-    <button type="button" disabled={busy||h.Level>=(h.maxLevel??0)} onClick={()=>void grow('level',h.Sid,{newLevel:Math.min(h.Level+5,h.maxLevel??h.Level+5)})}>+5 уровней</button>
-    <button type="button" disabled={busy||!canStar} onClick={()=>void grow('star',h.Sid,needsFodder?{auto:true}:{})}>
+    <button type="button" disabled={busy||h.Level>=(h.maxLevel??0)} onClick={()=>void grow('level',h.Sid,{newLevel:h.Level+1},'Повышение уровня…')}>+1 уровень</button>
+    <button type="button" disabled={busy||h.Level>=(h.maxLevel??0)} onClick={()=>void grow('level',h.Sid,{newLevel:Math.min(h.Level+5,h.maxLevel??h.Level+5)},'Повышение уровня…')}>+5 уровней</button>
+    <button type="button" disabled={busy||!canStar} onClick={()=>void grow('star',h.Sid,needsFodder?{auto:true}:{},'Повышение звезды…')}>
      ★ +1{needsFodder?' (авто-корм)':''}
     </button>
+    <button type="button" disabled={busy||!h.talent?.pveUnlocked} onClick={()=>void grow('talent',h.Sid,{type:1,count:1,auto:true},'Талант…')}>
+     Талант PVE +1 ({h.talent?.pve??h.PVETalentLevel??0}/{h.talent?.max??'—'})
+    </button>
+    <button type="button" disabled={busy||!(h.talent?.pve||h.PVETalentLevel)} onClick={()=>void grow('talent/reset',h.Sid,{type:1},'Сброс таланта…')}>
+     Сброс PVE
+    </button>
    </div>
+   {!h.talent?.pveUnlocked&&<p className="hero-star-req">Таланты открываются с ★{10}+ (сейчас ★{h.StarLevel}).</p>}
    {h.starPreview?.needsFodder&&h.starPreview.heroMaterials.length>0&&(
     <p className="hero-star-req">Для ★{h.starPreview.nextStar}: {h.starPreview.heroMaterials.map(([t,st,n])=>`${n}× ${MAT_TYPE[t]??t} ★${st}`).join('; ')}</p>
    )}

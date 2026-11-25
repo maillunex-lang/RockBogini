@@ -5,7 +5,7 @@ import {createGuest} from '../src/auth.js';
 import {buildApp} from '../src/app.js';
 import {starterHeroes} from '../src/starterHeroes.js';
 
-const strip=(h:any)=>{const {base,skillSlots,maxLevel,maxStar,starPreview,...rest}=h;return rest};
+const strip=(h:any)=>{const {base,skillSlots,maxLevel,maxStar,starPreview,talent,...rest}=h;return rest};
 
 test('starter collection is atomic, persistent and isolated',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);const a=await createGuest(s),b=await createGuest(s);const app=await buildApp(s);
@@ -94,5 +94,34 @@ test('POST /v1/heroes/:sid/star consumes fodder heroes for ★5',{skip:!process.
   const left=(await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}})).json().heroes;
   assert.ok(!left.some((h:{Sid:number})=>h.Sid>=4001&&h.Sid<4012));
   assert.ok(left.some((h:{Sid:number;StarLevel:number})=>h.Sid===1003&&h.StarLevel===5));
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
+});
+
+test('POST /v1/heroes/:sid/talent upgrades PVE talent with common items',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);const a=await createGuest(s);const app=await buildApp(s);
+ try{
+  await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}});
+  // hero 4001 maxStar 12 at ★10 unlocks talents
+  const st={Sid:5001,HeroId:4001,Level:1,StarLevel:10,Power:0,Locked:false,PVETalentLevel:0,PVPTalentLevel:0,Attrs:{},Skills:[]};
+  await s.pg.query(
+   'INSERT INTO player_heroes(account_id,sid,hero_id,level,star,power,locked,state) VALUES($1,5001,4001,1,10,0,false,$2)',
+   [a.id,JSON.stringify(st)],
+  );
+  await s.pg.query(
+   `INSERT INTO player_items(account_id,item_id,amount) VALUES($1,3,500),($1,75,500)
+    ON CONFLICT(account_id,item_id) DO UPDATE SET amount=EXCLUDED.amount`,
+   [a.id],
+  );
+  const locked=await app.inject({method:'POST',url:'/v1/heroes/1001/talent',headers:{authorization:'Bearer '+a.token},payload:{type:1}});
+  assert.equal(locked.statusCode,409);
+  assert.equal(locked.json().error,'talent_locked');
+  const r=await app.inject({method:'POST',url:'/v1/heroes/5001/talent',headers:{authorization:'Bearer '+a.token},payload:{type:1,count:1}});
+  assert.equal(r.statusCode,200,JSON.stringify(r.json()));
+  assert.equal(r.json().hero.PVETalentLevel,1);
+  assert.ok(r.json().cost.some((c:[number,number])=>c[0]===3&&c[1]===50));
+  const reset=await app.inject({method:'POST',url:'/v1/heroes/5001/talent/reset',headers:{authorization:'Bearer '+a.token},payload:{type:1}});
+  assert.equal(reset.statusCode,200);
+  assert.equal(reset.json().hero.PVETalentLevel,0);
+  assert.ok(reset.json().refund.some((c:[number,number])=>c[0]===3&&c[1]===50));
  }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
 });
