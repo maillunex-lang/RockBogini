@@ -5,7 +5,7 @@ import {createGuest} from '../src/auth.js';
 import {buildApp} from '../src/app.js';
 import {starterHeroes} from '../src/starterHeroes.js';
 
-const strip=(h:any)=>{const {base,skillSlots,maxLevel,maxStar,starPreview,talent,jobs,...rest}=h;return rest};
+const strip=(h:any)=>{const {base,skillSlots,maxLevel,maxStar,starPreview,talent,jobs,luck,...rest}=h;return rest};
 
 test('starter collection is atomic, persistent and isolated',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);const a=await createGuest(s),b=await createGuest(s);const app=await buildApp(s);
@@ -166,5 +166,42 @@ test('POST /v1/heroes/:sid/job unlocks root at ★12 and resets branches',{skip:
   assert.equal(switchRoot.statusCode,200);
   assert.equal(switchRoot.json().switched,true);
   assert.equal(switchRoot.json().hero.Job,500001);
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
+});
+
+test('POST /v1/heroes/:sid/luck studies and clears slot1 at ★11',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);const a=await createGuest(s);const app=await buildApp(s);
+ try{
+  await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}});
+  const low={Sid:7000,HeroId:11501,Level:1,StarLevel:10,Power:0,Locked:false,LuckSkill1:0,LuckSkill2:0,Attrs:{},Skills:[]};
+  await s.pg.query(
+   'INSERT INTO player_heroes(account_id,sid,hero_id,level,star,power,locked,state) VALUES($1,7000,11501,1,10,0,false,$2)',
+   [a.id,JSON.stringify(low)],
+  );
+  const st={Sid:7001,HeroId:11501,Level:1,StarLevel:11,Power:0,Locked:false,LuckSkill1:0,LuckSkill2:0,Attrs:{},Skills:[]};
+  await s.pg.query(
+   'INSERT INTO player_heroes(account_id,sid,hero_id,level,star,power,locked,state) VALUES($1,7001,11501,1,11,0,false,$2)',
+   [a.id,JSON.stringify(st)],
+  );
+  await s.pg.query(
+   `INSERT INTO player_items(account_id,item_id,amount) VALUES($1,3,50000)
+    ON CONFLICT(account_id,item_id) DO UPDATE SET amount=EXCLUDED.amount`,
+   [a.id],
+  );
+  const locked=await app.inject({method:'POST',url:'/v1/heroes/7000/luck',headers:{authorization:'Bearer '+a.token},payload:{index:1,type:1,param:101}});
+  assert.equal(locked.statusCode,409);
+  assert.equal(locked.json().error,'luck_locked');
+  const study=await app.inject({method:'POST',url:'/v1/heroes/7001/luck',headers:{authorization:'Bearer '+a.token},payload:{index:1,type:1,param:101}});
+  assert.equal(study.statusCode,200,JSON.stringify(study.json()));
+  assert.equal(study.json().hero.LuckSkill1,101);
+  assert.ok(study.json().cost.some((c:[number,number])=>c[0]===3&&c[1]===2000));
+  const up=await app.inject({method:'POST',url:'/v1/heroes/7001/luck',headers:{authorization:'Bearer '+a.token},payload:{index:1,type:1,param:201}});
+  assert.equal(up.statusCode,200,JSON.stringify(up.json()));
+  assert.equal(up.json().hero.LuckSkill1,201);
+  assert.ok(up.json().cost.some((c:[number,number])=>c[0]===3&&c[1]===5000));
+  const clear=await app.inject({method:'POST',url:'/v1/heroes/7001/luck/clear',headers:{authorization:'Bearer '+a.token},payload:{index:1,type:1}});
+  assert.equal(clear.statusCode,200);
+  assert.equal(clear.json().hero.LuckSkill1,0);
+  assert.ok(clear.json().refund.some((c:[number,number])=>c[0]===3&&c[1]===3500));
  }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
 });

@@ -2,9 +2,9 @@
 .hero-growth{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
 .hero-growth button:disabled{opacity:.45;cursor:not-allowed}
 .hero-star-req{font-size:13px;opacity:.9;margin:0 0 10px}
-.hero-jobs{margin:12px 0}
-.hero-jobs ul{list-style:none;padding:0;margin:8px 0;display:flex;flex-direction:column;gap:6px}
-.hero-jobs li{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
-.hero-jobs button:disabled{opacity:.45;cursor:not-allowed}
+.hero-jobs,.hero-luck{margin:12px 0}
+.hero-jobs ul,.hero-luck ul{list-style:none;padding:0;margin:8px 0;display:flex;flex-direction:column;gap:6px}
+.hero-jobs li,.hero-luck li{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.hero-jobs button:disabled,.hero-luck button:disabled{opacity:.45;cursor:not-allowed}
 .hero-skill{padding:10px;margin:8px 0;background:#38304c;border-radius:8px}.hero-skill p{font-size:13px}.hero-skill small{color:#e8ce91}
 .formation-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:16px 0}.formation-grid button{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;font-size:12px;overflow:hidden}.formation-grid img{width:70%;max-height:75%;object-fit:contain}.formation-grid button:disabled{opacity:.25}.formation-grid button[aria-pressed=true]{border:2px solid #ffdc80}.formation-save{width:100%;margin-top:16px}

@@ -17,11 +17,13 @@ type JobNode={
  index:number;jobId:number;pre:number;unlocked:boolean;canUnlock:boolean;
  materials:[number,number][];condition:number[][];skill:number;
 };
+type LuckSlot={index:number;id:number;unlocked:boolean;needStar:number;type?:number;quality?:number;power?:number};
 type Hero={
  Sid:number;HeroId:number;Level:number;StarLevel:number;Power:number;
  Attrs:Record<string,number>;Skills:number[];
  PVETalentLevel?:number;PVPTalentLevel?:number;
  Job?:number;JobMap?:Record<string,number>;
+ LuckSkill1?:number;LuckSkill2?:number;
  base:{attrs:Record<string,number>;power:number};
  skillSlots:{id:number;unlockLevel:number;unlocked:boolean}[];
  maxLevel?:number;
@@ -29,6 +31,7 @@ type Hero={
  starPreview?:StarPreview;
  talent?:TalentInfo;
  jobs?:JobNode[];
+ luck?:{slots:LuckSlot[]};
 };
 
 const ATTR_LABEL:Record<string,string>={'0':'Атака','1':'ОЗ','2':'Защита','3':'Скорость'};
@@ -71,6 +74,8 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
    else if(path==='talent/reset')setStatus('Талант сброшен');
    else if(path==='job')setStatus(j.unlocked?`Профессия открыта → ${j.hero.Job}`:`Профессия → ${j.hero.Job}`);
    else if(path==='job/reset')setStatus('Ветки профессий сброшены');
+   else if(path==='luck')setStatus(`Удача → слот изучен (${j.hero.LuckSkill1||0}/${j.hero.LuckSkill2||0})`);
+   else if(path==='luck/clear')setStatus('Удача сброшена');
    else setStatus('Готово');
   }catch(e){
    setStatus(e instanceof Error?e.message:'Не удалось улучшить героя');
@@ -140,6 +145,32 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
       ))}
      </ul>
      {h.StarLevel<12&&<p className="hero-star-req">Корни профессий открываются с ★12 (сейчас ★{h.StarLevel}).</p>}
+    </div>
+   )}
+   {!!h.luck?.slots?.length&&(
+    <div className="hero-luck">
+     <h3>Удача</h3>
+     <ul>
+      {h.luck.slots.map(slot=>{
+       const next=slot.id===101?201:slot.id===201?301:slot.id===301?401:0;
+       return <li key={slot.index}>
+        <span>Слот {slot.index}: {slot.id?`#${slot.id} Q${slot.quality??'?'}`:'пусто'}{slot.unlocked?'':' · 🔒 ★'+slot.needStar}</span>
+        {!slot.id&&(
+         <button type="button" disabled={busy||!slot.unlocked} onClick={()=>void grow('luck',h.Sid,{index:slot.index,type:1,param:slot.index===1?101:102},'Изучение удачи…')}>
+          Изучить {slot.index===1?'#101':'#102'}
+         </button>
+        )}
+        {!!slot.id&&!!next&&(
+         <button type="button" disabled={busy||!slot.unlocked} onClick={()=>void grow('luck',h.Sid,{index:slot.index,type:1,param:next},'Усиление удачи…')}>
+          Усилить → #{next}
+         </button>
+        )}
+        {!!slot.id&&(
+         <button type="button" disabled={busy} onClick={()=>void grow('luck/clear',h.Sid,{index:slot.index,type:1},'Сброс удачи…')}>Забыть</button>
+        )}
+       </li>;
+      })}
+     </ul>
     </div>
    )}
    {Object.keys(h.Attrs||{}).length===0?<p>Характеристики ещё не рассчитаны</p>:(
