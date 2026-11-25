@@ -154,9 +154,9 @@
   "id": "NEXT-018",
   "title": "Призыв героев",
   "phase": "IV. RPG и экономика",
-  "scope": "018.3 oracle. Activity summons open.",
+  "scope": "018.4 crystal. Activity/displace open.",
   "status": "in_progress",
-  "evidence": "reports/NEXT-018.3.md; reports/NEXT-018.2.md; reports/NEXT-018.1.md"
+  "evidence": "reports/NEXT-018.4.md; reports/NEXT-018.3.md; reports/NEXT-018.2.md; reports/NEXT-018.1.md"
  },
  {
   "id": "NEXT-019",
