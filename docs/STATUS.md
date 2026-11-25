@@ -324,3 +324,5 @@ NEXT-010.6.6: studio_admins role-gated server API (me, history, save and restore
 NEXT-012.13 partial: original BuffBase/BuffDescription export used for description events 125/128 (report types 23/24), separate simulation description journal; persistent 373/374 attachment and group ordering tested. Full suite 62/62 passed. Client rendering and original report differential verification pending; parity gate remains closed.
 
 NEXT-012.14 partial: dodge emits 158 and counts as attacked; element damage 137 no longer emits ordinary attack reactions; passive silence and death listener extra-skill tests added. Full suite 64/64 passed. Differential battle report and dodge integration fixtures pending.
+
+NEXT-012.15 partial: shield absorption report type 4 journal, death guard description and guard skill ordering aligned to reference; combined shield and low-HP guard regression tests. Full suite 66/66 passed. Client rendering and differential reports pending.
