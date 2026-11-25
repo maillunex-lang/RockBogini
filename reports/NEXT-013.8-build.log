@@ -1,0 +1,3 @@
+tsc PASS; vite PASS; published
+timelineIndex hardened for 10 invalid common skill ActionIndex values
+visual acceptance BLOCKED: Chromium/Playwright unavailable

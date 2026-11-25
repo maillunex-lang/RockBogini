@@ -1,0 +1,32 @@
+{
+  "stage": "NEXT-013.8",
+  "date": "2026-11-25",
+  "chromium": false,
+  "playwright": false,
+  "visual_acceptance": "blocked — no Chromium/Playwright on VPS worker",
+  "common_skill_index_gaps": [
+    {"skillId": "2050400", "model": "Pet_Penguin", "index": 0, "skills": 1, "note": "ActionIndex 0 invalid for 1-based timeline"},
+    {"skillId": "2050401", "model": "Pet_Penguin", "index": 0, "skills": 1, "note": "ActionIndex 0"},
+    {"skillId": "2050402", "model": "Pet_Penguin", "index": 0, "skills": 1, "note": "ActionIndex 0"},
+    {"skillId": "2050403", "model": "Pet_Penguin", "index": 0, "skills": 1, "note": "ActionIndex 0"},
+    {"skillId": "2050404", "model": "Pet_Penguin", "index": 0, "skills": 1, "note": "ActionIndex 0"},
+    {"skillId": "1355680", "model": "Dima3501", "index": 4, "skills": 3, "note": "ActionIndex beyond exported Skills length"},
+    {"skillId": "1355681", "model": "Dima3501", "index": 4, "skills": 3, "note": "ActionIndex beyond exported Skills length"},
+    {"skillId": "1355682", "model": "Dima3501", "index": 4, "skills": 3, "note": "ActionIndex beyond exported Skills length"},
+    {"skillId": "700347", "model": "", "index": 0, "type": 4, "note": "empty CoreModel — likely angel/common without avatar package"},
+    {"skillId": "1457399", "model": "", "index": 0, "type": 4, "note": "empty CoreModel — likely angel/common without avatar package"}
+  ],
+  "mitigation": "timelineIndex now returns -1 for invalid ActionIndex; ReportScene skips missing timelines instead of reading undefined Skills[-1]",
+  "still_open": [
+    "angel actors/models",
+    "common skill VFX packages",
+    "exact magic effect/projectile hit coordinates",
+    "multi-texture Spine",
+    "64 unmapped sound events",
+    "browser autoplay audio",
+    "post-battle resource release soak",
+    "original WinBoard art",
+    "Android performance",
+    "mobile visual acceptance"
+  ]
+}

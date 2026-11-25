@@ -11,4 +11,10 @@ export function motionSample(from:Point,to:Point,progress:number,back:boolean,bl
  const q=back?1-(1-t)**4:t**4;
  return {x:from.x+(to.x-from.x)*q,y:from.y+(to.y-from.y)*q,alpha:1};
 }
-export function timelineIndex(actionIndex:number){return actionIndex-1}
+/** Original ActionIndex is 1-based. Returns -1 when missing/out of range so callers skip playback. */
+export function timelineIndex(actionIndex:number,skillCount?:number){
+ const i=actionIndex-1;
+ if(actionIndex<=0||i<0)return -1;
+ if(skillCount!==undefined&&i>=skillCount)return -1;
+ return i;
+}

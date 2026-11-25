@@ -19,8 +19,7 @@ NEXT-012 принят только в проверенном эталонном 
 | 013.5.2 | partial: HUDOffsetY, BattleBuffList icons, HP/buff semantics, float digits; энергия в бою отсутствует; Chromium QA открыта |
 | 013.6 | partial: gameClock, пауза, x1/x2/x3, автобой; отличие от 1.3/1.7/2.4 задокументировано |
 | 013.7 | partial: ResultScreen, auto-settle, stats/rewards; WinBoard art open |
-| 013.8 | АКТИВНО: браузерная/мобильная приёмка, остаточные дефекты, оптимизация |
-| 013.8 | Браузерная/мобильная приёмка, закрытие остаточных дефектов, оптимизация |
+| 013.8 | АКТИВНО: residuals inventoried; Chromium/Playwright unavailable — visual acceptance blocked |
 
 | ID | Этап | Статус | Объём | Доказательство |
 |---|---|---|---|---|

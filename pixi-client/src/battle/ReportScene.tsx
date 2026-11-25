@@ -56,7 +56,11 @@ export function ReportScene({report,cursor,onReady,volume=0.5,speed=1,paused=fal
  const clock=rt.clock;clock.clear();
  const later=(ms:number,fn:()=>void)=>cleanups.push(clock.later(ms,()=>{if(!cancelled)fn()}));
  const anim=(s:Spine|undefined,name:string,loop=false)=>{if(s?.spineData.findAnimation(name)){s.state.setAnimation(0,name,loop);s.state.timeScale=clock.rate()}};
- const actor=rt.units.get(p.actor),model=rt.models.get(p.actor),index=rt.skills[p.skillId],common=rt.common.skills[p.skillId],timeline=common?rt.common.models[common.model]?.Skills[timelineIndex(common.index)]:model===undefined?undefined:rt.timelines[model]?.Skills[timelineIndex(index)];
+ const actor=rt.units.get(p.actor),model=rt.models.get(p.actor),index=rt.skills[p.skillId],common=rt.common.skills[p.skillId];
+ const commonModel=common?rt.common.models[common.model]:undefined;
+ const commonIdx=common?timelineIndex(common.index,commonModel?.Skills.length): -1;
+ const heroIdx=model===undefined? -1:timelineIndex(index,rt.timelines[model]?.Skills.length);
+ const timeline=common&&commonIdx>=0?commonModel?.Skills[commonIdx]:heroIdx>=0?rt.timelines[model!]?.Skills[heroIdx]:undefined;
  const home=report.heroes.find(h=>h.id===p.actor),target=report.heroes.find(h=>h.id===p.targets[0]);
  const effectEvents=timeline?.Events.filter(e=>[2,6,7,8].includes(e.EventType)&&e.ActionName&&e.Duration>0)??[];
  const prepared=new Map<string,{data:Awaited<ReturnType<typeof acquireSkeleton>>['data'];name:string}>();
