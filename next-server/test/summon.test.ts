@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {openStorage,migrate} from '../src/storage.js';
 import {createGuest} from '../src/auth.js';
 import {buildApp} from '../src/app.js';
-import {pullMany,pullOnce,heroCard,prophetCost} from '../src/summon.js';
+import {pullMany,pullOnce,heroCard,prophetCost,crystalCost} from '../src/summon.js';
 
 test('heroCard maps ItemHeroCard to hero/star',()=>{
  const c=heroCard(1111401);
@@ -49,6 +49,16 @@ test('pullMany oracle type 201 filters by element',()=>{
  assert.equal(items.length,5);
  assert.equal(prophetCost({currencyId:14001,baseCurrencyCount:1,advCurrencyCount:1,summonType:201,extra:[],times:1},4),1);
  assert.equal(prophetCost({currencyId:14001,baseCurrencyCount:1,advCurrencyCount:2,summonType:201,extra:[],times:1},4),2);
+});
+
+test('pullMany crystal type 301 filters by element and costs',()=>{
+ const model={libCount:{},libStatus:{},freeCount:0,todayCount:0,totalCount:0};
+ const {items}=pullMany(301,model,3,()=>0.5,5);
+ assert.equal(items.length,3);
+ const cfg={currencyId:39,baseCurrencyCount:1000,advCurrencyCount:2000,summonType:301,extra:[],times:1};
+ assert.equal(crystalCost(cfg,1),1000);
+ assert.equal(crystalCost(cfg,4),2000);
+ assert.equal(crystalCost(cfg,5),2000);
 });
 
 test('POST /v1/summon/pull grants heroes and spends tickets',{skip:!process.env.PGHOST},async()=>{
@@ -145,5 +155,46 @@ test('POST /v1/summon/oracle pulls by element and spends 14001',{skip:!process.e
   assert.equal(ten.json().heroes.length,10);
   const afterHeroes=(await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}})).json().heroes.length;
   assert.ok(afterHeroes>=beforeHeroes+11);
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
+});
+
+test('POST /v1/summon/crystal spends 39 and grants by element',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);const a=await createGuest(s);const app=await buildApp(s);
+ try{
+  await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}});
+  const info=await app.inject({url:'/v1/summon',headers:{authorization:'Bearer '+a.token}});
+  assert.equal(info.statusCode,200);
+  assert.ok(info.json().crystal?.banner?.id===2);
+  assert.ok(info.json().tickets.crystal.amount>=5000);
+  assert.ok(!info.json().oracle.banners.some((b:{id:number})=>b.id===2));
+  const before=info.json().tickets.crystal.amount;
+  const beforeHeroes=(await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}})).json().heroes.length;
+  const pull=await app.inject({
+   method:'POST',url:'/v1/summon/crystal',
+   headers:{authorization:'Bearer '+a.token},
+   payload:{element:1},
+  });
+  assert.equal(pull.statusCode,200,JSON.stringify(pull.json()));
+  assert.equal(pull.json().times,1);
+  assert.equal(pull.json().element,1);
+  assert.equal(pull.json().cost.amount,1000);
+  assert.ok(pull.json().heroes.length>=1);
+  assert.equal(pull.json().crystal.amount,before-1000);
+  const adv=await app.inject({
+   method:'POST',url:'/v1/summon/crystal',
+   headers:{authorization:'Bearer '+a.token},
+   payload:{element:5},
+  });
+  assert.equal(adv.statusCode,200,JSON.stringify(adv.json()));
+  assert.equal(adv.json().cost.amount,2000);
+  assert.equal(adv.json().crystal.amount,before-3000);
+  const bad=await app.inject({
+   method:'POST',url:'/v1/summon/crystal',
+   headers:{authorization:'Bearer '+a.token},
+   payload:{element:6},
+  });
+  assert.equal(bad.statusCode,400);
+  const afterHeroes=(await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}})).json().heroes.length;
+  assert.ok(afterHeroes>=beforeHeroes+2);
  }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
 });

@@ -1,4 +1,4 @@
-/** Common summon (101/102) + oracle/prophet (201, types 1/5). */
+/** Common 101/102 + oracle 201 (1/5) + crystal 301 (prophet type 2). */
 import {readFileSync} from 'node:fs';
 import {dirname,join} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -19,7 +19,11 @@ const TICKET_NORMAL=10401;
 const TICKET_SENIOR=10403;
 const DIAMOND=3;
 const ORACLE_CURRENCY=14001;
+const CRYSTAL_CURRENCY=39;
+const CRYSTAL_BANNER=2;
+const ORACLE_BANNERS=new Set([1,5]);
 const PROPHET_OTHER=4;
+const CRYSTAL_ADV=new Set([4,5]);
 
 const here=dirname(fileURLToPath(import.meta.url));
 const candidates=[join(process.cwd(),'data'),join(here,'..','data'),join(here,'..','..','data')];
@@ -128,6 +132,11 @@ export function pullMany(
 
 export function prophetCost(cfg:ProphetCfg,element:number):number{
  return element===PROPHET_OTHER?cfg.advCurrencyCount||cfg.baseCurrencyCount:cfg.baseCurrencyCount;
+}
+
+/** Crystal Adv when element is Break(4) or Fight(5). */
+export function crystalCost(cfg:ProphetCfg,element:number):number{
+ return CRYSTAL_ADV.has(element)?cfg.advCurrencyCount||cfg.baseCurrencyCount:cfg.baseCurrencyCount;
 }
 
 async function account(req:{headers:{authorization?:string}},s:Storage){
@@ -254,11 +263,13 @@ export async function summonRoutes(app:FastifyInstance,s:Storage){
    };
   });
   if((await itemAmount(s,id,ORACLE_CURRENCY))===0)await grantItem(s,id,ORACLE_CURRENCY,20);
+  if((await itemAmount(s,id,CRYSTAL_CURRENCY))===0)await grantItem(s,id,CRYSTAL_CURRENCY,5000);
   const tickets=await ticketSnapshot(s,id);
   const normal=await stateFor(s,id,101);
   const senior=await stateFor(s,id,102);
   const oracle=await stateFor(s,id,201);
-  const oracleBanners=Object.entries(PROPHET).map(([bannerId,cfg])=>({
+  const crystal=await stateFor(s,id,301);
+  const prophetBanner=(bannerId:string,cfg:ProphetCfg)=>({
    id:Number(bannerId),
    times:cfg.times,
    summonType:cfg.summonType,
@@ -266,18 +277,26 @@ export async function summonRoutes(app:FastifyInstance,s:Storage){
    baseCost:cfg.baseCurrencyCount,
    advCost:cfg.advCurrencyCount,
    extra:cfg.extra,
-  }));
+  });
+  const oracleBanners=Object.entries(PROPHET).filter(([id])=>ORACLE_BANNERS.has(Number(id))).map(([id,cfg])=>prophetBanner(id,cfg));
+  const crystalCfg=PROPHET[String(CRYSTAL_BANNER)];
   return {
    banners,
    tickets:{
     ...tickets,
     oracle:{itemId:ORACLE_CURRENCY,amount:await itemAmount(s,id,ORACLE_CURRENCY)},
+    crystal:{itemId:CRYSTAL_CURRENCY,amount:await itemAmount(s,id,CRYSTAL_CURRENCY)},
    },
    // back-compat for 018.1 clients
    ticket:{itemId:TICKET_NORMAL,amount:tickets.normal.amount},
-   states:{'101':normal,'102':senior,'201':oracle},
+   states:{'101':normal,'102':senior,'201':oracle,'301':crystal},
    state:normal,
    oracle:{banners:oracleBanners,state:oracle,elements:[1,2,3,4]},
+   crystal:crystalCfg?{
+    banner:prophetBanner(String(CRYSTAL_BANNER),crystalCfg),
+    state:crystal,
+    elements:[1,2,3,4,5],
+   }:undefined,
   };
  });
 
@@ -389,6 +408,50 @@ export async function summonRoutes(app:FastifyInstance,s:Storage){
    heroes,
    extras,
    oracle:{itemId:ORACLE_CURRENCY,amount:await itemAmount(s,id,ORACLE_CURRENCY)},
+   state:{summonType:cfg.summonType,freeCount:saved.freeCount,todayCount:saved.todayCount,totalCount:saved.totalCount},
+   heroCount:(await getHeroes(s,id)).length,
+  };
+ });
+
+ app.post<{Body:{element:number}}>('/v1/summon/crystal',{
+  schema:{body:{type:'object',required:['element'],additionalProperties:false,properties:{
+   element:{type:'integer',minimum:1,maximum:5},
+  }}},
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  const cfg=PROPHET[String(CRYSTAL_BANNER)];
+  if(!cfg)return reply.code(404).send({error:'crystal_not_found'});
+  const typeCfg=STYPE[String(cfg.summonType)];
+  if(!typeCfg)return reply.code(500).send({error:'summon_type_missing'});
+  const element=req.body.element;
+  const cost=crystalCost(cfg,element);
+  if(!(await payItem(s,id,cfg.currencyId,cost))){
+   return reply.code(409).send({error:'insufficient_crystal',itemId:cfg.currencyId,need:cost});
+  }
+  let model=await loadModel(s,id,cfg.summonType,typeCfg);
+  const times=Math.max(cfg.times,1);
+  const {items,model:after}=pullMany(cfg.summonType,model,times,Math.random,element);
+  const heroes:{sid:number;heroId:number;star:number;cardId:number}[]=[];
+  for(const [cardId,n] of items){
+   heroes.push(...await grantHeroCard(s,id,cardId,n));
+  }
+  const saved={
+   ...after,
+   todayCount:after.todayCount+times,
+   totalCount:after.totalCount+times,
+  };
+  await saveModel(s,id,cfg.summonType,saved);
+  return {
+   ok:true,
+   type:CRYSTAL_BANNER,
+   element,
+   times,
+   cost:{itemId:cfg.currencyId,amount:cost},
+   pulls:items,
+   heroes,
+   extras:[],
+   crystal:{itemId:CRYSTAL_CURRENCY,amount:await itemAmount(s,id,CRYSTAL_CURRENCY)},
    state:{summonType:cfg.summonType,freeCount:saved.freeCount,todayCount:saved.todayCount,totalCount:saved.totalCount},
    heroCount:(await getHeroes(s,id)).length,
   };

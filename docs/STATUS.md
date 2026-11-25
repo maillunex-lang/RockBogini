@@ -1,7 +1,7 @@
 # Актуальное состояние 2026-11-25
 
-Активная задача: **NEXT-018.3** (oracle summon done). Live https://rikagro.ru/testtest/.
-Проверено: summon 8/8; publish ok.
+Активная задача: **NEXT-018.4** (crystal exchange done). Live https://rikagro.ru/testtest/.
+Проверено: summon 10/10; publish ok.
 
 | Подэтап | Состояние |
 |---|---|
@@ -11,7 +11,7 @@
 | 015 MVP–015.2 | done: inventory + filters + icons/use/sell |
 | 016.1–016.5 | done: level/star/fodder/talent/jobs/luck |
 | 017.1–017.8 | done: equip + holy full slice |
-| 018.1–018.3 | done: normal + senior + oracle summon |
+| 018.1–018.4 | done: normal + senior + oracle + crystal |
 
 
 ---

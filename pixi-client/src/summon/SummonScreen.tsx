@@ -11,6 +11,7 @@ type Tickets={
  senior:{itemId:number;amount:number};
  diamond:{itemId:number;amount:number};
  oracle?:{itemId:number;amount:number};
+ crystal?:{itemId:number;amount:number};
 };
 type SummonInfo={
  banners:Banner[];
@@ -19,13 +20,14 @@ type SummonInfo={
  states?:Record<string,PoolState>;
  state:PoolState;
  oracle?:{banners:OracleBanner[];state:PoolState;elements:number[]};
+ crystal?:{banner:OracleBanner;state:PoolState;elements:number[]};
 };
 
-const ELEMENT_NAME:Record<number,string>={1:'Огонь',2:'Вода',3:'Земля',4:'Другое'};
+const ELEMENT_NAME:Record<number,string>={1:'Огонь',2:'Вода',3:'Земля',4:'Другое',5:'Дуэль'};
 
 export function SummonScreen({api,token,onClose}:{api:string;token:string;onClose:()=>void}){
  const [info,setInfo]=useState<SummonInfo|null>(null);
- const [tab,setTab]=useState<'normal'|'senior'|'oracle'>('normal');
+ const [tab,setTab]=useState<'normal'|'senior'|'oracle'|'crystal'>('normal');
  const [element,setElement]=useState(1);
  const [status,setStatus]=useState('Загрузка…');
  const [busy,setBusy]=useState(false);
@@ -99,20 +101,58 @@ export function SummonScreen({api,token,onClose}:{api:string;token:string;onClos
   }finally{setBusy(false)}
  };
 
+ const pullCrystal=async()=>{
+  if(busy)return;
+  setBusy(true);setStatus(`Кристалл (${ELEMENT_NAME[element]})…`);
+  try{
+   const r=await fetch(`${api}/v1/summon/crystal`,{
+    method:'POST',
+    headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},
+    body:JSON.stringify({element}),
+   });
+   const j=await r.json().catch(()=>({}));
+   if(!r.ok)throw Error(j.error||'crystal_'+r.status);
+   setResults(j.heroes??[]);
+   setInfo(prev=>{
+    if(!prev)return prev;
+    const tickets=prev.tickets?{...prev.tickets,crystal:j.crystal??prev.tickets.crystal}:prev.tickets;
+    return {
+     ...prev,
+     tickets,
+     states:{...prev.states,301:j.state??prev.states?.['301']??null},
+     crystal:prev.crystal?{...prev.crystal,state:j.state??prev.crystal.state}:prev.crystal,
+    };
+   });
+   setStatus(`Кристалл: ${(j.heroes??[]).length} героев`);
+  }catch(e){
+   setStatus(e instanceof Error?e.message:'Не удалось обменять');
+  }finally{setBusy(false)}
+ };
+
+ const switchTab=(next:'normal'|'senior'|'oracle'|'crystal')=>{
+  setTab(next);
+  setElement(1);
+ };
+
  const one=info?.banners.find(b=>b.id===(tab==='normal'?1:3));
  const ten=info?.banners.find(b=>b.id===(tab==='normal'?2:4));
  const pool=tab==='normal'?(info?.states?.['101']??info?.state)
   :tab==='senior'?(info?.states?.['102']??null)
-  :(info?.oracle?.state??info?.states?.['201']??null);
+  :tab==='oracle'?(info?.oracle?.state??info?.states?.['201']??null)
+  :(info?.crystal?.state??info?.states?.['301']??null);
  const tickets=info?.tickets;
  const oracleOne=info?.oracle?.banners.find(b=>b.id===1);
  const oracleTen=info?.oracle?.banners.find(b=>b.id===5);
+ const crystalBanner=info?.crystal?.banner;
  const oracleCost=(b:OracleBanner|undefined)=>!b?'':`${element===4?b.advCost:b.baseCost}×${b.currencyId}`;
+ const crystalCostLine=!crystalBanner?'':`${element>=4?crystalBanner.advCost:crystalBanner.baseCost}×${crystalBanner.currencyId}`;
+ const elementOptions=tab==='crystal'?(info?.crystal?.elements??[1,2,3,4,5]):[1,2,3,4];
 
  let ticketLine='';
  if(tab==='normal')ticketLine=`Билеты #${tickets?.normal.itemId??10401}: ${tickets?.normal.amount??info?.ticket?.amount??'—'}`;
  else if(tab==='senior')ticketLine=`Билеты #${tickets?.senior.itemId??10403}: ${tickets?.senior.amount??'—'} · алмазы #3: ${tickets?.diamond.amount??'—'}`;
- else ticketLine=`Оракул #${tickets?.oracle?.itemId??14001}: ${tickets?.oracle?.amount??'—'}`;
+ else if(tab==='oracle')ticketLine=`Оракул #${tickets?.oracle?.itemId??14001}: ${tickets?.oracle?.amount??'—'}`;
+ else ticketLine=`Звёздная сила #${tickets?.crystal?.itemId??39}: ${tickets?.crystal?.amount??'—'}`;
 
  return <main className="summon-screen">
   <header>
@@ -121,35 +161,45 @@ export function SummonScreen({api,token,onClose}:{api:string;token:string;onClos
   </header>
   {status&&<p role="status">{status}</p>}
   <div className="summon-tabs" role="tablist">
-   <button type="button" role="tab" aria-selected={tab==='normal'} disabled={busy} onClick={()=>setTab('normal')}>Обычный</button>
-   <button type="button" role="tab" aria-selected={tab==='senior'} disabled={busy} onClick={()=>setTab('senior')}>Старший</button>
-   <button type="button" role="tab" aria-selected={tab==='oracle'} disabled={busy} onClick={()=>setTab('oracle')}>Оракул</button>
+   <button type="button" role="tab" aria-selected={tab==='normal'} disabled={busy} onClick={()=>switchTab('normal')}>Обычный</button>
+   <button type="button" role="tab" aria-selected={tab==='senior'} disabled={busy} onClick={()=>switchTab('senior')}>Старший</button>
+   <button type="button" role="tab" aria-selected={tab==='oracle'} disabled={busy} onClick={()=>switchTab('oracle')}>Оракул</button>
+   <button type="button" role="tab" aria-selected={tab==='crystal'} disabled={busy} onClick={()=>switchTab('crystal')}>Кристалл</button>
   </div>
   <p className="summon-tickets">{ticketLine}</p>
-  {tab!=='oracle'&&(
+  {(tab==='normal'||tab==='senior')&&(
    <p className="summon-meta">Бесплатно: {pool?.freeCount??'—'} · сегодня {pool?.todayCount??0} · всего {pool?.totalCount??0}</p>
   )}
-  {tab==='oracle'&&(
+  {(tab==='oracle'||tab==='crystal')&&(
    <>
     <p className="summon-meta">Сегодня {pool?.todayCount??0} · всего {pool?.totalCount??0}</p>
     <div className="summon-tabs" role="group" aria-label="Стихия">
-     {[1,2,3,4].map(el=>(
+     {elementOptions.map(el=>(
       <button key={el} type="button" aria-pressed={element===el} disabled={busy} onClick={()=>setElement(el)}>
-       {ELEMENT_NAME[el]}
+       {ELEMENT_NAME[el]??el}
       </button>
      ))}
     </div>
-    <div className="summon-actions">
-     <button type="button" disabled={busy||!oracleOne} onClick={()=>void pullOracle(1)}>
-      ×1{oracleOne?` (${oracleCost(oracleOne)})`:''}
-     </button>
-     <button type="button" disabled={busy||!oracleTen} onClick={()=>void pullOracle(5)}>
-      ×10{oracleTen?` (${oracleCost(oracleTen)})`:''}
-     </button>
-    </div>
+    {tab==='oracle'&&(
+     <div className="summon-actions">
+      <button type="button" disabled={busy||!oracleOne} onClick={()=>void pullOracle(1)}>
+       ×1{oracleOne?` (${oracleCost(oracleOne)})`:''}
+      </button>
+      <button type="button" disabled={busy||!oracleTen} onClick={()=>void pullOracle(5)}>
+       ×10{oracleTen?` (${oracleCost(oracleTen)})`:''}
+      </button>
+     </div>
+    )}
+    {tab==='crystal'&&(
+     <div className="summon-actions">
+      <button type="button" disabled={busy||!crystalBanner} onClick={()=>void pullCrystal()}>
+       Обмен{crystalBanner?` (${crystalCostLine})`:''}
+      </button>
+     </div>
+    )}
    </>
   )}
-  {tab!=='oracle'&&(
+  {(tab==='normal'||tab==='senior')&&(
    <div className="summon-actions">
     <button type="button" disabled={busy||!one} onClick={()=>void pullCommon((tab==='normal'?1:3) as 1|3)}>
      ×1{one?` (${one.consume.map(([id,n])=>`${n}×${id}`).join(' / ')})`:''}

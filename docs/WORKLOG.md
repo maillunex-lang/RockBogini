@@ -473,3 +473,5 @@ NEXT-013.8 in_progress: inventoried 10 invalid common-skill ActionIndex values; 
 2026-11-25 NEXT-018.2: senior summon (3/4 → 102, tickets 10403 / diamonds); publish. reports/NEXT-018.2.md.
 
 2026-11-25 NEXT-018.3: oracle/prophet summon (type 201, element 1–4, currency 14001); publish. reports/NEXT-018.3.md.
+
+2026-11-25 NEXT-018.4: crystal exchange (prophet type 2 → 301, currency 39); publish. reports/NEXT-018.4.md.
