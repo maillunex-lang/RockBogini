@@ -23,3 +23,5 @@
 - City QA: tools/verify-city-mobile.cjs + reports/NEXT-026.1-026.2-2026-11-26.md.
 - Avoid separate canvas CitySpine re-enablement due flicker; do not replace original assets with approximate art.
 - GitHub origin credentials missing, remote push/CI not confirmed.
+
+2026-11-26 NEXT-026.2: HeroList original card backgrounds+borders and ElementType-based filter, sort and view toggle live. Full original HeroDetailPanel, button sprites, visual reference QA still open. See reports/NEXT-026.2-hero-original-cards-2026-11-26.md.

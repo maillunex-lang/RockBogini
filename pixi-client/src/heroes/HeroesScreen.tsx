@@ -2,6 +2,7 @@ import {FormationScreen} from './FormationScreen';
 import {skillNames} from './skillNames';
 import React,{useEffect,useState} from 'react';
 import './heroes.css';
+import heroVisualCatalog from './heroVisualCatalog.json';
 import {heroDisplayName} from '../shared/heroNames';
 
 type StarPreview={
@@ -67,6 +68,9 @@ type GalleryInfo={levels:number[];types:GalleryType[];resonance:{id:number;requi
 
 export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClose:()=>void}){
  const [formation,setFormation]=useState(false);
+ const [heroView,setHeroView]=useState<'card'|'portrait'>('card');
+ const [heroSort,setHeroSort]=useState<'power'|'level'|'star'>('power');
+ const [heroElement,setHeroElement]=useState(0);
  const [heroes,setHeroes]=useState<Hero[]>([]);
  const [selected,setSelected]=useState<number|null>(null);
  const [equipSlots,setEquipSlots]=useState<EquipSlot[]>([]);
@@ -253,15 +257,26 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
   </header>
   {status&&<p role="status">{status}</p>}
   <button type="button" onClick={()=>setFormation(true)}>Боевой отряд</button>
+  <div className="heroes-controls">
+   <button type="button" aria-label="Переключить вид героев" onClick={()=>setHeroView(v=>v==='card'?'portrait':'card')}>{heroView==='card'?'Портреты':'Карточки'}</button>
+   <label>Сортировка <select aria-label="Сортировка героев" value={heroSort} onChange={e=>setHeroSort(e.target.value as 'power'|'level'|'star')}><option value="power">По силе</option><option value="level">По уровню</option><option value="star">По звёздам</option></select></label>
+  </div>
+  <div className="heroes-elements" role="group" aria-label="Фильтр стихии">
+   {[0,1,2,3,4,5,6].map(e=><button key={e} type="button" aria-pressed={heroElement===e} onClick={()=>setHeroElement(e)}>{e===0?'Все':'Стихия '+e}</button>)}
+  </div>
   <p>В коллекции: {heroes.length}</p>
-  <div className="heroes-grid">{heroes.map(x=>(
-   <button key={x.Sid} type="button" aria-pressed={selected===x.Sid} onClick={()=>setSelected(x.Sid)}>
-    <img src={'./profile/icon-'+x.HeroId+'.webp'} alt="" onError={e=>{e.currentTarget.style.visibility='hidden'}}/>
-    <strong>{heroDisplayName(x.HeroId)}</strong>
-    <span>Ур. {x.Level} · ★ {x.StarLevel}</span>
-    <span>Мощь: {x.Power}</span>
-   </button>
-  ))}</div>
+  <div className={'heroes-grid heroes-grid--'+heroView}>{heroes.filter(x=>heroElement===0||(heroVisualCatalog as Record<string,{element:number;star:number}>)[x.HeroId]?.element===heroElement).sort((a,b)=>heroSort==='level'?b.Level-a.Level||b.Power-a.Power:heroSort==='star'?b.StarLevel-a.StarLevel||b.Power-a.Power:b.Power-a.Power||b.Level-a.Level).map(x=>{
+   const info=(heroVisualCatalog as Record<string,{element:number;star:number}>)[x.HeroId];
+   const element=info?.element??1;
+   const suffix=element>=1&&element<=6?String(element):'chaos';
+   const bg=import.meta.env.BASE_URL+'heroes/original/cards/card_bg_'+suffix+'.png';
+   const border=import.meta.env.BASE_URL+'heroes/original/cards/card_border_'+suffix+'.png';
+   return <button className="hero-original-card" key={x.Sid} type="button" aria-label={heroDisplayName(x.HeroId)} aria-pressed={selected===x.Sid} onClick={()=>setSelected(x.Sid)} style={{backgroundImage:'url('+bg+')'}}>
+    <img className="hero-card-portrait" src={'./profile/icon-'+x.HeroId+'.webp'} alt="" onError={e=>{e.currentTarget.style.visibility='hidden'}}/>
+    <img className="hero-card-frame" src={border} alt="" aria-hidden="true"/>
+    <span className="hero-card-label"><strong>{heroDisplayName(x.HeroId)}</strong><span>Ур. {x.Level} · ★ {x.StarLevel}</span><span>Мощь: {x.Power}</span></span>
+   </button>;
+  })}</div>
   {h&&<section className="hero-detail" aria-label="Характеристики героя">
    <h2>{heroDisplayName(h.HeroId)}</h2>
    <p>Ур. {h.Level}/{h.maxLevel??'—'} · ★ {h.StarLevel}/{h.maxStar??'—'} · Мощь {h.Power}</p>

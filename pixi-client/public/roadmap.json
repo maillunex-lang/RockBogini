@@ -218,9 +218,9 @@
     "id": "NEXT-026",
     "title": "Русификация и визуальное качество",
     "phase": "VII. Качество",
-    "scope": "D-012: 1:1 visual on shipped screens now. 026.1 city scroll+biaoti/baitian. Next: campaign/heroes/inventory/summon/shop/tasks windows + RU. 026.1 city mobile browser QA passed on four resolutions, shortcut overlay fixed; original 1:1 visual/Spine acceptance still pending. 026.2 heroes original HeroListPanel background and 4-column list first slice done; card/frame parity pending.",
+    "scope": "D-012: 1:1 visual on shipped screens now. 026.1 city scroll+biaoti/baitian. Next: campaign/heroes/inventory/summon/shop/tasks windows + RU. 026.1 city mobile browser QA passed on four resolutions, shortcut overlay fixed; original 1:1 visual/Spine acceptance still pending. 026.2 heroes original HeroListPanel background and 4-column list first slice done; card/frame parity pending. 026.2 original Common card backgrounds/borders (20), HeroListPanel switch/sort/element filters, client hero detail path browser tested 320/390/768. Exact prefab/detail visual acceptance pending.",
     "status": "in_progress",
-    "evidence": "reports/NEXT-026.1.md; localization/ru.json; reports/NEXT-026.1-026.2-2026-11-26.md",
+    "evidence": "reports/NEXT-026.1.md; localization/ru.json; reports/NEXT-026.1-026.2-2026-11-26.md; reports/NEXT-026.2-hero-original-cards-2026-11-26.md",
     "deferred_visual_tasks": [
       "Точные multilang-заголовки 10 входов (поверх biaoti)",
       "Точная геометрия камеры / SceneNode scroll",

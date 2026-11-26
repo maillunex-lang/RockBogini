@@ -18,3 +18,21 @@
 .heroes-grid img{max-width:100%;width:100%;height:auto;aspect-ratio:1;object-fit:contain}
 .heroes-grid button>*{max-width:100%}
 @media(max-width:340px){.heroes-screen{padding:8px}.heroes-grid{gap:4px}}
+
+
+/* Original Common/card_bg_N + card_border_N sprites: 218x318, 4-column HeroListPanel. */
+.heroes-controls{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:10px 0}
+.heroes-controls label{display:flex;align-items:center;gap:4px;font-size:12px}
+.heroes-controls select{max-width:128px;background:#272344;color:#fff;border:1px solid #ad915c;border-radius:5px;padding:8px;font:inherit}
+.heroes-elements{display:flex;gap:5px;overflow-x:auto;scrollbar-width:thin;padding:6px 0 10px}
+.heroes-elements button{font-size:11px;white-space:nowrap;min-height:32px;padding:5px 10px}
+.heroes-elements button[aria-pressed=true]{border-color:#f7da8b;background:#524369}
+.heroes-grid button.hero-original-card{position:relative;display:block;height:auto;aspect-ratio:218/318;background-color:transparent;background-position:center;background-size:100% 100%;padding:0;min-height:0;overflow:hidden;border:0;border-radius:0}
+.heroes-grid button.hero-original-card[aria-pressed=true]{outline:2px solid #ffdf90;outline-offset:-3px}
+.heroes-grid .hero-card-portrait{position:absolute;left:8%;top:5%;width:84%;height:60%;aspect-ratio:auto;object-fit:contain;max-width:none;z-index:1}
+.heroes-grid .hero-card-frame{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;max-width:none;object-fit:fill;pointer-events:none;z-index:2}
+.heroes-grid .hero-card-label{position:absolute;left:6%;right:6%;bottom:4%;z-index:3;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.15;font-size:clamp(8px,2vw,12px);text-shadow:0 1px 2px #000,0 1px 4px #000}
+.heroes-grid .hero-card-label strong{width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.heroes-grid--portrait .hero-original-card{aspect-ratio:1!important}
+.heroes-grid--portrait .hero-card-portrait{top:5%;height:68%}
+.heroes-grid--portrait .hero-card-label{bottom:3%}

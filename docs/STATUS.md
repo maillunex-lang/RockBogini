@@ -14,7 +14,7 @@
 | 020 story/achievements · 021–025, 027–028 | pending |
 | 009 | deferred → 024 |
 | 026.1 | city scroll/original sprites/HUD/XP: QA 4 viewports PASS; 1:1 and Spine effects NOT accepted |
-| 026.2 | HeroList original background and 4-column grid live; prefab card visual parity open |
+| 026.2 | HeroList background, 20 original card/border sprites, 4-column grid, sorting/filters and detail access; 1:1 prefab/detail acceptance open |
 | 010, 012, 026 | in_progress (визуал/полнота) |
 
 ## Порядок дальше
@@ -28,3 +28,8 @@
 - 320×640/360×640/390×844/768×1024 city: labels 9, nav 5, six shortcuts, XP progressbar, images and requests PASS; no hitbox overlaps. Original labels remain English sprites for owner image translation.
 - Heroes page: 3 default heroes, original HeroListPanel/Bg, 4-column layout verified at 320/390/768, no page errors.
 - Caveats: CitySpine overlays intentionally disabled due previous flicker; 1:1 visual parity incomplete. GitHub push and remote CI not verified. Evidence reports/NEXT-026.1-026.2-2026-11-26.md.
+
+## NEXT-026.2 cards batch 2026-11-26
+- Extracted 20 original Cocos card/background sprites, imported 354 original hero ElementType records.
+- UI filters, sorting and view toggle + detail entry tested 320/390/768. Client Vite build PASS, /sexyidle publish PASS.
+- NEXT-026 remains in_progress; exact HeroList controls, HeroDetail original art and visual acceptance open. Evidence reports/NEXT-026.2-hero-original-cards-2026-11-26.md.
