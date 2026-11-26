@@ -1,3 +1,5 @@
+// MainScenePanel prefab: FunctionContainer 2160x2520; centered Background 1080x2520.
+// Visible background coordinates use 1080x2520, not native texture pixels 720x1680.
 export const sceneLayout = [
   {
     "id": 2020,

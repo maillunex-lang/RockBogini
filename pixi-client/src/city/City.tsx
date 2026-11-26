@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import './city.css';
 import {sceneLayout} from './sceneLayout';
-import {CitySpine} from './CitySpine';
+
 
 type Profile={nickname:string;level:number;avatar:number;power:number;currencies:Record<string,string>};
 
@@ -43,7 +43,7 @@ export function City({api,token,onProfile,onBattle,onHeroes,onInventory,onSummon
   <header className="city-top">
    <button type="button" onClick={onProfile}>
     {p&&<img src={'./profile/icon-'+p.avatar+'.webp'} alt=""/>}
-    <span>Профиль<br/>{p?.nickname??'Загрузка…'} · Ур. {p?.level??'—'}</span>
+    <span className="city-profile-text"><strong>{p?.nickname??'Загрузка…'}</strong><small>Ур. {p?.level??'—'}</small></span>
    </button>
    <div className="city-coin">Золото <b>{p?.currencies.coin??'—'}</b></div>
    <div className="city-diamond">Алмазы <b>{p?.currencies.diamond??'—'}</b></div>
@@ -65,7 +65,7 @@ export function City({api,token,onProfile,onBattle,onHeroes,onInventory,onSummon
 
   <div className="city-stage" aria-label="Город">
    <div className="city-stage-inner">
-    <CitySpine kind="baitian" className="city-ambient"/>
+    
     <div className="city-buildings">
      {sceneLayout.map(n=><button
       key={n.id}
@@ -74,12 +74,12 @@ export function City({api,token,onProfile,onBattle,onHeroes,onInventory,onSummon
       data-guide={n.label==='Призыв'?'city-summon':undefined}
       style={{
        left:(50+n.x/1080*100)+'%',
-       top:((672-n.y)/1117*84+8)+'%',
+       top:((1260-n.y)/2520*100)+'%',
        width:(n.width/1080*100)+'%',
       }}
       onClick={()=>openBuilding(n.label)}
      >
-      <CitySpine kind="biaoti" className="city-title-fx"/>
+      
       <span className="city-entrance-label">{n.label}</span>
      </button>)}
     </div>
