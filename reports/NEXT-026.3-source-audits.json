@@ -1,0 +1,84 @@
+[
+  {
+    "screen": "campaign",
+    "bundle": "WorldMapPanel",
+    "prefab_names": [
+      "WorldMapPanel"
+    ],
+    "original_paths_count": 23,
+    "source_config_file": "config.2e9c1.json",
+    "original_resources": [
+      "PNG/map1",
+      "PNG/map2"
+    ]
+  },
+  {
+    "screen": "inventory",
+    "bundle": "BagPanel",
+    "prefab_names": [
+      "BagPanel"
+    ],
+    "original_paths_count": 3,
+    "source_config_file": "config.d6cbb.json",
+    "original_resources": [
+      "Bg"
+    ]
+  },
+  {
+    "screen": "summon",
+    "bundle": "SummonHeroPanel",
+    "prefab_names": [
+      "Png/SummonHeroPanel",
+      "Png/SummonHeroPanel",
+      "DailySummonPanel",
+      "SummonHeroPanel",
+      "DailySummonResultPanel",
+      "CommonRatePanel",
+      "SummonRatePanel"
+    ],
+    "original_paths_count": 10,
+    "source_config_file": "config.c4795.json",
+    "original_resources": [
+      "toggle_oracle",
+      "InfiniteTenTog",
+      "DailySummonBtn ",
+      "SummonBtn"
+    ]
+  },
+  {
+    "screen": "shop",
+    "bundle": "ShopPanel",
+    "prefab_names": [
+      "ShopUIPanel"
+    ],
+    "original_paths_count": 5,
+    "source_config_file": "config.94bb8.json",
+    "original_resources": [
+      "btn_toplevel_3",
+      "btn_toplevel_1",
+      "btn_toplevel_4",
+      "btn_toplevel_2",
+      "girl"
+    ]
+  },
+  {
+    "screen": "tasks",
+    "bundle": "TaskPanel",
+    "prefab_names": [
+      "TaskPanel"
+    ],
+    "original_paths_count": 5,
+    "source_config_file": "config.67bc9.json",
+    "original_resources": [
+      "box_3_mask",
+      "bg_2",
+      "badge_1",
+      "badge_2",
+      "box_1",
+      "box_2",
+      "box_1_mask",
+      "box_3",
+      "bg_1"
+    ]
+  }
+]

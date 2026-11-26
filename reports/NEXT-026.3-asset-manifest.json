@@ -1,0 +1,258 @@
+{
+  "original_source": "/home/gamedev/QueensBladeH5/racon2-main/client/G123Live/Queen-Blade/assets",
+  "count": 21,
+  "assets": [
+    {
+      "bundle": "WorldMapPanel",
+      "name": "PNG/map1",
+      "source": "WorldMapPanel/native/71/71f945e5-fa70-43a5-920a-dd879460d25b.5f32e.webp",
+      "dest": "pixi-client/public/original-panels/campaign/map1.webp",
+      "kind": "exact-native-copy",
+      "sha256": "1eced37d1afd74472fcf4feb184ec430a0a7118f5282d4c5ba9abac0af57e5e7",
+      "size": [
+        2048,
+        878
+      ]
+    },
+    {
+      "bundle": "WorldMapPanel",
+      "name": "PNG/map2",
+      "source": "WorldMapPanel/native/29/295ce2f8-774f-4528-a2ef-6dbde34fb265.b1c84.webp",
+      "dest": "pixi-client/public/original-panels/campaign/map2.webp",
+      "kind": "exact-native-copy",
+      "sha256": "be7a288b9dd8814d66265d4d5b4ec49a6d3f5d824544250c317f05ec11ba3831",
+      "size": [
+        2048,
+        878
+      ]
+    },
+    {
+      "bundle": "BagPanel",
+      "name": "Bg",
+      "source": "BagPanel/native/f2/f26d4bba-9630-4983-bea9-6c9d6ea2adc9.ad969.webp",
+      "dest": "pixi-client/public/original-panels/inventory/BagBg.webp",
+      "kind": "exact-native-copy",
+      "sha256": "2b2bc3d7813f61eebab1004af46e69d897cf0e8721b9c3efd10d1387df223b23",
+      "size": [
+        1080,
+        2520
+      ]
+    },
+    {
+      "bundle": "SummonHeroPanel",
+      "name": "toggle_oracle",
+      "source": "SummonHeroPanel/native/eb/ebb504d8-a851-4213-98f5-400e67ecbc23.b09c3.webp",
+      "dest": "pixi-client/public/original-panels/summon/toggle_oracle.png",
+      "kind": "original-atlas-crop",
+      "sha256": "c821369e1ee6213684007a2582f33fb5c2446bc594b7bb78dbc358c95c0e4aae",
+      "size": [
+        186,
+        164
+      ]
+    },
+    {
+      "bundle": "SummonHeroPanel",
+      "name": "InfiniteTenTog",
+      "source": "SummonHeroPanel/native/eb/ebb504d8-a851-4213-98f5-400e67ecbc23.b09c3.webp",
+      "dest": "pixi-client/public/original-panels/summon/InfiniteTenTog.png",
+      "kind": "original-atlas-crop",
+      "sha256": "dd57d15b106ce15e57726fb8f3b9fc8beb98f1499223f638d48b07db5a22b42b",
+      "size": [
+        181,
+        153
+      ]
+    },
+    {
+      "bundle": "SummonHeroPanel",
+      "name": "DailySummonBtn ",
+      "source": "SummonHeroPanel/native/eb/ebb504d8-a851-4213-98f5-400e67ecbc23.b09c3.webp",
+      "dest": "pixi-client/public/original-panels/summon/DailySummonBtn.png",
+      "kind": "original-atlas-crop",
+      "sha256": "73137149779f41ec7fdc0b4f3a21166cb7868bbc7ab95b90139033542d9cd01c",
+      "size": [
+        164,
+        160
+      ]
+    },
+    {
+      "bundle": "SummonHeroPanel",
+      "name": "SummonBtn",
+      "source": "SummonHeroPanel/native/eb/ebb504d8-a851-4213-98f5-400e67ecbc23.b09c3.webp",
+      "dest": "pixi-client/public/original-panels/summon/SummonBtn.png",
+      "kind": "original-atlas-crop",
+      "sha256": "df07fcb2cd113ca6a51dd19c58ef242021a7959f53a584a6c26a29617e764151",
+      "size": [
+        181,
+        153
+      ]
+    },
+    {
+      "bundle": "ShopPanel",
+      "name": "btn_toplevel_3",
+      "source": "ShopPanel/native/94/94144560-78d4-42f5-86f9-051902d70503.3e95e.webp",
+      "dest": "pixi-client/public/original-panels/shop/btn_toplevel_3.png",
+      "kind": "original-atlas-crop",
+      "sha256": "f29feca3d26e3ac8cce8b5962d53082730d35e5bd722ccfae2fdf70f8373ec49",
+      "size": [
+        136,
+        154
+      ]
+    },
+    {
+      "bundle": "ShopPanel",
+      "name": "btn_toplevel_1",
+      "source": "ShopPanel/native/94/94144560-78d4-42f5-86f9-051902d70503.3e95e.webp",
+      "dest": "pixi-client/public/original-panels/shop/btn_toplevel_1.png",
+      "kind": "original-atlas-crop",
+      "sha256": "4f5baeacccf65b668ed99c74e503104e39c4edf03b218f0c40eccdaed8a8beba",
+      "size": [
+        138,
+        153
+      ]
+    },
+    {
+      "bundle": "ShopPanel",
+      "name": "btn_toplevel_4",
+      "source": "ShopPanel/native/94/94144560-78d4-42f5-86f9-051902d70503.3e95e.webp",
+      "dest": "pixi-client/public/original-panels/shop/btn_toplevel_4.png",
+      "kind": "original-atlas-crop",
+      "sha256": "43b653559cd1e45a8c2ab39423024fa9c01515da45eabe690d313f5e43be02ca",
+      "size": [
+        130,
+        152
+      ]
+    },
+    {
+      "bundle": "ShopPanel",
+      "name": "btn_toplevel_2",
+      "source": "ShopPanel/native/94/94144560-78d4-42f5-86f9-051902d70503.3e95e.webp",
+      "dest": "pixi-client/public/original-panels/shop/btn_toplevel_2.png",
+      "kind": "original-atlas-crop",
+      "sha256": "547048bc93456bd90335b444ab5b37fe35777360e1bab167b86de48e15146760",
+      "size": [
+        140,
+        155
+      ]
+    },
+    {
+      "bundle": "ShopPanel",
+      "name": "girl",
+      "source": "ShopPanel/native/b6/b6fb8073-c2a5-45a6-8aab-1a450fa0684a.ad645.webp",
+      "dest": "pixi-client/public/original-panels/shop/ShopGirl.webp",
+      "kind": "exact-native-copy",
+      "sha256": "0057f5ae1752da6e0ebae5c8a35fe03c5e196c322ca71a8dcc4f94966107ecbd",
+      "size": [
+        632,
+        495
+      ]
+    },
+    {
+      "bundle": "TaskPanel",
+      "name": "box_3_mask",
+      "source": "TaskPanel/native/a6/a657f3df-f611-4cc7-8212-bbbc40e720c1.23664.webp",
+      "dest": "pixi-client/public/original-panels/tasks/box_3_mask.png",
+      "kind": "original-atlas-crop",
+      "sha256": "7024101cb9c2931222413acd6098d14ba90052acd06a9eb41735be1617965298",
+      "size": [
+        88,
+        84
+      ]
+    },
+    {
+      "bundle": "TaskPanel",
+      "name": "bg_2",
+      "source": "TaskPanel/native/a6/a657f3df-f611-4cc7-8212-bbbc40e720c1.23664.webp",
+      "dest": "pixi-client/public/original-panels/tasks/bg_2.png",
+      "kind": "original-atlas-crop",
+      "sha256": "b44f02895a1cb9967c1ad51232accd453588f93d8106a265cb27826ac8a97621",
+      "size": [
+        1004,
+        216
+      ]
+    },
+    {
+      "bundle": "TaskPanel",
+      "name": "badge_1",
+      "source": "TaskPanel/native/a6/a657f3df-f611-4cc7-8212-bbbc40e720c1.23664.webp",
+      "dest": "pixi-client/public/original-panels/tasks/badge_1.png",
+      "kind": "original-atlas-crop",
+      "sha256": "b29b6ed35f66dcc9b11d5ad40209770aa444e663f8d74db7e55c3bb65c4e9c22",
+      "size": [
+        210,
+        214
+      ]
+    },
+    {
+      "bundle": "TaskPanel",
+      "name": "badge_2",
+      "source": "TaskPanel/native/a6/a657f3df-f611-4cc7-8212-bbbc40e720c1.23664.webp",
+      "dest": "pixi-client/public/original-panels/tasks/badge_2.png",
+      "kind": "original-atlas-crop",
+      "sha256": "27fc4bec1790a9566dc8707297a16aa277ebd03f64c3fbeb341666f0dd8aad97",
+      "size": [
+        212,
+        214
+      ]
+    },
+    {
+      "bundle": "TaskPanel",
+      "name": "box_1",
+      "source": "TaskPanel/native/a6/a657f3df-f611-4cc7-8212-bbbc40e720c1.23664.webp",
+      "dest": "pixi-client/public/original-panels/tasks/box_1.png",
+      "kind": "original-atlas-crop",
+      "sha256": "49a9faaae8149ca9a2296254b525fc080c7540f297865ab6d0fc65c39f4c6ea6",
+      "size": [
+        86,
+        78
+      ]
+    },
+    {
+      "bundle": "TaskPanel",
+      "name": "box_2",
+      "source": "TaskPanel/native/a6/a657f3df-f611-4cc7-8212-bbbc40e720c1.23664.webp",
+      "dest": "pixi-client/public/original-panels/tasks/box_2.png",
+      "kind": "original-atlas-crop",
+      "sha256": "e47ef8c14d5fec53c6267f46c3a2fd32d3c5e6df1579549ccb04ae281d07f9c7",
+      "size": [
+        86,
+        78
+      ]
+    },
+    {
+      "bundle": "TaskPanel",
+      "name": "box_1_mask",
+      "source": "TaskPanel/native/a6/a657f3df-f611-4cc7-8212-bbbc40e720c1.23664.webp",
+      "dest": "pixi-client/public/original-panels/tasks/box_1_mask.png",
+      "kind": "original-atlas-crop",
+      "sha256": "6eab707cf3ab57059ea8a195c1f0ee90147ad14925f034140828b60c984e47b5",
+      "size": [
+        86,
+        78
+      ]
+    },
+    {
+      "bundle": "TaskPanel",
+      "name": "box_3",
+      "source": "TaskPanel/native/a6/a657f3df-f611-4cc7-8212-bbbc40e720c1.23664.webp",
+      "dest": "pixi-client/public/original-panels/tasks/box_3.png",
+      "kind": "original-atlas-crop",
+      "sha256": "578e5bffc41819628061c95ece0a7cb2c2612f19aff638d5158414af8c46ccdf",
+      "size": [
+        88,
+        84
+      ]
+    },
+    {
+      "bundle": "TaskPanel",
+      "name": "bg_1",
+      "source": "TaskPanel/native/a6/a657f3df-f611-4cc7-8212-bbbc40e720c1.23664.webp",
+      "dest": "pixi-client/public/original-panels/tasks/bg_1.png",
+      "kind": "original-atlas-crop",
+      "sha256": "34bb53b5b07a4671eaab79fdda67367bf2b466d6edd228e0708195c445f292e7",
+      "size": [
+        1004,
+        216
+      ]
+    }
+  ]
+}

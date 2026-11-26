@@ -73,3 +73,18 @@
 @media(max-width:560px){
  .tasks-list article{flex-direction:column;align-items:stretch}
 }
+
+
+/* NEXT-026.3.19 exact TaskPanel atlas: sky/warm backgrounds, reward boxes. */
+.tasks-points{background:#1b2038 url('/original-panels/tasks/bg_2.png') center/cover no-repeat;border-color:#c9ae77}
+.tasks-chests button{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:66px}
+.tasks-chests button::before{content:"";display:block;width:48px;height:45px;background-size:contain;background-position:center;background-repeat:no-repeat}
+.tasks-chests button:nth-child(3n+1)::before{background-image:url('/original-panels/tasks/box_1.png')}
+.tasks-chests button:nth-child(3n+2)::before{background-image:url('/original-panels/tasks/box_2.png')}
+.tasks-chests button:nth-child(3n)::before{background-image:url('/original-panels/tasks/box_3.png')}
+.tasks-chests button[data-claimed="1"]::before{filter:grayscale(1);opacity:.5}
+.tasks-screen header{background:linear-gradient(90deg,#121c2aaa,#121c2a00),url('/original-panels/tasks/bg_1.png') center/cover no-repeat;padding:9px}
+@media(max-width:400px){.tasks-screen{padding:10px}.tasks-chests button::before{width:38px;height:36px}}
+/* 026.3.19 readability: original task atlas bg_2 kept intact below a dark scrim. */
+.tasks-points{background-image:linear-gradient(180deg,rgba(8,14,28,.70),rgba(8,14,28,.85)),url('/original-panels/tasks/bg_2.png')}
+.tasks-points,.tasks-points button{text-shadow:0 1px 2px #111827}

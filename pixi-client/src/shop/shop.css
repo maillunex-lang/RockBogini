@@ -54,3 +54,15 @@
 .shop-vip-grid ul{margin:0;padding-left:16px;font-size:.85rem;flex:1}
 .shop-vip{margin-top:4px}
 .shop-vip>p{margin:0 0 12px;opacity:.85}
+
+
+/* NEXT-026.3.15 exact original ShopPanel button atlas and original girl overlay. */
+.shop-screen{position:relative;isolation:isolate}
+.shop-screen::before{content:"";position:absolute;right:0;top:65px;width:min(55%,270px);height:210px;pointer-events:none;opacity:.28;background:url('/original-panels/shop/ShopGirl.webp') center/contain no-repeat;z-index:-1}
+.shop-types button{display:flex;align-items:center;gap:5px;min-width:0}
+.shop-types button:nth-child(-n+4)::before{content:"";display:block;width:30px;height:34px;flex:none;background-size:contain;background-repeat:no-repeat;background-position:center}
+.shop-types button:nth-child(1)::before{background-image:url('/original-panels/shop/btn_toplevel_1.png')}
+.shop-types button:nth-child(2)::before{background-image:url('/original-panels/shop/btn_toplevel_2.png')}
+.shop-types button:nth-child(3)::before{background-image:url('/original-panels/shop/btn_toplevel_3.png')}
+.shop-types button:nth-child(4)::before{background-image:url('/original-panels/shop/btn_toplevel_4.png')}
+@media(max-width:400px){.shop-screen{padding:10px}.shop-types button{font-size:11px;padding:5px}}

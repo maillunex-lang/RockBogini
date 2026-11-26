@@ -240,3 +240,12 @@
 .campaign-progress-rewards h2{margin:0 0 6px;font-size:1.1rem}
 .campaign-progress-rewards p{margin:0 0 6px;opacity:.9}
 .campaign-progress-rewards ul{margin:0;padding-left:18px;font-size:.9rem}
+
+
+/* NEXT-026.3.03 Cocos WorldMapPanel PNG/map1,map2 original texture;
+   positions of current API nodes still need owner 1:1 comparison. */
+.campaign-world-plane[data-original-sheet="map1"]{background:url('/original-panels/campaign/map1.webp') center/100% 100% no-repeat}
+.campaign-world-plane[data-original-sheet="map2"]{background:url('/original-panels/campaign/map2.webp') center/100% 100% no-repeat}
+.campaign-world-node{box-shadow:0 1px 5px #16131c88}
+.campaign-world-map{background-color:#362f28}
+@media(max-width:400px){.campaign-world-node{min-width:72px;max-width:100px;padding:5px 7px;font-size:11px}}

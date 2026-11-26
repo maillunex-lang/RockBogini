@@ -1,0 +1,88 @@
+{
+  "checked": 10,
+  "pass": 10,
+  "results": [
+    {
+      "name": "campaign",
+      "viewport": "390x844",
+      "status": "PASS",
+      "screen": true,
+      "source": true,
+      "background": "url(\"https://rikagro.ru/sexyidle/original-panels/campaign/map1.webp\")",
+      "sheets": 2
+    },
+    {
+      "name": "campaign",
+      "viewport": "320x640",
+      "status": "PASS",
+      "screen": true,
+      "source": true,
+      "background": "url(\"https://rikagro.ru/sexyidle/original-panels/campaign/map1.webp\")",
+      "sheets": 2
+    },
+    {
+      "name": "inventory",
+      "viewport": "390x844",
+      "status": "PASS",
+      "screen": true,
+      "background": "url(\"https://rikagro.ru/sexyidle/original-panels/inventory/BagBg.webp\")",
+      "filterCount": 7
+    },
+    {
+      "name": "inventory",
+      "viewport": "320x640",
+      "status": "PASS",
+      "screen": true,
+      "background": "url(\"https://rikagro.ru/sexyidle/original-panels/inventory/BagBg.webp\")",
+      "filterCount": 7
+    },
+    {
+      "name": "summon",
+      "viewport": "390x844",
+      "status": "PASS",
+      "screen": true,
+      "tabs": 4,
+      "icon": "url(\"https://rikagro.ru/sexyidle/original-panels/summon/DailySummonBtn.png\")"
+    },
+    {
+      "name": "summon",
+      "viewport": "320x640",
+      "status": "PASS",
+      "screen": true,
+      "tabs": 4,
+      "icon": "url(\"https://rikagro.ru/sexyidle/original-panels/summon/DailySummonBtn.png\")"
+    },
+    {
+      "name": "shop",
+      "viewport": "390x844",
+      "status": "PASS",
+      "screen": true,
+      "girl": "url(\"https://rikagro.ru/sexyidle/original-panels/shop/ShopGirl.webp\")",
+      "types": 5
+    },
+    {
+      "name": "shop",
+      "viewport": "320x640",
+      "status": "PASS",
+      "screen": true,
+      "girl": "url(\"https://rikagro.ru/sexyidle/original-panels/shop/ShopGirl.webp\")",
+      "types": 5
+    },
+    {
+      "name": "tasks",
+      "viewport": "390x844",
+      "status": "PASS",
+      "screen": true,
+      "header": "linear-gradient(90deg, rgba(18, 28, 42, 0.667), rgba(18, 28, 42, 0)), url(\"https://rikagro.ru/sexyidle/original-panels/tasks/bg_1.png\")",
+      "chests": 4
+    },
+    {
+      "name": "tasks",
+      "viewport": "320x640",
+      "status": "PASS",
+      "screen": true,
+      "header": "linear-gradient(90deg, rgba(18, 28, 42, 0.667), rgba(18, 28, 42, 0)), url(\"https://rikagro.ru/sexyidle/original-panels/tasks/bg_1.png\")",
+      "chests": 4
+    }
+  ]
+}

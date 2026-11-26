@@ -88,3 +88,10 @@ span.inventory-icon[data-kind="other"]{background:linear-gradient(145deg,#8a8a8a
 .inventory-overlay header button{border:0;background:transparent;font-size:1.4rem;line-height:1}
 .inventory-detail p{margin:0 0 8px}
 .inventory-note{opacity:.8;font-size:.9rem}
+
+
+/* NEXT-026.3.07 exact BagPanel/Bg texture 1080x2520; full-screen original panel art. */
+.inventory-screen{background:#24151c url('/original-panels/inventory/BagBg.webp') center top/100% auto repeat-y}
+.inventory-bag,.inventory-currencies{background:#140d1f77;padding:10px;border:1px solid #ccaf8259}
+.inventory-screen .inventory-row{background-color:#261e29bc}
+@media(max-width:400px){.inventory-screen{padding:10px}.inventory-screen h1{font-size:1.4rem}}

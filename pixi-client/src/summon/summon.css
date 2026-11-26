@@ -10,3 +10,15 @@
 .summon-results ul{list-style:none;padding:0;margin:0;display:grid;gap:0.5rem}
 .summon-results li{display:flex;flex-direction:column;gap:0.15rem;padding:0.55rem 0;border-bottom:1px solid rgba(196,165,116,0.25)}
 @media (max-width:640px){.summon-screen{padding:0.85rem}.summon-screen h1{font-size:1.4rem}}
+
+
+/* NEXT-026.3.11 original SummonHeroPanel atlas button art, four source frames. */
+.summon-tabs[role="tablist"]{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+.summon-tabs[role="tablist"] button{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:3px;min-width:0;padding:6px 2px;font-size:clamp(9px,2.5vw,13px);line-height:1.2}
+.summon-tabs[role="tablist"] button::before{content:"";display:block;width:min(100%,54px);height:54px;background-position:center;background-size:contain;background-repeat:no-repeat}
+.summon-tabs[role="tablist"] button:nth-child(1)::before{background-image:url('/original-panels/summon/DailySummonBtn.png')}
+.summon-tabs[role="tablist"] button:nth-child(2)::before{background-image:url('/original-panels/summon/SummonBtn.png')}
+.summon-tabs[role="tablist"] button:nth-child(3)::before{background-image:url('/original-panels/summon/toggle_oracle.png')}
+.summon-tabs[role="tablist"] button:nth-child(4)::before{background-image:url('/original-panels/summon/InfiniteTenTog.png')}
+.summon-tabs[role="tablist"] button[aria-selected=true]{border-color:#f7d589}
+@media(max-width:400px){.summon-screen{padding:8px}.summon-tabs[role="tablist"] button::before{height:40px;width:40px}}

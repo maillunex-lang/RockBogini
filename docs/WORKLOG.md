@@ -496,3 +496,5 @@ NEXT-013.8 in_progress: inventoried 10 invalid common-skill ActionIndex values; 
 2026-11-26 NEXT-026.2 HeroDetailPanel partial: original Cocos geometry read, 4 attribute rows and hero portrait/frame/power implemented, 320/390/768 browser E2E PASS, build and /sexyidle deployment verified; original background UUID pending. See reports/NEXT-026.2-herodetail-2026-11-26.md.
 
 2026-11-26 NEXT-026.2 five sequential slices: original PanelBg1 (1028x1516, capInsets 120) and nine-slice; 4 detail section anchors; Playwright 4 viewport PASS, build & /sexyidle publish; roadmap updated. Not full 1:1. reports/NEXT-026.2-5-stage-2026-11-26.md.
+
+2026-11-26 NEXT-026.3.01–20: source audits WorldMapPanel/BagPanel/SummonHeroPanel/ShopPanel/TaskPanel, 21 exact Cocos image assets imported with SHA256; UI changes to five live screens, mobile 10/10 browser PASS. Vite build /sexyidle published; roadmap and per-stage evidence updated. Parent 026 still in_progress. reports/NEXT-026.3-20-stages.md.

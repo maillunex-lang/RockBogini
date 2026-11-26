@@ -425,7 +425,7 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
     })}
    </div>
    <section className="campaign-world-map" aria-label="Карта мира">
-    <div className="campaign-world-plane" style={{['--map-aspect' as string]:`${mapBounds.w}/${mapBounds.h}`}}>
+    <div className="campaign-world-plane" data-original-sheet={owningMaps.indexOf(owningMap)===0?"map1":owningMaps.indexOf(owningMap)===1?"map2":"none"} style={{['--map-aspect' as string]:`${mapBounds.w}/${mapBounds.h}`}}>
      {sheetWorlds.map(w=>{
       const x=((w.position[0]??0)-mapBounds.minX)/mapBounds.w*100;
       const y=(1-((w.position[1]??0)-mapBounds.minY)/mapBounds.h)*100;

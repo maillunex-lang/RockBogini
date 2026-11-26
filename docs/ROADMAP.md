@@ -33,6 +33,14 @@ VPS is the development stand; GitHub main is the published source mirror. **SING
 4. Nine-slice Cocos исходной текстуры через border-image-slice 120 fill, сборка+публикация+4/4 PASS.
 5. Документация, дорожная карта и Git-коммит обновлены. Отчёт reports/NEXT-026.2-5-stage-2026-11-26.md. **026 остаётся in_progress**: полный оригинальный HeroDetailPanel, Spine, точная геометрия и сверка 1:1 не приняты.
 
+### NEXT-026.3, 20 последовательных подэтапов (26.11.2026)
+- 026.3.01–04: WorldMapPanel, оригинальные PNG/map1 и map2; интеграция и браузерная проверка карты кампании.
+- 026.3.05–08: BagPanel, оригинальный Bg 1080×2520; визуал инвентаря и браузерная проверка.
+- 026.3.09–12: SummonHeroPanel, четыре оригинальных спрайта; вкладки и браузерная проверка.
+- 026.3.13–16: ShopPanel, оригинальная героиня + четыре иконки; интерфейс магазина и браузерная проверка.
+- 026.3.17–20: TaskPanel, девять оригинальных спрайтов (фоны, значки, сундуки), контрастная подложка и браузерная проверка.
+- Итого 21 оригинальный файл с контрольными SHA256; 10/10 мобильных проверок PASS (320×640, 390×844), Vite production build PASS, /sexyidle опубликован. Документы reports/NEXT-026.3-20-stages.md и reports/NEXT-026.3-20-stages.json. **Это подэтапы NEXT-026, а не закрытие 20 главных фаз**. 1:1 геометрия, Spine и визуальная приёмка открыты; родительский NEXT-026 остаётся in_progress.
+
 ### Открытые подэтапы сейчас
 - **026.1** city visual parity — mobile HUD QA PASS, 1:1 + Spine acceptance open
 - **026.2** original HeroListPanel — original background + 4-column grid live, frames/filters/detail pending

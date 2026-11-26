@@ -37,3 +37,5 @@
 NEXT-026.2 HeroDetailPanel partial: source original prefab reviewed, 4 original-size attribute nodes, verified portrait/power/attribute layout published to /sexyidle. Browser 320/390/768 PASS. Actual original background sprite unresolved; 1:1 gate OPEN. reports/NEXT-026.2-herodetail-2026-11-26.md.
 
 NEXT-026.2 5 stages (2026-11-26): original CommonBg/PanelBg1 texture and Cocos nine-slice imported, 4 detail navigation anchors, 4 viewport browser E2E PASS, Vite deploy /sexyidle, docs/Git updated. Full 1:1/Spine still pending. reports/NEXT-026.2-5-stage-2026-11-26.md.
+
+NEXT-026.3 (2026-11-26): 20 source-driven visual substeps across campaign/inventory/summon/shop/tasks; 21 exact Cocos assets imported; five screen integrations; browser QA 10/10 PASS at 320x640/390x844, Vite build and /sexyidle deployment. NEXT-026 in_progress; NOT 20 main stages completed, 1:1 not accepted. See reports/NEXT-026.3-20-stages.md.

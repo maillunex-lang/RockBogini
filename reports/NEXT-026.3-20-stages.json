@@ -1,0 +1,173 @@
+{
+  "date": "2026-11-26",
+  "parent": "NEXT-026",
+  "scope": "20 targeted source-based visual substeps, NOT 20 completed main roadmap phases",
+  "source_repo": "/home/gamedev/QueensBladeH5/racon2-main/client/G123Live/Queen-Blade/assets",
+  "target_repo": "/home/gamedev/rocbogini",
+  "preview": "https://rikagro.ru/sexyidle/",
+  "original_assets": 21,
+  "browser_checks": 10,
+  "browser_passes": 10,
+  "source_bundles": [
+    "WorldMapPanel",
+    "BagPanel",
+    "SummonHeroPanel",
+    "ShopPanel",
+    "TaskPanel"
+  ],
+  "stages": [
+    {
+      "id": "NEXT-026.3.01",
+      "screen": "campaign",
+      "title": "Кампания / карта мира: Исходный prefab и пути ресурсов",
+      "status": "done",
+      "evidence": "NEXT-026.3-source-audits.json"
+    },
+    {
+      "id": "NEXT-026.3.02",
+      "screen": "campaign",
+      "title": "Кампания / карта мира: Оригинальные графические файлы и SHA256",
+      "status": "done",
+      "evidence": "NEXT-026.3-asset-manifest.json"
+    },
+    {
+      "id": "NEXT-026.3.03",
+      "screen": "campaign",
+      "title": "Кампания / карта мира: Интеграция спрайтов в существующий интерфейс",
+      "status": "done",
+      "evidence": "production Vite build, CSS in pixi-client/src"
+    },
+    {
+      "id": "NEXT-026.3.04",
+      "screen": "campaign",
+      "title": "Кампания / карта мира: Браузерная проверка 320x640 и 390x844",
+      "status": "done",
+      "evidence": "NEXT-026.3-mobile-qa.json"
+    },
+    {
+      "id": "NEXT-026.3.05",
+      "screen": "inventory",
+      "title": "Инвентарь: Исходный prefab и пути ресурсов",
+      "status": "done",
+      "evidence": "NEXT-026.3-source-audits.json"
+    },
+    {
+      "id": "NEXT-026.3.06",
+      "screen": "inventory",
+      "title": "Инвентарь: Оригинальные графические файлы и SHA256",
+      "status": "done",
+      "evidence": "NEXT-026.3-asset-manifest.json"
+    },
+    {
+      "id": "NEXT-026.3.07",
+      "screen": "inventory",
+      "title": "Инвентарь: Интеграция спрайтов в существующий интерфейс",
+      "status": "done",
+      "evidence": "production Vite build, CSS in pixi-client/src"
+    },
+    {
+      "id": "NEXT-026.3.08",
+      "screen": "inventory",
+      "title": "Инвентарь: Браузерная проверка 320x640 и 390x844",
+      "status": "done",
+      "evidence": "NEXT-026.3-mobile-qa.json"
+    },
+    {
+      "id": "NEXT-026.3.09",
+      "screen": "summon",
+      "title": "Призыв: Исходный prefab и пути ресурсов",
+      "status": "done",
+      "evidence": "NEXT-026.3-source-audits.json"
+    },
+    {
+      "id": "NEXT-026.3.10",
+      "screen": "summon",
+      "title": "Призыв: Оригинальные графические файлы и SHA256",
+      "status": "done",
+      "evidence": "NEXT-026.3-asset-manifest.json"
+    },
+    {
+      "id": "NEXT-026.3.11",
+      "screen": "summon",
+      "title": "Призыв: Интеграция спрайтов в существующий интерфейс",
+      "status": "done",
+      "evidence": "production Vite build, CSS in pixi-client/src"
+    },
+    {
+      "id": "NEXT-026.3.12",
+      "screen": "summon",
+      "title": "Призыв: Браузерная проверка 320x640 и 390x844",
+      "status": "done",
+      "evidence": "NEXT-026.3-mobile-qa.json"
+    },
+    {
+      "id": "NEXT-026.3.13",
+      "screen": "shop",
+      "title": "Магазин: Исходный prefab и пути ресурсов",
+      "status": "done",
+      "evidence": "NEXT-026.3-source-audits.json"
+    },
+    {
+      "id": "NEXT-026.3.14",
+      "screen": "shop",
+      "title": "Магазин: Оригинальные графические файлы и SHA256",
+      "status": "done",
+      "evidence": "NEXT-026.3-asset-manifest.json"
+    },
+    {
+      "id": "NEXT-026.3.15",
+      "screen": "shop",
+      "title": "Магазин: Интеграция спрайтов в существующий интерфейс",
+      "status": "done",
+      "evidence": "production Vite build, CSS in pixi-client/src"
+    },
+    {
+      "id": "NEXT-026.3.16",
+      "screen": "shop",
+      "title": "Магазин: Браузерная проверка 320x640 и 390x844",
+      "status": "done",
+      "evidence": "NEXT-026.3-mobile-qa.json"
+    },
+    {
+      "id": "NEXT-026.3.17",
+      "screen": "tasks",
+      "title": "Задания: Исходный prefab и пути ресурсов",
+      "status": "done",
+      "evidence": "NEXT-026.3-source-audits.json"
+    },
+    {
+      "id": "NEXT-026.3.18",
+      "screen": "tasks",
+      "title": "Задания: Оригинальные графические файлы и SHA256",
+      "status": "done",
+      "evidence": "NEXT-026.3-asset-manifest.json"
+    },
+    {
+      "id": "NEXT-026.3.19",
+      "screen": "tasks",
+      "title": "Задания: Интеграция спрайтов в существующий интерфейс",
+      "status": "done",
+      "evidence": "production Vite build, CSS in pixi-client/src"
+    },
+    {
+      "id": "NEXT-026.3.20",
+      "screen": "tasks",
+      "title": "Задания: Браузерная проверка 320x640 и 390x844",
+      "status": "done",
+      "evidence": "NEXT-026.3-mobile-qa.json"
+    }
+  ],
+  "remaining": [
+    "pixel-by-pixel comparison with original UI",
+    "original full 3D/Spine visual parity",
+    "source-accurate positions and scaling per prefab",
+    "real Android visual acceptance",
+    "GitHub remote push and CI green not confirmed"
+  ],
+  "preserved": [
+    "existing server APIs",
+    "player progress",
+    "original Elixir game",
+    "other VPS games"
+  ]
+}

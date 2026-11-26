@@ -29,3 +29,5 @@
 NEXT-026.2 HeroDetailPanel: original prefab mapped (Background 928x1358, four BaseAttrItem 618x64, ScrollView 880x786). Existing original UI assets installed in detail. Need resolve external UUID 269yyAZp9El7jeXeC1pkD0 for exact background, then Spine and viewport 1:1. Report reports/NEXT-026.2-herodetail-2026-11-26.md.
 
 NEXT-026.2 five stages 2026-11-26. Original PanelBg1 resolved via CommonBg UUID a30KETdxZHCqBJWvCBI4lU, displayed with 120px 9-slice. Detail 4 anchors and 4-viewport E2E pass. Continue original HeroDetailPanel Spine/controls/layout. Report reports/NEXT-026.2-5-stage-2026-11-26.md.
+
+NEXT-026.3.01–20 source-driven visual batch finished 2026-11-26. Five bundles, 21 original images, 5 screens, 10/10 browser smoke PASS. See reports/NEXT-026.3-20-stages.md and tools/verify-next026-20.cjs. The 20 items are targeted slices of NEXT-026, not twenty completed primary roadmap phases. Continue side-by-side original geometry and Spine visual acceptance; preserve game state.
