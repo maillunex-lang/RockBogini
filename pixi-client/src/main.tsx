@@ -14,7 +14,7 @@ import {LinkGuest} from './auth/LinkGuest';
 import {RecoveryScreen,RecoveryCodes} from './auth/RecoveryScreen';
 import {currentServer} from './auth/servers';
 import {restore,signIn,signOut,linkGuest,recoverAccount,requestRecoveryCodes,type Session} from './auth/session';
-import {cacheSettled,cacheSize} from './assets/spineLibrary';
+
 
 const API=currentServer().api;
 function App(){
@@ -23,7 +23,7 @@ function App(){
  const [error,setError]=useState('');
  const [showCampaign,setShowCampaign]=useState(false);
  const [fightMapId,setFightMapId]=useState<number|null>(null);
- const [idle,setIdle]=useState(-1);
+
  const [isGuest,setIsGuest]=useState(false);
  const [showHeroes,setShowHeroes]=useState(false);
  const [showInventory,setShowInventory]=useState(false);
@@ -52,13 +52,13 @@ function App(){
  if(showLink)return <LinkGuest onCancel={()=>setShowLink(false)} onLink={async(email,password)=>{const linked=await linkGuest(API,session,email,password);setSession(linked);setIsGuest(false);setShowLink(false)}}/>;
  if(fightMapId!=null)return <ReportScreen api={API} token={session.token} mapId={fightMapId} onBack={()=>setFightMapId(null)}/>;
  if(showCampaign)return <CampaignScreen api={API} token={session.token} onFight={id=>setFightMapId(id)} onClose={()=>setShowCampaign(false)}/>;
- return <main><div style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:8,padding:10,background:'#222137',color:'white',flexWrap:'wrap'}}>
+ return <main className="city-shell"><details className="city-account"><summary>Аккаунт и настройки</summary><div style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:8,padding:10,background:'#222137',color:'white',flexWrap:'wrap'}}>
  <strong>RockBogini Next</strong><button onClick={()=>setShowProfile(true)}>Профиль</button><span>Аккаунт: {session.id.slice(0,8)}</span>
  {isGuest?<button onClick={()=>setShowLink(true)}>Привязать почту</button>:<button onClick={async()=>{try{setRecoverError('');setCodes(await requestRecoveryCodes(API,session))}catch(e){setRecoverError(e instanceof Error?e.message:String(e))}}}>Резервные коды</button>}
- <button onClick={async()=>{try{await signOut(API,session);setSession(null);setShowRecovery(false)}catch(e){setError(e instanceof Error?e.message:String(e))}}}>Выйти из аккаунта</button></div>
+ <button onClick={async()=>{try{await signOut(API,session);setSession(null);setShowRecovery(false)}catch(e){setError(e instanceof Error?e.message:String(e))}}}>Выйти из аккаунта</button></div></details>
  {recoverError&&<p role="alert">{recoverError}</p>}
  <City api={API} token={session.token} onProfile={()=>setShowProfile(true)} onBattle={()=>setShowCampaign(true)} onHeroes={()=>setShowHeroes(true)} onInventory={()=>setShowInventory(true)} onSummon={()=>setShowSummon(true)} onShop={()=>setShowShop(true)} onTasks={()=>setShowTasks(true)}/>
- <button onClick={async()=>{await cacheSettled();setIdle(cacheSize())}}>Проверить кеш</button><output data-idle-cache={idle}>{idle}</output>
+
  </main>;
 }
 createRoot(document.getElementById('root')!).render(<App/>);

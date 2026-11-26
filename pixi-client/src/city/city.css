@@ -1,6 +1,6 @@
 .city{
  position:relative;
- min-height:calc(100dvh - 100px);
+ min-height:0;
  display:flex;
  flex-direction:column;
  color:#fff6df;
@@ -87,13 +87,13 @@
 }
 /* Keep the city chrome fixed; only the painted stage scrolls. */
 @supports (height:100dvh){
- .city{height:calc(100dvh - 100px)}
+ .city{height:auto}
 }
 .city-stage-inner{
  position:relative;
  width:100%;
- aspect-ratio:719/1679;
- background:url('/city/default.webp') center top/100% 100% no-repeat;
+ aspect-ratio:720/1680;
+ background:url('/city/day.webp') center top/100% 100% no-repeat;
 }
 .city-ambient{
  position:absolute;
@@ -205,3 +205,5 @@
  width:100%;height:calc(100% - 15px);
  object-fit:contain;
 }
+
+body:has(.city-shell){margin:0;background:#1a1528}.city-shell{height:100dvh;max-width:680px;margin:auto;display:flex;flex-direction:column;overflow:hidden}.city-shell .city{flex:1;min-height:0;width:100%;margin:0}.city-account{flex:none;background:#222137;color:#fff;font:12px Segoe UI,sans-serif}.city-account summary{padding:5px 10px;cursor:pointer}.city-title-fx[data-animation-state="error"]{display:none}
