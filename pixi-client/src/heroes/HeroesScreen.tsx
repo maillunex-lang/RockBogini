@@ -278,8 +278,20 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
    </button>;
   })}</div>
   {h&&<section className="hero-detail" aria-label="Характеристики героя">
-   <h2>{heroDisplayName(h.HeroId)}</h2>
-   <p>Ур. {h.Level}/{h.maxLevel??'—'} · ★ {h.StarLevel}/{h.maxStar??'—'} · Мощь {h.Power}</p>
+   <div className="hero-detail-head">
+    <div className="hero-detail-portrait">
+     <img src={'./profile/icon-'+h.HeroId+'.webp'} alt="" onError={e=>{e.currentTarget.style.visibility='hidden'}}/>
+     <img className="hero-detail-frame" src={import.meta.env.BASE_URL+'heroes/original/cards/card_border_'+(Math.min(6,Math.max(1,(heroVisualCatalog as Record<string,{element:number}>)[h.HeroId]?.element??1)))+'.png'} alt="" aria-hidden="true"/>
+    </div>
+    <div className="hero-detail-identity">
+     <h2>{heroDisplayName(h.HeroId)}</h2>
+     <p>Ур. {h.Level}/{h.maxLevel??'—'} · ★ {h.StarLevel}/{h.maxStar??'—'}</p>
+     <strong className="hero-detail-power">⚔ {h.Power}</strong>
+    </div>
+   </div>
+   <div className="hero-detail-attributes" aria-label="Основные характеристики">
+    {Object.entries(ATTR_LABEL).map(([key,label])=><div key={key} className="hero-detail-attribute"><span>{label}</span><strong>{h.Attrs?.[key]??'—'}</strong></div>)}
+   </div>
    <div className="hero-growth">
     <button type="button" disabled={busy||h.Level>=(h.maxLevel??0)} onClick={()=>void grow('level',h.Sid,{newLevel:h.Level+1},'Повышение уровня…')}>+1 уровень</button>
     <button type="button" disabled={busy||h.Level>=(h.maxLevel??0)} onClick={()=>void grow('level',h.Sid,{newLevel:Math.min(h.Level+5,h.maxLevel??h.Level+5)},'Повышение уровня…')}>+5 уровней</button>

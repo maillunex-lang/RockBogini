@@ -33,3 +33,5 @@
 - Extracted 20 original Cocos card/background sprites, imported 354 original hero ElementType records.
 - UI filters, sorting and view toggle + detail entry tested 320/390/768. Client Vite build PASS, /sexyidle publish PASS.
 - NEXT-026 remains in_progress; exact HeroList controls, HeroDetail original art and visual acceptance open. Evidence reports/NEXT-026.2-hero-original-cards-2026-11-26.md.
+
+NEXT-026.2 HeroDetailPanel partial: source original prefab reviewed, 4 original-size attribute nodes, verified portrait/power/attribute layout published to /sexyidle. Browser 320/390/768 PASS. Actual original background sprite unresolved; 1:1 gate OPEN. reports/NEXT-026.2-herodetail-2026-11-26.md.

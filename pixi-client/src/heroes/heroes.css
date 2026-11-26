@@ -36,3 +36,18 @@
 .heroes-grid--portrait .hero-original-card{aspect-ratio:1!important}
 .heroes-grid--portrait .hero-card-portrait{top:5%;height:68%}
 .heroes-grid--portrait .hero-card-label{bottom:3%}
+
+/* NEXT-026.2 HeroDetailPanel prefab: 928×1358 background, 4 BaseAttrItem rows (618×64).
+   Use existing verified original Common UI assets while source background UUID remains unresolved. */
+.hero-detail{border:0;border-radius:0;background:transparent url('/ui/commonPanelBg1.webp') center/100% 100% no-repeat;box-shadow:0 0 0 1px #ae9057 inset;padding:12px;min-width:0}
+.hero-detail-head{display:flex;align-items:center;gap:12px;min-width:0}
+.hero-detail-portrait{position:relative;width:32%;aspect-ratio:218/318;max-width:142px;flex:none;background:url('/heroes/original/cards/card_bg_1.png') center/100% 100% no-repeat}
+.hero-detail-portrait>img:first-child{position:absolute;top:5%;left:8%;width:84%;height:73%;object-fit:contain}
+.hero-detail-portrait .hero-detail-frame{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;pointer-events:none}
+.hero-detail-identity{min-width:0;flex:1}.hero-detail-identity h2{font-size:clamp(17px,4vw,24px);margin:0 0 5px;overflow-wrap:anywhere}
+.hero-detail-identity p{font-size:clamp(10px,2.8vw,14px);line-height:1.4}
+.hero-detail-power{display:block;max-width:100%;font-weight:700;color:#f8dc92;font-size:clamp(14px,4vw,19px)}
+.hero-detail-attributes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:12px}
+.hero-detail-attribute{display:flex;align-items:center;justify-content:space-between;gap:4px;padding:7px 5px;background:transparent url('/ui/attr_bg.webp') center/100% 100% no-repeat;font-size:clamp(10px,2.6vw,13px);min-width:0}
+.hero-detail-attribute strong{font-variant-numeric:tabular-nums;color:#ffdd83}
+@media(max-width:360px){.hero-detail-head{gap:7px}.hero-detail{padding:8px}.hero-detail-attributes{gap:3px}}

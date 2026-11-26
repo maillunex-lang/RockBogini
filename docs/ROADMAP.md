@@ -22,6 +22,10 @@ VPS is the development stand; GitHub main is the published source mirror. **SING
 - Операционные пробелы: GitHub push/CI не подтверждены (нет авторизации HTTPS); старый отдельный Spine canvas вызывал мерцание, поэтому эффекты выключены.
 - Отчёт: reports/NEXT-026.1-026.2-2026-11-26.md.
 
+### 026.2 HeroDetailPanel, 2026-11-26
+- По оригинальному Cocos prefab: Background 928×1358; четыре BaseAttrItem 618×64; ScrollView 880×786; секции умений и экипировки. В HeroesScreen подключены портрет, исходная рамка карточки, сила и четыре строки характеристик; имеющиеся оригинальные ui/attr_bg/commonPanelBg1 применены как временный стиль. Браузерное тестирование 320/390/768 PASS, сборка/публикация PASS.
+- **Не 1:1 и не закрыто:** исходный фон HeroDetailPanel UUID 269yyAZp9El7jeXeC1pkD0 не разрешён; полноценная компоновка и анимация героя, проверка по эталону впереди. Evidence: reports/NEXT-026.2-herodetail-2026-11-26.md.
+
 ### Открытые подэтапы сейчас
 - **026.1** city visual parity — mobile HUD QA PASS, 1:1 + Spine acceptance open
 - **026.2** original HeroListPanel — original background + 4-column grid live, frames/filters/detail pending

@@ -25,3 +25,5 @@
 - GitHub origin credentials missing, remote push/CI not confirmed.
 
 2026-11-26 NEXT-026.2: HeroList original card backgrounds+borders and ElementType-based filter, sort and view toggle live. Full original HeroDetailPanel, button sprites, visual reference QA still open. See reports/NEXT-026.2-hero-original-cards-2026-11-26.md.
+
+NEXT-026.2 HeroDetailPanel: original prefab mapped (Background 928x1358, four BaseAttrItem 618x64, ScrollView 880x786). Existing original UI assets installed in detail. Need resolve external UUID 269yyAZp9El7jeXeC1pkD0 for exact background, then Spine and viewport 1:1. Report reports/NEXT-026.2-herodetail-2026-11-26.md.
