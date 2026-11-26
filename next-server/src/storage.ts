@@ -104,6 +104,11 @@ export async function migrate(s:Storage){
   ADD COLUMN IF NOT EXISTS daily_quick_count integer NOT NULL DEFAULT 0,
   ADD COLUMN IF NOT EXISTS daily_day date NOT NULL DEFAULT CURRENT_DATE`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(19) ON CONFLICT DO NOTHING');
+ await c.query(`ALTER TABLE player_profiles
+  ADD COLUMN IF NOT EXISTS adventure_reward_index integer NOT NULL DEFAULT 0,
+  ADD COLUMN IF NOT EXISTS online_reward_index integer NOT NULL DEFAULT 0,
+  ADD COLUMN IF NOT EXISTS last_login_at timestamptz NOT NULL DEFAULT now()`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(20) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }

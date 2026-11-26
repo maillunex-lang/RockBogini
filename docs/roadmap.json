@@ -162,9 +162,9 @@
   "id": "NEXT-019",
   "title": "Экономика и Idle",
   "phase": "IV. RPG и экономика",
-  "scope": "019.1–019.2 claim+quick. AdventureReward/shops open.",
+  "scope": "019.1–019.3 claim+quick+AdventureReward/online. Shops/VIP open.",
   "status": "in_progress",
-  "evidence": "reports/NEXT-019.2.md; reports/NEXT-019.1.md"
+  "evidence": "reports/NEXT-019.3.md; reports/NEXT-019.2.md; reports/NEXT-019.1.md"
  },
  {
   "id": "NEXT-020",

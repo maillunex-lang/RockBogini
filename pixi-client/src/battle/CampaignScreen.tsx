@@ -114,6 +114,16 @@ type IdleInfo={
  rates:{common:{itemId:number;perMinute:number}[];random:{libId:number;perMinute:number}[]};
  quick?:IdleQuick;
 };
+type ProgressRewards={
+ adventure:{claimed:number;claimable:boolean;pending:{id:number;mapId:number;rewards:number[][]}[]};
+ online:{
+  index:number;
+  onlineMinutes:number;
+  claimable:boolean;
+  pending:{itemId:number;count:number;minutes:number}[];
+  next:{itemId:number;count:number;minutes:number}|null;
+ };
+};
 
 export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:string;onFight:(mapId:number)=>void;onClose:()=>void}){
  const [data,setData]=useState<CampaignProgress|null>(null);
@@ -130,6 +140,9 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
  const [idle,setIdle]=useState<IdleInfo|null>(null);
  const [idleBusy,setIdleBusy]=useState(false);
  const [idleMsg,setIdleMsg]=useState('');
+ const [progress,setProgress]=useState<ProgressRewards|null>(null);
+ const [progressBusy,setProgressBusy]=useState(false);
+ const [progressMsg,setProgressMsg]=useState('');
 
  const applyPending=(pending:TutorialPending|null)=>{
   setTutorial(pending);
@@ -140,6 +153,10 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
  const loadIdle=()=>fetch(api+'/v1/campaign/idle',{headers:{Authorization:'Bearer '+token}})
   .then(r=>{if(!r.ok)throw Error('idle_'+r.status);return r.json() as Promise<IdleInfo>})
   .then(d=>{setIdle(d);return d});
+
+ const loadProgress=()=>fetch(api+'/v1/campaign/progress-rewards',{headers:{Authorization:'Bearer '+token}})
+  .then(r=>{if(!r.ok)throw Error('progress_'+r.status);return r.json() as Promise<ProgressRewards>})
+  .then(d=>{setProgress(d);return d});
 
  const loadCampaign=(focus?:number|null)=>{
   const q=focus?`?chapterId=${focus}`:'';
@@ -155,6 +172,7 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
     else applyPending(null);
     setStatus('');
     void loadIdle().catch(()=>setIdle(null));
+    void loadProgress().catch(()=>setProgress(null));
     return d;
    });
  };
@@ -194,6 +212,38 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
    await loadIdle();
   }catch(e){setIdleMsg(e instanceof Error?e.message:'Ошибка быстрого боя')}
   finally{setIdleBusy(false)}
+ };
+
+ const claimAdventure=async()=>{
+  if(progressBusy)return;
+  setProgressBusy(true);setProgressMsg('');
+  try{
+   const res=await fetch(api+'/v1/campaign/progress-rewards/adventure',{
+    method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},
+   });
+   if(res.status===409){setProgressMsg('Нет наград за этапы');await loadProgress();return}
+   if(!res.ok)throw Error('adventure_claim_'+res.status);
+   const body=await res.json() as {rows:number[];rewards:number[][]};
+   setProgressMsg(`Этапы: ${body.rows.join(', ')} · ${body.rewards.length} наград`);
+   await loadProgress();
+  }catch(e){setProgressMsg(e instanceof Error?e.message:'Ошибка наград этапов')}
+  finally{setProgressBusy(false)}
+ };
+
+ const claimOnline=async()=>{
+  if(progressBusy)return;
+  setProgressBusy(true);setProgressMsg('');
+  try{
+   const res=await fetch(api+'/v1/campaign/progress-rewards/online',{
+    method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},
+   });
+   if(res.status===409){setProgressMsg('Онлайн-награда ещё не готова');await loadProgress();return}
+   if(!res.ok)throw Error('online_claim_'+res.status);
+   const body=await res.json() as {rewards:number[][];onlineMinutes:number};
+   setProgressMsg(`Онлайн ${body.onlineMinutes}м · ${body.rewards.map(([i,n])=>`${itemDisplayName(i)}×${n}`).join(', ')}`);
+   await loadProgress();
+  }catch(e){setProgressMsg(e instanceof Error?e.message:'Ошибка онлайн-награды')}
+  finally{setProgressBusy(false)}
  };
 
  useEffect(()=>{
@@ -342,6 +392,29 @@ export function CampaignScreen({api,token,onFight,onClose}:{api:string;token:str
      disabled={idleBusy||!idle.quick||(idle.quick.freeLeft<=0&&idle.quick.paidLeft<=0)}
      onClick={()=>void runQuickBattle()}
     >{idleBusy?'…':idle.quick?.nextCost?`Быстрый (−${idle.quick.nextCost}💎)`:'Быстрый бой'}</button>
+   </div>
+  </section>}
+  {data&&progress&&<section className="campaign-progress-rewards" aria-label="Награды прогресса">
+   <div>
+    <h2>Награды этапов и онлайн</h2>
+    <p>
+     Этапы: доступно {progress.adventure.pending.length}
+     {progress.adventure.claimed?` · индекс ${progress.adventure.claimed}`:''}
+     {' · '}онлайн {progress.online.onlineMinutes}м
+     {progress.online.next?` · след. ${itemDisplayName(progress.online.next.itemId)}×${progress.online.next.count} (${progress.online.next.minutes}м)`:''}
+    </p>
+    {progress.adventure.pending.length>0&&<ul>
+     {progress.adventure.pending.slice(0,4).map(r=><li key={r.id}>#{r.id} · карта {r.mapId} · {r.rewards.map(([i,n])=>`${itemDisplayName(i)}×${n}`).join(', ')}</li>)}
+    </ul>}
+    {progressMsg&&<p role="status">{progressMsg}</p>}
+   </div>
+   <div className="campaign-idle-actions">
+    <button type="button" disabled={progressBusy||!progress.adventure.claimable} onClick={()=>void claimAdventure()}>
+     {progressBusy?'…':'Забрать этапы'}
+    </button>
+    <button type="button" disabled={progressBusy||!progress.online.claimable} onClick={()=>void claimOnline()}>
+     {progressBusy?'…':'Онлайн-награда'}
+    </button>
    </div>
   </section>}
   {data&&view==='worlds'&&<>

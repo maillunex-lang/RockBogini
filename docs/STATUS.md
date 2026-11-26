@@ -1,7 +1,7 @@
 # Актуальное состояние 2026-11-25
 
-Активная задача: **NEXT-019.2** (quick battle done). Live https://rikagro.ru/testtest/.
-Проверено: quick+idle+storage 10/10; publish ok.
+Активная задача: **NEXT-019.3** (adventure+online rewards done). Live https://rikagro.ru/testtest/.
+Проверено: adventure+online 9/9; publish ok.
 
 | Подэтап | Состояние |
 |---|---|
