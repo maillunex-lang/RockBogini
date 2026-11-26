@@ -227,3 +227,16 @@
 }
 .campaign-idle-actions button:disabled{opacity:.45;cursor:not-allowed}
 .campaign-idle-quick{font-size:.9rem;opacity:.85}
+.campaign-progress-rewards{
+ display:flex;
+ justify-content:space-between;
+ gap:16px;
+ align-items:flex-start;
+ margin:0 0 16px;
+ padding:14px 16px;
+ border:1px solid rgba(232,196,140,.28);
+ background:rgba(28,22,16,.7);
+}
+.campaign-progress-rewards h2{margin:0 0 6px;font-size:1.1rem}
+.campaign-progress-rewards p{margin:0 0 6px;opacity:.9}
+.campaign-progress-rewards ul{margin:0;padding-left:18px;font-size:.9rem}
