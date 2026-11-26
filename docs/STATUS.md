@@ -1,6 +1,6 @@
 # Актуальное состояние 2026-11-26
 
-Активная задача: **NEXT-026.1** city visual parity (D-012). Live https://rikagro.ru/testtest/.
+Активная задача: **NEXT-026.1** city visual parity (D-012). Live https://rikagro.ru/sexyidle/ (public test deployment; legacy /testtest/ retained temporarily).
 Проверено: 020.1 tasks; city Spine biaoti/baitian + scroll stage.
 
 | Подэтап | Состояние |
@@ -22,3 +22,6 @@
 3. 015 random/event consume · 023 события
 4. 022 PvP/соц · 027–028
 
+
+## VPS deployment 2026-11-26
+Canonical checkout `/home/gamedev/rocbogini`, deployed code a4332ce, PixiJS 7.4.3 / Spine 3.8. Original reference extracted at `/home/gamedev/QueensBladeH5/racon2-main`; ZIP retained. Client built with base `/sexyidle/` and API `/sexyidle/api`. Nginx routes to existing API on 127.0.0.1:18991; existing database retained. HTTPS, readiness, guest auth/session/profile/heroes/logout and browser guest entry verified. Server suite job hl3tfr49n9: 55 pass, 24 fail, 6 skip (85 total); failure causes pending investigation. API gameplayReady remains false. No roadmap task marked done. Legacy route remains accessible; publish script still needs migration. PixiJS 8 experiment not adopted.
