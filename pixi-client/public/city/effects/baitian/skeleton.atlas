@@ -1,0 +1,104 @@
+
+UI_effect_zhujiemian_baitian.png.webp
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1Glow_CPxs_rm_010_kx_01
+  rotate: false
+  xy: 85, 9
+  size: 40, 42
+  orig: 64, 64
+  offset: 11, 12
+  index: -1
+1Tex_shizixing_04
+  rotate: false
+  xy: 771, 156
+  size: 96, 98
+  orig: 128, 128
+  offset: 16, 14
+  index: -1
+CH
+  rotate: false
+  xy: 0, 51
+  size: 328, 203
+  orig: 328, 222
+  offset: 0, 1
+  index: -1
+GB
+  rotate: true
+  xy: 864, 28
+  size: 64, 63
+  orig: 64, 64
+  offset: 0, 1
+  index: -1
+LD
+  rotate: false
+  xy: 643, 126
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+SY1
+  rotate: false
+  xy: 0, 4
+  size: 85, 47
+  orig: 100, 58
+  offset: 10, 7
+  index: -1
+SY2
+  rotate: true
+  xy: 762, 0
+  size: 126, 102
+  orig: 131, 105
+  offset: 2, 2
+  index: -1
+SY3
+  rotate: true
+  xy: 125, 6
+  size: 45, 34
+  orig: 45, 34
+  offset: 0, 0
+  index: -1
+SY4
+  rotate: true
+  xy: 159, 5
+  size: 46, 28
+  orig: 46, 28
+  offset: 0, 0
+  index: -1
+Tex_shizixing_03
+  rotate: false
+  xy: 864, 92
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+guangxian01
+  rotate: false
+  xy: 328, 32
+  size: 167, 222
+  orig: 256, 256
+  offset: 75, 0
+  index: -1
+shuibo
+  rotate: true
+  xy: 495, 30
+  size: 224, 148
+  orig: 238, 176
+  offset: 2, 0
+  index: -1
+xing3
+  rotate: false
+  xy: 187, 24
+  size: 27, 27
+  orig: 32, 32
+  offset: 2, 3
+  index: -1
+yanwu2
+  rotate: false
+  xy: 643, 7
+  size: 119, 119
+  orig: 128, 128
+  offset: 4, 3
+  index: -1

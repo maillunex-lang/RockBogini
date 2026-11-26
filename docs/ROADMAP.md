@@ -4,7 +4,7 @@ VPS is the development stand; GitHub main is the published source mirror. **SING
 
 ## Актуальный срез: 2026-11-26
 
-Активная задача: **NEXT-020** (или 021). 020.1 daily/weekly закрыт. Передача Cursor: docs/CURSOR_HANDOFF.md.
+Активная задача: **NEXT-026** визуал 1:1 на shipped (D-012). 020.1 закрыт. Передача Cursor: docs/CURSOR_HANDOFF.md.
 12 из 28 основных этапов закрыты, 7 в работе, 1 отложен, 8 ожидают. (авто из roadmap.json)
 
 ### Сводка по блокам
@@ -16,13 +16,13 @@ VPS is the development stand; GitHub main is the published source mirror. **SING
 | pending | 021 PvE · 022 PvP/соц · 023 события/монетизация · 024 редакторы · 025 админ · 027 сборки · 028 cutover |
 
 ### Открытые подэтапы сейчас
-- **020.1** daily/weekly tasks — done
-- **020.2+** story/achievements или **021** PvE — следующее
+- **026.1** city visual parity — in progress / first slice
+- **026.x** 1:1 окон (campaign/heroes/inventory/summon/shop/tasks)
+- **020.2+** / **021** PvE — механики параллельно по запросу
 - **015** random/event consume
 - **018** activity summons → вместе с **023**
-- **010/012/026** полировка и коммерческая полнота
 
-Проверено до среза: 020.1 tasks; tests 9/9; live https://rikagro.ru/testtest/.
+Проверено до среза: 026.1 city Spine; live https://rikagro.ru/testtest/.
 
 | ID | Этап | Статус | Объём | Доказательство |
 |---|---|---|---|---|
