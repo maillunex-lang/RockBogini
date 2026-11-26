@@ -1,30 +1,207 @@
-.city{position:relative;min-height:calc(100dvh - 100px);display:flex;flex-direction:column;background:#29283d url('/city/default.webp') center/cover no-repeat;color:#fff6df;font-family:system-ui,sans-serif;box-sizing:border-box;max-width:680px;margin:auto}.city-top{display:flex;align-items:center;gap:6px;padding:8px;background:#191629dc;flex-wrap:wrap}.city-top button{display:flex;align-items:center;gap:6px;text-align:left}.city-top img{width:38px;height:38px;object-fit:contain;border-radius:50%}.city-top div{font-size:12px;background:#161321c9;border-radius:8px;padding:8px;flex:1}.city-top b{display:block;font-size:16px}.city button{border:1px solid #c4a36a;border-radius:8px;background:#262039e8;color:#fff0cc;min-height:44px;padding:8px;font:inherit;cursor:pointer}.city-power{padding:8px;background:#191629b0;font-size:13px}.city-buildings{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:12px;align-content:center;flex:1;min-height:320px}.city-buildings button{font-size:12px;min-height:54px}.city-nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;background:#191629ee;padding:8px}.city-nav button{font-size:11px;padding:4px}.city-notice{background:#191629ed;padding:10px;display:flex;justify-content:space-between;align-items:center}
-.city-shortcuts{display:flex;flex-wrap:wrap;gap:5px;padding:8px;background:#19162966}.city-shortcuts button{flex:1;font-size:11px;padding:5px}.city-overlay{position:absolute;inset:0;background:#100d19b8;display:grid;place-items:center;z-index:10;padding:16px}.city-overlay section{width:min(100%,360px);box-sizing:border-box;border:1px solid #c4a36a;border-radius:14px;background:#262039;padding:16px;box-shadow:0 8px 32px #0008}.city-overlay header{display:flex;align-items:center;justify-content:space-between}.city-overlay p{font-size:14px;line-height:1.5}
-.city-nav button,.city-shortcuts button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}.dock-icon{width:36px;height:36px;object-fit:contain}.city-shortcuts .dock-icon{width:26px;height:26px}
-/* Original MainUIPanel atlas frames, scaled from 1080px design width. */
-.city .city-top{background:transparent url('/city/icons/Header.webp') center top/100% 100% no-repeat;padding:8px 12px;min-height:60px}
-.city .city-top button,.city .city-top div{background:transparent;border:0;box-shadow:none}
-.city .city-nav{background:transparent url('/city/icons/Bottom.webp') center bottom/100% 100% no-repeat;gap:0;padding:5px 5% 8px;align-items:end}
-.city .city-nav button{background:none;border:0;border-radius:0;padding:0;gap:0;color:#fff3d2;text-shadow:0 1px 3px #000;font-size:11px}
-.city .city-nav .dock-icon{width:100%;height:auto;max-width:76px;aspect-ratio:176/191;object-fit:contain}
-.city .city-shortcuts{background:transparent}
-.city .city-shortcuts button:has(img){background:transparent;border:0}
-.city .city-shortcuts .dock-icon{width:40px;height:40px}
-.city .city-buildings button{background:transparent url('/city/icons/btn_bg_hexagon.webp') center/contain no-repeat;border:0;text-shadow:0 1px 3px #000;min-height:76px}
-/* MainUIPanel prefab: Header 1080x180; Dock 1080x246;
-   dock centers -430,-220,0,220,430; middle tab 200x215. */
-.city .city-top{position:relative;display:block;aspect-ratio:6;min-height:0;padding:0;flex:none}
-.city .city-top button{position:absolute;left:1%;top:4%;width:39%;height:92%;min-height:0;padding:0;font-size:clamp(9px,2.8vw,15px)}
-.city .city-top img{width:30%;height:auto;aspect-ratio:1}
-.city .city-top div{position:absolute;top:0;min-height:0;width:16.667%;height:50%;padding:0;text-align:center;font-size:clamp(8px,2.5vw,13px)}
-.city .city-top b{font-size:clamp(10px,3vw,17px)}
-.city .city-diamond{left:63.426%}.city .city-coin{left:82.037%}
-.city .city-nav{position:relative;display:block;aspect-ratio:1080/246;padding:0;flex:none}
-.city .city-nav button{position:absolute;bottom:4%;width:16.667%;height:81.3%;min-height:0;transform:translateX(-50%);font-size:clamp(9px,2.7vw,14px)}
-.city .city-nav button:nth-child(1){left:10.185%}.city .city-nav button:nth-child(2){left:29.63%}.city .city-nav button:nth-child(3){left:50%;width:18.519%;height:87.4%}.city .city-nav button:nth-child(4){left:70.37%}.city .city-nav button:nth-child(5){left:89.815%}
-.city .city-nav .dock-icon{max-width:none;min-height:0;width:100%;height:calc(100% - 15px);aspect-ratio:auto}
-.city .city-overlay section{border:12px solid transparent;border-image:url('/ui/commonPanelBg1.webp') 15 fill stretch;background:none;border-radius:0}
-.city .city-overlay header{background:url('/ui/titleBg1.webp') center/100% 100% no-repeat;min-height:44px;padding:0 8px}
-.city .city-overlay header button{background:url('/ui/closeBtn.webp') center/contain no-repeat;border:0;color:transparent;width:44px;height:44px}
-.city .city-buildings{position:relative;display:block;min-height:340px;padding:0}
-.city .city-buildings button{position:absolute;transform:translate(-50%,-50%);min-height:44px;height:12%;padding:4px;font-size:clamp(10px,3vw,15px)}
+.city{
+ position:relative;
+ min-height:calc(100dvh - 100px);
+ display:flex;
+ flex-direction:column;
+ color:#fff6df;
+ font-family:"Segoe UI",Tahoma,sans-serif;
+ box-sizing:border-box;
+ max-width:680px;
+ margin:auto;
+ background:#1a1528;
+}
+.city button{
+ font:inherit;
+ cursor:pointer;
+ color:#fff0cc;
+}
+.city-power{
+ padding:6px 10px;
+ background:#191629b0;
+ font-size:13px;
+ flex:none;
+}
+.city-shortcuts{
+ display:flex;
+ flex-wrap:wrap;
+ gap:5px;
+ padding:6px 8px;
+ background:transparent;
+ flex:none;
+}
+.city-shortcuts button{
+ flex:1;
+ font-size:11px;
+ padding:5px;
+ min-height:44px;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ gap:3px;
+ border:0;
+ background:transparent;
+}
+.city-shortcuts .dock-icon{width:40px;height:40px;object-fit:contain}
+
+/* Original MainUIPanel Header 1080×180 */
+.city .city-top{
+ position:relative;
+ display:block;
+ aspect-ratio:6;
+ min-height:0;
+ padding:0;
+ flex:none;
+ background:transparent url('/city/icons/Header.webp') center top/100% 100% no-repeat;
+}
+.city .city-top button{
+ position:absolute;
+ left:1%;top:4%;width:39%;height:92%;
+ min-height:0;padding:0;
+ display:flex;align-items:center;gap:6px;
+ text-align:left;
+ background:transparent;border:0;
+ font-size:clamp(9px,2.8vw,15px);
+}
+.city .city-top img{width:30%;height:auto;aspect-ratio:1;object-fit:contain;border-radius:50%}
+.city .city-top div{
+ position:absolute;top:0;
+ min-height:0;width:16.667%;height:50%;
+ padding:0;text-align:center;
+ font-size:clamp(8px,2.5vw,13px);
+ background:transparent;border:0;
+}
+.city .city-top b{display:block;font-size:clamp(10px,3vw,17px)}
+.city .city-diamond{left:63.426%}
+.city .city-coin{left:82.037%}
+
+/* Scrollable original scene (MainSceneDefaultBg ~719×1679). */
+.city-stage{
+ position:relative;
+ flex:1 1 auto;
+ min-height:0;
+ max-height:none;
+ overflow:auto;
+ -webkit-overflow-scrolling:touch;
+ background:#0e0c16;
+}
+/* Keep the city chrome fixed; only the painted stage scrolls. */
+@supports (height:100dvh){
+ .city{height:calc(100dvh - 100px)}
+}
+.city-stage-inner{
+ position:relative;
+ width:100%;
+ aspect-ratio:719/1679;
+ background:url('/city/default.webp') center top/100% 100% no-repeat;
+}
+.city-ambient{
+ position:absolute;
+ left:50%;
+ top:8%;
+ width:70%;
+ max-width:420px;
+ aspect-ratio:3/1;
+ transform:translateX(-50%);
+ pointer-events:none;
+ z-index:1;
+ opacity:.85;
+}
+.city-buildings{
+ position:absolute;
+ inset:0;
+ z-index:2;
+}
+.city-entrance{
+ position:absolute;
+ transform:translate(-50%,-50%);
+ height:auto;
+ min-height:48px;
+ padding:0;
+ border:0;
+ background:transparent;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:flex-end;
+ gap:0;
+}
+.city-title-fx{
+ width:72px;
+ height:38px;
+ pointer-events:none;
+}
+.city-entrance-label{
+ display:block;
+ width:100%;
+ padding:6px 4px 10px;
+ font-size:clamp(10px,3vw,15px);
+ font-weight:700;
+ letter-spacing:.02em;
+ text-align:center;
+ color:#fff6df;
+ text-shadow:
+  0 0 4px #5a3a10,
+  0 1px 2px #000,
+  0 2px 6px #000c;
+ background:transparent url('/city/icons/btn_bg_hexagon.webp') center/100% 100% no-repeat;
+}
+
+.city-overlay{
+ position:absolute;inset:0;
+ background:#100d19b8;
+ display:grid;place-items:center;
+ z-index:10;padding:16px;
+}
+.city-overlay section{
+ width:min(100%,360px);
+ box-sizing:border-box;
+ border:12px solid transparent;
+ border-image:url('/ui/commonPanelBg1.webp') 15 fill stretch;
+ background:none;
+ padding:16px;
+}
+.city-overlay header{
+ display:flex;align-items:center;justify-content:space-between;
+ background:url('/ui/titleBg1.webp') center/100% 100% no-repeat;
+ min-height:44px;padding:0 8px;
+}
+.city-overlay header button{
+ background:url('/ui/closeBtn.webp') center/contain no-repeat;
+ border:0;color:transparent;width:44px;height:44px;
+}
+.city-overlay p{font-size:14px;line-height:1.5}
+
+/* Original dock 1080×246 */
+.city .city-nav{
+ position:relative;
+ display:block;
+ aspect-ratio:1080/246;
+ padding:0;
+ flex:none;
+ background:transparent url('/city/icons/Bottom.webp') center bottom/100% 100% no-repeat;
+}
+.city .city-nav button{
+ position:absolute;
+ bottom:4%;
+ width:16.667%;
+ height:81.3%;
+ min-height:0;
+ transform:translateX(-50%);
+ background:none;border:0;border-radius:0;padding:0;
+ display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+ gap:0;
+ color:#fff3d2;
+ text-shadow:0 1px 3px #000;
+ font-size:clamp(9px,2.7vw,14px);
+}
+.city .city-nav button:nth-child(1){left:10.185%}
+.city .city-nav button:nth-child(2){left:29.63%}
+.city .city-nav button:nth-child(3){left:50%;width:18.519%;height:87.4%}
+.city .city-nav button:nth-child(4){left:70.37%}
+.city .city-nav button:nth-child(5){left:89.815%}
+.city .city-nav .dock-icon{
+ max-width:none;min-height:0;
+ width:100%;height:calc(100% - 15px);
+ object-fit:contain;
+}

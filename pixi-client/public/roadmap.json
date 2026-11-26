@@ -218,13 +218,13 @@
   "id": "NEXT-026",
   "title": "Русификация и визуальное качество",
   "phase": "VII. Качество",
-  "scope": "Контекстный перевод, терминология, шрифты, UI, удобство; восстановление оригинальных графических заголовков 10 входов города, замков, Spine-эффектов четырёх входов, геометрии камеры, окон и выбора оформления, рамок и портретов, визуальная сверка с оригиналом.",
+  "scope": "D-012: 1:1 visual on shipped screens now. 026.1 city scroll+biaoti/baitian. Next: campaign/heroes/inventory/summon/shop/tasks windows + RU.",
   "status": "in_progress",
-  "evidence": "localization/ru.json",
+  "evidence": "reports/NEXT-026.1.md; localization/ru.json",
   "deferred_visual_tasks": [
-   "Оригинальные спрайты и заголовки 10 городских входов, включая сокровищницу 1055",
-   "Графика замков и четыре Spine-эффекта входов",
-   "Точная геометрия камеры и городского Prefab",
+   "Точные multilang-заголовки 10 входов (поверх biaoti)",
+   "Точная геометрия камеры / SceneNode scroll",
+   "1:1 окон campaign/heroes/inventory/summon/shop/tasks",
    "Точная геометрия профиля и окна выбора аватара/рамки; восстановление рамки 3101",
    "Визуальная сверка всех окон, адаптация и полировка"
   ]

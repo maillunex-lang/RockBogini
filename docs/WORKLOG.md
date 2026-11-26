@@ -1,3 +1,4 @@
+2026-11-26 D-012: 1:1 visual parity on shipped screens now (NEXT-026). NEXT-026.1 city: scroll MainSceneDefaultBg, biaoti/baitian Spine, shop entrance wiring.
 2026-11-26 NEXT-020.1 daily/weekly tasks: migration 22, /v1/tasks claim+points, City TasksScreen, event hooks idle/quick/shop/summon; local-day fix shop/idle.
 2026-11-26 ROADMAP refresh: active NEXT-019.4 shops+VIP; 019.1–019.3 closed; 018 activity→023; counts 12 done / 7 in_progress / 8 pending / 1 deferred.
 2026-11-26 NEXT-019.3: AdventureReward (71) + online LevelParam 129; migration 20; campaign UI; 9/9 tests; testtest publish. reports/NEXT-019.3.md.
