@@ -1,3 +1,4 @@
+const cityLabelSprites = {"2020": "MainScene_Furance", "1001": "MainScene_Summon", "1304": "MainScene_MagicResearch", "1013": "CollectionPavilion", "1301": "MainScene_StarTemple", "1008": "MainScene_HeroPalace", "1005": "MainScene_Alliance", "1003": "MainScene_Shop", "1305": "mainScene_angel"} as const;
 import React,{useEffect,useState} from 'react';
 import './city.css';
 import {sceneLayout} from './sceneLayout';
@@ -6,11 +7,12 @@ import {sceneLayout} from './sceneLayout';
 type Profile={nickname:string;level:number;avatar:number;power:number;currencies:Record<string,string>};
 
 const SHORTCUTS=[
- {id:'mail',label:'Почта',icon:null as string|null},
- {id:'friends',label:'Друзья',icon:null},
- {id:'rank',label:'Рейтинг',icon:null},
- {id:'bag',label:'Инвентарь',icon:'BagBtn'},
- {id:'tasks',label:'Задания',icon:'TaskBtn'},
+ {id:'mail',label:'Почта',icon:'mail_btn.png'},
+ {id:'friends',label:'Друзья',icon:'function_friends.png'},
+ {id:'rank',label:'Рейтинг',icon:'function_rank.png'},
+ {id:'chat',label:'Чат',icon:'function_chat_main.png'},
+ {id:'bag',label:'Инвентарь',icon:'BagBtn.webp'},
+ {id:'tasks',label:'Задания',icon:'TaskBtn.webp'},
 ] as const;
 
 export function City({api,token,onProfile,onBattle,onHeroes,onInventory,onSummon,onShop,onTasks}:{
@@ -42,14 +44,13 @@ export function City({api,token,onProfile,onBattle,onHeroes,onInventory,onSummon
  return <section className="city">
   <header className="city-top">
    <button type="button" onClick={onProfile}>
-    {p&&<img src={'./profile/icon-'+p.avatar+'.webp'} alt=""/>}
-    <span className="city-profile-text"><strong>{p?.nickname??'Загрузка…'}</strong><small>Ур. {p?.level??'—'}</small></span>
+    <span className="city-avatar-frame">{p&&<img src={'./profile/icon-'+p.avatar+'.webp'} alt=""/>}</span>
+    <span className="city-profile-text"><strong>{p?.nickname??'Загрузка…'}</strong><small className="city-level">Ур. {p?.level??'—'}</small></span>
    </button>
-   <div className="city-coin">Золото <b>{p?.currencies.coin??'—'}</b></div>
-   <div className="city-diamond">Алмазы <b>{p?.currencies.diamond??'—'}</b></div>
+   <div className="city-coin" aria-label="Золото"><img className="city-currency-icon" src={import.meta.env.BASE_URL+"item-icons/1.webp"} alt="Золото"/><b>{p?.currencies.coin??'—'}</b></div>
+   <div className="city-diamond" aria-label="Алмазы"><img className="city-currency-icon" src={import.meta.env.BASE_URL+"item-icons/3.webp"} alt="Алмазы"/><b>{p?.currencies.diamond??'—'}</b></div>
+   <span className="city-power" aria-label={String(p?.power??'—')}>{p?.power!=null?String(p.power).split('').map((digit,i)=>/^[0-9]$/.test(digit)?<img key={i} className="city-power-digit" src={import.meta.env.BASE_URL+'city/fonts/power-'+digit+'.png'} alt={digit}/>:<span key={i}>{digit}</span>):'—'}</span>
   </header>
-
-  <div className="city-power">Боевая мощь: {p?.power??'—'}</div>
 
   <aside className="city-shortcuts">
    {SHORTCUTS.map(s=><button
@@ -58,7 +59,7 @@ export function City({api,token,onProfile,onBattle,onHeroes,onInventory,onSummon
     data-guide={s.id==='bag'?'city-bag':undefined}
     onClick={()=>openShortcut(s.id,s.label)}
    >
-    {s.icon&&<img className="dock-icon" src={'./city/icons/'+s.icon+'.webp'} alt=""/>}
+    {s.icon&&<img className="dock-icon" src={'./city/icons/'+s.icon} alt=""/>}
     {s.label}
    </button>)}
   </aside>
@@ -80,7 +81,7 @@ export function City({api,token,onProfile,onBattle,onHeroes,onInventory,onSummon
       onClick={()=>openBuilding(n.label)}
      >
       
-      <span className="city-entrance-label">{n.label}</span>
+      <img className="city-original-label" src={import.meta.env.BASE_URL+"city/labels/"+cityLabelSprites[n.id]+".png"} alt={n.label} draggable={false}/>
      </button>)}
     </div>
    </div>

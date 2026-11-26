@@ -207,3 +207,64 @@
 }
 
 body:has(.city-shell){margin:0;background:#1a1528}.city-shell{height:100dvh;max-width:680px;margin:auto;display:flex;flex-direction:column;overflow:hidden}.city-shell .city{flex:1;min-height:0;width:100%;margin:0}.city-account{flex:none;background:#222137;color:#fff;font:12px Segoe UI,sans-serif}.city-account summary{padding:5px 10px;cursor:pointer}.city-title-fx[data-animation-state="error"]{display:none}
+
+.city .city-top button{width:40%;gap:4px}
+.city .city-top img{flex:none;width:27%;max-height:90%}
+.city-profile-text{display:flex;flex-direction:column;min-width:0;line-height:1.15}
+.city-profile-text strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:clamp(9px,2.5vw,14px)}
+.city-profile-text small{font-size:clamp(8px,2.2vw,12px)}
+.city-shortcuts{padding:2px 6px;gap:2px}
+.city-shortcuts button{padding:2px;min-height:36px;font-size:10px}
+.city-shortcuts .dock-icon{width:30px;height:30px}
+.city-power{padding:3px 10px;font-size:11px}
+.city-title-fx canvas,.city-ambient canvas{background:transparent!important}
+
+.city-entrance{min-height:0}.city-original-label{display:block;width:100%;height:auto;pointer-events:none}
+
+/* MainUIPanel: header coordinates in original 1080x180 design units. */
+.city .city-top button{left:0.463%;top:2.778%;width:40%;height:83.333%;display:block}
+.city .city-top button img{position:absolute;left:0;top:0;width:34.722%;height:100%;max-height:none;border-radius:0;object-fit:contain}
+.city-profile-text{position:absolute;left:35.65%;top:8%;width:62.5%;text-align:left}
+.city-profile-text .city-level{position:absolute;left:-55%;top:calc(100% + 12px);width:50%;text-align:center}
+.city .city-top .city-power{position:absolute;left:41%;top:10%;width:20%;padding:0;background:none;text-align:center;font-size:clamp(8px,2.2vw,12px)}
+.city .city-top .city-coin,.city .city-top .city-diamond{top:8.333%;height:26.667%}
+.city .city-top b{display:inline;font-size:clamp(8px,2.3vw,13px)}
+.city .city-nav button{bottom:0;width:16.296%;height:81.301%}
+.city .city-nav button:nth-child(3){width:19.444%;height:87.398%}
+
+.city-shortcuts button{position:relative;min-height:0;padding:0;gap:0}
+.city-shortcuts .dock-icon{width:100%;max-width:44px;height:auto;aspect-ratio:1;object-fit:contain}
+
+/* MainUIPanel shortcut groups: 90-unit social buttons, 120-unit bag/task. */
+.city{container-type:inline-size}
+.city .city-shortcuts{position:absolute;inset:0;z-index:4;display:block;padding:0;pointer-events:none}
+.city .city-shortcuts button{position:absolute;width:8.333%;min-height:0;pointer-events:auto;transform:translateY(-50%);font-size:clamp(7px,2.4cqw,12px);text-shadow:0 1px 3px #000}
+.city .city-shortcuts .dock-icon{width:100%;max-width:none}
+.city .city-shortcuts button:nth-child(1){left:1%;bottom:calc(22.778cqw + 26.389cqw)}
+.city .city-shortcuts button:nth-child(2){left:1%;bottom:calc(22.778cqw + 16.667cqw)}
+.city .city-shortcuts button:nth-child(4){left:1%;bottom:calc(22.778cqw + 6.944cqw)}
+.city .city-shortcuts button:nth-child(3){right:1%;bottom:calc(22.778cqw + 25cqw)}
+.city .city-shortcuts button:nth-child(5){right:8%;bottom:22.778cqw;width:11.111%}
+.city .city-shortcuts button:nth-child(6){right:21.333%;bottom:22.778cqw;width:11.111%}
+
+.city .city-avatar-frame{position:absolute;left:0;top:0;width:34.722%;height:100%;background:url('./../../public/city/icons/header_bottom.png') center/contain no-repeat}
+.city .city-avatar-frame:after{content:"";position:absolute;inset:0;background:url('./../../public/city/icons/header_border.png') center/contain no-repeat;pointer-events:none}
+.city .city-top .city-avatar-frame img{inset:8%;width:84%;height:84%;object-fit:contain}
+.city .city-top .city-power{background:url('./../../public/city/icons/battlePoint_small.png') left center/auto 100% no-repeat;padding-left:4%;box-sizing:border-box}
+.city .city-top .city-coin,.city .city-top .city-diamond{background:url('./../../public/city/icons/item_count_bg5.png') center/100% 100% no-repeat}
+.city .city-nav button:first-child:after{content:"";position:absolute;bottom:0;left:-10%;width:120%;height:12%;background:url('./../../public/city/icons/btn_underLine.webp') center/100% 100% no-repeat;pointer-events:none}
+.city .city-nav .dock-icon{height:91%;width:100%;object-fit:contain}
+@font-face{font-family:CityOriginal;src:url('../../public/city/fonts/EZFont.ttf') format('truetype');font-display:swap}
+.city{font-family:CityOriginal,"Segoe UI",Tahoma,sans-serif}
+.city .city-nav button{font-family:inherit}
+.city .city-top .city-power{height:24.444%;top:10%}
+
+.city .city-top .city-power{display:flex;align-items:center;justify-content:flex-start;gap:0}
+.city .city-top .city-power-digit{height:86%;width:auto;object-fit:contain;min-width:0}
+
+.city .city-top .city-coin,.city .city-top .city-diamond{display:flex;align-items:center;justify-content:center;gap:3%;padding:0}
+.city .city-top .city-currency-icon{width:22.222%;height:83.333%;object-fit:contain;flex-shrink:0}
+.city .city-top .city-coin b,.city .city-top .city-diamond b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Keep social hit areas within original 90-unit square. */
+.city .city-shortcuts button:nth-child(-n+4){height:8.333cqw;display:flex;align-items:center;justify-content:center;font-size:0}
+.city .city-shortcuts button:nth-child(-n+4) .dock-icon{width:100%;height:100%;object-fit:contain}
