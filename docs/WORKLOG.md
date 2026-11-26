@@ -494,3 +494,5 @@ NEXT-013.8 in_progress: inventoried 10 invalid common-skill ActionIndex values; 
 2026-11-26 NEXT-026.2: 20 original Common card_bg/card_border sprites imported; 354 hero element classifications exported from existing HeroBase catalog, interactive switch view/sort/filter integrated. 320/390/768 Playwright flow PASS including detail selection. Client built/published /sexyidle. Remaining true 1:1 detail and button graphics. reports/NEXT-026.2-hero-original-cards-2026-11-26.md.
 
 2026-11-26 NEXT-026.2 HeroDetailPanel partial: original Cocos geometry read, 4 attribute rows and hero portrait/frame/power implemented, 320/390/768 browser E2E PASS, build and /sexyidle deployment verified; original background UUID pending. See reports/NEXT-026.2-herodetail-2026-11-26.md.
+
+2026-11-26 NEXT-026.2 five sequential slices: original PanelBg1 (1028x1516, capInsets 120) and nine-slice; 4 detail section anchors; Playwright 4 viewport PASS, build & /sexyidle publish; roadmap updated. Not full 1:1. reports/NEXT-026.2-5-stage-2026-11-26.md.

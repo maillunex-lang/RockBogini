@@ -26,6 +26,13 @@ VPS is the development stand; GitHub main is the published source mirror. **SING
 - По оригинальному Cocos prefab: Background 928×1358; четыре BaseAttrItem 618×64; ScrollView 880×786; секции умений и экипировки. В HeroesScreen подключены портрет, исходная рамка карточки, сила и четыре строки характеристик; имеющиеся оригинальные ui/attr_bg/commonPanelBg1 применены как временный стиль. Браузерное тестирование 320/390/768 PASS, сборка/публикация PASS.
 - **Не 1:1 и не закрыто:** исходный фон HeroDetailPanel UUID 269yyAZp9El7jeXeC1pkD0 не разрешён; полноценная компоновка и анимация героя, проверка по эталону впереди. Evidence: reports/NEXT-026.2-herodetail-2026-11-26.md.
 
+### NEXT-026.2, 5 подэтапов подряд (2026-11-26)
+1. Найден и импортирован оригинальный фон CommonBg/PanelBg1: 1028×1516, prefab 928×1358, capInsets 120.
+2. Разделы деталей героя: развитие, экипировка, характеристики, способности с работающей навигацией, прежние серверные действия сохранены.
+3. Browser E2E на 320×640, 360×740, 390×844, 768×1024 PASS: guest→city→heroes→detail→skills.
+4. Nine-slice Cocos исходной текстуры через border-image-slice 120 fill, сборка+публикация+4/4 PASS.
+5. Документация, дорожная карта и Git-коммит обновлены. Отчёт reports/NEXT-026.2-5-stage-2026-11-26.md. **026 остаётся in_progress**: полный оригинальный HeroDetailPanel, Spine, точная геометрия и сверка 1:1 не приняты.
+
 ### Открытые подэтапы сейчас
 - **026.1** city visual parity — mobile HUD QA PASS, 1:1 + Spine acceptance open
 - **026.2** original HeroListPanel — original background + 4-column grid live, frames/filters/detail pending

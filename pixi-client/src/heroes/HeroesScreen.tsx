@@ -292,6 +292,13 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
    <div className="hero-detail-attributes" aria-label="Основные характеристики">
     {Object.entries(ATTR_LABEL).map(([key,label])=><div key={key} className="hero-detail-attribute"><span>{label}</span><strong>{h.Attrs?.[key]??'—'}</strong></div>)}
    </div>
+   <div className="hero-detail-panes" aria-label="Разделы героя">
+    <a href="#hero-upgrade">Развитие</a>
+    <a href="#hero-gear">Экипировка</a>
+    <a href="#hero-attributes">Характеристики</a>
+    <a href="#hero-abilities">Умения</a>
+   </div>
+   <div id="hero-upgrade" className="hero-section-title">Развитие героя</div>
    <div className="hero-growth">
     <button type="button" disabled={busy||h.Level>=(h.maxLevel??0)} onClick={()=>void grow('level',h.Sid,{newLevel:h.Level+1},'Повышение уровня…')}>+1 уровень</button>
     <button type="button" disabled={busy||h.Level>=(h.maxLevel??0)} onClick={()=>void grow('level',h.Sid,{newLevel:Math.min(h.Level+5,h.maxLevel??h.Level+5)},'Повышение уровня…')}>+5 уровней</button>
@@ -352,7 +359,7 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
      {h.StarLevel<12&&<p className="hero-star-req">Корни профессий открываются с ★12 (сейчас ★{h.StarLevel}).</p>}
     </div>
    )}
-   <div className="hero-equip">
+   <div id="hero-gear" className="hero-equip">
     <h3>Экипировка</h3>
     <ul>
      {[1,2,3,4].map(slot=>{
@@ -480,13 +487,14 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
      </ul>
     </div>
    )}
+   <div id="hero-attributes" className="hero-section-title">Характеристики героя</div>
    {Object.keys(h.Attrs||{}).length===0?<p>Характеристики ещё не рассчитаны</p>:(
     <dl>{Object.entries(ATTR_LABEL).map(([k,n])=><React.Fragment key={k}><dt>{n}</dt><dd>{h.Attrs[k]??'—'}</dd></React.Fragment>)}</dl>
    )}
    <h3>Базовые расчётные характеристики</h3>
    <p>Мощь без дополнительных бонусов: {h.base.power}</p>
    <dl>{Object.entries(ATTR_LABEL).map(([k,n])=><React.Fragment key={k}><dt>{n}</dt><dd>{h.base.attrs[k]??'—'}</dd></React.Fragment>)}</dl>
-   <h3>Способности</h3>
+   <h3 id="hero-abilities">Способности</h3>
    {h.skillSlots.map((slot,i)=>(
     <article key={i} className="hero-skill">
      <strong>{skillNames[slot.id]?.name??'Способность №'+slot.id}</strong>

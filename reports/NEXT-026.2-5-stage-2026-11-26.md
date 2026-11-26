@@ -1,0 +1,8 @@
+# NEXT-026.2 five sequential delivery stages, 2026-11-26
+Target: /home/gamedev/rocbogini, published https://rikagro.ru/sexyidle/, isolated Next backend unchanged.
+1. Source asset: identified HeroDetailPanel Background dependency resolving to CommonBg/PanelBg1 via original UUID a30KETdxZHCqBJWvCBI4lU; texture CommonBg/native/05/059b5be7-1912-47fd-8e3f-1c31f77e5af0.493eb.webp, exact 1028x1516, original capInsets 120 each, source HeroDetailPanel visual node 928x1358. Imported to public/heroes/original/detail/PanelBg1.webp. Vite build passed.
+2. Hero detail navigation: four functional in-page anchors for growth, equipment, attributes, skills, preserving existing server handlers. Vite build passed.
+3. Reproducible browser tests tools/verify-hero-detail.cjs. Guest -> city -> heroes -> select hero -> details -> skills navigation. Tests 320x640, 360x740, 390x844, 768x1024 all passed, no JS/fetch>=400/overflow. Evidence reports/NEXT-026.2.3-browser.log.
+4. Nine-slice panel: CSS border-image-source PanelBg1, border-image-slice 120 fill; production build and /sexyidle publication passed, 4/4 browser tests confirmed active nine-slice original texture. Evidence reports/NEXT-026.2.4-browser.log.
+5. Roadmap/status/hand-off and local Git commit updated with stage-specific evidence; final live HTTP smoke and clean worktree verified.
+Known gaps: Full original HeroDetailPanel actor Spine visual, original controls and exact per-node layout still not accepted. NEXT-026 remains in_progress. No modifications to Next API, game economy, original Elixir, other games or databases. Remote GitHub push/CI not verified.

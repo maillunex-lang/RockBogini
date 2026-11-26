@@ -51,3 +51,29 @@
 .hero-detail-attribute{display:flex;align-items:center;justify-content:space-between;gap:4px;padding:7px 5px;background:transparent url('/ui/attr_bg.webp') center/100% 100% no-repeat;font-size:clamp(10px,2.6vw,13px);min-width:0}
 .hero-detail-attribute strong{font-variant-numeric:tabular-nums;color:#ffdd83}
 @media(max-width:360px){.hero-detail-head{gap:7px}.hero-detail{padding:8px}.hero-detail-attributes{gap:3px}}
+
+/* NEXT-026.2.1: exact CommonBg/PanelBg1 texture linked by the HeroDetailPanel Cocos prefab.
+   Cocos source frame 1028×1516, capInsets 120px; panel node displays 928×1358. */
+.hero-detail{background:#191d3f url('/heroes/original/detail/PanelBg1.webp') center/100% 100% no-repeat;box-shadow:none;border:0;padding:clamp(15px,4vw,28px);border-radius:0}
+
+/* HeroDetailPanel visual navigation. All existing server actions retain their handlers. */
+.hero-detail-panes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin:14px 0}
+.hero-detail-panes a{background:url('/ui/btn_blue.webp') center/100% 100% no-repeat;padding:8px 2px;min-width:0;text-align:center;color:#fff2cf;font-size:clamp(9px,2.5vw,12px);text-decoration:none;overflow-wrap:anywhere}
+.hero-section-title{margin:12px 0 8px;padding:8px 4px;text-align:center;font-weight:bold;background:url('/ui/titleBg1.webp') center/100% 100% no-repeat;color:#f8e0a4;scroll-margin-top:12px}
+.hero-detail :is(#hero-gear,#hero-attributes,#hero-abilities,#hero-upgrade){scroll-margin-top:12px}
+.hero-detail .hero-growth{justify-content:center}
+
+/* NEXT-026.2.4: scale-aware original Cocos PanelBg1 nine-slice on details.
+   Cocos capInsets source=120 px on 1028x1516; CSS border-image scales by node width. */
+@supports (border-image-source:url('/heroes/original/detail/PanelBg1.webp')){
+ .hero-detail{
+  background-color:#191d3f;
+  background-image:none;
+  border-style:solid;
+  border-width:clamp(12px,4vw,26px);
+  border-image-source:url('/heroes/original/detail/PanelBg1.webp');
+  border-image-slice:120 fill;
+  border-image-width:1;
+  border-image-repeat:stretch;
+ }
+}
