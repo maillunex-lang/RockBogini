@@ -1,6 +1,7 @@
 # Актуальное состояние 2026-11-26
 
 Активная задача: **NEXT-026.1/026.2**. Mobile HUD browser QA PASS; HeroList original background/4-column first slice. Updated preview https://rikagro.ru/sexyidle/. Previous https://rikagro.ru/testtest/ exists separately; parity between previews not assumed.
+
 Проверено: 020.1 tasks; city Spine biaoti/baitian + scroll stage.
 
 | Подэтап | Состояние |
@@ -39,3 +40,8 @@ NEXT-026.2 HeroDetailPanel partial: source original prefab reviewed, 4 original-
 NEXT-026.2 5 stages (2026-11-26): original CommonBg/PanelBg1 texture and Cocos nine-slice imported, 4 detail navigation anchors, 4 viewport browser E2E PASS, Vite deploy /sexyidle, docs/Git updated. Full 1:1/Spine still pending. reports/NEXT-026.2-5-stage-2026-11-26.md.
 
 NEXT-026.3 (2026-11-26): 20 source-driven visual substeps across campaign/inventory/summon/shop/tasks; 21 exact Cocos assets imported; five screen integrations; browser QA 10/10 PASS at 320x640/390x844, Vite build and /sexyidle deployment. NEXT-026 in_progress; NOT 20 main stages completed, 1:1 not accepted. See reports/NEXT-026.3-20-stages.md.
+
+## Historical deployment reference (merged from remote main)
+## VPS deployment 2026-11-26
+Canonical checkout `/home/gamedev/rocbogini`, deployed code a4332ce, PixiJS 7.4.3 / Spine 3.8. Original reference extracted at `/home/gamedev/QueensBladeH5/racon2-main`; ZIP retained. Client built with base `/sexyidle/` and API `/sexyidle/api`. Nginx routes to existing API on 127.0.0.1:18991; existing database retained. HTTPS, readiness, guest auth/session/profile/heroes/logout and browser guest entry verified. Server suite job hl3tfr49n9: 55 pass, 24 fail, 6 skip (85 total); failure causes pending investigation. API gameplayReady remains false. No roadmap task marked done. Legacy route remains accessible; publish script still needs migration. PixiJS 8 experiment not adopted.
+
