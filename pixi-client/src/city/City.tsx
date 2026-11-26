@@ -63,6 +63,7 @@ export function City({api,token,onProfile,onBattle,onHeroes,onInventory,onSummon
     type="button"
     data-guide={s.id==='bag'?'city-bag':undefined}
     onClick={()=>openShortcut(s.id,s.label)}
+    aria-label={s.label}
    >
     {s.icon&&<img className="dock-icon" src={'./city/icons/'+s.icon} alt=""/>}
     {s.label}

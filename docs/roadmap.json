@@ -1,248 +1,248 @@
 [
- {
-  "id": "NEXT-001",
-  "title": "Архитектура клиента",
-  "phase": "I. Фундамент",
-  "scope": "PixiJS 7, Spine 3.8, React, TypeScript, сборка",
-  "status": "done",
-  "evidence": "reports/PIXI-01-build.log"
- },
- {
-  "id": "NEXT-002",
-  "title": "Архитектура сервера",
-  "phase": "I. Фундамент",
-  "scope": "Fastify, REST, WebSocket, тесты",
-  "status": "done",
-  "evidence": "reports/SERVER-01-test.log"
- },
- {
-  "id": "NEXT-003",
-  "title": "Полный аудит оригинала",
-  "phase": "I. Фундамент",
-  "scope": "Реестр экранов, протоколов, конфигураций, формул, зависимостей и тестов",
-  "status": "done",
-  "evidence": "reports/NEXT-003-inventory.json; reports/NEXT-003-mapping.json; reports/NEXT-003-findings.md; reports/NEXT-003-baseline.log; reports/NEXT-003-fixtures.json; reports/NEXT-003-coverage.json; reports/NEXT-003-ui-dependencies.json; reports/NEXT-003-rpc-gaps.json; reports/NEXT-003-gap-review.json; reports/NEXT-003-deferred.json"
- },
- {
-  "id": "NEXT-004",
-  "title": "Ресурсы и рендеринг",
-  "phase": "I. Фундамент",
-  "scope": "Lunex Asset Library, WebGL, Spine, кеш, атласы, эффекты",
-  "status": "done",
-  "evidence": "reports/PIXI-02-library-build.log; reports/NEXT-004-smoke.log; reports/NEXT-004-squad.png; reports/NEXT-004-cache-build.log; reports/NEXT-004-cache-smoke.log; reports/NEXT-004-eviction-build.log; reports/NEXT-004-eviction-smoke.log; reports/NEXT-004-stress.log; reports/NEXT-004-stress-retry.log; reports/NEXT-004-effects-build.log; reports/NEXT-004-effects-smoke.log; reports/NEXT-004-final-smoke.log; reports/NEXT-004-hit.png (visual defect); reports/NEXT-004-skin-build.log; reports/NEXT-004-skin-smoke.log; reports/NEXT-004-layout-smoke.log; reports/NEXT-004-body-build.log; reports/NEXT-004-body-smoke.log; reports/NEXT-004-quality-build.log; reports/NEXT-004-quality-smoke.log; reports/NEXT-004-auto-build.log; reports/NEXT-004-auto-smoke.log"
- },
- {
-  "id": "NEXT-005",
-  "title": "Общая инфраструктура",
-  "phase": "I. Фундамент",
-  "scope": "PostgreSQL, Redis, миграции, Docker, общие типы",
-  "status": "done",
-  "evidence": "next-server/compose.yaml; reports/NEXT-005-compose.log; reports/NEXT-005-pull.log; reports/NEXT-005-storage-build.log; reports/NEXT-005-storage-test.log; reports/NEXT-005-api-compose.log; reports/NEXT-005-restart.log; reports/NEXT-005-contract-test.log; reports/NEXT-005-reference-retry.log"
- },
- {
-  "id": "NEXT-006",
-  "title": "Авторизация",
-  "phase": "II. Первый запуск",
-  "scope": "Регистрация, гости, сессии, восстановление, выбор сервера",
-  "status": "done",
-  "evidence": "reports/NEXT-006-auth-build.log; reports/NEXT-006-auth-test.log; reports/NEXT-006-routes-test.log; reports/NEXT-006-login-ui-build.log; reports/NEXT-006-login-smoke.log; reports/NEXT-006-client-integration-build.log; reports/NEXT-006-browser-auth-flow.log; reports/NEXT-006-link-test.log; reports/NEXT-006-link-client-build.log; reports/NEXT-006-guest-link-browser.log; reports/NEXT-006-api-deploy.log; reports/NEXT-006-recovery-test.log; reports/NEXT-006-recovery-ui-build.log; reports/NEXT-006-recovery-deploy.log; reports/NEXT-006-real-e2e.log"
- },
- {
-  "id": "NEXT-007",
-  "title": "Игровой профиль",
-  "phase": "II. Первый запуск",
-  "scope": "Ник, аватар, уровень, опыт, энергия, валюты, сохранение",
-  "status": "done",
-  "evidence": "reports/NEXT-007-profile-test.log; reports/NEXT-007-config-export.log; reports/NEXT-007-edit-test.log; reports/NEXT-007-profile-ui-build.log; reports/NEXT-007-progression-test.log; reports/NEXT-007-profile-browser.log; reports/NEXT-007-assets-browser.log; reports/NEXT-007-final-browser.log; reports/NEXT-007-final-publish.log; frame 3101 visual fallback deferred NEXT-026; reports/NEXT-007-frame-fix-browser.log"
- },
- {
-  "id": "NEXT-008",
-  "title": "Главный интерфейс",
-  "phase": "II. Первый запуск",
-  "scope": "Функциональный город, навигация, ресурсы, окна, адаптация; уведомления подключать вместе с соответствующими механиками. Графическая полировка отложена до NEXT-026.",
-  "status": "done",
-  "evidence": "reports/NEXT-008-city-build.log; reports/NEXT-008-city-browser.log; reports/NEXT-008-navigation-browser.log; reports/NEXT-008-navigation-publish.log; reports/NEXT-008-icons-browser.log; reports/NEXT-008-icons-publish.log; reports/NEXT-008-frames-browser.log; reports/NEXT-008-frames-publish.log; reports/NEXT-008-prefab-browser.log; reports/NEXT-008-prefab-publish.log; reports/NEXT-008-common-browser.log; reports/NEXT-008-common-publish.log; reports/NEXT-008-scene-browser.log; reports/NEXT-008-scene-publish.log; reports/NEXT-008-picker-browser.log; reports/NEXT-008-picker-publish.log; reports/NEXT-008-picker-final-browser.log; reports/NEXT-008-picker-final-publish.log; reports/NEXT-008-frame-effects.json; reports/NEXT-008-frame-import.json; reports/NEXT-008-frame-final-browser.log; reports/NEXT-008-frame-final-publish.log; reports/NEXT-008-functional-browser.log; reports/NEXT-008-functional-publish.log"
- },
- {
-  "id": "NEXT-009",
-  "title": "Редактор интерфейса",
-  "phase": "II. Первый запуск",
-  "scope": "Позиции, размеры, цвета, фоны, кнопки",
-  "status": "deferred",
-  "evidence": "",
-  "resume_at": "NEXT-024"
- },
- {
-  "id": "NEXT-010",
-  "title": "Система героев",
-  "phase": "III. Боевое ядро",
-  "scope": "Каталог, классы, фракции, редкость, параметры, способности; собственные фантазийные имена героев без изменения ID и баланса",
-  "status": "in_progress",
-  "evidence": "next-audit/hero-catalog.json; reports/NEXT-010-skills-export.log; reports/NEXT-010-catalog-test.log; reports/NEXT-010-catalog-deploy.log; reports/NEXT-010-ownership-retry.log; reports/NEXT-010-ownership-deploy.log; reports/NEXT-010-heroes-ui-browser.log; reports/NEXT-010-heroes-ui-publish.log; reports/NEXT-010-fantasy-names-browser.log; reports/NEXT-010-attrs-test.log; reports/NEXT-010-skills-test.log; reports/NEXT-010-skills-ui-browser.log; reports/NEXT-010-hero-assets.json; reports/NEXT-010-preview-build.log; hero-preview.html"
- },
- {
-  "id": "NEXT-011",
-  "title": "Формирование отряда",
-  "phase": "III. Боевое ядро",
-  "scope": "Формирование и сохранение стартового отряда; стартовый объём принят.",
-  "status": "done",
-  "evidence": "reports/NEXT-011-server-test.log; reports/NEXT-011-server-deploy.log; reports/NEXT-011-ui-browser.log; reports/NEXT-011-ui-publish.log; reports/NEXT-011-units-test.log; reports/NEXT-011-complete-test.log"
- },
- {
-  "id": "NEXT-012",
-  "title": "Пошаговый боевой движок",
-  "phase": "III. Боевое ядро",
-  "scope": "Эталонное боевое ядро принято для визуальной интеграции: 681/681 боёв, 75/75 тестов. Полная коммерческая идентичность, дополнительные модификаторы и некампанийные режимы не подтверждены.",
-  "status": "in_progress",
-  "evidence": "reports/NEXT-012.31.5-acceptance.json; reports/NEXT-012.31.5.1-metadata-*.json; reports/NEXT-012.31.5.1-tests.log",
-  "acceptance_gate": {
-   "policy": "100% approved scope before advancing",
-   "requirements": [
-    "Inventory all original battle opcodes, conditions and targeting rules",
-    "Implement and test every applicable mechanic; no silent unsupported paths",
-    "Validate original hero and stage configurations",
-    "Complete battle journal and final statistics",
-    "Differential tests against Elixir; resolve unexplained discrepancies",
-    "Document evidence and remaining baseline defects; obtain approval for any scope exception"
-   ],
-   "next_stage_blocked": false,
-   "release_blocked": true
+  {
+    "id": "NEXT-001",
+    "title": "Архитектура клиента",
+    "phase": "I. Фундамент",
+    "scope": "PixiJS 7, Spine 3.8, React, TypeScript, сборка",
+    "status": "done",
+    "evidence": "reports/PIXI-01-build.log"
   },
-  "execution_note": "Verified reference scope accepted for visual integration only; full parity gate remains open for release."
- },
- {
-  "id": "NEXT-013",
-  "title": "Визуализация боя",
-  "phase": "III. Боевое ядро",
-  "scope": "Закрыт по D-011 (визуальная приёмка владельцем). Технические остатки 013.8 известны.",
-  "status": "done",
-  "evidence": "reports/NEXT-013.*; D-011"
- },
- {
-  "id": "NEXT-014",
-  "title": "Сюжетная кампания",
-  "phase": "III. Боевое ядро",
-  "scope": "014.1–014.15 campaign + finger overlays + plot video. Richer targets open.",
-  "status": "done",
-  "evidence": "reports/NEXT-014.15.md; reports/NEXT-014-tails-015-*; reports/NEXT-014.5-14-*"
- },
- {
-  "id": "NEXT-015",
-  "title": "Инвентарь и предметы",
-  "phase": "IV. RPG и экономика",
-  "scope": "015.1–015.2 inventory filters/icons/use/sell done. Random/event consume open.",
-  "status": "in_progress",
-  "evidence": "reports/NEXT-015.2.md; reports/NEXT-015.1.md"
- },
- {
-  "id": "NEXT-016",
-  "title": "Развитие героев",
-  "phase": "IV. RPG и экономика",
-  "scope": "016.3: PVE talent + reset. Jobs/luck/awaken open.",
-  "status": "in_progress",
-  "evidence": "reports/NEXT-016.3.md; reports/NEXT-016.2.md"
- },
- {
-  "id": "NEXT-017",
-  "title": "Экипировка",
-  "phase": "IV. RPG и экономика",
-  "scope": "017.1–017.8 equip + holy full slice (gallery/resonance).",
-  "status": "done",
-  "evidence": "reports/NEXT-017.8.md; reports/NEXT-017.7.md"
- },
- {
-  "id": "NEXT-018",
-  "title": "Призыв героев",
-  "phase": "IV. RPG и экономика",
-  "scope": "018.1–018.6 summon+crystal+displace done. Activity summons deferred to events (023).",
-  "status": "in_progress",
-  "evidence": "reports/NEXT-018.6.md; reports/NEXT-018.5.md; reports/NEXT-018.4.md; reports/NEXT-018.3.md; reports/NEXT-018.2.md; reports/NEXT-018.1.md"
- },
- {
-  "id": "NEXT-019",
-  "title": "Экономика и Idle",
-  "phase": "IV. RPG и экономика",
-  "scope": "019.1–019.4 idle/quick/rewards/shops+VIP done. Mall packs → 023.",
-  "status": "in_progress",
-  "evidence": "reports/NEXT-019.4.md; reports/NEXT-019.3.md; reports/NEXT-019.2.md; reports/NEXT-019.1.md"
- },
- {
-  "id": "NEXT-020",
-  "title": "Задания и достижения",
-  "phase": "V. Контент",
-  "scope": "020.1 daily/weekly + point chests done. Story/achievements open.",
-  "status": "in_progress",
-  "evidence": "reports/NEXT-020.1.md"
- },
- {
-  "id": "NEXT-021",
-  "title": "PvE-режимы",
-  "phase": "V. Контент",
-  "scope": "Башни, подземелья, испытания, боссы, специальные режимы",
-  "status": "pending",
-  "evidence": ""
- },
- {
-  "id": "NEXT-022",
-  "title": "PvP и социальные системы",
-  "phase": "V. Контент",
-  "scope": "Арена, рейтинги, гильдии, чат, друзья, почта",
-  "status": "pending",
-  "evidence": ""
- },
- {
-  "id": "NEXT-023",
-  "title": "События и монетизация",
-  "phase": "V. Контент",
-  "scope": "Календарь, события, VIP, пропуски, предложения, платежи",
-  "status": "pending",
-  "evidence": ""
- },
- {
-  "id": "NEXT-024",
-  "title": "Редакторы игрового контента",
-  "phase": "VI. Studio",
-  "scope": "Герои, навыки, предметы, противники, локации, квесты, награды, баннеры, магазины, события; выполнить отложенный NEXT-009 (редактор интерфейса)",
-  "status": "pending",
-  "evidence": ""
- },
- {
-  "id": "NEXT-025",
-  "title": "Администрирование",
-  "phase": "VI. Studio",
-  "scope": "Аккаунты, аналитика, журналы, серверы, баланс, версии, бэкапы",
-  "status": "pending",
-  "evidence": ""
- },
- {
-  "id": "NEXT-026",
-  "title": "Русификация и визуальное качество",
-  "phase": "VII. Качество",
-  "scope": "D-012: 1:1 visual on shipped screens now. 026.1 city scroll+biaoti/baitian. Next: campaign/heroes/inventory/summon/shop/tasks windows + RU.",
-  "status": "in_progress",
-  "evidence": "reports/NEXT-026.1.md; localization/ru.json",
-  "deferred_visual_tasks": [
-   "Точные multilang-заголовки 10 входов (поверх biaoti)",
-   "Точная геометрия камеры / SceneNode scroll",
-   "1:1 окон campaign/heroes/inventory/summon/shop/tasks",
-   "Точная геометрия профиля и окна выбора аватара/рамки; восстановление рамки 3101",
-   "Визуальная сверка всех окон, адаптация и полировка"
-  ]
- },
- {
-  "id": "NEXT-027",
-  "title": "Оптимизация и сборки",
-  "phase": "VII. Качество",
-  "scope": "APK, PWA, докачка, обновления, кеш, память, FPS, безопасность",
-  "status": "pending",
-  "evidence": ""
- },
- {
-  "id": "NEXT-028",
-  "title": "Приёмка и переход",
-  "phase": "VIII. Миграция",
-  "scope": "Полная сверка Elixir, миграция аккаунтов, бэкапы, переключение и откат по согласованию",
-  "status": "pending",
-  "evidence": ""
- }
+  {
+    "id": "NEXT-002",
+    "title": "Архитектура сервера",
+    "phase": "I. Фундамент",
+    "scope": "Fastify, REST, WebSocket, тесты",
+    "status": "done",
+    "evidence": "reports/SERVER-01-test.log"
+  },
+  {
+    "id": "NEXT-003",
+    "title": "Полный аудит оригинала",
+    "phase": "I. Фундамент",
+    "scope": "Реестр экранов, протоколов, конфигураций, формул, зависимостей и тестов",
+    "status": "done",
+    "evidence": "reports/NEXT-003-inventory.json; reports/NEXT-003-mapping.json; reports/NEXT-003-findings.md; reports/NEXT-003-baseline.log; reports/NEXT-003-fixtures.json; reports/NEXT-003-coverage.json; reports/NEXT-003-ui-dependencies.json; reports/NEXT-003-rpc-gaps.json; reports/NEXT-003-gap-review.json; reports/NEXT-003-deferred.json"
+  },
+  {
+    "id": "NEXT-004",
+    "title": "Ресурсы и рендеринг",
+    "phase": "I. Фундамент",
+    "scope": "Lunex Asset Library, WebGL, Spine, кеш, атласы, эффекты",
+    "status": "done",
+    "evidence": "reports/PIXI-02-library-build.log; reports/NEXT-004-smoke.log; reports/NEXT-004-squad.png; reports/NEXT-004-cache-build.log; reports/NEXT-004-cache-smoke.log; reports/NEXT-004-eviction-build.log; reports/NEXT-004-eviction-smoke.log; reports/NEXT-004-stress.log; reports/NEXT-004-stress-retry.log; reports/NEXT-004-effects-build.log; reports/NEXT-004-effects-smoke.log; reports/NEXT-004-final-smoke.log; reports/NEXT-004-hit.png (visual defect); reports/NEXT-004-skin-build.log; reports/NEXT-004-skin-smoke.log; reports/NEXT-004-layout-smoke.log; reports/NEXT-004-body-build.log; reports/NEXT-004-body-smoke.log; reports/NEXT-004-quality-build.log; reports/NEXT-004-quality-smoke.log; reports/NEXT-004-auto-build.log; reports/NEXT-004-auto-smoke.log"
+  },
+  {
+    "id": "NEXT-005",
+    "title": "Общая инфраструктура",
+    "phase": "I. Фундамент",
+    "scope": "PostgreSQL, Redis, миграции, Docker, общие типы",
+    "status": "done",
+    "evidence": "next-server/compose.yaml; reports/NEXT-005-compose.log; reports/NEXT-005-pull.log; reports/NEXT-005-storage-build.log; reports/NEXT-005-storage-test.log; reports/NEXT-005-api-compose.log; reports/NEXT-005-restart.log; reports/NEXT-005-contract-test.log; reports/NEXT-005-reference-retry.log"
+  },
+  {
+    "id": "NEXT-006",
+    "title": "Авторизация",
+    "phase": "II. Первый запуск",
+    "scope": "Регистрация, гости, сессии, восстановление, выбор сервера",
+    "status": "done",
+    "evidence": "reports/NEXT-006-auth-build.log; reports/NEXT-006-auth-test.log; reports/NEXT-006-routes-test.log; reports/NEXT-006-login-ui-build.log; reports/NEXT-006-login-smoke.log; reports/NEXT-006-client-integration-build.log; reports/NEXT-006-browser-auth-flow.log; reports/NEXT-006-link-test.log; reports/NEXT-006-link-client-build.log; reports/NEXT-006-guest-link-browser.log; reports/NEXT-006-api-deploy.log; reports/NEXT-006-recovery-test.log; reports/NEXT-006-recovery-ui-build.log; reports/NEXT-006-recovery-deploy.log; reports/NEXT-006-real-e2e.log"
+  },
+  {
+    "id": "NEXT-007",
+    "title": "Игровой профиль",
+    "phase": "II. Первый запуск",
+    "scope": "Ник, аватар, уровень, опыт, энергия, валюты, сохранение",
+    "status": "done",
+    "evidence": "reports/NEXT-007-profile-test.log; reports/NEXT-007-config-export.log; reports/NEXT-007-edit-test.log; reports/NEXT-007-profile-ui-build.log; reports/NEXT-007-progression-test.log; reports/NEXT-007-profile-browser.log; reports/NEXT-007-assets-browser.log; reports/NEXT-007-final-browser.log; reports/NEXT-007-final-publish.log; frame 3101 visual fallback deferred NEXT-026; reports/NEXT-007-frame-fix-browser.log"
+  },
+  {
+    "id": "NEXT-008",
+    "title": "Главный интерфейс",
+    "phase": "II. Первый запуск",
+    "scope": "Функциональный город, навигация, ресурсы, окна, адаптация; уведомления подключать вместе с соответствующими механиками. Графическая полировка отложена до NEXT-026.",
+    "status": "done",
+    "evidence": "reports/NEXT-008-city-build.log; reports/NEXT-008-city-browser.log; reports/NEXT-008-navigation-browser.log; reports/NEXT-008-navigation-publish.log; reports/NEXT-008-icons-browser.log; reports/NEXT-008-icons-publish.log; reports/NEXT-008-frames-browser.log; reports/NEXT-008-frames-publish.log; reports/NEXT-008-prefab-browser.log; reports/NEXT-008-prefab-publish.log; reports/NEXT-008-common-browser.log; reports/NEXT-008-common-publish.log; reports/NEXT-008-scene-browser.log; reports/NEXT-008-scene-publish.log; reports/NEXT-008-picker-browser.log; reports/NEXT-008-picker-publish.log; reports/NEXT-008-picker-final-browser.log; reports/NEXT-008-picker-final-publish.log; reports/NEXT-008-frame-effects.json; reports/NEXT-008-frame-import.json; reports/NEXT-008-frame-final-browser.log; reports/NEXT-008-frame-final-publish.log; reports/NEXT-008-functional-browser.log; reports/NEXT-008-functional-publish.log"
+  },
+  {
+    "id": "NEXT-009",
+    "title": "Редактор интерфейса",
+    "phase": "II. Первый запуск",
+    "scope": "Позиции, размеры, цвета, фоны, кнопки",
+    "status": "deferred",
+    "evidence": "",
+    "resume_at": "NEXT-024"
+  },
+  {
+    "id": "NEXT-010",
+    "title": "Система героев",
+    "phase": "III. Боевое ядро",
+    "scope": "Каталог, классы, фракции, редкость, параметры, способности; собственные фантазийные имена героев без изменения ID и баланса",
+    "status": "in_progress",
+    "evidence": "next-audit/hero-catalog.json; reports/NEXT-010-skills-export.log; reports/NEXT-010-catalog-test.log; reports/NEXT-010-catalog-deploy.log; reports/NEXT-010-ownership-retry.log; reports/NEXT-010-ownership-deploy.log; reports/NEXT-010-heroes-ui-browser.log; reports/NEXT-010-heroes-ui-publish.log; reports/NEXT-010-fantasy-names-browser.log; reports/NEXT-010-attrs-test.log; reports/NEXT-010-skills-test.log; reports/NEXT-010-skills-ui-browser.log; reports/NEXT-010-hero-assets.json; reports/NEXT-010-preview-build.log; hero-preview.html"
+  },
+  {
+    "id": "NEXT-011",
+    "title": "Формирование отряда",
+    "phase": "III. Боевое ядро",
+    "scope": "Формирование и сохранение стартового отряда; стартовый объём принят.",
+    "status": "done",
+    "evidence": "reports/NEXT-011-server-test.log; reports/NEXT-011-server-deploy.log; reports/NEXT-011-ui-browser.log; reports/NEXT-011-ui-publish.log; reports/NEXT-011-units-test.log; reports/NEXT-011-complete-test.log"
+  },
+  {
+    "id": "NEXT-012",
+    "title": "Пошаговый боевой движок",
+    "phase": "III. Боевое ядро",
+    "scope": "Эталонное боевое ядро принято для визуальной интеграции: 681/681 боёв, 75/75 тестов. Полная коммерческая идентичность, дополнительные модификаторы и некампанийные режимы не подтверждены.",
+    "status": "in_progress",
+    "evidence": "reports/NEXT-012.31.5-acceptance.json; reports/NEXT-012.31.5.1-metadata-*.json; reports/NEXT-012.31.5.1-tests.log",
+    "acceptance_gate": {
+      "policy": "100% approved scope before advancing",
+      "requirements": [
+        "Inventory all original battle opcodes, conditions and targeting rules",
+        "Implement and test every applicable mechanic; no silent unsupported paths",
+        "Validate original hero and stage configurations",
+        "Complete battle journal and final statistics",
+        "Differential tests against Elixir; resolve unexplained discrepancies",
+        "Document evidence and remaining baseline defects; obtain approval for any scope exception"
+      ],
+      "next_stage_blocked": false,
+      "release_blocked": true
+    },
+    "execution_note": "Verified reference scope accepted for visual integration only; full parity gate remains open for release."
+  },
+  {
+    "id": "NEXT-013",
+    "title": "Визуализация боя",
+    "phase": "III. Боевое ядро",
+    "scope": "Закрыт по D-011 (визуальная приёмка владельцем). Технические остатки 013.8 известны.",
+    "status": "done",
+    "evidence": "reports/NEXT-013.*; D-011"
+  },
+  {
+    "id": "NEXT-014",
+    "title": "Сюжетная кампания",
+    "phase": "III. Боевое ядро",
+    "scope": "014.1–014.15 campaign + finger overlays + plot video. Richer targets open.",
+    "status": "done",
+    "evidence": "reports/NEXT-014.15.md; reports/NEXT-014-tails-015-*; reports/NEXT-014.5-14-*"
+  },
+  {
+    "id": "NEXT-015",
+    "title": "Инвентарь и предметы",
+    "phase": "IV. RPG и экономика",
+    "scope": "015.1–015.2 inventory filters/icons/use/sell done. Random/event consume open.",
+    "status": "in_progress",
+    "evidence": "reports/NEXT-015.2.md; reports/NEXT-015.1.md"
+  },
+  {
+    "id": "NEXT-016",
+    "title": "Развитие героев",
+    "phase": "IV. RPG и экономика",
+    "scope": "016.3: PVE talent + reset. Jobs/luck/awaken open.",
+    "status": "in_progress",
+    "evidence": "reports/NEXT-016.3.md; reports/NEXT-016.2.md"
+  },
+  {
+    "id": "NEXT-017",
+    "title": "Экипировка",
+    "phase": "IV. RPG и экономика",
+    "scope": "017.1–017.8 equip + holy full slice (gallery/resonance).",
+    "status": "done",
+    "evidence": "reports/NEXT-017.8.md; reports/NEXT-017.7.md"
+  },
+  {
+    "id": "NEXT-018",
+    "title": "Призыв героев",
+    "phase": "IV. RPG и экономика",
+    "scope": "018.1–018.6 summon+crystal+displace done. Activity summons deferred to events (023).",
+    "status": "in_progress",
+    "evidence": "reports/NEXT-018.6.md; reports/NEXT-018.5.md; reports/NEXT-018.4.md; reports/NEXT-018.3.md; reports/NEXT-018.2.md; reports/NEXT-018.1.md"
+  },
+  {
+    "id": "NEXT-019",
+    "title": "Экономика и Idle",
+    "phase": "IV. RPG и экономика",
+    "scope": "019.1–019.4 idle/quick/rewards/shops+VIP done. Mall packs → 023.",
+    "status": "in_progress",
+    "evidence": "reports/NEXT-019.4.md; reports/NEXT-019.3.md; reports/NEXT-019.2.md; reports/NEXT-019.1.md"
+  },
+  {
+    "id": "NEXT-020",
+    "title": "Задания и достижения",
+    "phase": "V. Контент",
+    "scope": "020.1 daily/weekly + point chests done. Story/achievements open.",
+    "status": "in_progress",
+    "evidence": "reports/NEXT-020.1.md"
+  },
+  {
+    "id": "NEXT-021",
+    "title": "PvE-режимы",
+    "phase": "V. Контент",
+    "scope": "Башни, подземелья, испытания, боссы, специальные режимы",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-022",
+    "title": "PvP и социальные системы",
+    "phase": "V. Контент",
+    "scope": "Арена, рейтинги, гильдии, чат, друзья, почта",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-023",
+    "title": "События и монетизация",
+    "phase": "V. Контент",
+    "scope": "Календарь, события, VIP, пропуски, предложения, платежи",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-024",
+    "title": "Редакторы игрового контента",
+    "phase": "VI. Studio",
+    "scope": "Герои, навыки, предметы, противники, локации, квесты, награды, баннеры, магазины, события; выполнить отложенный NEXT-009 (редактор интерфейса)",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-025",
+    "title": "Администрирование",
+    "phase": "VI. Studio",
+    "scope": "Аккаунты, аналитика, журналы, серверы, баланс, версии, бэкапы",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-026",
+    "title": "Русификация и визуальное качество",
+    "phase": "VII. Качество",
+    "scope": "D-012: 1:1 visual on shipped screens now. 026.1 city scroll+biaoti/baitian. Next: campaign/heroes/inventory/summon/shop/tasks windows + RU. 026.1 city mobile browser QA passed on four resolutions, shortcut overlay fixed; original 1:1 visual/Spine acceptance still pending. 026.2 heroes original HeroListPanel background and 4-column list first slice done; card/frame parity pending.",
+    "status": "in_progress",
+    "evidence": "reports/NEXT-026.1.md; localization/ru.json; reports/NEXT-026.1-026.2-2026-11-26.md",
+    "deferred_visual_tasks": [
+      "Точные multilang-заголовки 10 входов (поверх biaoti)",
+      "Точная геометрия камеры / SceneNode scroll",
+      "1:1 окон campaign/heroes/inventory/summon/shop/tasks",
+      "Точная геометрия профиля и окна выбора аватара/рамки; восстановление рамки 3101",
+      "Визуальная сверка всех окон, адаптация и полировка"
+    ]
+  },
+  {
+    "id": "NEXT-027",
+    "title": "Оптимизация и сборки",
+    "phase": "VII. Качество",
+    "scope": "APK, PWA, докачка, обновления, кеш, память, FPS, безопасность",
+    "status": "pending",
+    "evidence": ""
+  },
+  {
+    "id": "NEXT-028",
+    "title": "Приёмка и переход",
+    "phase": "VIII. Миграция",
+    "scope": "Полная сверка Elixir, миграция аккаунтов, бэкапы, переключение и откат по согласованию",
+    "status": "pending",
+    "evidence": ""
+  }
 ]

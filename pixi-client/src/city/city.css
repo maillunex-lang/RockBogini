@@ -271,3 +271,8 @@ body:has(.city-shell){margin:0;background:#1a1528}.city-shell{height:100dvh;max-
 
 .city .city-xp{position:absolute;left:17%;top:78%;width:48%;height:9%;background:url('../../public/city/icons/progress_bottom.png') center/100% 100%;overflow:hidden}
 .city .city-xp>span{display:block;height:100%;background:url('../../public/city/icons/progress_front_1.png') center/100% 100%}
+
+
+/* Original shortcut glyphs carry their visual identity. Accessible names stay on buttons. */
+.city .city-shortcuts button:nth-child(n+5){font-size:0;line-height:0}
+.city .city-shortcuts button:nth-child(n+5) .dock-icon{display:block;max-width:none}

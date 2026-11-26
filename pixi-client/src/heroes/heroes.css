@@ -8,3 +8,13 @@
 .hero-jobs button:disabled,.hero-luck button:disabled,.hero-equip button:disabled,.hero-holy button:disabled{opacity:.45;cursor:not-allowed}
 .hero-skill{padding:10px;margin:8px 0;background:#38304c;border-radius:8px}.hero-skill p{font-size:13px}.hero-skill small{color:#e8ce91}
 .formation-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:16px 0}.formation-grid button{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;font-size:12px;overflow:hidden}.formation-grid img{width:70%;max-height:75%;object-fit:contain}.formation-grid button:disabled{opacity:.25}.formation-grid button[aria-pressed=true]{border:2px solid #ffdc80}.formation-save{width:100%;margin-top:16px}
+
+/* NEXT-026.2: original HeroListPanel/Bg (1080x2520) and four-card atlas layout. */
+.heroes-screen{
+ background:#0c1935 url('/heroes/original/HeroListBg.webp') center top/100% auto repeat-y;
+}
+.heroes-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.heroes-grid button{padding:5px 2px;gap:3px;overflow:hidden;font-size:clamp(9px,2.3vw,12px);min-width:0}
+.heroes-grid img{max-width:100%;width:100%;height:auto;aspect-ratio:1;object-fit:contain}
+.heroes-grid button>*{max-width:100%}
+@media(max-width:340px){.heroes-screen{padding:8px}.heroes-grid{gap:4px}}

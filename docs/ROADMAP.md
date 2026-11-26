@@ -15,8 +15,16 @@ VPS is the development stand; GitHub main is the published source mirror. **SING
 | deferred | 009 → 024 |
 | pending | 021 PvE · 022 PvP/соц · 023 события/монетизация · 024 редакторы · 025 админ · 027 сборки · 028 cutover |
 
+### NEXT-026 контроль 2026-11-26 (фактические обновления)
+- 026.1: оригинальные 9 вывесок и HUD, золото/алмазы (ID 1/3), графические цифры силы, XP по PlayerLevel. QA Playwright PASS 320/360/390/768, пересечений кнопок и битых img нет. Доработать оригинальную анимацию через единый WebGL-рендерер и подтвердить 1:1 с эталоном.
+- 026.2: начат HeroListPanel. Скопирован **оригинальный** Bg 1080×2520, сетка героев 4 колонки, мобильная проверка PASS. Не считать полный экран завершённым до переноса оригинальных рамок, шапки, фильтров и детальной сверки.
+- Каноническая предварительная публикация текущего HUD/героев: https://rikagro.ru/sexyidle/; /testtest/ прежний отдельный тестовый URL, не считать автоматически идентичным. Исходники не пересоздавать.
+- Операционные пробелы: GitHub push/CI не подтверждены (нет авторизации HTTPS); старый отдельный Spine canvas вызывал мерцание, поэтому эффекты выключены.
+- Отчёт: reports/NEXT-026.1-026.2-2026-11-26.md.
+
 ### Открытые подэтапы сейчас
-- **026.1** city visual parity — in progress / first slice
+- **026.1** city visual parity — mobile HUD QA PASS, 1:1 + Spine acceptance open
+- **026.2** original HeroListPanel — original background + 4-column grid live, frames/filters/detail pending
 - **026.x** 1:1 окон (campaign/heroes/inventory/summon/shop/tasks)
 - **020.2+** / **021** PvE — механики параллельно по запросу
 - **015** random/event consume
