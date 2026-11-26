@@ -78,7 +78,14 @@ export async function claimIdle(c:PoolClient,id:string,stage:number){
  return {rewards:pending,minutes:settled.minutes,limitMinutes:cfg.limit,receivedAt:+now,settledAt:+now};
 }
 
-function utcDay(d=new Date()){return d.toISOString().slice(0,10)}
+function localDay(d=new Date()){
+ const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');
+ return `${y}-${m}-${day}`;
+}
+function sqlDate(v:unknown){
+ if(v instanceof Date)return localDay(v);
+ return String(v).slice(0,10);
+}
 
 async function ensureIdleRow(c:PoolClient,id:string){
  await c.query(
@@ -87,14 +94,14 @@ async function ensureIdleRow(c:PoolClient,id:string){
  );
 }
 
-/** Reset daily quick-battle counters when UTC day rolls. */
+/** Reset daily quick-battle counters when local day rolls. */
 export async function refreshQuickDaily(c:PoolClient,id:string){
  await ensureIdleRow(c,id);
  const row=(await c.query(
   'SELECT daily_count,daily_quick_count,daily_day,quick_points FROM campaign_idle WHERE account_id=$1 FOR UPDATE',[id],
  )).rows[0];
- const today=utcDay();
- const day=row.daily_day instanceof Date?row.daily_day.toISOString().slice(0,10):String(row.daily_day).slice(0,10);
+ const today=localDay();
+ const day=sqlDate(row.daily_day);
  if(day!==today){
   await c.query(
    'UPDATE campaign_idle SET daily_count=0,daily_quick_count=0,daily_day=$2 WHERE account_id=$1',
@@ -172,7 +179,7 @@ export async function runQuickBattle(c:PoolClient,id:string,stage:number){
  await c.query(
   `UPDATE campaign_idle SET quick_points=$2::jsonb,daily_count=$3,daily_quick_count=$4,daily_day=$5
    WHERE account_id=$1`,
-  [id,JSON.stringify(a.points),dailyCount,dailyQuickCount,utcDay()],
+  [id,JSON.stringify(a.points),dailyCount,dailyQuickCount,localDay()],
  );
  return {
   rewards,

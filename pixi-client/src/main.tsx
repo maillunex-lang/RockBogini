@@ -4,6 +4,7 @@ import {HeroesScreen} from './heroes/HeroesScreen';
 import {InventoryScreen} from './inventory/InventoryScreen';
 import {SummonScreen} from './summon/SummonScreen';
 import {ShopScreen} from './shop/ShopScreen';
+import {TasksScreen} from './tasks/TasksScreen';
 import {City} from './city/City';
 import {ProfileScreen} from './profile/ProfileScreen';
 import React,{useEffect,useState} from 'react';
@@ -28,6 +29,7 @@ function App(){
  const [showInventory,setShowInventory]=useState(false);
  const [showSummon,setShowSummon]=useState(false);
  const [showShop,setShowShop]=useState(false);
+ const [showTasks,setShowTasks]=useState(false);
  const [showProfile,setShowProfile]=useState(false);
  const [showLink,setShowLink]=useState(false);
  const [showRecovery,setShowRecovery]=useState(false);
@@ -44,6 +46,7 @@ function App(){
  if(showInventory)return <InventoryScreen api={API} token={session.token} onClose={()=>setShowInventory(false)}/>;
  if(showSummon)return <SummonScreen api={API} token={session.token} onClose={()=>setShowSummon(false)}/>;
  if(showShop)return <ShopScreen api={API} token={session.token} onClose={()=>setShowShop(false)}/>;
+ if(showTasks)return <TasksScreen api={API} token={session.token} onClose={()=>setShowTasks(false)}/>;
  if(showProfile)return <ProfileScreen api={API} token={session.token} onClose={()=>setShowProfile(false)}/>;
  if(codes)return <RecoveryCodes codes={codes} onDone={()=>setCodes(null)}/>;
  if(showLink)return <LinkGuest onCancel={()=>setShowLink(false)} onLink={async(email,password)=>{const linked=await linkGuest(API,session,email,password);setSession(linked);setIsGuest(false);setShowLink(false)}}/>;
@@ -54,7 +57,7 @@ function App(){
  {isGuest?<button onClick={()=>setShowLink(true)}>Привязать почту</button>:<button onClick={async()=>{try{setRecoverError('');setCodes(await requestRecoveryCodes(API,session))}catch(e){setRecoverError(e instanceof Error?e.message:String(e))}}}>Резервные коды</button>}
  <button onClick={async()=>{try{await signOut(API,session);setSession(null);setShowRecovery(false)}catch(e){setError(e instanceof Error?e.message:String(e))}}}>Выйти из аккаунта</button></div>
  {recoverError&&<p role="alert">{recoverError}</p>}
- <City api={API} token={session.token} onProfile={()=>setShowProfile(true)} onBattle={()=>setShowCampaign(true)} onHeroes={()=>setShowHeroes(true)} onInventory={()=>setShowInventory(true)} onSummon={()=>setShowSummon(true)} onShop={()=>setShowShop(true)}/>
+ <City api={API} token={session.token} onProfile={()=>setShowProfile(true)} onBattle={()=>setShowCampaign(true)} onHeroes={()=>setShowHeroes(true)} onInventory={()=>setShowInventory(true)} onSummon={()=>setShowSummon(true)} onShop={()=>setShowShop(true)} onTasks={()=>setShowTasks(true)}/>
  <button onClick={async()=>{await cacheSettled();setIdle(cacheSize())}}>Проверить кеш</button><output data-idle-cache={idle}>{idle}</output>
  </main>;
 }

@@ -26,6 +26,7 @@ import {
  runQuickBattle,
  settleIdle,
 } from './campaignDependencies.js';
+import {TASK_HANG_UP,TASK_QUICK_BATTLE,taskEvent} from './tasks.js';
 
 async function authAccount(req:{headers:{authorization?:string}},s:Storage){
  const token=/^Bearer ([A-Za-z0-9_-]{43})$/.exec(req.headers.authorization??'')?.[1];
@@ -220,8 +221,9 @@ export async function campaignRoutes(app:FastifyInstance,s:Storage){
    await c.query('BEGIN');
    await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
    const result=await claimIdle(c,id,stage);
+   if(!result.rewards.length){await c.query('ROLLBACK');return reply.code(409).send({error:'nothing_to_claim'})}
+   await taskEvent(c,id,TASK_HANG_UP,[],1);
    await c.query('COMMIT');
-   if(!result.rewards.length)return reply.code(409).send({error:'nothing_to_claim'});
    return {
     stage,
     rewards:result.rewards,
@@ -252,6 +254,7 @@ export async function campaignRoutes(app:FastifyInstance,s:Storage){
     const code=result.error==='insufficient_diamond'?402:409;
     return reply.code(code).send({error:result.error});
    }
+   await taskEvent(c,id,TASK_QUICK_BATTLE,[],1);
    await c.query('COMMIT');
    return {stage,...result};
   }catch(e){

@@ -1,0 +1,75 @@
+.tasks-screen{
+ min-height:100vh;
+ padding:16px;
+ color:#f4efe6;
+ background:
+  radial-gradient(ellipse at 20% 10%,rgba(72,88,48,.3),transparent 45%),
+  linear-gradient(160deg,#141820 0%,#1c2430 45%,#101418 100%);
+ font-family:"Segoe UI",Tahoma,sans-serif;
+}
+.tasks-screen header{
+ display:flex;
+ justify-content:space-between;
+ gap:12px;
+ align-items:flex-start;
+ flex-wrap:wrap;
+ margin-bottom:14px;
+}
+.tasks-screen h1{margin:0;font-size:1.8rem;letter-spacing:.04em}
+.tasks-screen header p{margin:6px 0 0;opacity:.85}
+.tasks-header-actions,.tasks-tabs,.tasks-claim-all,.tasks-chests{
+ display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+}
+.tasks-screen button{
+ font:inherit;
+ padding:8px 12px;
+ border:1px solid rgba(180,200,220,.35);
+ background:rgba(32,40,52,.85);
+ color:inherit;
+ cursor:pointer;
+}
+.tasks-screen button[aria-pressed="true"]{
+ border-color:#c8d8e8;
+ background:rgba(56,72,96,.9);
+}
+.tasks-screen button:disabled{opacity:.45;cursor:not-allowed}
+.tasks-points{
+ margin-bottom:14px;
+ padding:12px;
+ border:1px solid rgba(180,200,220,.28);
+ background:rgba(24,30,40,.85);
+}
+.tasks-points>p{margin:0 0 10px}
+.tasks-chests button{
+ min-width:72px;
+ flex-direction:column;
+ display:flex;
+ align-items:center;
+ gap:2px;
+}
+.tasks-chests button[data-claimed="1"]{opacity:.55}
+.tasks-chests strong{font-size:1.1rem}
+.tasks-chests span{font-size:.75rem;opacity:.85}
+.tasks-claim-all{margin-bottom:12px}
+.tasks-list{
+ display:flex;
+ flex-direction:column;
+ gap:8px;
+}
+.tasks-list article{
+ display:flex;
+ justify-content:space-between;
+ gap:12px;
+ align-items:center;
+ padding:12px;
+ border:1px solid rgba(180,200,220,.28);
+ background:rgba(24,30,40,.85);
+}
+.tasks-list article[data-ready="1"]{border-color:rgba(160,200,120,.55)}
+.tasks-list article[data-done="1"]{opacity:.55}
+.tasks-list article>div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.tasks-list strong{font-size:1rem}
+.tasks-list span{font-size:.85rem;opacity:.85}
+@media(max-width:560px){
+ .tasks-list article{flex-direction:column;align-items:stretch}
+}

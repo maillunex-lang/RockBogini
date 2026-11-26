@@ -2,11 +2,15 @@ import React,{useEffect,useState} from 'react';
 import './city.css';
 import {sceneLayout} from './sceneLayout';
 type Profile={nickname:string;level:number;avatar:number;power:number;currencies:Record<string,string>};
-export function City({api,token,onProfile,onBattle,onHeroes,onInventory,onSummon,onShop}:{api:string;token:string;onProfile:()=>void;onBattle:()=>void;onHeroes:()=>void;onInventory?:()=>void;onSummon?:()=>void;onShop?:()=>void}){
+export function City({api,token,onProfile,onBattle,onHeroes,onInventory,onSummon,onShop,onTasks}:{api:string;token:string;onProfile:()=>void;onBattle:()=>void;onHeroes:()=>void;onInventory?:()=>void;onSummon?:()=>void;onShop?:()=>void;onTasks?:()=>void}){
  const [p,setP]=useState<Profile|null>(null),[notice,setNotice]=useState(''),[panel,setPanel]=useState('');
  useEffect(()=>{const c=new AbortController();fetch(api+'/v1/profile',{headers:{Authorization:'Bearer '+token},signal:c.signal}).then(r=>{if(!r.ok)throw Error();return r.json()}).then(setP).catch(()=>{if(!c.signal.aborted)setNotice('Не удалось загрузить профиль')});return()=>c.abort()},[api,token]);
  const unavailable=(name:string)=>{setPanel(name);setNotice(name+' — ещё не перенесено')};
- const openShortcut=(n:string)=>{if(n==='Инвентарь'&&onInventory){onInventory();return}unavailable(n)};
+ const openShortcut=(n:string)=>{
+  if(n==='Инвентарь'&&onInventory){onInventory();return}
+  if(n==='Задания'&&onTasks){onTasks();return}
+  unavailable(n);
+ };
  const openBuilding=(label:string)=>{if(label==='Призыв'&&onSummon){onSummon();return}unavailable(label)};
  return <section className="city"><header className="city-top"><button onClick={onProfile}>{p&&<img src={'./profile/icon-'+p.avatar+'.webp'} alt=""/>}<span>Профиль<br/>{p?.nickname??'Загрузка…'} · Ур. {p?.level??'—'}</span></button><div className="city-coin">Золото <b>{p?.currencies.coin??'—'}</b></div><div className="city-diamond">Алмазы <b>{p?.currencies.diamond??'—'}</b></div></header>
  <div className="city-power">Боевая мощь: {p?.power??'—'}</div>

@@ -122,6 +122,20 @@ export async function migrate(s:Storage){
   PRIMARY KEY(account_id,shop_id)
  )`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(21) ON CONFLICT DO NOTHING');
+ await c.query(`CREATE TABLE IF NOT EXISTS player_tasks(
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  task_id integer NOT NULL,
+  progress integer NOT NULL DEFAULT 0,
+  completed boolean NOT NULL DEFAULT false,
+  PRIMARY KEY(account_id,task_id)
+ )`);
+ await c.query(`CREATE TABLE IF NOT EXISTS player_task_meta(
+  account_id uuid PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,
+  daily_day date NOT NULL DEFAULT CURRENT_DATE,
+  weekly_day date NOT NULL,
+  points jsonb NOT NULL DEFAULT '{}'
+ )`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(22) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }
