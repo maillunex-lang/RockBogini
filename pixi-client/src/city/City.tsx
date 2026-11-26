@@ -1,10 +1,11 @@
 const cityLabelSprites = {"2020": "MainScene_Furance", "1001": "MainScene_Summon", "1304": "MainScene_MagicResearch", "1013": "CollectionPavilion", "1301": "MainScene_StarTemple", "1008": "MainScene_HeroPalace", "1005": "MainScene_Alliance", "1003": "MainScene_Shop", "1305": "mainScene_angel"} as const;
 import React,{useEffect,useState} from 'react';
 import './city.css';
+import levelThresholds from './levelThresholds.json';
 import {sceneLayout} from './sceneLayout';
 
 
-type Profile={nickname:string;level:number;avatar:number;power:number;currencies:Record<string,string>};
+type Profile={experience?:string;nickname:string;level:number;avatar:number;power:number;currencies:Record<string,string>};
 
 const SHORTCUTS=[
  {id:'mail',label:'Почта',icon:'mail_btn.png'},
@@ -41,6 +42,9 @@ export function City({api,token,onProfile,onBattle,onHeroes,onInventory,onSummon
   unavailable(label);
  };
 
+ const thresholds=levelThresholds as Record<string,number>;
+ const start=thresholds[String(p?.level??1)]??0,next=thresholds[String((p?.level??1)+1)];
+ const xp=Number(p?.experience??0),progress=next===undefined?100:Math.max(0,Math.min(100,(xp-start)/(next-start)*100));
  return <section className="city">
   <header className="city-top">
    <button type="button" onClick={onProfile}>
@@ -50,6 +54,7 @@ export function City({api,token,onProfile,onBattle,onHeroes,onInventory,onSummon
    <div className="city-coin" aria-label="Золото"><img className="city-currency-icon" src={import.meta.env.BASE_URL+"item-icons/1.webp"} alt="Золото"/><b>{p?.currencies.coin??'—'}</b></div>
    <div className="city-diamond" aria-label="Алмазы"><img className="city-currency-icon" src={import.meta.env.BASE_URL+"item-icons/3.webp"} alt="Алмазы"/><b>{p?.currencies.diamond??'—'}</b></div>
    <span className="city-power" aria-label={String(p?.power??'—')}>{p?.power!=null?String(p.power).split('').map((digit,i)=>/^[0-9]$/.test(digit)?<img key={i} className="city-power-digit" src={import.meta.env.BASE_URL+'city/fonts/power-'+digit+'.png'} alt={digit}/>:<span key={i}>{digit}</span>):'—'}</span>
+   <span className="city-xp" role="progressbar" aria-label="Опыт до следующего уровня" aria-valuenow={Math.round(progress)}><span style={{width:progress+"%"}}/></span>
   </header>
 
   <aside className="city-shortcuts">

@@ -268,3 +268,6 @@ body:has(.city-shell){margin:0;background:#1a1528}.city-shell{height:100dvh;max-
 /* Keep social hit areas within original 90-unit square. */
 .city .city-shortcuts button:nth-child(-n+4){height:8.333cqw;display:flex;align-items:center;justify-content:center;font-size:0}
 .city .city-shortcuts button:nth-child(-n+4) .dock-icon{width:100%;height:100%;object-fit:contain}
+
+.city .city-xp{position:absolute;left:17%;top:78%;width:48%;height:9%;background:url('../../public/city/icons/progress_bottom.png') center/100% 100%;overflow:hidden}
+.city .city-xp>span{display:block;height:100%;background:url('../../public/city/icons/progress_front_1.png') center/100% 100%}
