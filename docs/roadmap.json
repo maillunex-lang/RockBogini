@@ -130,9 +130,9 @@
   "id": "NEXT-015",
   "title": "Инвентарь и предметы",
   "phase": "IV. RPG и экономика",
-  "scope": "015.2: ItemIcon hardlinks, Fixed/Manual use, sell overrides. Random/event consume open.",
+  "scope": "015.1–015.2 inventory filters/icons/use/sell done. Random/event consume open.",
   "status": "in_progress",
-  "evidence": "reports/NEXT-015.2.md; reports/NEXT-015.1.md; reports/NEXT-014-tails-015-*"
+  "evidence": "reports/NEXT-015.2.md; reports/NEXT-015.1.md"
  },
  {
   "id": "NEXT-016",
@@ -154,7 +154,7 @@
   "id": "NEXT-018",
   "title": "Призыв героев",
   "phase": "IV. RPG и экономика",
-  "scope": "018.1–018.6 summon+crystal+displace done. Activity summons open.",
+  "scope": "018.1–018.6 summon+crystal+displace done. Activity summons deferred to events (023).",
   "status": "in_progress",
   "evidence": "reports/NEXT-018.6.md; reports/NEXT-018.5.md; reports/NEXT-018.4.md; reports/NEXT-018.3.md; reports/NEXT-018.2.md; reports/NEXT-018.1.md"
  },
@@ -162,9 +162,9 @@
   "id": "NEXT-019",
   "title": "Экономика и Idle",
   "phase": "IV. RPG и экономика",
-  "scope": "019.1–019.3 claim+quick+AdventureReward/online. Shops/VIP open.",
+  "scope": "019.1–019.4 idle/quick/rewards/shops+VIP done. Mall packs → 023.",
   "status": "in_progress",
-  "evidence": "reports/NEXT-019.3.md; reports/NEXT-019.2.md; reports/NEXT-019.1.md"
+  "evidence": "reports/NEXT-019.4.md; reports/NEXT-019.3.md; reports/NEXT-019.2.md; reports/NEXT-019.1.md"
  },
  {
   "id": "NEXT-020",

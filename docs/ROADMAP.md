@@ -2,20 +2,27 @@
 
 VPS is the development stand; GitHub main is the published source mirror. **SINGLE-PROJECT-001**: одна финальная кодовая база в `/home/gamedev/rocbogini/`; единственная публикация Next — `/testtest/`; без параллельных копий проекта. Original game and Elixir unchanged until separate cutover approval. Vertical slices: reference → server → parity → UI/assets → integration → tests → visual QA → documentation. Old roadmap: archive/ROADMAP-before-next.md.
 
-## Актуальный срез: 2026-11-25
+## Актуальный срез: 2026-11-26
 
-Активная задача: **NEXT-019.3**. Далее shops / VIP / activity. Передача Cursor: docs/CURSOR_HANDOFF.md.
-11 из 28 основных этапов закрыты, 3 в работе, 1 отложен, 13 ожидают. (авто из roadmap.json)
-NEXT-012 принят только в проверенном эталонном объёме для подключения визуализации; общий статус остаётся in_progress.
-Проверено: adventure+online rewards; tests 9/9.
+Активная задача: **NEXT-020** (или 021). 019.4 shops+VIP закрыт. Передача Cursor: docs/CURSOR_HANDOFF.md.
+12 из 28 основных этапов закрыты, 7 в работе, 1 отложен, 8 ожидают. (авто из roadmap.json)
 
-| Подэтап | Состояние |
+### Сводка по блокам
+| Статус | ID |
 |---|---|
-| 013.1–013.8 | CLOSED (D-011): owner visual QA; residuals known |
-| 014.1–014.15 | done: campaign + finger + plot video |
-| 014 tails | done: RU StoryChapter; plot stub replaced |
-| 015 MVP–015.2 | done: inventory + filters + icons/use/sell |
+| done | 001–008, 011, 013–014, 016–017 |
+| in_progress | 010 герои · 012 бой · 015 инвентарь · 018 призыв · 019 экономика · 026 визуал/RU |
+| deferred | 009 → 024 |
+| pending | 020 задания · 021 PvE · 022 PvP/соц · 023 события/монетизация · 024 редакторы · 025 админ · 027 сборки · 028 cutover |
 
+### Открытые подэтапы сейчас
+- **019.4** магазины + VIP — done
+- **020/021** задания / PvE — следующее
+- **015** random/event consume
+- **018** activity summons → вместе с **023**
+- **010/012/026** полировка и коммерческая полнота
+
+Проверено до среза: 019.3 adventure+online; tests 9/9; live https://rikagro.ru/testtest/.
 
 | ID | Этап | Статус | Объём | Доказательство |
 |---|---|---|---|---|
@@ -33,11 +40,11 @@ NEXT-012 принят только в проверенном эталонном 
 | NEXT-012 | Пошаговый боевой движок | in_progress | Эталонное боевое ядро принято для визуальной интеграции: 681/681 боёв, 75/75 тестов. Полная коммерческая идентичность, дополнительные модификаторы и некампанийные режимы не подтверждены. | reports/NEXT-012.31.5-acceptance.json; reports/NEXT-012.31.5.1-metadata-*.json; reports/NEXT-012.31.5.1-tests.log |
 | NEXT-013 | Визуализация боя | done | Закрыт по D-011 (визуальная приёмка владельцем). Технические остатки 013.8 известны. | reports/NEXT-013.*; D-011 |
 | NEXT-014 | Сюжетная кампания | done | 014.1–014.15: campaign + finger overlays + plot video. Richer targets open. | reports/NEXT-014.15.md; reports/NEXT-014-tails-015-*; reports/NEXT-014.5-14-* |
-| NEXT-015 | Инвентарь и предметы | in_progress | 015.2: icons hardlink, Fixed/Manual use, sell overrides. Random/event consume open. | reports/NEXT-015.2.md; reports/NEXT-015.1.md |
+| NEXT-015 | Инвентарь и предметы | in_progress | 015.1–015.2 done. Random/event consume open. | reports/NEXT-015.2.md; reports/NEXT-015.1.md |
 | NEXT-016 | Развитие героев | done | 016.1–016.5 level/star/talent/jobs/luck | reports/NEXT-016.5.md |
 | NEXT-017 | Экипировка | done | 017.1–017.8 equip + holy full slice (gallery/resonance). | reports/NEXT-017.8.md; reports/NEXT-017.7.md |
-| NEXT-018 | Призыв героев | in_progress | 018.6 personality displace. Activity summons open. | reports/NEXT-018.6.md; reports/NEXT-018.5.md; reports/NEXT-018.4.md; reports/NEXT-018.3.md; reports/NEXT-018.2.md; reports/NEXT-018.1.md |
-| NEXT-019 | Экономика и Idle | in_progress | 019.1–019.3 claim+quick+AdventureReward/online. Shops/VIP open. | reports/NEXT-019.3.md; reports/NEXT-019.2.md; reports/NEXT-019.1.md |
+| NEXT-018 | Призыв героев | in_progress | 018.1–018.6 done. Activity summons → 023. | reports/NEXT-018.6.md; reports/NEXT-018.5.md; reports/NEXT-018.4.md; reports/NEXT-018.3.md; reports/NEXT-018.2.md; reports/NEXT-018.1.md |
+| NEXT-019 | Экономика и Idle | in_progress | 019.1–019.4 idle/quick/rewards/shops+VIP done. Mall packs → 023. | reports/NEXT-019.4.md; reports/NEXT-019.3.md; reports/NEXT-019.2.md; reports/NEXT-019.1.md |
 | NEXT-020 | Задания и достижения | pending | Сюжетные, ежедневные, еженедельные задания, достижения |  |
 | NEXT-021 | PvE-режимы | pending | Башни, подземелья, испытания, боссы, специальные режимы |  |
 | NEXT-022 | PvP и социальные системы | pending | Арена, рейтинги, гильдии, чат, друзья, почта |  |

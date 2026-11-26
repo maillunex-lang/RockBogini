@@ -109,6 +109,19 @@ export async function migrate(s:Storage){
   ADD COLUMN IF NOT EXISTS online_reward_index integer NOT NULL DEFAULT 0,
   ADD COLUMN IF NOT EXISTS last_login_at timestamptz NOT NULL DEFAULT now()`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(20) ON CONFLICT DO NOTHING');
+ await c.query('ALTER TABLE player_profiles ADD COLUMN IF NOT EXISTS vip_level integer NOT NULL DEFAULT 0');
+ await c.query('ALTER TABLE player_profiles ADD COLUMN IF NOT EXISTS vip_gift_mask integer NOT NULL DEFAULT 0');
+ await c.query(`CREATE TABLE IF NOT EXISTS player_shop(
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  shop_id integer NOT NULL,
+  goods jsonb NOT NULL DEFAULT '{}',
+  free_refresh_count integer NOT NULL DEFAULT 0,
+  today_refresh_count integer NOT NULL DEFAULT 0,
+  last_refresh_at timestamptz NOT NULL DEFAULT now(),
+  daily_day date NOT NULL DEFAULT CURRENT_DATE,
+  PRIMARY KEY(account_id,shop_id)
+ )`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(21) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }
