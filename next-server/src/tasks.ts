@@ -1,0 +1,262 @@
+/** Daily/weekly TaskBase + TaskPointReward (Req_Task_DrawReward / DrawPointReward). */
+import {readFileSync} from 'node:fs';
+import type {PoolClient} from 'pg';
+import type {FastifyInstance} from 'fastify';
+import type {Storage} from './storage.js';
+import {sessionAccount} from './auth.js';
+import {getProfile} from './profile.js';
+
+type TaskCfg={
+ id:number;type:number;condition:number[];totalCount:number;point:number;
+ startProgress:number;sortId:number;rewards:number[][];
+};
+type PointCfg={id:number;point:number;rewards:number[][]};
+type PointType={id:number;nodes:number[];cycle:number};
+type TaskRow={task_id:number;progress:number;completed:boolean};
+
+const cfg=JSON.parse(readFileSync(new URL('../../data/tasks.json',import.meta.url),'utf8')) as {
+ tasks:Record<string,TaskCfg>;pointRewards:Record<string,PointCfg>;pointTypes:Record<string,PointType>;
+};
+const TASKS=Object.values(cfg.tasks).sort((a,b)=>a.type-b.type||a.sortId-b.sortId||a.id-b.id);
+const BY_ID=cfg.tasks;
+const BY_COND=new Map<number,TaskCfg[]>();
+for(const t of TASKS){
+ const c=t.condition[0]??0;
+ const list=BY_COND.get(c)??[];
+ list.push(t);BY_COND.set(c,list);
+}
+const POINTS=cfg.pointRewards;
+const POINT_TYPES=cfg.pointTypes;
+
+export const TASK_LOGIN=1062;
+export const TASK_HANG_UP=1002;
+export const TASK_QUICK_BATTLE=1010;
+export const TASK_SHOP_BUY=1046;
+export const TASK_SUMMON=1005;
+
+async function account(req:{headers:{authorization?:string}},s:Storage){
+ const token=/^Bearer ([A-Za-z0-9_-]{43})$/.exec(req.headers.authorization??'')?.[1];
+ return token?sessionAccount(s,token):null;
+}
+
+function localDay(d=new Date()){
+ const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');
+ return `${y}-${m}-${day}`;
+}
+function localWeek(d=new Date()){
+ const t=new Date(d.getFullYear(),d.getMonth(),d.getDate());
+ const day=(t.getDay()+6)%7; // Mon=0
+ t.setDate(t.getDate()-day);
+ return localDay(t);
+}
+/** DATE from node-pg is local midnight — use local Y-M-D, not toISOString. */
+function sqlDate(v:unknown){
+ if(v instanceof Date)return localDay(v);
+ return String(v).slice(0,10);
+}
+
+function paramsMatch(want:number[],params:number[]){
+ return want.every((w,i)=>!w||params[i]===w);
+}
+
+async function grant(c:PoolClient,id:string,itemId:number,n:number){
+ if(n<=0)return;
+ await c.query(
+  `INSERT INTO player_items(account_id,item_id,amount) VALUES($1,$2,$3)
+   ON CONFLICT(account_id,item_id) DO UPDATE SET amount=
+    CASE WHEN EXCLUDED.item_id=7 THEN LEAST(30000,player_items.amount+EXCLUDED.amount)
+    ELSE player_items.amount+EXCLUDED.amount END`,
+  [id,itemId,n],
+ );
+}
+
+ async function ensureMeta(c:PoolClient,id:string){
+ const today=localDay();
+ const week=localWeek();
+ await c.query(
+  `INSERT INTO player_task_meta(account_id,daily_day,weekly_day,points)
+   VALUES($1,$2::date,$3::date,'{}'::jsonb) ON CONFLICT DO NOTHING`,
+  [id,today,week],
+ );
+ const row=(await c.query(
+  'SELECT daily_day,weekly_day,points FROM player_task_meta WHERE account_id=$1 FOR UPDATE',[id],
+ )).rows[0];
+ let daily=sqlDate(row.daily_day);
+ let weekly=sqlDate(row.weekly_day);
+ let points=(row.points??{}) as Record<string,{point:number;drawn:number[]}>;
+ if(daily!==today){
+  await resetType(c,id,2);
+  points['2']={point:0,drawn:[]};
+  daily=today;
+ }
+ if(weekly!==week){
+  await resetType(c,id,3);
+  points['3']={point:0,drawn:[]};
+  weekly=week;
+ }
+ await c.query(
+  'UPDATE player_task_meta SET daily_day=$2,weekly_day=$3,points=$4::jsonb WHERE account_id=$1',
+  [id,daily,weekly,JSON.stringify(points)],
+ );
+ // ensure task rows
+ for(const t of TASKS){
+  await c.query(
+   `INSERT INTO player_tasks(account_id,task_id,progress,completed)
+    VALUES($1,$2,$3,false) ON CONFLICT DO NOTHING`,
+   [id,t.id,t.startProgress],
+  );
+ }
+ return {daily,weekly,points};
+}
+
+async function resetType(c:PoolClient,id:string,type:number){
+ for(const t of TASKS.filter(x=>x.type===type)){
+  await c.query(
+   `INSERT INTO player_tasks(account_id,task_id,progress,completed) VALUES($1,$2,$3,false)
+    ON CONFLICT(account_id,task_id) DO UPDATE SET progress=$3,completed=false`,
+   [id,t.id,t.startProgress],
+  );
+ }
+}
+
+/** Bump matching incomplete tasks. Call inside a transaction with profile locked. */
+export async function taskEvent(c:PoolClient,id:string,cond:number,params:number[]=[],n=1){
+ await ensureMeta(c,id);
+ const defs=BY_COND.get(cond)??[];
+ for(const t of defs){
+  if(!paramsMatch(t.condition.slice(1),params))continue;
+  await c.query(
+   `UPDATE player_tasks SET progress=progress+$3
+    WHERE account_id=$1 AND task_id=$2 AND completed=false`,
+   [id,t.id,n],
+  );
+ }
+}
+
+export async function taskRoutes(app:FastifyInstance,s:Storage){
+ app.get('/v1/tasks',async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  await getProfile(s,id);
+  const c=await s.pg.connect();
+  try{
+   await c.query('BEGIN');
+   await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
+   const meta=await ensureMeta(c,id);
+   await taskEvent(c,id,TASK_LOGIN,[],1);
+   const rows=(await c.query(
+    'SELECT task_id,progress,completed FROM player_tasks WHERE account_id=$1',[id],
+   )).rows as TaskRow[];
+   await c.query('COMMIT');
+   const byId=new Map(rows.map(r=>[r.task_id,r]));
+   const list=TASKS.map(t=>{
+    const r=byId.get(t.id);
+    const progress=Number(r?.progress??t.startProgress);
+    const completed=!!r?.completed;
+    const ready=!completed&&progress>=t.totalCount;
+    return {
+     id:t.id,type:t.type,condition:t.condition,totalCount:t.totalCount,point:t.point,
+     sortId:t.sortId,rewards:t.rewards,progress,completed,ready,
+    };
+   });
+   const chests=[2,3].map(type=>{
+    const pt=POINT_TYPES[String(type)];
+    const st=meta.points[String(type)]??{point:0,drawn:[]};
+    const nodes=(pt?.nodes??[]).map((nodeId,index)=>{
+     const box=POINTS[String(nodeId)];
+     return {
+      index,nodeId,need:box?.point??0,rewards:box?.rewards??[],
+      claimed:st.drawn.includes(index),
+      claimable:!!box&&st.point>=box.point&&!st.drawn.includes(index),
+     };
+    });
+    return {type,point:st.point,nodes};
+   });
+   return {
+    daily:list.filter(t=>t.type===2),
+    weekly:list.filter(t=>t.type===3),
+    points:chests,
+    dailyDay:meta.daily,
+    weeklyDay:meta.weekly,
+   };
+  }catch(e){await c.query('ROLLBACK');throw e}
+  finally{c.release()}
+ });
+
+ app.post<{Body:{taskIds:number[]}}>('/v1/tasks/claim',{
+  schema:{body:{type:'object',required:['taskIds'],additionalProperties:false,properties:{
+   taskIds:{type:'array',minItems:1,maxItems:50,items:{type:'integer',minimum:1}},
+  }}},
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  await getProfile(s,id);
+  const c=await s.pg.connect();
+  try{
+   await c.query('BEGIN');
+   await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
+   const meta=await ensureMeta(c,id);
+   const rewards:number[][]=[];
+   const claimed:number[]=[];
+   for(const taskId of req.body.taskIds){
+    const t=BY_ID[String(taskId)];
+    if(!t){await c.query('ROLLBACK');return reply.code(404).send({error:'task_not_found'})}
+    const row=(await c.query(
+     'SELECT progress,completed FROM player_tasks WHERE account_id=$1 AND task_id=$2 FOR UPDATE',[id,taskId],
+    )).rows[0];
+    if(!row||row.completed||Number(row.progress)<t.totalCount){
+     await c.query('ROLLBACK');return reply.code(409).send({error:'not_ready'});
+    }
+    await c.query('UPDATE player_tasks SET completed=true WHERE account_id=$1 AND task_id=$2',[id,taskId]);
+    for(const [itemId,n] of t.rewards){
+     if(itemId&&n){await grant(c,id,itemId,n);rewards.push([itemId,n])}
+    }
+    if((t.type===2||t.type===3)&&t.point>0){
+     const key=String(t.type);
+     const st=meta.points[key]??{point:0,drawn:[]};
+     st.point+=t.point;
+     meta.points[key]=st;
+    }
+    claimed.push(taskId);
+   }
+   await c.query('UPDATE player_task_meta SET points=$2::jsonb WHERE account_id=$1',[id,JSON.stringify(meta.points)]);
+   await c.query('COMMIT');
+   return {claimed,rewards,points:meta.points};
+  }catch(e){await c.query('ROLLBACK');throw e}
+  finally{c.release()}
+ });
+
+ app.post<{Body:{type:number;index:number}}>('/v1/tasks/points',{
+  schema:{body:{type:'object',required:['type','index'],additionalProperties:false,properties:{
+   type:{type:'integer',enum:[2,3]},index:{type:'integer',minimum:0,maximum:20},
+  }}},
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  await getProfile(s,id);
+  const {type,index}=req.body;
+  const pt=POINT_TYPES[String(type)];
+  const nodeId=pt?.nodes[index];
+  const box=nodeId?POINTS[String(nodeId)]:undefined;
+  if(!box)return reply.code(404).send({error:'chest_not_found'});
+  const c=await s.pg.connect();
+  try{
+   await c.query('BEGIN');
+   await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
+   const meta=await ensureMeta(c,id);
+   const st=meta.points[String(type)]??{point:0,drawn:[]};
+   if(st.point<box.point){await c.query('ROLLBACK');return reply.code(409).send({error:'not_enough_points'})}
+   if(st.drawn.includes(index)){await c.query('ROLLBACK');return reply.code(409).send({error:'already_claimed'})}
+   const rewards:number[][]=[];
+   for(const [itemId,n] of box.rewards){
+    if(itemId&&n){await grant(c,id,itemId,n);rewards.push([itemId,n])}
+   }
+   st.drawn=[...st.drawn,index];
+   meta.points[String(type)]=st;
+   await c.query('UPDATE player_task_meta SET points=$2::jsonb WHERE account_id=$1',[id,JSON.stringify(meta.points)]);
+   await c.query('COMMIT');
+   return {type,index,rewards,point:st.point};
+  }catch(e){await c.query('ROLLBACK');throw e}
+  finally{c.release()}
+ });
+}

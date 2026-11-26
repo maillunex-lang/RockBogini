@@ -170,9 +170,9 @@
   "id": "NEXT-020",
   "title": "Задания и достижения",
   "phase": "V. Контент",
-  "scope": "Сюжетные, ежедневные, еженедельные задания, достижения",
-  "status": "pending",
-  "evidence": ""
+  "scope": "020.1 daily/weekly + point chests done. Story/achievements open.",
+  "status": "in_progress",
+  "evidence": "reports/NEXT-020.1.md"
  },
  {
   "id": "NEXT-021",

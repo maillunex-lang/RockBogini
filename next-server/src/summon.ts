@@ -7,6 +7,7 @@ import type {Storage} from './storage.js';
 import {sessionAccount} from './auth.js';
 import {calculateHero} from './heroAttrs.js';
 import {getHeroes} from './heroes.js';
+import {TASK_SUMMON,taskEvent} from './tasks.js';
 
 type CommonCfg={consume:number[][];summonCount:number;summonType:number;extra:number[][]};
 type TypeCfg={libs:number[][];onceLibs:number[];startFreeCount:number;dailyFreeCount:number};
@@ -358,6 +359,11 @@ export async function summonRoutes(app:FastifyInstance,s:Storage){
    totalCount:after.totalCount+times,
   };
   await saveModel(s,id,cfg.summonType,saved);
+  {
+   const c=await s.pg.connect();
+   try{await taskEvent(c,id,TASK_SUMMON,[],times)}
+   finally{c.release()}
+  }
   const tickets=await ticketSnapshot(s,id);
   return {
    ok:true,

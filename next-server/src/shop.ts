@@ -6,6 +6,7 @@ import type {FastifyInstance} from 'fastify';
 import type {Storage} from './storage.js';
 import {sessionAccount} from './auth.js';
 import {getProfile} from './profile.js';
+import {TASK_SHOP_BUY,taskEvent} from './tasks.js';
 
 type ShopCfg={
  id:number;headerCurrency:number[];refreshType:number[][];goods:number[][];
@@ -36,7 +37,14 @@ async function account(req:{headers:{authorization?:string}},s:Storage){
  return token?sessionAccount(s,token):null;
 }
 
-function utcDay(d=new Date()){return d.toISOString().slice(0,10)}
+function localDay(d=new Date()){
+ const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');
+ return `${y}-${m}-${day}`;
+}
+function sqlDate(v:unknown){
+ if(v instanceof Date)return localDay(v);
+ return String(v).slice(0,10);
+}
 
 export function vipLevelFor(points:number){
  let level=0;
@@ -147,8 +155,8 @@ async function ensureShop(c:PoolClient,id:string,shopId:number):Promise<ShopMode
  let free=Number(row.free_refresh_count??0);
  let today=Number(row.today_refresh_count??0);
  let last=+row.last_refresh_at;
- const day=row.daily_day instanceof Date?row.daily_day.toISOString().slice(0,10):String(row.daily_day).slice(0,10);
- const todayStr=utcDay();
+ const day=sqlDate(row.daily_day);
+ const todayStr=localDay();
  if(day!==todayStr){
   today=0;
   // daily limitCycle=1 resets for fixed shops
@@ -313,6 +321,7 @@ export async function shopRoutes(app:FastifyInstance,s:Storage){
    await grant(c,accountId,item.itemId,gain);
    model.goods[slot.key]=[slot.itemId,slot.bought+count];
    await saveShop(c,accountId,shopId,model);
+   await taskEvent(c,accountId,TASK_SHOP_BUY,[shopId],count);
    await c.query('COMMIT');
    return {
     rewards:[[item.itemId,gain]],
