@@ -1,5 +1,5 @@
 # NEXT-021.5 (2026-11-27): задания башен и пороги модулей
-Оригинальные задачи 2006/1013/1041, достижения 25/60 этажей, условия GameModule 101/102 по реальным этажам башен; транзакционные события settlement/quick. Full isolated 188/188 PASS (job bwt0g03ru4). NEXT-021 in_progress, отчёт reports/NEXT-021.5-tower-quests-modules-2026-11-27.md.
+Оригинальные задачи 2006/1013/1041, достижения 25/60 этажей, условия GameModule 101/102 по реальным этажам башен; транзакционные события settlement/quick. Full isolated 188/188 PASS (job bwt0g03ru4). Production VPS API обновлён, readiness HTTP200 и Docker healthy, schema31. NEXT-021 in_progress, отчёт reports/NEXT-021.5-tower-quests-modules-2026-11-27.md.
 
 # NEXT-021.4 (2026-11-27): элементальные формации башен
 Отдельные оригинальные Sids 141–145 для MapType 21–25, сохранение шести слотов и построения, серверные проверки, UI, migration31. Isolated PostgreSQL/Redis 186/186 PASS (job bop70jaril), server/client build PASS. Production VPS API+frontend опубликованы, migration31, HTTP200 и Docker healthy. NEXT-021 in_progress, отчёт reports/NEXT-021.4-tower-element-formations-2026-11-27.md.

@@ -20,3 +20,14 @@
 - Первые два тестовых прогона выявили ошибку тестового фикстура (значение power 10,000,000,000 не умещалось в integer), исправлено на 2,000,000,000, без изменения схемы и баланса.
 - Новая миграция не требуется (последняя №31). Пользовательские данные не менялись при тестировании.
 - NEXT-021 остаётся in_progress; авторизованный браузерный тест с настоящей игровой сессией в этом пакете не проводился.
+
+## Выпуск NEXT-021.5 на VPS
+- Перед обновлением сохранён PostgreSQL dump `/var/backups/rockbogini-next-pre-tower-0215-20261127.dump` (134 KiB) и предыдущий образ `rockbogini-next-api:pre-tower-0215`.
+- Новый образ `rockbogini-next-api:latest` успешно собран (Docker build exit0).
+- Обновлён только API через `docker compose -p rockbogini-next up -d --no-deps --no-build api`, PostgreSQL и Redis не перезапускались.
+- Production `schema_migrations` = 31, новая миграция не требовалась.
+- `https://rikagro.ru/sexyidle/api/ready` = HTTP200 `{"ready":true}`.
+- `GET /sexyidle/api/v1/tower` без сессии HTTP401, ожидаемая защита.
+- Docker API/PostgreSQL/Redis healthy, работающий API-образ совпадает с тегом latest.
+- Клиент в этом серверном пакете не менялся.
+- Авторизованная браузерная проверка задач и модулей пока не проведена вручную.
