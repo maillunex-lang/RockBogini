@@ -8,6 +8,8 @@ import {buildUnit} from './battleUnits.js';
 import {towerAttackers,savedTowerFormations,towerFormationSid,towerElementRoot,checkTowerRoster} from './towerFormation.js';
 import {getHeroes} from './heroes.js';
 import {formations} from './formationConfig.js';
+import {taskEvent} from './tasks.js';
+import {refreshModules} from './campaignDependencies.js';
 import {reportHeroes} from './battle/reportHeroes.js';
 import {simulate,type Fighter} from './battle/simulation.js';
 import {battleRandom} from './battle/random.js';
@@ -165,6 +167,7 @@ export async function towerRoutes(app:FastifyInstance,s:Storage){
    const floor=towerFloor(b.tower_type,b.map_index);
    if(!floor){await c.query('ROLLBACK');return reply.code(503).send({error:'tower_floor_not_found'})}
    let rewards:[number,number][]=[];
+   await taskEvent(c,id,b.tower_type===99||b.tower_type===199?1013:1041,[],1);
    if(win){
     rewards=towerRewards(floor.floor.firstClearRewards);
     await grant(c,id,rewards);
@@ -172,8 +175,10 @@ export async function towerRoutes(app:FastifyInstance,s:Storage){
      battle_count=battle_count+$4 WHERE account_id=$1 AND tower_type=$2`,
      [id,b.tower_type,b.map_index,towerType(b.tower_type)!.openTime.length?1:0]);
    }
+   const unlockedModules=win?await refreshModules(c,id,profile.level,
+    (await c.query('SELECT stage FROM player_profiles WHERE account_id=$1',[id])).rows[0].stage):[];
    const result={battleId:b.id,mapId:b.map_id,type:b.tower_type,mapIndex:b.map_index,
-    result:win?1:0,rewards,playerLevel:profile.level};
+    result:win?1:0,rewards,playerLevel:profile.level,unlockedModules};
    await c.query('UPDATE tower_battles SET settlement=$2,report=$3 WHERE id=$1',[b.id,JSON.stringify(result),JSON.stringify({archived:true})]);
    await c.query('DELETE FROM tower_pending WHERE account_id=$1',[id]);
    await c.query('COMMIT');return result;
@@ -254,7 +259,10 @@ export async function towerRoutes(app:FastifyInstance,s:Storage){
    await grant(c,id,rewards);
    await c.query('UPDATE tower_progress SET map_index=$3 WHERE account_id=$1 AND tower_type=$2',
     [id,cfg.id,req.body.to]);
-   await c.query('COMMIT');return {type:cfg.id,from:req.body.from,to:req.body.to,rewards};
+   await taskEvent(c,id,1013,[],req.body.to-req.body.from+1);
+   const p=(await c.query('SELECT level,stage FROM player_profiles WHERE account_id=$1',[id])).rows[0];
+   const unlockedModules=await refreshModules(c,id,p.level,p.stage);
+   await c.query('COMMIT');return {type:cfg.id,from:req.body.from,to:req.body.to,rewards,unlockedModules};
   }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
  });
 }

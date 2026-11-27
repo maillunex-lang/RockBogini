@@ -144,6 +144,9 @@ export async function syncMainTaskState(c:PoolClient,id:string){
  if(!profile)return;
  const heroes=(await c.query('SELECT level FROM player_heroes WHERE account_id=$1',[id])).rows as {level:number}[];
  const cleared=MAIN_MAP_IDS.filter(mapId=>mapId<profile.stage).length;
+ const towerRows=(await c.query('SELECT tower_type,map_index FROM tower_progress WHERE account_id=$1',[id])).rows as
+  {tower_type:number;map_index:number}[];
+ const towers=new Map(towerRows.map(r=>[r.tower_type,r.map_index]));
  for(const t of MAIN_SORTED){
   const type=t.condition[0]??0;
   let progress:number|undefined;
@@ -151,6 +154,7 @@ export async function syncMainTaskState(c:PoolClient,id:string){
   if(type===2003)progress=profile.level;
   if(type===2004)progress=profile.power;
   if(type===2007)progress=heroes.filter(x=>x.level>=(t.condition[1]??0)).length;
+  if(type===2006)progress=towers.get((t.condition[1]??0)>0?t.condition[1]:99)??0;
   if(progress===undefined)continue;
   // completed means claimed; keep old progress and never overwrite an already claimed task.
   await c.query(

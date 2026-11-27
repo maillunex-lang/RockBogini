@@ -65,6 +65,40 @@ test('element tower formation owned by player, persisted for normal+hard, and lo
   await s.pg.query('DELETE FROM accounts WHERE id=ANY($1::uuid[])',[[a.id,b.id]]);await app.close();
  }
 });
+test('tower task progress tracks completed floors and source tower module gates',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);
+ const a=await createGuest(s),app=await buildApp(s);
+ const headers={authorization:'Bearer '+a.token};
+ try{
+  await app.inject({url:'/v1/tasks',headers});
+  await s.pg.query('UPDATE player_profiles SET power=2000000000 WHERE account_id=$1',[a.id]);
+  const quick=await app.inject({method:'POST',url:'/v1/tower/quick',headers,payload:{type:99,from:1,to:25}});
+  assert.equal(quick.statusCode,200,quick.body);
+  const taskRes1=await app.inject({url:'/v1/tasks',headers});
+  assert.equal(taskRes1.statusCode,200,taskRes1.body);
+  const t1=taskRes1.json().main.find((t:{id:number})=>t.id===11914);
+  assert.equal(t1.progress,25);
+  assert.equal(t1.ready,true);
+  assert.equal(quick.json().unlockedModules.includes(2034),false);
+  const q2=await app.inject({method:'POST',url:'/v1/tower/quick',headers,payload:{type:99,from:26,to:60}});
+  assert.equal(q2.statusCode,200,q2.body);
+  const taskRes2=await app.inject({url:'/v1/tasks',headers});
+  assert.equal(taskRes2.statusCode,200,taskRes2.body);
+  const t2=taskRes2.json().main.find((t:{id:number})=>t.id===11923);
+  assert.equal(t2.progress,60);
+  assert.equal(t2.ready,true);
+  assert.equal((await s.pg.query('SELECT count(*)::int AS n FROM player_modules WHERE account_id=$1 AND module_id=2034',[a.id])).rows[0].n,0);
+  assert.equal((await s.pg.query('SELECT count(*)::int AS n FROM player_modules WHERE account_id=$1 AND module_id BETWEEN 2029 AND 2033',[a.id])).rows[0].n,0);
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
+});
+test('tower source module condition 102 requires exact tower type and floor',async()=>{
+ const {eligibleModules}=await import('../src/campaignDependencies.js');
+ const profile={level:100,stage:100101,days:2,vip:0,power:1000000000};
+ assert.ok(!eligibleModules({...profile,towers:{1:1999,2:0}}).includes(2029));
+ assert.ok(eligibleModules({...profile,towers:{1:2000,2:0}}).includes(2029));
+ assert.ok(!eligibleModules({...profile,towers:{1:2000,2:0}}).includes(2030));
+ assert.ok(eligibleModules({...profile,towers:{99:3000}}).includes(2034));
+});
 test('tower challenge/settlement are authenticated, ordered, persistent and idempotent',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);
  const a=await createGuest(s),b=await createGuest(s);const app=await buildApp(s);

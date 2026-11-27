@@ -198,6 +198,8 @@ export function eligibleModules(p:{level:number;stage:number;days:number;vip:num
 }
 export async function refreshModules(c:PoolClient,id:string,level:number,stage:number){
  const p=(await c.query('SELECT power,created_at FROM player_profiles WHERE account_id=$1',[id])).rows[0];
- const ids=eligibleModules({level,stage,days:Math.max(1,Math.floor((Date.now()-+p.created_at)/86400000)+1),vip:0,power:p.power});
+ const rows=(await c.query('SELECT tower_type,map_index FROM tower_progress WHERE account_id=$1',[id])).rows as {tower_type:number;map_index:number}[];
+ const towers=Object.fromEntries(rows.map(r=>[r.tower_type,r.map_index]));
+ const ids=eligibleModules({level,stage,days:Math.max(1,Math.floor((Date.now()-+p.created_at)/86400000)+1),vip:0,power:p.power,towers});
  const r=await c.query('INSERT INTO player_modules(account_id,module_id) SELECT $1,unnest($2::integer[]) ON CONFLICT DO NOTHING RETURNING module_id',[id,ids]);return r.rows.map(x=>x.module_id).sort((a,b)=>a-b);
 }
