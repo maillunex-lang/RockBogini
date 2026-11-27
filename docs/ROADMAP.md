@@ -64,6 +64,9 @@ VPS is the development stand; GitHub main is the published source mirror. **SING
 - Исправлена ошибка PostgreSQL 23505 player_heroes_pkey на SID1001: стартовая коллекция создаётся до выдачи героя, старые незавершённые учётные записи восстанавливаются без удаления полученных героев. Отдельная тестовая PostgreSQL/Redis: 11/11 summon PASS. Перед обновлением бэкап БД и модулей.
 - **Не закрыто**: точная анимация открытия и Cocos prefab 1:1, транзакционная параллельная выдача и все 20 предложенных задач. Evidence: reports/NEXT-026.4-summon-real-pull-2026-11-27.md.
 
+### NEXT-026.4: аудит полной БД-интеграции, 2026-11-27
+- Отдельная PostgreSQL+Redis для 11 тестов призыва: **11/11 PASS**. GitHub CI для коммита 95b02b5 зелёный, но оставшиеся БД-тесты в CI пропускаются. Попытка запуска полного набора 144 тестов с параллельностью 3 превысила 220 секунд и выявила две блокировки PostgreSQL 40P01 в тестах авторизации и дерева героев. Полный набор **не принят**. Временные контейнеры остановлены, prod БД не использовалась. Требуется последовательный тестовый стенд/изолированные схемы. Отчёт reports/NEXT-026.4-integration-suite-audit-2026-11-27.md.
+
 ### Открытые подэтапы сейчас
 - **026.1** city visual parity — mobile HUD QA PASS, 1:1 + Spine acceptance open
 - **026.2** original HeroListPanel — original background + 4-column grid live, frames/filters/detail pending

@@ -57,3 +57,5 @@ Canonical checkout `/home/gamedev/rocbogini`, deployed code a4332ce, PixiJS 7.4.
 2026-11-27 NEXT-026.4 battle result: original reward ItemIcon and hero avatar sprites linked by authoritative IDs; original SettlementPanel WinPanel/FailPanel/atlas audited. Build/deploy PASS, full live result E2E and 1:1 still OPEN. reports/NEXT-026.4-result-original-icons-2026-11-27.md.
 
 2026-11-27 NEXT-026.4 real summon: original Common hero cards/portraits shown on server-confirmed free summon; mobile 390/320 PASS. Repaired live 23505 duplicated starter SID during pre-initialization; existing orphan summons preserved. Isolated PG+Redis 11/11 summon tests PASS, DB backup made, API refreshed. Full animation 1:1 open. reports/NEXT-026.4-summon-real-pull-2026-11-27.md.
+
+2026-11-27 broader DB suite attempted in isolated PG/Redis (concurrency=3) did not finish 220s and observed PostgreSQL 40P01 deadlocks in auth and heroes tests. Targeted 11/11 summon DB tests PASS and production GitHub CI green but skips DB tests. Full integration acceptance OPEN; see reports/NEXT-026.4-integration-suite-audit-2026-11-27.md.
