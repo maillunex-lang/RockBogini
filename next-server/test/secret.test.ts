@@ -50,6 +50,35 @@ test('surviving monster HP follows roster positions and does not resurrect dead 
  assert.deepEqual(hp,[230,0,0,0,0]);
  assert.deepEqual(survivingMonsterHp([500],[{station:4,hp:80,hpMax:100}],roster),[800,1000,1000,0,0]);
 });
+test('secret exploration selects source highest historical power only on a fresh two-day period',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);
+ const a=await createGuest(s),app=await buildApp(s);
+ const headers={authorization:'Bearer '+a.token};
+ try{
+  const first=await app.inject({url:'/v1/secret',headers});
+  assert.equal(first.statusCode,200,first.body);
+  const old=first.json();
+  const levels=[0,1000000000,2000000000].map(p=>selectPower(p).id);
+  assert.ok(levels[2]>=levels[0]);
+  const topPower=2000000000;
+  const topLevel=selectPower(topPower);
+  await s.pg.query('UPDATE player_profiles SET power=1,highest_power=$2 WHERE account_id=$1',[a.id,topPower]);
+  const samePeriod=(await app.inject({url:'/v1/secret',headers})).json();
+  assert.equal(samePeriod.powerLevelId,old.powerLevelId);
+  await s.pg.query("UPDATE secret_exploration SET reset_at=now()-interval '4 days' WHERE account_id=$1",[a.id]);
+  const reset=await app.inject({url:'/v1/secret',headers});
+  assert.equal(reset.statusCode,200,reset.body);
+  assert.equal(reset.json().powerLevelId,topLevel.id);
+  assert.equal(reset.json().floor,1);
+  assert.equal(reset.json().cells.length,79);
+  await s.pg.query('UPDATE player_profiles SET power=$2,highest_power=$2 WHERE account_id=$1',[a.id,1]);
+  const retained=(await app.inject({url:'/v1/secret',headers})).json();
+  assert.equal(retained.powerLevelId,topLevel.id);
+  await s.pg.query("UPDATE secret_exploration SET reset_at=now()-interval '4 days' WHERE account_id=$1",[a.id]);
+  const down=(await app.inject({url:'/v1/secret',headers})).json();
+  assert.equal(down.powerLevelId,selectPower(1).id);
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
+});
 test('secret map authorizes clicks, keeps fog and rejects remote/duplicate cells',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);
  const a=await createGuest(s),b=await createGuest(s);const app=await buildApp(s);

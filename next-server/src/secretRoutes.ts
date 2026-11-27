@@ -83,7 +83,7 @@ export async function secretRoutes(app:FastifyInstance,s:Storage){
   const c=await s.pg.connect();
   try{
    await c.query('BEGIN');await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
-   const row=await state(c,id,Number(profile.power));
+   const row=await state(c,id,Number(profile.highest_power));
    await c.query('COMMIT');return view(row);
   }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
  });
@@ -93,7 +93,7 @@ export async function secretRoutes(app:FastifyInstance,s:Storage){
   const c=await s.pg.connect();
   try{
    await c.query('BEGIN');await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
-   const row=await state(c,id,Number(profile.power));
+   const row=await state(c,id,Number(profile.highest_power));
    const pending=(await c.query('SELECT battle_id FROM secret_pending WHERE account_id=$1',[id])).rows[0];
    if(pending){await c.query('ROLLBACK');return reply.code(409).send({error:'secret_battle_pending'})}
    if(row.floor>3){await c.query('ROLLBACK');return reply.code(409).send({error:'secret_floor_not_explorable'})}
@@ -137,7 +137,7 @@ export async function secretRoutes(app:FastifyInstance,s:Storage){
   const c=await s.pg.connect();
   try{
    await c.query('BEGIN');await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
-   const row=await state(c,id,Number(profile.power)),cell=row.cells[req.body.index],index=req.body.index;
+   const row=await state(c,id,Number(profile.highest_power)),cell=row.cells[req.body.index],index=req.body.index;
    if(row.floor>3||!cell){await c.query('ROLLBACK');return reply.code(404).send({error:'secret_cell_missing'})}
    if(cell[3]!==1||![2,3].includes(cell[4])){await c.query('ROLLBACK');return reply.code(409).send({error:'secret_monster_not_open'})}
    const pending=(await c.query('SELECT battle_id FROM secret_pending WHERE account_id=$1',[id])).rows[0];
@@ -174,14 +174,14 @@ export async function secretRoutes(app:FastifyInstance,s:Storage){
   const c=await s.pg.connect();
   try{
    await c.query('BEGIN');
-   const p=(await c.query('SELECT power FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id])).rows[0];
+   const p=(await c.query('SELECT highest_power FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id])).rows[0];
    if(!p){await c.query('ROLLBACK');return reply.code(404).send({error:'profile_missing'})}
    const b=(await c.query('SELECT * FROM secret_battles WHERE id=$1 AND account_id=$2 FOR UPDATE',[req.body.battleId,id])).rows[0];
    if(!b){await c.query('ROLLBACK');return reply.code(404).send({error:'battle_not_found'})}
    if(b.settlement){await c.query('COMMIT');return b.settlement}
    const pending=(await c.query('SELECT battle_id FROM secret_pending WHERE account_id=$1',[id])).rows[0];
    if(pending?.battle_id!==b.id){await c.query('ROLLBACK');return reply.code(409).send({error:'battle_expired'})}
-   const row=await state(c,id,Number(p.power)),cell=row.cells[b.cell_index];
+   const row=await state(c,id,Number(p.highest_power)),cell=row.cells[b.cell_index];
    if(!cell||cell[5]!==b.map_id||cell[6]!==b.monster_type||cell[3]!==1||![2,3].includes(cell[4])){
     await c.query('ROLLBACK');return reply.code(409).send({error:'secret_battle_expired'});
    }
@@ -234,7 +234,7 @@ export async function secretRoutes(app:FastifyInstance,s:Storage){
   const c=await s.pg.connect();
   try{
    await c.query('BEGIN');await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
-   const row=await state(c,id,Number(p.power));
+   const row=await state(c,id,Number(p.highest_power));
    const pending=(await c.query('SELECT battle_id FROM secret_pending WHERE account_id=$1',[id])).rows[0];
    if(pending){await c.query('ROLLBACK');return reply.code(409).send({error:'secret_battle_pending'})}
    if(row.floor>3){await c.query('ROLLBACK');return reply.code(409).send({error:'secret_no_exploration'})}
@@ -277,7 +277,7 @@ export async function secretRoutes(app:FastifyInstance,s:Storage){
   const c=await s.pg.connect();
   try{
    await c.query('BEGIN');await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
-   const row=await state(c,id,Number(p.power));
+   const row=await state(c,id,Number(p.highest_power));
    const pending=(await c.query('SELECT battle_id FROM secret_pending WHERE account_id=$1',[id])).rows[0];
    if(pending){await c.query('ROLLBACK');return reply.code(409).send({error:'secret_battle_pending'})}
    if(row.floor>3){await c.query('ROLLBACK');return reply.code(409).send({error:'secret_no_exploration'})}
@@ -294,9 +294,9 @@ export async function secretRoutes(app:FastifyInstance,s:Storage){
   const c=await s.pg.connect();
   try{
    await c.query('BEGIN');
-   const p=(await c.query('SELECT power FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id])).rows[0];
+   const p=(await c.query('SELECT highest_power FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id])).rows[0];
    if(!p){await c.query('ROLLBACK');return reply.code(404).send({error:'profile_missing'})}
-   const row=await state(c,id,Number(p.power));
+   const row=await state(c,id,Number(p.highest_power));
    if(row.floor!==4){await c.query('ROLLBACK');return reply.code(409).send({error:'secret_not_treasure_floor'})}
    const index=req.body.index;
    if(row.reward_state[index]){await c.query('ROLLBACK');return reply.code(409).send({error:'secret_treasure_claimed'})}
