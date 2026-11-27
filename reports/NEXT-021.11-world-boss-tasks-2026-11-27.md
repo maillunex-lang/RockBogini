@@ -21,3 +21,14 @@
 - Полная изолированная регрессия PostgreSQL+Redis: **199/199 PASS, 0 FAIL, 0 SKIP**, Termalin job `7fyk0yt7z1`, exit0.
 - Новые тесты подтверждают 7 исходных условий, пороги и награды, атомарное одноразовое получение, параллельные запросы claim, защиту другого игрока, сброс дневных задач и сохранение накопительного урона.
 - Ручная проверка в браузере авторизованным игроком пока не выполнена.
+
+## Выпуск NEXT-021.11 на VPS
+- Перед обновлением сохранён PostgreSQL dump `/var/backups/rockbogini-next-pre-boss-02111-20261127.dump` (137 KiB) и предыдущий Docker-образ `rockbogini-next-api:pre-boss-02111`.
+- Новый образ `rockbogini-next-api:latest` успешно собран (Docker build exit0).
+- API обновлён через `docker compose -p rockbogini-next up -d --no-deps --no-build api`; PostgreSQL и Redis не перезапускались.
+- Production `schema_migrations` = **35**, миграция применена.
+- `https://rikagro.ru/sexyidle/api/ready` = `{"ready":true}` HTTP200.
+- Неавторизованный `POST /sexyidle/api/v1/world-boss/task-claim` вернул HTTP401, ожидаемая защита.
+- Docker API, PostgreSQL и Redis healthy, исполняемый образ совпадает с тегом latest.
+- Frontend опубликован в `/var/www/sexyidle`, entry `assets/main-1E4kxeuT.js`.
+- Ручная проверка авторизованного сценария игрока пока не проведена.
