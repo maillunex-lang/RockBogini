@@ -17,3 +17,14 @@
 - Полная изолированная регрессия PostgreSQL+Redis: **195/195 PASS, 0 FAIL, 0 SKIP**, Termalin job `4yqctq58y6`, exit0.
 - Новый интеграционный тест: сначала открыть экспедицию; сменить текущую мощность до 1 при большом рекорде; убедиться, что текущий цикл не меняется; принудительно истечь срок в тестовой БД; проверить выбор более высокой исходной ступени и сохранение её на весь следующий цикл.
 - Ручная проверка браузерного сценария авторизованным игроком пока не выполнена.
+
+## Выпуск NEXT-021.9 на VPS
+- Перед обновлением сохранён PostgreSQL dump `/var/backups/rockbogini-next-pre-secret-0219-20261127.dump` (135 KiB), предыдущий Docker-образ `rockbogini-next-api:pre-secret-0219`.
+- Новый образ `rockbogini-next-api:latest` успешно собран (Docker build exit0).
+- API обновлён через `docker compose -p rockbogini-next up -d --no-deps --no-build api`, PostgreSQL и Redis не перезапускались.
+- Production `schema_migrations` = 33; новая миграция не требовалась.
+- `https://rikagro.ru/sexyidle/api/ready` = `{"ready":true}` HTTP200.
+- Неавторизованный `GET /sexyidle/api/v1/secret` возвращает HTTP401, ожидаемая защита.
+- Docker API, PostgreSQL и Redis healthy, исполняемый образ совпадает с тегом latest.
+- Клиент в этом серверном пакете не менялся.
+- Ручная проверка авторизованного сценария игрока пока не проведена.
