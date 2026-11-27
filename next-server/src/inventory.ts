@@ -4,6 +4,8 @@ import {sessionAccount} from './auth.js';
 import {getProfile} from './profile.js';
 import {consumeConfig,enrichItem,sellPrice,heroPieceRecipe,heroPieceRecipes} from './itemCatalog.js';
 
+import {rollBox} from './boxRewards.js';
+
 const CURRENCY_IDS={coin:1,vipPoint:2,diamond:3,colorDiamond:4,intelligence:7,xpWater:22} as const;
 const COIN=1;
 
@@ -76,24 +78,46 @@ export async function inventoryRoutes(app:FastifyInstance,s:Storage){
   const cfg=consumeConfig(itemId);
   if(!cfg)return reply.code(409).send({error:'not_usable'});
   let rewards:number[][]=[];
+  let costs:number[][]=[[itemId,count]];
   if(cfg.subType===1){
    rewards=cfg.param.map(([i,c])=>[i,(c??0)*count]);
   }else if(cfg.subType===3){
    const row=cfg.param[req.body.selIndex??0];
    if(!row||row.length<2)return reply.code(400).send({error:'invalid_sel_index'});
    rewards=[[row[0],row[1]*count]];
-  }else{
-   return reply.code(409).send({error:'not_usable'});
-  }
-  const paid=await pay(s,id,itemId,count);
-  if(paid===null)return reply.code(409).send({error:'insufficient_item'});
+  }else if([2,5,6,7].includes(cfg.subType)){
+   if(cfg.subType===6||cfg.subType===7){
+    const row=cfg.param[0]??[];
+    if(!row.length||row.length%2)return reply.code(409).send({error:'invalid_box_cost'});
+    costs=[];for(let i=0;i<row.length;i+=2)if(row[i+1]>0)costs.push([row[i],row[i+1]*count]);
+   }
+   if(cfg.subType===6)rewards=cfg.param.slice(1).map(([i,n])=>[i,n*count]);
+   else for(let i=0;i<count;i++){const reward=rollBox(cfg.summonType??0,cfg.showLib??[]);if(reward)rewards.push(reward)}
+   if(rewards.length!==count&&cfg.subType!==6)return reply.code(409).send({error:'empty_box_pool'});
+   if(!rewards.length)return reply.code(409).send({error:'empty_box_pool'});
+  }else return reply.code(409).send({error:'not_usable'});
+  const aggregate=(rows:number[][])=>{const m=new Map<number,number>();for(const [i,n] of rows)if(i>0&&n>0)m.set(i,(m.get(i)??0)+n);return [...m].sort((a,b)=>a[0]-b[0])};
+  // Refuse malformed original config rewards rather than silently deleting resources.
+  if(aggregate(rewards).some(([i,n])=>!Number.isSafeInteger(i)||!Number.isSafeInteger(n))||
+     aggregate(costs).some(([i,n])=>!Number.isSafeInteger(i)||!Number.isSafeInteger(n)))
+   return reply.code(409).send({error:'invalid_box_amount'});
+  const c=await s.pg.connect();
   const granted:{itemId:number;amount:string;total:string}[]=[];
-  for(const [rid,n] of rewards){
-   if(!rid||n<=0)continue;
-   const total=await grant(s,id,rid,n);
-   granted.push({itemId:rid,amount:String(n),total});
-  }
-  return {ok:true,used:{itemId,count,remaining:paid},rewards:granted,inventory:await bag(s,id)};
+  let remaining='0';
+  try{
+   await c.query('BEGIN');
+   for(const [rid,n] of aggregate(costs)){
+    const paid=await c.query('UPDATE player_items SET amount=amount-$3 WHERE account_id=$1 AND item_id=$2 AND amount>=$3 RETURNING amount::text',[id,rid,n]);
+    if(!paid.rowCount){await c.query('ROLLBACK');return reply.code(409).send({error:'insufficient_item',itemId:rid})}
+    if(rid===itemId)remaining=paid.rows[0].amount;
+   }
+   for(const [rid,n] of aggregate(rewards)){
+    const got=await c.query('INSERT INTO player_items(account_id,item_id,amount) VALUES($1,$2,$3) ON CONFLICT(account_id,item_id) DO UPDATE SET amount=player_items.amount+EXCLUDED.amount RETURNING amount::text',[id,rid,n]);
+    granted.push({itemId:rid,amount:String(n),total:got.rows[0].amount});
+   }
+   await c.query('COMMIT');
+  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
+  return {ok:true,used:{itemId,count,remaining},rewards:granted,inventory:await bag(s,id)};
  });
 
 

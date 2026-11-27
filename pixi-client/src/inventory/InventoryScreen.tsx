@@ -11,6 +11,7 @@ type InventoryItem={
  canSell?:boolean;
  usable?:boolean;
  useSubType?:number|null;
+ openCosts?:number[];
  canPersonalityDisplace?:boolean;
  compose?:{need:number;cardId:number;max:number};
  element?:number;
@@ -137,7 +138,7 @@ export function InventoryScreen({api,token,onClose}:{api:string;token:string;onC
    const next=inv.items.find(i=>i.itemId===item.itemId)??null;
    setSelected(next);
    setStatus(path==='use'
-    ?`Использовано: ${itemDisplayName(item.itemId)}`
+    ?`Открыто: ${itemDisplayName(item.itemId)} · награды: ${(body.rewards??[]).map((x:{itemId:number;amount:string})=>itemDisplayName(x.itemId)+' ×'+x.amount).join(', ')||'нет'}`
     :path==='compose'
      ?`Объединено: ${item.compose?.need} осколков → ${itemDisplayName(body.rewards?.[0]?.itemId??item.compose?.cardId??0)}`
      :`Продано за ${body.gained?.amount??'?'} золота`);
@@ -263,12 +264,23 @@ export function InventoryScreen({api,token,onClose}:{api:string;token:string;onC
      <p>Количество: ×{selected.amount}</p>
      <p>ID: {selected.itemId}</p>
      {selected.canSell&&<p>Цена продажи: {selected.sellPrice} золота</p>}
+     {selected.openCosts&&<div className="inventory-compose-recipe">
+      <p>Открытие сундука требует:</p>
+      <ul>{Array.from({length:Math.floor(selected.openCosts.length/2)},(_,i)=><li key={i}>
+       {itemDisplayName(selected.openCosts![2*i])} ×{selected.openCosts![2*i+1]}
+      </li>)}</ul>
+     </div>}
+     {selected.useSubType!=null&&[2,5,6,7].includes(selected.useSubType)&&<p>
+      {selected.useSubType===6?'Сундук с фиксированными наградами':'Случайные награды из оригинальной таблицы выпадения'}
+     </p>}
      {selected.compose&&<div className="inventory-compose-recipe">
       <p>Оригинальный рецепт: {selected.compose.need} осколков → 1 карта {itemDisplayName(selected.compose.cardId)} (#{selected.compose.cardId}).</p>
       <p>Доступно объединений: {selected.compose.max}</p>
      </div>}
      <div className="inventory-actions">
-      <button type="button" disabled={busy||!selected.usable} onClick={()=>void act('use',selected)}>Использовать</button>
+      <button type="button" disabled={busy||!selected.usable} onClick={()=>void act('use',selected)}>
+       {selected.useSubType!=null&&[2,5,6,7].includes(selected.useSubType)?'Открыть сундук':'Использовать'}
+      </button>
       {selected.compose&&<button type="button" disabled={busy||selected.compose.max<1} onClick={()=>void act('compose',selected)}>Объединить осколки</button>}
       <button type="button" disabled={busy||!selected.canSell} onClick={()=>void act('sell',selected)}>Продать</button>
      </div>

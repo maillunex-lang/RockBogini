@@ -5,7 +5,7 @@ import {fileURLToPath} from 'node:url';
 
 export type ItemKind='currency'|'consume'|'material'|'shard'|'personality'|'other';
 
-type ConsumeRow={subType:number;param:number[][]};
+type ConsumeRow={subType:number;param:number[][];summonType?:number;showLib?:number[][]};
 type PieceRow={Id:number;RequireCount:number;CardId:number;SubType:number};
 type SellMap=Record<string,number>;
 type TypeMap=Record<string,number>;
@@ -30,6 +30,7 @@ function loadJson<T>(name:string,fallback:T):T{
 const TYPES:TypeMap=loadJson('item-base-types.json',{});
 const SELL:SellMap=loadJson('item-sell-overrides.json',{});
 const CONSUME:ConsumeMap=loadJson('item-consume-usable.json',{});
+const BOXES:ConsumeMap=loadJson('item-consume-original.json',{});
 const PIECES:Record<string,PieceRow>=loadJson('item-piece-original.json',{});
 const PERS:PersMap=loadJson('item-personality.json',{});
 
@@ -71,7 +72,8 @@ export function heroPieceRecipes(){
 }
 
 export function consumeConfig(itemId:number):ConsumeRow|undefined{
- return CONSUME[String(itemId)];
+ const box=BOXES[String(itemId)];
+ return box&&[2,5,6,7].includes(box.subType)?box:CONSUME[String(itemId)];
 }
 
 export function enrichItem(itemId:number,amount:string){
@@ -88,6 +90,7 @@ export function enrichItem(itemId:number,amount:string){
   canSell:price>0,
   usable:!!cfg,
   useSubType:cfg?.subType??null,
+  openCosts:cfg&&[6,7].includes(cfg.subType)?cfg.param[0]:undefined,
   compose:piece?{need:piece.need,cardId:piece.cardId,max:Math.floor(Number(amount)/piece.need)}:undefined,
   canPersonalityDisplace:kind==='personality'&&element>=1&&element<=3,
   element:element||undefined,

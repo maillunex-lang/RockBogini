@@ -518,3 +518,7 @@ NEXT-013.8 in_progress: inventoried 10 invalid common-skill ActionIndex values; 
 2026-11-27 NEXT-015.3 (механики перед визуалом): расшифрован реальный CDN ItemPiece protobuf из QueensBladeH5, 523 записей/218 полных рецептов; серверный атомарный compose / compose-all, клиент, изолированная PostgreSQL+Redis 5/5 PASS, браузер UI mock 3/3 PASS; исходники и трассировка reports/NEXT-015.3-hero-piece-compose-2026-11-27.md. Механический реестр 79 оригинальных .ex → 46 TS по 13 группам: reports/NEXT-MECHANICS-2026-11-27.md.
 
 2026-11-27 NEXT-015.3 full server regression in ephemeral isolated PostgreSQL/Redis: 146/146 PASS, 0 fail/skip, 38.074s, Termalin job rftridjsn1 exit 0. Release prod compose and compose-all with server authorization 401 unauthenticated; browser mocked UI 3/3 PASS.
+
+2026-11-27 NEXT-015.4 original locked/random boxes: source tables ItemConsume 1898/CardSummonType 611/CardRandomLib 699, four types 158+363+3+2; 19 missing source refs globally but none active for these boxes; transactional API + client and isolated PostgreSQL/Redis 149/149 PASS; reports/NEXT-015.4-original-boxes-2026-11-27.md. Next: NEXT-020.2 achievements.
+
+2026-11-27 NEXT-015.4 /sexyidle/ published, API /ready true and HTTP200; browser UI mocked API at 320/390/768 PASS, isolated server QA 149/149 PASS, before-deploy PostgreSQL backup /var/backups/rockbogini-next-pre-boxes-20261127.dump. GitHub CI pending.

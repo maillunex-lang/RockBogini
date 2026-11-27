@@ -130,9 +130,9 @@
     "id": "NEXT-015",
     "title": "Инвентарь и предметы",
     "phase": "IV. RPG и экономика",
-    "scope": "015.1–015.2 inventory filters/icons/use/sell done. Random/event consume open. NEXT-015.3 completed functional slice: decoded original ItemPiece 523 rows, 218 valid hero-fragment recipes; atomic compose and compose-all API, client UI; isolated database tests 5/5 PASS, mocked browser UI 3/3 PASS. NEXT-015.4 RandomBox/LockedBox and other item mechanics OPEN. Full isolated sequential server regression: 146/146 PASS, 0 fail/skip, 38.074s. Browser interactions with mocked API separately verified; API authenticated route live.",
+    "scope": "015.1–015.2 inventory filters/icons/use/sell done. Random/event consume open. NEXT-015.3 completed functional slice: decoded original ItemPiece 523 rows, 218 valid hero-fragment recipes; atomic compose and compose-all API, client UI; isolated database tests 5/5 PASS, mocked browser UI 3/3 PASS. NEXT-015.4 RandomBox/LockedBox and other item mechanics OPEN. Full isolated sequential server regression: 146/146 PASS, 0 fail/skip, 38.074s. Browser interactions with mocked API separately verified; API authenticated route live. NEXT-015.4 original source ItemConsume 1898 / CardSummonType 611 / CardRandomLib 699; box types 2/5/6/7, atomic costs and loot, 149 isolated DB tests PASS. Other ConsumeSubType remain OPEN. NEXT-015.4 browser UI at 320/390/768 with mocked API: PASS. Live /sexyidle ready HTTP200 and DB backup.",
     "status": "in_progress",
-    "evidence": "reports/NEXT-015.2.md; reports/NEXT-015.1.md; reports/NEXT-015.3-hero-piece-compose-2026-11-27.md; reports/NEXT-015.3-item-piece-source.json; reports/NEXT-MECHANICS-2026-11-27.md"
+    "evidence": "reports/NEXT-015.2.md; reports/NEXT-015.1.md; reports/NEXT-015.3-hero-piece-compose-2026-11-27.md; reports/NEXT-015.3-item-piece-source.json; reports/NEXT-MECHANICS-2026-11-27.md; reports/NEXT-015.4-original-boxes-2026-11-27.md; reports/NEXT-015.4-source-audit.json"
   },
   {
     "id": "NEXT-016",
