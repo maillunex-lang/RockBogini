@@ -27,6 +27,8 @@ export function HeroSpinePreview({heroId}:{heroId:number}){
   let app:Application|undefined;
   let release:(()=>void)|undefined;
   let observer:IntersectionObserver|undefined;
+  let inViewport=false;
+  const syncPlayback=()=>{if(!app)return;if(inViewport&&!document.hidden)app.start();else app.stop()};
   setStatus('Загрузка оригинальной модели…');
   setAnimations([]);
   setSelected('');
@@ -65,16 +67,17 @@ export function HeroSpinePreview({heroId}:{heroId:number}){
    setAnimations(available);
    setSelected(idle);
    setStatus('Модель готова: '+entry!.model);
+   document.addEventListener('visibilitychange',syncPlayback);
    observer=new IntersectionObserver(entries=>{
-    if(!app)return;
-    if(entries.some(e=>e.isIntersecting)&&!document.hidden)app.start();
-    else app.stop();
+    inViewport=entries.some(e=>e.isIntersecting);
+    syncPlayback();
    },{threshold:0.01});
    observer.observe(element);
   })().catch(e=>{if(!cancelled)setStatus('Spine недоступен: '+String(e instanceof Error?e.message:e))});
   return()=>{
    cancelled=true;
    observer?.disconnect();
+   document.removeEventListener('visibilitychange',syncPlayback);
    active.current=null;
    app?.destroy(true,{children:true,texture:false,baseTexture:false});
    release?.();

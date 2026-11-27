@@ -15,7 +15,10 @@ jobs:
           cache-dependency-path: next-server/package-lock.json
       - run: npm ci
       - run: npx tsc --noEmit
-      - run: npm test
+      # Recovery HMAC is mandatory even for non-database unit test imports.
+      # Generate a fresh ephemeral CI key. Never hardcode or reuse production keys.
+      - name: Test with ephemeral recovery secret
+        run: NEXT_RECOVERY_SECRET="$(openssl rand -hex 32)" npm test
   pixi-client:
     runs-on: ubuntu-latest
     defaults:
