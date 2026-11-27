@@ -2,7 +2,8 @@ import React,{useCallback,useEffect,useState} from 'react';
 import {itemDisplayName} from '../shared/itemNames';
 import '../tower/tower.css';
 type Rewards=[number,number][];
-type Event={id:number;name:string;kind:number;mapId:number;startTime:string;endTime:string;open:boolean;requiresGuild:boolean;canChallenge:boolean;attempts:number;attemptMax:number;bestDamage:string;totalDamage:string;bonus:number[];bossHp:number;rounds:number;participationRewards:Rewards;unavailableReason:string|null};
+type BossTask={id:number;condition:number[];totalCount:number;rewards:Rewards;isDaily:number;progress:string;claimed:boolean;ready:boolean};
+type Event={tasks:BossTask[];id:number;name:string;kind:number;mapId:number;startTime:string;endTime:string;open:boolean;requiresGuild:boolean;canChallenge:boolean;attempts:number;attemptMax:number;bestDamage:string;totalDamage:string;bonus:number[];bossHp:number;rounds:number;participationRewards:Rewards;unavailableReason:string|null};
 type Events={events:Event[];day:string};
 type Report={battleId:string;eventId:number;mapId:number;damage:number;maxRounds:number;summary:{resultCode:number};pages:unknown[];heroes:{heroId:number;camp:number;statDamage:number}[]};
 type Result={battleId:string;eventId:number;mapId:number;damage:number;rewards:Rewards;countedAttempt:boolean};
@@ -32,6 +33,12 @@ export function WorldBossScreen({api,token,onClose}:{api:string;token:string;onC
  const settle=()=>void run(async()=>{if(!battle)return;setResult(await request<Result>('/settle','POST',{battleId:battle.battleId}));setBattle(null);await load()});
  const cancel=()=>void run(async()=>{if(!battle)return;await request('/cancel','POST',{battleId:battle.battleId});setBattle(null)});
  const resume=()=>void run(async()=>{const r=await request<{report:Report|null}>('/pending');setBattle(r.report);if(!r.report)setMessage('Незавершённого боя нет')});
+ const claimTask=(taskId:number)=>void run(async()=>{
+  if(!current)return;
+  const r=await request<{rewards:Rewards}>('/task-claim','POST',{eventId:current.id,taskId});
+  setMessage('Задание выполнено. Получено: '+items(r.rewards));
+  await load();
+ });
  const ranking=()=>void run(async()=>{if(!current)return;const r=await request<{rows:Leader[]}>('/rank/'+current.id);setRanks(r.rows)});
  return <main className="tower-shell">
   <header className="tower-header"><div><small>RockBogini Next / события</small><h2>Мировые боссы</h2></div>
@@ -51,6 +58,13 @@ export function WorldBossScreen({api,token,onClose}:{api:string;token:string;onC
     <p>Попыток использовано: {current.attempts}/{current.attemptMax}. Раундов: {current.rounds}.</p>
     <p>Максимальный урон: {Number(current.bestDamage).toLocaleString('ru-RU')} · суммарный урон: {Number(current.totalDamage).toLocaleString('ru-RU')}</p>
     <p>Награда за участие: {items(current.participationRewards)}</p>
+    <h3>Задания события</h3>
+    <div className="tower-stats">{current.tasks.map(t=><div key={t.id}>
+     <strong>Задание #{t.id} · {t.condition[0]===1060?'Участия':t.condition[0]===1061?'Общий урон':'Максимальный урон'}</strong>
+     <span>{Number(t.progress).toLocaleString('ru-RU')} / {t.totalCount.toLocaleString('ru-RU')} · {t.isDaily?'Ежедневное':'За событие'}</span>
+     <span>{items(t.rewards)}</span>
+     <button disabled={busy||!t.ready||t.claimed} onClick={()=>claimTask(t.id)}>{t.claimed?'Получено':t.ready?'Получить награду':'Не выполнено'}</button>
+    </div>)}</div>
     <div className="tower-actions">
      <button disabled={busy||!current.canChallenge} onClick={challenge}>⚔️ Сражаться с боссом</button>
      <button disabled={busy} onClick={resume}>Продолжить бой</button>

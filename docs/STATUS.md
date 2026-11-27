@@ -1,3 +1,6 @@
+# NEXT-021.11 (2026-11-27): оригинальные задания World Boss
+Семь исходных заданий событий 15802/15803, типы 1060/1061/2021, ручное получение наград, дневной сброс и накопительный урон, миграция35, API/UI. Full isolated PostgreSQL+Redis 199/199 PASS (job 7fyk0yt7z1), server/client builds PASS. NEXT-021 in_progress, отчёт reports/NEXT-021.11-world-boss-tasks-2026-11-27.md.
+
 # NEXT-021.10 (2026-11-27): отдельная формация Sid6 для Тайной области
 Source parity UserFormation_Model Sid6, шесть слотов и построения 101–106, fallback к основному Sid1, ownership/pending guard, API/UI, migration34. Полная изолированная регрессия 197/197 PASS (Termalin job 23tc1qqzok), server/client builds PASS. Production VPS API+frontend опубликованы, migration34, HTTP200 и Docker healthy. NEXT-021 in_progress, отчёт reports/NEXT-021.10-secret-formation-2026-11-27.md.
 

@@ -11,6 +11,7 @@ import {battleRandom} from './battle/random.js';
 import {randomUUID,randomInt} from 'node:crypto';
 import {dailyDay} from './dailyInstanceConfig.js';
 import {worldBossEvents,worldBossEvent,worldBossOpen,worldBossDefenders,worldBossRounds,worldBossRewards,worldBossHp,type BossEvent} from './worldBossConfig.js';
+import {bossTaskState,bossTaskSettlement,bossTaskClaim} from './worldBossTasks.js';
 
 const uuidPattern='^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$';
 type BossProgress={day:Date|string;attempts:number;best_damage:string;total_damage:string};
@@ -66,7 +67,8 @@ export async function worldBossRoutes(app:FastifyInstance,s:Storage,clock:()=>Da
    const events=[];
    for(const e of Object.values(worldBossEvents).sort((a,b)=>a.id-b.id)){
     const row=await progress(c,id,e.id,now),open=worldBossOpen(e,now);
-    events.push({id:e.id,name:e.name,kind:e.kind,mapId:e.mapId,
+    const tasks=await bossTaskState(c,id,e,dailyDay(now));
+    events.push({id:e.id,name:e.name,kind:e.kind,mapId:e.mapId,tasks,
      startTime:new Date(e.startTime).toISOString(),
      endTime:new Date(e.startTime+e.durationDays*86400000).toISOString(),
      open,requiresGuild:e.kind===2,canChallenge:open&&e.kind===1&&row.attempts<e.attempts,
@@ -149,6 +151,7 @@ export async function worldBossRoutes(app:FastifyInstance,s:Storage,clock:()=>Da
    if(!Number.isSafeInteger(damage)||damage<0){await c.query('ROLLBACK');return reply.code(503).send({error:'world_boss_damage_invalid'})}
    const rewards=worldBossRewards(e);
    await grant(c,id,rewards);
+   await bossTaskSettlement(c,id,e,dailyDay(now),damage);
    // Late settlement after JST midnight credits the event lifetime totals but not the new day's attempt.
    const counted=b.report.day===dailyDay(now)?1:0;
    await c.query(`UPDATE world_boss_progress SET attempts=attempts+$3,
@@ -173,6 +176,24 @@ export async function worldBossRoutes(app:FastifyInstance,s:Storage,clock:()=>Da
     WHERE id=$1 AND account_id=$2 AND settlement IS NULL`,[req.body.battleId,id]);
    await c.query('COMMIT');return {cancelled:r.rowCount===1};
   }catch(err){await c.query('ROLLBACK');throw err}finally{c.release()}
+ });
+ app.post<{Body:{eventId:number;taskId:number}}>('/v1/world-boss/task-claim',{
+  schema:{body:{type:'object',required:['eventId','taskId'],additionalProperties:false,properties:{
+   eventId:{type:'integer',minimum:1},taskId:{type:'integer',minimum:1}
+  }}},
+ },async(req,reply)=>{
+  const id=await account(req,s);if(!id)return reply.code(401).send({error:'invalid_session'});
+  const event=worldBossEvent(req.body.eventId);
+  if(!event)return reply.code(404).send({error:'world_boss_not_found'});
+  await getProfile(s,id);
+  const c=await s.pg.connect();
+  try{
+   await c.query('BEGIN');
+   await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
+   const result=await bossTaskClaim(c,id,event,req.body.taskId,dailyDay(clock()));
+   if('error' in result){await c.query('ROLLBACK');return reply.code(409).send(result)}
+   await c.query('COMMIT');return result;
+  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
  });
  app.get<{Params:{eventId:string}}>('/v1/world-boss/rank/:eventId',async(req,reply)=>{
   const id=await account(req,s);if(!id)return reply.code(401).send({error:'invalid_session'});

@@ -5,6 +5,7 @@ import {openStorage,migrate} from '../src/storage.js';
 import {createGuest} from '../src/auth.js';
 import {buildApp} from '../src/app.js';
 import {worldBossRoutes} from '../src/worldBossRoutes.js';
+import {worldBossTaskDefs,eventTaskProgress} from '../src/worldBossTasks.js';
 import {worldBossEvents,worldBossEvent,worldBossOpen,worldBossDefenders,worldBossHp,worldBossRewards,worldBossRounds} from '../src/worldBossConfig.js';
 
 test('captured source world boss event metadata and original date restrictions',()=>{
@@ -24,6 +25,69 @@ test('captured source world boss event metadata and original date restrictions',
  assert.equal(worldBossDefenders(server)?.length,1);
  assert.equal(worldBossDefenders(server)?.[0].hp_max,81391000000);
  assert.equal(worldBossDefenders(guild)?.[0].hp_max,81391000000);
+});
+test('original seven world boss tasks: IDs, conditions, thresholds, reward source',()=>{
+ const e=worldBossEvent(15802)!;
+ const defs=worldBossTaskDefs(e);
+ assert.deepEqual(defs.map(t=>t.id),[1,2,3,4,5,6,7]);
+ assert.deepEqual(defs.map(t=>t.condition[0]),[1060,2021,2021,2021,1061,1061,1061]);
+ assert.deepEqual(defs.map(t=>t.totalCount),[1,100000,300000,1000000,5000000,7000000,10000000]);
+ assert.deepEqual(defs[0].rewards,[[3,50],[60,100]]);
+ assert.deepEqual(defs[4].rewards,[[3,100],[831,5]]);
+ assert.equal(eventTaskProgress(defs[0],3,200000,9000000),3);
+ assert.equal(eventTaskProgress(defs[1],3,200000,9000000),200000);
+ assert.equal(eventTaskProgress(defs[4],3,200000,9000000),9000000);
+});
+test('world boss source tasks: event expiry, daily reset, cumulative damage and single-use rewards',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);
+ const a=await createGuest(s),b=await createGuest(s);
+ let day='2026-10-27T12:00:00Z';
+ const app=Fastify({logger:false});
+ await worldBossRoutes(app,s,()=>new Date(day));
+ app.addHook('onClose',async()=>s.close());
+ const ha={authorization:'Bearer '+a.token},hb={authorization:'Bearer '+b.token};
+ const claim=(taskId:number,headers=ha,eventId=15802)=>app.inject({method:'POST',url:'/v1/world-boss/task-claim',headers,payload:{eventId,taskId}});
+ try{
+  const open=(await app.inject({url:'/v1/world-boss',headers:ha})).json().events[0];
+  assert.equal(open.tasks.length,7);
+  assert.equal(open.tasks[0].ready,false);
+  assert.equal((await claim(1)).json().error,'boss_task_not_ready');
+  assert.equal((await claim(77)).json().error,'boss_task_not_found');
+  assert.equal((await claim(1,hb)).json().error,'boss_task_not_ready');
+  const fight=await app.inject({method:'POST',url:'/v1/world-boss/challenge',headers:ha,payload:{eventId:15802}});
+  assert.equal(fight.statusCode,200,fight.body);
+  const win=await app.inject({method:'POST',url:'/v1/world-boss/settle',headers:ha,payload:{battleId:fight.json().battleId}});
+  assert.equal(win.statusCode,200,win.body);
+  const list=(await app.inject({url:'/v1/world-boss',headers:ha})).json().events[0];
+  assert.equal(list.tasks[0].progress,'1');
+  assert.equal(list.tasks[0].ready,true);
+  assert.equal(list.tasks[4].progress,String(win.json().damage));
+  assert.equal(list.tasks[1].progress,String(win.json().damage));
+  assert.equal((await claim(1,hb)).json().error,'boss_task_not_ready');
+  const [one,two]=await Promise.all([claim(1),claim(1)]);
+  assert.equal(one.statusCode,200,one.body);
+  assert.equal(two.statusCode,409,two.body);
+  assert.deepEqual(one.json().rewards,[[3,50],[60,100]]);
+  assert.equal((await claim(1)).json().error,'boss_task_already_claimed');
+  assert.equal((await s.pg.query('SELECT amount FROM player_items WHERE account_id=$1 AND item_id=3',[a.id])).rows[0].amount,'50');
+  assert.equal((await s.pg.query('SELECT amount FROM player_items WHERE account_id=$1 AND item_id=60',[a.id])).rows[0].amount,'100');
+  const replay=await app.inject({method:'POST',url:'/v1/world-boss/settle',headers:ha,payload:{battleId:fight.json().battleId}});
+  assert.equal(replay.statusCode,200);
+  assert.equal((await app.inject({url:'/v1/world-boss',headers:ha})).json().events[0].tasks[4].progress,String(win.json().damage));
+  day='2026-10-28T12:00:00Z';
+  const reset=(await app.inject({url:'/v1/world-boss',headers:ha})).json().events[0];
+  assert.equal(reset.tasks[0].progress,'0');
+  assert.equal(reset.tasks[0].claimed,false);
+  assert.equal(reset.tasks[4].progress,String(win.json().damage));
+  day='2026-11-27T12:00:00Z';
+  const closed=(await app.inject({url:'/v1/world-boss',headers:ha})).json().events[0];
+  assert.equal(closed.open,false);
+  assert.equal(closed.tasks[4].progress,String(win.json().damage));
+  assert.equal((await claim(1)).json().error,'boss_task_not_ready');
+ }finally{
+  await s.pg.query('DELETE FROM accounts WHERE id=ANY($1::uuid[])',[[a.id,b.id]]);
+  await app.close();
+ }
 });
 test('world boss current expired event safely refuses challenge',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);

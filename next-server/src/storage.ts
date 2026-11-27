@@ -371,6 +371,16 @@ export async function migrate(s:Storage){
     (secret_hero_ids[4]=0 OR secret_hero_ids[6]=0 OR secret_hero_ids[4]<>secret_hero_ids[6]) AND
     (secret_hero_ids[5]=0 OR secret_hero_ids[6]=0 OR secret_hero_ids[5]<>secret_hero_ids[6]))`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(34) ON CONFLICT DO NOTHING');
+ await c.query(`CREATE TABLE IF NOT EXISTS world_boss_tasks(
+   account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+   event_id integer NOT NULL,
+   task_id integer NOT NULL,
+   progress bigint NOT NULL DEFAULT 0 CHECK(progress>=0),
+   claimed boolean NOT NULL DEFAULT false,
+   day date NOT NULL DEFAULT '1970-01-01',
+   PRIMARY KEY(account_id,event_id,task_id)
+ )`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(35) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }
