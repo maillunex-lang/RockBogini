@@ -279,6 +279,16 @@ export async function migrate(s:Storage){
   battle_id uuid NOT NULL REFERENCES world_boss_battles(id) ON DELETE CASCADE
  )`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(28) ON CONFLICT DO NOTHING');
+ await c.query(`ALTER TABLE player_formations
+  ADD COLUMN IF NOT EXISTS single_hero_ids integer[] NOT NULL DEFAULT ARRAY[0,0,0]::integer[]`);
+ await c.query(`ALTER TABLE player_formations DROP CONSTRAINT IF EXISTS player_formations_single_check`);
+ await c.query(`ALTER TABLE player_formations ADD CONSTRAINT player_formations_single_check
+  CHECK(cardinality(single_hero_ids)=3 AND
+   single_hero_ids[1]>=0 AND single_hero_ids[2]>=0 AND single_hero_ids[3]>=0 AND
+   (single_hero_ids[1]=0 OR single_hero_ids[1]<>single_hero_ids[2]) AND
+   (single_hero_ids[1]=0 OR single_hero_ids[1]<>single_hero_ids[3]) AND
+   (single_hero_ids[2]=0 OR single_hero_ids[2]<>single_hero_ids[3]))`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(29) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }

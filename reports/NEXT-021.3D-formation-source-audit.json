@@ -1,0 +1,28 @@
+{
+  "source": "/home/gamedev/QueensBladeH5/racon2-main/client/config/configure/6078aab3dff8b9addc987d86b3cb2d31/FormationType",
+  "sha256": "dfcc1f49e23dc602de2175c8f95d9851bfdc0846cac376fe369c1d6a8066cf32",
+  "originalTypes": {
+    "901": {
+      "id": 901,
+      "data": [
+        5
+      ]
+    },
+    "902": {
+      "id": 902,
+      "data": [
+        2,
+        5,
+        8
+      ]
+    }
+  },
+  "originalMapType10Sids": [
+    101,
+    102,
+    103
+  ],
+  "originalMapType11Sids": [
+    7
+  ]
+}

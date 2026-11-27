@@ -5,6 +5,8 @@ import type {Storage} from './storage.js';
 import {sessionAccount} from './auth.js';
 import {getProfile} from './profile.js';
 import {prepareSquad} from './battleUnits.js';
+import {abyssAttackers,savedAbyssRoster,checkSingleRoster} from './abyssFormation.js';
+import {getHeroes} from './heroes.js';
 import {reportHeroes} from './battle/reportHeroes.js';
 import {simulate,type Fighter} from './battle/simulation.js';
 import {battleRandom} from './battle/random.js';
@@ -73,7 +75,40 @@ export async function abyssRoutes(app:FastifyInstance,s:Storage){
    await c.query('BEGIN');await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
    const modes=[];
    for(const type of [1,2])modes.push(rowView(type,await state(c,id,type)));
-   await c.query('COMMIT');return {modes,pointWaves:abyssParams.pointWaves,buffWaves:abyssParams.buffWaves};
+   await c.query('COMMIT');
+   const roster=await savedAbyssRoster(s,id);
+   return {modes,roster,pointWaves:abyssParams.pointWaves,buffWaves:abyssParams.buffWaves};
+  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
+ });
+ app.get('/v1/abyss/formation',async(req,reply)=>{
+  const id=await account(req,s);if(!id)return reply.code(401).send({error:'invalid_session'});
+  const roster=await savedAbyssRoster(s,id);
+  const heroes=await getHeroes(s,id);
+  return {single:roster.single,team:roster.team,
+   heroOptions:heroes.map(h=>({sid:h.Sid,heroId:h.HeroId,power:h.Power})),
+   positions:[2,5,8],formationSids:[101,102,103],formationType:902};
+ });
+ app.put<{Body:{single:number[]}}>('/v1/abyss/formation',{
+  schema:{body:{type:'object',required:['single'],additionalProperties:false,
+   properties:{single:{type:'array',minItems:3,maxItems:3,items:{type:'integer',minimum:0,maximum:2147483647}}}}},
+ },async(req,reply)=>{
+  const id=await account(req,s);if(!id)return reply.code(401).send({error:'invalid_session'});
+  const ids=req.body.single;
+  if(!checkSingleRoster(ids))return reply.code(400).send({error:'invalid_abyss_formation'});
+  await getHeroes(s,id);
+  const c=await s.pg.connect();
+  try{
+   await c.query('BEGIN');
+   await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
+   const pending=(await c.query('SELECT p.battle_id FROM abyss_pending p JOIN abyss_battles b ON b.id=p.battle_id WHERE p.account_id=$1',[id])).rows[0];
+   if(pending){await c.query('ROLLBACK');return reply.code(409).send({error:'abyss_battle_pending'})}
+   const used=ids.filter(x=>x>0);
+   const owned=(await c.query('SELECT sid FROM player_heroes WHERE account_id=$1 AND sid=ANY($2::integer[])',[id,used])).rows;
+   if(owned.length!==used.length){await c.query('ROLLBACK');return reply.code(409).send({error:'hero_not_owned'})}
+   await c.query('INSERT INTO player_formations(account_id) VALUES($1) ON CONFLICT DO NOTHING',[id]);
+   await c.query('UPDATE player_formations SET single_hero_ids=$2 WHERE account_id=$1',[id,ids]);
+   await c.query('COMMIT');
+   return {single:ids,positions:[2,5,8],formationSids:[101,102,103]};
   }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
  });
  app.post<{Body:{type:number;buffIndex?:number}}>('/v1/abyss/challenge',{
@@ -86,8 +121,8 @@ export async function abyssRoutes(app:FastifyInstance,s:Storage){
   // Build units before locking profile so the dedicated squad connection doesn't deadlock.
   await getProfile(s,id);
   let attackers:Awaited<ReturnType<typeof prepareSquad>>;
-  try{attackers=await prepareSquad(s,id)}catch(e){
-   if(e instanceof Error&&['empty_formation','invalid_formation','hero_attributes_pending','hero_not_owned'].includes(e.message))
+  try{attackers=type===1?await abyssAttackers(s,id):await prepareSquad(s,id)}catch(e){
+   if(e instanceof Error&&['empty_formation','empty_abyss_formation','invalid_formation','invalid_abyss_formation','hero_attributes_pending','hero_not_owned'].includes(e.message))
     return reply.code(409).send({error:e.message});
    throw e;
   }
@@ -103,9 +138,10 @@ export async function abyssRoutes(app:FastifyInstance,s:Storage){
    if(pending){await c.query('ROLLBACK');return reply.code(409).send({error:'abyss_battle_pending'})}
    const index=row.map_index+1,wave=row.reward_index+1,cfg=abyssWave(type,index,wave);
    if(!cfg){await c.query('ROLLBACK');return reply.code(404).send({error:'abyss_wave_not_found'})}
-   // Mode 1 is the original single-hero trial; one hero per wave, deterministically cycling selected heroes.
-   const singleUnits=attackers.slice(0,3);
-   let fighters:Fighter[]=type===1?[singleUnits[(wave-1)%singleUnits.length]]:attackers;
+   // Original MapType 10 uses the three selected heroes of formation SIDs 101/102/103,
+   // laid out in the middle column of FormationType 902 (battle positions 1,4,7).
+   // No artificial wave rotation; each wave fields the selected heroes together.
+   let fighters:Fighter[]=attackers;
    // An original ChallengeType=1 starts a fresh run after defeat or stage completion:
    // restore the heroes and discard run buffs, but preserve completed wave progress.
    const startingRun=!row.in_battle;

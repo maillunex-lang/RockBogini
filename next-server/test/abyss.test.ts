@@ -4,6 +4,8 @@ import {openStorage,migrate} from '../src/storage.js';
 import {createGuest} from '../src/auth.js';
 import {buildApp} from '../src/app.js';
 import {abyssTypes,abyssStage,abyssWave,abyssDefenders,abyssBuffs,abyssPointRewards,abyssOpen,abyssParams} from '../src/abyssConfig.js';
+import {ABYSS_SINGLE_SIDS,ABYSS_SINGLE_STATIONS,checkSingleRoster,singleUnits} from '../src/abyssFormation.js';
+import {starterHeroes} from '../src/starterHeroes.js';
 test('exact source abyss maps 2 modes, 140 stages, 1680 enemy waves, 12 buffs',()=>{
  assert.equal(Object.keys(abyssTypes).length,2);
  assert.equal(abyssTypes['1'].mapIdPrefix,0);assert.equal(abyssTypes['2'].mapIdPrefix,10000);
@@ -30,6 +32,52 @@ test('exact source abyss maps 2 modes, 140 stages, 1680 enemy waves, 12 buffs',(
  assert.deepEqual(abyssPointRewards(1,1,0),[[22,200000]]);
  assert.deepEqual(abyssPointRewards(1,1,1),[[10450,1000]]);
 });
+test('original Abyss trio positions are the battle center column and never rotate',()=>{
+ assert.deepEqual(ABYSS_SINGLE_SIDS,[101,102,103]);
+ assert.deepEqual(ABYSS_SINGLE_STATIONS,[1,4,7]);
+ assert.ok(checkSingleRoster([1001,1002,0]));
+ assert.ok(!checkSingleRoster([1001,1001,0]));
+ assert.ok(!checkSingleRoster([1001,0]));
+ const heroes=starterHeroes.map(x=>({...x,Attrs:x.Attrs,Skills:x.Skills,SkinId:x.SkinId})) as Parameters<typeof singleUnits>[1];
+ const roster=singleUnits([1001,1002,1003],heroes);
+ assert.deepEqual(roster.map(x=>x.station),[1,4,7]);
+ assert.deepEqual(roster.map(x=>x.id),[2,5,8]);
+ assert.deepEqual(roster.map(x=>(x as typeof x&{sid:number}).sid),[1001,1002,1003]);
+ assert.throws(()=>singleUnits([1001,9999,0],heroes),/hero_not_owned/);
+});
+test('abyss formation persists, enforces ownership and owner isolation; lone trio versus main team',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);
+ const a=await createGuest(s),b=await createGuest(s),app=await buildApp(s);
+ const ha={authorization:'Bearer '+a.token},hb={authorization:'Bearer '+b.token};
+ const put=(single:number[],headers=ha)=>app.inject({method:'PUT',url:'/v1/abyss/formation',headers,payload:{single}});
+ try{
+  assert.equal((await app.inject('/v1/abyss/formation')).statusCode,401);
+  assert.equal((await put([1001,1002,1003],hb)).statusCode,200);
+  assert.equal((await put([1001,1002,1003])).statusCode,200);
+  assert.equal((await put([1001,1001,0])).statusCode,400);
+  assert.equal((await put([1001,99999,0])).statusCode,409);
+  const own=await app.inject({url:'/v1/abyss/formation',headers:ha});
+  assert.equal(own.statusCode,200,own.body);
+  assert.deepEqual(own.json().single,[1001,1002,1003]);
+  assert.deepEqual(own.json().positions,[2,5,8]);
+  assert.equal((await app.inject({url:'/v1/abyss',headers:ha})).json().roster.single[2],1003);
+  assert.deepEqual((await app.inject({url:'/v1/abyss/formation',headers:hb})).json().single,[1001,1002,1003]);
+  // Reject roster edits when an Abyss fight is unresolved.
+  const allowed=(await app.inject({url:'/v1/abyss',headers:ha})).json().modes.find((x:{open:boolean})=>x.open)?.type;
+  assert.ok(allowed);
+  const start=await app.inject({method:'POST',url:'/v1/abyss/challenge',headers:ha,payload:{type:allowed}});
+  assert.equal(start.statusCode,200,start.body);
+  if(allowed===1){
+   assert.deepEqual(start.json().initialUnits.filter((u:{camp:number})=>u.camp===1).map((u:{station:number})=>u.station),[1,4,7]);
+  }
+  assert.equal((await put([1003,1002,1001])).statusCode,409);
+  assert.equal((await app.inject({method:'POST',url:'/v1/abyss/cancel',headers:ha,payload:{battleId:start.json().battleId}})).statusCode,200);
+  assert.equal((await put([1003,1002,1001])).statusCode,200);
+  assert.deepEqual((await app.inject({url:'/v1/abyss/formation',headers:ha})).json().single,[1003,1002,1001]);
+ }finally{
+  await s.pg.query('DELETE FROM accounts WHERE id=ANY($1::uuid[])',[[a.id,b.id]]);await app.close();
+ }
+});
 test('abyss modes gate weekdays, preserve battle pending, settlement idempotent and owner isolation',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);
  const a=await createGuest(s),b=await createGuest(s);
@@ -44,6 +92,10 @@ test('abyss modes gate weekdays, preserve battle pending, settlement idempotent 
   assert.equal((await post('points',{type:1})).statusCode,409);
   const type=list.json().modes.find((x:{open:boolean})=>x.open)?.type;
   assert.ok(type,'some abyss mode should be open every day');
+  if(type===1){
+   const f=await app.inject({method:'PUT',url:'/v1/abyss/formation',headers:ha,payload:{single:[1001,1002,1003]}});
+   assert.equal(f.statusCode,200,f.body);
+  }
   const first=await post('challenge',{type});
   assert.equal(first.statusCode,200,first.body);
   assert.equal(first.json().mode,'abyss');
