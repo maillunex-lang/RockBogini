@@ -5,6 +5,7 @@ import {AbyssScreen} from './abyss/AbyssScreen';
 import {SecretScreen} from './secret/SecretScreen';
 import {WorldBossScreen} from './worldBoss/WorldBossScreen';
 import {HeroDungeonScreen} from './heroDungeon/HeroDungeonScreen';
+import {ElementTestScreen} from './elementTest/ElementTestScreen';
 import {CampaignScreen} from './battle/CampaignScreen';
 import {HeroesScreen} from './heroes/HeroesScreen';
 import {InventoryScreen} from './inventory/InventoryScreen';
@@ -34,6 +35,7 @@ function App(){
  const [showSecret,setShowSecret]=useState(false);
  const [showWorldBoss,setShowWorldBoss]=useState(false);
  const [showHeroDungeon,setShowHeroDungeon]=useState(false);
+ const [showElementTest,setShowElementTest]=useState(false);
  const [fightMapId,setFightMapId]=useState<number|null>(null);
 
  const [isGuest,setIsGuest]=useState(false);
@@ -63,6 +65,7 @@ function App(){
  if(codes)return <RecoveryCodes codes={codes} onDone={()=>setCodes(null)}/>;
  if(showLink)return <LinkGuest onCancel={()=>setShowLink(false)} onLink={async(email,password)=>{const linked=await linkGuest(API,session,email,password);setSession(linked);setIsGuest(false);setShowLink(false)}}/>;
  if(fightMapId!=null)return <ReportScreen api={API} token={session.token} mapId={fightMapId} onBack={()=>setFightMapId(null)}/>;
+ if(showElementTest)return <ElementTestScreen api={API} token={session.token} onClose={()=>setShowElementTest(false)}/>;
  if(showHeroDungeon)return <HeroDungeonScreen api={API} token={session.token} onClose={()=>setShowHeroDungeon(false)}/>;
  if(showWorldBoss)return <WorldBossScreen api={API} token={session.token} onClose={()=>setShowWorldBoss(false)}/>;
  if(showSecret)return <SecretScreen api={API} token={session.token} onClose={()=>setShowSecret(false)}/>;
@@ -75,7 +78,7 @@ function App(){
  {isGuest?<button onClick={()=>setShowLink(true)}>Привязать почту</button>:<button onClick={async()=>{try{setRecoverError('');setCodes(await requestRecoveryCodes(API,session))}catch(e){setRecoverError(e instanceof Error?e.message:String(e))}}}>Резервные коды</button>}
  <button onClick={async()=>{try{await signOut(API,session);setSession(null);setShowRecovery(false)}catch(e){setError(e instanceof Error?e.message:String(e))}}}>Выйти из аккаунта</button></div></details>
  {recoverError&&<p role="alert">{recoverError}</p>}
- <City api={API} token={session.token} onProfile={()=>setShowProfile(true)} onBattle={()=>setShowCampaign(true)} onTower={()=>setShowTower(true)} onDaily={()=>setShowDaily(true)} onAbyss={()=>setShowAbyss(true)} onSecret={()=>setShowSecret(true)} onWorldBoss={()=>setShowWorldBoss(true)} onHeroDungeon={()=>setShowHeroDungeon(true)} onHeroes={()=>setShowHeroes(true)} onInventory={()=>setShowInventory(true)} onSummon={()=>setShowSummon(true)} onShop={()=>setShowShop(true)} onTasks={()=>setShowTasks(true)}/>
+ <City api={API} token={session.token} onProfile={()=>setShowProfile(true)} onBattle={()=>setShowCampaign(true)} onTower={()=>setShowTower(true)} onDaily={()=>setShowDaily(true)} onAbyss={()=>setShowAbyss(true)} onSecret={()=>setShowSecret(true)} onWorldBoss={()=>setShowWorldBoss(true)} onHeroDungeon={()=>setShowHeroDungeon(true)} onElementTest={()=>setShowElementTest(true)} onHeroes={()=>setShowHeroes(true)} onInventory={()=>setShowInventory(true)} onSummon={()=>setShowSummon(true)} onShop={()=>setShowShop(true)} onTasks={()=>setShowTasks(true)}/>
 
  </main>;
 }

@@ -1,0 +1,120 @@
+{
+  "sources": {
+    "/home/gamedev/QueensBladeH5/racon2-main/server/priv/templates/world.json": "eacfc1928fd28bc25274bde1bc1d74d173e7f30ca87b51145bb948b82bf946b1"
+  },
+  "events": {
+    "15792": {
+      "element": 5,
+      "stages": 200,
+      "first": {
+        "id": 1,
+        "mapId": 15001,
+        "recommendPower": 13642,
+        "quickPower": 15688,
+        "heroId": 14502,
+        "rewards": [
+          [
+            4404,
+            1
+          ],
+          [
+            10001,
+            20
+          ],
+          [
+            1,
+            25000
+          ],
+          [
+            22,
+            10000
+          ]
+        ]
+      },
+      "last": {
+        "id": 200,
+        "mapId": 15200,
+        "recommendPower": 52301423,
+        "quickPower": 999999999,
+        "heroId": 14506,
+        "rewards": [
+          [
+            4405,
+            1
+          ],
+          [
+            10001,
+            39
+          ],
+          [
+            1,
+            75000
+          ],
+          [
+            22,
+            30000
+          ]
+        ]
+      }
+    },
+    "15793": {
+      "element": 1,
+      "stages": 200,
+      "first": {
+        "id": 1,
+        "mapId": 11001,
+        "recommendPower": 13642,
+        "quickPower": 15688,
+        "heroId": 12502,
+        "rewards": [
+          [
+            4204,
+            1
+          ],
+          [
+            10001,
+            20
+          ],
+          [
+            1,
+            25000
+          ],
+          [
+            22,
+            10000
+          ]
+        ]
+      },
+      "last": {
+        "id": 200,
+        "mapId": 11200,
+        "recommendPower": 52301423,
+        "quickPower": 999999999,
+        "heroId": 12506,
+        "rewards": [
+          [
+            4205,
+            1
+          ],
+          [
+            10001,
+            39
+          ],
+          [
+            1,
+            75000
+          ],
+          [
+            22,
+            30000
+          ]
+        ]
+      }
+    }
+  },
+  "maps": 400,
+  "mapTypes": [
+    111,
+    115
+  ]
+}

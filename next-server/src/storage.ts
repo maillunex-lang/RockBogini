@@ -429,6 +429,40 @@ export async function migrate(s:Storage){
  (dungeon_hero_ids[4]=0 OR dungeon_hero_ids[6]=0 OR dungeon_hero_ids[4]<>dungeon_hero_ids[6]) AND
  (dungeon_hero_ids[5]=0 OR dungeon_hero_ids[6]=0 OR dungeon_hero_ids[5]<>dungeon_hero_ids[6]))`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(36) ON CONFLICT DO NOTHING');
+ await c.query(`CREATE TABLE IF NOT EXISTS element_test_progress(
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  event_id integer NOT NULL,
+  cleared_stage integer NOT NULL DEFAULT 0 CHECK(cleared_stage>=0),
+  PRIMARY KEY(account_id,event_id)
+ )`);
+ await c.query(`CREATE TABLE IF NOT EXISTS element_test_formations(
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  event_id integer NOT NULL,
+  formation_sid integer NOT NULL,
+  formation_type integer NOT NULL DEFAULT 101 CHECK(formation_type IN (101,102,103,104,105,106)),
+  hero_ids integer[] NOT NULL DEFAULT ARRAY[0,0,0,0,0,0]::integer[],
+  PRIMARY KEY(account_id,event_id),
+  CHECK(cardinality(hero_ids)=6 AND array_position(hero_ids,NULL) IS NULL AND
+   hero_ids[1]>=0 AND hero_ids[2]>=0 AND hero_ids[3]>=0 AND
+   hero_ids[4]>=0 AND hero_ids[5]>=0 AND hero_ids[6]>=0)
+ )`);
+ await c.query(`CREATE TABLE IF NOT EXISTS element_test_battles(
+  id uuid PRIMARY KEY,
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  event_id integer NOT NULL,
+  stage integer NOT NULL,
+  map_id integer NOT NULL,
+  report jsonb NOT NULL,
+  settlement jsonb,
+  created_at timestamptz NOT NULL DEFAULT now()
+ )`);
+ await c.query(`CREATE TABLE IF NOT EXISTS element_test_pending(
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  event_id integer NOT NULL,
+  battle_id uuid NOT NULL REFERENCES element_test_battles(id) ON DELETE CASCADE,
+  PRIMARY KEY(account_id,event_id)
+ )`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(37) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }
