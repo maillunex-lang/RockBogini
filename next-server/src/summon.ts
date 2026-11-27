@@ -328,6 +328,9 @@ export async function summonRoutes(app:FastifyInstance,s:Storage){
   if(!cfg)return reply.code(404).send({error:'summon_not_found'});
   const typeCfg=STYPE[String(cfg.summonType)];
   if(!typeCfg)return reply.code(500).send({error:'summon_type_missing'});
+  // Always create the original three starter heroes before issuing any new
+  // hero SIDs. This also repairs older partially initialized accounts.
+  await getHeroes(s,id);
   let model=await loadModel(s,id,cfg.summonType,typeCfg);
   const times=Math.max(cfg.summonCount,1);
   const wantFree=req.body.itemId===0&&times===1;
@@ -395,6 +398,9 @@ export async function summonRoutes(app:FastifyInstance,s:Storage){
   if(!cfg)return reply.code(404).send({error:'oracle_not_found'});
   const typeCfg=STYPE[String(cfg.summonType)];
   if(!typeCfg)return reply.code(500).send({error:'summon_type_missing'});
+  // Always create the original three starter heroes before issuing any new
+  // hero SIDs. This also repairs older partially initialized accounts.
+  await getHeroes(s,id);
   const element=req.body.element;
   const cost=prophetCost(cfg,element);
   if(!(await payItem(s,id,cfg.currencyId,cost))){
@@ -445,6 +451,9 @@ export async function summonRoutes(app:FastifyInstance,s:Storage){
   if(!cfg)return reply.code(404).send({error:'crystal_not_found'});
   const typeCfg=STYPE[String(cfg.summonType)];
   if(!typeCfg)return reply.code(500).send({error:'summon_type_missing'});
+  // Always create the original three starter heroes before issuing any new
+  // hero SIDs. This also repairs older partially initialized accounts.
+  await getHeroes(s,id);
   const element=req.body.element;
   const cost=crystalCost(cfg,element);
   if(!(await payItem(s,id,cfg.currencyId,cost))){

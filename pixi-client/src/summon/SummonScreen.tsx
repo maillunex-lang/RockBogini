@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import {heroDisplayName} from '../shared/heroNames';
+import heroVisualCatalog from '../heroes/heroVisualCatalog.json';
 import './summon.css';
 
 type Banner={id:number;summonCount:number;summonType:number;consume:[number,number][];extra:[number,number][]};
@@ -213,16 +214,20 @@ export function SummonScreen({api,token,onClose}:{api:string;token:string;onClos
    </div>
   )}
   {!!results.length&&(
-   <section className="summon-results" aria-label="Результаты призыва">
-    <h2>Результат</h2>
-    <ul>
-     {results.map(h=>(
-      <li key={h.sid}>
-       <strong>{heroDisplayName(h.heroId)}</strong>
-       <span>★{h.star} · карта #{h.cardId} · sid {h.sid}</span>
-      </li>
-     ))}
+   <section className="summon-results" role="dialog" aria-modal="true" aria-label="Результаты призыва">
+    <h2>Полученные герои</h2>
+    <ul className="summon-result-grid">
+     {results.map(h=>{
+      const info=(heroVisualCatalog as Record<string,{element:number;star:number}>)[h.heroId];
+      const suffix=info&&info.element>=1&&info.element<=6?String(info.element):'chaos';
+      return <li className="summon-original-card" key={h.sid} style={{backgroundImage:'url('+import.meta.env.BASE_URL+'heroes/original/cards/card_bg_'+suffix+'.png)'}} title={'Карта #'+h.cardId}>
+       <img className="summon-card-avatar" src={import.meta.env.BASE_URL+'profile/icon-'+h.heroId+'.webp'} alt="" loading="lazy" onError={e=>{e.currentTarget.style.display='none'}}/>
+       <img className="summon-card-frame" src={import.meta.env.BASE_URL+'heroes/original/cards/card_border_'+suffix+'.png'} alt="" loading="lazy"/>
+       <span className="summon-card-label"><strong>{heroDisplayName(h.heroId)}</strong><span>★{h.star}</span></span>
+      </li>;
+     })}
     </ul>
+    <button type="button" className="summon-result-close" onClick={()=>setResults([])}>Закрыть результат</button>
    </section>
   )}
  </main>;

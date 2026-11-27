@@ -4,6 +4,7 @@ import {openStorage,migrate} from '../src/storage.js';
 import {createGuest} from '../src/auth.js';
 import {buildApp} from '../src/app.js';
 import {pullMany,pullOnce,heroCard,prophetCost,crystalCost} from '../src/summon.js';
+import {getHeroes} from '../src/heroes.js';
 
 test('heroCard maps ItemHeroCard to hero/star',()=>{
  const c=heroCard(1111401);
@@ -59,6 +60,27 @@ test('pullMany crystal type 301 filters by element and costs',()=>{
  assert.equal(crystalCost(cfg,1),1000);
  assert.equal(crystalCost(cfg,4),2000);
  assert.equal(crystalCost(cfg,5),2000);
+});
+
+test('starter collection preserves heroes obtained before initialization',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);const a=await createGuest(s);
+ const old=heroCard(1111401);
+ assert.ok(old);
+ const oldHeroId=old.heroId;
+ const orphan={Sid:1001,HeroId:oldHeroId,Level:1,StarLevel:Math.max(1,old.starLevel),Power:0,Locked:false};
+ try{
+  await s.pg.query(
+   'INSERT INTO player_heroes(account_id,sid,hero_id,level,star,power,locked,state) VALUES($1,$2,$3,$4,$5,$6,$7,$8)',
+   [a.id,1001,oldHeroId,1,orphan.StarLevel,0,false,JSON.stringify(orphan)],
+  );
+  const heroes=await getHeroes(s,a.id);
+  assert.equal(heroes.length,4);
+  assert.equal(heroes.find(h=>h.Sid===1001)?.HeroId,oldHeroId);
+  assert.equal(heroes.find(h=>h.HeroId===11303)?.Sid,1004);
+  assert.equal(heroes.find(h=>h.HeroId===12301)?.Sid,1002);
+  assert.equal(heroes.find(h=>h.HeroId===12402)?.Sid,1003);
+  assert.equal((await getHeroes(s,a.id)).length,4);
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await s.close()}
 });
 
 test('POST /v1/summon/pull grants heroes and spends tickets',{skip:!process.env.PGHOST},async()=>{

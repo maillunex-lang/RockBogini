@@ -59,6 +59,11 @@ VPS is the development stand; GitHub main is the published source mirror. **SING
 ### NEXT-026.4 результат боя (2026-11-27)
 - Из оригинального каталога ItemIcon в наградах используются изображения по серверному itemId; в статистике добавлены оригинальные портреты по heroId. Оригинальный пакет SettlementPanel аудирован, WinPanel/FailPanel и atlas dataBottom/linesBottom найдены, но точная расстановка не проверена, поэтому подмена интерфейса не выполнялась. Vite PASS, публикация PASS; полный браузерный бой до победы/поражения и визуал 1:1 открыты. Отчёт reports/NEXT-026.4-result-original-icons-2026-11-27.md.
 
+### NEXT-026.4: призыв, оригинальные карточки и исправление PostgreSQL (2026-11-27)
+- В результате реального призыва отображаются оригинальные рамки/фоны 218×318 и портреты из Common/профиля; данные приходят от сервера. Мобильный E2E 390×844 и 320×640: бесплатный призыв ×1, герои получены, рамки/портреты загружены, закрытие окна PASS.
+- Исправлена ошибка PostgreSQL 23505 player_heroes_pkey на SID1001: стартовая коллекция создаётся до выдачи героя, старые незавершённые учётные записи восстанавливаются без удаления полученных героев. Отдельная тестовая PostgreSQL/Redis: 11/11 summon PASS. Перед обновлением бэкап БД и модулей.
+- **Не закрыто**: точная анимация открытия и Cocos prefab 1:1, транзакционная параллельная выдача и все 20 предложенных задач. Evidence: reports/NEXT-026.4-summon-real-pull-2026-11-27.md.
+
 ### Открытые подэтапы сейчас
 - **026.1** city visual parity — mobile HUD QA PASS, 1:1 + Spine acceptance open
 - **026.2** original HeroListPanel — original background + 4-column grid live, frames/filters/detail pending

@@ -508,3 +508,5 @@ NEXT-013.8 in_progress: inventoried 10 invalid common-skill ActionIndex values; 
 2026-11-27 NEXT-026.4 formation art: original Bg (1080x2520) and eight Cocos atlas sprites linked to 9 dynamic slots, server formation state untouched, browser guest/formation/back 320/390/768 PASS; TypeScript/Vite and /sexyidle publish PASS. reports/NEXT-026.4-formation-2026-11-27.md.
 
 2026-11-27 NEXT-026.4 ResultScreen source-backed reward thumbnails and hero stat portraits added; original SettlementPanel atlas and prefabs located; TypeScript/Vite and publish PASS; battle result browser visual acceptance not yet tested. reports/NEXT-026.4-result-original-icons-2026-11-27.md.
+
+2026-11-27 NEXT-026.4 real summon: source Common card result UI, live free x1 browser 390/320 PASS; found true root cause SID1001 conflict between first grant and getHeroes collection init, fixed bootstrap order and SID-safe initializers; isolated DB 11/11 PASS, backup saved, API patch and rebuild image. No player data deleted. reports/NEXT-026.4-summon-real-pull-2026-11-27.md.

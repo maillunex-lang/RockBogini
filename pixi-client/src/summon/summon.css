@@ -22,3 +22,15 @@
 .summon-tabs[role="tablist"] button:nth-child(4)::before{background-image:url('/original-panels/summon/InfiniteTenTog.png')}
 .summon-tabs[role="tablist"] button[aria-selected=true]{border-color:#f7d589}
 @media(max-width:400px){.summon-screen{padding:8px}.summon-tabs[role="tablist"] button::before{height:40px;width:40px}}
+
+/* NEXT-026.4: original Common 218x318 hero cards and source avatar sprites on server-confirmed summons. */
+.summon-results[role=dialog]{position:fixed;inset:0;z-index:1000;overflow:auto;box-sizing:border-box;background:linear-gradient(#0d172bea,#101b32f5);padding:18px max(12px,calc((100vw - 650px)/2));color:#fff}
+.summon-results h2{text-align:center;color:#fce2ab;text-shadow:0 2px 3px #000}
+.summon-results .summon-result-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;max-width:650px;margin:10px auto 24px;padding:0;list-style:none}
+.summon-results .summon-original-card{position:relative;display:block;min-width:0;aspect-ratio:218/318;padding:0;border:0;background-size:100% 100%;background-position:center}
+.summon-results .summon-card-avatar{position:absolute;left:8%;top:5%;width:84%;height:62%;object-fit:contain}
+.summon-results .summon-card-frame{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;pointer-events:none}
+.summon-results .summon-card-label{position:absolute;left:4%;right:4%;bottom:4%;z-index:2;text-align:center;display:flex;flex-direction:column;gap:3px;font-size:clamp(9px,2.7vw,13px);text-shadow:0 1px 3px #000}
+.summon-results .summon-card-label strong{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.summon-results .summon-result-close{display:block;margin:10px auto 20px;background:#71502c url('/ui/btn_orange.webp') center/100% 100% no-repeat;border:0;padding:12px 28px}
+@media(max-width:340px){.summon-results .summon-result-grid{gap:4px}.summon-results{padding-left:8px;padding-right:8px}}

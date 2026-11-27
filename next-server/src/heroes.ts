@@ -51,7 +51,23 @@ export async function getHeroes(s:Storage,id:string){
  try{
   await c.query('BEGIN');
   const created=await c.query('INSERT INTO hero_collections(account_id) VALUES($1) ON CONFLICT DO NOTHING RETURNING account_id',[id]);
-  if(created.rowCount)for(const h of starterHeroes)await c.query('INSERT INTO player_heroes(account_id,sid,hero_id,level,star,power,locked,state) VALUES($1,$2,$3,$4,$5,$6,$7,$8)',[id,h.Sid,h.HeroId,h.Level,h.StarLevel,h.Power,h.Locked,JSON.stringify(h)]);
+  if(created.rowCount){
+   // An account may have received a summon before its starter collection was initialized
+   // in older server revisions. Preserve that hero's SID and allocate an unused SID
+   // to the missing starter instead of failing with player_heroes_pkey.
+   const sidRows=await c.query('SELECT sid FROM player_heroes WHERE account_id=$1 FOR UPDATE',[id]);
+   const occupied=new Set<number>(sidRows.rows.map((row:{sid:number})=>Number(row.sid)));
+   let nextSid=Math.max(1003,...occupied.values())+1;
+   for(const h of starterHeroes){
+    const sid=occupied.has(h.Sid)?nextSid++:h.Sid;
+    occupied.add(sid);
+    const state={...h,Sid:sid};
+    await c.query(
+     'INSERT INTO player_heroes(account_id,sid,hero_id,level,star,power,locked,state) VALUES($1,$2,$3,$4,$5,$6,$7,$8)',
+     [id,sid,h.HeroId,h.Level,h.StarLevel,h.Power,h.Locked,JSON.stringify(state)],
+    );
+   }
+  }
   const rows=(await c.query('SELECT sid,hero_id,level,star,power,locked,state FROM player_heroes WHERE account_id=$1 ORDER BY sid',[id])).rows;
   await c.query('COMMIT');
   return rows.map(r=>({...r.state,Sid:r.sid,HeroId:r.hero_id,Level:r.level,StarLevel:r.star,Power:r.power,Locked:r.locked}));
