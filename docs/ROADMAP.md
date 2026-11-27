@@ -1,3 +1,6 @@
+## NEXT-021.3B: Секретная область и WorldBoss, 2026-11-27
+Секретная область 4 этажа, оригинальные 49 типов/565 карт, новые серверные транзакции, предметы и сундуки. WorldBoss 2 события с историческими расписаниями, которые завершились 1 ноября 2026; гильдейский босс недоступен до реализации гильдий. Серверный и клиентский билд PASS, 172/172 isolated tests PASS. Далее формы/боссы+календарь событий/другие PvE. См. reports/NEXT-021.3B-secret-world-boss-2026-11-27.md.
+
 ## NEXT-021.3A: Бесконечная бездна, 2026-11-27
 Перенесено 2 режима/140 этапов/1 680 исходных волн и 12 усилений. Сервер + UI, регрессия 165/165 PASS. Дальше секретная область, мировые боссы и точная оригинальная формация. См. reports/NEXT-021.3-abyss-2026-11-27.md.
 
@@ -126,7 +129,7 @@ VPS is the development stand; GitHub main is the published source mirror. **SING
 | NEXT-018 | Призыв героев | in_progress | 018.1–018.6 done. Activity summons → 023. | reports/NEXT-018.6.md; reports/NEXT-018.5.md; reports/NEXT-018.4.md; reports/NEXT-018.3.md; reports/NEXT-018.2.md; reports/NEXT-018.1.md |
 | NEXT-019 | Экономика и Idle | in_progress | 019.1–019.4 idle/quick/rewards/shops+VIP done. Mall packs → 023. | reports/NEXT-019.4.md; reports/NEXT-019.3.md; reports/NEXT-019.2.md; reports/NEXT-019.1.md |
 | NEXT-020 | Задания и достижения | in_progress | 020.1 daily/weekly + point chests done. Story/achievements open. | reports/NEXT-020.1.md |
-| NEXT-021 | PvE-режимы | in_progress | NEXT-021.1 башни 12/17 000; NEXT-021.2 подземелья 5/55; NEXT-021.3A Бесконечная бездна 2 режима/140 этапов/1 680 волн, сохранение HP/промежуточные награды, UI. Следующее: NEXT-021.3B секретная область и боссы, формации/бонусы оригинала. | reports/NEXT-021.1-pve-tower-2026-11-27.md; reports/NEXT-021.2-daily-instance-2026-11-27.md; reports/NEXT-021.3-abyss-2026-11-27.md |
+| NEXT-021 | PvE-режимы | in_progress | NEXT-021.1 башни 12/17 000; NEXT-021.2 подземелья 5/55; NEXT-021.3A бездна 2/140/1 680; NEXT-021.3B секретная область 4 этажа/49 монстров/565 карт и WorldBoss два исходных события (оба истекли 01.11.2026), UI; оригинальные формации/другие PvE ещё открыты. | reports/NEXT-021.1-pve-tower-2026-11-27.md; reports/NEXT-021.2-daily-instance-2026-11-27.md; reports/NEXT-021.3-abyss-2026-11-27.md; reports/NEXT-021.3B-secret-world-boss-2026-11-27.md |
 | NEXT-022 | PvP и социальные системы | pending | Арена, рейтинги, гильдии, чат, друзья, почта |  |
 | NEXT-023 | События и монетизация | pending | Календарь, события, VIP, пропуски, предложения, платежи |  |
 | NEXT-024 | Редакторы игрового контента | pending | Герои, навыки, предметы, противники, локации, квесты, награды, баннеры, магазины, события; выполнить отложенный NEXT-009 (редактор интерфейса) |  |

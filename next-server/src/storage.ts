@@ -228,6 +228,57 @@ export async function migrate(s:Storage){
   battle_id uuid NOT NULL REFERENCES abyss_battles(id) ON DELETE CASCADE
  )`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(26) ON CONFLICT DO NOTHING');
+ await c.query(`CREATE TABLE IF NOT EXISTS secret_exploration(
+  account_id uuid PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,
+  floor integer NOT NULL DEFAULT 1 CHECK(floor BETWEEN 1 AND 5),
+  view_index integer NOT NULL DEFAULT 0,
+  power_level_id integer NOT NULL DEFAULT 10001,
+  reset_at timestamptz NOT NULL DEFAULT now(),
+  cells jsonb NOT NULL DEFAULT '[]',
+  props jsonb NOT NULL DEFAULT '[[0,0],[0,0],[0,0]]',
+  hp jsonb NOT NULL DEFAULT '{}',
+  reward_state jsonb NOT NULL DEFAULT '[0,0,0,0]',
+  resurrection_count integer NOT NULL DEFAULT 0
+ )`);
+ await c.query(`CREATE TABLE IF NOT EXISTS secret_battles(
+  id uuid PRIMARY KEY,
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  cell_index integer NOT NULL,
+  map_id integer NOT NULL,
+  monster_type integer NOT NULL,
+  report jsonb NOT NULL,
+  settlement jsonb,
+  created_at timestamptz NOT NULL DEFAULT now()
+ )`);
+ await c.query(`CREATE TABLE IF NOT EXISTS secret_pending(
+  account_id uuid PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,
+  battle_id uuid NOT NULL REFERENCES secret_battles(id) ON DELETE CASCADE
+ )`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(27) ON CONFLICT DO NOTHING');
+ await c.query(`CREATE TABLE IF NOT EXISTS world_boss_progress(
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  event_id integer NOT NULL,
+  day date NOT NULL DEFAULT CURRENT_DATE,
+  attempts integer NOT NULL DEFAULT 0 CHECK(attempts>=0),
+  best_damage bigint NOT NULL DEFAULT 0 CHECK(best_damage>=0),
+  total_damage bigint NOT NULL DEFAULT 0 CHECK(total_damage>=0),
+  PRIMARY KEY(account_id,event_id)
+ )`);
+ await c.query('CREATE INDEX IF NOT EXISTS world_boss_rank ON world_boss_progress(event_id,best_damage DESC)');
+ await c.query(`CREATE TABLE IF NOT EXISTS world_boss_battles(
+  id uuid PRIMARY KEY,
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  event_id integer NOT NULL,
+  map_id integer NOT NULL,
+  report jsonb NOT NULL,
+  settlement jsonb,
+  created_at timestamptz NOT NULL DEFAULT now()
+ )`);
+ await c.query(`CREATE TABLE IF NOT EXISTS world_boss_pending(
+  account_id uuid PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,
+  battle_id uuid NOT NULL REFERENCES world_boss_battles(id) ON DELETE CASCADE
+ )`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(28) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }
