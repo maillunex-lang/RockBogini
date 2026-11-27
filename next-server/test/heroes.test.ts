@@ -97,6 +97,39 @@ test('POST /v1/heroes/:sid/star consumes fodder heroes for ★5',{skip:!process.
  }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
 });
 
+test('star upgrade with item cost never consumes selected fodder on insufficient items',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);const a=await createGuest(s);const app=await buildApp(s);
+ try{
+  await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}});
+  // ★7 requires four ★5 element fodder and 1000 item 10001.
+  const target={Sid:8000,HeroId:11501,Level:1,StarLevel:6,Power:0,Locked:false,Attrs:{},Skills:[]};
+  await s.pg.query('INSERT INTO player_heroes(account_id,sid,hero_id,level,star,power,locked,state) VALUES($1,8000,11501,1,6,0,false,$2)',[a.id,JSON.stringify(target)]);
+  // Type 3 in original HeroStar means same-element normal fodder.
+  for(let sid=8001;sid<=8004;sid++){
+   const st={Sid:sid,HeroId:11303,Level:1,StarLevel:5,Power:0,Locked:false,Attrs:{},Skills:[]};
+   await s.pg.query('INSERT INTO player_heroes(account_id,sid,hero_id,level,star,power,locked,state) VALUES($1,$2,11303,1,5,0,false,$3)',[a.id,sid,JSON.stringify(st)]);
+  }
+  const header={authorization:'Bearer '+a.token};
+  const before=(await s.pg.query('SELECT sid,star FROM player_heroes WHERE account_id=$1 AND sid>=8000 ORDER BY sid',[a.id])).rows;
+  const fail=await app.inject({method:'POST',url:'/v1/heroes/8000/star',headers:header,payload:{materials:[8001,8002,8003,8004]}});
+  assert.equal(fail.statusCode,409,fail.body);
+  assert.equal(fail.json().error,'insufficient_materials');
+  const after=(await s.pg.query('SELECT sid,star FROM player_heroes WHERE account_id=$1 AND sid>=8000 ORDER BY sid',[a.id])).rows;
+  assert.deepEqual(after,before);
+  await s.pg.query('INSERT INTO player_items(account_id,item_id,amount) VALUES($1,10001,1000) ON CONFLICT(account_id,item_id) DO UPDATE SET amount=1000',[a.id]);
+  const success=await app.inject({method:'POST',url:'/v1/heroes/8000/star',headers:header,payload:{materials:[8001,8002,8003,8004]}});
+  assert.equal(success.statusCode,200,success.body);
+  assert.equal(success.json().hero.StarLevel,7);
+  const items=await s.pg.query('SELECT amount FROM player_items WHERE account_id=$1 AND item_id=10001',[a.id]);
+  assert.equal(Number(items.rows[0].amount),0);
+  const remaining=await s.pg.query('SELECT sid FROM player_heroes WHERE account_id=$1 AND sid BETWEEN 8001 AND 8004',[a.id]);
+  assert.equal(remaining.rowCount,0);
+ }finally{
+  await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);
+  await app.close();
+ }
+});
+
 test('POST /v1/heroes/:sid/talent upgrades PVE talent with common items',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);const a=await createGuest(s);const app=await buildApp(s);
  try{

@@ -138,9 +138,9 @@
     "id": "NEXT-016",
     "title": "Развитие героев",
     "phase": "IV. RPG и экономика",
-    "scope": "016.3: PVE talent + reset. Jobs/luck/awaken open.",
+    "scope": "016.3: PVE talent + reset. Jobs/luck/awaken open. 016.6 star growth atomic rollback and locked fodder tested 154/154 PASS. Talent mutation and original acceptance still OPEN.",
     "status": "in_progress",
-    "evidence": "reports/NEXT-016.3.md; reports/NEXT-016.2.md"
+    "evidence": "reports/NEXT-016.3.md; reports/NEXT-016.2.md; reports/NEXT-016.6-atomic-star-growth-2026-11-27.md"
   },
   {
     "id": "NEXT-017",

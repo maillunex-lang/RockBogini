@@ -40,6 +40,7 @@ import {
  sameLuckType,
 } from './heroLuck.js';
 import {heroGear} from './holy.js';
+import {calculateHero as calculateGrowthHero} from './heroAttrs.js';
 
 async function account(req:{headers:{authorization?:string}},s:Storage){
  const token=/^Bearer ([A-Za-z0-9_-]{43})$/.exec(req.headers.authorization??'')?.[1];
@@ -264,31 +265,59 @@ export async function heroRoutes(app:FastifyInstance,s:Storage){
    return reply.code(400).send({error:'fodder_not_required'});
   }
 
-  // Refund level mats from fodder, then delete them
-  const refund:[number,number][]=[];
-  for(const fsid of fodder){
-   const f=await loadHero(s,id,fsid);
-   if(!f||f.Locked||blocked.has(fsid))return reply.code(409).send({error:'fodder_unavailable',sid:fsid});
-   refund.push(...levelRefund(f.Level));
-  }
-  if(fodder.length){
-   await s.pg.query('DELETE FROM player_heroes WHERE account_id=$1 AND sid=ANY($2::int[])',[id,fodder]);
-  }
-  // Merge refund map
-  const refundMap=new Map<number,number>();
-  for(const [iid,n] of refund)refundMap.set(iid,(refundMap.get(iid)??0)+n);
-  const refundList:[number,number][]=[...refundMap.entries()];
-  await grantItems(s,id,refundList);
-
-  if(!(await payItems(s,id,itemCost))){
-   // Best-effort: materials already spent on fodder; surface error for item cost
-   return reply.code(409).send({error:'insufficient_materials',cost:itemCost,fodderConsumed:fodder,refund:refundList});
-  }
-
-  const cap=starMaxLevel(newStar);
-  const level=Math.min(hero.Level,cap||hero.Level);
-  const updated=await saveHero(s,id,{...hero,StarLevel:newStar,Level:level});
-  return {ok:true,cost:itemCost,fodder,refund:refundList,hero:updated,heroes:await enrichAll(s,id,await getHeroes(s,id))};
+  // All item debits, fodder deletion and hero promotion must commit together.
+  // Lock the account profile first to serialize concurrent hero growth operations.
+  const c=await s.pg.connect();
+  try{
+   await c.query('BEGIN');
+   await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
+   const lockedTarget=(await c.query('SELECT hero_id,level,star,locked,state FROM player_heroes WHERE account_id=$1 AND sid=$2 FOR UPDATE',[id,sid])).rows[0];
+   if(!lockedTarget||lockedTarget.hero_id!==hero.HeroId||lockedTarget.star!==hero.StarLevel){
+    await c.query('ROLLBACK');return reply.code(409).send({error:'hero_changed'});
+   }
+   const lockedFodder=fodder.length?(await c.query(
+    'SELECT sid,hero_id,level,star,locked FROM player_heroes WHERE account_id=$1 AND sid=ANY($2::int[]) ORDER BY sid FOR UPDATE',
+    [id,fodder])).rows:[] as {sid:number;hero_id:number;level:number;star:number;locked:boolean}[];
+   const still=lockedFodder.map(f=>({sid:f.sid,heroId:f.hero_id,star:f.star,locked:f.locked}));
+   if(lockedFodder.length!==fodder.length||
+    assignFodder(hero.HeroId,sid,heroReqs,fodder,still)?.length!==fodder.length||
+    lockedFodder.some(f=>blocked.has(f.sid))){
+    await c.query('ROLLBACK');return reply.code(409).send({error:'fodder_unavailable'});
+   }
+   const refundMap=new Map<number,number>();
+   for(const f of lockedFodder){
+    for(const [iid,n] of levelRefund(f.level))refundMap.set(iid,(refundMap.get(iid)??0)+n);
+   }
+   const refundList:[number,number][]=[...refundMap.entries()];
+   // Refund resources are usable for this same promotion, without exposing intermediate state.
+   for(const [iid,n] of refundList){
+    await c.query(`INSERT INTO player_items(account_id,item_id,amount) VALUES($1,$2,$3)
+     ON CONFLICT(account_id,item_id) DO UPDATE SET amount=player_items.amount+EXCLUDED.amount`,[id,iid,n]);
+   }
+   for(const [iid,n] of itemCost){
+    const paid=await c.query('UPDATE player_items SET amount=amount-$3 WHERE account_id=$1 AND item_id=$2 AND amount>=$3',[id,iid,n]);
+    if(paid.rowCount!==1){await c.query('ROLLBACK');return reply.code(409).send({error:'insufficient_materials',cost:itemCost})}
+   }
+   if(fodder.length){
+    const removed=await c.query('DELETE FROM player_heroes WHERE account_id=$1 AND sid=ANY($2::int[]) RETURNING sid',[id,fodder]);
+    if(removed.rowCount!==fodder.length)throw Error('fodder_count_changed');
+   }
+   const cap=starMaxLevel(newStar);
+   const level=Math.min(hero.Level,cap||hero.Level);
+   const promoted={...hero,StarLevel:newStar,Level:level};
+   const gear=await heroGear(s,id,sid);
+   const base=calculateGrowthHero(promoted.HeroId,level,newStar,false,gear.extra,gear.powerBonus);
+   const state={...promoted,SkinId:0,Attrs:base.attrs,Skills:base.skills,Power:base.power};
+   const changed=await c.query(
+    'UPDATE player_heroes SET level=$3,star=$4,power=$5,state=$6 WHERE account_id=$1 AND sid=$2',
+    [id,sid,level,newStar,base.power,JSON.stringify(state)],
+   );
+   if(changed.rowCount!==1)throw Error('target_hero_missing');
+   await c.query('COMMIT');
+   const updated=enrich({...promoted,Power:base.power},gear.extra,gear.powerBonus);
+   return {ok:true,cost:itemCost,fodder,refund:refundList,hero:updated,heroes:await enrichAll(s,id,await getHeroes(s,id))};
+  }catch(e){await c.query('ROLLBACK');throw e}
+  finally{c.release()}
  });
 
  app.post<{Params:{sid:string};Body:{type:number;count?:number;materials?:number[];auto?:boolean}}>('/v1/heroes/:sid/talent',{
