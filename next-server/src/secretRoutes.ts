@@ -9,7 +9,7 @@ import {reportHeroes} from './battle/reportHeroes.js';
 import {simulate,type Fighter} from './battle/simulation.js';
 import {battleRandom} from './battle/random.js';
 import {randomUUID,randomInt} from 'node:crypto';
-import {secretFloor,secretMonster,secretMap,secretProp,selectPower,makeFloor,monsterCell,monsterRewards,secretDefenders,neighbours,weighted,GRASS_OUTCOMES,RESURRECTION_PRICES,SECRET_PERIOD_MS,startOfSecretPeriod,type SecretCell} from './secretConfig.js';
+import {secretFloor,secretMonster,secretMap,secretProp,selectPower,makeFloor,monsterCell,monsterRewards,secretDefenders,neighbours,weighted,GRASS_OUTCOMES,RESURRECTION_PRICES,SECRET_PERIOD_MS,startOfSecretPeriod,defeatSecretCell,survivingMonsterHp,type SecretCell} from './secretConfig.js';
 import {taskEvent} from './tasks.js';
 import {towerRewards} from './towerConfig.js';
 const uuidPattern='^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$';
@@ -62,13 +62,14 @@ function propAdd(row:State,type:number,count:number){
  result[idx]=[type,(result[idx][0]===type?result[idx][1]:0)+count];
  return result;
 }
-function emptyCell(cell:SecretCell,boss=false):SecretCell{
- return [...cell.slice(0,3),1,boss?6:1];
+function emptyCell(cell:SecretCell):SecretCell{
+ return [...cell.slice(0,3),1,1];
 }
 function reveal(row:State,index:number){row.cells=neighbours(row.cells,index);}
 function defeat(row:State,index:number){
- const cell=row.cells[index],boss=cell[4]===3;
- row.cells[index]=emptyCell(cell,boss);reveal(row,index);
+ const cell=row.cells[index];
+ row.cells[index]=defeatSecretCell(cell);
+ reveal(row,index);
  return monsterRewards(cell[6]);
 }
 function freshFloor(row:State){
@@ -197,11 +198,14 @@ export async function secretRoutes(app:FastifyInstance,s:Storage){
     // Keep remaining monster HP in original MapBase roster order.
     const defeated=heroes.filter(x=>x.camp===-1);
     const map=secretMap(b.map_id);
-    for(let i=0;i<Math.min(map?.heroes.length??0,5);i++){
-     const st=(map!.heroes[i][0]-1);
-     const u=defeated.find(x=>(b.report.initialUnits as {id:number;station:number}[]).find(y=>y.id===x.id)?.station===st);
-     cell[8+i]=u?Math.max(0,Math.floor(u.hp/Math.max(1,u.hpMax)*1000)):cell[8+i]??1000;
-    }
+    if(!map){await c.query('ROLLBACK');return reply.code(503).send({error:'secret_map_missing'})}
+    const initial=b.report.initialUnits as {id:number;station:number;camp:number}[];
+    const final=defeated.flatMap(x=>{
+     const unit=initial.find(y=>y.id===x.id&&y.camp===-1);
+     return unit?[{station:unit.station,hp:x.hp,hpMax:x.hpMax}]:[];
+    });
+    const hps=survivingMonsterHp(cell.slice(8,13),final,map.heroes);
+    cell.splice(8,5,...hps);
    }
    await save(c,id,row);
    const settlement={battleId:b.id,result:won?1:0,mapId:b.map_id,floor:row.floor,cellIndex:b.cell_index,rewards};

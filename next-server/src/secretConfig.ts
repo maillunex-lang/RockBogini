@@ -34,6 +34,21 @@ export function monsterCell(coords:number[],state:number,type:number,boss=false)
  if(!cfg?.monsters.length)throw Error('secret_monster_missing');
  return [...coords,state,boss?3:2,randomOf(cfg.monsters),type,0,1000,1000,1000,1000,1000,0,0];
 }
+/** Cell types match PveSecret @monster=2 @boss=3 @portal=6. */
+export function defeatSecretCell(cell:SecretCell):SecretCell{
+ if(cell[3]!==1||![2,3].includes(cell[4]))throw Error('secret_cell_not_monster');
+ return [...cell.slice(0,3),1,cell[4]===3?6:1];
+}
+export function survivingMonsterHp(oldHp:number[],final:{station:number;hp:number;hpMax:number}[],roster:number[][]):number[]{
+ // The original keeps defeated members at 0 so repeated fights cannot resurrect them.
+ return Array.from({length:5},(_,i)=>{
+  const previous=oldHp[i]??1000;
+  if(i>=roster.length)return 0;
+  if(previous<=0)return 0;
+  const unit=final.find(x=>x.station===roster[i][0]-1);
+  return unit?Math.max(0,Math.min(1000,Math.floor(unit.hp/Math.max(1,unit.hpMax)*1000))):previous;
+ });
+}
 export function neighbours(cells:SecretCell[],index:number):SecretCell[]{
  const original=cells[index];if(!original)return cells;
  const [x,y,z]=original;

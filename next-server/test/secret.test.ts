@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {openStorage,migrate} from '../src/storage.js';
 import {createGuest} from '../src/auth.js';
 import {buildApp} from '../src/app.js';
-import {secretFloor,secretMonsters,selectPower,makeFloor,monsterRewards,secretDefenders,secretProp,GRASS_OUTCOMES,RESURRECTION_PRICES,neighbours,SECRET_PERIOD_MS} from '../src/secretConfig.js';
+import {secretFloor,secretMonsters,selectPower,makeFloor,monsterRewards,secretDefenders,secretProp,GRASS_OUTCOMES,RESURRECTION_PRICES,neighbours,SECRET_PERIOD_MS,defeatSecretCell,survivingMonsterHp} from '../src/secretConfig.js';
 test('exact source secret area floor sizes, monsters, source weights and treasure',()=>{
  assert.deepEqual([1,2,3,4].map(i=>secretFloor(i).map.length),[79,101,133,79]);
  assert.equal(secretFloor(4).type,2);
@@ -30,6 +30,26 @@ test('exact source secret area floor sizes, monsters, source weights and treasur
  assert.equal(changed.length,79);
 });
 function secretMonsterFirst(){return secretMonsters['1'].rewards[0]}
+test('guardian becomes portal after defeat and can lead to all three exploration floors',()=>{
+ for(let floor=1;floor<=3;floor++){
+  const map=makeFloor(floor,10001);
+  const index=map.cells.findIndex(c=>c[4]===3);
+  assert.ok(index>=0);
+  const guardian=map.cells[index];
+  const portal=defeatSecretCell([...guardian.slice(0,3),1,...guardian.slice(4)]);
+  assert.deepEqual(portal.slice(3),[1,6]);
+  assert.equal(portal.length,5);
+  assert.throws(()=>defeatSecretCell(portal),/secret_cell_not_monster/);
+ }
+ const blank=makeFloor(1,10001).cells.find(c=>c[4]===1)!;
+ assert.equal(defeatSecretCell([...blank.slice(0,3),1,2,280101,1])[4],1);
+});
+test('surviving monster HP follows roster positions and does not resurrect dead foes',()=>{
+ const roster=[[5,280101],[2,280102],[9,280103]];
+ const hp=survivingMonsterHp([900,0,500,0,0],[{station:4,hp:23,hpMax:100},{station:8,hp:0,hpMax:100}],roster);
+ assert.deepEqual(hp,[230,0,0,0,0]);
+ assert.deepEqual(survivingMonsterHp([500],[{station:4,hp:80,hpMax:100}],roster),[800,1000,1000,0,0]);
+});
 test('secret map authorizes clicks, keeps fog and rejects remote/duplicate cells',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);
  const a=await createGuest(s),b=await createGuest(s);const app=await buildApp(s);
@@ -96,6 +116,82 @@ test('secret battle persistence, authorization, idempotent settlement, keep rewa
   await s.pg.query('DELETE FROM accounts WHERE id=ANY($1::uuid[])',[[a.id,b.id]]);
   await app.close();
  }
+});
+test('guardian victory opens actual portal and a click advances to floor 2',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);
+ const account=await createGuest(s),app=await buildApp(s);
+ const headers={authorization:'Bearer '+account.token};
+ const post=(path:string,body:object)=>app.inject({method:'POST',url:'/v1/secret/'+path,headers,payload:body});
+ try{
+  const first=await app.inject({url:'/v1/secret',headers});assert.equal(first.statusCode,200,first.body);
+  const cells=first.json().cells as number[][];
+  const guardian=cells.findIndex(c=>c[4]===3);
+  assert.ok(guardian>=0);
+  // Only test account's isolated map: force guardian to open, then simulate a winning
+  // battle report from trusted server storage, not forged API input.
+  cells[guardian][3]=1;
+  await s.pg.query('UPDATE secret_exploration SET cells=$2 WHERE account_id=$1',[account.id,JSON.stringify(cells)]);
+  const battle=await post('challenge',{index:guardian});
+  assert.equal(battle.statusCode,200,battle.body);
+  await s.pg.query("UPDATE secret_battles SET report=jsonb_set(report,'{summary,resultCode}','2'::jsonb) WHERE id=$1",[battle.json().battleId]);
+  const settled=await post('settle',{battleId:battle.json().battleId});
+  assert.equal(settled.statusCode,200,settled.body);
+  assert.equal(settled.json().result,1);
+  const updated=await app.inject({url:'/v1/secret',headers});
+  assert.equal(updated.statusCode,200,updated.body);
+  assert.deepEqual(updated.json().cells[guardian].slice(3),[1,6]);
+  const click=await post('click',{index:guardian});
+  assert.equal(click.statusCode,200,click.body);
+  assert.equal(click.json().floor,2);
+  assert.equal(click.json().cells.length,101);
+  const reloaded=await app.inject({url:'/v1/secret',headers});
+  assert.equal(reloaded.json().floor,2);
+  assert.equal(reloaded.json().cells.length,101);
+ }finally{
+  await s.pg.query('DELETE FROM accounts WHERE id=$1',[account.id]);await app.close();
+ }
+});
+test('failed secret battle saves monster HP and excludes enemies with zero HP on next challenge',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);const a=await createGuest(s),app=await buildApp(s);
+ const headers={authorization:'Bearer '+a.token};
+ const post=(path:string,body:object)=>app.inject({method:'POST',url:'/v1/secret/'+path,headers,payload:body});
+ try{
+  const map=await app.inject({url:'/v1/secret',headers});
+  assert.equal(map.statusCode,200,map.body);
+  const cells=map.json().cells as number[][];
+  const monster=cells.findIndex(c=>c[4]===2);
+  assert.ok(monster>=0);
+  cells[monster][3]=1;
+  const old=cells[monster].slice(8,13);
+  await s.pg.query('UPDATE secret_exploration SET cells=$2 WHERE account_id=$1',[a.id,JSON.stringify(cells)]);
+  const battle=await post('challenge',{index:monster});
+  assert.equal(battle.statusCode,200,battle.body);
+  const initial=battle.json().initialUnits as {id:number;station:number;camp:number}[];
+  const defenders=initial.filter(u=>u.camp===-1);
+  assert.ok(defenders.length>1);
+  const defenderId=defenders[0].id;
+  // Battle runner is server authoritative; test updates only its isolated DB report
+  // to make the failed 5-person battle deterministic and validate settlement logic.
+  const stored=(await s.pg.query('SELECT report FROM secret_battles WHERE id=$1',[battle.json().battleId])).rows[0].report;
+  stored.summary.resultCode=3;
+  const enemy=stored.summary.heroes.find((x:{id:number})=>x.id===defenderId);
+  enemy.hp=0;
+  await s.pg.query('UPDATE secret_battles SET report=$2 WHERE id=$1',[battle.json().battleId,JSON.stringify(stored)]);
+  const settled=await post('settle',{battleId:battle.json().battleId});
+  assert.equal(settled.statusCode,200,settled.body);
+  assert.equal(settled.json().result,0);
+  const state=(await app.inject({url:'/v1/secret',headers})).json();
+  assert.equal(state.cells[monster][8+defenders.findIndex(u=>u.id===defenderId)],0);
+  // A defeated attacker squad may have no survivors, in which case recovery
+  // is required before a re-challenge. Use an original resurrection prop.
+  await s.pg.query('UPDATE secret_exploration SET props=$2 WHERE account_id=$1',[a.id,JSON.stringify([[3,1],[0,0],[0,0]])]);
+  const revived=await post('use-prop',{slot:0});
+  assert.equal(revived.statusCode,200,revived.body);
+  const retry=await post('challenge',{index:monster});
+  assert.equal(retry.statusCode,200,retry.body);
+  assert.equal(retry.json().initialUnits.filter((u:{camp:number})=>u.camp===-1).length,defenders.length-1);
+  assert.deepEqual(old,[1000,1000,1000,1000,1000]);
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
 });
 test('secret items and treasure are transactional and cannot be duplicated',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);const a=await createGuest(s);const app=await buildApp(s);
