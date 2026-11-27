@@ -343,6 +343,9 @@ export async function migrate(s:Storage){
  await c.query('INSERT INTO schema_migrations(version) VALUES(31) ON CONFLICT DO NOTHING');
  await c.query('ALTER TABLE tower_progress ADD COLUMN IF NOT EXISTS pay_count integer NOT NULL DEFAULT 0 CHECK(pay_count>=0)');
  await c.query('INSERT INTO schema_migrations(version) VALUES(32) ON CONFLICT DO NOTHING');
+ await c.query(`ALTER TABLE player_profiles ADD COLUMN IF NOT EXISTS highest_power bigint NOT NULL DEFAULT 1372 CHECK(highest_power>=0)`);
+ await c.query(`UPDATE player_profiles SET highest_power=GREATEST(highest_power,power) WHERE highest_power<power`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(33) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }

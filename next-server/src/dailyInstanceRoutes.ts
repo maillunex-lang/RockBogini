@@ -58,7 +58,7 @@ export async function dailyInstanceRoutes(app:FastifyInstance,s:Storage){
       rewards:dailyRewards(cfg.id,next!)}:null,
      freeLeft:Math.max(FREE_DAILY-row.free_battle_count,0),paidLeft:Math.max(PAID_DAILY-row.paid_battle_count,0),
      battlePrice:cfg.battlePrice,clearedRewards:clearedCfg?dailyRewards(cfg.id,row.cleared_map_id):[],
-     canChallenge:!!next&&Number(profile.power)>=Number(nextCfg!.stage.requirePower)});
+     canChallenge:!!next&&Number(profile.highest_power)>=Number(nextCfg!.stage.requirePower)});
    }
    await c.query('COMMIT');return {instances,day:dailyDay(),freeMax:FREE_DAILY,paidMax:PAID_DAILY};
   }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
@@ -73,12 +73,12 @@ export async function dailyInstanceRoutes(app:FastifyInstance,s:Storage){
   const c=await s.pg.connect();
   try{
    await c.query('BEGIN');
-   const profile=(await c.query('SELECT power FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id])).rows[0];
+   const profile=(await c.query('SELECT highest_power FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id])).rows[0];
    const row=await progress(c,id,type);
    // Original gate: stage index <= cleared count, so replaying a cleared stage is allowed.
    const cleared=cfg.maps.indexOf(row.cleared_map_id)+1;
    if(stage.index>cleared){await c.query('ROLLBACK');return reply.code(409).send({error:'daily_stage_locked'})}
-   if(Number(profile.power)<stage.stage.requirePower){
+   if(Number(profile.highest_power)<stage.stage.requirePower){
     await c.query('ROLLBACK');return reply.code(409).send({error:'daily_power_low',required:stage.stage.requirePower});
    }
    let attackers:Awaited<ReturnType<typeof prepareSquad>>;

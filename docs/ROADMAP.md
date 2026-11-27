@@ -1,3 +1,6 @@
+## NEXT-021.7: допуск в ежедневные подземелья по историческому максимуму мощности, 2026-11-27
+Выполнено source parity: persisted highest_power, migration33, формация и профиль, GET+challenge DailyInstance по рекорду, isolated 192/192 PASS. Открыто: VIP бонусы DailyInstance, другие PvE режимы, визуальный QA и браузерные интеграционные проверки. Отчёт reports/NEXT-021.7-daily-highest-power-2026-11-27.md.
+
 ## NEXT-021.6: покупные попытки и доступ к высшим башням, 2026-11-27
 Выполнены source-based LevelParam198 и GlobalSetting лимиты/покупки, проверка GameModule 2029–2034 перед действиями, миграция32, API/UI и atomic diamonds. Isolated 191/191 PASS. Далее: динамические награды/баланс PvE, другие PvE режимы, визуальная сверка и ручной тест авторизованных пользователей. Отчёт reports/NEXT-021.6-tower-purchased-attempts-2026-11-27.md.
 

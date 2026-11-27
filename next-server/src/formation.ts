@@ -25,7 +25,7 @@ export async function formationRoutes(app:FastifyInstance,s:Storage){
  if(owned.rowCount!==used.length){await c.query('ROLLBACK');return reply.code(400).send({error:'hero_not_owned'})}
  const power=owned.rows.reduce((n,h)=>n+h.power,0);
  await c.query('INSERT INTO player_formations(account_id,formation_type,hero_ids) VALUES($1,$2,$3) ON CONFLICT(account_id) DO UPDATE SET formation_type=EXCLUDED.formation_type,hero_ids=EXCLUDED.hero_ids',[id,formation_type,hero_ids]);
- await c.query('UPDATE player_profiles SET power=$2 WHERE account_id=$1',[id,power]);
+ await c.query('UPDATE player_profiles SET power=$2,highest_power=GREATEST(highest_power,$2::bigint) WHERE account_id=$1',[id,power]);
  await c.query('COMMIT');return {formation_type,hero_ids,power};
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
  });

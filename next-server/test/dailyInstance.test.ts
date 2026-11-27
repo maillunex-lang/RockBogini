@@ -69,16 +69,50 @@ test('daily instance unlock, settlement, reward isolation, free and paid sweep, 
   await app.close();
  }
 });
+test('daily instance uses historical highest formation power after reducing the active squad',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);
+ const a=await createGuest(s),app=await buildApp(s);
+ const headers={authorization:'Bearer '+a.token};
+ const put=(hero_ids:number[])=>app.inject({method:'PUT',url:'/v1/formation',headers,payload:{formation_type:101,hero_ids}});
+ try{
+  const profile=await app.inject({url:'/v1/profile',headers});
+  assert.equal(profile.statusCode,200);
+  assert.ok(Number(profile.json().highest_power)>=Number(profile.json().power));
+  const high=await put([1001,1002,1003,0,0,0]);
+  assert.equal(high.statusCode,200,high.body);
+  const record=high.json().power;
+  const low=await put([1001,0,0,0,0,0]);
+  assert.equal(low.statusCode,200,low.body);
+  assert.ok(low.json().power<record);
+  const after=(await app.inject({url:'/v1/profile',headers})).json();
+  assert.equal(after.power,low.json().power);
+  assert.equal(after.highest_power,record);
+  const next=(await app.inject({url:'/v1/daily-instance',headers})).json().instances[0];
+  assert.equal(next.canChallenge,record>=next.nextMap.requirePower);
+  const result=await app.inject({method:'POST',url:'/v1/daily-instance/challenge',headers,payload:{type:1,mapId:10101}});
+  assert.equal(result.statusCode,record>=1000?200:409,result.body);
+  if(result.statusCode===200){
+   const cancel=await app.inject({method:'POST',url:'/v1/daily-instance/cancel',headers,payload:{battleId:result.json().battleId}});
+   assert.equal(cancel.statusCode,200);
+  }
+  await s.pg.query('UPDATE player_profiles SET highest_power=1,power=1 WHERE account_id=$1',[a.id]);
+  const locked=await app.inject({method:'POST',url:'/v1/daily-instance/challenge',headers,payload:{type:1,mapId:10101}});
+  assert.equal(locked.statusCode,409);
+  assert.equal(locked.json().error,'daily_power_low');
+  const current=(await app.inject({url:'/v1/daily-instance',headers})).json().instances[0];
+  assert.equal(current.canChallenge,false);
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
+});
 test('daily instance refuses insufficient power and preserves previous challenge when replaced',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);const a=await createGuest(s);const app=await buildApp(s);
  const headers={authorization:'Bearer '+a.token};
  const post=(path:string,body:object)=>app.inject({method:'POST',url:'/v1/daily-instance/'+path,headers,payload:body});
  try{
   await app.inject({url:'/v1/profile',headers});
-  await s.pg.query('UPDATE player_profiles SET power=1 WHERE account_id=$1',[a.id]);
+  await s.pg.query('UPDATE player_profiles SET power=1,highest_power=1 WHERE account_id=$1',[a.id]);
   assert.equal((await post('challenge',{type:1,mapId:10101})).statusCode,409);
   assert.equal((await post('challenge',{type:1,mapId:10101})).json().error,'daily_power_low');
-  await s.pg.query('UPDATE player_profiles SET power=1000000 WHERE account_id=$1',[a.id]);
+  await s.pg.query('UPDATE player_profiles SET power=1000000,highest_power=1000000 WHERE account_id=$1',[a.id]);
   const first=await post('challenge',{type:1,mapId:10101});assert.equal(first.statusCode,200,first.body);
   const second=await post('challenge',{type:1,mapId:10101});assert.equal(second.statusCode,200,second.body);
   assert.equal((await post('settle',{battleId:first.json().battleId})).statusCode,409);

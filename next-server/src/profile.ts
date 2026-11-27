@@ -6,13 +6,13 @@ export async function getProfile(s:Storage,id:string){
  const c=await s.pg.connect();
  try{
  await c.query('BEGIN');
- const created=await c.query('INSERT INTO player_profiles(account_id,nickname) VALUES($1,$2) ON CONFLICT DO NOTHING RETURNING account_id',[id,'User'+id.replace(/-/g,'').slice(0,12)]);
+ const created=await c.query('INSERT INTO player_profiles(account_id,nickname,highest_power) VALUES($1,$2,1372) ON CONFLICT DO NOTHING RETURNING account_id',[id,'User'+id.replace(/-/g,'').slice(0,12)]);
  if(created.rowCount)await c.query('INSERT INTO player_items(account_id,item_id,amount) VALUES($1,110010,3)',[id]);
- const profile=(await c.query('SELECT account_id,nickname,level,avatar,frame,power,stage,rename_count,created_at FROM player_profiles WHERE account_id=$1',[id])).rows[0];
+ const profile=(await c.query('SELECT account_id,nickname,level,avatar,frame,power,highest_power,stage,rename_count,created_at FROM player_profiles WHERE account_id=$1',[id])).rows[0];
  const items=(await c.query('SELECT item_id,amount::text FROM player_items WHERE account_id=$1 ORDER BY item_id',[id])).rows;
  await c.query('COMMIT');
  const balances=Object.fromEntries(items.map(x=>[x.item_id,x.amount]));
- return {...profile,power:Number(profile.power),experience:balances[5]??'0',currencies:{coin:balances[1]??'0',diamond:balances[3]??'0',colorDiamond:balances[4]??'0',intelligence:balances[7]??'0',vipPoint:balances[2]??'0',xpWater:balances[22]??'0'}};
+ return {...profile,power:Number(profile.power),highest_power:Number(profile.highest_power),experience:balances[5]??'0',currencies:{coin:balances[1]??'0',diamond:balances[3]??'0',colorDiamond:balances[4]??'0',intelligence:balances[7]??'0',vipPoint:balances[2]??'0',xpWater:balances[22]??'0'}};
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }
 export async function profileRoutes(app:FastifyInstance,s:Storage){
