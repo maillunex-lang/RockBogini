@@ -38,3 +38,14 @@
 - Гильдейские боссы отключены до этапа PvP/гильдий; рейтингные рассылки, события/задания и дополнительные типы ActivityBoss/HeroTest ещё не реализованы.
 - Два имеющихся WorldBoss завершились 1 ноября 2026; новое расписание без официального источника не выдумано.
 - Имеются изолированные интеграционные тесты, но нет ручного полного браузерного сценария авторизованного игрока. NEXT-021 остается `in_progress`.
+
+## Выпуск на VPS
+- Изолированная регрессия Termalin `vy9u7fvbj8` завершилась с exit 0: **172 / 172 PASS**, **0 FAIL**, **0 SKIP**.
+- Исходники опубликованы в GitHub `main`, базовый коммит `6e74397`.
+- Резервная копия до обновления `/var/backups/rockbogini-next-pre-secret-boss-20261127.dump` (117 KiB), прежний Docker-образ `rockbogini-next-api:pre-secret-boss-0213b`.
+- Новый образ `rockbogini-next-api:latest` успешно собран с Docker build exit0 и установлен только через `docker compose -p rockbogini-next up -d --no-deps --no-build api`.
+- Public `/sexyidle/api/ready`: **HTTP 200** `{"ready":true}`.
+- Public `/sexyidle/api/v1/secret` без сессии: **HTTP 401**, ожидаемая защита.
+- Public `/sexyidle/api/v1/world-boss` без сессии: **HTTP 401**, ожидаемая защита.
+- В производственной PostgreSQL `schema_migrations` = **28**. Docker API, PostgreSQL и Redis **healthy**; фронтенд обновлён в `/var/www/sexyidle/`, entry `assets/main-0IN0cC61.js`.
+- Свободно 14 GiB; рабочий каталог Git чистый. Ручной браузерный тест внутри реального аккаунта не выполнен.
