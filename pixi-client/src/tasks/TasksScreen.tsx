@@ -12,7 +12,7 @@ type ChestNode={
 };
 type PointTrack={type:number;point:number;nodes:ChestNode[]};
 type TasksView={
- daily:Task[];weekly:Task[];points:PointTrack[];
+ main:Task[];daily:Task[];weekly:Task[];points:PointTrack[];
  dailyDay:string;weeklyDay:string;
 };
 
@@ -20,13 +20,21 @@ const COND_LABEL:Record<number,string>={
  1062:'Вход в игру',
  1002:'Сбор зависания',
  1010:'Быстрая битва',
+ 2001:'Пройдено этапов кампании',
+ 2003:'Уровень игрока',
+ 2004:'Боевая мощь',
+ 2007:'Героев нужного уровня',
+ 1017:'Получено героев 4★',
+ 1027:'Получено героев 6★',
+ 1004:'Улучшенный призыв',
+ 1012:'Пророческий призыв',
  1005:'Призыв',
  1046:'Покупка в магазине',
- 1003:'Кампания',
- 1008:'Герои',
- 1006:'Улучшение',
- 1009:'Расход энергии',
- 1007:'Бой',
+ 1003:'Отправка отряда',
+ 1008:'Покупка золота',
+ 1006:'Сражения на арене',
+ 1009:'Быстрое прохождение ежедневного подземелья',
+ 1007:'Броски в реликвиях',
 };
 
 function taskTitle(t:Task){
@@ -42,7 +50,7 @@ function rewardText(rows:number[][]){
 
 export function TasksScreen({api,token,onClose}:{api:string;token:string;onClose:()=>void}){
  const [data,setData]=useState<TasksView|null>(null);
- const [tab,setTab]=useState<'daily'|'weekly'>('daily');
+ const [tab,setTab]=useState<'main'|'daily'|'weekly'>('main');
  const [status,setStatus]=useState('Загрузка…');
  const [busy,setBusy]=useState(false);
 
@@ -92,18 +100,19 @@ export function TasksScreen({api,token,onClose}:{api:string;token:string;onClose
   finally{setBusy(false)}
  };
 
- const list=tab==='daily'?data?.daily??[]:data?.weekly??[];
- const track=data?.points.find(p=>p.type===(tab==='daily'?2:3));
+ const list=tab==='main'?data?.main??[]:tab==='daily'?data?.daily??[]:data?.weekly??[];
+ const track=tab==='main'?undefined:data?.points.find(p=>p.type===(tab==='daily'?2:3));
  const readyIds=list.filter(t=>t.ready).map(t=>t.id);
 
  return <main className="tasks-screen">
   <header>
    <div>
     <h1>Задания</h1>
-    {data&&<p>{tab==='daily'?`День ${data.dailyDay}`:`Неделя с ${data.weeklyDay}`}</p>}
+    {data&&<p>{tab==='main'?'Оригинальная сюжетная цепочка · 26 заданий':tab==='daily'?`День ${data.dailyDay}`:`Неделя с ${data.weeklyDay}`}</p>}
    </div>
    <div className="tasks-header-actions">
     <div className="tasks-tabs" role="group">
+     <button type="button" aria-pressed={tab==='main'} onClick={()=>setTab('main')}>Сюжет</button>
      <button type="button" aria-pressed={tab==='daily'} onClick={()=>setTab('daily')}>Ежедневные</button>
      <button type="button" aria-pressed={tab==='weekly'} onClick={()=>setTab('weekly')}>Еженедельные</button>
     </div>
@@ -131,14 +140,14 @@ export function TasksScreen({api,token,onClose}:{api:string;token:string;onClose
     Забрать всё ({readyIds.length})
    </button>
   </div>}
-  <section className="tasks-list" aria-label={tab==='daily'?'Ежедневные':'Еженедельные'}>
+  <section className="tasks-list" aria-label={tab==='main'?'Сюжетные задания':tab==='daily'?'Ежедневные':'Еженедельные'}>
    {list.map(t=>{
     const done=t.completed;
     const ready=t.ready;
     return <article key={t.id} data-ready={ready?'1':'0'} data-done={done?'1':'0'}>
      <div>
       <strong>{taskTitle(t)}</strong>
-      <span>{Math.min(t.progress,t.totalCount)} / {t.totalCount} · +{t.point} очк.</span>
+      <span>{Math.min(t.progress,t.totalCount)} / {t.totalCount}{tab==='main'?'':` · +${t.point} очк.`}</span>
       <span>{rewardText(t.rewards)}</span>
      </div>
      <button type="button" disabled={busy||!ready} onClick={()=>void claimTasks([t.id])}>

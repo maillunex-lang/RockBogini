@@ -1,0 +1,213 @@
+{
+  "source": "/home/gamedev/QueensBladeH5/racon2-main/client/config/configure/adb180f682d59bf5f1f328aa18699f8c/PioneeringAchievement",
+  "sha256": "e535b05d7e3931bfcae04a1ade2acbb91b68bcba7e804f21548ea678d7f823ec",
+  "count": 4,
+  "byType": {
+    "3": 1,
+    "2": 1,
+    "4": 2
+  },
+  "newbieMainTask": 26,
+  "examples": [
+    {
+      "id": 3002,
+      "params": [
+        3,
+        5
+      ],
+      "uniqueReward": [
+        [
+          3344,
+          1
+        ]
+      ],
+      "rewardsForAll": [
+        [
+          3,
+          300
+        ]
+      ],
+      "sortId": 3
+    },
+    {
+      "id": 3003,
+      "params": [
+        2,
+        10000000000
+      ],
+      "uniqueReward": [
+        [
+          3345,
+          1
+        ]
+      ],
+      "rewardsForAll": [
+        [
+          3,
+          300
+        ]
+      ],
+      "sortId": 4
+    },
+    {
+      "id": 3004,
+      "params": [
+        4,
+        1
+      ],
+      "uniqueReward": [
+        [
+          3343,
+          1
+        ]
+      ],
+      "rewardsForAll": [
+        [
+          3,
+          300
+        ]
+      ],
+      "sortId": 2
+    },
+    {
+      "id": 3005,
+      "params": [
+        4,
+        2
+      ],
+      "uniqueReward": [
+        [
+          3365,
+          1
+        ]
+      ],
+      "rewardsForAll": [
+        [
+          3,
+          300
+        ]
+      ],
+      "sortId": 1
+    }
+  ],
+  "taskBaseSource": "/home/gamedev/QueensBladeH5/racon2-main/client/config/configure/0918d8b27281717469f268f98f55e2fd/TaskBase",
+  "taskBaseCount": 295,
+  "newbieResolved": 26,
+  "newbieConditions": {
+    "2001": 5,
+    "1017": 1,
+    "2007": 2,
+    "1004": 1,
+    "2004": 1,
+    "1068": 1,
+    "1067": 1,
+    "1009": 1,
+    "2003": 3,
+    "1026": 1,
+    "2006": 2,
+    "1008": 2,
+    "1012": 1,
+    "1006": 1,
+    "1007": 1,
+    "1010": 1,
+    "1027": 1
+  },
+  "newbieExamples": [
+    {
+      "id": 11901,
+      "type": 1,
+      "condition": [
+        2001
+      ],
+      "totalCount": 1,
+      "point": 0,
+      "startProgress": 0,
+      "sortId": 11901,
+      "rewards": [
+        [
+          3,
+          100
+        ]
+      ],
+      "newbieSortId": 100,
+      "newbieId": 1
+    },
+    {
+      "id": 11902,
+      "type": 1,
+      "condition": [
+        1017
+      ],
+      "totalCount": 1,
+      "point": 0,
+      "startProgress": 0,
+      "sortId": 11902,
+      "rewards": [
+        [
+          22,
+          10000
+        ]
+      ],
+      "newbieSortId": 200,
+      "newbieId": 2
+    },
+    {
+      "id": 11903,
+      "type": 1,
+      "condition": [
+        2007,
+        5
+      ],
+      "totalCount": 1,
+      "point": 0,
+      "startProgress": 0,
+      "sortId": 11903,
+      "rewards": [
+        [
+          22,
+          10000
+        ]
+      ],
+      "newbieSortId": 300,
+      "newbieId": 3
+    },
+    {
+      "id": 11904,
+      "type": 1,
+      "condition": [
+        1004
+      ],
+      "totalCount": 10,
+      "point": 0,
+      "startProgress": 0,
+      "sortId": 11904,
+      "rewards": [
+        [
+          3,
+          100
+        ]
+      ],
+      "newbieSortId": 400,
+      "newbieId": 4
+    },
+    {
+      "id": 11905,
+      "type": 1,
+      "condition": [
+        2001
+      ],
+      "totalCount": 5,
+      "point": 0,
+      "startProgress": 0,
+      "sortId": 11905,
+      "rewards": [
+        [
+          22,
+          10000
+        ]
+      ],
+      "newbieSortId": 500,
+      "newbieId": 5
+    }
+  ]
+}

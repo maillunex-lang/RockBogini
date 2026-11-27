@@ -17,8 +17,17 @@ type TaskRow={task_id:number;progress:number;completed:boolean};
 const cfg=JSON.parse(readFileSync(new URL('../../data/tasks.json',import.meta.url),'utf8')) as {
  tasks:Record<string,TaskCfg>;pointRewards:Record<string,PointCfg>;pointTypes:Record<string,PointType>;
 };
-const TASKS=Object.values(cfg.tasks).sort((a,b)=>a.type-b.type||a.sortId-b.sortId||a.id-b.id);
-const BY_ID=cfg.tasks;
+type MainTaskCfg=TaskCfg&{newbieSortId:number;newbieId:number};
+const MAIN=JSON.parse(readFileSync(new URL('../../data/newbie-main-task-conditions.json',import.meta.url),'utf8')) as Record<string,MainTaskCfg>;
+const TASKS=[...Object.values(cfg.tasks),...Object.values(MAIN)]
+ .sort((a,b)=>a.type-b.type||a.sortId-b.sortId||a.id-b.id);
+const BY_ID:Record<string,TaskCfg>={...cfg.tasks,...MAIN};
+const MAIN_SORTED=Object.values(MAIN).sort((a,b)=>a.newbieSortId-b.newbieSortId||a.id-b.id);
+const mapData=JSON.parse(readFileSync(new URL('../../data/campaign-map-meta.json',import.meta.url),'utf8')) as {
+ maps:Record<string,{type:number}>;
+};
+const MAIN_MAP_IDS=Object.entries(mapData.maps)
+ .filter(([,r])=>r.type===1).map(([id])=>Number(id)).sort((a,b)=>a-b);
 const BY_COND=new Map<number,TaskCfg[]>();
 for(const t of TASKS){
  const c=t.condition[0]??0;
@@ -119,6 +128,32 @@ async function resetType(c:PoolClient,id:string,type:number){
  }
 }
 
+/** Original Racon.Game.Tasks.sync_core_state: authoritative progression, no guessed events.
+ * Conditions: 2001 stages cleared, 2003 profile level, 2004 power,
+ * 2007 number of heroes at least requested level.
+ */
+export async function syncMainTaskState(c:PoolClient,id:string){
+ const profile=(await c.query('SELECT level,power,stage FROM player_profiles WHERE account_id=$1',[id])).rows[0] as
+  {level:number;power:number;stage:number}|undefined;
+ if(!profile)return;
+ const heroes=(await c.query('SELECT level FROM player_heroes WHERE account_id=$1',[id])).rows as {level:number}[];
+ const cleared=MAIN_MAP_IDS.filter(mapId=>mapId<profile.stage).length;
+ for(const t of MAIN_SORTED){
+  const type=t.condition[0]??0;
+  let progress:number|undefined;
+  if(type===2001)progress=cleared;
+  if(type===2003)progress=profile.level;
+  if(type===2004)progress=profile.power;
+  if(type===2007)progress=heroes.filter(x=>x.level>=(t.condition[1]??0)).length;
+  if(progress===undefined)continue;
+  // completed means claimed; keep old progress and never overwrite an already claimed task.
+  await c.query(
+   'UPDATE player_tasks SET progress=GREATEST(progress,$3) WHERE account_id=$1 AND task_id=$2 AND completed=false',
+   [id,t.id,progress],
+  );
+ }
+}
+
 /** Bump matching incomplete tasks. Call inside a transaction with profile locked. */
 export async function taskEvent(c:PoolClient,id:string,cond:number,params:number[]=[],n=1){
  await ensureMeta(c,id);
@@ -144,6 +179,7 @@ export async function taskRoutes(app:FastifyInstance,s:Storage){
    await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
    const meta=await ensureMeta(c,id);
    await taskEvent(c,id,TASK_LOGIN,[],1);
+   await syncMainTaskState(c,id);
    const rows=(await c.query(
     'SELECT task_id,progress,completed FROM player_tasks WHERE account_id=$1',[id],
    )).rows as TaskRow[];
@@ -157,6 +193,16 @@ export async function taskRoutes(app:FastifyInstance,s:Storage){
     return {
      id:t.id,type:t.type,condition:t.condition,totalCount:t.totalCount,point:t.point,
      sortId:t.sortId,rewards:t.rewards,progress,completed,ready,
+    };
+   });
+   const main=MAIN_SORTED.map(t=>{
+    const r=byId.get(t.id);
+    const progress=Number(r?.progress??t.startProgress);
+    const completed=!!r?.completed;
+    return {
+     id:t.id,type:t.type,condition:t.condition,totalCount:t.totalCount,
+     sortId:t.newbieSortId,rewards:t.rewards,
+     progress,completed,ready:!completed&&progress>=t.totalCount,
     };
    });
    const chests=[2,3].map(type=>{
@@ -173,6 +219,7 @@ export async function taskRoutes(app:FastifyInstance,s:Storage){
     return {type,point:st.point,nodes};
    });
    return {
+    main,
     daily:list.filter(t=>t.type===2),
     weekly:list.filter(t=>t.type===3),
     points:chests,
@@ -196,6 +243,7 @@ export async function taskRoutes(app:FastifyInstance,s:Storage){
    await c.query('BEGIN');
    await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
    const meta=await ensureMeta(c,id);
+   await syncMainTaskState(c,id);
    const rewards:number[][]=[];
    const claimed:number[]=[];
    for(const taskId of req.body.taskIds){
