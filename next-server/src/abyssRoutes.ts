@@ -4,9 +4,9 @@ import type {PoolClient} from 'pg';
 import type {Storage} from './storage.js';
 import {sessionAccount} from './auth.js';
 import {getProfile} from './profile.js';
-import {prepareSquad} from './battleUnits.js';
-import {abyssAttackers,savedAbyssRoster,checkSingleRoster} from './abyssFormation.js';
+import {abyssAttackers,savedAbyssRoster,checkSingleRoster,checkTeamRoster} from './abyssFormation.js';
 import {getHeroes} from './heroes.js';
+import {formations} from './formationConfig.js';
 import {reportHeroes} from './battle/reportHeroes.js';
 import {simulate,type Fighter} from './battle/simulation.js';
 import {battleRandom} from './battle/random.js';
@@ -84,9 +84,10 @@ export async function abyssRoutes(app:FastifyInstance,s:Storage){
   const id=await account(req,s);if(!id)return reply.code(401).send({error:'invalid_session'});
   const roster=await savedAbyssRoster(s,id);
   const heroes=await getHeroes(s,id);
-  return {single:roster.single,team:roster.team,
+  return {single:roster.single,team:roster.team,teamType:roster.teamType,
    heroOptions:heroes.map(h=>({sid:h.Sid,heroId:h.HeroId,power:h.Power})),
-   positions:[2,5,8],formationSids:[101,102,103],formationType:902};
+   positions:[2,5,8],formationSids:[101,102,103],formationType:902,
+   teamSid:7,teamLayouts:formations.map(f=>({id:f.Id,positions:f.Data}))};
  });
  app.put<{Body:{single:number[]}}>('/v1/abyss/formation',{
   schema:{body:{type:'object',required:['single'],additionalProperties:false,
@@ -111,6 +112,32 @@ export async function abyssRoutes(app:FastifyInstance,s:Storage){
    return {single:ids,positions:[2,5,8],formationSids:[101,102,103]};
   }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
  });
+ app.put<{Body:{team:number[];teamType:number}}>('/v1/abyss/team',{
+  schema:{body:{type:'object',required:['team','teamType'],additionalProperties:false,
+   properties:{team:{type:'array',minItems:6,maxItems:6,items:{type:'integer',minimum:0,maximum:2147483647}},
+    teamType:{type:'integer',enum:[101,102,103,104,105,106]}}}},
+ },async(req,reply)=>{
+  const id=await account(req,s);if(!id)return reply.code(401).send({error:'invalid_session'});
+  const ids=req.body.team,formationType=req.body.teamType;
+  if(!checkTeamRoster(ids,formationType))return reply.code(400).send({error:'invalid_abyss_formation'});
+  await getHeroes(s,id);await getProfile(s,id);
+  const c=await s.pg.connect();
+  try{
+   await c.query('BEGIN');
+   const p=(await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id])).rows[0];
+   if(!p){await c.query('ROLLBACK');return reply.code(404).send({error:'profile_not_found'})}
+   const pending=(await c.query('SELECT battle_id FROM abyss_pending WHERE account_id=$1',[id])).rows[0];
+   if(pending){await c.query('ROLLBACK');return reply.code(409).send({error:'abyss_battle_pending'})}
+   const used=ids.filter(x=>x>0);
+   const owned=(await c.query('SELECT sid FROM player_heroes WHERE account_id=$1 AND sid=ANY($2::integer[])',[id,used])).rows;
+   if(owned.length!==used.length){await c.query('ROLLBACK');return reply.code(409).send({error:'hero_not_owned'})}
+   await c.query('INSERT INTO player_formations(account_id) VALUES($1) ON CONFLICT DO NOTHING',[id]);
+   await c.query('UPDATE player_formations SET abyss_team_hero_ids=$2,abyss_team_formation_type=$3 WHERE account_id=$1',
+    [id,ids,formationType]);
+   await c.query('COMMIT');
+   return {team:ids,teamType:formationType,teamSid:7};
+  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
+ });
  app.post<{Body:{type:number;buffIndex?:number}}>('/v1/abyss/challenge',{
   schema:{body:{type:'object',required:['type'],additionalProperties:false,properties:{
    type:{type:'integer',enum:[1,2]},buffIndex:{type:'integer',minimum:0,maximum:2},
@@ -120,8 +147,8 @@ export async function abyssRoutes(app:FastifyInstance,s:Storage){
   const type=req.body.type;
   // Build units before locking profile so the dedicated squad connection doesn't deadlock.
   await getProfile(s,id);
-  let attackers:Awaited<ReturnType<typeof prepareSquad>>;
-  try{attackers=type===1?await abyssAttackers(s,id):await prepareSquad(s,id)}catch(e){
+  let attackers:Awaited<ReturnType<typeof abyssAttackers>>;
+  try{attackers=await abyssAttackers(s,id,type as 1|2)}catch(e){
    if(e instanceof Error&&['empty_formation','empty_abyss_formation','invalid_formation','invalid_abyss_formation','hero_attributes_pending','hero_not_owned'].includes(e.message))
     return reply.code(409).send({error:e.message});
    throw e;

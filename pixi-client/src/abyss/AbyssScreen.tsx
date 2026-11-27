@@ -6,8 +6,9 @@ type Stage={id:number;monsters:number[];recommendPower:number;heroId:number;poin
 type Mode={type:number;mapIndex:number;rewardIndex:number;completedIndex:number;inBattle:boolean;
  remainingHp:Record<string,number>;buffIds:number[];options:number[];pointRewardCount:number;pointRewardKeys:number[];
  open:boolean;nextStage:Stage|null;nextWaveId:number|null;nextWavePower:number|null;available:boolean};
-type AbyssFormation={single:number[];team:number[];heroOptions:{sid:number;heroId:number;power:number}[];positions:number[];formationSids:number[];formationType:number};
-type Info={modes:Mode[];roster:{single:number[];team:number[]};pointWaves:number[];buffWaves:number[]};
+type AbyssFormation={single:number[];team:number[];teamType:number;heroOptions:{sid:number;heroId:number;power:number}[];
+ positions:number[];formationSids:number[];formationType:number;teamSid:number;teamLayouts:{id:number;positions:number[]}[]};
+type Info={modes:Mode[];roster:{single:number[];team:number[];teamType:number};pointWaves:number[];buffWaves:number[]};
 type Report={battleId:string;mapId:number;waveIndex:number;mapIndex:number;summary:{resultCode:number};pages:{dataType:number}[];heroes:{heroId:number;camp:number;statDamage:number}[]};
 type Settlement={battleId:string;mapId:number;type:number;result:number;finished:boolean;progress:number;pointRewardsAvailable:number;buffOptions:number[]};
 const names:Record<number,string>={1:'Один герой',2:'Отряд героев'};
@@ -23,6 +24,9 @@ export function AbyssScreen({api,token,onClose}:{api:string;token:string;onClose
  const [formation,setFormation]=useState<AbyssFormation|null>(null);
  const [single,setSingle]=useState<number[]>([]);
  const [formationDirty,setFormationDirty]=useState(false);
+ const [team,setTeam]=useState<number[]>([]);
+ const [teamType,setTeamType]=useState(101);
+ const [teamDirty,setTeamDirty]=useState(false);
  const request=useCallback(async<T,>(path:string,method:'GET'|'POST'|'PUT'='GET',body?:unknown):Promise<T>=>{
   const res=await fetch(api+'/v1/abyss'+path,{method,headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});
   const data=await res.json() as T&{error?:string};
@@ -32,9 +36,14 @@ export function AbyssScreen({api,token,onClose}:{api:string;token:string;onClose
  const load=useCallback(async()=>{
   const [r,f]=await Promise.all([request<Info>(''),request<AbyssFormation>('/formation')]);
   setInfo(r);setFormation(f);
-  setSingle(f.single);
+  setSingle(f.single);setTeam(f.team);setTeamType(f.teamType);
   return r;
  },[request]);
+ const saveTeam=()=>void run(async()=>{
+  if(team.filter(Boolean).length===0)throw Error('Выберите хотя бы одного героя');
+  const r=await request<{team:number[];teamType:number}>('/team','PUT',{team,teamType});
+  setTeam(r.team);setTeamType(r.teamType);setTeamDirty(false);setMessage('Отряд Бездны сохранён');
+ });
  const saveFormation=()=>void run(async()=>{
   if(single.filter(Boolean).length===0)throw Error('Выберите хотя бы одного героя');
   const r=await request<{single:number[]}>('/formation','PUT',{single});
@@ -96,6 +105,32 @@ export function AbyssScreen({api,token,onClose}:{api:string;token:string;onClose
      </div>
     </>}
 
+    {selected===2&&formation&&<>
+     <h3>Отдельный отряд Бездны · формация Sid 7</h3>
+     <p>Построение и состав для отрядного режима независимы от основного отряда.</p>
+     <label>Построение
+      <select aria-label="Построение отряда Бездны" value={teamType} disabled={busy}
+       onChange={e=>{setTeamType(Number(e.target.value));setTeamDirty(true)}}>
+       {formation.teamLayouts.map(x=><option key={x.id} value={x.id}>Построение {x.id}</option>)}
+      </select>
+     </label>
+     <div className="tower-actions">
+      {[0,1,2,3,4,5].map(i=><label key={i}>
+       Позиция {formation.teamLayouts.find(x=>x.id===teamType)?.positions[i]??i+1}
+       <select aria-label={'Герой отряда Бездны '+(i+1)} value={team[i]??0} disabled={busy}
+        onChange={e=>{
+         const sid=Number(e.target.value);
+         setTeam(old=>old.map((v,n)=>n===i?sid:sid>0&&v===sid?0:v));
+         setTeamDirty(true);
+        }}>
+        <option value={0}>Не выбран</option>
+        {formation.heroOptions.map(h=><option key={h.sid} value={h.sid}>#{h.sid} · герой {h.heroId} · {h.power.toLocaleString('ru-RU')}</option>)}
+       </select>
+      </label>)}
+      <button disabled={busy||!teamDirty||new Set(team.filter(Boolean)).size!==team.filter(Boolean).length}
+       onClick={saveTeam}>Сохранить отряд Бездны</button>
+     </div>
+    </>}
     <h3>{names[selected]} · этап {current.mapIndex+1}/70</h3>
     <p>Пройдено этапов: {current.mapIndex}. Волна: {current.rewardIndex+1}/{current.nextStage?.monsters.length??12}.</p>
     <p>{current.open?'Доступно сегодня':'В этот день закрыто'} · Карта {current.nextWaveId??'завершено'}.
@@ -107,7 +142,7 @@ export function AbyssScreen({api,token,onClose}:{api:string;token:string;onClose
       {current.options.map((id,i)=><button key={i} aria-pressed={buffIndex===i} onClick={()=>setBuffIndex(i)}>Усиление №{id}</button>)}
      </div></section>}
     <div className="tower-actions">
-     <button disabled={busy||!current.available||(selected===1&&(formationDirty||!formation?.single.some(Boolean)))||(!!current.options.length&&buffIndex===null)} onClick={challenge}>⚔️ Начать волну</button>
+     <button disabled={busy||!current.available||((selected===1&&(formationDirty||!formation?.single.some(Boolean)))||(selected===2&&(teamDirty||!formation?.team.some(Boolean))))||(!!current.options.length&&buffIndex===null)} onClick={challenge}>⚔️ Начать волну</button>
      <button disabled={busy} onClick={recover}>Восстановить бой</button>
      <button disabled={busy||current.pointRewardCount===0} onClick={points}>Получить промежуточные награды ({current.pointRewardCount})</button>
     </div>

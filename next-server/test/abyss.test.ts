@@ -4,7 +4,7 @@ import {openStorage,migrate} from '../src/storage.js';
 import {createGuest} from '../src/auth.js';
 import {buildApp} from '../src/app.js';
 import {abyssTypes,abyssStage,abyssWave,abyssDefenders,abyssBuffs,abyssPointRewards,abyssOpen,abyssParams} from '../src/abyssConfig.js';
-import {ABYSS_SINGLE_SIDS,ABYSS_SINGLE_STATIONS,checkSingleRoster,singleUnits} from '../src/abyssFormation.js';
+import {ABYSS_SINGLE_SIDS,ABYSS_SINGLE_STATIONS,checkSingleRoster,singleUnits,checkTeamRoster,teamUnits} from '../src/abyssFormation.js';
 import {starterHeroes} from '../src/starterHeroes.js';
 test('exact source abyss maps 2 modes, 140 stages, 1680 enemy waves, 12 buffs',()=>{
  assert.equal(Object.keys(abyssTypes).length,2);
@@ -78,6 +78,57 @@ test('abyss formation persists, enforces ownership and owner isolation; lone tri
   await s.pg.query('DELETE FROM accounts WHERE id=ANY($1::uuid[])',[[a.id,b.id]]);await app.close();
  }
 });
+test('Abyss team layout 7 uses original FormationType slots independent from the main squad',()=>{
+ const heroes=starterHeroes.map(x=>({...x,Attrs:x.Attrs,Skills:x.Skills,SkinId:x.SkinId})) as Parameters<typeof teamUnits>[2];
+ assert.equal(checkTeamRoster([1001,1002,1003,0,0,0],101),true);
+ assert.equal(checkTeamRoster([1001,1001,0,0,0,0],101),false);
+ assert.equal(checkTeamRoster([1001,0,0,0,0,0],905),false);
+ assert.equal(checkTeamRoster([1001,0,0],101),false);
+ const fighters=teamUnits([1001,1002,1003,0,0,0],101,heroes);
+ assert.deepEqual(fighters.map(u=>u.station),[1,3,4]);
+ assert.deepEqual(fighters.map(u=>u.id),[2,4,5]);
+ const other=teamUnits([1003,1001,0,0,0,0],102,heroes);
+ assert.deepEqual(other.map(u=>u.station),[0,2]);
+ assert.throws(()=>teamUnits([1001,99999,0,0,0,0],101,heroes),/hero_not_owned/);
+});
+test('team abyss roster persists separately, enforces ownership and rejects edits during pending battle',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);
+ const a=await createGuest(s),b=await createGuest(s),app=await buildApp(s);
+ const ha={authorization:'Bearer '+a.token},hb={authorization:'Bearer '+b.token};
+ const put=(team:number[],teamType=101,headers=ha)=>app.inject({method:'PUT',url:'/v1/abyss/team',headers,payload:{team,teamType}});
+ try{
+  assert.equal((await app.inject({method:'PUT',url:'/v1/abyss/team',payload:{team:[1001,0,0,0,0,0],teamType:101}})).statusCode,401);
+  assert.equal((await put([1001,1002,1003,0,0,0],101)).statusCode,200);
+  assert.equal((await put([1001,1001,0,0,0,0],101)).statusCode,400);
+  assert.equal((await put([1001,99999,0,0,0,0],101)).statusCode,409);
+  assert.equal((await put([1001,0,0],101)).statusCode,400);
+  assert.equal((await put([1001,0,0,0,0,0],905)).statusCode,400);
+  const own=(await app.inject({url:'/v1/abyss/formation',headers:ha})).json();
+  assert.deepEqual(own.team,[1001,1002,1003,0,0,0]);
+  assert.equal(own.teamType,101);
+  assert.equal(own.teamSid,7);
+  assert.deepEqual(own.teamLayouts.find((x:{id:number})=>x.id===101).positions,[2,4,5,6,7,9]);
+  const foreign=(await app.inject({url:'/v1/abyss/formation',headers:hb})).json();
+  assert.deepEqual(foreign.team,[0,0,0,0,0,0]);
+  const main=(await app.inject({url:'/v1/formation',headers:ha})).json();
+  assert.deepEqual(main.hero_ids,[1001,1002,0,0,0,0]);
+  const modes=(await app.inject({url:'/v1/abyss',headers:ha})).json().modes;
+  const open=modes.find((x:{type:number;open:boolean})=>x.type===2&&x.open);
+  if(open){
+   const start=await app.inject({method:'POST',url:'/v1/abyss/challenge',headers:ha,payload:{type:2}});
+   assert.equal(start.statusCode,200,start.body);
+   assert.deepEqual(start.json().initialUnits.filter((u:{camp:number})=>u.camp===1).map((u:{station:number})=>u.station),[1,3,4]);
+   assert.equal((await put([1003,1002,1001,0,0,0],102)).statusCode,409);
+   const cancel=await app.inject({method:'POST',url:'/v1/abyss/cancel',headers:ha,payload:{battleId:start.json().battleId}});
+   assert.equal(cancel.statusCode,200,cancel.body);
+  }
+  assert.equal((await put([1003,1002,1001,0,0,0],102)).statusCode,200);
+  assert.deepEqual((await app.inject({url:'/v1/abyss/formation',headers:ha})).json().team,[1003,1002,1001,0,0,0]);
+  assert.deepEqual((await app.inject({url:'/v1/formation',headers:ha})).json(),main);
+ }finally{
+  await s.pg.query('DELETE FROM accounts WHERE id=ANY($1::uuid[])',[[a.id,b.id]]);await app.close();
+ }
+});
 test('abyss modes gate weekdays, preserve battle pending, settlement idempotent and owner isolation',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);
  const a=await createGuest(s),b=await createGuest(s);
@@ -94,6 +145,10 @@ test('abyss modes gate weekdays, preserve battle pending, settlement idempotent 
   assert.ok(type,'some abyss mode should be open every day');
   if(type===1){
    const f=await app.inject({method:'PUT',url:'/v1/abyss/formation',headers:ha,payload:{single:[1001,1002,1003]}});
+   assert.equal(f.statusCode,200,f.body);
+  }
+  if(type===2){
+   const f=await app.inject({method:'PUT',url:'/v1/abyss/team',headers:ha,payload:{team:[1001,1002,1003,0,0,0],teamType:101}});
    assert.equal(f.statusCode,200,f.body);
   }
   const first=await post('challenge',{type});

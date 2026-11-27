@@ -289,6 +289,32 @@ export async function migrate(s:Storage){
    (single_hero_ids[1]=0 OR single_hero_ids[1]<>single_hero_ids[3]) AND
    (single_hero_ids[2]=0 OR single_hero_ids[2]<>single_hero_ids[3]))`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(29) ON CONFLICT DO NOTHING');
+ await c.query(`ALTER TABLE player_formations
+  ADD COLUMN IF NOT EXISTS abyss_team_hero_ids integer[] NOT NULL DEFAULT ARRAY[0,0,0,0,0,0]::integer[],
+  ADD COLUMN IF NOT EXISTS abyss_team_formation_type integer NOT NULL DEFAULT 101`);
+ await c.query(`ALTER TABLE player_formations DROP CONSTRAINT IF EXISTS player_formations_abyss_team_check`);
+ await c.query(`ALTER TABLE player_formations ADD CONSTRAINT player_formations_abyss_team_check
+  CHECK(cardinality(abyss_team_hero_ids)=6 AND
+    abyss_team_formation_type IN (101,102,103,104,105,106) AND
+    array_position(abyss_team_hero_ids,NULL) IS NULL AND
+    abyss_team_hero_ids[1]>=0 AND abyss_team_hero_ids[2]>=0 AND abyss_team_hero_ids[3]>=0 AND
+    abyss_team_hero_ids[4]>=0 AND abyss_team_hero_ids[5]>=0 AND abyss_team_hero_ids[6]>=0 AND
+    (abyss_team_hero_ids[1]=0 OR abyss_team_hero_ids[2]=0 OR abyss_team_hero_ids[1]<>abyss_team_hero_ids[2]) AND
+    (abyss_team_hero_ids[1]=0 OR abyss_team_hero_ids[3]=0 OR abyss_team_hero_ids[1]<>abyss_team_hero_ids[3]) AND
+    (abyss_team_hero_ids[1]=0 OR abyss_team_hero_ids[4]=0 OR abyss_team_hero_ids[1]<>abyss_team_hero_ids[4]) AND
+    (abyss_team_hero_ids[1]=0 OR abyss_team_hero_ids[5]=0 OR abyss_team_hero_ids[1]<>abyss_team_hero_ids[5]) AND
+    (abyss_team_hero_ids[1]=0 OR abyss_team_hero_ids[6]=0 OR abyss_team_hero_ids[1]<>abyss_team_hero_ids[6]) AND
+    (abyss_team_hero_ids[2]=0 OR abyss_team_hero_ids[3]=0 OR abyss_team_hero_ids[2]<>abyss_team_hero_ids[3]) AND
+    (abyss_team_hero_ids[2]=0 OR abyss_team_hero_ids[4]=0 OR abyss_team_hero_ids[2]<>abyss_team_hero_ids[4]) AND
+    (abyss_team_hero_ids[2]=0 OR abyss_team_hero_ids[5]=0 OR abyss_team_hero_ids[2]<>abyss_team_hero_ids[5]) AND
+    (abyss_team_hero_ids[2]=0 OR abyss_team_hero_ids[6]=0 OR abyss_team_hero_ids[2]<>abyss_team_hero_ids[6]) AND
+    (abyss_team_hero_ids[3]=0 OR abyss_team_hero_ids[4]=0 OR abyss_team_hero_ids[3]<>abyss_team_hero_ids[4]) AND
+    (abyss_team_hero_ids[3]=0 OR abyss_team_hero_ids[5]=0 OR abyss_team_hero_ids[3]<>abyss_team_hero_ids[5]) AND
+    (abyss_team_hero_ids[3]=0 OR abyss_team_hero_ids[6]=0 OR abyss_team_hero_ids[3]<>abyss_team_hero_ids[6]) AND
+    (abyss_team_hero_ids[4]=0 OR abyss_team_hero_ids[5]=0 OR abyss_team_hero_ids[4]<>abyss_team_hero_ids[5]) AND
+    (abyss_team_hero_ids[4]=0 OR abyss_team_hero_ids[6]=0 OR abyss_team_hero_ids[4]<>abyss_team_hero_ids[6]) AND
+    (abyss_team_hero_ids[5]=0 OR abyss_team_hero_ids[6]=0 OR abyss_team_hero_ids[5]<>abyss_team_hero_ids[6]))`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(30) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }
