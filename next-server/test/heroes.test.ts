@@ -159,6 +159,56 @@ test('POST /v1/heroes/:sid/talent upgrades PVE talent with common items',{skip:!
  }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
 });
 
+test('talent resource failure preserves item balances and hero progress after partial debit',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);const a=await createGuest(s);const app=await buildApp(s);
+ try{
+  await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}});
+  const st={Sid:8100,HeroId:4001,Level:1,StarLevel:10,Power:0,Locked:false,PVETalentLevel:0,PVPTalentLevel:0,Attrs:{},Skills:[]};
+  await s.pg.query('INSERT INTO player_heroes(account_id,sid,hero_id,level,star,power,locked,state) VALUES($1,8100,4001,1,10,0,false,$2)',[a.id,JSON.stringify(st)]);
+  // PVE talent requires diamond item 3=50 and material item 75=55.
+  // Previously item 3 was consumed before discovering missing item 75.
+  await s.pg.query('INSERT INTO player_items(account_id,item_id,amount) VALUES($1,3,200) ON CONFLICT(account_id,item_id) DO UPDATE SET amount=200',[a.id]);
+  const headers={authorization:'Bearer '+a.token};
+  const failed=await app.inject({method:'POST',url:'/v1/heroes/8100/talent',headers,payload:{type:1,count:1}});
+  assert.equal(failed.statusCode,409,failed.body);
+  assert.equal(failed.json().error,'insufficient_materials');
+  const diamond=(await s.pg.query('SELECT amount FROM player_items WHERE account_id=$1 AND item_id=3',[a.id])).rows[0];
+  assert.equal(Number(diamond.amount),200);
+  const target=(await s.pg.query('SELECT state FROM player_heroes WHERE account_id=$1 AND sid=8100',[a.id])).rows[0].state;
+  assert.equal(Number(target.PVETalentLevel),0);
+  await s.pg.query('INSERT INTO player_items(account_id,item_id,amount) VALUES($1,75,55) ON CONFLICT(account_id,item_id) DO UPDATE SET amount=55',[a.id]);
+  const success=await app.inject({method:'POST',url:'/v1/heroes/8100/talent',headers,payload:{type:1,count:1}});
+  assert.equal(success.statusCode,200,success.body);
+  assert.equal(success.json().hero.PVETalentLevel,1);
+  const left=(await s.pg.query('SELECT item_id,amount FROM player_items WHERE account_id=$1 AND item_id IN (3,75) ORDER BY item_id',[a.id])).rows;
+  assert.deepEqual(left.map((x:{item_id:number;amount:string})=>[x.item_id,Number(x.amount)]),[[3,150],[75,0]]);
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
+});
+
+test('talent with hero fodder cannot consume heroes when a late item is missing',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);const a=await createGuest(s);const app=await buildApp(s);
+ try{
+  await app.inject({url:'/v1/heroes',headers:{authorization:'Bearer '+a.token}});
+  // Talent tier 5 starts at level 24, requiring one type 4 ★5 fodder.
+  const st={Sid:8200,HeroId:4001,Level:1,StarLevel:10,Power:0,Locked:false,PVETalentLevel:24,PVPTalentLevel:0,Attrs:{},Skills:[]};
+  await s.pg.query('INSERT INTO player_heroes(account_id,sid,hero_id,level,star,power,locked,state) VALUES($1,8200,4001,1,10,0,false,$2)',[a.id,JSON.stringify(st)]);
+  const other={Sid:8201,HeroId:12301,Level:1,StarLevel:5,Power:0,Locked:false,Attrs:{},Skills:[]};
+  await s.pg.query('INSERT INTO player_heroes(account_id,sid,hero_id,level,star,power,locked,state) VALUES($1,8201,12301,1,5,0,false,$2)',[a.id,JSON.stringify(other)]);
+  const headers={authorization:'Bearer '+a.token};
+  const before=(await s.pg.query('SELECT sid,star,state FROM player_heroes WHERE account_id=$1 AND sid IN (8200,8201) ORDER BY sid',[a.id])).rows;
+  const failed=await app.inject({method:'POST',url:'/v1/heroes/8200/talent',headers,payload:{type:1,count:1,materials:[8201]}});
+  assert.equal(failed.statusCode,409,failed.body);
+  assert.equal(failed.json().error,'insufficient_materials');
+  const after=(await s.pg.query('SELECT sid,star,state FROM player_heroes WHERE account_id=$1 AND sid IN (8200,8201) ORDER BY sid',[a.id])).rows;
+  assert.deepEqual(after,before);
+  await s.pg.query('INSERT INTO player_items(account_id,item_id,amount) VALUES($1,3,70),($1,75,115),($1,120,2) ON CONFLICT(account_id,item_id) DO UPDATE SET amount=EXCLUDED.amount',[a.id]);
+  const success=await app.inject({method:'POST',url:'/v1/heroes/8200/talent',headers,payload:{type:1,count:1,materials:[8201]}});
+  assert.equal(success.statusCode,200,success.body);
+  assert.equal(success.json().hero.PVETalentLevel,25);
+  assert.equal((await s.pg.query('SELECT sid FROM player_heroes WHERE account_id=$1 AND sid=8201',[a.id])).rowCount,0);
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
+});
+
 test('POST /v1/heroes/:sid/job unlocks root at ★12 and resets branches',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);const a=await createGuest(s);const app=await buildApp(s);
  try{

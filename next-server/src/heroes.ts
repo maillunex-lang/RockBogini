@@ -362,20 +362,57 @@ export async function heroRoutes(app:FastifyInstance,s:Storage){
     fodder=assigned;
    }
   }
-  const refund:[number,number][]=[];
-  for(const fsid of fodder){
-   const f=await loadHero(s,id,fsid);
-   if(!f||f.Locked||blocked.has(fsid))return reply.code(409).send({error:'fodder_unavailable',sid:fsid});
-   refund.push(...levelRefund(f.Level));
-  }
-  if(fodder.length)await s.pg.query('DELETE FROM player_heroes WHERE account_id=$1 AND sid=ANY($2::int[])',[id,fodder]);
-  const refundMap=new Map<number,number>();
-  for(const [iid,n] of refund)refundMap.set(iid,(refundMap.get(iid)??0)+n);
-  await grantItems(s,id,[...refundMap.entries()]);
-  if(!(await payItems(s,id,cost.items)))return reply.code(409).send({error:'insufficient_materials',cost:cost.items});
-  const next={...hero,[field]:cur+count};
-  const updated=await saveHero(s,id,next);
-  return {ok:true,cost:cost.items,fodder,hero:updated,heroes:await enrichAll(s,id,await getHeroes(s,id))};
+  // Serialize progression for this account, revalidate heroes inside one transaction.
+  // Roll back item refunds, charges, fodder and skill changes together on any failure.
+  const c=await s.pg.connect();
+  try{
+   await c.query('BEGIN');
+   await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
+   const current=(await c.query('SELECT hero_id,level,star,locked,state FROM player_heroes WHERE account_id=$1 AND sid=$2 FOR UPDATE',[id,sid])).rows[0];
+   if(!current||current.hero_id!==hero.HeroId||current.level!==hero.Level||current.star!==hero.StarLevel||
+    Number(current.state[field]??0)!==cur){
+    await c.query('ROLLBACK');return reply.code(409).send({error:'hero_changed'});
+   }
+   const lockedFodder=fodder.length?(await c.query(
+    'SELECT sid,hero_id,level,star,locked FROM player_heroes WHERE account_id=$1 AND sid=ANY($2::int[]) ORDER BY sid FOR UPDATE',
+    [id,fodder])).rows as {sid:number;hero_id:number;level:number;star:number;locked:boolean}[]:[];
+   const available=lockedFodder.map(f=>({sid:f.sid,heroId:f.hero_id,star:f.star,locked:f.locked}));
+   if(lockedFodder.length!==fodder.length||
+    assignFodder(hero.HeroId,sid,cost.heroReqs,fodder,available)?.length!==fodder.length||
+    lockedFodder.some(f=>blocked.has(f.sid))){
+    await c.query('ROLLBACK');return reply.code(409).send({error:'fodder_unavailable'});
+   }
+   const refunds=new Map<number,number>();
+   for(const f of lockedFodder){
+    for(const [item,n] of levelRefund(f.level))refunds.set(item,(refunds.get(item)??0)+n);
+   }
+   for(const [item,n] of refunds){
+    await c.query(`INSERT INTO player_items(account_id,item_id,amount) VALUES($1,$2,$3)
+     ON CONFLICT(account_id,item_id) DO UPDATE SET amount=player_items.amount+EXCLUDED.amount`,[id,item,n]);
+   }
+   for(const [item,n] of cost.items){
+    const paid=await c.query(
+     'UPDATE player_items SET amount=amount-$3 WHERE account_id=$1 AND item_id=$2 AND amount>=$3',[id,item,n]);
+    if(paid.rowCount!==1){await c.query('ROLLBACK');return reply.code(409).send({error:'insufficient_materials',cost:cost.items})}
+   }
+   if(fodder.length){
+    const removed=await c.query('DELETE FROM player_heroes WHERE account_id=$1 AND sid=ANY($2::int[]) RETURNING sid',[id,fodder]);
+    if(removed.rowCount!==fodder.length)throw Error('fodder_count_changed');
+   }
+   const next={...hero,[field]:cur+count};
+   const gear=await heroGear(s,id,sid);
+   const base=calculateGrowthHero(next.HeroId,next.Level,next.StarLevel,false,gear.extra,gear.powerBonus);
+   const state={...next,SkinId:0,Attrs:base.attrs,Skills:base.skills,Power:base.power};
+   const saved=await c.query(
+    'UPDATE player_heroes SET power=$3,state=$4 WHERE account_id=$1 AND sid=$2',
+    [id,sid,base.power,JSON.stringify(state)],
+   );
+   if(saved.rowCount!==1)throw Error('target_hero_missing');
+   await c.query('COMMIT');
+   const updated=enrich({...next,Power:base.power},gear.extra,gear.powerBonus);
+   return {ok:true,cost:cost.items,fodder,hero:updated,heroes:await enrichAll(s,id,await getHeroes(s,id))};
+  }catch(e){await c.query('ROLLBACK');throw e}
+  finally{c.release()}
  });
 
  app.post<{Params:{sid:string};Body:{type:number}}>('/v1/heroes/:sid/talent/reset',{
