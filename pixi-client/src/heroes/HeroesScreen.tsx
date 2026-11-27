@@ -3,6 +3,8 @@ import {skillNames} from './skillNames';
 import React,{useEffect,useState} from 'react';
 import './heroes.css';
 import heroVisualCatalog from './heroVisualCatalog.json';
+import {HeroSpinePreview} from './HeroSpinePreview';
+import availableSkillIcons from './availableSkillIcons.json';
 import {heroDisplayName} from '../shared/heroNames';
 
 type StarPreview={
@@ -71,6 +73,8 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
  const [heroView,setHeroView]=useState<'card'|'portrait'>('card');
  const [heroSort,setHeroSort]=useState<'power'|'level'|'star'>('power');
  const [heroElement,setHeroElement]=useState(0);
+ const [animatedSid,setAnimatedSid]=useState<number|null>(null);
+ const [starPanelOpen,setStarPanelOpen]=useState(false);
  const [heroes,setHeroes]=useState<Hero[]>([]);
  const [selected,setSelected]=useState<number|null>(null);
  const [equipSlots,setEquipSlots]=useState<EquipSlot[]>([]);
@@ -244,6 +248,12 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
   }finally{setBusy(false)}
  };
 
+ useEffect(()=>{
+  if(selected==null)return;
+  const close=(e:KeyboardEvent)=>{if(e.key==='Escape'){setSelected(null);setAnimatedSid(null);setStarPanelOpen(false)}};
+  document.addEventListener('keydown',close);
+  return()=>document.removeEventListener('keydown',close);
+ },[selected]);
  const h=heroes.find(x=>x.Sid===selected);
  if(formation)return <FormationScreen api={api} token={token} onClose={()=>setFormation(false)}/>;
 
@@ -277,7 +287,12 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
     <span className="hero-card-label"><strong>{heroDisplayName(x.HeroId)}</strong><span>Ур. {x.Level} · ★ {x.StarLevel}</span><span>Мощь: {x.Power}</span></span>
    </button>;
   })}</div>
-  {h&&<section className="hero-detail" aria-label="Характеристики героя">
+  {h&&<div className="hero-detail-overlay" role="dialog" aria-modal="true" aria-label={'Герой '+heroDisplayName(h.HeroId)}>
+   <div className="hero-detail-screen-head">
+    <button type="button" onClick={()=>{setSelected(null);setAnimatedSid(null);setStarPanelOpen(false)}}>Назад к героям</button>
+    <span>{heroDisplayName(h.HeroId)}</span>
+   </div>
+   <section className="hero-detail" aria-label="Характеристики героя">
    <div className="hero-detail-head">
     <div className="hero-detail-portrait">
      <img src={'./profile/icon-'+h.HeroId+'.webp'} alt="" onError={e=>{e.currentTarget.style.visibility='hidden'}}/>
@@ -289,6 +304,12 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
      <strong className="hero-detail-power">⚔ {h.Power}</strong>
     </div>
    </div>
+   <div className="hero-anim-controls">
+    <button type="button" aria-pressed={animatedSid===h.Sid} onClick={()=>setAnimatedSid(x=>x===h.Sid?null:h.Sid)}>
+     {animatedSid===h.Sid?'Скрыть анимацию':'Показать оригинальную Spine-анимацию'}
+    </button>
+   </div>
+   {animatedSid===h.Sid&&<HeroSpinePreview key={h.Sid} heroId={h.HeroId}/>}
    <div className="hero-detail-attributes" aria-label="Основные характеристики">
     {Object.entries(ATTR_LABEL).map(([key,label])=><div key={key} className="hero-detail-attribute"><span>{label}</span><strong>{h.Attrs?.[key]??'—'}</strong></div>)}
    </div>
@@ -302,8 +323,8 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
    <div className="hero-growth">
     <button type="button" disabled={busy||h.Level>=(h.maxLevel??0)} onClick={()=>void grow('level',h.Sid,{newLevel:h.Level+1},'Повышение уровня…')}>+1 уровень</button>
     <button type="button" disabled={busy||h.Level>=(h.maxLevel??0)} onClick={()=>void grow('level',h.Sid,{newLevel:Math.min(h.Level+5,h.maxLevel??h.Level+5)},'Повышение уровня…')}>+5 уровней</button>
-    <button type="button" disabled={busy||!canStar} onClick={()=>void grow('star',h.Sid,needsFodder?{auto:true}:{},'Повышение звезды…')}>
-     ★ +1{needsFodder?' (авто-корм)':''}
+    <button type="button" disabled={busy||!canStar} onClick={()=>setStarPanelOpen(x=>!x)} aria-expanded={starPanelOpen} aria-controls="hero-star-panel">
+     ★ Повышение звезды
     </button>
     <button type="button" disabled={busy||!h.talent?.pveUnlocked} onClick={()=>void grow('talent',h.Sid,{type:1,count:1,auto:true},'Талант…')}>
      Талант PVE +1 ({h.talent?.pve??h.PVETalentLevel??0}/{h.talent?.max??'—'})
@@ -312,6 +333,22 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
      Сброс PVE
     </button>
    </div>
+   {starPanelOpen&&h.starPreview&&<div id="hero-star-panel" className="hero-star-panel" role="region" aria-label="Повышение звезды героя">
+    <h3>Звезда ★{h.StarLevel} → ★{h.starPreview.nextStar??'максимум'}</h3>
+    <p>Для улучшения требуются оригинальные игровые материалы:</p>
+    {h.starPreview.heroMaterials.length>0&&<ul className="hero-star-cost">
+     {h.starPreview.heroMaterials.map(([type,star,count],i)=><li key={i}>{count} × {MAT_TYPE[type]??'Тип '+type} ★{star}</li>)}
+    </ul>}
+    {h.starPreview.itemMaterials.length>0&&<ul className="hero-star-cost">
+     {h.starPreview.itemMaterials.map(([id,count])=><li key={id}>
+      <img src={import.meta.env.BASE_URL+'item-icons/'+id+'.webp'} alt="" loading="lazy" onError={e=>{e.currentTarget.style.display='none'}}/>
+      <span>{count} × предмет #{id}</span>
+     </li>)}
+    </ul>}
+    {h.starPreview.heroMaterials.length===0&&h.starPreview.itemMaterials.length===0&&<p>Дополнительные материалы не указаны.</p>}
+    <button type="button" disabled={busy||!canStar} onClick={()=>void grow('star',h.Sid,needsFodder?{auto:true}:{},'Повышение звезды…')}>Подтвердить повышение ★</button>
+    <button type="button" disabled={busy} onClick={()=>setStarPanelOpen(false)}>Закрыть</button>
+   </div>}
    {(displace?.eligible||displace?.pending)&&(
     <div className="hero-displace" data-guide="hero-displace">
      <h3>Замена стихии</h3>
@@ -497,11 +534,13 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
    <h3 id="hero-abilities">Способности</h3>
    {h.skillSlots.map((slot,i)=>(
     <article key={i} className="hero-skill">
+     {availableSkillIcons.includes(slot.id)&&<img className="hero-skill-original-icon" src={import.meta.env.BASE_URL+'skill-icons/'+slot.id+'.webp'} alt="" loading="lazy"/>}
      <strong>{skillNames[slot.id]?.name??'Способность №'+slot.id}</strong>
      <p>{skillNames[slot.id]?.description??'Описание ещё не переведено'}</p>
      <small>{slot.unlocked?'Открыта':'Откроется на уровне '+slot.unlockLevel}</small>
     </article>
    ))}
-  </section>}
+   </section>
+  </div>}
  </main>;
 }

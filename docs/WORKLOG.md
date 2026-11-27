@@ -498,3 +498,5 @@ NEXT-013.8 in_progress: inventoried 10 invalid common-skill ActionIndex values; 
 2026-11-26 NEXT-026.2 five sequential slices: original PanelBg1 (1028x1516, capInsets 120) and nine-slice; 4 detail section anchors; Playwright 4 viewport PASS, build & /sexyidle publish; roadmap updated. Not full 1:1. reports/NEXT-026.2-5-stage-2026-11-26.md.
 
 2026-11-26 NEXT-026.3.01–20: source audits WorldMapPanel/BagPanel/SummonHeroPanel/ShopPanel/TaskPanel, 21 exact Cocos image assets imported with SHA256; UI changes to five live screens, mobile 10/10 browser PASS. Vite build /sexyidle published; roadmap and per-stage evidence updated. Parent 026 still in_progress. reports/NEXT-026.3-20-stages.md.
+
+2026-11-27 NEXT-026.4 partial: original Spine 3.8 preview with 30FPS cap; all three guest heroes verified, original SkillIcon 1135/1159 resolvable native sprites with SHA256 manifest, fullscreen HeroDetailPanel Esc/Back, star requirements panel; client build/publish and browser regression PASS. Outstanding proposed 20 features. reports/NEXT-026.4-2026-11-27.md.

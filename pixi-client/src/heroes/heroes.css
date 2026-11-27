@@ -77,3 +77,45 @@
   border-image-repeat:stretch;
  }
 }
+
+/* NEXT-026.4: original hero-models assets, on-demand one-canvas animated preview.
+   Explicit activation protects lower-end Android devices from background WebGL work. */
+.hero-anim-controls{display:flex;justify-content:center;margin:8px 0}
+.hero-anim-controls button{background:#282344 url('/ui/btn_blue.webp') center/100% 100% no-repeat;max-width:100%;font-size:clamp(10px,2.7vw,14px);padding:9px}
+.hero-spine-preview{width:100%;max-width:380px;margin:8px auto;color:#fff9e9}
+.hero-spine-stage{width:100%;min-height:120px;aspect-ratio:360/460;overflow:hidden;display:flex;justify-content:center;align-items:center}
+.hero-spine-preview p{font-size:11px;text-align:center;overflow-wrap:anywhere;margin:4px 0 8px}
+.hero-spine-preview label{display:flex;flex-direction:column;gap:5px;font-size:12px}
+.hero-spine-preview select{background:#252442;color:#fff;border:1px solid #bd9958;border-radius:4px;padding:8px;width:100%}
+
+/* NEXT-026.4: genuine light Cocos PanelBg1 requires dark readable content. */
+.hero-detail{color:#46352d}
+.hero-detail .hero-detail-identity h2{color:#382921;text-shadow:0 1px 1px #fff9eb}
+.hero-detail .hero-detail-identity p{color:#665044}
+.hero-detail .hero-detail-power{color:#79501f;text-shadow:0 1px 1px #fff7e5}
+.hero-detail :is(h3,h4,dt,dd,li>span,.hero-star-req){color:#43342d}
+.hero-detail .hero-spine-preview{color:#49382e}
+.hero-detail .hero-detail-panes a{color:#fff4db}
+.hero-detail .hero-skill{color:#f7e8ce}
+.hero-detail .hero-skill :is(p,small,strong){color:inherit}
+.hero-detail :is(.hero-growth button,.hero-equip button,.hero-luck button,.hero-holy button){color:#fff8eb}
+
+.hero-skill{position:relative;min-height:76px;overflow:hidden}
+.hero-skill .hero-skill-original-icon{float:left;width:58px;height:58px;object-fit:contain;margin-right:10px;border-radius:6px}
+.hero-skill::after{content:'';display:block;clear:both}
+
+/* NEXT-026.4: source HeroDetailPanel is a dedicated 1080×1920 panel, not an inline list card. */
+.hero-detail-overlay{position:fixed;inset:0;z-index:1000;overflow:auto;overscroll-behavior:contain;background:#111d38 url('/heroes/original/HeroListBg.webp') center top/100% auto repeat-y;color:#fff;display:block;padding:0 max(8px,calc((100vw - 650px)/2));box-sizing:border-box}
+.hero-detail-screen-head{height:55px;display:flex;gap:12px;align-items:center;justify-content:space-between;max-width:650px;margin:auto;padding:4px 7px;box-sizing:border-box}
+.hero-detail-screen-head button{flex:none;min-height:40px;background:#34304f url('/ui/btn_blue.webp') center/100% 100% no-repeat;padding:7px}
+.hero-detail-screen-head span{font-size:clamp(14px,3.4vw,19px);font-weight:bold;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
+.hero-detail-overlay .hero-detail{max-width:650px;margin:0 auto 22px;min-height:calc(100dvh - 77px);box-sizing:border-box}
+
+/* NEXT-026.4: star-up window uses server-provided exact material requirements and original item sprites. */
+.hero-star-panel{margin:10px 0;padding:12px;color:#48372b;background:#f2e6cb url('/heroes/original/detail/PanelBg1.webp') center/100% 100% no-repeat;border-radius:2px}
+.hero-star-panel h3{font-size:clamp(16px,4vw,20px);text-align:center;color:#513921;margin:0 0 9px}
+.hero-star-panel p{font-size:13px;color:#5d493b}
+.hero-star-cost{list-style:none;padding:0;margin:8px 0;display:grid;gap:4px}
+.hero-star-cost li{display:flex;gap:8px;align-items:center;padding:6px;font-size:13px;border:1px solid #d3bb94;border-radius:4px;color:#4b372a}
+.hero-star-cost img{width:34px;height:34px;object-fit:contain;flex:none}
+.hero-star-panel button{margin:5px 5px 0 0;background:#543d50 url('/ui/btn_orange.webp') center/100% 100% no-repeat;color:#fff8e5}

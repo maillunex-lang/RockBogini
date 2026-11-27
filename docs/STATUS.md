@@ -45,3 +45,5 @@ NEXT-026.3 (2026-11-26): 20 source-driven visual substeps across campaign/invent
 ## VPS deployment 2026-11-26
 Canonical checkout `/home/gamedev/rocbogini`, deployed code a4332ce, PixiJS 7.4.3 / Spine 3.8. Original reference extracted at `/home/gamedev/QueensBladeH5/racon2-main`; ZIP retained. Client built with base `/sexyidle/` and API `/sexyidle/api`. Nginx routes to existing API on 127.0.0.1:18991; existing database retained. HTTPS, readiness, guest auth/session/profile/heroes/logout and browser guest entry verified. Server suite job hl3tfr49n9: 55 pass, 24 fail, 6 skip (85 total); failure causes pending investigation. API gameplayReady remains false. No roadmap task marked done. Legacy route remains accessible; publish script still needs migration. PixiJS 8 experiment not adopted.
 
+
+2026-11-27 NEXT-026.4 partial: original three starter Spine models working, 1135 SkillIcon native source assets, fullscreen detail, real star material preview (upgrade untested); browser city/five screens/heroes PASS; full 20-feature package & exact 1:1 pending. See reports/NEXT-026.4-2026-11-27.md.
