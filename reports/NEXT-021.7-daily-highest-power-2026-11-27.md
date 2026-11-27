@@ -19,3 +19,14 @@
 - Расширены тесты создания профиля, изменения обычной формации с уменьшением силы, допуска/запрета по рекорду, повторного проигрывания challenge, подтверждён migration33.
 - Первый полный прогон выявил отсутствие стартового рекорда у новых игроков и устаревшие фикстуры (прямое изменение текущей силы). Исправлено, итоговый полный прогон зелёный.
 - Ручная проверка в браузере авторизованным игроком пока не проводилась.
+
+## Выпуск NEXT-021.7 на VPS
+- Перед обновлением сохранён PostgreSQL dump `/var/backups/rockbogini-next-pre-daily-0217-20261127.dump` (134 KiB) и предыдущий Docker-образ `rockbogini-next-api:pre-daily-0217`.
+- Новый образ `rockbogini-next-api:latest` успешно собран (Docker build exit0).
+- API обновлён через `docker compose -p rockbogini-next up -d --no-deps --no-build api`, PostgreSQL и Redis не перезапускались.
+- Production `schema_migrations` = **33**, новая миграция применена.
+- `https://rikagro.ru/sexyidle/api/ready` = `{"ready":true}` HTTP200.
+- Неавторизованный `GET /sexyidle/api/v1/daily-instance` возвращает HTTP401, ожидаемая защита.
+- Docker API, PostgreSQL и Redis healthy, исполняемый образ совпадает с тегом latest.
+- Клиент в этом серверном пакете не менялся.
+- Ручная проверка авторизованного сценария игрока пока не проведена.

@@ -1,5 +1,5 @@
 # NEXT-021.7 (2026-11-27): рекорд мощности для ежедневных PvE-подземелий
-Серверный highest_power по оригинальному Common.highest_power: миграция33, стартовая базовая сила 1372, максимум при смене обычного отряда, API профиля, допуск в DailyInstance. Полная PostgreSQL+Redis регрессия 192/192 PASS (job s7fmvde9yb). NEXT-021 in_progress, отчёт reports/NEXT-021.7-daily-highest-power-2026-11-27.md.
+Серверный highest_power по оригинальному Common.highest_power: миграция33, стартовая базовая сила 1372, максимум при смене обычного отряда, API профиля, допуск в DailyInstance. Полная PostgreSQL+Redis регрессия 192/192 PASS (job s7fmvde9yb). Production VPS API опубликован, migration33, HTTP200 и Docker healthy. NEXT-021 in_progress, отчёт reports/NEXT-021.7-daily-highest-power-2026-11-27.md.
 
 # NEXT-021.6 (2026-11-27): оплаченные попытки и доступ к высшим башням
 Оригинальные LevelParam198 (50 алмазов), GlobalSetting 10 дневных побед, серверная покупка, надёжное списание Count, исходные требования GameModule 2029–2034; migration32, клиентские ограничения/покупки. Isolated PostgreSQL/Redis 191/191 PASS (job lol9g8vn57), server/client build PASS. Production VPS API+frontend опубликованы, migration32, HTTP200 и Docker healthy. NEXT-021 in_progress, отчёт reports/NEXT-021.6-tower-purchased-attempts-2026-11-27.md.
