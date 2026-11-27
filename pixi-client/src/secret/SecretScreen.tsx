@@ -2,6 +2,8 @@ import React,{useCallback,useEffect,useState} from 'react';
 import {itemDisplayName} from '../shared/itemNames';
 import '../tower/tower.css';
 import './secret.css';
+type SecretFormation={heroIds:number[];formationType:number;sid:number;usesMainFallback:boolean;
+ layouts:{id:number;positions:number[]}[];heroOptions:{sid:number;heroId:number;power:number}[]};
 type Rewards=[number,number][];
 type State={floor:number;viewIndex:number;powerLevelId:number;expiresAt:string;resetAt:string;cells:number[][];props:number[][];hp:Record<string,number>;rewards:number[];finished:boolean;treasureFloor:boolean};
 type Report={battleId:string;mapId:number;cellIndex:number;floor:number;summary:{resultCode:number};pages:unknown[];heroes:{heroId:number;camp:number;statDamage:number}[]};
@@ -17,18 +19,38 @@ export function SecretScreen({api,token,onClose}:{api:string;token:string;onClos
  const [message,setMessage]=useState('');
  const [chosen,setChosen]=useState<number|null>(null);
  const [propSlot,setPropSlot]=useState<number|null>(null);
- const request=useCallback(async<T,>(path:string,method:'GET'|'POST'='GET',body?:unknown):Promise<T>=>{
+ const [secretForm,setSecretForm]=useState<SecretFormation|null>(null);
+ const [secretIds,setSecretIds]=useState<number[]>([0,0,0,0,0,0]);
+ const [secretType,setSecretType]=useState(101);
+ const [secretDirty,setSecretDirty]=useState(false);
+ const request=useCallback(async<T,>(path:string,method:'GET'|'POST'|'PUT'='GET',body?:unknown):Promise<T>=>{
   const res=await fetch(api+'/v1/secret'+path,{method,headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});
   const data=await res.json() as T&{error?:string};
   if(!res.ok)throw Error(data.error??'secret_'+res.status);
   return data;
  },[api,token]);
- const load=useCallback(async()=>{const r=await request<State>('');setState(r);return r},[request]);
+ const loadForm=useCallback(async()=>{
+  const r=await request<SecretFormation>('/formation');
+  setSecretForm(r);setSecretIds(r.heroIds);setSecretType(r.formationType);setSecretDirty(false);
+  return r;
+ },[request]);
+ const load=useCallback(async()=>{const [r]=await Promise.all([request<State>(''),loadForm()]);setState(r);return r},[request,loadForm]);
  useEffect(()=>{let mounted=true;load().catch(e=>{if(mounted)setMessage(String(e))});return()=>{mounted=false}},[load]);
  const run=async(fn:()=>Promise<void>)=>{if(busy)return;setBusy(true);setMessage('');try{await fn()}catch(e){setMessage(e instanceof Error?e.message:String(e))}finally{setBusy(false)}};
  const reload=()=>void run(async()=>{await load()});
  const click=()=>void run(async()=>{if(chosen===null)return;setState(await request<State>('/click','POST',{index:chosen}));setChosen(null)});
- const challenge=()=>void run(async()=>{if(chosen===null)return;setBattle(await request<Report>('/challenge','POST',{index:chosen}));setSettled(null)});
+ const saveForm=()=>void run(async()=>{
+  const r=await request<SecretFormation>('/formation','PUT',{heroIds:secretIds,formationType:secretType});
+  setSecretDirty(false);setMessage(r.usesMainFallback?'Включён основной отряд':'Отряд Тайной области сохранён');
+  await loadForm();
+ });
+ const resetForm=()=>void run(async()=>{
+  const ids=[0,0,0,0,0,0];
+  await request('/formation','PUT',{heroIds:ids,formationType:101});
+  setMessage('Основной отряд снова используется в Тайной области');
+  await loadForm();
+ });
+ const challenge=()=>void run(async()=>{if(chosen===null)return;if(secretDirty)throw Error('Сначала сохраните отряд');setBattle(await request<Report>('/challenge','POST',{index:chosen}));setSettled(null)});
  const settle=()=>void run(async()=>{if(!battle)return;const x=await request<Result>('/settle','POST',{battleId:battle.battleId});setSettled(x);setBattle(null);await load()});
  const cancel=()=>void run(async()=>{if(!battle)return;await request('/cancel','POST',{battleId:battle.battleId});setBattle(null)});
  const resume=()=>void run(async()=>{const p=await request<{report:Report|null}>('/pending');setBattle(p.report);if(!p.report)setMessage('Незавершённого боя нет')});
@@ -52,6 +74,35 @@ export function SecretScreen({api,token,onClose}:{api:string;token:string;onClos
    <section className="tower-panel">
     <h3>{state.finished?'Исследование завершено':state.treasureFloor?'Сокровищница':'Этаж '+state.floor+' из 3'}</h3>
     <p>Период заканчивается: {new Date(state.expiresAt).toLocaleString('ru-RU')} · уровень силы монстров: {state.powerLevelId}</p>
+    {!state.treasureFloor&&!state.finished&&secretForm&&<div className="tower-formation">
+     <h3>Отряд Тайной области · Sid {secretForm.sid}</h3>
+     <p>{secretForm.usesMainFallback?'Пока используется основной отряд.':'Используется отдельный отряд.'} Настройка не меняет основную формацию.</p>
+     <label>Построение
+      <select aria-label="Построение Тайной области" disabled={busy} value={secretType}
+       onChange={e=>{setSecretType(Number(e.target.value));setSecretDirty(true)}}>
+       {secretForm.layouts.map(f=><option key={f.id} value={f.id}>Построение {f.id}</option>)}
+      </select>
+     </label>
+     <div className="tower-formation-grid">
+      {[0,1,2,3,4,5].map(i=><label key={i}>
+       Позиция {secretForm.layouts.find(f=>f.id===secretType)?.positions[i]??i+1}
+       <select aria-label={'Герой Тайной области '+(i+1)} value={secretIds[i]??0} disabled={busy}
+        onChange={e=>{
+         const sid=Number(e.target.value);
+         setSecretIds(old=>old.map((v,n)=>n===i?sid:sid>0&&v===sid?0:v));
+         setSecretDirty(true);
+        }}>
+        <option value={0}>Не выбран</option>
+        {secretForm.heroOptions.map(h=><option key={h.sid} value={h.sid}>#{h.sid} · герой {h.heroId} · {h.power.toLocaleString('ru-RU')}</option>)}
+       </select>
+      </label>)}
+     </div>
+     <div className="tower-actions">
+      <button disabled={busy||!secretDirty||new Set(secretIds.filter(Boolean)).size!==secretIds.filter(Boolean).length}
+       onClick={saveForm}>Сохранить отряд</button>
+      <button disabled={busy||secretForm.usesMainFallback&&!secretDirty} onClick={resetForm}>Вернуть основной отряд</button>
+     </div>
+    </div>}
     {!state.treasureFloor&&!state.finished&&<>
      <div className="secret-grid" aria-label="Карта Секретной области">
       {state.cells.map((c,i)=><button key={i}
@@ -65,7 +116,7 @@ export function SecretScreen({api,token,onClose}:{api:string;token:string;onClos
      <p>Выбрано: {chosen===null?'Ничего':chosen+', '+(selected?.[3]===2?'Открыть туман':cellNames[selected?.[4]??0]??'Событие')}</p>
      <div className="tower-actions">
       <button disabled={busy||!selected||!(selected[3]===2||(selected[3]===1&&[4,5,6].includes(selected[4])))} onClick={click}>Исследовать клетку</button>
-      <button disabled={busy||!selected||selected[3]!==1||![2,3].includes(selected[4])} onClick={challenge}>⚔️ Сражаться</button>
+      <button disabled={busy||!selected||selected[3]!==1||![2,3].includes(selected[4])||secretDirty} onClick={challenge}>⚔️ Сражаться</button>
       <button disabled={busy} onClick={resume}>Продолжить бой</button>
      </div>
      <h3>Предметы исследования</h3>

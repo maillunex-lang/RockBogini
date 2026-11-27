@@ -346,6 +346,31 @@ export async function migrate(s:Storage){
  await c.query(`ALTER TABLE player_profiles ADD COLUMN IF NOT EXISTS highest_power bigint NOT NULL DEFAULT 1372 CHECK(highest_power>=0)`);
  await c.query(`UPDATE player_profiles SET highest_power=GREATEST(highest_power,power) WHERE highest_power<power`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(33) ON CONFLICT DO NOTHING');
+ await c.query(`ALTER TABLE player_formations
+  ADD COLUMN IF NOT EXISTS secret_hero_ids integer[] NOT NULL DEFAULT ARRAY[0,0,0,0,0,0]::integer[],
+  ADD COLUMN IF NOT EXISTS secret_formation_type integer NOT NULL DEFAULT 101`);
+ await c.query(`ALTER TABLE player_formations DROP CONSTRAINT IF EXISTS player_formations_secret_check`);
+ await c.query(`ALTER TABLE player_formations ADD CONSTRAINT player_formations_secret_check CHECK(
+   cardinality(secret_hero_ids)=6 AND secret_formation_type IN (101,102,103,104,105,106) AND
+   array_position(secret_hero_ids,NULL) IS NULL AND
+   secret_hero_ids[1]>=0 AND secret_hero_ids[2]>=0 AND secret_hero_ids[3]>=0 AND
+   secret_hero_ids[4]>=0 AND secret_hero_ids[5]>=0 AND secret_hero_ids[6]>=0 AND
+    (secret_hero_ids[1]=0 OR secret_hero_ids[2]=0 OR secret_hero_ids[1]<>secret_hero_ids[2]) AND
+    (secret_hero_ids[1]=0 OR secret_hero_ids[3]=0 OR secret_hero_ids[1]<>secret_hero_ids[3]) AND
+    (secret_hero_ids[1]=0 OR secret_hero_ids[4]=0 OR secret_hero_ids[1]<>secret_hero_ids[4]) AND
+    (secret_hero_ids[1]=0 OR secret_hero_ids[5]=0 OR secret_hero_ids[1]<>secret_hero_ids[5]) AND
+    (secret_hero_ids[1]=0 OR secret_hero_ids[6]=0 OR secret_hero_ids[1]<>secret_hero_ids[6]) AND
+    (secret_hero_ids[2]=0 OR secret_hero_ids[3]=0 OR secret_hero_ids[2]<>secret_hero_ids[3]) AND
+    (secret_hero_ids[2]=0 OR secret_hero_ids[4]=0 OR secret_hero_ids[2]<>secret_hero_ids[4]) AND
+    (secret_hero_ids[2]=0 OR secret_hero_ids[5]=0 OR secret_hero_ids[2]<>secret_hero_ids[5]) AND
+    (secret_hero_ids[2]=0 OR secret_hero_ids[6]=0 OR secret_hero_ids[2]<>secret_hero_ids[6]) AND
+    (secret_hero_ids[3]=0 OR secret_hero_ids[4]=0 OR secret_hero_ids[3]<>secret_hero_ids[4]) AND
+    (secret_hero_ids[3]=0 OR secret_hero_ids[5]=0 OR secret_hero_ids[3]<>secret_hero_ids[5]) AND
+    (secret_hero_ids[3]=0 OR secret_hero_ids[6]=0 OR secret_hero_ids[3]<>secret_hero_ids[6]) AND
+    (secret_hero_ids[4]=0 OR secret_hero_ids[5]=0 OR secret_hero_ids[4]<>secret_hero_ids[5]) AND
+    (secret_hero_ids[4]=0 OR secret_hero_ids[6]=0 OR secret_hero_ids[4]<>secret_hero_ids[6]) AND
+    (secret_hero_ids[5]=0 OR secret_hero_ids[6]=0 OR secret_hero_ids[5]<>secret_hero_ids[6]))`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(34) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }

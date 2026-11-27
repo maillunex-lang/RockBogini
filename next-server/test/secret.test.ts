@@ -4,6 +4,8 @@ import {openStorage,migrate} from '../src/storage.js';
 import {createGuest} from '../src/auth.js';
 import {buildApp} from '../src/app.js';
 import {secretFloor,secretMonsters,selectPower,makeFloor,monsterRewards,secretDefenders,secretProp,GRASS_OUTCOMES,RESURRECTION_PRICES,neighbours,SECRET_PERIOD_MS,defeatSecretCell,survivingMonsterHp} from '../src/secretConfig.js';
+import {SECRET_FORMATION_SID,checkSecretRoster,secretUnits,secretAttackers} from '../src/secretFormation.js';
+import {getHeroes} from '../src/heroes.js';
 test('exact source secret area floor sizes, monsters, source weights and treasure',()=>{
  assert.deepEqual([1,2,3,4].map(i=>secretFloor(i).map.length),[79,101,133,79]);
  assert.equal(secretFloor(4).type,2);
@@ -78,6 +80,65 @@ test('secret exploration selects source highest historical power only on a fresh
   const down=(await app.inject({url:'/v1/secret',headers})).json();
   assert.equal(down.powerLevelId,selectPower(1).id);
  }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
+});
+test('original Secret MapType6 Sid6 has independent six-slot formations and main fallback',async()=>{
+ assert.equal(SECRET_FORMATION_SID,6);
+ assert.ok(checkSecretRoster([1001,1002,0,0,0,0],101));
+ assert.ok(checkSecretRoster([0,0,0,0,0,0],106));
+ assert.equal(checkSecretRoster([1001,1001,0,0,0,0],101),false);
+ assert.equal(checkSecretRoster([1001,0,0,0,0],101),false);
+ assert.equal(checkSecretRoster([1001,0,0,0,0,0],901),false);
+ const {starterHeroes}=await import('../src/starterHeroes.js');
+ const units=secretUnits([1001,1002,1003,0,0,0],101,starterHeroes as unknown as Parameters<typeof secretUnits>[2]);
+ assert.deepEqual(units.map(u=>u.station),[1,3,4]);
+ assert.throws(()=>secretUnits([9999,0,0,0,0,0],101,starterHeroes as unknown as Parameters<typeof secretUnits>[2]),/hero_not_owned/);
+});
+test('secret Sid6 roster persists separately, verifies owner and prevents modifications during pending battle',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);
+ const a=await createGuest(s),b=await createGuest(s),app=await buildApp(s);
+ const ha={authorization:'Bearer '+a.token},hb={authorization:'Bearer '+b.token};
+ const put=(heroIds:number[],formationType=101,headers=ha)=>app.inject({method:'PUT',url:'/v1/secret/formation',headers,payload:{heroIds,formationType}});
+ try{
+  const first=await app.inject({url:'/v1/secret',headers:ha});
+  assert.equal(first.statusCode,200,first.body);
+  const main=(await app.inject({url:'/v1/formation',headers:ha})).json();
+  assert.equal((await app.inject('/v1/secret/formation')).statusCode,401);
+  const initial=(await app.inject({url:'/v1/secret/formation',headers:ha})).json();
+  assert.equal(initial.sid,6);
+  assert.equal(initial.usesMainFallback,true);
+  assert.deepEqual(initial.heroIds,[0,0,0,0,0,0]);
+  const backup=await secretAttackers(s,a.id);
+  assert.deepEqual(backup.map(u=>(u as typeof u & {sid:number}).sid),main.hero_ids.filter((x:number)=>x>0));
+  assert.equal((await put([1001,1001,0,0,0,0])).statusCode,400);
+  assert.equal((await put([9999,0,0,0,0,0])).statusCode,409);
+  assert.equal((await put([1003,1002,1001,0,0,0],102)).statusCode,200);
+  assert.equal((await app.inject({url:'/v1/secret/formation',headers:hb})).json().usesMainFallback,true);
+  assert.deepEqual((await app.inject({url:'/v1/formation',headers:ha})).json(),main);
+  const active=await secretAttackers(s,a.id);
+  assert.deepEqual(active.map(u=>(u as typeof u & {sid:number}).sid),[1003,1002,1001]);
+  assert.deepEqual(active.map(u=>u.station),[0,2,3]);
+  const map=(await app.inject({url:'/v1/secret',headers:ha})).json();
+  const idx=(map.cells as number[][]).findIndex(c=>c[4]===2);
+  assert.ok(idx>=0);
+  map.cells[idx][3]=1;
+  await s.pg.query('UPDATE secret_exploration SET cells=$2 WHERE account_id=$1',[a.id,JSON.stringify(map.cells)]);
+  const battle=await app.inject({method:'POST',url:'/v1/secret/challenge',headers:ha,payload:{index:idx}});
+  assert.equal(battle.statusCode,200,battle.body);
+  const team=(battle.json().initialUnits as {camp:number;sid:number;station:number}[]).filter(u=>u.camp===1);
+  assert.deepEqual(team.map(u=>(u as typeof u & {sid:number}).sid),[1003,1002,1001]);
+  assert.deepEqual(team.map(u=>u.station),[0,2,3]);
+  const blocked=await put([1001,0,0,0,0,0]);
+  assert.equal(blocked.statusCode,409);
+  assert.equal(blocked.json().error,'secret_battle_pending');
+  const cancel=await app.inject({method:'POST',url:'/v1/secret/cancel',headers:ha,payload:{battleId:battle.json().battleId}});
+  assert.equal(cancel.statusCode,200,cancel.body);
+  assert.equal((await put([0,0,0,0,0,0],101)).statusCode,200);
+  assert.deepEqual((await secretAttackers(s,a.id)).map(u=>(u as typeof u & {sid:number}).sid),main.hero_ids.filter((x:number)=>x>0));
+  assert.deepEqual((await app.inject({url:'/v1/formation',headers:ha})).json(),main);
+ }finally{
+  await s.pg.query('DELETE FROM accounts WHERE id=ANY($1::uuid[])',[[a.id,b.id]]);
+  await app.close();
+ }
 });
 test('secret map authorizes clicks, keeps fog and rejects remote/duplicate cells',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);

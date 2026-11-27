@@ -4,7 +4,9 @@ import type {PoolClient} from 'pg';
 import type {Storage} from './storage.js';
 import {sessionAccount} from './auth.js';
 import {getProfile} from './profile.js';
-import {prepareSquad} from './battleUnits.js';
+import {secretAttackers,savedSecretRoster,checkSecretRoster,SECRET_FORMATION_SID} from './secretFormation.js';
+import {getHeroes} from './heroes.js';
+import {formations} from './formationConfig.js';
 import {reportHeroes} from './battle/reportHeroes.js';
 import {simulate,type Fighter} from './battle/simulation.js';
 import {battleRandom} from './battle/random.js';
@@ -77,6 +79,41 @@ function freshFloor(row:State){
  row.cells=generate.cells;row.view_index=generate.view;
 }
 export async function secretRoutes(app:FastifyInstance,s:Storage){
+ app.get('/v1/secret/formation',async(req,reply)=>{
+  const id=await account(req,s);if(!id)return reply.code(401).send({error:'invalid_session'});
+  await getProfile(s,id);
+  const [roster,heroes]=await Promise.all([savedSecretRoster(s,id),getHeroes(s,id)]);
+  return {...roster,usesMainFallback:!roster.heroIds.some(x=>x>0),
+   layouts:formations.map(f=>({id:f.Id,positions:f.Data})),
+   heroOptions:heroes.map(h=>({sid:h.Sid,heroId:h.HeroId,power:h.Power}))};
+ });
+ app.put<{Body:{heroIds:number[];formationType:number}}>('/v1/secret/formation',{
+  schema:{body:{type:'object',required:['heroIds','formationType'],additionalProperties:false,properties:{
+   heroIds:{type:'array',minItems:6,maxItems:6,items:{type:'integer',minimum:0,maximum:2147483647}},
+   formationType:{type:'integer',enum:[101,102,103,104,105,106]}
+  }}},
+ },async(req,reply)=>{
+  const id=await account(req,s);if(!id)return reply.code(401).send({error:'invalid_session'});
+  const {heroIds,formationType}=req.body;
+  if(!checkSecretRoster(heroIds,formationType))return reply.code(400).send({error:'invalid_secret_formation'});
+  await getHeroes(s,id);await getProfile(s,id);
+  const c=await s.pg.connect();
+  try{
+   await c.query('BEGIN');
+   const p=(await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id])).rows[0];
+   if(!p){await c.query('ROLLBACK');return reply.code(404).send({error:'profile_missing'})}
+   const pending=(await c.query('SELECT battle_id FROM secret_pending WHERE account_id=$1',[id])).rows[0];
+   if(pending){await c.query('ROLLBACK');return reply.code(409).send({error:'secret_battle_pending'})}
+   const used=heroIds.filter(x=>x>0);
+   const owned=(await c.query('SELECT sid FROM player_heroes WHERE account_id=$1 AND sid=ANY($2::integer[])',[id,used])).rows;
+   if(owned.length!==used.length){await c.query('ROLLBACK');return reply.code(409).send({error:'hero_not_owned'})}
+   await c.query('INSERT INTO player_formations(account_id) VALUES($1) ON CONFLICT DO NOTHING',[id]);
+   await c.query('UPDATE player_formations SET secret_hero_ids=$2,secret_formation_type=$3 WHERE account_id=$1',[id,heroIds,formationType]);
+   await c.query('COMMIT');
+   return {heroIds,formationType,sid:SECRET_FORMATION_SID,usesMainFallback:!used.length};
+  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
+ });
+
  app.get('/v1/secret',async(req,reply)=>{
   const id=await account(req,s);if(!id)return reply.code(401).send({error:'invalid_session'});
   const profile=await getProfile(s,id);
@@ -128,9 +165,9 @@ export async function secretRoutes(app:FastifyInstance,s:Storage){
  app.post<{Body:{index:number}}>('/v1/secret/challenge',{schema:{body:{type:'object',required:['index'],additionalProperties:false,properties:{index:{type:'integer',minimum:0,maximum:150}}}}},async(req,reply)=>{
   const id=await account(req,s);if(!id)return reply.code(401).send({error:'invalid_session'});
   const profile=await getProfile(s,id);
-  let attackers:Awaited<ReturnType<typeof prepareSquad>>;
-  try{attackers=await prepareSquad(s,id)}catch(e){
-   if(e instanceof Error&&['empty_formation','invalid_formation','hero_attributes_pending','hero_not_owned'].includes(e.message))
+  let attackers:Awaited<ReturnType<typeof secretAttackers>>;
+  try{attackers=await secretAttackers(s,id)}catch(e){
+   if(e instanceof Error&&['empty_formation','invalid_formation','empty_secret_formation','invalid_secret_formation','hero_attributes_pending','hero_not_owned'].includes(e.message))
     return reply.code(409).send({error:e.message});
    throw e;
   }
