@@ -170,9 +170,9 @@
     "id": "NEXT-020",
     "title": "Задания и достижения",
     "phase": "V. Контент",
-    "scope": "020.1 daily/weekly + point chests done. Story/achievements open. NEXT-020.2 source 26 NewbieMainTask from 295 TaskBase original rows. Authoritative state, source rewards, atomic claim and frontend story tab. PioneeringAchievement (4) extracted but competitive achievements and unsupported event conditions OPEN. Isolated DB 151/151 PASS, real browser 320/390/768 3/3 PASS.",
+    "scope": "020.1 daily/weekly + point chests done. Story/achievements open. NEXT-020.2 source 26 NewbieMainTask from 295 TaskBase original rows. Authoritative state, source rewards, atomic claim and frontend story tab. PioneeringAchievement (4) extracted but competitive achievements and unsupported event conditions OPEN. Isolated DB 151/151 PASS, real browser 320/390/768 3/3 PASS. Pioneering achievements type 2 winner/claim added (153/153 PASS); types 3/4, historical max power and event timing remain OPEN.",
     "status": "in_progress",
-    "evidence": "reports/NEXT-020.1.md; reports/NEXT-020.2-main-story-quests-2026-11-27.md; reports/NEXT-020.2-source-audit.json"
+    "evidence": "reports/NEXT-020.1.md; reports/NEXT-020.2-main-story-quests-2026-11-27.md; reports/NEXT-020.2-source-audit.json; reports/NEXT-020.2-pioneering-2026-11-27.md"
   },
   {
     "id": "NEXT-021",

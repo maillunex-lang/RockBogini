@@ -23,6 +23,12 @@ const TASKS=[...Object.values(cfg.tasks),...Object.values(MAIN)]
  .sort((a,b)=>a.type-b.type||a.sortId-b.sortId||a.id-b.id);
 const BY_ID:Record<string,TaskCfg>={...cfg.tasks,...MAIN};
 const MAIN_SORTED=Object.values(MAIN).sort((a,b)=>a.newbieSortId-b.newbieSortId||a.id-b.id);
+type PioneerCfg={id:number;params:number[];uniqueReward:number[][];rewardsForAll:number[][];sortId:number};
+const PIONEERS=Object.values(JSON.parse(readFileSync(new URL('../../data/pioneering-achievements.json',import.meta.url),'utf8')) as Record<string,PioneerCfg>)
+ .sort((a,b)=>a.sortId-b.sortId||a.id-b.id);
+const PIONEERS_BY_ID=new Map(PIONEERS.map(x=>[x.id,x]));
+function pioneerProgress(cfg:PioneerCfg,power:number){return cfg.params[0]===2?power:0;}
+
 const mapData=JSON.parse(readFileSync(new URL('../../data/campaign-map-meta.json',import.meta.url),'utf8')) as {
  maps:Record<string,{type:number}>;
 };
@@ -228,6 +234,74 @@ export async function taskRoutes(app:FastifyInstance,s:Storage){
    };
   }catch(e){await c.query('ROLLBACK');throw e}
   finally{c.release()}
+ });
+
+ app.get('/v1/tasks/pioneering',async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  await getProfile(s,id);
+  const c=await s.pg.connect();
+  try{
+   await c.query('BEGIN');
+   const p=(await c.query('SELECT power FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id])).rows[0];
+   for(const cfg of PIONEERS){
+    if(cfg.params[0]!==2||pioneerProgress(cfg,Number(p.power))<cfg.params[1])continue;
+    await c.query('INSERT INTO pioneering_winners(achievement_id,account_id) VALUES($1,$2) ON CONFLICT DO NOTHING',[cfg.id,id]);
+   }
+   const won=(await c.query(`SELECT w.achievement_id,w.account_id,w.won_at,
+    p.nickname FROM pioneering_winners w JOIN player_profiles p ON p.account_id=w.account_id
+    WHERE w.achievement_id=ANY($1::integer[])`,[PIONEERS.map(x=>x.id)])).rows as
+    {achievement_id:number;account_id:string;won_at:Date;nickname:string}[];
+   const claims=(await c.query('SELECT achievement_id FROM pioneering_claims WHERE account_id=$1',[id])).rows as {achievement_id:number}[];
+   await c.query('COMMIT');
+   const winners=new Map(won.map(w=>[w.achievement_id,w]));
+   const claimed=new Set(claims.map(x=>x.achievement_id));
+   return {achievements:PIONEERS.map(cfg=>{
+    const winner=winners.get(cfg.id);
+    const enabled=cfg.params[0]===2;
+    const myProgress=pioneerProgress(cfg,Number(p.power));
+    return {id:cfg.id,type:cfg.params[0],target:cfg.params[1],sortId:cfg.sortId,
+     myProgress,enabled,uniqueReward:cfg.uniqueReward,rewardsForAll:cfg.rewardsForAll,
+     winner:winner?{nickname:winner.nickname,wonAt:winner.won_at}:null,
+     isWinner:winner?.account_id===id,claimed:claimed.has(cfg.id),
+     ready:enabled&&winner?.account_id===id&&!claimed.has(cfg.id)};
+   })};
+  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
+ });
+
+ app.post<{Body:{achievementIds:number[]}}>('/v1/tasks/pioneering/claim',{
+  schema:{body:{type:'object',required:['achievementIds'],additionalProperties:false,properties:{
+   achievementIds:{type:'array',minItems:1,maxItems:4,uniqueItems:true,items:{type:'integer'}},
+  }}},
+ },async(req,reply)=>{
+  const id=await account(req,s);
+  if(!id)return reply.code(401).send({error:'invalid_session'});
+  await getProfile(s,id);
+  const c=await s.pg.connect();
+  try{
+   await c.query('BEGIN');
+   const p=(await c.query('SELECT power FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id])).rows[0];
+   const rewards:number[][]=[];
+   for(const achId of req.body.achievementIds){
+    const cfg=PIONEERS_BY_ID.get(achId);
+    if(!cfg){await c.query('ROLLBACK');return reply.code(404).send({error:'achievement_not_found'})}
+    if(cfg.params[0]!==2||pioneerProgress(cfg,Number(p.power))<cfg.params[1]){
+     await c.query('ROLLBACK');return reply.code(409).send({error:'achievement_unavailable'});
+    }
+    await c.query('INSERT INTO pioneering_winners(achievement_id,account_id) VALUES($1,$2) ON CONFLICT DO NOTHING',[achId,id]);
+    const winner=(await c.query('SELECT account_id FROM pioneering_winners WHERE achievement_id=$1',[achId])).rows[0];
+    if(winner?.account_id!==id){
+     await c.query('ROLLBACK');return reply.code(409).send({error:'another_player_won'});
+    }
+    const inserted=await c.query('INSERT INTO pioneering_claims(achievement_id,account_id) VALUES($1,$2) ON CONFLICT DO NOTHING RETURNING achievement_id',[achId,id]);
+    if(!inserted.rowCount){await c.query('ROLLBACK');return reply.code(409).send({error:'already_claimed'})}
+    for(const [itemId,n] of [...cfg.rewardsForAll,...cfg.uniqueReward]){
+     if(itemId&&n){await grant(c,id,itemId,n);rewards.push([itemId,n])}
+    }
+   }
+   await c.query('COMMIT');
+   return {claimed:req.body.achievementIds,rewards};
+  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
  });
 
  app.post<{Body:{taskIds:number[]}}>('/v1/tasks/claim',{

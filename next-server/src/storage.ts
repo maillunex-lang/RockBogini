@@ -136,6 +136,19 @@ export async function migrate(s:Storage){
   points jsonb NOT NULL DEFAULT '{}'
  )`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(22) ON CONFLICT DO NOTHING');
+ await c.query(`CREATE TABLE IF NOT EXISTS pioneering_winners(
+  achievement_id integer PRIMARY KEY,
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  won_at timestamptz NOT NULL DEFAULT now()
+ )`);
+ await c.query(`CREATE TABLE IF NOT EXISTS pioneering_claims(
+  achievement_id integer NOT NULL REFERENCES pioneering_winners(achievement_id),
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  claimed_at timestamptz NOT NULL DEFAULT now(),
+  PRIMARY KEY(achievement_id,account_id)
+ )`);
+ await c.query('ALTER TABLE player_profiles ALTER COLUMN power TYPE bigint');
+ await c.query('INSERT INTO schema_migrations(version) VALUES(23) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }

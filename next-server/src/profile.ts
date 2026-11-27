@@ -12,7 +12,7 @@ export async function getProfile(s:Storage,id:string){
  const items=(await c.query('SELECT item_id,amount::text FROM player_items WHERE account_id=$1 ORDER BY item_id',[id])).rows;
  await c.query('COMMIT');
  const balances=Object.fromEntries(items.map(x=>[x.item_id,x.amount]));
- return {...profile,experience:balances[5]??'0',currencies:{coin:balances[1]??'0',diamond:balances[3]??'0',colorDiamond:balances[4]??'0',intelligence:balances[7]??'0',vipPoint:balances[2]??'0',xpWater:balances[22]??'0'}};
+ return {...profile,power:Number(profile.power),experience:balances[5]??'0',currencies:{coin:balances[1]??'0',diamond:balances[3]??'0',colorDiamond:balances[4]??'0',intelligence:balances[7]??'0',vipPoint:balances[2]??'0',xpWater:balances[22]??'0'}};
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }
 export async function profileRoutes(app:FastifyInstance,s:Storage){
