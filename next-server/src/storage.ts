@@ -341,6 +341,8 @@ export async function migrate(s:Storage){
    (hero_ids[5]=0 OR hero_ids[6]=0 OR hero_ids[5]<>hero_ids[6]))
  )`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(31) ON CONFLICT DO NOTHING');
+ await c.query('ALTER TABLE tower_progress ADD COLUMN IF NOT EXISTS pay_count integer NOT NULL DEFAULT 0 CHECK(pay_count>=0)');
+ await c.query('INSERT INTO schema_migrations(version) VALUES(32) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }

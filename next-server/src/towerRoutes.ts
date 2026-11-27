@@ -14,13 +14,13 @@ import {reportHeroes} from './battle/reportHeroes.js';
 import {simulate,type Fighter} from './battle/simulation.js';
 import {battleRandom} from './battle/random.js';
 import {randomInt,randomUUID} from 'node:crypto';
-import {towerTypes,towerType,towerFloor,towerDefenders,towerOpen,towerWeekday,towerRewards,normalTower,hardTower,TOWER_MAX_DAILY_BATTLES} from './towerConfig.js';
+import {towerTypes,towerType,towerFloor,towerDefenders,towerOpen,towerWeekday,towerRewards,normalTower,hardTower,TOWER_MAX_DAILY_BATTLES,towerRequiredModule,towerExtraCost,towerAttemptState,TOWER_DIAMOND_ITEM} from './towerConfig.js';
 
 async function auth(req:{headers:{authorization?:string}},s:Storage){
  const token=/^Bearer ([A-Za-z0-9_-]{43})$/.exec(req.headers.authorization??'')?.[1];
  return token?sessionAccount(s,token):null;
 }
-type TowerRow={tower_type:number;map_index:number;extra_reward_index:number;daily_reward_index:number;daily_claimed:boolean;day:string|Date;battle_count:number;extra_count:number};
+type TowerRow={tower_type:number;map_index:number;extra_reward_index:number;daily_reward_index:number;daily_claimed:boolean;day:string|Date;battle_count:number;extra_count:number;pay_count:number};
 const tokyoDay=(now=new Date())=>new Date(now.getTime()+9*3600000).toISOString().slice(0,10);
 async function towerRow(c:PoolClient,id:string,type:number):Promise<TowerRow>{
  await c.query(`INSERT INTO tower_progress(account_id,tower_type,day) VALUES($1,$2,$3)
@@ -28,7 +28,7 @@ async function towerRow(c:PoolClient,id:string,type:number):Promise<TowerRow>{
  const row=(await c.query('SELECT * FROM tower_progress WHERE account_id=$1 AND tower_type=$2 FOR UPDATE',[id,type])).rows[0] as TowerRow;
  if((row.day instanceof Date?row.day.toISOString().slice(0,10):String(row.day).slice(0,10))!==tokyoDay()){
   const reset=(await c.query(`UPDATE tower_progress
-   SET daily_reward_index=map_index,daily_claimed=false,battle_count=0,day=$3
+   SET daily_reward_index=map_index,daily_claimed=false,battle_count=0,pay_count=0,day=$3
    WHERE account_id=$1 AND tower_type=$2 RETURNING *`,[id,type,tokyoDay()])).rows[0];
   return reset;
  }
@@ -49,18 +49,58 @@ export async function towerRoutes(app:FastifyInstance,s:Storage){
   try{
    await c.query('BEGIN');
    await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
+   const unlocked=(await c.query('SELECT module_id FROM player_modules WHERE account_id=$1',[id])).rows as {module_id:number}[];
+   const moduleSet=new Set(unlocked.map(x=>x.module_id));
    const towers=[];
    for(const cfg of Object.values(towerTypes).sort((a,b)=>a.id-b.id)){
     const row=await towerRow(c,id,cfg.id);
     const next=towerFloor(cfg.id,row.map_index+1);
-    towers.push({type:cfg.id,mapIndex:row.map_index,maxCount:cfg.maxCount,open:towerOpen(cfg.id),
+    const requiredModule=towerRequiredModule(cfg.id);
+    const unlockedTower=requiredModule===null||moduleSet.has(requiredModule);
+    const attempts=towerAttemptState(row.battle_count,row.extra_count);
+    towers.push({type:cfg.id,mapIndex:row.map_index,maxCount:cfg.maxCount,
+     open:towerOpen(cfg.id)&&unlockedTower,weekdayOpen:towerOpen(cfg.id),unlocked:unlockedTower,requiredModule,
      nextMapId:next?.mapId??null,nextFloor:next?.floor??null,nextMap:next?{bg:next.map.bg,battlePower:next.map.battlePower,heroIds:next.map.heroes.map(x=>x[1])}:null,
      extraRewardIndex:row.extra_reward_index,dailyRewardIndex:row.daily_reward_index,
-     dailyClaimed:row.daily_claimed,battleCount:row.battle_count,extraCount:row.extra_count,
-     maxDailyBattles:TOWER_MAX_DAILY_BATTLES,available:!cfg.openTime.length||row.battle_count<TOWER_MAX_DAILY_BATTLES+row.extra_count});
+     dailyClaimed:row.daily_claimed,battleCount:row.battle_count,extraCount:row.extra_count,payCount:row.pay_count,
+     nextExtraCost:cfg.openTime.length?towerExtraCost(1,row.pay_count):null,
+     maxDailyBattles:TOWER_MAX_DAILY_BATTLES,available:!cfg.openTime.length||attempts.available});
    }
    await c.query('COMMIT');
    return {towers,weekday:towerWeekday()};
+  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
+ });
+ app.post<{Body:{type:number;count:number}}>('/v1/tower/buy-attempts',{
+  schema:{body:{type:'object',required:['type','count'],additionalProperties:false,properties:{
+   type:{type:'integer',enum:[1,2,3,4,5,101,102,103,104,105]},
+   count:{type:'integer',minimum:1,maximum:100}
+  }}},
+ },async(req,reply)=>{
+  const id=await auth(req,s);if(!id)return reply.code(401).send({error:'invalid_session'});
+  const {type,count}=req.body,cfg=towerType(type);
+  if(!cfg?.openTime.length)return reply.code(400).send({error:'tower_not_elemental'});
+  await getProfile(s,id);
+  const c=await s.pg.connect();
+  try{
+   await c.query('BEGIN');
+   await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
+   const required=towerRequiredModule(type);
+   if(required!==null){
+    const unlocked=await c.query('SELECT 1 FROM player_modules WHERE account_id=$1 AND module_id=$2',[id,required]);
+    if(!unlocked.rowCount){await c.query('ROLLBACK');return reply.code(409).send({error:'tower_locked',requiredModule:required})}
+   }
+   const row=await towerRow(c,id,type);
+   const cost=towerExtraCost(count,row.pay_count);
+   if(cost===null){await c.query('ROLLBACK');return reply.code(400).send({error:'invalid_attempt_count'})}
+   if(cost>0){
+    const paid=await c.query('UPDATE player_items SET amount=amount-$3 WHERE account_id=$1 AND item_id=$2 AND amount>=$3 RETURNING amount',[id,TOWER_DIAMOND_ITEM,cost]);
+    if(!paid.rowCount){await c.query('ROLLBACK');return reply.code(409).send({error:'insufficient_diamond',cost})}
+   }
+   const updated=(await c.query('UPDATE tower_progress SET extra_count=extra_count+$3,pay_count=pay_count+$3 WHERE account_id=$1 AND tower_type=$2 RETURNING extra_count,pay_count,battle_count',[id,type,count])).rows[0];
+   await c.query('COMMIT');
+   return {type,count,cost,extraCount:updated.extra_count,payCount:updated.pay_count,
+    available:towerAttemptState(updated.battle_count,updated.extra_count).available,
+    nextExtraCost:towerExtraCost(1,updated.pay_count)};
   }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
  });
  app.get('/v1/tower/formations',async(req,reply)=>{
@@ -107,6 +147,23 @@ export async function towerRoutes(app:FastifyInstance,s:Storage){
   const {type,mapIndex}=req.body,cfg=towerType(type),floor=towerFloor(type,mapIndex);
   if(!cfg||!floor)return reply.code(404).send({error:'tower_floor_not_found'});
   await getProfile(s,id);
+  const c0=await s.pg.connect();
+  try{
+   await c0.query('BEGIN');
+   await c0.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
+   const required=towerRequiredModule(type);
+   if(required!==null){
+    const unlocked=await c0.query('SELECT 1 FROM player_modules WHERE account_id=$1 AND module_id=$2',[id,required]);
+    if(!unlocked.rowCount){await c0.query('ROLLBACK');return reply.code(409).send({error:'tower_locked',requiredModule:required})}
+   }
+   const row=await towerRow(c0,id,type);
+   if(mapIndex!==row.map_index+1){await c0.query('ROLLBACK');return reply.code(409).send({error:'not_next_floor'})}
+   if(!towerOpen(type)){await c0.query('ROLLBACK');return reply.code(409).send({error:'tower_closed'})}
+   if(cfg.openTime.length&&!towerAttemptState(row.battle_count,row.extra_count).available){
+    await c0.query('ROLLBACK');return reply.code(409).send({error:'tower_daily_limit'});
+   }
+   await c0.query('COMMIT');
+  }catch(e){await c0.query('ROLLBACK');throw e}finally{c0.release()}
   let attackers:Awaited<ReturnType<typeof towerAttackers>>;
   try{attackers=await towerAttackers(s,id,type)}catch(e){
    if(e instanceof Error&&['empty_formation','empty_tower_formation','invalid_formation','invalid_tower_formation','hero_not_owned','hero_attributes_pending'].includes(e.message))
@@ -117,10 +174,15 @@ export async function towerRoutes(app:FastifyInstance,s:Storage){
   try{
    await c.query('BEGIN');
    await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
+   const required=towerRequiredModule(type);
+   if(required!==null){
+    const unlocked=await c.query('SELECT 1 FROM player_modules WHERE account_id=$1 AND module_id=$2',[id,required]);
+    if(!unlocked.rowCount){await c.query('ROLLBACK');return reply.code(409).send({error:'tower_locked',requiredModule:required})}
+   }
    const row=await towerRow(c,id,type);
    if(mapIndex!==row.map_index+1){await c.query('ROLLBACK');return reply.code(409).send({error:'not_next_floor'})}
    if(!towerOpen(type)){await c.query('ROLLBACK');return reply.code(409).send({error:'tower_closed'})}
-   if(cfg.openTime.length&&row.battle_count>=TOWER_MAX_DAILY_BATTLES+row.extra_count){
+   if(cfg.openTime.length&&!towerAttemptState(row.battle_count,row.extra_count).available){
     await c.query('ROLLBACK');return reply.code(409).send({error:'tower_daily_limit'});
    }
    const defenders=towerDefenders(type,mapIndex);
@@ -172,8 +234,10 @@ export async function towerRoutes(app:FastifyInstance,s:Storage){
     rewards=towerRewards(floor.floor.firstClearRewards);
     await grant(c,id,rewards);
     await c.query(`UPDATE tower_progress SET map_index=$3,
-     battle_count=battle_count+$4 WHERE account_id=$1 AND tower_type=$2`,
-     [id,b.tower_type,b.map_index,towerType(b.tower_type)!.openTime.length?1:0]);
+     battle_count=battle_count+$4,
+     extra_count=extra_count-$5 WHERE account_id=$1 AND tower_type=$2`,
+     [id,b.tower_type,b.map_index,towerType(b.tower_type)!.openTime.length&&row.battle_count<TOWER_MAX_DAILY_BATTLES?1:0,
+      towerType(b.tower_type)!.openTime.length&&row.battle_count>=TOWER_MAX_DAILY_BATTLES?1:0]);
    }
    const unlockedModules=win?await refreshModules(c,id,profile.level,
     (await c.query('SELECT stage FROM player_profiles WHERE account_id=$1',[id])).rows[0].stage):[];
@@ -248,6 +312,11 @@ export async function towerRoutes(app:FastifyInstance,s:Storage){
    await c.query('BEGIN');
    const profile=(await c.query('SELECT power FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id])).rows[0];
    if(!profile){await c.query('ROLLBACK');return reply.code(404).send({error:'profile_not_found'})}
+   const required=towerRequiredModule(req.body.type);
+   if(required!==null){
+    const unlocked=await c.query('SELECT 1 FROM player_modules WHERE account_id=$1 AND module_id=$2',[id,required]);
+    if(!unlocked.rowCount){await c.query('ROLLBACK');return reply.code(409).send({error:'tower_locked',requiredModule:required})}
+   }
    const row=await towerRow(c,id,req.body.type);
    if(req.body.from!==row.map_index+1){await c.query('ROLLBACK');return reply.code(409).send({error:'not_next_floor'})}
    if(Number(profile.power)<=target.floor.quickBattlePower){

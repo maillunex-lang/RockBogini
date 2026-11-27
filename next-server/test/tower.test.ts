@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {openStorage,migrate} from '../src/storage.js';
 import {createGuest} from '../src/auth.js';
 import {buildApp} from '../src/app.js';
-import {towerTypes,towerFloor,towerDefenders,towerOpen,towerWeekday,towerRewards} from '../src/towerConfig.js';
+import {towerTypes,towerFloor,towerDefenders,towerOpen,towerWeekday,towerRewards,towerExtraCost,towerRequiredModule,towerAttemptState} from '../src/towerConfig.js';
 import {towerFormationSid,towerElementRoot,checkTowerRoster,towerUnits} from '../src/towerFormation.js';
 import {starterHeroes} from '../src/starterHeroes.js';
 test('exact source tower data has 12 types, 17000 floors, correct daily and opening constraints',()=>{
@@ -20,6 +20,68 @@ test('exact source tower data has 12 types, 17000 floors, correct daily and open
  assert.equal(towerOpen(99),true);
  assert.equal(towerDefenders(99,1)?.length,5);
  assert.equal(towerDefenders(1,1)?.length,5);
+});
+test('original tower diamond pricing and module locks are faithfully exported',()=>{
+ assert.equal(towerExtraCost(1,0),50);
+ assert.equal(towerExtraCost(3,0),150);
+ assert.equal(towerExtraCost(2,7),100);
+ assert.equal(towerExtraCost(0,0),null);
+ assert.equal(towerExtraCost(1,-1),null);
+ assert.deepEqual(towerAttemptState(9,0),{freeLeft:1,paidLeft:0,available:true});
+ assert.deepEqual(towerAttemptState(10,0),{freeLeft:0,paidLeft:0,available:false});
+ assert.deepEqual(towerAttemptState(10,2),{freeLeft:0,paidLeft:2,available:true});
+ assert.deepEqual([101,102,103,104,105,199].map(t=>towerRequiredModule(t)),[2029,2030,2031,2032,2033,2034]);
+ assert.equal(towerRequiredModule(1),null);assert.equal(towerRequiredModule(99),null);
+});
+test('tower buy attempts debits original diamonds atomically, enforces module locks and respects daily reset',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);
+ const a=await createGuest(s),b=await createGuest(s),app=await buildApp(s);
+ const ha={authorization:'Bearer '+a.token},hb={authorization:'Bearer '+b.token};
+ const buy=(type:number,count:number,headers:{authorization?:string}=ha)=>app.inject({method:'POST',url:'/v1/tower/buy-attempts',headers,payload:{type,count}});
+ try{
+  assert.equal((await buy(1,1,{})).statusCode,401);
+  assert.equal((await buy(199,1)).statusCode,400);
+  const initially=await buy(1,1);
+  assert.equal(initially.statusCode,409);
+  assert.equal(initially.json().error,'insufficient_diamond');
+  assert.equal((await buy(101,1)).statusCode,409);
+  assert.equal((await buy(101,1)).json().error,'tower_locked');
+  await s.pg.query('INSERT INTO player_items(account_id,item_id,amount) VALUES($1,3,200) ON CONFLICT(account_id,item_id) DO UPDATE SET amount=200',[a.id]);
+  assert.equal((await buy(1,3)).statusCode,200);
+  assert.equal((await s.pg.query('SELECT amount FROM player_items WHERE account_id=$1 AND item_id=3',[a.id])).rows[0].amount,'50');
+  const list=(await app.inject({url:'/v1/tower',headers:ha})).json();
+  assert.equal(list.towers.find((t:{type:number})=>t.type===1).extraCount,3);
+  assert.equal(list.towers.find((t:{type:number})=>t.type===1).payCount,3);
+  const hard=list.towers.find((t:{type:number})=>t.type===101);
+  assert.equal(hard.unlocked,false);assert.equal(hard.requiredModule,2029);
+  const locked=await app.inject({method:'POST',url:'/v1/tower/challenge',headers:ha,payload:{type:101,mapIndex:1}});
+  assert.equal(locked.statusCode,409);assert.equal(locked.json().error,'tower_locked');
+  assert.equal((await buy(1,2)).statusCode,409);
+  const isolated=(await app.inject({url:'/v1/tower',headers:hb})).json();
+  assert.equal(isolated.towers.find((t:{type:number})=>t.type===1).extraCount,0);
+  await s.pg.query('UPDATE tower_progress SET day=$3::date WHERE account_id=$1 AND tower_type=$2',[a.id,1,'2026-01-01']);
+  const rollover=(await app.inject({url:'/v1/tower',headers:ha})).json().towers.find((t:{type:number})=>t.type===1);
+  assert.equal(rollover.payCount,0);
+  assert.equal(rollover.extraCount,3);
+ }finally{
+  await s.pg.query('DELETE FROM accounts WHERE id=ANY($1::uuid[])',[[a.id,b.id]]);await app.close();
+ }
+});
+test('paid tower attempts consumed after ten free victories and never on defeat',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);const a=await createGuest(s),app=await buildApp(s);
+ const headers={authorization:'Bearer '+a.token};
+ try{
+  await app.inject({url:'/v1/profile',headers});
+  await s.pg.query('INSERT INTO player_items(account_id,item_id,amount) VALUES($1,3,500) ON CONFLICT(account_id,item_id) DO UPDATE SET amount=500',[a.id]);
+  const purchased=await app.inject({method:'POST',url:'/v1/tower/buy-attempts',headers,payload:{type:1,count:1}});
+  assert.equal(purchased.statusCode,200,purchased.body);
+  await s.pg.query("UPDATE tower_progress SET battle_count=10,day=(now() at time zone 'Asia/Tokyo')::date WHERE account_id=$1 AND tower_type=1",[a.id]);
+  const limit=(await app.inject({url:'/v1/tower',headers})).json().towers.find((t:{type:number})=>t.type===1);
+  assert.equal(limit.available,true);assert.equal(limit.extraCount,1);
+  await s.pg.query('UPDATE tower_progress SET extra_count=0 WHERE account_id=$1 AND tower_type=1',[a.id]);
+  const soldOut=(await app.inject({url:'/v1/tower',headers})).json().towers.find((t:{type:number})=>t.type===1);
+  assert.equal(soldOut.available,false);
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=$1',[a.id]);await app.close()}
 });
 test('original MapType elemental towers have shared formation Sid 141–145 and original positions',()=>{
  assert.deepEqual([1,2,3,4,5].map(t=>towerFormationSid(t)),[141,142,143,144,145]);

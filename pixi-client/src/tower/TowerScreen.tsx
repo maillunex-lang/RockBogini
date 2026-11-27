@@ -5,6 +5,7 @@ import './tower.css';
 type Reward=[number,number];
 type TowerFloor={firstClearRewards:Reward[];dailyRewards:Reward[];extraRewards:Reward[];quickBattlePower:number};
 type Tower={type:number;mapIndex:number;maxCount:number;open:boolean;available:boolean;
+ unlocked:boolean;weekdayOpen:boolean;requiredModule:number|null;payCount:number;nextExtraCost:number|null;
  nextMapId:number|null;nextFloor:TowerFloor|null;nextMap:{bg:string;battlePower:number;heroIds:number[]}|null;
  extraRewardIndex:number;dailyRewardIndex:number;dailyClaimed:boolean;battleCount:number;extraCount:number;maxDailyBattles:number};
 type TowerFormations={rosters:Record<string,{formationType:number;heroIds:number[]}>;sids:number[];
@@ -22,6 +23,7 @@ export function TowerScreen({api,token,onClose}:{api:string;token:string;onClose
  const [busy,setBusy]=useState(false);
  const [message,setMessage]=useState('');
  const [quickEnd,setQuickEnd]=useState(1);
+ const [attemptCount,setAttemptCount]=useState(1);
  const [towerForms,setTowerForms]=useState<TowerFormations|null>(null);
  const [towerHeroes,setTowerHeroes]=useState<number[]>([0,0,0,0,0,0]);
  const [towerLayout,setTowerLayout]=useState(101);
@@ -67,6 +69,12 @@ export function TowerScreen({api,token,onClose}:{api:string;token:string;onClose
   setTowerDirty(false);setMessage('Отряд элементальной башни сохранён');
   await load();
  });
+ const buyAttempts=()=>void run(async()=>{
+  if(!current||!elemental)return;
+  const purchased=await request<{count:number;cost:number;extraCount:number}>('/buy-attempts','POST',{type:selected,count:attemptCount});
+  setMessage('Куплено попыток: '+purchased.count+' · Потрачено алмазов: '+purchased.cost);
+  setAttemptCount(1);await load();
+ });
  const start=()=>void run(async()=>{
   if(!current)return;
   const r=await request<TowerBattle>('/challenge','POST',{type:selected,mapIndex:current.mapIndex+1});
@@ -101,8 +109,8 @@ export function TowerScreen({api,token,onClose}:{api:string;token:string;onClose
    {current&&<section className="tower-panel">
     <div className="tower-info">
      <h3>{names[current.type]??'Башня '+current.type}</h3>
-     <p>Открыто: {current.open?'Да':'Нет, другой день'} · Следующий этаж: {current.mapIndex+1} · Пройдено: {current.mapIndex}</p>
-     {current.type!==99&&current.type!==199&&<p>Использовано попыток: {current.battleCount}/{current.maxDailyBattles+current.extraCount}</p>}
+     <p>Открыто: {current.open?'Да':!current.unlocked?'Нет, требуется игровой модуль '+current.requiredModule:'Нет, другой день'} · Следующий этаж: {current.mapIndex+1} · Пройдено: {current.mapIndex}</p>
+     {elemental&&<p>Бесплатных побед сегодня: {Math.max(0,current.maxDailyBattles-current.battleCount)} · Купленных попыток осталось: {current.extraCount} · Покупок сегодня: {current.payCount}</p>}
      {current.nextMap&&<p>Сила противников: {current.nextMap.battlePower.toLocaleString('ru-RU')} · Противников: {current.nextMap.heroIds.length}</p>}
      {current.nextFloor&&<p>Первое прохождение: {rewards(current.nextFloor.firstClearRewards)}</p>}
     </div>
@@ -131,6 +139,15 @@ export function TowerScreen({api,token,onClose}:{api:string;token:string;onClose
      </div>
      <button disabled={busy||!towerDirty||new Set(towerHeroes.filter(Boolean)).size!==towerHeroes.filter(Boolean).length}
       onClick={saveTower}>Сохранить отряд башни</button>
+    </div>}
+    {elemental&&current.unlocked&&<div className="tower-quick">
+     <label>Дополнительные попытки
+      <input inputMode="numeric" aria-label="Количество покупаемых попыток" type="number" min={1} max={100}
+       value={attemptCount} onChange={e=>setAttemptCount(Number(e.target.value))}/>
+     </label>
+     <button type="button" onClick={buyAttempts} disabled={busy||!Number.isInteger(attemptCount)||attemptCount<1||attemptCount>100}>
+      Купить за {current.nextExtraCost===null?'?':attemptCount*current.nextExtraCost} алмазов
+     </button>
     </div>}
     <div className="tower-actions">
      <button type="button" disabled={busy||!current.open||!current.available||!current.nextFloor||(elemental&&(towerDirty||!towerForms?.rosters[String(formRoot)]?.heroIds.some(Boolean)))} onClick={start}>⚔️ Начать бой</button>

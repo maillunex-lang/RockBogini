@@ -1,0 +1,52 @@
+{
+  "sources": {
+    "/home/gamedev/QueensBladeH5/racon2-main/client/config/configure/18c4d736ff25f4cd5fbc92e9c0a00081/LevelParam": "d6b941777036d17ad6246fa3982755632fda9d18b9da42cd2dfe2f170402977d",
+    "/home/gamedev/QueensBladeH5/racon2-main/client/config/configure/68f90018518ef275810578e321d5b8c6/GlobalSetting": "8e9d25a6ef66421de5d4418f4604061e78c000a4483b35d6a3055795d2eb3922"
+  },
+  "originalSourceHandlers": [
+    "server/lib/racon/game/handlers/pve_tower.ex",
+    "server/lib/racon/game/handlers/game_misc.ex"
+  ],
+  "verified": {
+    "maxDailyWins": 10,
+    "extraAttemptCosts": [
+      [
+        1,
+        50
+      ]
+    ],
+    "diamondItemId": 3,
+    "hardTowerModules": {
+      "2029": [
+        102,
+        1,
+        2000
+      ],
+      "2030": [
+        102,
+        2,
+        2000
+      ],
+      "2031": [
+        102,
+        3,
+        2000
+      ],
+      "2032": [
+        102,
+        4,
+        2000
+      ],
+      "2033": [
+        102,
+        5,
+        2000
+      ],
+      "2034": [
+        102,
+        99,
+        3000
+      ]
+    }
+  }
+}

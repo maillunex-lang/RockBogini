@@ -12,9 +12,36 @@ export const towerTypes=JSON.parse(readFileSync(new URL('../../data/tower-types.
 const FLOORS=JSON.parse(readFileSync(new URL('../../data/tower-maps.json',import.meta.url),'utf8')) as Record<string,TowerFloor>;
 const MAPS=JSON.parse(readFileSync(new URL('../../data/tower-map-base.json',import.meta.url),'utf8')) as Record<string,TowerMap>;
 const HEROES=new Map(heroCatalog.map(h=>[h.Id,h]));
+const LIMITS=JSON.parse(readFileSync(new URL('../../data/tower-limits.json',import.meta.url),'utf8')) as {
+ maxDailyWins:number;extraAttemptCosts:number[][];diamondItemId:number;hardTowerModules:Record<string,[number,number,number]>;
+};
+export const TOWER_DIAMOND_ITEM=LIMITS.diamondItemId;
+export const TOWER_EXTRA_ATTEMPT_STEPS=LIMITS.extraAttemptCosts;
+export const TOWER_HARD_MODULES=LIMITS.hardTowerModules;
+export function towerRequiredModule(type:number):number|null{
+ if(type===199)return 2034;
+ if(type>=101&&type<=105)return 2028+(type-100);
+ return null;
+}
+export function towerExtraCost(n:number,alreadyBought:number):number|null{
+ if(!Number.isSafeInteger(n)||n<1||n>100||!Number.isSafeInteger(alreadyBought)||alreadyBought<0||alreadyBought+n>1000000)return null;
+ let remaining=alreadyBought+n,total=0;
+ for(const [from,unitPrice] of [...TOWER_EXTRA_ATTEMPT_STEPS].reverse()){
+  if(remaining>alreadyBought&&remaining>=from){
+   const prior=Math.max(from-1,alreadyBought);
+   total+=(remaining-prior)*unitPrice;
+   remaining=prior;
+  }
+ }
+ return Number.isSafeInteger(total)?total:null;
+}
+export function towerAttemptState(battleCount:number,extraCount:number){
+ const freeLeft=Math.max(0,TOWER_MAX_DAILY_BATTLES-battleCount);
+ return {freeLeft,paidLeft:extraCount,available:freeLeft+extraCount>0};
+}
 export const normalTower=99;
 export const hardTower=199;
-export const TOWER_MAX_DAILY_BATTLES=10;
+export const TOWER_MAX_DAILY_BATTLES=LIMITS.maxDailyWins;
 export function towerType(type:number){return towerTypes[String(type)];}
 export function towerFloor(type:number,index:number){
  const cfg=towerType(type);
