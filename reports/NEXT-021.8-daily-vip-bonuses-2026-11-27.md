@@ -21,3 +21,14 @@
 - Новые проверки: источники бонусов типов 9/14–24, VIP0/1/3/21, атомарное списание алмазов, сохранение дневных счётчиков, отсутствие VIP-привилегий у другого аккаунта, обновление бесплатных/платных остатков при смене дня.
 - Первоначальные сбои выявлены только в тестовых фикстурах: некорректное сравнение массивов и отсутствие строки прогресса; исправлены, полный повторный прогон зелёный.
 - Ручная проверка игрового UI авторизованным игроком пока не выполнена.
+
+## Выпуск NEXT-021.8 на VPS
+- Перед обновлением сохранён PostgreSQL dump `/var/backups/rockbogini-next-pre-daily-0218-20261127.dump` (135 KiB) и предыдущий Docker-образ `rockbogini-next-api:pre-daily-0218`.
+- Новый образ `rockbogini-next-api:latest` успешно собран (Docker build exit0).
+- API обновлён через `docker compose -p rockbogini-next up -d --no-deps --no-build api`; PostgreSQL и Redis не перезапускались.
+- Production `schema_migrations` = 33; новая миграция не требовалась.
+- `https://rikagro.ru/sexyidle/api/ready` = `{"ready":true}` HTTP200.
+- Неавторизованный `GET /sexyidle/api/v1/daily-instance` возвращает HTTP401, ожидаемая защита.
+- Docker API, PostgreSQL и Redis healthy, исполняемый образ совпадает с тегом latest.
+- Frontend опубликован в `/var/www/sexyidle`, entry `assets/main-Dq4Wb8LM.js`.
+- Ручная проверка авторизованного сценария игрока пока не проведена.
