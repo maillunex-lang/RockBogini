@@ -19,6 +19,40 @@ jobs:
       # Generate a fresh ephemeral CI key. Never hardcode or reuse production keys.
       - name: Test with ephemeral recovery secret
         run: NEXT_RECOVERY_SECRET="$(openssl rand -hex 32)" npm test
+  integration-db:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: rockbogini_next
+          POSTGRES_USER: rockbogini_next
+          POSTGRES_PASSWORD: isolated-ci-only
+        ports: ['5432:5432']
+        options: --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+      redis:
+        image: redis:7-alpine
+        ports: ['6379:6379']
+        options: --health-cmd "redis-cli ping" --health-interval 5s --health-timeout 5s --health-retries 10
+    defaults:
+      run:
+        working-directory: next-server
+    env:
+      PGHOST: 127.0.0.1
+      NEXT_DB_PASSWORD: isolated-ci-only
+      REDIS_URL: redis://127.0.0.1:6379
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: next-server/package-lock.json
+      - run: npm ci
+      - run: npm run build
+      - name: Sequential isolated database tests
+        run: NEXT_RECOVERY_SECRET="$(openssl rand -hex 32)" node --test --test-concurrency=1 --test-timeout=60000 dist/test/*.test.js
   pixi-client:
     runs-on: ubuntu-latest
     defaults:

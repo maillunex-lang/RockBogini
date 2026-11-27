@@ -346,3 +346,5 @@ NEXT-013.5.1 partial: per-actor HP bars, buff count, damage/heal/crit colors, ev
 2026-11-25 NEXT-014.5–014.14: boss Type=2, enemy/reward preview, modules, WinBoard, campaignComplete, chapter heros, stage labels, tutorial skip, item names; 84/84 tests; publish. reports/NEXT-014.5-14-*.
 
 2026-11-25 Plan A: 014 tails + NEXT-015 inventory MVP + settle white-screen hotfix; 86/86; publish. reports/NEXT-014-tails-015-*.
+
+2026-11-27: isolated PostgreSQL 16/Redis 7 sequential integration suite: 144 PASS, 0 FAIL, 0 SKIP, 37.278 seconds, Termalin job 8j4mmuos8w exit 0. Added integration-db GitHub Actions job; remote run pending.

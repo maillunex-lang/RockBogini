@@ -45,3 +45,5 @@ NEXT-026.4 ResultScreen now pulls original ItemIcon and hero avatar images by se
 2026-11-27 urgent summon fix: next-server/src/summon.ts now calls getHeroes before grantHeroCard in common/oracle/crystal; getHeroes bootstrap preserves previously granted heroes even if sid1001 was claimed before hero_collections. Regression next-server/test/summon.test.ts; isolated postgres/redis 11/11. Live browser guests 390/320 free pulls PASS. Original Common card results in SummonScreen. Report reports/NEXT-026.4-summon-real-pull-2026-11-27.md.
 
 Full integration suite caveat: 2026-11-27 independent PG+Redis run with --test-concurrency=3 exceeded 220s, PostgreSQL 40P01 deadlocks in auth and heroes. Do not mark DB tests green. Targeted summon 11/11 PASS. Build isolated serialized CI DB suite next; report reports/NEXT-026.4-integration-suite-audit-2026-11-27.md.
+
+2026-11-27: isolated PostgreSQL 16/Redis 7 sequential integration suite: 144 PASS, 0 FAIL, 0 SKIP, 37.278 seconds, Termalin job 8j4mmuos8w exit 0. Added integration-db GitHub Actions job; remote run pending.
