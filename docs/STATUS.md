@@ -1,5 +1,5 @@
 # NEXT-021.6 (2026-11-27): оплаченные попытки и доступ к высшим башням
-Оригинальные LevelParam198 (50 алмазов), GlobalSetting 10 дневных побед, серверная покупка, надёжное списание Count, исходные требования GameModule 2029–2034; migration32, клиентские ограничения/покупки. Isolated PostgreSQL/Redis 191/191 PASS (job lol9g8vn57), server/client build PASS. NEXT-021 in_progress, отчёт reports/NEXT-021.6-tower-purchased-attempts-2026-11-27.md.
+Оригинальные LevelParam198 (50 алмазов), GlobalSetting 10 дневных побед, серверная покупка, надёжное списание Count, исходные требования GameModule 2029–2034; migration32, клиентские ограничения/покупки. Isolated PostgreSQL/Redis 191/191 PASS (job lol9g8vn57), server/client build PASS. Production VPS API+frontend опубликованы, migration32, HTTP200 и Docker healthy. NEXT-021 in_progress, отчёт reports/NEXT-021.6-tower-purchased-attempts-2026-11-27.md.
 
 # NEXT-021.5 (2026-11-27): задания башен и пороги модулей
 Оригинальные задачи 2006/1013/1041, достижения 25/60 этажей, условия GameModule 101/102 по реальным этажам башен; транзакционные события settlement/quick. Full isolated 188/188 PASS (job bwt0g03ru4). Production VPS API обновлён, readiness HTTP200 и Docker healthy, schema31. NEXT-021 in_progress, отчёт reports/NEXT-021.5-tower-quests-modules-2026-11-27.md.

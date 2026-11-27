@@ -22,3 +22,14 @@
 - Первичная проверка обнаружила неправильный приоритет ошибки: `empty_tower_formation` перед `tower_locked`. Проверка доступа перенесена раньше; повторная полная регрессия зелёная.
 - Новые тесты подтверждают оригинальные цены, блокировки, отсутствие частичной оплаты при недостатке алмазов, изоляцию игроков, дневной сброс счётчика покупок и доступность оплаченных попыток при исчерпании бесплатных.
 - Ручная проверка в браузере с авторизованным игроком ещё нужна, а полный 1:1 визуал и остальная PvE-логика NEXT-021 пока in_progress.
+
+## Выпуск NEXT-021.6 на VPS
+- Перед обновлением сохранён PostgreSQL dump `/var/backups/rockbogini-next-pre-tower-0216-20261127.dump` (134 KiB) и предыдущий Docker-образ `rockbogini-next-api:pre-tower-0216`.
+- Новый образ `rockbogini-next-api:latest` успешно собран (Docker build exit0).
+- API обновлён через `docker compose -p rockbogini-next up -d --no-deps --no-build api`, PostgreSQL и Redis не перезапускались.
+- Production `schema_migrations` = **32**, успешно применена новая миграция.
+- `https://rikagro.ru/sexyidle/api/ready` = `{"ready":true}` HTTP200.
+- Неавторизованный `POST /sexyidle/api/v1/tower/buy-attempts` возвращает HTTP401, ожидаемая защита.
+- Docker API, PostgreSQL и Redis healthy, исполняемый образ совпадает с тегом latest.
+- Frontend опубликован в `/var/www/sexyidle`, entry `assets/main-BDTPMANM.js`.
+- Ручная проверка авторизованного сценария игрока пока не проведена.
