@@ -24,3 +24,13 @@
 - Полная оригинальная система бонусов, пассивных эффектов и визуальная 1:1 анимация боя требуют следующих этапов.
 - Полный браузерный сценарий с авторизованным игровым аккаунтом на production не проверен.
 - NEXT-021 остаётся in_progress.
+
+## Выпуск NEXT-021.3E на VPS
+- Перед обновлением сохранён дамп PostgreSQL `/var/backups/rockbogini-next-pre-abyss-0213e-20261127.dump` (129 KiB) и предыдущий Docker-образ `rockbogini-next-api:pre-abyss-0213e`.
+- Новый образ `rockbogini-next-api:latest` успешно собран (Docker build exit0).
+- `docker compose -p rockbogini-next up -d --no-deps --no-build api` PASS; базу и Redis не перезапускали.
+- Production `schema_migrations` = **30**; `https://rikagro.ru/sexyidle/api/ready` = HTTP200 `{"ready":true}`.
+- `PUT /sexyidle/api/v1/abyss/team` без сессии HTTP401, ожидаемая защита.
+- Docker API/PostgreSQL/Redis healthy, работающий API-образ совпадает с тегом latest.
+- Frontend обновлён на `/var/www/sexyidle`, публичный entry `assets/main-D8Jckqav.js`.
+- Сценарий с авторизованным игровым аккаунтом через браузер вручную пока не проверен.

@@ -1,5 +1,5 @@
 # NEXT-021.3E (2026-11-27): отдельная формация отрядной Бездны
-Режим MapType 11 использует оригинальную отдельную формацию Sid 7; шесть слотов и построения 101–106, сохранение с контролем владения и запретом изменения во время pending боя. Миграция 30, сервер/клиент билд PASS, isolated 180/180 PASS (job 65kqjqs9oo). NEXT-021 in_progress, отчёт reports/NEXT-021.3E-abyss-team-formation-2026-11-27.md.
+Режим MapType 11 использует оригинальную отдельную формацию Sid 7; шесть слотов и построения 101–106, сохранение с контролем владения и запретом изменения во время pending боя. Миграция 30, сервер/клиент билд PASS, isolated 180/180 PASS (job 65kqjqs9oo). Production VPS API+frontend опубликованы, migration30 и readiness HTTP200, Docker healthy. NEXT-021 in_progress, отчёт reports/NEXT-021.3E-abyss-team-formation-2026-11-27.md.
 
 # NEXT-021.3D (2026-11-27): оригинальные 3 формации Бездны
 Три отдельных героя на боевых позициях 2/5/8 в оригинальном режиме MapType 10, сохранение/проверка SID в PostgreSQL, выбор в клиенте и защита незавершённого боя. Migration29; isolated PostgreSQL/Redis 178/178 PASS, сборки сервера и клиента PASS. Production VPS: API+клиент опубликованы, миграция29, public readiness HTTP200 и Docker healthy. NEXT-021 in_progress; reports/NEXT-021.3D-abyss-single-formation-2026-11-27.md.
