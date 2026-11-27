@@ -30,3 +30,16 @@
 - Сборка клиента: Vite/TypeScript PASS (имеется не критичное предупреждение по чанку >500KB).
 - Изолированная регрессия `tools/test-all-mechanics-isolated.sh` (PostgreSQL/Redis): **165/165 PASS, 0 FAIL, 0 SKIP**, Termalin job `72bovf01f9`, exit 0. Проверены API, авторизация, две сложности, волны, промежуточные награды, атомарность, чужие аккаунты и предыдущие механики.
 - Перед публикацией сохранить дамп действующей БД и прежний Docker-образ. Разворачивать только API и обновлённую статику; существующие проекты не трогать.
+
+## Выпуск на VPS
+- Актуальные исходники: `main`, коммит `a8fa550`; проверен `git push origin main`.
+- Резервная копия до деплоя: `/var/backups/rockbogini-next-pre-abyss-20261127.dump` (112 KiB).
+- Предыдущий образ: `rockbogini-next-api:pre-abyss-0213a`.
+- Новый образ `rockbogini-next-api:latest` собран (Docker build exit 0).
+- `docker compose -p rockbogini-next up -d --no-deps --no-build api` успешно создал новый API без перезапуска БД и Redis.
+- Production `/sexyidle/api/ready`: HTTP 200, `{"ready":true}`.
+- Production `/sexyidle/api/v1/abyss` без сессии: HTTP 401, ожидаемая защита.
+- Production PostgreSQL `schema_migrations` max: **26**.
+- API, PostgreSQL и Redis: Docker **healthy**; клиент собран и опубликован в `/var/www/sexyidle/`.
+- Свободно 14 GiB, корневой раздел 77%; git working tree чистый.
+- Полный браузерный сценарий с авторизованным игроком и оригинальная побоевая анимация не проверены.
