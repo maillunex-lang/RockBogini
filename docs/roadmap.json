@@ -178,9 +178,9 @@
     "id": "NEXT-021",
     "title": "PvE-режимы",
     "phase": "V. Контент",
-    "scope": "Башни, подземелья, испытания, боссы, специальные режимы NEXT-021.1: 12 original tower types, 17000 floors, server-authoritative challenge/settle, daily/extra/quick rewards, mobile UI; full 159/159 isolated tests PASS. Original elemental formations/unlock tasks and all other PvE remain OPEN. NEXT-021.2 original DailyInstance 5 types/55 maps, authoritative fights, first clear, free/paid sweep, UI, 162/162 isolated PASS. Historical max power/VIP parity and other PvE OPEN.",
+    "scope": "Башни, подземелья, испытания, боссы, специальные режимы NEXT-021.1: 12 original tower types, 17000 floors, server-authoritative challenge/settle, daily/extra/quick rewards, mobile UI; full 159/159 isolated tests PASS. Original elemental formations/unlock tasks and all other PvE remain OPEN. NEXT-021.2 original DailyInstance 5 types/55 maps, authoritative fights, first clear, free/paid sweep, UI, 162/162 isolated PASS. Historical max power/VIP parity and other PvE OPEN. NEXT-021.3A EndlessAbyss source 2 types/140 maps/1680 waves/12 buffs, stage/wave HP persistence, point rewards, UI, migration26; 165/165 isolated PASS, pending deployment. SecretArea/WorldBoss and formation fidelity OPEN.",
     "status": "in_progress",
-    "evidence": "reports/NEXT-021.1-pve-tower-2026-11-27.md; reports/NEXT-021.1-source-audit.json; reports/NEXT-021.2-daily-instance-2026-11-27.md; reports/NEXT-021.2-source-audit.json"
+    "evidence": "reports/NEXT-021.1-pve-tower-2026-11-27.md; reports/NEXT-021.1-source-audit.json; reports/NEXT-021.2-daily-instance-2026-11-27.md; reports/NEXT-021.2-source-audit.json; reports/NEXT-021.3-abyss-2026-11-27.md; reports/NEXT-021.3-abyss-source-audit.json"
   },
   {
     "id": "NEXT-022",

@@ -199,6 +199,35 @@ export async function migrate(s:Storage){
   battle_id uuid NOT NULL REFERENCES daily_instance_battles(id) ON DELETE CASCADE
  )`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(25) ON CONFLICT DO NOTHING');
+ await c.query(`CREATE TABLE IF NOT EXISTS abyss_progress(
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  abyss_type integer NOT NULL CHECK(abyss_type IN (1,2)),
+  map_index integer NOT NULL DEFAULT 0 CHECK(map_index>=0),
+  reward_index integer NOT NULL DEFAULT 0 CHECK(reward_index BETWEEN 0 AND 12),
+  completed_index integer NOT NULL DEFAULT 0 CHECK(completed_index>=0),
+  in_battle boolean NOT NULL DEFAULT false,
+  hp jsonb NOT NULL DEFAULT '{}',
+  buff_ids jsonb NOT NULL DEFAULT '[]',
+  options jsonb NOT NULL DEFAULT '[]',
+  point_rewards jsonb NOT NULL DEFAULT '[]',
+  PRIMARY KEY(account_id,abyss_type)
+ )`);
+ await c.query(`CREATE TABLE IF NOT EXISTS abyss_battles(
+  id uuid PRIMARY KEY,
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  abyss_type integer NOT NULL,
+  map_index integer NOT NULL,
+  wave_index integer NOT NULL,
+  map_id integer NOT NULL,
+  report jsonb NOT NULL,
+  settlement jsonb,
+  created_at timestamptz NOT NULL DEFAULT now()
+ )`);
+ await c.query(`CREATE TABLE IF NOT EXISTS abyss_pending(
+  account_id uuid PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,
+  battle_id uuid NOT NULL REFERENCES abyss_battles(id) ON DELETE CASCADE
+ )`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(26) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }

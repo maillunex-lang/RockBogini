@@ -1,3 +1,6 @@
+## NEXT-021.3A: Бесконечная бездна, 2026-11-27
+Перенесено 2 режима/140 этапов/1 680 исходных волн и 12 усилений. Сервер + UI, регрессия 165/165 PASS. Дальше секретная область, мировые боссы и точная оригинальная формация. См. reports/NEXT-021.3-abyss-2026-11-27.md.
+
 ## NEXT-021.2: PvE-подземелья, 2026-11-27
 Перенесено 5 типов/55 карт оригинала с серверной механикой, зачистками, 162/162 тестов PASS. Следующие этапы: NEXT-021.3 Abyss/Secret/Boss и контроль оригинальных ограничений. См. reports/NEXT-021.2-daily-instance-2026-11-27.md.
 
@@ -123,7 +126,7 @@ VPS is the development stand; GitHub main is the published source mirror. **SING
 | NEXT-018 | Призыв героев | in_progress | 018.1–018.6 done. Activity summons → 023. | reports/NEXT-018.6.md; reports/NEXT-018.5.md; reports/NEXT-018.4.md; reports/NEXT-018.3.md; reports/NEXT-018.2.md; reports/NEXT-018.1.md |
 | NEXT-019 | Экономика и Idle | in_progress | 019.1–019.4 idle/quick/rewards/shops+VIP done. Mall packs → 023. | reports/NEXT-019.4.md; reports/NEXT-019.3.md; reports/NEXT-019.2.md; reports/NEXT-019.1.md |
 | NEXT-020 | Задания и достижения | in_progress | 020.1 daily/weekly + point chests done. Story/achievements open. | reports/NEXT-020.1.md |
-| NEXT-021 | PvE-режимы | in_progress | NEXT-021.1 башни: 12 типов/17 000 этажей; NEXT-021.2 ежедневные подземелья: 5 типов/55 карт, серверные бои, зачистки, UI. Остальные PvE и оригинальные VIP/формы открыты. | reports/NEXT-021.1-pve-tower-2026-11-27.md; reports/NEXT-021.2-daily-instance-2026-11-27.md |
+| NEXT-021 | PvE-режимы | in_progress | NEXT-021.1 башни 12/17 000; NEXT-021.2 подземелья 5/55; NEXT-021.3A Бесконечная бездна 2 режима/140 этапов/1 680 волн, сохранение HP/промежуточные награды, UI. Следующее: NEXT-021.3B секретная область и боссы, формации/бонусы оригинала. | reports/NEXT-021.1-pve-tower-2026-11-27.md; reports/NEXT-021.2-daily-instance-2026-11-27.md; reports/NEXT-021.3-abyss-2026-11-27.md |
 | NEXT-022 | PvP и социальные системы | pending | Арена, рейтинги, гильдии, чат, друзья, почта |  |
 | NEXT-023 | События и монетизация | pending | Календарь, события, VIP, пропуски, предложения, платежи |  |
 | NEXT-024 | Редакторы игрового контента | pending | Герои, навыки, предметы, противники, локации, квесты, награды, баннеры, магазины, события; выполнить отложенный NEXT-009 (редактор интерфейса) |  |
