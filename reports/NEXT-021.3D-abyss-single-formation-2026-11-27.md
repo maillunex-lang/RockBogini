@@ -23,3 +23,13 @@
 - Портирование отдельной формации Sid 7 для отрядного режима и точное применение всех оригинальных бонусов боевой системы остаются открыты.
 - Полное визуальное 1:1, проигрывание боевой анимации и игровой QA вручную под авторизованным игроком пока не проверены.
 - NEXT-021 остаётся in_progress.
+
+## Выпуск NEXT-021.3D
+- Перед обновлением сделан PostgreSQL dump `/var/backups/rockbogini-next-pre-abyss-0213d-20261127.dump` (128 KiB) и сохранён прежний Docker-образ `rockbogini-next-api:pre-abyss-0213d`.
+- Новый образ `rockbogini-next-api:latest` успешно собран с Docker build exit0.
+- Команда `docker compose -p rockbogini-next up -d --no-deps --no-build api` выполнилась успешно, БД и Redis не перезапускались.
+- На production версия миграций PostgreSQL `schema_migrations=29`, endpoint `/sexyidle/api/ready` HTTP 200 `{"ready":true}`.
+- `/sexyidle/api/v1/abyss/formation` без сессии HTTP 401, ожидаемая защита.
+- API/PostgreSQL/Redis: Docker healthy, новый образ установлен.
+- Обновлён клиент `/var/www/sexyidle`, публичный entry `assets/main-Cz100N4G.js`.
+- Рабочее дерево чистое, живой полный браузерный сценарий с авторизованным игроком пока не проверен.
