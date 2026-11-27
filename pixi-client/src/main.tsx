@@ -1,4 +1,5 @@
 import {ReportScreen} from './battle/ReportScreen';
+import {TowerScreen} from './tower/TowerScreen';
 import {CampaignScreen} from './battle/CampaignScreen';
 import {HeroesScreen} from './heroes/HeroesScreen';
 import {InventoryScreen} from './inventory/InventoryScreen';
@@ -22,6 +23,7 @@ function App(){
  const [loading,setLoading]=useState(true);
  const [error,setError]=useState('');
  const [showCampaign,setShowCampaign]=useState(false);
+ const [showTower,setShowTower]=useState(false);
  const [fightMapId,setFightMapId]=useState<number|null>(null);
 
  const [isGuest,setIsGuest]=useState(false);
@@ -51,13 +53,14 @@ function App(){
  if(codes)return <RecoveryCodes codes={codes} onDone={()=>setCodes(null)}/>;
  if(showLink)return <LinkGuest onCancel={()=>setShowLink(false)} onLink={async(email,password)=>{const linked=await linkGuest(API,session,email,password);setSession(linked);setIsGuest(false);setShowLink(false)}}/>;
  if(fightMapId!=null)return <ReportScreen api={API} token={session.token} mapId={fightMapId} onBack={()=>setFightMapId(null)}/>;
+ if(showTower)return <TowerScreen api={API} token={session.token} onClose={()=>setShowTower(false)}/>;
  if(showCampaign)return <CampaignScreen api={API} token={session.token} onFight={id=>setFightMapId(id)} onClose={()=>setShowCampaign(false)}/>;
  return <main className="city-shell"><details className="city-account"><summary>Аккаунт и настройки</summary><div style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:8,padding:10,background:'#222137',color:'white',flexWrap:'wrap'}}>
  <strong>RockBogini Next</strong><button onClick={()=>setShowProfile(true)}>Профиль</button><span>Аккаунт: {session.id.slice(0,8)}</span>
  {isGuest?<button onClick={()=>setShowLink(true)}>Привязать почту</button>:<button onClick={async()=>{try{setRecoverError('');setCodes(await requestRecoveryCodes(API,session))}catch(e){setRecoverError(e instanceof Error?e.message:String(e))}}}>Резервные коды</button>}
  <button onClick={async()=>{try{await signOut(API,session);setSession(null);setShowRecovery(false)}catch(e){setError(e instanceof Error?e.message:String(e))}}}>Выйти из аккаунта</button></div></details>
  {recoverError&&<p role="alert">{recoverError}</p>}
- <City api={API} token={session.token} onProfile={()=>setShowProfile(true)} onBattle={()=>setShowCampaign(true)} onHeroes={()=>setShowHeroes(true)} onInventory={()=>setShowInventory(true)} onSummon={()=>setShowSummon(true)} onShop={()=>setShowShop(true)} onTasks={()=>setShowTasks(true)}/>
+ <City api={API} token={session.token} onProfile={()=>setShowProfile(true)} onBattle={()=>setShowCampaign(true)} onTower={()=>setShowTower(true)} onHeroes={()=>setShowHeroes(true)} onInventory={()=>setShowInventory(true)} onSummon={()=>setShowSummon(true)} onShop={()=>setShowShop(true)} onTasks={()=>setShowTasks(true)}/>
 
  </main>;
 }

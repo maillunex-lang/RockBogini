@@ -149,6 +149,33 @@ export async function migrate(s:Storage){
  )`);
  await c.query('ALTER TABLE player_profiles ALTER COLUMN power TYPE bigint');
  await c.query('INSERT INTO schema_migrations(version) VALUES(23) ON CONFLICT DO NOTHING');
+ await c.query(`CREATE TABLE IF NOT EXISTS tower_progress(
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  tower_type integer NOT NULL,
+  map_index integer NOT NULL DEFAULT 0 CHECK(map_index>=0),
+  extra_reward_index integer NOT NULL DEFAULT 0 CHECK(extra_reward_index>=0),
+  daily_reward_index integer NOT NULL DEFAULT 0 CHECK(daily_reward_index>=0),
+  daily_claimed boolean NOT NULL DEFAULT false,
+  day date NOT NULL DEFAULT CURRENT_DATE,
+  battle_count integer NOT NULL DEFAULT 0 CHECK(battle_count>=0),
+  extra_count integer NOT NULL DEFAULT 0 CHECK(extra_count>=0),
+  PRIMARY KEY(account_id,tower_type)
+ )`);
+ await c.query(`CREATE TABLE IF NOT EXISTS tower_battles(
+  id uuid PRIMARY KEY,
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  tower_type integer NOT NULL,
+  map_index integer NOT NULL,
+  map_id integer NOT NULL,
+  report jsonb NOT NULL,
+  settlement jsonb,
+  created_at timestamptz NOT NULL DEFAULT now()
+ )`);
+ await c.query(`CREATE TABLE IF NOT EXISTS tower_pending(
+  account_id uuid PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,
+  battle_id uuid NOT NULL REFERENCES tower_battles(id) ON DELETE CASCADE
+ )`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(24) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }

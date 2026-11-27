@@ -14,10 +14,11 @@ const SHORTCUTS=[
  {id:'chat',label:'Чат',icon:'function_chat_main.png'},
  {id:'bag',label:'Инвентарь',icon:'BagBtn.webp'},
  {id:'tasks',label:'Задания',icon:'TaskBtn.webp'},
+ {id:'tower',label:'Башня',icon:'TaskBtn.webp'},
 ] as const;
 
-export function City({api,token,onProfile,onBattle,onHeroes,onInventory,onSummon,onShop,onTasks}:{
- api:string;token:string;onProfile:()=>void;onBattle:()=>void;onHeroes:()=>void;
+export function City({api,token,onProfile,onBattle,onTower,onHeroes,onInventory,onSummon,onShop,onTasks}:{
+ api:string;token:string;onProfile:()=>void;onBattle:()=>void;onTower?:()=>void;onHeroes:()=>void;
  onInventory?:()=>void;onSummon?:()=>void;onShop?:()=>void;onTasks?:()=>void;
 }){
  const [p,setP]=useState<Profile|null>(null),[notice,setNotice]=useState(''),[panel,setPanel]=useState('');
@@ -34,6 +35,7 @@ export function City({api,token,onProfile,onBattle,onHeroes,onInventory,onSummon
  const openShortcut=(id:string,label:string)=>{
   if(id==='bag'&&onInventory){onInventory();return}
   if(id==='tasks'&&onTasks){onTasks();return}
+  if(id==='tower'&&onTower){onTower();return}
   unavailable(label);
  };
  const openBuilding=(label:string)=>{
