@@ -13,7 +13,7 @@ import {battleRandom} from './battle/random.js';
 import {randomInt,randomUUID} from 'node:crypto';
 import {abyssTypes,abyssStage,abyssWave,abyssDefenders,abyssOpen,abyssParams,abyssBuffs,abyssBuff,abyssPointRewards} from './abyssConfig.js';
 import {taskEvent} from './tasks.js';
-import {skillConfig} from './unitConfig.js';
+import {applyAbyssBuffs,abyssBuffOptions,abyssHeal} from './abyssBuffRules.js';
 const uuidPattern='^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$';
 type State={abyss_type:number;map_index:number;reward_index:number;completed_index:number;in_battle:boolean;hp:Record<string,number>;buff_ids:number[];options:number[];point_rewards:number[]};
 async function account(req:{headers:{authorization?:string}},s:Storage){
@@ -31,32 +31,6 @@ async function grant(c:PoolClient,id:string,rewards:readonly (readonly number[])
   await c.query(`INSERT INTO player_items(account_id,item_id,amount) VALUES($1,$2,$3)
    ON CONFLICT(account_id,item_id) DO UPDATE SET amount=player_items.amount+EXCLUDED.amount`,[id,item,n]);
  }
-}
-function applyBuff(unit:Fighter,buffIds:number[]){
- const u={...unit,attrs:{...unit.attrs},actives:[...unit.actives],passives:[...unit.passives??[]],cd:{...unit.cd}};
- const known=new Set([...u.actives,...u.passives]);
- for(const id of buffIds){
-  const cfg=abyssBuff(id);
-  if(!cfg)continue;
-  if(cfg.type===3)for(const [key,value] of cfg.attrs){
-   // Original PveAbyss.buffed: a<100 direct; 100+a is additive to attr a.
-   const n=key<100?key:key<200?key-100:-1;
-   if(n>=0)u.attrs[n]=(u.attrs[n]??0)+value;
-  }
-  if(cfg.type===2)for(const [sid] of cfg.attrs){
-   if(!skillConfig[sid]||known.has(sid))continue;
-   known.add(sid);
-   if(skillConfig[sid].active){u.actives.push(sid);u.cd[sid]=skillConfig[sid].start;}
-   if(skillConfig[sid].passive)u.passives.push(sid);
-  }
- }
- return u;
-}
-function rollOptions(owned:number[]):number[]{
- const available=Object.values(abyssBuffs).filter(x=>x.count!==1||!owned.includes(x.id));
- // Offer 3 distinct original buffs. Cryptographic RNG avoids predictable reward choice.
- for(let i=available.length-1;i>0;i--){const j=randomInt(i+1);[available[i],available[j]]=[available[j],available[i]];}
- return available.slice(0,3).map(x=>x.id);
 }
 function rowView(type:number,row:State){
  const stage=abyssStage(type,row.map_index+1),wave=abyssWave(type,row.map_index+1,row.reward_index+1);
@@ -184,19 +158,14 @@ export async function abyssRoutes(app:FastifyInstance,s:Storage){
    }else if(req.body.buffIndex!==undefined){
     await c.query('ROLLBACK');return reply.code(409).send({error:'abyss_buff_not_offered'});
    }
-   fighters=fighters.map(u=>applyBuff(u,buffs));
+   fighters=fighters.map(u=>applyAbyssBuffs(u,buffs));
    // Explicitly record the original member IDs before any combat mutation.
    const initialHp:Record<string,number>=startingRun?{}:{...row.hp};
    if(req.body.buffIndex!==undefined&&buffs.length>(startingRun?0:row.buff_ids.length)){
     const chosen=abyssBuff(buffs[buffs.length-1]);
     if(chosen?.type===1){
      const per=chosen.attrs[0]?.[0]??0;
-     for(const u of attackers){
-      const sid=String((u as Fighter&{sid?:number}).sid??0);
-      if(!sid||sid==='0')continue;
-      const previous=initialHp[sid]??u.hp;
-      if(previous>0)initialHp[sid]=Math.min(u.hp_max,previous+Math.floor(u.hp_max*per/1000));
-     }
+     Object.assign(initialHp,abyssHeal(initialHp,attackers,per));
     }
    }
    fighters=fighters.map(u=>({...u,hp:Math.min(u.hp,Math.max(0,initialHp[String((u as Fighter&{sid?:number}).sid??0)]??u.hp))})).filter(u=>u.hp>0);
@@ -263,7 +232,7 @@ export async function abyssRoutes(app:FastifyInstance,s:Storage){
      index=b.map_index;progress=0;hp={};buffs=[];options=[];complete=true;
 
     }else if(abyssParams.buffWaves.includes(progress)){
-     options=rollOptions(buffs);
+     options=abyssBuffOptions(buffs,randomInt);
     }
    }else{
     options=[]; // Failed wave doesn't move progression; next challenge retries current wave.
