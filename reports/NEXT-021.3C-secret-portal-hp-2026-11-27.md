@@ -12,3 +12,13 @@
 - Полный изолированный suite `bash tools/test-all-mechanics-isolated.sh` (временные PostgreSQL/Redis) **176 PASS / 0 FAIL / 0 SKIP**, Termalin job `szsq8bcb7m`, exit 0.
 - Четыре новых теста: исходные типы клеток после победы; HP по позициям; интеграция победы хранителя → открытый портал → этаж 2 (с сохранением БД); интеграция проигрыша → сохранение HP врагов → воскрешение героев предметом → повторный бой без побеждённого монстра.
 - Старые тесты не удалялись. Полная 1:1 визуальная копия оригинала остаётся вне этого пакета.
+
+## Production rollout
+- Предварительный PostgreSQL дамп: `/var/backups/rockbogini-next-pre-secret-0213c-20261127.dump` (128 KiB).
+- Предыдущий образ сохранён как `rockbogini-next-api:pre-secret-0213c` (sha256:77878b4...).
+- Docker build `rockbogini-next-api:latest` PASS, ID `sha256:1b8505cc...`.
+- `docker compose -p rockbogini-next up -d --no-deps --no-build api` PASS, переразвернут только API. PostgreSQL и Redis сохранены.
+- Public readiness `https://rikagro.ru/sexyidle/api/ready`: HTTP200 `{"ready":true}`.
+- Public `/v1/secret`, `/v1/world-boss` без сессии: 401 ожидаемо.
+- PostgreSQL/Redis/API: healthy. Диск: 14 GiB доступно.
+- Оригинальные клиентские файлы не менялись; данный этап серверный.
