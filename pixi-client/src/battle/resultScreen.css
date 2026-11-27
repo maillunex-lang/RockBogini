@@ -31,3 +31,11 @@
  border:1px solid #e8c48c;background:rgba(90,58,28,.9);color:inherit;
 }
 @media (max-width:640px){.result-winboard{height:88px}}
+
+/* NEXT-026.4: original ItemIcon rewards and original hero avatar sprite sources. */
+.result-rewards li{align-items:center;min-height:45px}
+.result-rewards li span{flex:1;min-width:0;overflow-wrap:anywhere}
+.result-original-item{width:42px;height:42px;object-fit:contain;flex:none}
+.result-original-hero{display:flex;align-items:center;gap:5px;min-width:0;text-align:left}
+.result-original-hero img{width:32px;height:32px;object-fit:contain;flex:none;border-radius:4px}
+@media(max-width:370px){.result-stats-wrap table{font-size:11px}.result-original-hero img{width:25px;height:25px}}

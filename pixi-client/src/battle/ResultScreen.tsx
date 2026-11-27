@@ -38,7 +38,10 @@ export function ResultScreen({report,settlement,onContinue}:{report:BattleReport
    : <ul className="result-rewards">{rewards.map((row,i)=>{
     const id=Array.isArray(row)?Number(row[0]):0;
     const n=Array.isArray(row)?Number(row[1]):0;
-    return <li key={id+':'+n+':'+i}><span>{itemDisplayName(id)}</span><strong>×{n}</strong></li>;
+    return <li key={id+':'+n+':'+i}>
+     {id>0&&<img className="result-original-item" src={import.meta.env.BASE_URL+'item-icons/'+id+'.webp'} alt="" loading="lazy" onError={e=>{e.currentTarget.style.display='none'}}/>}
+     <span>{itemDisplayName(id)}</span><strong>×{n}</strong>
+    </li>;
    })}</ul>}
   {!!modules.length&&(
    <div className="result-modules">
@@ -50,7 +53,10 @@ export function ResultScreen({report,settlement,onContinue}:{report:BattleReport
   <div className="result-stats-wrap">
    <table>
     <thead><tr><th align="left">Герой</th><th align="right">Урон</th><th align="right">Получено</th><th align="right">Лечение</th></tr></thead>
-    <tbody>{heroes.filter(h=>h.camp===1).map(h=><tr key={h.id}><td>{heroDisplayName(h.heroId)}</td><td align="right">{h.statDamage??0}</td><td align="right">{h.statHurt??0}</td><td align="right">{h.statCure??0}</td></tr>)}</tbody>
+    <tbody>{heroes.filter(h=>h.camp===1).map(h=><tr key={h.id}><td><span className="result-original-hero">
+     <img src={import.meta.env.BASE_URL+'profile/icon-'+h.heroId+'.webp'} alt="" loading="lazy" onError={e=>{e.currentTarget.style.display='none'}}/>
+     {heroDisplayName(h.heroId)}
+    </span></td><td align="right">{h.statDamage??0}</td><td align="right">{h.statHurt??0}</td><td align="right">{h.statCure??0}</td></tr>)}</tbody>
    </table>
   </div>
   <button type="button" className="result-continue" onClick={onContinue}>Продолжить</button>

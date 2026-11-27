@@ -1,0 +1,8 @@
+# NEXT-026.4 battle result visual slice, 2026-11-27
+Existing ResultScreen already consumes authoritative BattleReport/Settlement, shows original settlement-winboard.webp on victory, map, rounds, exact server reward IDs/counts and per-hero combat stats. No battle calculation changed.
+
+Original source audit:
+- /home/gamedev/QueensBladeH5/racon2-main/client/G123Live/Queen-Blade/assets/SettlementPanel/config.*.json has WinPanel, FailPanel and CommonFailSettlementComponent prefabs. Png/Settlement native/25/25612118-4225-47ed-af8e-081e8757eb0c.ab8bc.webp is a 1024x512 atlas with dataBottom [3,3,381,268] and linesBottom [391,3,523,245]. Their exact prefab placement is not yet verified, so these assets were deliberately NOT assigned to invented UI positions.
+- Existing project original ItemIcon files public/item-icons/{id}.webp and original avatar public/profile/icon-{heroId}.webp, already linked elsewhere, are source-backed and used here.
+
+Changes: Results now display original reward item thumbnails based on actual Settlement rewards and original hero face sprites based on report.heroes, both with graceful missing-asset fallback; totals and names remain server authoritative. CSS responsive, no change to settlement ordering/logic. TypeScript/Vite production build PASS and /sexyidle published. Resource availability and city -> campaign entry browser smoke PASS, but live victory/defeat result through full battle remains UNVERIFIED because fresh guest opens with tutorial story and cannot immediately reach challenge. Do not claim ResultScreen E2E PASS, production victory 1:1 or battle parity.

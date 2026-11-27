@@ -56,6 +56,9 @@ VPS is the development stand; GitHub main is the published source mirror. **SING
 ### NEXT-026.4 боевой отряд (2026-11-27)
 - Оригинальный Cocos BattleFormationPanel: фон Bg 1080×2520 и 8 спрайтов из атласа 492×225, источник и SHA256 в reports/NEXT-026.4-formation-assets.json. Маркеры formation_on/off/blue, original btn2 для сохранения. Серверные позиции Form.Data не переписывались. QA: 9 позиций, открытие и возврат, 320/390/768 PASS. Геометрия 1:1 и drag-drop не приняты, отчёт reports/NEXT-026.4-formation-2026-11-27.md.
 
+### NEXT-026.4 результат боя (2026-11-27)
+- Из оригинального каталога ItemIcon в наградах используются изображения по серверному itemId; в статистике добавлены оригинальные портреты по heroId. Оригинальный пакет SettlementPanel аудирован, WinPanel/FailPanel и atlas dataBottom/linesBottom найдены, но точная расстановка не проверена, поэтому подмена интерфейса не выполнялась. Vite PASS, публикация PASS; полный браузерный бой до победы/поражения и визуал 1:1 открыты. Отчёт reports/NEXT-026.4-result-original-icons-2026-11-27.md.
+
 ### Открытые подэтапы сейчас
 - **026.1** city visual parity — mobile HUD QA PASS, 1:1 + Spine acceptance open
 - **026.2** original HeroListPanel — original background + 4-column grid live, frames/filters/detail pending
