@@ -95,3 +95,10 @@ span.inventory-icon[data-kind="other"]{background:linear-gradient(145deg,#8a8a8a
 .inventory-bag,.inventory-currencies{background:#140d1f77;padding:10px;border:1px solid #ccaf8259}
 .inventory-screen .inventory-row{background-color:#261e29bc}
 @media(max-width:400px){.inventory-screen{padding:10px}.inventory-screen h1{font-size:1.4rem}}
+
+/* Original ItemPiece game mechanics, no visual 1:1 changes. */
+.inventory-compose-all{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:8px 0}
+.inventory-compose-all small{opacity:.75}
+.inventory-compose-all button:disabled{opacity:.45}
+.inventory-compose-recipe{border:1px solid #bda17460;padding:8px;margin:8px 0;border-radius:6px}
+.inventory-compose-recipe p{margin:4px 0}

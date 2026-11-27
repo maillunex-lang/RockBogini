@@ -1,0 +1,267 @@
+{
+  "date": "2026-11-27",
+  "originalHandlerModules": 79,
+  "portServerModules": 46,
+  "mechanicGroups": 13,
+  "stageStatusTotals": {
+    "done": 12,
+    "in_progress": 8,
+    "pending": 7,
+    "deferred": 1
+  },
+  "groups": [
+    {
+      "mechanic": "Герои и развитие",
+      "originalHandlers": [
+        "hero.ex",
+        "hero_talent.ex",
+        "hero_extra.ex",
+        "hero_favor.ex"
+      ],
+      "portModules": [
+        "heroes.ts",
+        "heroGrowth.ts",
+        "heroTalent.ts",
+        "heroJob.ts",
+        "heroLuck.ts"
+      ],
+      "roadmap": [
+        {
+          "id": "NEXT-010",
+          "status": "in_progress"
+        },
+        {
+          "id": "NEXT-016",
+          "status": "in_progress"
+        }
+      ],
+      "knownGap": "Завершить профессии, удачу и ограничения роста, проверить эталонные формулы",
+      "note": "Файлы подтверждают наличие кода, но не равнозначность механик оригиналу"
+    },
+    {
+      "mechanic": "Пошаговые бои",
+      "originalHandlers": [
+        "adventure_battle.ex",
+        "team2.ex"
+      ],
+      "portModules": [
+        "battleRoutes.ts",
+        "battleUnits.ts"
+      ],
+      "roadmap": [
+        {
+          "id": "NEXT-012",
+          "status": "in_progress"
+        }
+      ],
+      "knownGap": "Открытые модификаторы, статусы и бои за пределами кампании",
+      "note": "Файлы подтверждают наличие кода, но не равнозначность механик оригиналу"
+    },
+    {
+      "mechanic": "Кампания и история",
+      "originalHandlers": [
+        "adventure_battle.ex",
+        "adventure_idle.ex"
+      ],
+      "portModules": [
+        "campaignRoutes.ts",
+        "campaignChapters.ts",
+        "campaignStory.ts"
+      ],
+      "roadmap": [
+        {
+          "id": "NEXT-014",
+          "status": "done"
+        }
+      ],
+      "knownGap": "Полные сюжетные условия и награды всех локаций требуют приёмки",
+      "note": "Файлы подтверждают наличие кода, но не равнозначность механик оригиналу"
+    },
+    {
+      "mechanic": "Инвентарь и расходники",
+      "originalHandlers": [
+        "item.ex"
+      ],
+      "portModules": [
+        "inventory.ts",
+        "itemCatalog.ts"
+      ],
+      "roadmap": [
+        {
+          "id": "NEXT-015",
+          "status": "in_progress"
+        }
+      ],
+      "knownGap": "Осколки в текущем пакете, затем RandomBox, LockedBox и остальные ConsumeSubtype",
+      "note": "Файлы подтверждают наличие кода, но не равнозначность механик оригиналу"
+    },
+    {
+      "mechanic": "Экипировка и святые предметы",
+      "originalHandlers": [
+        "item_equip.ex",
+        "holy.ex"
+      ],
+      "portModules": [
+        "equipment.ts",
+        "holy.ts",
+        "holyGallery.ts"
+      ],
+      "roadmap": [
+        {
+          "id": "NEXT-017",
+          "status": "done"
+        }
+      ],
+      "knownGap": "Дополнительная сверка экипировки и кузницы по оригиналу",
+      "note": "Файлы подтверждают наличие кода, но не равнозначность механик оригиналу"
+    },
+    {
+      "mechanic": "Призыв",
+      "originalHandlers": [
+        "summon.ex",
+        "activity_game_summon.ex"
+      ],
+      "portModules": [
+        "summon.ts"
+      ],
+      "roadmap": [
+        {
+          "id": "NEXT-018",
+          "status": "in_progress"
+        }
+      ],
+      "knownGap": "Событийные баннеры, гарантии всех пулов и транзакционная параллельность",
+      "note": "Файлы подтверждают наличие кода, но не равнозначность механик оригиналу"
+    },
+    {
+      "mechanic": "AFK и магазины",
+      "originalHandlers": [
+        "adventure_idle.ex",
+        "mall.ex",
+        "vip.ex"
+      ],
+      "portModules": [
+        "adventureProgress.ts",
+        "shop.ts"
+      ],
+      "roadmap": [
+        {
+          "id": "NEXT-019",
+          "status": "in_progress"
+        }
+      ],
+      "knownGap": "Дополнительные покупки, VIP-пакеты и ограничения",
+      "note": "Файлы подтверждают наличие кода, но не равнозначность механик оригиналу"
+    },
+    {
+      "mechanic": "Задания и достижения",
+      "originalHandlers": [
+        "task.ex",
+        "task_misc.ex",
+        "journal.ex"
+      ],
+      "portModules": [
+        "tasks.ts"
+      ],
+      "roadmap": [
+        {
+          "id": "NEXT-020",
+          "status": "in_progress"
+        }
+      ],
+      "knownGap": "Сюжетные задания и достижения",
+      "note": "Файлы подтверждают наличие кода, но не равнозначность механик оригиналу"
+    },
+    {
+      "mechanic": "Башни и PvE",
+      "originalHandlers": [
+        "pve_tower.ex",
+        "pve_daily_instance.ex",
+        "pve_secret.ex",
+        "pve_abyss.ex"
+      ],
+      "portModules": [],
+      "roadmap": [
+        {
+          "id": "NEXT-021",
+          "status": "pending"
+        }
+      ],
+      "knownGap": "Отдельные игровые маршруты башен и подземелий не реализованы",
+      "note": "Файлы подтверждают наличие кода, но не равнозначность механик оригиналу"
+    },
+    {
+      "mechanic": "PvP и арена",
+      "originalHandlers": [
+        "pvp.ex",
+        "team.ex",
+        "team2.ex"
+      ],
+      "portModules": [],
+      "roadmap": [
+        {
+          "id": "NEXT-022",
+          "status": "pending"
+        }
+      ],
+      "knownGap": "Арена, рейтинги и матчмейкинг",
+      "note": "Файлы подтверждают наличие кода, но не равнозначность механик оригиналу"
+    },
+    {
+      "mechanic": "Гильдии, друзья, почта, чат",
+      "originalHandlers": [
+        "alliance.ex",
+        "mail.ex",
+        "chat.ex",
+        "player_misc_social.ex"
+      ],
+      "portModules": [],
+      "roadmap": [
+        {
+          "id": "NEXT-022",
+          "status": "pending"
+        }
+      ],
+      "knownGap": "Социальные системы и серверная почта",
+      "note": "Файлы подтверждают наличие кода, но не равнозначность механик оригиналу"
+    },
+    {
+      "mechanic": "События и монетизация",
+      "originalHandlers": [
+        "activity_game_play.ex",
+        "activity_battle_boss.ex",
+        "activity_shop.ex",
+        "activity_pay.ex"
+      ],
+      "portModules": [],
+      "roadmap": [
+        {
+          "id": "NEXT-023",
+          "status": "pending"
+        }
+      ],
+      "knownGap": "Активности, сезоны, пропуски, события и платежи",
+      "note": "Файлы подтверждают наличие кода, но не равнозначность механик оригиналу"
+    },
+    {
+      "mechanic": "Редакторы и администрирование",
+      "originalHandlers": [],
+      "portModules": [
+        "studioRoutes.ts",
+        "studioDrafts.ts"
+      ],
+      "roadmap": [
+        {
+          "id": "NEXT-024",
+          "status": "pending"
+        },
+        {
+          "id": "NEXT-025",
+          "status": "pending"
+        }
+      ],
+      "knownGap": "Редакторы содержимого и админка аккаунтов/серверов",
+      "note": "Файлы подтверждают наличие кода, но не равнозначность механик оригиналу"
+    }
+  ]
+}

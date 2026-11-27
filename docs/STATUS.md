@@ -1,3 +1,6 @@
+# Актуальный механический приоритет 2026-11-27
+Механики перед визуалом: активен NEXT-015.3 и затем NEXT-015.4; NEXT-026 визуал приостановлен, статус не закрыт. 13 функциональных групп аудированы в reports/NEXT-MECHANICS-2026-11-27.md. NEXT-015.3: 218 исходных геройских рецептов, проверка isolated PG/Redis 5/5 PASS, Playwright с тестовыми данными 320/390/768 PASS, /sexyidle. Полный регрессионный набор запускается отдельно. Отчёт reports/NEXT-015.3-hero-piece-compose-2026-11-27.md.
+
 # Актуальное состояние 2026-11-26
 
 Активная задача: **NEXT-026.1/026.2**. Mobile HUD browser QA PASS; HeroList original background/4-column first slice. Updated preview https://rikagro.ru/sexyidle/. Previous https://rikagro.ru/testtest/ exists separately; parity between previews not assumed.
@@ -61,3 +64,5 @@ Canonical checkout `/home/gamedev/rocbogini`, deployed code a4332ce, PixiJS 7.4.
 2026-11-27 broader DB suite attempted in isolated PG/Redis (concurrency=3) did not finish 220s and observed PostgreSQL 40P01 deadlocks in auth and heroes tests. Targeted 11/11 summon DB tests PASS and production GitHub CI green but skips DB tests. Full integration acceptance OPEN; see reports/NEXT-026.4-integration-suite-audit-2026-11-27.md.
 
 2026-11-27: isolated PostgreSQL 16/Redis 7 sequential integration suite: 144 PASS, 0 FAIL, 0 SKIP, 37.278 seconds, Termalin job 8j4mmuos8w exit 0. Added integration-db GitHub Actions job; remote run pending.
+
+2026-11-27 NEXT-015.3 full server regression in ephemeral isolated PostgreSQL/Redis: 146/146 PASS, 0 fail/skip, 38.074s, Termalin job rftridjsn1 exit 0. Release prod compose and compose-all with server authorization 401 unauthenticated; browser mocked UI 3/3 PASS.

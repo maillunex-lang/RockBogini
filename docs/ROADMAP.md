@@ -1,5 +1,14 @@
 # RockBogini Next — утверждённая генеральная дорожная карта
 
+## ПРИОРИТЕТ С 2026-11-27: СНАЧАЛА ПОЛНАЯ ИГРОВАЯ МЕХАНИКА
+
+Решение владельца: графическую сверку 1:1 NEXT-026 временно отложить; вначале закрыть геймплейные пробелы. Текущий этап **NEXT-015.3**: оригинальные рецепты объединения осколков героев. Потом NEXT-015.4 RandomBox/LockedBox, 020.2 достижения, 016 рост, 021 PvE, 022 PvP/социальные функции, 023 события, 024–025 редакторы/админ. Графика и APK только после этих ворот.
+
+Канонический проект: /home/gamedev/rocbogini, публичный Next: https://rikagro.ru/sexyidle/. Полный аудит 13 функциональных групп: reports/NEXT-MECHANICS-2026-11-27.md и JSON, исходники оригинала 79 модулей обработчиков, порт 46 серверных TS. Наличие файлов **не равно** игровой совместимости 1:1.
+
+NEXT-015.3: 523 оригинальные записи ItemPiece, из них 218 полных рецептов фрагментов героя. Транзакционное одиночное и массовое объединение, клиент, изолированные DB тесты 5/5, браузер UI 3 разрешения с тестовыми ответами. Отчёт reports/NEXT-015.3-hero-piece-compose-2026-11-27.md. Родительский NEXT-015 остаётся в работе.
+
+
 VPS is the development stand; GitHub main is the published source mirror. **SINGLE-PROJECT-001**: одна финальная кодовая база в `/home/gamedev/rocbogini/`; единственная публикация Next — `/testtest/`; без параллельных копий проекта. Original game and Elixir unchanged until separate cutover approval. Vertical slices: reference → server → parity → UI/assets → integration → tests → visual QA → documentation. Old roadmap: archive/ROADMAP-before-next.md.
 
 ## Актуальный срез: 2026-11-26
@@ -348,3 +357,5 @@ NEXT-013.5.1 partial: per-actor HP bars, buff count, damage/heal/crit colors, ev
 2026-11-25 Plan A: 014 tails + NEXT-015 inventory MVP + settle white-screen hotfix; 86/86; publish. reports/NEXT-014-tails-015-*.
 
 2026-11-27: isolated PostgreSQL 16/Redis 7 sequential integration suite: 144 PASS, 0 FAIL, 0 SKIP, 37.278 seconds, Termalin job 8j4mmuos8w exit 0. Added integration-db GitHub Actions job; remote run pending.
+
+2026-11-27 NEXT-015.3 full server regression in ephemeral isolated PostgreSQL/Redis: 146/146 PASS, 0 fail/skip, 38.074s, Termalin job rftridjsn1 exit 0. Release prod compose and compose-all with server authorization 401 unauthenticated; browser mocked UI 3/3 PASS.

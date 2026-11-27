@@ -47,3 +47,7 @@ NEXT-026.4 ResultScreen now pulls original ItemIcon and hero avatar images by se
 Full integration suite caveat: 2026-11-27 independent PG+Redis run with --test-concurrency=3 exceeded 220s, PostgreSQL 40P01 deadlocks in auth and heroes. Do not mark DB tests green. Targeted summon 11/11 PASS. Build isolated serialized CI DB suite next; report reports/NEXT-026.4-integration-suite-audit-2026-11-27.md.
 
 2026-11-27: isolated PostgreSQL 16/Redis 7 sequential integration suite: 144 PASS, 0 FAIL, 0 SKIP, 37.278 seconds, Termalin job 8j4mmuos8w exit 0. Added integration-db GitHub Actions job; remote run pending.
+
+2026-11-27 PRIORITY CHANGE: game mechanics first, freeze cosmetic NEXT-026 until functional parity gates. 13 original handler/port categories in reports/NEXT-MECHANICS-2026-11-27.md. NEXT-015.3 source config extraction tools/export-original-item-piece.py (523 rows, 218 valid SubType1 hero recipes), server inventory compose and compose-all transactions, client inventoried recipe; targeted PG/Redis tests 5/5, browser mocked UI 3/3. NEXT-015.4 RandomBox/LockedBox exact source behavior then story achievements/PvE/PvP. Project path /home/gamedev/rocbogini, preview /sexyidle; no parallel codebases or original-game mutations.
+
+2026-11-27 NEXT-015.3 full server regression in ephemeral isolated PostgreSQL/Redis: 146/146 PASS, 0 fail/skip, 38.074s, Termalin job rftridjsn1 exit 0. Release prod compose and compose-all with server authorization 401 unauthenticated; browser mocked UI 3/3 PASS.

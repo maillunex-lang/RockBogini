@@ -514,3 +514,7 @@ NEXT-013.8 in_progress: inventoried 10 invalid common-skill ActionIndex values; 
 2026-11-27 NEXT-026.4 isolated integration suite audit: 11 summon tests passed; full suite timed out after 220s and had 40P01 in auth/heroes under parallel migrations; ephemeral containers stopped; live readiness 200. Not full DB PASS. reports/NEXT-026.4-integration-suite-audit-2026-11-27.md.
 
 2026-11-27: isolated PostgreSQL 16/Redis 7 sequential integration suite: 144 PASS, 0 FAIL, 0 SKIP, 37.278 seconds, Termalin job 8j4mmuos8w exit 0. Added integration-db GitHub Actions job; remote run pending.
+
+2026-11-27 NEXT-015.3 (механики перед визуалом): расшифрован реальный CDN ItemPiece protobuf из QueensBladeH5, 523 записей/218 полных рецептов; серверный атомарный compose / compose-all, клиент, изолированная PostgreSQL+Redis 5/5 PASS, браузер UI mock 3/3 PASS; исходники и трассировка reports/NEXT-015.3-hero-piece-compose-2026-11-27.md. Механический реестр 79 оригинальных .ex → 46 TS по 13 группам: reports/NEXT-MECHANICS-2026-11-27.md.
+
+2026-11-27 NEXT-015.3 full server regression in ephemeral isolated PostgreSQL/Redis: 146/146 PASS, 0 fail/skip, 38.074s, Termalin job rftridjsn1 exit 0. Release prod compose and compose-all with server authorization 401 unauthenticated; browser mocked UI 3/3 PASS.

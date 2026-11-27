@@ -12,6 +12,7 @@ type InventoryItem={
  usable?:boolean;
  useSubType?:number|null;
  canPersonalityDisplace?:boolean;
+ compose?:{need:number;cardId:number;max:number};
  element?:number;
  icon?:string;
 };
@@ -120,9 +121,9 @@ export function InventoryScreen({api,token,onClose}:{api:string;token:string;onC
   void loadPers(selected.itemId);
  },[api,token,selected?.itemId,selected?.canPersonalityDisplace]);
 
- const act=async(path:'use'|'sell',item:InventoryItem)=>{
+ const act=async(path:'use'|'sell'|'compose',item:InventoryItem)=>{
   if(busy)return;
-  setBusy(true);setStatus(path==='use'?'Использование…':'Продажа…');
+  setBusy(true);setStatus(path==='use'?'Использование…':path==='compose'?'Объединение осколков…':'Продажа…');
   try{
    const r=await fetch(api+'/v1/inventory/'+path,{
     method:'POST',
@@ -137,12 +138,32 @@ export function InventoryScreen({api,token,onClose}:{api:string;token:string;onC
    setSelected(next);
    setStatus(path==='use'
     ?`Использовано: ${itemDisplayName(item.itemId)}`
-    :`Продано за ${body.gained?.amount??'?'} золота`);
+    :path==='compose'
+     ?`Объединено: ${item.compose?.need} осколков → ${itemDisplayName(body.rewards?.[0]?.itemId??item.compose?.cardId??0)}`
+     :`Продано за ${body.gained?.amount??'?'} золота`);
   }catch(e){
    setStatus(e instanceof Error?e.message:'Операция не удалась');
   }finally{
    setBusy(false);
   }
+ };
+
+ const composeAll=async()=>{
+  if(busy)return;
+  setBusy(true);setStatus('Объединение доступных осколков…');
+  try{
+   const r=await fetch(api+'/v1/inventory/compose-all',{
+    method:'POST',headers:{Authorization:'Bearer '+token},
+   });
+   const j=await r.json().catch(()=>({}));
+   if(!r.ok)throw Error(j.error||'compose_all_'+r.status);
+   const inv=j.inventory as InventoryPayload;
+   setData(inv);
+   if(selected)setSelected(inv.items.find(i=>i.itemId===selected.itemId)??null);
+   const total=(j.rewards??[]).reduce((n:number,x:{amount:string})=>n+Number(x.amount),0);
+   setStatus(total>0?`Объединено карт: ${total}`:'Недостаточно осколков для объединения');
+  }catch(e){setStatus(e instanceof Error?e.message:'Объединение не удалось')}
+  finally{setBusy(false)}
  };
 
  const runPers=async(kind:'roll'|'save'|'cancel')=>{
@@ -200,6 +221,11 @@ export function InventoryScreen({api,token,onClose}:{api:string;token:string;onC
      return <li key={k}><ItemIcon itemId={id} kind="currency"/><span>{label}</span><strong>{data.currencies[k]??'0'}</strong></li>;
     })}</ul>
    </section>
+   <div className="inventory-compose-all">
+    <button type="button" disabled={busy||!data.items.some(x=>(x.compose?.max??0)>0)}
+     onClick={()=>void composeAll()}>Объединить все доступные осколки</button>
+    <small>По оригинальным рецептам ItemPiece</small>
+   </div>
    <div className="inventory-toolbar">
     <div className="inventory-filters" role="group" aria-label="Фильтр">
      {FILTERS.map(f=><button key={f.id} type="button" aria-pressed={filter===f.id} onClick={()=>setFilter(f.id)}>{f.label}{data.byKind&&f.id!=='all'&&data.byKind[f.id]?` (${data.byKind[f.id]})`:''}</button>)}
@@ -237,8 +263,13 @@ export function InventoryScreen({api,token,onClose}:{api:string;token:string;onC
      <p>Количество: ×{selected.amount}</p>
      <p>ID: {selected.itemId}</p>
      {selected.canSell&&<p>Цена продажи: {selected.sellPrice} золота</p>}
+     {selected.compose&&<div className="inventory-compose-recipe">
+      <p>Оригинальный рецепт: {selected.compose.need} осколков → 1 карта {itemDisplayName(selected.compose.cardId)} (#{selected.compose.cardId}).</p>
+      <p>Доступно объединений: {selected.compose.max}</p>
+     </div>}
      <div className="inventory-actions">
       <button type="button" disabled={busy||!selected.usable} onClick={()=>void act('use',selected)}>Использовать</button>
+      {selected.compose&&<button type="button" disabled={busy||selected.compose.max<1} onClick={()=>void act('compose',selected)}>Объединить осколки</button>}
       <button type="button" disabled={busy||!selected.canSell} onClick={()=>void act('sell',selected)}>Продать</button>
      </div>
      {selected.canPersonalityDisplace&&(
@@ -258,7 +289,7 @@ export function InventoryScreen({api,token,onClose}:{api:string;token:string;onC
        )}
       </div>
      )}
-     {!selected.usable&&!selected.canSell&&!selected.canPersonalityDisplace&&<p className="inventory-note">Для этого предмета нет действий использования или продажи.</p>}
+     {!selected.usable&&!selected.canSell&&!selected.canPersonalityDisplace&&!selected.compose&&<p className="inventory-note">Для этого предмета нет действий использования или продажи.</p>}
      {selected.usable===false&&kindOf(selected)==='consume'&&<p className="inventory-note">Сложные расходники (события/случайные ящики) — следующие подэтапы.</p>}
     </div>
    </section>

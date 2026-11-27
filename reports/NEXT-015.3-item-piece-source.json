@@ -1,0 +1,160 @@
+{
+  "source": "/home/gamedev/QueensBladeH5/racon2-main/client/config/configure/1b4bcf8e18f84fdca76deb523b59d279/ItemPiece",
+  "sha256": "0db0aba0f937df7b358eef1ce8df4a8c6124ef7539c88a691dfb8a210cbc2a46",
+  "records": 523,
+  "heroComposables": 218,
+  "subtypes": {
+    "2": 5,
+    "4": 6,
+    "5": 5,
+    "99": 1,
+    "13": 1,
+    "9": 32,
+    "15": 2,
+    "1": 252,
+    "6": 8,
+    "7": 11,
+    "14": 9,
+    "8": 18,
+    "3": 173
+  },
+  "heroExamples": [
+    {
+      "Id": 1011301,
+      "RequireCount": 20,
+      "CardId": 1111301,
+      "SubType": 1,
+      "DecomposeItems": [
+        [
+          10001,
+          1
+        ],
+        [
+          22,
+          25
+        ]
+      ]
+    },
+    {
+      "Id": 1011302,
+      "RequireCount": 20,
+      "CardId": 1111302,
+      "SubType": 1,
+      "DecomposeItems": [
+        [
+          10001,
+          1
+        ],
+        [
+          22,
+          25
+        ]
+      ]
+    },
+    {
+      "Id": 1011303,
+      "RequireCount": 20,
+      "CardId": 1111303,
+      "SubType": 1,
+      "DecomposeItems": [
+        [
+          10001,
+          1
+        ],
+        [
+          22,
+          25
+        ]
+      ]
+    },
+    {
+      "Id": 1011401,
+      "RequireCount": 30,
+      "CardId": 1111401,
+      "SubType": 1,
+      "DecomposeItems": [
+        [
+          11,
+          1
+        ],
+        [
+          22,
+          70
+        ]
+      ]
+    },
+    {
+      "Id": 1011402,
+      "RequireCount": 30,
+      "CardId": 1111402,
+      "SubType": 1,
+      "DecomposeItems": [
+        [
+          11,
+          1
+        ],
+        [
+          22,
+          70
+        ]
+      ]
+    },
+    {
+      "Id": 1011403,
+      "RequireCount": 30,
+      "CardId": 1111403,
+      "SubType": 1,
+      "DecomposeItems": [
+        [
+          11,
+          1
+        ],
+        [
+          22,
+          70
+        ]
+      ]
+    },
+    {
+      "Id": 1011501,
+      "RequireCount": 50,
+      "CardId": 1111501,
+      "SubType": 1,
+      "DecomposeItems": [
+        [
+          11,
+          5
+        ],
+        [
+          10001,
+          5
+        ],
+        [
+          22,
+          100
+        ]
+      ]
+    },
+    {
+      "Id": 1011502,
+      "RequireCount": 50,
+      "CardId": 1111502,
+      "SubType": 1,
+      "DecomposeItems": [
+        [
+          11,
+          5
+        ],
+        [
+          10001,
+          5
+        ],
+        [
+          22,
+          100
+        ]
+      ]
+    }
+  ],
+  "output": "next-server/data/item-piece-original.json"
+}
