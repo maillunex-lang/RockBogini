@@ -9,8 +9,9 @@ import {reportHeroes} from './battle/reportHeroes.js';
 import {simulate,type Fighter} from './battle/simulation.js';
 import {battleRandom} from './battle/random.js';
 import {randomInt,randomUUID} from 'node:crypto';
-import {dailyInstanceTypes,instanceType,instanceStage,dailyInstanceDefenders,dailyRewards,dailyDay,FREE_DAILY,PAID_DAILY} from './dailyInstanceConfig.js';
+import {dailyInstanceTypes,instanceType,instanceStage,dailyInstanceDefenders,dailyRewards,dailyDay,FREE_DAILY,PAID_DAILY,dailyVipLimits} from './dailyInstanceConfig.js';
 import {taskEvent} from './tasks.js';
+import {vipLevelFor} from './shop.js';
 
 type Progress={instance_type:number;cleared_map_id:number;day:Date|string;free_battle_count:number;paid_battle_count:number};
 const uidPattern='^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$';
@@ -37,6 +38,11 @@ async function grant(c:PoolClient,id:string,rewards:readonly (readonly number[])
    ON CONFLICT(account_id,item_id) DO UPDATE SET amount=player_items.amount+EXCLUDED.amount`,[id,item,count]);
  }
 }
+async function activeVip(c:PoolClient,id:string){
+ const p=(await c.query('SELECT vip_level FROM player_profiles WHERE account_id=$1',[id])).rows[0];
+ const points=(await c.query('SELECT amount FROM player_items WHERE account_id=$1 AND item_id=2',[id])).rows[0];
+ return Math.max(Number(p?.vip_level??0),vipLevelFor(Number(points?.amount??0)));
+}
 export async function dailyInstanceRoutes(app:FastifyInstance,s:Storage){
  app.get('/v1/daily-instance',async(req,reply)=>{
   const id=await auth(req,s);if(!id)return reply.code(401).send({error:'invalid_session'});
@@ -44,9 +50,11 @@ export async function dailyInstanceRoutes(app:FastifyInstance,s:Storage){
   const c=await s.pg.connect();
   try{
    await c.query('BEGIN');await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
+   const vipLevel=await activeVip(c,id);
    const instances=[];
    for(const cfg of Object.values(dailyInstanceTypes).sort((a,b)=>a.id-b.id)){
     const row=await progress(c,id,cfg.id);
+    const limits=dailyVipLimits(cfg.id,vipLevel);
     const index=cfg.maps.indexOf(row.cleared_map_id);
     const cleared=index+1;
     const next=cfg.maps[cleared]??null;
@@ -55,9 +63,10 @@ export async function dailyInstanceRoutes(app:FastifyInstance,s:Storage){
     instances.push({type:cfg.id,maps:cfg.maps,clearedMapId:row.cleared_map_id,clearedCount:cleared,
      nextMapId:next,nextMap:nextCfg?{requirePower:nextCfg.stage.requirePower,
       battlePower:nextCfg.map.battlePower,bg:nextCfg.map.bg,heroIds:nextCfg.map.heroes.map(x=>x[1]),
-      rewards:dailyRewards(cfg.id,next!)}:null,
-     freeLeft:Math.max(FREE_DAILY-row.free_battle_count,0),paidLeft:Math.max(PAID_DAILY-row.paid_battle_count,0),
-     battlePrice:cfg.battlePrice,clearedRewards:clearedCfg?dailyRewards(cfg.id,row.cleared_map_id):[],
+      rewards:dailyRewards(cfg.id,next!,1,limits.rewardBonus)}:null,
+     freeLeft:Math.max(limits.freeMax-row.free_battle_count,0),paidLeft:Math.max(limits.paidMax-row.paid_battle_count,0),
+     freeMax:limits.freeMax,paidMax:limits.paidMax,rewardBonus:limits.rewardBonus,vipLevel,
+     battlePrice:cfg.battlePrice,clearedRewards:clearedCfg?dailyRewards(cfg.id,row.cleared_map_id,1,limits.rewardBonus):[],
      canChallenge:!!next&&Number(profile.highest_power)>=Number(nextCfg!.stage.requirePower)});
    }
    await c.query('COMMIT');return {instances,day:dailyDay(),freeMax:FREE_DAILY,paidMax:PAID_DAILY};
@@ -132,7 +141,8 @@ export async function dailyInstanceRoutes(app:FastifyInstance,s:Storage){
    const win=b.report?.summary?.resultCode===2&&stage.index<=cleared;
    let rewards:[number,number][]=[];
    if(win){
-    rewards=dailyRewards(b.instance_type,b.map_id);
+    const vipLevel=await activeVip(c,id);
+    rewards=dailyRewards(b.instance_type,b.map_id,1,dailyVipLimits(b.instance_type,vipLevel).rewardBonus);
     await grant(c,id,rewards);
     if(stage.index===cleared)await c.query('UPDATE daily_instance_progress SET cleared_map_id=$3 WHERE account_id=$1 AND instance_type=$2',
      [id,b.instance_type,b.map_id]);
@@ -170,10 +180,11 @@ export async function dailyInstanceRoutes(app:FastifyInstance,s:Storage){
   try{
    await c.query('BEGIN');await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
    const row=await progress(c,id,type),cleared=cfg.maps.indexOf(row.cleared_map_id)+1;
+   const vipLevel=await activeVip(c,id),limits=dailyVipLimits(type,vipLevel);
    // Strictly less than cleared count: the swept stage must already have been won.
    if(cleared===0||stage.index>=cleared){await c.query('ROLLBACK');return reply.code(409).send({error:'daily_stage_locked'})}
-   const free=Math.min(count,Math.max(FREE_DAILY-row.free_battle_count,0)),paid=count-free;
-   if(paid>Math.max(PAID_DAILY-row.paid_battle_count,0)){
+   const free=Math.min(count,Math.max(limits.freeMax-row.free_battle_count,0)),paid=count-free;
+   if(paid>Math.max(limits.paidMax-row.paid_battle_count,0)){
     await c.query('ROLLBACK');return reply.code(409).send({error:'daily_attempt_limit'});
    }
    if(paid>0){
@@ -181,7 +192,7 @@ export async function dailyInstanceRoutes(app:FastifyInstance,s:Storage){
      [id,3,paid*cfg.battlePrice]);
     if(!charged.rowCount){await c.query('ROLLBACK');return reply.code(409).send({error:'insufficient_diamond',cost:paid*cfg.battlePrice})}
    }
-   const rewards=dailyRewards(type,mapId,count);
+   const rewards=dailyRewards(type,mapId,count,limits.rewardBonus);
    await grant(c,id,rewards);
    await c.query(`UPDATE daily_instance_progress SET free_battle_count=free_battle_count+$3,
     paid_battle_count=paid_battle_count+$4 WHERE account_id=$1 AND instance_type=$2`,[id,type,free,paid]);

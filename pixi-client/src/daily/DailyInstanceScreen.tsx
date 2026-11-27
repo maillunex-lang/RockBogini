@@ -2,7 +2,7 @@ import {useCallback,useEffect,useState} from 'react';
 import {itemDisplayName} from '../shared/itemNames';
 import '../tower/tower.css';
 type Rewards=[number,number][];
-type Instance={type:number;maps:number[];clearedMapId:number;clearedCount:number;nextMapId:number|null;nextMap:{requirePower:number;battlePower:number;bg:string;heroIds:number[];rewards:Rewards}|null;freeLeft:number;paidLeft:number;battlePrice:number;clearedRewards:Rewards;canChallenge:boolean};
+type Instance={type:number;maps:number[];clearedMapId:number;clearedCount:number;nextMapId:number|null;nextMap:{requirePower:number;battlePower:number;bg:string;heroIds:number[];rewards:Rewards}|null;freeLeft:number;paidLeft:number;freeMax:number;paidMax:number;rewardBonus:number;vipLevel:number;battlePrice:number;clearedRewards:Rewards;canChallenge:boolean};
 type InstanceList={instances:Instance[];day:string;freeMax:number;paidMax:number};
 type Report={battleId:string;mapId:number;type:number;summary:{resultCode:number};pages:{dataType:number}[];heroes:{heroId:number;camp:number;statDamage:number}[]};
 type Result={battleId:string;mapId:number;type:number;result:number;rewards:Rewards};
@@ -81,14 +81,14 @@ export function DailyInstanceScreen({api,token,onClose}:{api:string;token:string
      <button disabled={busy} onClick={resume}>Продолжить бой</button>
     </div>
     <h3>Повторная зачистка</h3>
-    <p>Бесплатно: {current.freeLeft}/{list?.freeMax??2}. Платно: {current.paidLeft}/{list?.paidMax??2}. Цена: {current.battlePrice} алмазов за платную попытку.</p>
+    <p>Бесплатно: {current.freeLeft}/{current.freeMax}. Платно: {current.paidLeft}/{current.paidMax}. VIP {current.vipLevel}{current.rewardBonus>0?' · Бонус наград +'+(current.rewardBonus/10).toLocaleString('ru-RU')+'%':''}. Цена: {current.battlePrice} алмазов за платную попытку.</p>
     <div className="tower-actions tower-quick">
      <label>Пройденный уровень <select value={sweepMap} onChange={e=>setSweepMap(Number(e.target.value))}>
       <option value={0}>Выберите</option>
       {current.maps.slice(0,current.clearedCount).map(mid=><option key={mid} value={mid}>{mid}</option>)}
      </select></label>
-     <label>Раз <input type="number" inputMode="numeric" min={1} max={Math.max(1,current.freeLeft+current.paidLeft)} value={sweepCount} onChange={e=>setSweepCount(Number(e.target.value))}/></label>
-     <button disabled={busy||!sweepMap||sweepCount<1||sweepCount>current.freeLeft+current.paidLeft} onClick={sweep}>Зачистить</button>
+     <label>Раз <input type="number" inputMode="numeric" min={1} max={Math.min(100,Math.max(1,current.freeLeft+current.paidLeft))} value={sweepCount} onChange={e=>setSweepCount(Number(e.target.value))}/></label>
+     <button disabled={busy||!sweepMap||sweepCount<1||sweepCount>current.freeLeft+current.paidLeft||sweepCount>100} onClick={sweep}>Зачистить</button>
     </div>
     {current.clearedMapId>0&&<p>Награда последней пройденной карты за зачистку: {rewards(current.clearedRewards)}</p>}
     <p className="tower-note">Первое прохождение не расходует ежедневные попытки. Платные повторы списывают алмазы только после бесплатных.</p>

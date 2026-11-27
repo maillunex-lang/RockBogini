@@ -11,6 +11,22 @@ const SETTINGS=JSON.parse(readFileSync(new URL('../../data/daily-instance-settin
 export const FREE_DAILY=SETTINGS.DailyInstanceFreeBattleCountDaily;
 export const MAX_DAILY=SETTINGS.DailyInstanceMaxBattleCountDaily;
 export const PAID_DAILY=MAX_DAILY-FREE_DAILY;
+type VipRow={id:number;point:number;privilege:number[][]};
+const VIPS=(JSON.parse(readFileSync(new URL('../../data/shop-vip.json',import.meta.url),'utf8')) as {vip:VipRow[]}).vip;
+export const DAILY_VIP_REWARD_TYPES:Record<number,number>={1:14,2:15,3:16,4:17,5:23};
+export const DAILY_VIP_FREE_TYPES:Record<number,number>={1:18,2:19,3:20,4:21,5:24};
+export function dailyVipBonus(level:number,bonusType:number){
+ const cfg=VIPS.find(v=>v.id===level);
+ if(!cfg||!Number.isInteger(bonusType))return 0;
+ return cfg.privilege.reduce((total,row)=>total+(row[0]===bonusType?(row[1]??0):0),0);
+}
+export function dailyVipLimits(type:number,level:number){
+ if(!instanceType(type))throw Error('invalid_daily_type');
+ return {freeMax:FREE_DAILY+dailyVipBonus(level,DAILY_VIP_FREE_TYPES[type]),
+  paidMax:PAID_DAILY+dailyVipBonus(level,9),
+  rewardBonus:dailyVipBonus(level,DAILY_VIP_REWARD_TYPES[type])};
+}
+
 export function instanceType(type:number){return dailyInstanceTypes[String(type)];}
 export function instanceStage(type:number,mapId:number){
  const cfg=instanceType(type),index=cfg?.maps.indexOf(mapId)??-1;

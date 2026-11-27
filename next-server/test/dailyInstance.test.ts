@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {openStorage,migrate} from '../src/storage.js';
 import {createGuest} from '../src/auth.js';
 import {buildApp} from '../src/app.js';
-import {dailyInstanceTypes,instanceStage,dailyInstanceDefenders,dailyRewards,dailyDay,FREE_DAILY,PAID_DAILY} from '../src/dailyInstanceConfig.js';
+import {dailyInstanceTypes,instanceStage,dailyInstanceDefenders,dailyRewards,dailyDay,FREE_DAILY,PAID_DAILY,dailyVipBonus,dailyVipLimits} from '../src/dailyInstanceConfig.js';
 test('exact original DailyInstance tables, power, rewards and free/paid limits',()=>{
  assert.equal(Object.keys(dailyInstanceTypes).length,5);
  assert.equal(Object.values(dailyInstanceTypes).reduce((a,c)=>a+c.maps.length,0),55);
@@ -17,6 +17,50 @@ test('exact original DailyInstance tables, power, rewards and free/paid limits',
  assert.equal(instanceStage(1,10201),null);
  assert.equal(FREE_DAILY,2);assert.equal(PAID_DAILY,2);
  assert.equal(dailyDay(new Date('2026-11-27T15:00:00Z')),'2026-11-28');
+});
+test('VIP source privilege 9 paid attempts and unavailable 14-24 bonuses stay zero',()=>{
+ assert.deepEqual(dailyVipLimits(1,0),{freeMax:2,paidMax:2,rewardBonus:0});
+ assert.deepEqual(dailyVipLimits(1,1),{freeMax:2,paidMax:3,rewardBonus:0});
+ assert.deepEqual(dailyVipLimits(5,3),{freeMax:2,paidMax:4,rewardBonus:0});
+ assert.deepEqual(dailyVipLimits(4,21),{freeMax:2,paidMax:12,rewardBonus:0});
+ for(const type of [1,2,3,4,5])for(const bonusType of [14,15,16,17,18,19,20,21,23,24]){
+  assert.equal(dailyVipBonus(21,bonusType),0,'VIP source table has no bonus type '+bonusType);
+  assert.equal(dailyVipLimits(type,2).freeMax,2);
+ }
+ assert.deepEqual(dailyRewards(1,10101,3,100),[[1,660000],[10001,33]]);
+});
+test('daily paid VIP attempts use account VIP points, atomically debit diamonds and isolate other players',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);
+ const a=await createGuest(s),b=await createGuest(s),app=await buildApp(s);
+ const ha={authorization:'Bearer '+a.token},hb={authorization:'Bearer '+b.token};
+ const post=(type:number,count:number,headers=ha)=>app.inject({method:'POST',url:'/v1/daily-instance/quick',headers,payload:{type,mapId:10101,count}});
+ try{
+  await app.inject({url:'/v1/profile',headers:ha});
+  await app.inject({url:'/v1/profile',headers:hb});
+  await s.pg.query('INSERT INTO player_items(account_id,item_id,amount) VALUES($1,2,2000),($1,3,350) ON CONFLICT(account_id,item_id) DO UPDATE SET amount=EXCLUDED.amount',[a.id]);
+  await s.pg.query('INSERT INTO daily_instance_progress(account_id,instance_type,cleared_map_id) VALUES($1,1,10101) ON CONFLICT(account_id,instance_type) DO UPDATE SET cleared_map_id=10101',[a.id]);
+  const before=(await app.inject({url:'/v1/daily-instance',headers:ha})).json().instances[0];
+  assert.equal(before.vipLevel,3);
+  assert.equal(before.paidMax,4);
+  assert.equal(before.freeMax,2);
+  assert.equal(before.rewardBonus,0);
+  assert.equal((await app.inject({url:'/v1/daily-instance',headers:hb})).json().instances[0].paidMax,2);
+  const twoFree=await post(1,2);assert.equal(twoFree.statusCode,200,twoFree.body);
+  assert.equal(twoFree.json().paid,0);
+  const fourPaid=await post(1,4);assert.equal(fourPaid.statusCode,200,fourPaid.body);
+  assert.equal(fourPaid.json().paid,4);
+  assert.equal(fourPaid.json().diamonds,200);
+  assert.equal((await s.pg.query('SELECT amount FROM player_items WHERE account_id=$1 AND item_id=3',[a.id])).rows[0].amount,'150');
+  const limit=(await app.inject({url:'/v1/daily-instance',headers:ha})).json().instances[0];
+  assert.equal(limit.paidLeft,0);
+  assert.equal(limit.freeLeft,0);
+  assert.equal((await post(1,1)).json().error,'daily_attempt_limit');
+  assert.equal((await post(1,1,hb)).statusCode,409);
+  await s.pg.query('UPDATE daily_instance_progress SET day=$2 WHERE account_id=$1 AND instance_type=1',[a.id,'2026-01-01']);
+  const rollover=(await app.inject({url:'/v1/daily-instance',headers:ha})).json().instances[0];
+  assert.equal(rollover.freeLeft,2);
+  assert.equal(rollover.paidLeft,4);
+ }finally{await s.pg.query('DELETE FROM accounts WHERE id=ANY($1::uuid[])',[[a.id,b.id]]);await app.close()}
 });
 test('daily instance unlock, settlement, reward isolation, free and paid sweep, atomic limits',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);const a=await createGuest(s),b=await createGuest(s);const app=await buildApp(s);
