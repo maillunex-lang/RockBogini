@@ -1,5 +1,5 @@
 # NEXT-021.10 (2026-11-27): отдельная формация Sid6 для Тайной области
-Source parity UserFormation_Model Sid6, шесть слотов и построения 101–106, fallback к основному Sid1, ownership/pending guard, API/UI, migration34. Полная изолированная регрессия 197/197 PASS (Termalin job 23tc1qqzok), server/client builds PASS. NEXT-021 in_progress, отчёт reports/NEXT-021.10-secret-formation-2026-11-27.md.
+Source parity UserFormation_Model Sid6, шесть слотов и построения 101–106, fallback к основному Sid1, ownership/pending guard, API/UI, migration34. Полная изолированная регрессия 197/197 PASS (Termalin job 23tc1qqzok), server/client builds PASS. Production VPS API+frontend опубликованы, migration34, HTTP200 и Docker healthy. NEXT-021 in_progress, отчёт reports/NEXT-021.10-secret-formation-2026-11-27.md.
 
 # NEXT-021.9 (2026-11-27): выбор монстров Тайной области по исторической силе
 Исправлены все серверные пути SecretArea: новый двухдневный цикл выбирает MapPowerLevel по original Common.highest_power, текущая смена отряда не снижает силу монстров. Full isolated PostgreSQL+Redis 195/195 PASS (job 4yqctq58y6); server build PASS; без новой миграции. Production VPS API опубликован, HTTP200 и Docker healthy, schema33. NEXT-021 in_progress, отчёт reports/NEXT-021.9-secret-highest-power-2026-11-27.md.

@@ -20,3 +20,14 @@
 - Полная изолированная регрессия PostgreSQL и Redis: **197/197 PASS, 0 FAIL, 0 SKIP**, Termalin job `23tc1qqzok`, exit0.
 - Новые тесты подтверждают оригинальный Sid6, шесть слотов, порядок боевых позиций, неизменность основного отряда, отклонение чужих героев и дублей, защиту во время pending-боя, изоляцию игроков, сам бой и возврат fallback.
 - Ручная проверка в браузере авторизованным игроком пока не выполнена.
+
+## Выпуск NEXT-021.10 на VPS
+- Перед обновлением сохранён PostgreSQL dump `/var/backups/rockbogini-next-pre-secret-02110-20261127.dump` (135 KiB), предыдущий Docker-образ `rockbogini-next-api:pre-secret-02110`.
+- Новый образ `rockbogini-next-api:latest` успешно собран (Docker build exit0).
+- API обновлён через `docker compose -p rockbogini-next up -d --no-deps --no-build api`; PostgreSQL и Redis не перезапускались.
+- Production `schema_migrations` = **34**, миграция применена.
+- `https://rikagro.ru/sexyidle/api/ready` = `{"ready":true}` HTTP200.
+- Неавторизованный `GET /sexyidle/api/v1/secret/formation` вернул HTTP401, ожидаемая защита.
+- Docker API, PostgreSQL и Redis healthy, исполняемый образ совпадает с тегом latest.
+- Frontend опубликован в `/var/www/sexyidle`, entry `assets/main-7QeT7hRo.js`.
+- Ручная проверка авторизованного сценария игрока пока не проведена.
