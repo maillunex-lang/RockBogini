@@ -40,7 +40,7 @@ export function towerRewards(rows:number[][]):[number,number][]{
  }
  return [...m.entries()];
 }
-function scaledAttrs(heroId:number,level:number,star:number,addon:number[][]){
+export function sourceDefenderAttrs(heroId:number,level:number,star:number,addon:number[][]){
  const h=calculateHero(heroId,level,star);
  const attrs:Record<number,number>={...h.attrs};
  for(const [k,v] of addon)if(Number.isSafeInteger(k)&&Number.isSafeInteger(v)){
@@ -55,15 +55,14 @@ function scaledAttrs(heroId:number,level:number,star:number,addon:number[][]){
  for(const [k,v] of Object.entries(initial))attrs[Number(k)]=(attrs[Number(k)]??0)+v;
  return {attrs,skills:h.skills};
 }
-export function towerDefenders(type:number,index:number):Fighter[]|null{
- const config=towerFloor(type,index);
- if(!config)return null;
- const {map}=config,star=map.strength[0]??5,level=map.strength[1]??1;
+/** Shared MapBase defender importer: originals are read-only and use 9-slot stations. */
+export function sourceDefenders(map:{heroes:number[][];strength:number[];attributeAddon:number[][];isBoss:number}):Fighter[]|null{
+ const star=map.strength[0]??5,level=map.strength[1]??1;
  const units:Fighter[]=[];
  for(const [position,id] of map.heroes){
   if(!Number.isInteger(position)||position<1||position>9||!HEROES.has(id))return null;
   const hero=HEROES.get(id)!;
-  const {attrs,skills}=scaledAttrs(id,level,star,map.attributeAddon);
+  const {attrs,skills}=sourceDefenderAttrs(id,level,star,map.attributeAddon);
   const actives=skills.filter(x=>skillConfig[x]?.active);
   const hp=Math.max(1,attrs[1]??1);
   units.push({
@@ -76,4 +75,10 @@ export function towerDefenders(type:number,index:number):Fighter[]|null{
   } as Fighter);
  }
  return units.length?units:null;
+}
+export function towerDefenders(type:number,index:number):Fighter[]|null{
+ const config=towerFloor(type,index);
+ if(!config)return null;
+ const {map}=config;
+ return sourceDefenders(map);
 }

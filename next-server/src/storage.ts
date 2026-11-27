@@ -176,6 +176,29 @@ export async function migrate(s:Storage){
   battle_id uuid NOT NULL REFERENCES tower_battles(id) ON DELETE CASCADE
  )`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(24) ON CONFLICT DO NOTHING');
+ await c.query(`CREATE TABLE IF NOT EXISTS daily_instance_progress(
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  instance_type integer NOT NULL CHECK(instance_type BETWEEN 1 AND 5),
+  cleared_map_id integer NOT NULL DEFAULT 0,
+  day date NOT NULL DEFAULT CURRENT_DATE,
+  free_battle_count integer NOT NULL DEFAULT 0 CHECK(free_battle_count>=0),
+  paid_battle_count integer NOT NULL DEFAULT 0 CHECK(paid_battle_count>=0),
+  PRIMARY KEY(account_id,instance_type)
+ )`);
+ await c.query(`CREATE TABLE IF NOT EXISTS daily_instance_battles(
+  id uuid PRIMARY KEY,
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  instance_type integer NOT NULL CHECK(instance_type BETWEEN 1 AND 5),
+  map_id integer NOT NULL,
+  report jsonb NOT NULL,
+  settlement jsonb,
+  created_at timestamptz NOT NULL DEFAULT now()
+ )`);
+ await c.query(`CREATE TABLE IF NOT EXISTS daily_instance_pending(
+  account_id uuid PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,
+  battle_id uuid NOT NULL REFERENCES daily_instance_battles(id) ON DELETE CASCADE
+ )`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(25) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }

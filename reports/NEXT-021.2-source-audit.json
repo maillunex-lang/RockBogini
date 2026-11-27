@@ -1,0 +1,149 @@
+{
+  "sources": {
+    "/home/gamedev/QueensBladeH5/racon2-main/client/config/configure/82d9f5342c1a4487d3f77bfc770cad5c/DailyInstance": "afe4b52413cf02e494f1cfaabdcc5205f264d58c2856fa773142bb69c6f7e075",
+    "/home/gamedev/QueensBladeH5/racon2-main/client/config/configure/f4e4034387455d6d3f6e521672d07570/MapDailyInstance": "3abbc0811af814c1b9cf3116ff386dd7497b9107ec8d9a62497b3a278ec70746",
+    "/home/gamedev/QueensBladeH5/racon2-main/client/config/configure/686abe125e8378c6de9353d2ebe65b37/MapBase": "0a0b95f476729623f21048c6fecc13a81aa932a3ae2df417b17a77ba5f0779dd",
+    "/home/gamedev/QueensBladeH5/racon2-main/client/config/configure/68f90018518ef275810578e321d5b8c6/GlobalSetting": "8e9d25a6ef66421de5d4418f4604061e78c000a4483b35d6a3055795d2eb3922"
+  },
+  "types": {
+    "1": {
+      "id": 1,
+      "battlePrice": 50,
+      "maps": [
+        10101,
+        10102,
+        10103,
+        10104,
+        10105,
+        10106,
+        10107,
+        10108,
+        10109,
+        10110,
+        10111
+      ]
+    },
+    "2": {
+      "id": 2,
+      "battlePrice": 50,
+      "maps": [
+        10201,
+        10202,
+        10203,
+        10204,
+        10205,
+        10206,
+        10207,
+        10208,
+        10209,
+        10210,
+        10211
+      ]
+    },
+    "3": {
+      "id": 3,
+      "battlePrice": 50,
+      "maps": [
+        10301,
+        10302,
+        10303,
+        10304,
+        10305,
+        10306,
+        10307,
+        10308,
+        10309,
+        10310,
+        10311
+      ]
+    },
+    "4": {
+      "id": 4,
+      "battlePrice": 100,
+      "maps": [
+        10401,
+        10402,
+        10403,
+        10404,
+        10405,
+        10406,
+        10407,
+        10408,
+        10409,
+        10410,
+        10411
+      ]
+    },
+    "5": {
+      "id": 5,
+      "battlePrice": 100,
+      "maps": [
+        10501,
+        10502,
+        10503,
+        10504,
+        10505,
+        10506,
+        10507,
+        10508,
+        10509,
+        10510,
+        10511
+      ]
+    }
+  },
+  "stageCount": 55,
+  "mapCount": 55,
+  "settings": {
+    "DailyInstanceFreeBattleCountDaily": 2,
+    "DailyInstanceMaxBattleCountDaily": 4
+  },
+  "firstStage": {
+    "id": 10101,
+    "requirePower": 1000,
+    "rewards": [
+      [
+        1,
+        200000
+      ],
+      [
+        10001,
+        10
+      ]
+    ]
+  },
+  "firstMap": {
+    "id": 10101,
+    "type": 2,
+    "bg": "Street",
+    "heroes": [
+      [
+        2,
+        11302
+      ],
+      [
+        4,
+        11201
+      ],
+      [
+        6,
+        11303
+      ],
+      [
+        7,
+        11301
+      ],
+      [
+        9,
+        13201
+      ]
+    ],
+    "strength": [
+      3,
+      10
+    ],
+    "attributeAddon": [],
+    "battlePower": 1000,
+    "isBoss": 0
+  }
+}

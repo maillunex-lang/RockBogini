@@ -178,9 +178,9 @@
     "id": "NEXT-021",
     "title": "PvE-режимы",
     "phase": "V. Контент",
-    "scope": "Башни, подземелья, испытания, боссы, специальные режимы NEXT-021.1: 12 original tower types, 17000 floors, server-authoritative challenge/settle, daily/extra/quick rewards, mobile UI; full 159/159 isolated tests PASS. Original elemental formations/unlock tasks and all other PvE remain OPEN.",
+    "scope": "Башни, подземелья, испытания, боссы, специальные режимы NEXT-021.1: 12 original tower types, 17000 floors, server-authoritative challenge/settle, daily/extra/quick rewards, mobile UI; full 159/159 isolated tests PASS. Original elemental formations/unlock tasks and all other PvE remain OPEN. NEXT-021.2 original DailyInstance 5 types/55 maps, authoritative fights, first clear, free/paid sweep, UI, 162/162 isolated PASS. Historical max power/VIP parity and other PvE OPEN.",
     "status": "in_progress",
-    "evidence": "reports/NEXT-021.1-pve-tower-2026-11-27.md; reports/NEXT-021.1-source-audit.json"
+    "evidence": "reports/NEXT-021.1-pve-tower-2026-11-27.md; reports/NEXT-021.1-source-audit.json; reports/NEXT-021.2-daily-instance-2026-11-27.md; reports/NEXT-021.2-source-audit.json"
   },
   {
     "id": "NEXT-022",
