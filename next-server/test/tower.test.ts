@@ -4,6 +4,8 @@ import {openStorage,migrate} from '../src/storage.js';
 import {createGuest} from '../src/auth.js';
 import {buildApp} from '../src/app.js';
 import {towerTypes,towerFloor,towerDefenders,towerOpen,towerWeekday,towerRewards} from '../src/towerConfig.js';
+import {towerFormationSid,towerElementRoot,checkTowerRoster,towerUnits} from '../src/towerFormation.js';
+import {starterHeroes} from '../src/starterHeroes.js';
 test('exact source tower data has 12 types, 17000 floors, correct daily and opening constraints',()=>{
  assert.equal(Object.keys(towerTypes).length,12);
  assert.deepEqual(towerFloor(99,1)?.floor.firstClearRewards,[[10001,5],[1,5000],[22,2000]]);
@@ -18,6 +20,50 @@ test('exact source tower data has 12 types, 17000 floors, correct daily and open
  assert.equal(towerOpen(99),true);
  assert.equal(towerDefenders(99,1)?.length,5);
  assert.equal(towerDefenders(1,1)?.length,5);
+});
+test('original MapType elemental towers have shared formation Sid 141–145 and original positions',()=>{
+ assert.deepEqual([1,2,3,4,5].map(t=>towerFormationSid(t)),[141,142,143,144,145]);
+ assert.deepEqual([101,102,103,104,105].map(t=>towerFormationSid(t)),[141,142,143,144,145]);
+ assert.equal(towerFormationSid(99),1);assert.equal(towerFormationSid(199),1);
+ assert.equal(towerElementRoot(104),4);
+ assert.ok(checkTowerRoster([1001,1002,0,0,0,0],101));
+ assert.ok(!checkTowerRoster([1001,1001,0,0,0,0],101));
+ assert.ok(!checkTowerRoster([1001,0,0,0,0],101));
+ const heroes=starterHeroes.map(x=>({...x,Attrs:x.Attrs,Skills:x.Skills,SkinId:x.SkinId})) as Parameters<typeof towerUnits>[2];
+ const units=towerUnits([1001,1002,1003,0,0,0],101,heroes);
+ assert.deepEqual(units.map(u=>u.station),[1,3,4]);
+ assert.throws(()=>towerUnits([9999,0,0,0,0,0],101,heroes),/hero_not_owned/);
+});
+test('element tower formation owned by player, persisted for normal+hard, and locked during pending battle',{skip:!process.env.PGHOST},async()=>{
+ const s=await openStorage();await migrate(s);
+ const a=await createGuest(s),b=await createGuest(s),app=await buildApp(s);
+ const ha={authorization:'Bearer '+a.token},hb={authorization:'Bearer '+b.token};
+ const put=(type:number,heroIds:number[],formationType=101,headers=ha)=>app.inject({method:'PUT',url:'/v1/tower/formation',headers,payload:{type,heroIds,formationType}});
+ try{
+  assert.equal((await app.inject('/v1/tower/formations')).statusCode,401);
+  assert.equal((await put(1,[1001,1002,1003,0,0,0],101)).statusCode,200);
+  assert.equal((await put(1,[1001,1001,0,0,0,0],101)).statusCode,400);
+  assert.equal((await put(1,[9999,0,0,0,0,0],101)).statusCode,409);
+  assert.equal((await put(1,[1001,0,0,0,0],101)).statusCode,400);
+  assert.equal((await put(99,[1001,0,0,0,0,0],101)).statusCode,400);
+  const own=(await app.inject({url:'/v1/tower/formations',headers:ha})).json();
+  assert.equal(own.rosters['1'].formationType,101);
+  assert.deepEqual(own.rosters['1'].heroIds,[1001,1002,1003,0,0,0]);
+  assert.deepEqual((await app.inject({url:'/v1/tower/formations',headers:hb})).json().rosters,{});
+  const main=(await app.inject({url:'/v1/formation',headers:ha})).json();
+  const r=await app.inject({method:'POST',url:'/v1/tower/challenge',headers:ha,payload:{type:99,mapIndex:1}});
+  assert.equal(r.statusCode,200,r.body);
+  assert.equal((await put(101,[1003,1002,1001,0,0,0],102)).statusCode,409);
+  const cancel=await app.inject({method:'POST',url:'/v1/tower/cancel',headers:ha,payload:{battleId:r.json().battleId}});
+  assert.equal(cancel.statusCode,200,cancel.body);
+  assert.equal((await put(101,[1003,1002,1001,0,0,0],102)).statusCode,200);
+  const after=(await app.inject({url:'/v1/tower/formations',headers:ha})).json();
+  assert.deepEqual(after.rosters['1'].heroIds,[1003,1002,1001,0,0,0]);
+  assert.equal(after.rosters['1'].formationType,102);
+  assert.deepEqual((await app.inject({url:'/v1/formation',headers:ha})).json(),main);
+ }finally{
+  await s.pg.query('DELETE FROM accounts WHERE id=ANY($1::uuid[])',[[a.id,b.id]]);await app.close();
+ }
 });
 test('tower challenge/settlement are authenticated, ordered, persistent and idempotent',{skip:!process.env.PGHOST},async()=>{
  const s=await openStorage();await migrate(s);

@@ -315,6 +315,32 @@ export async function migrate(s:Storage){
     (abyss_team_hero_ids[4]=0 OR abyss_team_hero_ids[6]=0 OR abyss_team_hero_ids[4]<>abyss_team_hero_ids[6]) AND
     (abyss_team_hero_ids[5]=0 OR abyss_team_hero_ids[6]=0 OR abyss_team_hero_ids[5]<>abyss_team_hero_ids[6]))`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(30) ON CONFLICT DO NOTHING');
+ await c.query(`CREATE TABLE IF NOT EXISTS tower_formations(
+  account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  tower_type integer NOT NULL CHECK(tower_type BETWEEN 1 AND 5),
+  formation_type integer NOT NULL DEFAULT 101 CHECK(formation_type BETWEEN 101 AND 106),
+  hero_ids integer[] NOT NULL DEFAULT ARRAY[0,0,0,0,0,0]::integer[],
+  PRIMARY KEY(account_id,tower_type),
+  CHECK(cardinality(hero_ids)=6 AND array_position(hero_ids,NULL) IS NULL AND
+   hero_ids[1]>=0 AND hero_ids[2]>=0 AND hero_ids[3]>=0 AND
+   hero_ids[4]>=0 AND hero_ids[5]>=0 AND hero_ids[6]>=0 AND
+   (hero_ids[1]=0 OR hero_ids[2]=0 OR hero_ids[1]<>hero_ids[2]) AND
+   (hero_ids[1]=0 OR hero_ids[3]=0 OR hero_ids[1]<>hero_ids[3]) AND
+   (hero_ids[1]=0 OR hero_ids[4]=0 OR hero_ids[1]<>hero_ids[4]) AND
+   (hero_ids[1]=0 OR hero_ids[5]=0 OR hero_ids[1]<>hero_ids[5]) AND
+   (hero_ids[1]=0 OR hero_ids[6]=0 OR hero_ids[1]<>hero_ids[6]) AND
+   (hero_ids[2]=0 OR hero_ids[3]=0 OR hero_ids[2]<>hero_ids[3]) AND
+   (hero_ids[2]=0 OR hero_ids[4]=0 OR hero_ids[2]<>hero_ids[4]) AND
+   (hero_ids[2]=0 OR hero_ids[5]=0 OR hero_ids[2]<>hero_ids[5]) AND
+   (hero_ids[2]=0 OR hero_ids[6]=0 OR hero_ids[2]<>hero_ids[6]) AND
+   (hero_ids[3]=0 OR hero_ids[4]=0 OR hero_ids[3]<>hero_ids[4]) AND
+   (hero_ids[3]=0 OR hero_ids[5]=0 OR hero_ids[3]<>hero_ids[5]) AND
+   (hero_ids[3]=0 OR hero_ids[6]=0 OR hero_ids[3]<>hero_ids[6]) AND
+   (hero_ids[4]=0 OR hero_ids[5]=0 OR hero_ids[4]<>hero_ids[5]) AND
+   (hero_ids[4]=0 OR hero_ids[6]=0 OR hero_ids[4]<>hero_ids[6]) AND
+   (hero_ids[5]=0 OR hero_ids[6]=0 OR hero_ids[5]<>hero_ids[6]))
+ )`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(31) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }

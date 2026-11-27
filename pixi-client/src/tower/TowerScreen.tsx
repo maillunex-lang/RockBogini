@@ -7,6 +7,8 @@ type TowerFloor={firstClearRewards:Reward[];dailyRewards:Reward[];extraRewards:R
 type Tower={type:number;mapIndex:number;maxCount:number;open:boolean;available:boolean;
  nextMapId:number|null;nextFloor:TowerFloor|null;nextMap:{bg:string;battlePower:number;heroIds:number[]}|null;
  extraRewardIndex:number;dailyRewardIndex:number;dailyClaimed:boolean;battleCount:number;extraCount:number;maxDailyBattles:number};
+type TowerFormations={rosters:Record<string,{formationType:number;heroIds:number[]}>;sids:number[];
+ formations:{Id:number;Data:number[]}[];heroOptions:{sid:number;heroId:number;power:number}[]};
 type TowerList={towers:Tower[];weekday:number};
 type TowerBattle={battleId:string;mapId:number;summary:{resultCode:number};pages:{dataType:number;round:number;skillId?:number}[];heroes:{heroId:number;camp:number;statDamage:number;statHurt:number}[]};
 type TowerSettlement={battleId:string;mapId:number;type:number;mapIndex:number;result:number;rewards:Reward[]};
@@ -20,7 +22,11 @@ export function TowerScreen({api,token,onClose}:{api:string;token:string;onClose
  const [busy,setBusy]=useState(false);
  const [message,setMessage]=useState('');
  const [quickEnd,setQuickEnd]=useState(1);
- const request=useCallback(async<T,>(path:string,method:'GET'|'POST'='GET',body?:unknown):Promise<T>=>{
+ const [towerForms,setTowerForms]=useState<TowerFormations|null>(null);
+ const [towerHeroes,setTowerHeroes]=useState<number[]>([0,0,0,0,0,0]);
+ const [towerLayout,setTowerLayout]=useState(101);
+ const [towerDirty,setTowerDirty]=useState(false);
+ const request=useCallback(async<T,>(path:string,method:'GET'|'POST'|'PUT'='GET',body?:unknown):Promise<T>=>{
   const res=await fetch(api+'/v1/tower'+path,{method,headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});
   const data=await res.json() as T&{error?:string};
   if(!res.ok)throw Error(data.error??'tower_'+res.status);
@@ -28,12 +34,22 @@ export function TowerScreen({api,token,onClose}:{api:string;token:string;onClose
  },[api,token]);
  const load=useCallback(async()=>{
   const info=await request<TowerList>('');
-  setList(info);
+  const forms=await request<TowerFormations>('/formations');
+  setList(info);setTowerForms(forms);
   return info;
  },[request]);
  useEffect(()=>{let mounted=true;load().then(()=>{if(mounted)setMessage('')}).catch(e=>{if(mounted)setMessage(String(e))});return()=>{mounted=false}},[load]);
  useEffect(()=>{setQuickEnd((list?.towers.find(x=>x.type===selected)?.mapIndex??0)+1)},[list,selected]);
  const current=list?.towers.find(x=>x.type===selected)??null;
+ const elemental=![99,199].includes(selected);
+ const formRoot=selected>=101?selected-100:selected;
+ useEffect(()=>{
+  const saved=towerForms?.rosters[String(formRoot)];
+  setTowerHeroes(saved?.heroIds??[0,0,0,0,0,0]);
+  setTowerLayout(saved?.formationType??101);
+  setTowerDirty(false);
+ },[towerForms,formRoot]);
+
  const run=async(fn:()=>Promise<void>)=>{
   if(busy)return;
   setBusy(true);setMessage('');
@@ -43,6 +59,12 @@ export function TowerScreen({api,token,onClose}:{api:string;token:string;onClose
  const action=(path:string,body:unknown)=>void run(async()=>{
   const result=await request<{rewards:Reward[]}>(path,'POST',body);
   setMessage('Получено: '+rewards(result.rewards));
+  await load();
+ });
+ const saveTower=()=>void run(async()=>{
+  if(!towerHeroes.some(Boolean))throw Error('Выберите героев элементальной башни');
+  await request('/formation','PUT',{type:formRoot,formationType:towerLayout,heroIds:towerHeroes});
+  setTowerDirty(false);setMessage('Отряд элементальной башни сохранён');
   await load();
  });
  const start=()=>void run(async()=>{
@@ -84,8 +106,34 @@ export function TowerScreen({api,token,onClose}:{api:string;token:string;onClose
      {current.nextMap&&<p>Сила противников: {current.nextMap.battlePower.toLocaleString('ru-RU')} · Противников: {current.nextMap.heroIds.length}</p>}
      {current.nextFloor&&<p>Первое прохождение: {rewards(current.nextFloor.firstClearRewards)}</p>}
     </div>
+    {elemental&&towerForms&&<div className="tower-formation">
+     <h3>Отряд элементальной башни · Sid {140+formRoot}</h3>
+     <p>Обычная и высшая башни одной стихии используют один сохранённый состав, независимо от основного отряда.</p>
+     <label>Построение
+      <select aria-label="Построение башни" value={towerLayout} disabled={busy}
+       onChange={e=>{setTowerLayout(Number(e.target.value));setTowerDirty(true)}}>
+       {towerForms.formations.map(f=><option key={f.Id} value={f.Id}>Построение {f.Id}</option>)}
+      </select>
+     </label>
+     <div className="tower-formation-grid">
+      {[0,1,2,3,4,5].map(i=><label key={i}>
+       Позиция {towerForms.formations.find(f=>f.Id===towerLayout)?.Data[i]??i+1}
+       <select aria-label={'Герой башни '+(i+1)} value={towerHeroes[i]??0} disabled={busy}
+        onChange={e=>{
+         const sid=Number(e.target.value);
+         setTowerHeroes(old=>old.map((v,n)=>n===i?sid:sid>0&&v===sid?0:v));
+         setTowerDirty(true);
+        }}>
+        <option value={0}>Не выбран</option>
+        {towerForms.heroOptions.map(h=><option key={h.sid} value={h.sid}>#{h.sid} · герой {h.heroId} · {h.power.toLocaleString('ru-RU')}</option>)}
+       </select>
+      </label>)}
+     </div>
+     <button disabled={busy||!towerDirty||new Set(towerHeroes.filter(Boolean)).size!==towerHeroes.filter(Boolean).length}
+      onClick={saveTower}>Сохранить отряд башни</button>
+    </div>}
     <div className="tower-actions">
-     <button type="button" disabled={busy||!current.open||!current.available||!current.nextFloor} onClick={start}>⚔️ Начать бой</button>
+     <button type="button" disabled={busy||!current.open||!current.available||!current.nextFloor||(elemental&&(towerDirty||!towerForms?.rosters[String(formRoot)]?.heroIds.some(Boolean)))} onClick={start}>⚔️ Начать бой</button>
      <button type="button" disabled={busy||current.mapIndex===0||current.extraRewardIndex>=current.mapIndex} onClick={()=>action('/extra',{type:selected,mapIndex:current.mapIndex})}>Дополнительные награды</button>
      {[99,199].includes(selected)&&<button type="button" disabled={busy||current.dailyClaimed} onClick={()=>action('/daily',{type:selected})}>Ежедневная награда</button>}
      {[99,199].includes(selected)&&<div className="tower-quick"><label>До этажа <input inputMode="numeric" type="number" min={current.mapIndex+1} max={Math.min(current.mapIndex+100,current.maxCount)} value={quickEnd} onChange={e=>setQuickEnd(Number(e.target.value))}/></label>

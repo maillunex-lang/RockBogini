@@ -4,7 +4,10 @@ import type {PoolClient} from 'pg';
 import type {Storage} from './storage.js';
 import {sessionAccount} from './auth.js';
 import {getProfile} from './profile.js';
-import {prepareSquad,buildUnit} from './battleUnits.js';
+import {buildUnit} from './battleUnits.js';
+import {towerAttackers,savedTowerFormations,towerFormationSid,towerElementRoot,checkTowerRoster} from './towerFormation.js';
+import {getHeroes} from './heroes.js';
+import {formations} from './formationConfig.js';
 import {reportHeroes} from './battle/reportHeroes.js';
 import {simulate,type Fighter} from './battle/simulation.js';
 import {battleRandom} from './battle/random.js';
@@ -58,6 +61,41 @@ export async function towerRoutes(app:FastifyInstance,s:Storage){
    return {towers,weekday:towerWeekday()};
   }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
  });
+ app.get('/v1/tower/formations',async(req,reply)=>{
+  const id=await auth(req,s);if(!id)return reply.code(401).send({error:'invalid_session'});
+  const [rosters,heroes]=await Promise.all([savedTowerFormations(s,id),getHeroes(s,id)]);
+  return {rosters,sids:[141,142,143,144,145],formations,
+   heroOptions:heroes.map(h=>({sid:h.Sid,heroId:h.HeroId,power:h.Power}))};
+ });
+ app.put<{Body:{type:number;formationType:number;heroIds:number[]}}>('/v1/tower/formation',{
+  schema:{body:{type:'object',required:['type','formationType','heroIds'],additionalProperties:false,
+   properties:{type:{type:'integer',enum:[1,2,3,4,5,101,102,103,104,105]},
+    formationType:{type:'integer',enum:[101,102,103,104,105,106]},
+    heroIds:{type:'array',minItems:6,maxItems:6,items:{type:'integer',minimum:0,maximum:2147483647}}}}},
+ },async(req,reply)=>{
+  const id=await auth(req,s);if(!id)return reply.code(401).send({error:'invalid_session'});
+  const {type,formationType,heroIds}=req.body;
+  if(!checkTowerRoster(heroIds,formationType))return reply.code(400).send({error:'invalid_tower_formation'});
+  const root=towerElementRoot(type),sid=towerFormationSid(type);
+  if(sid===null||sid===1)return reply.code(400).send({error:'invalid_tower_type'});
+  await getHeroes(s,id);await getProfile(s,id);
+  const c=await s.pg.connect();
+  try{
+   await c.query('BEGIN');
+   await c.query('SELECT account_id FROM player_profiles WHERE account_id=$1 FOR UPDATE',[id]);
+   const pending=(await c.query('SELECT battle_id FROM tower_pending WHERE account_id=$1',[id])).rows[0];
+   if(pending){await c.query('ROLLBACK');return reply.code(409).send({error:'tower_battle_pending'})}
+   const used=heroIds.filter(x=>x>0);
+   const owned=(await c.query('SELECT sid FROM player_heroes WHERE account_id=$1 AND sid=ANY($2::integer[])',[id,used])).rows;
+   if(owned.length!==used.length){await c.query('ROLLBACK');return reply.code(409).send({error:'hero_not_owned'})}
+   await c.query(`INSERT INTO tower_formations(account_id,tower_type,formation_type,hero_ids)
+    VALUES($1,$2,$3,$4) ON CONFLICT(account_id,tower_type)
+    DO UPDATE SET formation_type=EXCLUDED.formation_type,hero_ids=EXCLUDED.hero_ids`,
+    [id,root,formationType,heroIds]);
+   await c.query('COMMIT');
+   return {type:root,sid,formationType,heroIds};
+  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
+ });
  app.post<{Body:{type:number;mapIndex:number}}>('/v1/tower/challenge',{
   schema:{body:{type:'object',required:['type','mapIndex'],additionalProperties:false,properties:{
    type:{type:'integer'},mapIndex:{type:'integer',minimum:1},
@@ -67,6 +105,12 @@ export async function towerRoutes(app:FastifyInstance,s:Storage){
   const {type,mapIndex}=req.body,cfg=towerType(type),floor=towerFloor(type,mapIndex);
   if(!cfg||!floor)return reply.code(404).send({error:'tower_floor_not_found'});
   await getProfile(s,id);
+  let attackers:Awaited<ReturnType<typeof towerAttackers>>;
+  try{attackers=await towerAttackers(s,id,type)}catch(e){
+   if(e instanceof Error&&['empty_formation','empty_tower_formation','invalid_formation','invalid_tower_formation','hero_not_owned','hero_attributes_pending'].includes(e.message))
+    return reply.code(409).send({error:e.message});
+   throw e;
+  }
   const c=await s.pg.connect();
   try{
    await c.query('BEGIN');
@@ -77,15 +121,9 @@ export async function towerRoutes(app:FastifyInstance,s:Storage){
    if(cfg.openTime.length&&row.battle_count>=TOWER_MAX_DAILY_BATTLES+row.extra_count){
     await c.query('ROLLBACK');return reply.code(409).send({error:'tower_daily_limit'});
    }
-   let attackers:Awaited<ReturnType<typeof prepareSquad>>;
-   try{attackers=await prepareSquad(s,id)}catch(e){
-    if(e instanceof Error&&['empty_formation','invalid_formation','hero_attributes_pending','hero_not_owned'].includes(e.message)){
-     await c.query('ROLLBACK');return reply.code(409).send({error:e.message});
-    }throw e;
-   }
    const defenders=towerDefenders(type,mapIndex);
    if(!defenders){await c.query('ROLLBACK');return reply.code(503).send({error:'tower_battle_data_unavailable'})}
-   const units:Fighter[]=[...attackers.map((x:ReturnType<typeof buildUnit>)=>({...x,camp:1 as const,is_boss:0,hurt:0,damage:0,cure:0,buffs:[]} as Fighter)),...defenders];
+   const units:Fighter[]=[...attackers.map(x=>({...x,camp:1 as const,is_boss:0,hurt:0,damage:0,cure:0,buffs:[]} as Fighter)),...defenders];
    const seed=randomInt(1,2147483647),battle=simulate(units,battleRandom(seed),15);
    const report={version:1,mode:'tower',type,mapIndex,battleId:randomUUID(),mapId:floor.mapId,background:floor.map.bg,
     heroes:reportHeroes(units,battle.units),seed,maxRounds:15,preview:false,progressionApplied:false,
