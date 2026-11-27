@@ -1,5 +1,5 @@
 # NEXT-021.12 (2026-11-27): подземелье героев
-Source-backed HeroDungeon event 578, 35 этапов, Sid1006, бонусы героя 15505 от 5★, 5 суточных попыток, быстрые зачистки, оригинальное сдвигаемое зонное окно, защищённые API/UI, migration36. Full isolated PostgreSQL+Redis **201/201 PASS** (Termalin fjz5dw12c2); server/client builds PASS. NEXT-021 in_progress, отчёт reports/NEXT-021.12-hero-dungeon-2026-11-27.md.
+Source-backed HeroDungeon event 578, 35 этапов, Sid1006, бонусы героя 15505 от 5★, 5 суточных попыток, быстрые зачистки, оригинальное сдвигаемое зонное окно, защищённые API/UI, migration36. Full isolated PostgreSQL+Redis **201/201 PASS** (Termalin fjz5dw12c2); server/client builds PASS. Production VPS API+frontend опубликованы, migration36, HTTP200 и Docker healthy. NEXT-021 in_progress, отчёт reports/NEXT-021.12-hero-dungeon-2026-11-27.md.
 
 # NEXT-021.11 (2026-11-27): оригинальные задания World Boss
 Семь исходных заданий событий 15802/15803, типы 1060/1061/2021, ручное получение наград, дневной сброс и накопительный урон, миграция35, API/UI. Full isolated PostgreSQL+Redis 199/199 PASS (job 7fyk0yt7z1), server/client builds PASS. Production VPS API+frontend опубликованы, migration35, HTTP200 и Docker healthy. NEXT-021 in_progress, отчёт reports/NEXT-021.11-world-boss-tasks-2026-11-27.md.

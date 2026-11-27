@@ -21,3 +21,14 @@
 - Новые тесты покрывают исходные карты, награды/бонусы/ранги, зонный календарь, Sid1006, ownership, шесть слотов, бои, pending, однократное settlement, недоступные этапы, VIP-независимые попытки, сброс дневного лимита, fallback на основной отряд, изоляцию игроков.
 - Первоначальная тестовая SQL ошибка migration36 и две неправильные предпосылки о дате завершения события исправлены, полный повторный прогон зелёный.
 - Ручная проверка авторизованным игроком в браузере пока не выполнена.
+
+## Выпуск NEXT-021.12 на VPS
+- Перед обновлением сохранён PostgreSQL dump `/var/backups/rockbogini-next-pre-dungeon-02112-20261127.dump` (139 KiB), предыдущий Docker-образ `rockbogini-next-api:pre-dungeon-02112`.
+- Новый образ `rockbogini-next-api:latest` успешно собран (Docker build exit0).
+- API обновлён через `docker compose -p rockbogini-next up -d --no-deps --no-build api`; PostgreSQL и Redis не перезапускались.
+- Production `schema_migrations` = **36**, миграция применена.
+- `https://rikagro.ru/sexyidle/api/ready` = `{"ready":true}` HTTP200.
+- Неавторизованный `GET /sexyidle/api/v1/hero-dungeon` вернул HTTP401, ожидаемая защита.
+- Docker API, PostgreSQL и Redis healthy, исполняемый образ совпадает с тегом latest.
+- Frontend опубликован в `/var/www/sexyidle`, entry `assets/main-BsM6TQPe.js`.
+- Ручная проверка авторизованного сценария игрока пока не проведена.
