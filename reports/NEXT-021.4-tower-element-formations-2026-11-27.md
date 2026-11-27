@@ -20,3 +20,13 @@
 - Полная изолированная регрессия PostgreSQL/Redis `bash tools/test-all-mechanics-isolated.sh`: **186/186 PASS, 0 FAIL, 0 SKIP**, Termalin job `bop70jaril`, exit0.
 - Новые тесты покрывают оригинальные MapType SIDs, построение, сохранение, чужих героев, дубли, неизменность обычной формации, запрет изменений в pending-бое и общее сохранение для обычной/высшей башни.
 - Браузерный сценарий с авторизованным игроком пока не проверен вручную, соответствие визуалу 1:1 и остальные отдельные PvE задачи NEXT-021 остаются открытыми.
+
+## Выпуск NEXT-021.4 на VPS
+- Перед обновлением сохранён PostgreSQL dump `/var/backups/rockbogini-next-pre-tower-0214-20261127.dump` (131 KiB), предыдущий Docker-образ `rockbogini-next-api:pre-tower-0214`.
+- Новый образ `rockbogini-next-api:latest` собран (Docker build exit0).
+- Успешно выполнено `docker compose -p rockbogini-next up -d --no-deps --no-build api`; DB и Redis не перезапускались.
+- Production `schema_migrations` = **31**; `https://rikagro.ru/sexyidle/api/ready` = `{"ready":true}` HTTP200.
+- `GET /sexyidle/api/v1/tower/formations` без сессии HTTP401, ожидаемая защита.
+- API/PostgreSQL/Redis Docker healthy; runtime image совпадает с тегом latest.
+- Клиент опубликован в `/var/www/sexyidle`, entry `assets/main-PAWCwaz8.js`.
+- Полный браузерный сценарий с авторизованным игроком пока не проверен вручную.
