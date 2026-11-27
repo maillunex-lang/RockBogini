@@ -404,6 +404,7 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
       const worn=info?.equip??null;
       const starter=SLOT_STARTER[slot];
       return <li key={slot}>
+       <img className={'hero-item-icon'+(worn?'':' hero-item-preview')} src={import.meta.env.BASE_URL+'item-icons/'+(worn?.ItemId??starter)+'.webp'} alt="" title={worn?'Надетый оригинальный предмет':'Образец оригинального предмета, слот пуст'} loading="lazy" onError={e=>{e.currentTarget.style.display='none'}}/>
        <span>{SLOT_NAME[slot]}: {worn?`#${worn.ItemId} ★${worn.star} · ${worn.score}`:'пусто'}{info?.nextId?` → #${info.nextId} (нужно ${info.nextNeed} xp, сейчас ${info.ownXp})`:worn?' · макс':''}</span>
        {worn?(
         <>
@@ -429,6 +430,7 @@ export function HeroesScreen({api,token,onClose}:{api:string;token:string;onClos
       const worn=info?.equip??null;
       const starter=HOLY_STARTER[slot];
       return <li key={slot}>
+       <img className={'hero-item-icon'+(worn?'':' hero-item-preview')} src={import.meta.env.BASE_URL+'item-icons/'+(worn?.ItemId??starter)+'.webp'} alt="" title={worn?'Надетый оригинальный предмет':'Образец оригинального предмета, слот пуст'} loading="lazy" onError={e=>{e.currentTarget.style.display='none'}}/>
        <span>{SLOT_NAME[slot]}: {worn?`#${worn.ItemId} ★${worn.Star} шаг ${worn.Step??0} душа ${worn.Stage??0} ур.${worn.Level}${worn.GallerySlot?` · гал.${worn.GallerySlot}`:''} · ${worn.score}`:'пусто'}</span>
        {worn?(
         <>

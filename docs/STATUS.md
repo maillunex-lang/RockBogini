@@ -49,3 +49,5 @@ Canonical checkout `/home/gamedev/rocbogini`, deployed code a4332ce, PixiJS 7.4.
 2026-11-27 NEXT-026.4 partial: original three starter Spine models working, 1135 SkillIcon native source assets, fullscreen detail, real star material preview (upgrade untested); browser city/five screens/heroes PASS; full 20-feature package & exact 1:1 pending. See reports/NEXT-026.4-2026-11-27.md.
 
 2026-11-27 CI repair: Actions next-server test jobs previously failed due mandatory NEXT_RECOVERY_SECRET absent. Test runner now generates 64-char ephemeral random secret; original guard unchanged. Local isolated unit subset 90 pass/0 fail/53 DB skips. Browser Spine ticker visibility pausing added. Report reports/NEXT-026.4-ci-fix-2026-11-27.md. Remote status pending.
+
+2026-11-27 NEXT-026.4 equipment: 8 original ItemIcon sprites for regular/holy slots, actual worn ItemId shown when equipped; dimmed starter preview if empty. 320/390 browser 8/8 PASS, Vite and published PASS. reports/NEXT-026.4-original-equipment-2026-11-27.md.

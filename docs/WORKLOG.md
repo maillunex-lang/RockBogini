@@ -502,3 +502,5 @@ NEXT-013.8 in_progress: inventoried 10 invalid common-skill ActionIndex values; 
 2026-11-27 NEXT-026.4 partial: original Spine 3.8 preview with 30FPS cap; all three guest heroes verified, original SkillIcon 1135/1159 resolvable native sprites with SHA256 manifest, fullscreen HeroDetailPanel Esc/Back, star requirements panel; client build/publish and browser regression PASS. Outstanding proposed 20 features. reports/NEXT-026.4-2026-11-27.md.
 
 2026-11-27 NEXT-026.4 CI: found exact cause for 24 Action test-file failures, generated ephemeral CI recovery HMAC key instead of weakening production guard. Local node --test 90 PASS/0 FAIL/53 SKIP (isolated DB absent). Spine preview pauses on document visibilitychange. Build PASS. reports/NEXT-026.4-ci-fix-2026-11-27.md.
+
+2026-11-27 NEXT-026.4 gear: original eight ItemIcon WebP files wired into ordinary/holy gear slots, server ItemId if worn, preview gray if empty, 320/390 browser pass; build and publish. reports/NEXT-026.4-original-equipment-2026-11-27.md.

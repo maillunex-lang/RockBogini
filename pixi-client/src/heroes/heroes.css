@@ -119,3 +119,9 @@
 .hero-star-cost li{display:flex;gap:8px;align-items:center;padding:6px;font-size:13px;border:1px solid #d3bb94;border-radius:4px;color:#4b372a}
 .hero-star-cost img{width:34px;height:34px;object-fit:contain;flex:none}
 .hero-star-panel button{margin:5px 5px 0 0;background:#543d50 url('/ui/btn_orange.webp') center/100% 100% no-repeat;color:#fff8e5}
+
+/* NEXT-026.4: original ItemIcon art for equipment and holy equipment slots. */
+.hero-equip li .hero-item-icon{width:54px;height:54px;object-fit:contain;flex:none;border-radius:5px}
+.hero-equip li .hero-item-preview{opacity:.55;filter:grayscale(.65)}
+.hero-equip li>span{min-width:0;overflow-wrap:anywhere;flex:1 1 110px}
+.hero-equip li button{min-width:0;font-size:clamp(10px,2.6vw,13px)}

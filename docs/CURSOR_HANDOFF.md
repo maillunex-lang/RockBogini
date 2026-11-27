@@ -35,3 +35,5 @@ NEXT-026.3.01–20 source-driven visual batch finished 2026-11-26. Five bundles,
 2026-11-27 NEXT-026.4 partial: HeroSpinePreview.tsx mounts original skeleton lazily via spineLibrary; maps through hero-asset-map.json. 1135 skill-icons copied by tools/extract-hero-skill-icons.py; full source manifest in reports/NEXT-026.4-skill-icons.json. Fullscreen detail and server-only star preview. Continue NEXT-026.4 remaining 20-task scope, visually compare original HeroDetailPanel, do not declare full 1:1. reports/NEXT-026.4-2026-11-27.md.
 
 CI repair 2026-11-27: .github/workflows/ci.yml npm test sets one fresh NEXT_RECOVERY_SECRET using openssl rand -hex 32; never hardcode/print/reuse prod. Confirm remote Actions after push. 90 non-DB tests pass, 53 integration tests skipped without isolated DB. reports/NEXT-026.4-ci-fix-2026-11-27.md.
+
+NEXT-026.4 equipment: regular/holy gear slot art linked to original public/item-icons IDs; 8 icons verified 320/390; existing handlers unaffected. No 1:1 acceptance. reports/NEXT-026.4-original-equipment-2026-11-27.md.

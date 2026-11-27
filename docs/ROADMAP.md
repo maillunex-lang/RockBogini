@@ -50,6 +50,9 @@ VPS is the development stand; GitHub main is the published source mirror. **SING
 - QA: город, предыдущие пять экранов и экран героев PASS, мобильные 320/390/768. Vite/tsc и /sexyidle PASS.
 - **Не считать 20 этапов завершёнными**: предложенный пакет NEXT-026.4 выполнен частично, ключевые механики и точное 1:1 остались. Отчёт reports/NEXT-026.4-2026-11-27.md.
 
+### NEXT-026.4 оригинальные предметы экипировки, 2026-11-27
+- В деталях героя восемь исходных ItemIcon (4 обычные слота и 4 священных); реальный ItemId берётся с сервера, в пустом слоте показан затемнённый образец, не выдаётся за надетую вещь. Проверка 320/390px 8/8 PASS. Отчёт reports/NEXT-026.4-original-equipment-2026-11-27.md. Механика экипировки не менялась; проверка серверной транзакции и 1:1 визуала открыта.
+
 ### Открытые подэтапы сейчас
 - **026.1** city visual parity — mobile HUD QA PASS, 1:1 + Spine acceptance open
 - **026.2** original HeroListPanel — original background + 4-column grid live, frames/filters/detail pending
