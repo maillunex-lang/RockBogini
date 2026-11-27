@@ -20,3 +20,13 @@
 - Изолированная регрессия в отдельных PostgreSQL и Redis: **184/184 PASS**, 0 FAIL, 0 SKIP, Termalin job `80vkw9whq1`, exit 0.
 - Типы/таблицы/DB не изменялись; дополнительная миграция не нужна.
 - Браузерный 1:1 QA боевых анимаций и оригинальной клиентской механики не входит в этот пакет; NEXT-021 остаётся in_progress.
+
+## Выпуск NEXT-021.3F на VPS
+- До обновления сохранён дамп PostgreSQL `/var/backups/rockbogini-next-pre-abyss-0213f-20261127.dump` (131 KiB), предыдущий образ `rockbogini-next-api:pre-abyss-0213f`.
+- Docker build `rockbogini-next-api:latest` выполнен (exit0); обновлён только API через `docker compose -p rockbogini-next up -d --no-deps --no-build api`.
+- Public `https://rikagro.ru/sexyidle/api/ready`: HTTP200 `{"ready":true}`.
+- Public `GET /sexyidle/api/v1/abyss` без сессии HTTP401, ожидаемая защита.
+- Production `schema_migrations` = 30, новая миграция не требовалась.
+- Docker API, PostgreSQL, Redis healthy, образ running совпадает с тегом latest.
+- Свободно 13 GiB; клиент не изменялся в этом серверном пакете.
+- Полный ручной браузерный тест с авторизованным игроком пока не выполнен.

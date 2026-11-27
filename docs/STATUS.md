@@ -1,5 +1,5 @@
 # NEXT-021.3F (2026-11-27): усиления Бесконечной бездны
-Уточнено применение 12 исходных buff ID: атрибуты до 200, пассивные навыки без дублей, одноразовые предложения и лечение только героев с сохранённым HP. Серверный билд PASS, isolated PostgreSQL/Redis 184/184 PASS (job 80vkw9whq1). NEXT-021 остаётся in_progress. Отчёт reports/NEXT-021.3F-abyss-buff-parity-2026-11-27.md.
+Уточнено применение 12 исходных buff ID: атрибуты до 200, пассивные навыки без дублей, одноразовые предложения и лечение только героев с сохранённым HP. Серверный билд PASS, isolated PostgreSQL/Redis 184/184 PASS (job 80vkw9whq1). Production VPS API обновлён, readiness HTTP200 и Docker healthy. NEXT-021 остаётся in_progress. Отчёт reports/NEXT-021.3F-abyss-buff-parity-2026-11-27.md.
 
 # NEXT-021.3E (2026-11-27): отдельная формация отрядной Бездны
 Режим MapType 11 использует оригинальную отдельную формацию Sid 7; шесть слотов и построения 101–106, сохранение с контролем владения и запретом изменения во время pending боя. Миграция 30, сервер/клиент билд PASS, isolated 180/180 PASS (job 65kqjqs9oo). Production VPS API+frontend опубликованы, migration30 и readiness HTTP200, Docker healthy. NEXT-021 in_progress, отчёт reports/NEXT-021.3E-abyss-team-formation-2026-11-27.md.
