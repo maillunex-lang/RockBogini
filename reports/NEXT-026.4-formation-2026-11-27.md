@@ -1,0 +1,7 @@
+# NEXT-026.4 original formation visual slice, 2026-11-27
+Source: /home/gamedev/QueensBladeH5/racon2-main/client/G123Live/Queen-Blade/assets/BattleFormationPanel.
+Original Cocos config paths: Bg (texture 1080x2520), BattleFormationPanel atlas 492x225, prefab BattleFormationPanel, BattleFormationItem, FormationSwitchBtn. Packed prefab has HeroContainer 1084x740 and FormationContainer, actual hero placement still driven by server formation config (Data indices).
+Imported exact original Bg.webp plus 8 independently cropped source sprite frames, notably formation_on, formation_off, formation_blue, formation_purple and btn1/btn2; no synthetic illustrations. Provenance and rects in reports/NEXT-026.4-formation-assets.json, reproducible tool tools/extract-formation-sprites.py.
+FormationScreen uses exact Cocos background, source formation_on/off/blue placement markers and original btn2 on save button. Existing formation choose, hero selection and PUT /v1/formation handlers are unchanged. No server or database modifications.
+Browser guest -> city -> heroes -> combat squad, waits for async nine formation nodes, checks source bg/marker and 9 slots and back navigation: 320x640, 390x844, 768x1024 all PASS, no HTTP/JS errors or horizontal document overflow. Vite TypeScript build and /sexyidle publish PASS.
+Not yet 1:1: exact position alignment (including Cocos anchor/scale), actual squad lineup UI, original drag-drop and player-level constraints need reference inspection. No save endpoint transaction executed in this visual QA.

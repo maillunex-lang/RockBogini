@@ -53,6 +53,9 @@ VPS is the development stand; GitHub main is the published source mirror. **SING
 ### NEXT-026.4 оригинальные предметы экипировки, 2026-11-27
 - В деталях героя восемь исходных ItemIcon (4 обычные слота и 4 священных); реальный ItemId берётся с сервера, в пустом слоте показан затемнённый образец, не выдаётся за надетую вещь. Проверка 320/390px 8/8 PASS. Отчёт reports/NEXT-026.4-original-equipment-2026-11-27.md. Механика экипировки не менялась; проверка серверной транзакции и 1:1 визуала открыта.
 
+### NEXT-026.4 боевой отряд (2026-11-27)
+- Оригинальный Cocos BattleFormationPanel: фон Bg 1080×2520 и 8 спрайтов из атласа 492×225, источник и SHA256 в reports/NEXT-026.4-formation-assets.json. Маркеры formation_on/off/blue, original btn2 для сохранения. Серверные позиции Form.Data не переписывались. QA: 9 позиций, открытие и возврат, 320/390/768 PASS. Геометрия 1:1 и drag-drop не приняты, отчёт reports/NEXT-026.4-formation-2026-11-27.md.
+
 ### Открытые подэтапы сейчас
 - **026.1** city visual parity — mobile HUD QA PASS, 1:1 + Spine acceptance open
 - **026.2** original HeroListPanel — original background + 4-column grid live, frames/filters/detail pending

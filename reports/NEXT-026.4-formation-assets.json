@@ -1,0 +1,61 @@
+{
+  "originalBackground": {
+    "path": "native/4f/4f744a00-0479-491c-a11a-5371184cc899.83f3a.webp",
+    "sha256": "6173523d96ad68cf309999e711aa0f1019a9eb7214c39b00c519367b73f5628e",
+    "dimensions": [
+      1080,
+      2520
+    ]
+  },
+  "originalAtlas": "native/65/65662e0b-35b9-4bb8-bec1-f7be2657d2cf.edb16.webp",
+  "sprites": {
+    "rewardBg": [
+      367,
+      50,
+      46,
+      46
+    ],
+    "vs": [
+      3,
+      3,
+      184,
+      189
+    ],
+    "formation_purple": [
+      339,
+      166,
+      138,
+      56
+    ],
+    "btn2": [
+      194,
+      3,
+      166,
+      81
+    ],
+    "btn1": [
+      194,
+      91,
+      150,
+      57
+    ],
+    "formation_off": [
+      367,
+      3,
+      120,
+      40
+    ],
+    "formation_blue": [
+      351,
+      103,
+      138,
+      56
+    ],
+    "formation_on": [
+      194,
+      166,
+      138,
+      56
+    ]
+  }
+}

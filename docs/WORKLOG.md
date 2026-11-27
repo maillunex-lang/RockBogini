@@ -504,3 +504,5 @@ NEXT-013.8 in_progress: inventoried 10 invalid common-skill ActionIndex values; 
 2026-11-27 NEXT-026.4 CI: found exact cause for 24 Action test-file failures, generated ephemeral CI recovery HMAC key instead of weakening production guard. Local node --test 90 PASS/0 FAIL/53 SKIP (isolated DB absent). Spine preview pauses on document visibilitychange. Build PASS. reports/NEXT-026.4-ci-fix-2026-11-27.md.
 
 2026-11-27 NEXT-026.4 gear: original eight ItemIcon WebP files wired into ordinary/holy gear slots, server ItemId if worn, preview gray if empty, 320/390 browser pass; build and publish. reports/NEXT-026.4-original-equipment-2026-11-27.md.
+
+2026-11-27 NEXT-026.4 formation art: original Bg (1080x2520) and eight Cocos atlas sprites linked to 9 dynamic slots, server formation state untouched, browser guest/formation/back 320/390/768 PASS; TypeScript/Vite and /sexyidle publish PASS. reports/NEXT-026.4-formation-2026-11-27.md.

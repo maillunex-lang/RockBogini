@@ -125,3 +125,15 @@
 .hero-equip li .hero-item-preview{opacity:.55;filter:grayscale(.65)}
 .hero-equip li>span{min-width:0;overflow-wrap:anywhere;flex:1 1 110px}
 .hero-equip li button{min-width:0;font-size:clamp(10px,2.6vw,13px)}
+
+/* NEXT-026.4: exact BattleFormationPanel/Bg and source atlas markers.
+   Dynamic 3x3 formation position/disabled state remains fully server-driven. */
+.formation-screen{background:#15445d url('/heroes/original/formation/Bg.webp') center top/100% auto repeat-y}
+.formation-screen header,.formation-screen>label,.formation-screen>p{color:#fff;text-shadow:0 1px 3px #11283e}
+.formation-screen .formation-grid{gap:4px;padding:10px 8px 16px;background:linear-gradient(180deg,#00152033,#00152022);border-radius:12px}
+.formation-screen .formation-grid button{background:transparent url('/heroes/original/formation/formation_on.png') center bottom/100% 36% no-repeat;border:0;overflow:hidden;min-height:75px;text-shadow:0 1px 3px #000}
+.formation-screen .formation-grid button:disabled{opacity:.38;background-image:url('/heroes/original/formation/formation_off.png')}
+.formation-screen .formation-grid button[aria-pressed=true]{background-image:url('/heroes/original/formation/formation_blue.png');outline:2px solid #ffe5a1;outline-offset:-2px}
+.formation-screen .formation-grid img{width:70%;height:68%;max-width:120px;object-fit:contain}
+.formation-screen .formation-grid span{font-size:clamp(9px,2.5vw,12px)}
+.formation-screen .formation-save{background:#a7771a url('/heroes/original/formation/btn2.png') center/100% 100% no-repeat;border:0;color:#fff6e0}

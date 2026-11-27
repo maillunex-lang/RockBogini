@@ -51,3 +51,5 @@ Canonical checkout `/home/gamedev/rocbogini`, deployed code a4332ce, PixiJS 7.4.
 2026-11-27 CI repair: Actions next-server test jobs previously failed due mandatory NEXT_RECOVERY_SECRET absent. Test runner now generates 64-char ephemeral random secret; original guard unchanged. Local isolated unit subset 90 pass/0 fail/53 DB skips. Browser Spine ticker visibility pausing added. Report reports/NEXT-026.4-ci-fix-2026-11-27.md. Remote status pending.
 
 2026-11-27 NEXT-026.4 equipment: 8 original ItemIcon sprites for regular/holy slots, actual worn ItemId shown when equipped; dimmed starter preview if empty. 320/390 browser 8/8 PASS, Vite and published PASS. reports/NEXT-026.4-original-equipment-2026-11-27.md.
+
+2026-11-27 NEXT-026.4 formation: BattleFormationPanel original beach 1080x2520 + 8 source sprite crops; server-driven 9 slot grid preserved; 320/390/768 browser PASS including back. Exact Cocos world placement not 1:1. reports/NEXT-026.4-formation-2026-11-27.md.

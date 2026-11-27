@@ -37,3 +37,5 @@ NEXT-026.3.01–20 source-driven visual batch finished 2026-11-26. Five bundles,
 CI repair 2026-11-27: .github/workflows/ci.yml npm test sets one fresh NEXT_RECOVERY_SECRET using openssl rand -hex 32; never hardcode/print/reuse prod. Confirm remote Actions after push. 90 non-DB tests pass, 53 integration tests skipped without isolated DB. reports/NEXT-026.4-ci-fix-2026-11-27.md.
 
 NEXT-026.4 equipment: regular/holy gear slot art linked to original public/item-icons IDs; 8 icons verified 320/390; existing handlers unaffected. No 1:1 acceptance. reports/NEXT-026.4-original-equipment-2026-11-27.md.
+
+NEXT-026.4 FormationScreen: original assets copied by tools/extract-formation-sprites.py from BattleFormationPanel native/ and packed import sprite rects. Hero roster formation config still authoritative (nine positions). QA three mobile/tablet widths PASS. Do not claim original position 1:1; compare prefab HeroContainer 1084x740 and FormationContainer. reports/NEXT-026.4-formation-2026-11-27.md.
