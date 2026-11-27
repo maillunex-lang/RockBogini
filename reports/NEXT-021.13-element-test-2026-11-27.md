@@ -22,3 +22,14 @@
 - Новые тесты подтверждают 400 карт, исходные пороги и награды, отдельные SID, 40% ослабление, атомарное быстрое прохождение, изоляцию игроков, защиту во время pending, одноразовое завершение и сохранение личного прогресса.
 - Первоначальные два расхождения в тестовых ожиданиях (золото второго этажа и последний QuickPower) исправлены по исходным таблицам, полный повторный прогон зелёный.
 - Ручная проверка в браузере авторизованным игроком пока не выполнена.
+
+## Выпуск NEXT-021.13 на VPS
+- Перед обновлением сохранён PostgreSQL dump `/var/backups/rockbogini-next-pre-element-02113-20261127.dump` (146 KiB), предыдущий Docker-образ `rockbogini-next-api:pre-element-02113`.
+- Новый образ `rockbogini-next-api:latest` успешно собран (Docker build exit0).
+- API обновлён через `docker compose -p rockbogini-next up -d --no-deps --no-build api`; PostgreSQL и Redis не перезапускались.
+- Production `schema_migrations` = **37**, миграция применена.
+- `https://rikagro.ru/sexyidle/api/ready` = `{"ready":true}` HTTP200.
+- Неавторизованный `GET /sexyidle/api/v1/element-test` вернул HTTP401, ожидаемая защита.
+- Docker API, PostgreSQL и Redis healthy, исполняемый образ совпадает с тегом latest.
+- Frontend опубликован в `/var/www/sexyidle`, entry `assets/main-C98hi7Hm.js`.
+- Ручная проверка авторизованного сценария игрока пока не проведена.
