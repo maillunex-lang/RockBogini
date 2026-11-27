@@ -381,6 +381,54 @@ export async function migrate(s:Storage){
    PRIMARY KEY(account_id,event_id,task_id)
  )`);
  await c.query('INSERT INTO schema_migrations(version) VALUES(35) ON CONFLICT DO NOTHING');
+ await c.query(`CREATE TABLE IF NOT EXISTS hero_dungeon_progress(
+ account_id uuid PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,
+ event_id integer NOT NULL,
+ cleared_stage integer NOT NULL DEFAULT 0 CHECK(cleared_stage>=0),
+ daily_count integer NOT NULL DEFAULT 0 CHECK(daily_count>=0),
+ last_rounds integer NOT NULL DEFAULT 0 CHECK(last_rounds>=0),
+ day date NOT NULL DEFAULT '1970-01-01'
+ )`);
+ await c.query(`CREATE TABLE IF NOT EXISTS hero_dungeon_battles(
+ id uuid PRIMARY KEY,
+ account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+ event_id integer NOT NULL,
+ stage integer NOT NULL,
+ map_id integer NOT NULL,
+ drop_bonus integer NOT NULL DEFAULT 0,
+ report jsonb NOT NULL,
+ settlement jsonb,
+ created_at timestamptz NOT NULL DEFAULT now()
+ )`);
+ await c.query(`CREATE TABLE IF NOT EXISTS hero_dungeon_pending(
+ account_id uuid PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,
+ battle_id uuid NOT NULL REFERENCES hero_dungeon_battles(id) ON DELETE CASCADE
+ )`);
+ await c.query(`ALTER TABLE player_formations
+ ADD COLUMN IF NOT EXISTS dungeon_hero_ids integer[] NOT NULL DEFAULT ARRAY[0,0,0,0,0,0]::integer[],
+ ADD COLUMN IF NOT EXISTS dungeon_formation_type integer NOT NULL DEFAULT 101`);
+ await c.query(`ALTER TABLE player_formations DROP CONSTRAINT IF EXISTS player_formations_dungeon_check`);
+ await c.query(`ALTER TABLE player_formations ADD CONSTRAINT player_formations_dungeon_check CHECK(
+ cardinality(dungeon_hero_ids)=6 AND dungeon_formation_type IN (101,102,103,104,105,106) AND
+ array_position(dungeon_hero_ids,NULL) IS NULL AND
+ dungeon_hero_ids[1]>=0 AND dungeon_hero_ids[2]>=0 AND dungeon_hero_ids[3]>=0 AND
+ dungeon_hero_ids[4]>=0 AND dungeon_hero_ids[5]>=0 AND dungeon_hero_ids[6]>=0 AND
+ (dungeon_hero_ids[1]=0 OR dungeon_hero_ids[2]=0 OR dungeon_hero_ids[1]<>dungeon_hero_ids[2]) AND
+ (dungeon_hero_ids[1]=0 OR dungeon_hero_ids[3]=0 OR dungeon_hero_ids[1]<>dungeon_hero_ids[3]) AND
+ (dungeon_hero_ids[1]=0 OR dungeon_hero_ids[4]=0 OR dungeon_hero_ids[1]<>dungeon_hero_ids[4]) AND
+ (dungeon_hero_ids[1]=0 OR dungeon_hero_ids[5]=0 OR dungeon_hero_ids[1]<>dungeon_hero_ids[5]) AND
+ (dungeon_hero_ids[1]=0 OR dungeon_hero_ids[6]=0 OR dungeon_hero_ids[1]<>dungeon_hero_ids[6]) AND
+ (dungeon_hero_ids[2]=0 OR dungeon_hero_ids[3]=0 OR dungeon_hero_ids[2]<>dungeon_hero_ids[3]) AND
+ (dungeon_hero_ids[2]=0 OR dungeon_hero_ids[4]=0 OR dungeon_hero_ids[2]<>dungeon_hero_ids[4]) AND
+ (dungeon_hero_ids[2]=0 OR dungeon_hero_ids[5]=0 OR dungeon_hero_ids[2]<>dungeon_hero_ids[5]) AND
+ (dungeon_hero_ids[2]=0 OR dungeon_hero_ids[6]=0 OR dungeon_hero_ids[2]<>dungeon_hero_ids[6]) AND
+ (dungeon_hero_ids[3]=0 OR dungeon_hero_ids[4]=0 OR dungeon_hero_ids[3]<>dungeon_hero_ids[4]) AND
+ (dungeon_hero_ids[3]=0 OR dungeon_hero_ids[5]=0 OR dungeon_hero_ids[3]<>dungeon_hero_ids[5]) AND
+ (dungeon_hero_ids[3]=0 OR dungeon_hero_ids[6]=0 OR dungeon_hero_ids[3]<>dungeon_hero_ids[6]) AND
+ (dungeon_hero_ids[4]=0 OR dungeon_hero_ids[5]=0 OR dungeon_hero_ids[4]<>dungeon_hero_ids[5]) AND
+ (dungeon_hero_ids[4]=0 OR dungeon_hero_ids[6]=0 OR dungeon_hero_ids[4]<>dungeon_hero_ids[6]) AND
+ (dungeon_hero_ids[5]=0 OR dungeon_hero_ids[6]=0 OR dungeon_hero_ids[5]<>dungeon_hero_ids[6]))`);
+ await c.query('INSERT INTO schema_migrations(version) VALUES(36) ON CONFLICT DO NOTHING');
  await c.query('COMMIT');
  }catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}
 }

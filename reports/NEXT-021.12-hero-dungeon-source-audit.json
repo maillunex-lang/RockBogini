@@ -1,0 +1,60 @@
+{
+  "sources": {
+    "/home/gamedev/QueensBladeH5/racon2-main/server/priv/templates/world.json": "eacfc1928fd28bc25274bde1bc1d74d173e7f30ca87b51145bb948b82bf946b1"
+  },
+  "eventId": 578,
+  "stages": 35,
+  "maps": 35,
+  "mapTypes": [
+    121
+  ],
+  "limit": 5,
+  "heroId": 15505,
+  "firstMap": {
+    "id": 25001,
+    "type": 121,
+    "battlePower": 65138,
+    "isBoss": 0,
+    "strength": [
+      5,
+      70
+    ],
+    "attributeAddon": [
+      [
+        104,
+        -800
+      ],
+      [
+        105,
+        -800
+      ],
+      [
+        107,
+        -800
+      ]
+    ],
+    "heroes": [
+      [
+        2,
+        14502
+      ],
+      [
+        4,
+        14501
+      ],
+      [
+        5,
+        14504
+      ],
+      [
+        6,
+        14505
+      ],
+      [
+        8,
+        14506
+      ]
+    ],
+    "bg": "Desert"
+  }
+}

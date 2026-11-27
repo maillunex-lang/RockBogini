@@ -19,10 +19,11 @@ const SHORTCUTS=[
  {id:'abyss',label:'Бездна',icon:'TaskBtn.webp'},
  {id:'secret',label:'Тайная область',icon:'TaskBtn.webp'},
  {id:'world-boss',label:'Боссы',icon:'TaskBtn.webp'},
+ {id:'hero-dungeon',label:'Подземелье героев',icon:'TaskBtn.webp'},
 ] as const;
 
-export function City({api,token,onProfile,onBattle,onTower,onDaily,onAbyss,onSecret,onWorldBoss,onHeroes,onInventory,onSummon,onShop,onTasks}:{
- api:string;token:string;onProfile:()=>void;onBattle:()=>void;onTower?:()=>void;onDaily?:()=>void;onAbyss?:()=>void;onSecret?:()=>void;onWorldBoss?:()=>void;onHeroes:()=>void;
+export function City({api,token,onProfile,onBattle,onTower,onDaily,onAbyss,onSecret,onWorldBoss,onHeroDungeon,onHeroes,onInventory,onSummon,onShop,onTasks}:{
+ api:string;token:string;onProfile:()=>void;onBattle:()=>void;onTower?:()=>void;onDaily?:()=>void;onAbyss?:()=>void;onSecret?:()=>void;onWorldBoss?:()=>void;onHeroDungeon?:()=>void;onHeroes:()=>void;
  onInventory?:()=>void;onSummon?:()=>void;onShop?:()=>void;onTasks?:()=>void;
 }){
  const [p,setP]=useState<Profile|null>(null),[notice,setNotice]=useState(''),[panel,setPanel]=useState('');
@@ -44,6 +45,7 @@ export function City({api,token,onProfile,onBattle,onTower,onDaily,onAbyss,onSec
   if(id==='abyss'&&onAbyss){onAbyss();return}
   if(id==='secret'&&onSecret){onSecret();return}
   if(id==='world-boss'&&onWorldBoss){onWorldBoss();return}
+  if(id==='hero-dungeon'&&onHeroDungeon){onHeroDungeon();return}
   unavailable(label);
  };
  const openBuilding=(label:string)=>{
